@@ -1,0 +1,77 @@
+{
+  "format_version": "1.0",
+  "evidence_class": "published_code_tabulation",
+  "species_scope": "macaque by source naming; species/subspecies and animal details not supplied in this file",
+  "source": {
+    "original_repository": "D:\\retipath\\experiments\\retipath_foveal_v1\\exploratory_v2\\vendor_pinned\\isetmacaque_cf22ac9d",
+    "relative_path": "toolbox/+simulator/+load/PackerConeRc.m",
+    "commit": "cf22ac9d681482ca1fcc365a423ef0c2be7916a3",
+    "sha256": "72408017cb5b6c4996b48c95050963057f61aab6e39154ea095062a8b5c35e9d",
+    "snapshot": "data/source_snapshots/isetmacaque_cf22ac9d/PackerConeRc.m",
+    "commit_binding": "local .git/HEAD checked; whole working-tree cleanliness not verified"
+  },
+  "units": {
+    "eccentricity": "mm",
+    "cone_density": "cones/mm^2"
+  },
+  "rows": 60,
+  "meridians": {
+    "temporal": {
+      "rows": 28,
+      "min_node_eccentricity_mm": "0.003839230868131",
+      "max_node_eccentricity_mm": "15.72093224557",
+      "coverage": "tabulated nodes only; bounds do not authorize interpolation or extrapolation"
+    },
+    "nasal": {
+      "rows": 32,
+      "min_node_eccentricity_mm": "0.003839230868131",
+      "max_node_eccentricity_mm": "19.92774039180",
+      "coverage": "tabulated nodes only; bounds do not authorize interpolation or extrapolation"
+    }
+  },
+  "code_locations": {
+    "temporalMeridianPeripheral": {
+      "first_data_line": 59,
+      "last_data_line": 73,
+      "rows": 15
+    },
+    "temporalMeridianFoveal": {
+      "first_data_line": 78,
+      "last_data_line": 90,
+      "rows": 13
+    },
+    "nasalMeridianPeripheral": {
+      "first_data_line": 103,
+      "last_data_line": 121,
+      "rows": 19
+    },
+    "nasalMeridianFoveal": {
+      "first_data_line": 126,
+      "last_data_line": 138,
+      "rows": 13
+    }
+  },
+  "transform": "Exact Decimal interpretation of source literals; density multiplied by source literal 1e3. No interpolation or coordinate conversion.",
+  "excluded_conversion": {
+    "source_line": 14,
+    "literal": "210",
+    "unit": "um/deg",
+    "reason": "source model conversion; not established as a universal macaque constant"
+  },
+  "csv_sha256": "897ab2056e5a92cd0180b09ee4b97fe01cf010cc17f269fb15d94e352515ba5c",
+  "script_sha256": "96360296e705936b2cb2ac1b11e2e0f2a1aa9c8d63f629a369ada4ece3bb818c",
+  "checks": {
+    "source_hash_matches": true,
+    "four_matrices_and_counts_match": true,
+    "positive_nodes_and_source_order": true,
+    "rows_preserve_source_line_and_literals": true
+  },
+  "validation_meaning": "source extraction consistency only; not physiological validation or dynamic numerical validation",
+  "data_role": "reference_only",
+  "limitations": [
+    "no e=0 node",
+    "no interpolation, gap filling or extrapolation",
+    "nasal/temporal meridians are not a complete 2-D distribution",
+    "original measurement attribution, digitization method, animal details and uncertainty remain unverified"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "hc_arbor_central_W2000_v1",
+  "arbor_profile_id": "central_OPL_equal_area_W2000",
+  "compatible_geometry_profile_ids": ["hc_joint_synthetic_v1"],
+  "selection_policy": "explicit optional selection; existing defaults and source_patch_v1 retained",
+  "coordinate_frame": "OPL",
+  "unit": "mm",
+  "contact_source_radial_support_mm": [0.5, 1.0],
+  "subcentral_extension_enabled": false,
+  "below_0_5_mm_policy": "CONTACT_DOMAIN_UNSUPPORTED; no inward extrapolation of this arbor support",
+  "support_interpretation": "equal-area OPL calculation support, not measured maximum dendritic reach, soma radius or functional RF",
+  "source_records": {
+    "Wassle2000": {
+      "source_url": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/09/Wassle-et-al.-2000.pdf",
+      "doi": "10.1017/s0952523800174097",
+      "bibliographic_identity": "parent verified PubMed PMID11016578; printed article pages 591-608",
+      "bibliographic_url": "https://pubmed.ncbi.nlm.nih.gov/11016578/",
+      "locator": "printed page 599; central H1/H2 cone contact discussion at physical eccentricity 0.5-1 mm",
+      "paper_index_species": ["Macaca fascicularis", "Macaca mulatta", "Macaca nemestrina"],
+      "central_passage_species": null,
+      "central_passage_species_status": "unresolved; whole-paper indexing does not identify the p599 specimen cohort",
+      "primary_binding": "source passage verified by parent task; local original PDF not duplicated or independently verified in this implementation",
+      "reported_H1_cone_contacts": [6, 7],
+      "reported_H2_cone_contacts": 15,
+      "reported_cone_density_cells_mm2": 32000,
+      "reported_range_unit": "mm physical retinal tissue position, used in OPL contact plane; not RF/input eccentricity",
+      "input_record_role": "reported central source anchors; not imposed single-cell degrees or new dynamical parameters"
+    },
+    "PackerDacey2005": {
+      "doi": "10.1167/5.11.9",
+      "source_url": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/10/orin-dacey-2005.pdf",
+      "locator": "printed pages 1038 and 1050; Figure 1B central H1 diameter reference citing Wassle1989",
+      "central_H1_diameter_um": 16,
+      "comparison_role": "16.08 um computed H1 support diameter and reported 16 um are partially same-source numerical consistency, not independent validation",
+      "peripheral_model_diameter_um": 120,
+      "peripheral_model_transfer": "not adopted as a central support radius"
+    },
+    "PackerDacey2002": {
+      "locator": "printed page 280; traced arbor area, not a convex-hull or maximum-reach definition",
+      "role": "area terminology/reference only; no morphology imported into this disk approximation"
+    },
+    "Boycott1987": {
+      "doi": "10.1098/rspb.1987.0001",
+      "H1_cone_contacts": 7,
+      "H2_cone_contacts": [11, 14],
+      "role": "independent reference retained; not averaged into Wassle2000 contact inputs and not imposed as degrees"
+    }
+  },
+  "derivation": {
+    "formula": "r_mm = sqrt(C / (pi * rho_cone_cells_mm2))",
+    "equivalent_area_mm2": "C / rho_cone_cells_mm2",
+    "rho_cone_cells_mm2": 32000,
+    "H1_contact_range": [6, 7],
+    "H1_contact_count_for_calculation": 6.5,
+    "H1_midpoint_selection_evidence_class": "project_approximation",
+    "H2_contact_count_for_calculation": 15,
+    "H1_radius_mm_rounded": 0.00804,
+    "H2_radius_mm_rounded": 0.01222,
+    "H1_diameter_um_rounded": 16.08,
+    "H2_diameter_um_rounded": 24.44,
+    "radius_selection_evidence_class": "project_approximation",
+    "support_shape_evidence_class": "project_approximation",
+    "source_arithmetic_is_measurement": false,
+    "density_is_dynamic_cone_population_rescaling": false,
+    "single_cell_contact_quota_imposed": false,
+    "divergence_quota_imposed": false,
+    "radius_enlargement_for_missing_contacts": false
+  },
+  "transfer_tags": {
+    "cross_animal_transfer": true,
+    "cross_species_transfer": "central source passage species unresolved; target macaque transfer remains explicit and uncalibrated",
+    "meridian_transfer": "central radial OPL band; unspecified source direction is not full directional validation",
+    "axisymmetry": "project_approximation",
+    "area_to_disk_support": "project_approximation",
+    "co_located_lumped_anchor": "project_approximation; arbor anchor can be co-located with HC soma projection, not cone RF"
+  },
+  "footprints": {
+    "H1": {
+      "kind": "disk",
+      "radius_mm": 0.00804,
+      "unit": "mm",
+      "coordinate_frame": "OPL",
+      "radial_support_mm": [0.5, 1.0],
+      "source_profile_id": "central_OPL_equal_area_W2000_H1_v1",
+      "source_locator": "Wassle2000 printed p599; H1 C=6-7 and cone rho=32000/mm2; midpoint C=6.5 selected for equal-area calculation",
+      "evidence_class": "project_approximation",
+      "approximation_id": "HC_central_OPL_equal_area_W2000_v1",
+      "scope": "finite OPL equal-area calculation support; not measured maximum reach or functional RF",
+      "derivation": "r=sqrt(6.5/(pi*32000)) mm, rounded to 0.00804 mm",
+      "cross_animal_transfer": true,
+      "cross_species_transfer": "central source passage species unresolved; target macaque transfer remains explicit and uncalibrated",
+      "meridian_transfer": "named radial central-band transfer"
+    },
+    "H2": {
+      "kind": "disk",
+      "radius_mm": 0.01222,
+      "unit": "mm",
+      "coordinate_frame": "OPL",
+      "radial_support_mm": [0.5, 1.0],
+      "source_profile_id": "central_OPL_equal_area_W2000_H2_v1",
+      "source_locator": "Wassle2000 printed p599; H2 C=15 and cone rho=32000/mm2",
+      "evidence_class": "project_approximation",
+      "approximation_id": "HC_central_OPL_equal_area_W2000_v1",
+      "scope": "finite OPL equal-area calculation support; not measured maximum reach or functional RF",
+      "derivation": "r=sqrt(15/(pi*32000)) mm, rounded to 0.01222 mm",
+      "cross_animal_transfer": true,
+      "cross_species_transfer": "central source passage species unresolved; target macaque transfer remains explicit and uncalibrated",
+      "meridian_transfer": "named radial central-band transfer"
+    }
+  },
+  "allowed_approximation_ids": ["HC_central_OPL_equal_area_W2000_v1"],
+  "dynamics_changes": false,
+  "contact_policy": "actual stable-ID cone pedicles inside each finite OPL disk; source band applies to actual pedicles, HC anchor and complete support, independent of RF position",
+  "missing_contact_policy": "report finite zero candidates or deficits; no imposed C/D quota, radius enlargement, nearest fill or copied cones",
+  "default_selected": false,
+  "implementation_status": "IMPLEMENTED_SMALL_FIXTURE_CHECKED_NO_FULL_NETWORK_RUN",
+  "engineering_verification": {
+    "test_file": "tests/test_hc_central_arbor_profile.py",
+    "passed_fixture_count": 15,
+    "result_path": ".pytest_hc_central_arbor_20261011_091826.xml",
+    "scope": "configuration conflicts, units/types, actual OPL band/full-arbor limits and small sparse contacts only",
+    "network_simulated": false,
+    "mosaic_generated": false,
+    "physiological_validation": false
+  },
+  "claim": "optional source-constrained project calculation support; no central morphology or physiological calibration claim"
+}

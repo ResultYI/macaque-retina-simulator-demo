@@ -1,0 +1,45 @@
+{
+  "retrieved_at": "2026-10-10T11:30:09.521135+00:00",
+  "repository": "https://github.com/chrischen2/photoreceptorLinearization",
+  "commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2",
+  "license": "MIT",
+  "assets": [
+    {
+      "source_path": "src/model/BiophysModel.m",
+      "path": "data/source_snapshots/chen2024_1bcf7c9a/BiophysModel.m",
+      "url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/src/model/BiophysModel.m",
+      "source_blob_sha1": "8117c9f157fc8768993e41c521efe23aff8fc7dc",
+      "asset_sha256": "fb5ff0a6880d5c78421990981dcf31932b0d415d9d216deb73a64753e5f37937",
+      "bytes": 3808,
+      "verification_level": "code_verified"
+    },
+    {
+      "source_path": "src/model/initPhotoreceptorParams.m",
+      "path": "data/source_snapshots/chen2024_1bcf7c9a/initPhotoreceptorParams.m",
+      "url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/src/model/initPhotoreceptorParams.m",
+      "source_blob_sha1": "086e324f5f5a38f04249c63b1650f68fea4d3586",
+      "asset_sha256": "dbff286bc0bda0fbc0aa87775f83285f5dc93d5028559d19efb64651b9ef4de0",
+      "bytes": 4206,
+      "verification_level": "code_verified"
+    },
+    {
+      "source_path": "src/model/demoMain.m",
+      "path": "data/source_snapshots/chen2024_1bcf7c9a/demoMain.m",
+      "url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/src/model/demoMain.m",
+      "source_blob_sha1": "322935d64a4237153923ef26117e41a6d72f5919",
+      "asset_sha256": "f448fe4f9c0c1d3aa1a443240ff19fb6ff43e31912f57abb7e3ccee54bf2e88d",
+      "bytes": 7378,
+      "verification_level": "identity_verified"
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "data/source_snapshots/chen2024_1bcf7c9a/LICENSE",
+      "url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/LICENSE",
+      "source_blob_sha1": "8ca78f6d2010e1fdbc38127789f8e6bb96afb9b8",
+      "asset_sha256": "2a0fe3991f0323bd12ab145d0328acbf9dca63545ce6f569df69cdb319c848dc",
+      "bytes": 1067,
+      "verification_level": "identity_verified"
+    }
+  ],
+  "network": "Public HTTPS on user computer; no login/cookies/credentials"
+}

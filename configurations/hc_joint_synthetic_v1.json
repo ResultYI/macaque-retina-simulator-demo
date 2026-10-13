@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "hc_joint_synthetic_v1",
+  "implementation_status": "IMPLEMENTED_NOT_RUN",
+  "coordinate_frame": "anatomical_retina",
+  "density_unit": "cells/mm^2",
+  "support_radius_mm": 7.1,
+  "central": {
+    "peak_radius_mm": 0.6,
+    "center_total_density_cells_mm2": 250,
+    "peak_total_density_cells_mm2": 23000,
+    "H1_fraction": 0.8
+  },
+  "source_records": {
+    "Rohrenbeck1989": {
+      "doi": "10.1111/j.1460-9568.1989.tb00349.x",
+      "locator": "abstract central total and ring peak",
+      "evidence_class": "measurement",
+      "primary_binding": "delegated abstract quotation; local primary material not verified",
+      "observations": {
+        "center_total_cells_mm2": 250,
+        "ring_peak_total_cells_mm2": 23000,
+        "approximate_ring_peak_mm": 0.6
+      }
+    },
+    "Wassle2000": {
+      "asset": "sources/spatial/wassle2000_HC_density_tables.json",
+      "locator": "Table2 independent animals; central total-peak x4:1 author derivation",
+      "table2_record_class": "measurement",
+      "central_derived_record_class": "author_assumption",
+      "primary_binding": "historical local quotation; primary verification pending",
+      "identity_scope": "existing effective_dynamics_v1 frozen local baseline; requested contract version differs, retained in core_design.md; not original-primary verification",
+      "requested_contract_sha256": "e22c0210ae2ccafff6a7566bd5bcdc2e1d0d6916ac92685b674ea1f914e6bf9b"
+    },
+    "EglenWong2008": {
+      "doi": "10.1017/S0952523808080176",
+      "locator": "fieldB model parameters; source fig7",
+      "evidence_class": "published_fit",
+      "H1_count": 206,
+      "H2_count": 86,
+      "area_mm": [
+        0.298,
+        0.3
+      ],
+      "dmin_mean_um": [
+        21,
+        32,
+        12
+      ],
+      "dmin_SD_um": [
+        4,
+        8,
+        2.5
+      ],
+      "normal_lower_truncation_um": 5,
+      "primary_binding": "delegated source quotation; not locally reverified"
+    }
+  },
+  "assumptions": {
+    "central_shape": "HC_central_log_smoothstep_v1",
+    "central_exact_peak_position": "project_approximation",
+    "central_H1_fraction_extension": "project_approximation",
+    "outer_shape": "HC_log_total_logit_fraction_zero_peak_slope_v1",
+    "interval_representative_positions": "midpoints, not measured exact points",
+    "axisymmetry": "project_approximation",
+    "cross_animal_transfer": true,
+    "cross_species_transfer": "Table2 fascicularis to target macaque cohort remains explicit",
+    "meridian_transfer": "radial synthesis from incomplete direction information",
+    "soft_core": "HC_joint_finite_temperature_soft_core_v1; local dmin converted to effective support, not source algorithm",
+    "co_located_lumped_anchor": "project_approximation; no cone displacement applied to HC soma"
+  },
+  "canonical_bounds_mm": null,
+  "canonical_domain_policy": "explicit fixed instance or resolved physical input-patch instance; changing bounds changes identity",
+  "footprints": {
+    "H1": null,
+    "H2": null
+  },
+  "arbor_configuration_status": "UNCONFIGURED; explicit finite span/morphology required, no central default",
+  "divergence_profile": null,
+  "require_owner_quota": false,
+  "gap_candidate_max_distance_mm": null,
+  "generator": {
+    "partition_target_mass": 8.0,
+    "quadrature_order": 8,
+    "integration_relative_tolerance": 0.001,
+    "sweeps": 8,
+    "temperature": 1.0,
+    "a11": 4.0,
+    "a22": 4.0,
+    "a12": 4.0,
+    "max_partitions": 2048,
+    "max_proposals": 500000,
+    "max_depth": 12,
+    "integration_absolute_tolerance": 1e-05,
+    "partition_log_density_range": 0.35,
+    "max_draw_attempts": 100000,
+    "max_quadrature_points": 2000000
+  },
+  "computation_policy": "finite work budget and quadrature/partition settings are project choices; no claimed mixing or biological statistical validation",
+  "allowed_approximation_ids": [
+    "HC_central_log_smoothstep_v1",
+    "HC_log_total_logit_fraction_zero_peak_slope_v1",
+    "HC_joint_finite_temperature_soft_core_v1",
+    "HC_cumulative_partition_rounding_v1",
+    "HC_axisymmetric_cross_animal_field_v1",
+    "HC_user_finite_footprint_v1",
+    "HC_co_located_lumped_anchor_v1",
+    "HC_finite_input_boundary_v1",
+    "H1_zero_S_contact_v1",
+    "HC_homotypic_Delaunay_candidates_v1",
+    "finite_contact_participant_runtime_view_v1"
+  ],
+  "claim": "Implemented source-constrained synthetic geometry; independent joint density/mosaic/arbor interface. Dynamics unchanged; numerical generation/statistical validation/simulation NOT_RUN",
+  "runtime_contact_policy": "finite_contact_participant_runtime_view_v1; geometry-only HC retained, native HC dynamics unchanged; cone feedback must have finite contacts",
+  "expected_density_table_sha256": "852c71ebb9cbc63f126fe30f0ca360fe0ccfb794a95e5e9116e71d7e2d15a2c2"
+}

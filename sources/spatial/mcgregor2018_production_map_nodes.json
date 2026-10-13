@@ -1,0 +1,132 @@
+{
+  "production_nodes": {
+    "nasal": {
+      "r_mm": [
+        0,
+        0.01,
+        0.02,
+        0.03,
+        0.04
+      ],
+      "soma_radius_mm": [
+        0.22,
+        0.31266737892323737,
+        0.35973648277622555,
+        0.3928517073028295,
+        0.426
+      ],
+      "raw_window_n": [
+        0,
+        56,
+        39,
+        45,
+        0
+      ],
+      "anchor_profile": "published-rounded-f40",
+      "f40_um": 386,
+      "evidence_class": "project_approximation_source_derived",
+      "central_zero_limit_um": 220,
+      "window_halfwidth_um": 5
+    },
+    "superior": {
+      "r_mm": [
+        0,
+        0.01,
+        0.02,
+        0.03,
+        0.04
+      ],
+      "soma_radius_mm": [
+        0.22,
+        0.2736000097483285,
+        0.3179764152295457,
+        0.3547573862714511,
+        0.39
+      ],
+      "raw_window_n": [
+        0,
+        22,
+        39,
+        23,
+        0
+      ],
+      "anchor_profile": "published-rounded-f40",
+      "f40_um": 350,
+      "evidence_class": "project_approximation_source_derived",
+      "central_zero_limit_um": 220,
+      "window_halfwidth_um": 5
+    },
+    "inferior": {
+      "r_mm": [
+        0,
+        0.01,
+        0.02,
+        0.03,
+        0.04
+      ],
+      "soma_radius_mm": [
+        0.22,
+        0.26479001306212285,
+        0.3037752397117362,
+        0.3439020799624798,
+        0.377
+      ],
+      "raw_window_n": [
+        0,
+        12,
+        32,
+        17,
+        0
+      ],
+      "anchor_profile": "published-rounded-f40",
+      "f40_um": 337,
+      "evidence_class": "project_approximation_source_derived",
+      "central_zero_limit_um": 220,
+      "window_halfwidth_um": 5
+    },
+    "temporal": {
+      "r_mm": [
+        0,
+        0.01,
+        0.02,
+        0.03,
+        0.04
+      ],
+      "soma_radius_mm": [
+        0.22,
+        0.2827274290828143,
+        0.31686979252698805,
+        0.35992129666449485,
+        0.388
+      ],
+      "raw_window_n": [
+        0,
+        63,
+        54,
+        60,
+        0
+      ],
+      "anchor_profile": "published-rounded-f40",
+      "f40_um": 348,
+      "evidence_class": "project_approximation_source_derived",
+      "central_zero_limit_um": 220,
+      "window_halfwidth_um": 5
+    }
+  },
+  "source_mat_sha256": "e6122ffdaf46100d51f1b81f11af7e5d863c354e0a0d4e8ce5e2e27bcf451e78",
+  "species": "M. fascicularis",
+  "animals": 1,
+  "microns_per_degree": 223,
+  "quadrant_counts": {
+    "nasal": 237,
+    "superior": 115,
+    "inferior": 77,
+    "temporal": 247
+  },
+  "warnings": [
+    "Source depth keys retained",
+    "Source figure T/I possible label mismatch; no swap",
+    "F40 uses published rounded anchors, not recomputed fifth-order fit",
+    "Packer density composite is explicit cross-species/source transfer, not one measured animal"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_midget_research_v1",
+  "execution_mode": "atlas_cone_dependency_research",
+  "scope": "Actual atlas finite cone/HC and owner midget ON/OFF pathways; explicit partial circuit, not full 20-layer retina",
+  "atlas_profile": "retina_atlas_Schein_bridge_research_v1",
+  "S_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
+  "parameter_profile": "effective_dynamics_v1",
+  "requested_outputs": [
+    "midget_RGC_ON",
+    "midget_RGC_OFF"
+  ],
+  "HC_gap_rate_ms_inverse": 0.0,
+  "passive_HC": "not instantiated at gap0; no demonstration orphans",
+  "runtime_view": "exact inner ancestors plus whole connected cone-HC components in the fixed finite atlas graph; no resampling, no edge fill, retained weights",
+  "unsupported_paths": "rod/AII source-driver missing, parasol independent canonical seed missing, unselected terminal outputs remain archived geometry; not biological absence",
+  "solver": {
+    "method": "DOP853",
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_step": 0.0001,
+    "input_interpolation": "linear"
+  },
+  "budgets": {
+    "max_compile_bytes": 536870912
+  },
+  "initialization": "declared source outer equilibrium and local inner conditional/transient state; no long background or steady-state claim",
+  "scientific_validation": "NOT_RUN",
+  "old_success_profile_replaced": false,
+  "frozen_default_graph": {
+    "path": "data/atlas/atlas_r035_bridge_mulatta_connections_v1.json",
+    "sha256": "a9c004ee99eeeffec6c7372275cf60b1f5d203ddf9579033abaf11950a26b956",
+    "owner_bounds_mm": [
+      0.34,
+      0.36,
+      -0.01,
+      0.01
+    ],
+    "halo_mm": 0.04
+  },
+  "BC_route": "existing ResidualBC_ON/OFF causal mechanism; original kernel/bias unchanged; physical BC terminal and AII glycine route explicitly unavailable"
+}

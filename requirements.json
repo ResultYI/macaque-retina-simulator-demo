@@ -1,0 +1,385 @@
+[
+  {
+    "requirement_id": "P01",
+    "required_module": "species/source policy",
+    "status": "局部实现",
+    "gate": "POLICY_CONFIRMED",
+    "implemented_artifact": "retina_sim",
+    "source_ids": [],
+    "missing_evidence": [
+      "逐物种、区域与条件须各自核验，不以混合来源替代主线默认"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Human/cat excluded from main defaults; author mixture opt-in only"
+  },
+  {
+    "requirement_id": "S01",
+    "required_module": "continuous centre/transition/periphery model",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "中心、过渡和周边尚无完整生理 profile"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "No complete retina claim"
+  },
+  {
+    "requirement_id": "S02",
+    "required_module": "nonuniform L/M/S cone mosaic",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [
+      "ISETMacaque_PackerConeRc"
+    ],
+    "missing_evidence": [
+      "e=0、各 meridian、真实二维 L/M/S mosaic 与 S cone 参数缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "60 meridian nodes are not a 2-D mosaic"
+  },
+  {
+    "requirement_id": "S03",
+    "required_module": "calibrated light to R*/s",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "标定 optics、pupil、光谱与区域输入参数未具备"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Unit operator tested only with synthetic_fixture"
+  },
+  {
+    "requirement_id": "S04",
+    "required_module": "horizontal cells and feedback",
+    "status": "来源待补",
+    "gate": "AVAILABLE_REFERENCE",
+    "implemented_artifact": "retina_sim",
+    "source_ids": [
+      "SF2025_runColFun_m"
+    ],
+    "missing_evidence": [
+      "完整 HC 类型、非线性反馈与连接证据缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Named H1 linear reference does not unblock main model"
+  },
+  {
+    "requirement_id": "S05",
+    "required_module": "ON/OFF bipolar types, nonlinearity and wiring",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [
+      "SF2025_runColFun_m"
+    ],
+    "missing_evidence": [
+      "ON/OFF BC subtype、非线性和连接参数缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Midget linear reference only"
+  },
+  {
+    "requirement_id": "S06",
+    "required_module": "amacrine types, states and targets",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "AC 类型、状态与目标连接尚未实现"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "No AC implementation or substitute"
+  },
+  {
+    "requirement_id": "S07",
+    "required_module": "RGC type coverage and spike mechanism",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [
+      "SF2025_runColTask_m"
+    ],
+    "missing_evidence": [
+      "完整 RGC 类型与 spike 生理机制缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Midget rate only; no invented stochastic spikes"
+  },
+  {
+    "requirement_id": "S08",
+    "required_module": "anatomical/functional displacement and Jacobian",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "生理位移模型、Jacobian 和区域坐标参数缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Separate nullable coordinates are not a displacement model"
+  },
+  {
+    "requirement_id": "S09",
+    "required_module": "sparse directed connectivity",
+    "status": "数值验证",
+    "gate": "ENGINEERING_VALIDATED",
+    "implemented_artifact": "retina_sim",
+    "source_ids": [],
+    "missing_evidence": [],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "CSR postsynaptic rows; source-free edges cannot enter physiological runs"
+  },
+  {
+    "requirement_id": "S10",
+    "required_module": "regional dynamics and continuous profile",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "区域依赖动力学与连续参数过渡缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "No default regional interpolation"
+  },
+  {
+    "requirement_id": "S11",
+    "required_module": "given gaze and persistent state",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "给定眼动到标定视网膜光输入的完整映射缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Streaming state tested; calibrated gaze pathway absent"
+  },
+  {
+    "requirement_id": "S12",
+    "required_module": "layer outputs with units and metadata",
+    "status": "数值验证",
+    "gate": "ENGINEERING_VALIDATED",
+    "implemented_artifact": "retina_sim",
+    "source_ids": [
+      "SF2025_runColFun_m"
+    ],
+    "missing_evidence": [],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Reference layer ports; not all physiological cell classes"
+  },
+  {
+    "requirement_id": "S13",
+    "required_module": "independent physiological validation",
+    "status": "来源待补",
+    "gate": "NOT_RUN",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "独立、未用于定参数的生理验证数据与条件缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Numerical fixtures never count as physiological observations"
+  },
+  {
+    "requirement_id": "S14",
+    "required_module": "separate numerical, coverage and physiology reports",
+    "status": "数值验证",
+    "gate": "ENGINEERING_VALIDATED",
+    "implemented_artifact": "retina_sim",
+    "source_ids": [],
+    "missing_evidence": [],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Evidence reports do not certify biology"
+  },
+  {
+    "requirement_id": "E01",
+    "required_module": "source/parameter/unit gates",
+    "status": "数值验证",
+    "gate": "ENGINEERING_VALIDATED",
+    "implemented_artifact": "retina_sim",
+    "source_ids": [],
+    "missing_evidence": [],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Schema plus semantic/profile/asset checks; unknown full parameters rejected"
+  },
+  {
+    "requirement_id": "E02",
+    "required_module": "cone density primary evidence",
+    "status": "来源待补",
+    "gate": "PARTIAL_SOURCE",
+    "implemented_artifact": null,
+    "source_ids": [
+      "ISETMacaque_PackerConeRc"
+    ],
+    "missing_evidence": [
+      "真实二维密度、位置、物种和条件证据仍不完整"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "published_code_tabulation, not measured_source_table"
+  },
+  {
+    "requirement_id": "A01",
+    "required_module": "physiological cone aperture",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": null,
+    "source_ids": [],
+    "missing_evidence": [
+      "生理 aperture profile 与来源参数缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Aperture unit interface is not a biological parameter"
+  },
+  {
+    "requirement_id": "A02",
+    "required_module": "phototransduction and nonlinear adaptation",
+    "status": "来源待补",
+    "gate": "BLOCKED",
+    "implemented_artifact": "retina_sim/chen2024.py",
+    "source_ids": [
+      "CHEN2024_BiophysModel_m",
+      "CHEN2024_initPhotoreceptorParams_m"
+    ],
+    "missing_evidence": [
+      "中心、过渡、S cone、电压耦合、terminal Ca/HC，以及真实来源对照和独立验证缺失"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Saha fits not converted into an unknown ODE",
+    "subrequirements": [
+      {
+        "requirement_id": "A02.external_peripheral_LM_current",
+        "required_module": "Chen2024 peripheral >20deg L/M nonlinear outer-segment current",
+        "status": "数值验证",
+        "gate": "SOURCE_PARITY_VALIDATED",
+        "implemented_artifact": "retina_sim/chen2024.py",
+        "source_ids": [
+          "CHEN2024_BiophysModel_m",
+          "CHEN2024_initPhotoreceptorParams_m"
+        ],
+        "historical_commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2",
+        "permitted_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "tests": [
+          "tests/test_stage_c.py"
+        ],
+        "test_count": 45,
+        "verification_attempt": "reports/20261010T133335020336Z",
+        "source_data_reproduction": "NOT_RUN_BLOCKED_INPUT_SEMANTICS_AND_HISTORY",
+        "independent_physiological_validation": "NOT_RUN",
+        "claim_limit": "Only source-discrete numerical parity on synthetic fixtures; mixed-Macaca peripheral L/M pA; no center/S/voltage/downstream or full-retina claim",
+        "parent_A02_gate": "BLOCKED",
+        "source_data_identity": "VERIFIED",
+        "source_mat_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+        "source_data_status_report": "docs/chen2024_real_data_report_zh.md",
+        "author_source_reproduction_policy": "Explicit component_reference only; positive peaks warning; no high instantaneous source cap",
+        "gate_correction_report": "docs/chen2024_gate_correction_report_zh.md"
+      },
+      {
+        "requirement_id": "A02.source_data_identity",
+        "status": "来源资产与结构已核验",
+        "gate": "EVIDENCE_IDENTITY_VERIFIED",
+        "implemented_artifact": "reports/chen2024_data_inventory.json",
+        "source_ids": [
+          "CHEN2024_Dryad_SourceData",
+          "CHEN2024_Dryad_README"
+        ],
+        "claim_limit": "Published byte identity and real fields only; no model-data fit claim"
+      },
+      {
+        "requirement_id": "A02.source_data_reproduction",
+        "status": "来源待补",
+        "gate": "BLOCKED_INPUT_SEMANTICS_AND_HISTORY",
+        "implemented_artifact": "docs/chen2024_real_data_report_zh.md",
+        "missing_evidence": [
+          "Negative-rate meaning/recovery; prehistory/phase mapping"
+        ],
+        "claim_limit": "Model comparison NOT_RUN; high-light applicability remains a biological warning; no clipping, fitting, time shift or invented state"
+      }
+    ]
+  },
+  {
+    "requirement_id": "B01",
+    "required_module": "author arrays and paper reproduction",
+    "status": "来源待补",
+    "gate": "BLOCKED_DATA_DECODE",
+    "implemented_artifact": null,
+    "source_ids": [
+      "SF2025_Cone_density_mat",
+      "SF2025_Ganglion_cell_density_mat"
+    ],
+    "missing_evidence": [
+      "Somaratna–Freeman 作者 MCOS 数值表未解码"
+    ],
+    "tests": [
+      "tests/test_stage_a.py",
+      "tests/test_stage_b.py"
+    ],
+    "claim_limit": "Source-faithful kernel only, no original-array/paper reproduction"
+  }
+]

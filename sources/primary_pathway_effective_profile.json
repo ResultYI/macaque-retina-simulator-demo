@@ -1,0 +1,17 @@
+{
+  "profile_id": "macaque_primary_pathway_effective_v1",
+  "approval_reference": "Explicit human delegation 2026-10-10 authorizes retractable project_approximation to complete mechanisms",
+  "is_macaque_measurement": false,
+  "mechanisms": ["pinned primateRod phototransduction", "physical rod membrane and release gate", "individual mGluR6/TRPM1 contacts nonlinear before pooling", "RBC voltage and ribbon depletion/recovery", "per-edge peak-normalized AMPA", "passive AII membrane", "equal/opposite ohmic AII-AII and AII-ON-BC electrical junctions", "AII resource-limited glycine events", "separate FMB and DB1 glycine conductance channels"],
+  "sources": {
+    "AUTHOR_MODEL_PRIMATE": "Chen2024 fixed commit 1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2 primateRod branch; only source coefficients, not rod terminal/membrane",
+    "MEASURED_MACAQUE": "McLaughlin2021 event peaks/reversals separately extracted; not maximal total conductance",
+    "PROJECT_EFFECTIVE_TEMP": "All other numerical membrane, release, contact overlap, spatial interpolation and effective-resolution settings; reversible and exportable",
+    "TRANSFER_RAT": "Not used by default. No rat conductance/capacitance silently inserted."
+  },
+  "routing_basis": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6218188/",
+  "release_mechanism_context": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6133723/",
+  "first_synapse_mechanism_context": "https://doi.org/10.1016/S0896-6273(02)00700-6",
+  "spatial_context": ["https://pubmed.ncbi.nlm.nih.gov/2794135/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC10616377/", "https://pubmed.ncbi.nlm.nih.gov/10404105/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC6219554/"],
+  "scientific_limits": ["No independent macaque validation", "No fitting animal data during this implementation", "Effective finite spatial resolution is declared, not anatomical cell count", "Reduced passive AII; active channels not calibrated", "No rod bleaching/regeneration/Ih model", "No mouse automatic pathway switch", "Native vH values never relabeled physical voltage/current", "Synthetic stimulus is explicitly synthetic"]
+}

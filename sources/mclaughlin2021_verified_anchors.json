@@ -1,0 +1,10 @@
+{
+  "source_url": "https://www.eneuro.org/content/8/1/ENEURO.0432-20.2020",
+  "verification": "Factual anchor extraction supplied by parent source-research contract 2026-10-10. This JSON is an extraction record, not original animal data.",
+  "species": "macaque",
+  "condition": "spontaneous glycinergic event experimental recordings; event peak and reversal, not total maximal conductance or unqualified in vivo chloride potential",
+  "FMB": {"event_peak_nS": 0.97, "reversal_mV": -76, "decay_ms_at_minus100mV": 2.1, "decay_ms_at_0mV": 4.0},
+  "DB1": {"event_peak_nS": 0.80, "reversal_mV": -73, "decay_ms_at_minus100mV": 2.7, "decay_ms_at_0mV": 5.3},
+  "effective_approximations": {"FMB_tau_rise_ms": 0.08, "DB1_tau_rise_ms": 0.11, "rise_parameters_are_measured_10_90_rise_times": false, "decay_interpolation": "project linear voltage interpolation clamped between reported endpoints; not measured continuous curve"},
+  "not_original_validation_data": true
+}

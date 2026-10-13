@@ -1,0 +1,152 @@
+{
+  "schema": "project-relocation-1.0",
+  "utc": "2026-10-11T02:01:41.584075+00:00",
+  "operation": "Same-volume directory rename followed by scoped exploratory copy",
+  "path_mappings": [
+    {
+      "historical": "D:\\trail\\macaque_retina_simulator",
+      "current": "D:\\macaque_retina_simulator"
+    },
+    {
+      "historical": "C:\\Users\\PC_User\\Documents\\Codex\\2026-10-10\\task-2\\deepgaze_exploration",
+      "current": "D:\\macaque_retina_simulator\\exploratory\\deepgaze_exploration"
+    }
+  ],
+  "main_directory_move_verification": {
+    "directory_rename_complete": true,
+    "source_absent": true,
+    "target": "D:\\macaque_retina_simulator",
+    "original_file_count": 318,
+    "original_file_bytes": 109875656,
+    "all_original_entries_sizes_attributes_and_hashes_identical_immediately_after_move": true
+  },
+  "exploration_copy": {
+    "source": "C:\\Users\\PC_User\\Documents\\Codex\\2026-10-10\\task-2\\deepgaze_exploration",
+    "destination": "D:\\macaque_retina_simulator\\exploratory\\deepgaze_exploration",
+    "original_staging_deleted": false,
+    "copied_original_files": 147,
+    "copied_original_bytes": 484979706,
+    "excluded_unrelated_cache_credentials": [],
+    "official_weight_preserved": "torch/hub/checkpoints/deepgaze2e.pth;419676716bytes; necessary source-verified asset, not unrelated cache"
+  },
+  "path_only_file_changes": [
+    {
+      "path": "README.md",
+      "reason": "Current documentation navigation/commands point to relocated project; historical manifests unchanged",
+      "before_sha256": "cb9811ec350f2d9434319c2099e102c0daf127b6bdbe0e3249751b5a881806f4",
+      "after_sha256": "9720bed408e5129c4df528cdb242648849d37369b2459471a0b00a68c3ba30d2",
+      "before_bytes": 5106,
+      "after_bytes": 5614
+    },
+    {
+      "path": "docs\\chen2024_delivery_report_zh.md",
+      "reason": "Current documentation navigation/commands point to relocated project; historical manifests unchanged",
+      "before_sha256": "46df9416168efafd8942745960a4f15e92f2e8a7b3ad810f5e60fbb9ecc1759b",
+      "after_sha256": "c5ace5ee710ba5c64d53dceac84c0517a30194ff2805bbb031e3f63fc885017c",
+      "before_bytes": 8825,
+      "after_bytes": 8789
+    },
+    {
+      "path": "docs\\chen2024_real_data_report_zh.md",
+      "reason": "Current documentation navigation/commands point to relocated project; historical manifests unchanged",
+      "before_sha256": "a07b083a288aa7c632ca820a56f9d31b380ba56e223885139e6f9f9f42099331",
+      "after_sha256": "942c294329abd8b21a8514ea4f20a5b12edc1e53303748fd6bcb6e87822a54cf",
+      "before_bytes": 12342,
+      "after_bytes": 12282
+    },
+    {
+      "path": "docs\\core_design.md",
+      "reason": "Current documentation navigation/commands point to relocated project; historical manifests unchanged",
+      "before_sha256": "61396207d356390ad1d403a9b420ea707576963793ad43b4cf8ce99c0cd46290",
+      "after_sha256": "0b6fbe49a4246bf0e11a95c372b7f8c9dee9b559cd90459b78fdf528e513ac15",
+      "before_bytes": 23402,
+      "after_bytes": 23390
+    },
+    {
+      "path": "docs\\delivery_report_zh.md",
+      "reason": "Current documentation navigation/commands point to relocated project; historical manifests unchanged",
+      "before_sha256": "538cd38248436994afb443493ee445373f78eb72717f5d4d51ac4e6e766419cb",
+      "after_sha256": "949aef1ddea1b319fb8066d85d665b69d0b6a0d03f88fcdc9c1c385b872f9e31",
+      "before_bytes": 17471,
+      "after_bytes": 17465
+    },
+    {
+      "path": "exploratory\\deepgaze_exploration\\run_scene_experiment.py",
+      "reason": "Archived exploration working entry follows new project root; original staging and raw evidence unchanged",
+      "before_sha256": "dedab4d24c0a3f012bb6a39347f7924a927eb58b05820b9b873dda2b596fefb0",
+      "after_sha256": "12b74cbd0233b33b59ac3dd0a9e081016de7c29aa540c9f6c24c81cbe6f3b0ab",
+      "before_bytes": 15498,
+      "after_bytes": 15471
+    }
+  ],
+  "retargeted_links": [
+    {
+      "path": "reports\\core_integration\\20261010T153120478449Z\\pytest_tmp\\test_bounded_selected_recordincurrent",
+      "original_target": "\\\\?\\D:\\trail\\macaque_retina_simulator\\reports\\core_integration\\20261010T153120478449Z\\pytest_tmp\\test_bounded_selected_recordin0",
+      "current_target": "test_bounded_selected_recordin0"
+    },
+    {
+      "path": "reports\\core_integration\\20261010T154017637847Z\\pytest_tmp\\test_bounded_selected_recordincurrent",
+      "original_target": "\\\\?\\D:\\trail\\macaque_retina_simulator\\reports\\core_integration\\20261010T154017637847Z\\pytest_tmp\\test_bounded_selected_recordin0",
+      "current_target": "test_bounded_selected_recordin0"
+    },
+    {
+      "path": "reports\\core_integration\\20261010T154802347423Z\\pytest_tmp\\test_bounded_selected_recordincurrent",
+      "original_target": "\\\\?\\D:\\trail\\macaque_retina_simulator\\reports\\core_integration\\20261010T154802347423Z\\pytest_tmp\\test_bounded_selected_recordin0",
+      "current_target": "test_bounded_selected_recordin0"
+    },
+    {
+      "path": "reports\\core_integration\\20261010T162141018677Z\\pytest_tmp\\test_bounded_selected_recordincurrent",
+      "original_target": "\\\\?\\D:\\trail\\macaque_retina_simulator\\reports\\core_integration\\20261010T162141018677Z\\pytest_tmp\\test_bounded_selected_recordin0",
+      "current_target": "test_bounded_selected_recordin0"
+    }
+  ],
+  "unresolved_live_links": [],
+  "historical_manifests_and_data_modified": false,
+  "git_in_original_tree": false,
+  "python_environments_moved": false,
+  "exploration_status": "PAUSED",
+  "final_verification": {
+    "completed": true,
+    "final_path": "D:\\macaque_retina_simulator",
+    "original_main_files": 318,
+    "original_main_bytes": 109875656,
+    "archived_original_exploration_files": 147,
+    "archived_original_exploration_bytes": 484979706,
+    "final_regular_file_count": 468,
+    "final_regular_file_bytes": 594871795,
+    "unchanged_main_regular_files": 313,
+    "all_core_source_and_historical_source_data_hashes_unchanged": true,
+    "historical_source_report_data_files_verified": 221,
+    "path_changes_separately_listed": [
+      "README.md",
+      "docs\\chen2024_delivery_report_zh.md",
+      "docs\\chen2024_real_data_report_zh.md",
+      "docs\\core_design.md",
+      "docs\\delivery_report_zh.md",
+      "exploratory\\deepgaze_exploration\\run_scene_experiment.py"
+    ],
+    "four_directory_alias_links_retargeted": 4,
+    "unresolved_runtime_old_project_references": [],
+    "unresolved_live_links": [],
+    "historical_absolute_references": "Preserved byte-identical; resolve via root migration_map.json",
+    "original_staging_retained_unchanged": true,
+    "exploration_paused": true,
+    "no_scientific_run_started": true,
+    "python_environments_moved": false
+  },
+  "user_requested_startup_handoff": {
+    "path": "CODEX_START_HERE_中文.txt",
+    "encoding": "UTF-8",
+    "sha256": "6b2a4145f356af0018215b0080499e2b758b123f2794e45aeb564bd4f9b0e449",
+    "scope": "Startup prompt supplied by parent; only confirmed migration status and exploration archive location updated; prompt not executed"
+  },
+  "migration_smoke_checks": {
+    "cwd": "D:\\macaque_retina_simulator",
+    "core_package_import": "passed",
+    "full_target_builder_import_without_building": "passed",
+    "tools/run_full_target.py --help": "passed",
+    "exploratory/deepgaze_exploration/run_scene_experiment.py --help": "passed",
+    "scientific_simulation_or_tests": "not run during migration"
+  }
+}

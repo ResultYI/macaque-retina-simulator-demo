@@ -1,0 +1,91 @@
+{
+  "positions": {
+    "values": [
+      [
+        0.31170548097265,
+        -0.010423764971950822
+      ],
+      [
+        0.3134242851167118,
+        0.007409663722473253
+      ],
+      [
+        0.3293932312365306,
+        -0.032728847606601365
+      ],
+      [
+        0.3325358307020154,
+        -0.006426106598453201
+      ],
+      [
+        0.33330911386527695,
+        0.02131948552004464
+      ],
+      [
+        0.33506838415866197,
+        0.0005401125817391572
+      ],
+      [
+        0.34848893345482196,
+        0.029589349546397282
+      ],
+      [
+        0.35603368080450215,
+        -0.02027162180314345
+      ],
+      [
+        0.36638574643894906,
+        0.022006250156055278
+      ],
+      [
+        0.3735641047338441,
+        0.00864837103818883
+      ],
+      [
+        0.3778150265299,
+        -0.034508459052319834
+      ],
+      [
+        0.38265737223510077,
+        -0.004847674108686338
+      ],
+      [
+        0.38388791077224943,
+        0.004861505843788017
+      ],
+      [
+        0.38709580244610925,
+        0.018474472043821882
+      ]
+    ],
+    "unit": "mm",
+    "meaning": "functional_position",
+    "frame": "functional_visual_field",
+    "evidence_tag": "project_approximation"
+  },
+  "site_ids": [
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000000",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000001",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000002",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000003",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000004",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000005",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000006",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000007",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000008",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000009",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000010",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000011",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000012",
+    "parasol_scaffold:1a3c4b34911109874fb9:frozen_RF_output_cohort:cone:000000013"
+  ],
+  "provenance": {
+    "source_id": "PRIMARY_PATHWAY_project_profile",
+    "locator": "D:\\macaque_retina_simulator\\reports\\background_preparation_runs\\20261011T170043172502Z\\run\\20261011T170043213842Z_8b6efb04\\manifest.json#components.parasol_RGC_ON.geometry.RF",
+    "origin": "existing successful run legacy rod-derived RBC RF scaffold; regression backup only, not independent physiological density",
+    "evidence_class": "project_approximation",
+    "source_manifest_sha256": "d33225e79acf3e5c1c06fc27f91bb8a4c0eac1c6d3f191406b4576d44653acc9"
+  },
+  "physiological_validation": false,
+  "default_adoption_for_new_atlas": false
+}

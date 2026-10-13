@@ -1,0 +1,6 @@
+# Runtime versions observed in retipath_v1; Python 3.11, with Tcl/Tk, is required.
+# This file does not change or upgrade the existing local environment.
+numpy==2.4.6
+scipy==1.17.1
+Pillow==12.3.0
+opencv-python-headless==5.0.0.93

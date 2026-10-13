@@ -1,0 +1,387 @@
+{
+  "schema_version": "architecture-1.0",
+  "model_id": "MacaqueContinuousCenterPeriphery",
+  "scope": "all_target_actual_mechanisms_with_explicit_project_effective_profile",
+  "intended_regions": [
+    "center",
+    "transition",
+    "periphery"
+  ],
+  "required_mechanisms": [
+    "cone_outer_segment",
+    "cone_native_synapse",
+    "HC_H1",
+    "HC_H2",
+    "midget_BC_ON",
+    "midget_BC_OFF",
+    "diffuse_BC_ON",
+    "diffuse_BC_OFF",
+    "S_ON_BC",
+    "local_feedforward_AC",
+    "local_crossover_AC",
+    "widefield_AC",
+    "midget_RGC_ON",
+    "midget_RGC_OFF",
+    "parasol_RGC_ON",
+    "parasol_RGC_OFF",
+    "small_bistratified_S_ON",
+    "rod",
+    "rod_BC",
+    "AII_AC"
+  ],
+  "components": [
+    {
+      "component_id": "outer_native",
+      "mechanism": "VanHateren2005NativeConeH1",
+      "population_roles": {
+        "cone": "cone_LM",
+        "h1": "HC_H1"
+      },
+      "parameter_profile_id": "VH2005_Fig6A7_native_source",
+      "options": {
+        "explicit_opt_in": true
+      },
+      "required_layer": "cone_native_synapse",
+      "required_ports": {
+        "light": {
+          "unit": "td",
+          "meaning": "native_retinal_illuminance"
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive"
+        },
+        "required_configuration": [
+          "A",
+          "B",
+          "declared background",
+          "OPL/RF frame policy"
+        ]
+      }
+    },
+    {
+      "component_id": "cone_S_H2",
+      "mechanism": "VanHateren2005NativeConeH1",
+      "population_roles": {
+        "cone": "cone_S",
+        "h2": "HC_H2"
+      },
+      "parameter_profile_id": "VH2005_Fig6A7_native_source",
+      "required_layer": "HC_H2",
+      "required_ports": {
+        "input_calibration": "cone/region/source specific",
+        "kinetics": "independent source or explicitly named approximation"
+      },
+      "options": {
+        "unsupported_type_policy": "project_approximation_shared_H1_kinetics",
+        "explicit_opt_in": true
+      }
+    },
+    {
+      "component_id": "physical_OS",
+      "mechanism": "Chen2024PeripheralLMCurrent",
+      "population_roles": {
+        "cone": "peripheral_LM"
+      },
+      "parameter_profile_id": "Chen2024PeripheralPrimateCone_source_mixed_macaca",
+      "options": {
+        "explicit_opt_in": true
+      },
+      "required_layer": "cone_outer_segment",
+      "required_ports": {
+        "current": {
+          "unit": "pA",
+          "meaning": "absolute_outer_segment_current"
+        },
+        "time_contract": "Explicit author0.1ms discrete updates coupled through held physical current and shared exact event clock"
+      }
+    },
+    {
+      "component_id": "physical_membrane",
+      "mechanism": "PassiveConeCable",
+      "population_roles": {
+        "cells": "cone_compartments"
+      },
+      "parameter_profile_id": "effective_physical_cone",
+      "required_layer": "cone_passive_cable",
+      "required_ports": {
+        "current": {
+          "unit": "A",
+          "meaning": "absolute_outer_segment_current"
+        },
+        "anchors": "fixed current and condition; absolute V anchor separately required"
+      }
+    },
+    {
+      "component_id": "physical_terminal",
+      "mechanism": "QuasiSteadyTerminalActivation",
+      "population_roles": {
+        "cells": "cone_terminals"
+      },
+      "parameter_profile_id": "effective_physical_terminal",
+      "required_layer": "terminal_activation_proxy",
+      "required_ports": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage"
+        },
+        "shift": {
+          "unit": "V",
+          "meaning": "activation_threshold_shift"
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive"
+        }
+      }
+    },
+    {
+      "component_id": "midget_BC_ON",
+      "mechanism": "HistoryBipolarTerminal",
+      "population_roles": {
+        "cells": "midget_BC_ON"
+      },
+      "parameter_profile_id": "effective_midget_BC_ON",
+      "required_layer": "midget_BC_ON",
+      "required_ports": {
+        "drive": "effective_synaptic_drive",
+        "sampling": "full causal kernel and baseline; ON representation explicit",
+        "contacts": "one source cone parent under supported private-line profile"
+      },
+      "options": {
+        "polarity": "ON"
+      }
+    },
+    {
+      "component_id": "midget_BC_OFF",
+      "mechanism": "HistoryBipolarTerminal",
+      "population_roles": {
+        "cells": "midget_BC_OFF"
+      },
+      "parameter_profile_id": "effective_midget_BC_OFF",
+      "required_layer": "midget_BC_OFF",
+      "required_ports": {
+        "drive": "effective_synaptic_drive",
+        "sampling": "full causal kernel and baseline; OFF representation explicit"
+      },
+      "options": {
+        "polarity": "OFF"
+      }
+    },
+    {
+      "component_id": "diffuse_BC_ON",
+      "mechanism": "HistoryBipolarTerminal",
+      "population_roles": {
+        "cells": "DB_ON"
+      },
+      "parameter_profile_id": "effective_diffuse_BC_ON",
+      "required_layer": "diffuse_BC_ON",
+      "required_ports": {
+        "contacts": "distinct source/subtype/density provider; no renamed midget defaults"
+      },
+      "options": {
+        "polarity": "ON"
+      }
+    },
+    {
+      "component_id": "diffuse_BC_OFF",
+      "mechanism": "HistoryBipolarTerminal",
+      "population_roles": {
+        "cells": "DB_OFF"
+      },
+      "parameter_profile_id": "effective_diffuse_BC_OFF",
+      "required_layer": "diffuse_BC_OFF",
+      "required_ports": {
+        "contacts": "distinct source/subtype/density provider"
+      },
+      "options": {
+        "polarity": "OFF"
+      }
+    },
+    {
+      "component_id": "S_ON_BC",
+      "mechanism": "HistoryBipolarTerminal",
+      "population_roles": {
+        "cells": "S_ON_BC"
+      },
+      "parameter_profile_id": "effective_S_ON_BC",
+      "required_layer": "S_ON_BC",
+      "required_ports": {
+        "routing": "S_ON branch separate from LM_OFF small-bistratified branch"
+      },
+      "options": {
+        "polarity": "ON"
+      }
+    },
+    {
+      "component_id": "local_feedforward_AC",
+      "mechanism": "ResidualAC",
+      "population_roles": {
+        "cells": "local_feedforward_ON_OFF"
+      },
+      "parameter_profile_id": "effective_local_feedforward_AC",
+      "required_layer": "local_feedforward_AC",
+      "required_ports": {
+        "activation": "effective_synaptic_activation",
+        "conductance": "positive inhibitory scale and explicit reversal"
+      }
+    },
+    {
+      "component_id": "local_crossover_AC",
+      "mechanism": "ResidualAC",
+      "population_roles": {
+        "cells": "local_crossover_ON_OFF"
+      },
+      "parameter_profile_id": "effective_local_crossover_AC",
+      "required_layer": "local_crossover_AC",
+      "required_ports": {
+        "routing": "opposite polarity partners; source condition separate"
+      }
+    },
+    {
+      "component_id": "widefield_AC",
+      "mechanism": "ResidualAC",
+      "population_roles": {
+        "cells": "widefield_ON_OFF"
+      },
+      "parameter_profile_id": "effective_widefield_AC",
+      "required_layer": "widefield_AC",
+      "required_ports": {
+        "geometry": "explicit IPL field and anatomical density or effective-unit resolution"
+      }
+    },
+    {
+      "component_id": "midget_RGC_ON",
+      "mechanism": "HistoryConductanceRGC",
+      "population_roles": {
+        "cells": "midget_RGC_ON"
+      },
+      "parameter_profile_id": "effective_midget_RGC_ON",
+      "required_layer": "midget_RGC_ON",
+      "required_ports": {
+        "excitation": "S positive conductance",
+        "inhibition": "S positive conductance",
+        "spikes": "full strict-past history kernel and bin/RNG scheme"
+      }
+    },
+    {
+      "component_id": "midget_RGC_OFF",
+      "mechanism": "HistoryConductanceRGC",
+      "population_roles": {
+        "cells": "midget_RGC_OFF"
+      },
+      "parameter_profile_id": "effective_midget_RGC_OFF",
+      "required_layer": "midget_RGC_OFF",
+      "required_ports": {
+        "convergence": "Wool source temporal-equivalence or named density inverse"
+      }
+    },
+    {
+      "component_id": "parasol_RGC_ON",
+      "mechanism": "HistoryConductanceRGC",
+      "population_roles": {
+        "cells": "parasol_RGC_ON"
+      },
+      "parameter_profile_id": "effective_parasol_RGC_ON",
+      "required_layer": "parasol_RGC_ON",
+      "required_ports": {
+        "geometry": "independent parasol density/extent; no human scaling"
+      }
+    },
+    {
+      "component_id": "parasol_RGC_OFF",
+      "mechanism": "HistoryConductanceRGC",
+      "population_roles": {
+        "cells": "parasol_RGC_OFF"
+      },
+      "parameter_profile_id": "effective_parasol_RGC_OFF",
+      "required_layer": "parasol_RGC_OFF",
+      "required_ports": {
+        "geometry": "independent parasol density/extent"
+      }
+    },
+    {
+      "component_id": "small_bistratified_S_ON",
+      "mechanism": "HistoryConductanceRGC",
+      "population_roles": {
+        "cells": "small_bistratified_S_ON"
+      },
+      "parameter_profile_id": "effective_small_bistratified_S_ON",
+      "required_layer": "small_bistratified_S_ON",
+      "required_ports": {
+        "routing": "separate S_ON_BC and LM_OFF_BC branches/stratification"
+      }
+    },
+    {
+      "component_id": "rod",
+      "mechanism": "Chen2024PrimateRodCurrent",
+      "population_roles": {
+        "cells": "rod"
+      },
+      "parameter_profile_id": "Chen2024_primateRod_source",
+      "required_layer": "rod",
+      "required_ports": {
+        "runtime_entrypoint": "tools/run_full_target.py",
+        "scope": "Actual chemistry/receptors/membrane/resource/physical conductance equations; inspect per-parameter evidence in run manifest"
+      },
+      "options": {}
+    },
+    {
+      "component_id": "rod_BC",
+      "mechanism": "ReceptorConductanceMembrane",
+      "population_roles": {
+        "cells": "rod_BC"
+      },
+      "parameter_profile_id": "effective_rod_BC",
+      "required_layer": "rod_BC",
+      "required_ports": {
+        "runtime_entrypoint": "tools/run_full_target.py",
+        "scope": "Actual chemistry/receptors/membrane/resource/physical conductance equations; inspect per-parameter evidence in run manifest"
+      },
+      "options": {
+        "cell_kind": "rod_BC_ON"
+      }
+    },
+    {
+      "component_id": "AII_AC",
+      "mechanism": "ReceptorConductanceMembrane",
+      "population_roles": {
+        "cells": "AII_AC"
+      },
+      "parameter_profile_id": "effective_AII_AC",
+      "required_layer": "AII_AC",
+      "required_ports": {
+        "runtime_entrypoint": "tools/run_full_target.py",
+        "scope": "Actual chemistry/receptors/membrane/resource/physical conductance equations; inspect per-parameter evidence in run manifest"
+      },
+      "options": {
+        "cell_kind": "AII"
+      }
+    }
+  ],
+  "runtime_entrypoint": "tools/run_full_target.py",
+  "runtime_component_mapping": {
+    "outer_native": "outer_native",
+    "cone_S_H2": "outer_native",
+    "physical_OS": "physical_OS",
+    "physical_membrane": "physical_membrane",
+    "physical_terminal": "physical_terminal",
+    "midget_BC_ON": "midget_BC_ON",
+    "midget_BC_OFF": "midget_BC_OFF",
+    "diffuse_BC_ON": "diffuse_BC_ON",
+    "diffuse_BC_OFF": "diffuse_BC_OFF",
+    "S_ON_BC": "S_ON_BC",
+    "local_feedforward_AC": "local_feedforward_AC",
+    "local_crossover_AC": "local_crossover_AC",
+    "widefield_AC": "widefield_AC",
+    "midget_RGC_ON": "midget_RGC_ON",
+    "midget_RGC_OFF": "midget_RGC_OFF",
+    "parasol_RGC_ON": "parasol_RGC_ON",
+    "parasol_RGC_OFF": "parasol_RGC_OFF",
+    "small_bistratified_S_ON": "small_bistratified_S_ON",
+    "rod": "rod",
+    "rod_BC": "rod_BC",
+    "AII_AC": "AII_AC"
+  },
+  "scientific_boundary": "Implementation paths are complete; source/calibrated physiology and independent animal validation are separate. Effective resolution/default synthetic inputs are not full anatomical retina."
+}

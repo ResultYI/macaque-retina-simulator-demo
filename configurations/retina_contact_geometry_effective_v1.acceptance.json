@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "retina_contact_geometry_effective_v1",
+  "profile_file_sha256": "ab63ff04001615a6a1e48bdf8ceb9af5da01596361dc273ab735d39d3db9f893",
+  "status": "PASS",
+  "scope": "Actual new finite graph GUI field parsing -> full build, bounded preparation and continuous 20ms stimulus",
+  "acceptance_file": "D:\\macaque_retina_simulator\\reports\\central_build_acceptance\\20261011T163543160525Z\\acceptance.json",
+  "run_directory": "D:\\macaque_retina_simulator\\reports\\central_build_acceptance\\20261011T163543160525Z\\run\\20261011T163543490912Z_d5256453",
+  "configuration_file": "D:\\macaque_retina_simulator\\reports\\central_build_acceptance\\20261011T163543160525Z\\run\\20261011T163543490912Z_d5256453\\config.json",
+  "checkpoint_model_hash": "3f9f977e332153c68d62248c76e75ea81123eb4033c1984fc8c1111315985428",
+  "profile_embedded_execution_acceptance": "immutable creation-time snapshot; this hash-bound receipt is actual execution evidence",
+  "whole_network_steady_state": false,
+  "physiology_validation": "NOT_RUN",
+  "uniform_background_closure": {
+    "status": "CONVERGED",
+    "closure_file": "D:\\macaque_retina_simulator\\reports\\background_preparation_runs\\20261011T170043172502Z\\closure.json",
+    "run_directory": "D:\\macaque_retina_simulator\\reports\\background_preparation_runs\\20261011T170043172502Z\\run\\20261011T170043213842Z_8b6efb04",
+    "elapsed_seconds": 1.299999999999967,
+    "continuous_stimulus_seconds": 0.02,
+    "checkpoint_model_hash": "d94c53ea4dc06b4bff1a19f2c3999cc7677668bde51ed6caec6a9612ca440c0f",
+    "physiology_validation": "NOT_RUN"
+  }
+}

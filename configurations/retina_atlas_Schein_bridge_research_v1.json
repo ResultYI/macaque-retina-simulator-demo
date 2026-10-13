@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "atlas_id": "macaque_composite_source_atlas",
+  "atlas_version": "1.0",
+  "reference_id": "composite_macaque_nasal_positive_superior_positive_planar_v1",
+  "owner_coordinate_role": "rf",
+  "phase1_rf_radius_mm": [
+    0.0,
+    3.0
+  ],
+  "phase2_rf_radius_mm": [
+    3.0,
+    6.0
+  ],
+  "source_registration": "physical_retinal_mm_equals_planar_RF_mm_project_transfer_v1",
+  "tile_size_mm": 0.032,
+  "seed": 20261012,
+  "mosaic_rule": "piecewise_constant_poisson_tiles_v1",
+  "density_rule": "Packer1989_four_cardinal_log_linear_project_field_v1",
+  "central_cone_rule": "legacy_Packer_published_code_central_bridge_v1",
+  "central_rod_rule": "missing",
+  "S_partition_rule": "MartinGrunert1999_curve_pending_no_deMonasterio_substitution",
+  "Henle_rule": "Schein1988_M1_bounded_bridge_v1",
+  "boundary_mode": "finite_open_boundary",
+  "HC_dynamic_gap": "off",
+  "arbor_rule": "missing_direct_central_and_peripheral_arbor",
+  "claim": "Approved source-informed research geometry: named Schein endpoint bridges/outer identity; original strict profile remains separate. Not physical or whole-network calibration."
+}

@@ -1,0 +1,110 @@
+{
+  "repository": "https://github.com/AlanFreeman/Colour",
+  "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+  "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+  "license": "CC BY 4.0 (License.txt)",
+  "execution": "No downloaded MATLAB code executed",
+  "binary_decode": "opaque MCOS table contents not decoded; author array reproduction blocked",
+  "assets": [
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/runColFun.m",
+      "name": "runColFun.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/runColFun.m",
+      "bytes": 23119,
+      "asset_sha256": "2250208391e483f521320163eb9803e2349ed9bd83cb18ef75f36dde8547533b",
+      "source_blob_sha1": "f5bff71d1e8b7c105926c9b4ac657c86608bc632",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "code_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/setColLit.m",
+      "name": "setColLit.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/setColLit.m",
+      "bytes": 1936,
+      "asset_sha256": "a85b2f03535acaabb211feff89fcd3c3f3ed8c012417d7076b0acf447a8abeb8",
+      "source_blob_sha1": "d693418ab7d72af3d5267ca9b49dc684c74967c7",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "code_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/runCol.m",
+      "name": "runCol.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/runCol.m",
+      "bytes": 22329,
+      "asset_sha256": "84a311331cc07c7fa73129453916862f3c25669914004e650a5332d070a70541",
+      "source_blob_sha1": "03dc9065ad6abb34175c1452d36e214dfd4786fc",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/runColTask.m",
+      "name": "runColTask.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/runColTask.m",
+      "bytes": 31999,
+      "asset_sha256": "2bb25c70e69f4e4cfdbbefd8d5505cd8322cca192cd5c714ceb24d6f10877c39",
+      "source_blob_sha1": "faa49e774406377e56a10a0a8fd692107b4ce0a3",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "code_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/setColFun.m",
+      "name": "setColFun.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/setColFun.m",
+      "bytes": 19042,
+      "asset_sha256": "625ebc27f1cc5cf2924d1e32b41d7f3a453b035a42e6f9c547a946db9e584293",
+      "source_blob_sha1": "f53cdedbba1290228987f329a10ed29d17919574",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/setColTask.m",
+      "name": "setColTask.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/setColTask.m",
+      "bytes": 53494,
+      "asset_sha256": "ca9bddb438e58f01663d5a34e1c15e9cf658d6bffc8e224c444729f573d019de",
+      "source_blob_sha1": "a428045876955017084fd337453bb2a49e1d2a2c",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/setCol.m",
+      "name": "setCol.m",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/setCol.m",
+      "bytes": 38009,
+      "asset_sha256": "09664520e16a41022a0a635221ca04c9a94a74f5d05d7039c163c48370fbb242",
+      "source_blob_sha1": "a1ee457c358c10e2ea08876babd2ee0d9ceaf89a",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/License.txt",
+      "name": "License.txt",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/License.txt",
+      "bytes": 71,
+      "asset_sha256": "45df43d765bb3d039232a1279716d3ed4f6089fa24947e9d1ed3b90d61490f5e",
+      "source_blob_sha1": "0998028a4646ebd3dbadf30b1f35a31c433db455",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/Cone density.mat",
+      "name": "Cone density.mat",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/Cone%20density.mat",
+      "bytes": 5011,
+      "asset_sha256": "bb13fdc1fe18025e1e05c6382789a828126d125ca2411bf2d4b9a3def27d2c41",
+      "source_blob_sha1": "fe56fe90e041d5699538dd2d78e2afa5757c708d",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    },
+    {
+      "path": "data/source_snapshots/somaratna_freeman_5406d153/Ganglion cell density.mat",
+      "name": "Ganglion cell density.mat",
+      "url": "https://raw.githubusercontent.com/AlanFreeman/Colour/5406d1533dae1678f94687379ac078a612f6170f/Ganglion%20cell%20density.mat",
+      "bytes": 3054,
+      "asset_sha256": "9eed078b386e09741117f7088bb4b5299e780f61a47fa9c4e51c9159490fe95e",
+      "source_blob_sha1": "10eb6eca68976793a4db7164fdb6e22850e5330f",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "verification_level": "identity_verified"
+    }
+  ]
+}

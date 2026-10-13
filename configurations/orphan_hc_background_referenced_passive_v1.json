@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "orphan_hc_background_referenced_passive_v1",
+  "approval_utc": "2026-10-12T06:13:15Z",
+  "approval_message": "Sentinel_88b5e01aafc48191986a5e49b70b5982",
+  "scope": "Only complete-support empty-direct-input HC needed in a positive homotypic gap component; uniform background only",
+  "reference": "arithmetic means of prepared gap-off same-type direct-HC pooled Vbar and h in the same component",
+  "aRef": "(vRef/19.7)^0.733",
+  "uRef": "hRef; project tonic/leak reference, never a cone contact",
+  "tau_z2_ms": 4.0,
+  "tau_h_ms": 20.0,
+  "RHS_seconds": "dz2=1000*(uRef-z2)/(4*aRef); dh=1000*(z2-h)/(20*aRef)+1000*sum k_ij(h_j-h_i)",
+  "initial": "z2=h=hRef; direct states from the supplied prepared gap-off state; positive-gap background must be prepared again",
+  "direct_HC_adaptation": "unchanged dynamic ((A@Vbar)/19.7)^0.733",
+  "positive_k_default": null,
+  "default_gap_rate": 0.0,
+  "missing_anchor": "unused component stays geometry only; requested component refuses borrowed external reference",
+  "conservation": "assert gap term only; tonic/leak term is not conservative",
+  "evidence_status": "project_approximation",
+  "is_native_author_model": false,
+  "physiological_validation": false
+}

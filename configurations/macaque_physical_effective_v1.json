@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "macaque_physical_effective_v1",
+  "execution_mode": "named_physical_component_reference",
+  "parameter_profile": "effective_dynamics_v1",
+  "source_route": "Chen2024 peripheral LM >20deg only",
+  "closure": "existing two-compartment passive effective membrane, normalized terminal proxy and effective HC threshold loop",
+  "allowed_approximation_ids": ["physical_membrane_C_gL_axial_Vanchor_v1","quasi_steady_terminal_proxy_v1","physical_HC_feedback_effective_v1"],
+  "claim": "Independent runnable physical reference; no native mixing, no calibrated glutamate/Ca-current claim, no S or foveal transfer",
+  "budgets": {"max_compile_bytes": 134217728},
+  "solver": {"method": "DOP853","rtol": 1e-7,"atol": 1e-10,"max_step": 0.00005,"input_interpolation": "analytic"}
+}

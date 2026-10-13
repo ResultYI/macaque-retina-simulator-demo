@@ -1,0 +1,50 @@
+# Local runtimes, credentials, editor state and Python/test output.
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest*/
+.pytest*.xml
+.mypy_cache/
+.ruff_cache/
+.coverage*
+htmlcov/
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+.aws/
+.ssh/
+*.pem
+*.key
+*.pfx
+*.p12
+*.library.json
+*.library-xattrs
+
+# Local migration notes/checks are excluded at the user's request.
+/docs/notebook_setup_zh.md
+/tools/check_notebook_setup.py
+/tools/notebook_assets_manifest.json
+
+# Retain original files locally; restore selected required assets separately.
+/reports/
+/exploratory/
+/data/source/
+/data/source_packages/
+/data/source_snapshots/
+
+# Local media and generated export bundles.
+*.mp4
+*.avi
+*.mov
+*.zip
+*.7z
+*.pth
+*.pt
+*.onnx
+!examples/platform_media/*.mp4
+!examples/platform_media/*.avi
+!examples/platform_media/*.mov

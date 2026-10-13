@@ -1,0 +1,16 @@
+{
+  "input_class": "synthetic_engineering_media",
+  "animal_data": false,
+  "generator": "numpy gradient, explicit RGB swatches and moving stripe; OpenCV MJPG",
+  "size_pixels": [
+    480,
+    270
+  ],
+  "video_fps": 50.0,
+  "video_frame_count": 6,
+  "video_duration_seconds": 0.12,
+  "sha256": {
+    "synthetic_rgb.png": "43c40a181260bf23a434cc3ed86138f5e9df453af95e096ee8add60bd978689a",
+    "synthetic_rgb_50fps.avi": "1b002c5aaa80e928eb4d9473cd20e5d95bc9146557ad93c057f6acfa7c549fd7"
+  }
+}

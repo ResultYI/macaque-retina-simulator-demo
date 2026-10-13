@@ -1,0 +1,40 @@
+{
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/2579042/",
+  "species": "M. mulatta",
+  "domain_deg": [
+    2,
+    60
+  ],
+  "unit": "cones/deg^2",
+  "nasal": [
+    141.12,
+    -0.148,
+    66.21,
+    -0.016
+  ],
+  "temporal": [
+    121.86,
+    -0.206,
+    89.95,
+    -0.045
+  ],
+  "central_peaks": {
+    "nasal": [
+      0.75,
+      187,
+      47
+    ],
+    "temporal": [
+      1.5,
+      178,
+      39
+    ]
+  },
+  "central_assay_square_side_deg": 0.15,
+  "evidence_class": "published_fit",
+  "warnings": [
+    "Dye-stained S candidates; not universal opsin-defined population",
+    "Central bridge and vertical extension are project approximations",
+    "Magnification and species transfer must be explicit"
+  ]
+}

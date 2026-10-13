@@ -1,0 +1,1552 @@
+{
+  "schema_version": "2.0",
+  "species_policy": {
+    "policy": "common framework; parameters kept separately by macaque species and source; no unjustified averaging; human/cat excluded from macaque defaults",
+    "approval_reference": "Sentinel_601db2e51e7c81919e962a4cc23a6f39",
+    "named_reference": "explicit opt-in, mixed provenance disclosed, not main model",
+    "chen2024_approval_reference": "Sentinel_db5d1bccdbbc8191bed02a864c13f5f4"
+  },
+  "sources": [
+    {
+      "source_id": "SF2025_runColFun_m",
+      "title": "Somaratna & Freeman 2025 author asset: runColFun.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/runColFun.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/runColFun.m",
+      "source_locator": "calConv 52-65; calDeriv 67-107; gang 266-298; solveF 413-469; solveT 471-510; weight 512-550",
+      "asset_sha256": "2250208391e483f521320163eb9803e2349ed9bd83cb18ef75f36dde8547533b",
+      "source_blob_sha1": "f5bff71d1e8b7c105926c9b4ac657c86608bc632",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "code_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Relevant functions/parameter literals statically audited",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_setColLit_m",
+      "title": "Somaratna & Freeman 2025 author asset: setColLit.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/setColLit.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/setColLit.m",
+      "source_locator": "literature-model constants and fit coefficients, entire file",
+      "asset_sha256": "a85b2f03535acaabb211feff89fcd3c3f3ed8c012417d7076b0acf447a8abeb8",
+      "source_blob_sha1": "d693418ab7d72af3d5267ca9b49dc684c74967c7",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "code_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Relevant functions/parameter literals statically audited",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_runCol_m",
+      "title": "Somaratna & Freeman 2025 author asset: runCol.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/runCol.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/runCol.m",
+      "source_locator": "entire source file",
+      "asset_sha256": "84a311331cc07c7fa73129453916862f3c25669914004e650a5332d070a70541",
+      "source_blob_sha1": "03dc9065ad6abb34175c1452d36e214dfd4786fc",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_runColTask_m",
+      "title": "Somaratna & Freeman 2025 author asset: runColTask.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/runColTask.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/runColTask.m",
+      "source_locator": "resp: output rectification line 666",
+      "asset_sha256": "2bb25c70e69f4e4cfdbbefd8d5505cd8322cca192cd5c714ceb24d6f10877c39",
+      "source_blob_sha1": "faa49e774406377e56a10a0a8fd692107b4ce0a3",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "code_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Relevant functions/parameter literals statically audited",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_setColFun_m",
+      "title": "Somaratna & Freeman 2025 author asset: setColFun.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/setColFun.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/setColFun.m",
+      "source_locator": "entire source file",
+      "asset_sha256": "625ebc27f1cc5cf2924d1e32b41d7f3a453b035a42e6f9c547a946db9e584293",
+      "source_blob_sha1": "f53cdedbba1290228987f329a10ed29d17919574",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_setColTask_m",
+      "title": "Somaratna & Freeman 2025 author asset: setColTask.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/setColTask.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/setColTask.m",
+      "source_locator": "entire source file",
+      "asset_sha256": "ca9bddb438e58f01663d5a34e1c15e9cf658d6bffc8e224c444729f573d019de",
+      "source_blob_sha1": "a428045876955017084fd337453bb2a49e1d2a2c",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_setCol_m",
+      "title": "Somaratna & Freeman 2025 author asset: setCol.m",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/setCol.m",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/setCol.m",
+      "source_locator": "entire source file",
+      "asset_sha256": "09664520e16a41022a0a635221ca04c9a94a74f5d05d7039c163c48370fbb242",
+      "source_blob_sha1": "a1ee457c358c10e2ea08876babd2ee0d9ceaf89a",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_License_txt",
+      "title": "Somaratna & Freeman 2025 author asset: License.txt",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/License.txt",
+      "artifact_kind": "code",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/License.txt",
+      "source_locator": "entire source file",
+      "asset_sha256": "45df43d765bb3d039232a1279716d3ed4f6089fa24947e9d1ed3b90d61490f5e",
+      "source_blob_sha1": "0998028a4646ebd3dbadf30b1f35a31c433db455",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_Cone_density_mat",
+      "title": "Somaratna & Freeman 2025 author asset: Cone density.mat",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/Cone%20density.mat",
+      "artifact_kind": "data_table",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/Cone density.mat",
+      "source_locator": "entire source file; binary MCOS table not numerically decoded",
+      "asset_sha256": "bb13fdc1fe18025e1e05c6382789a828126d125ca2411bf2d4b9a3def27d2c41",
+      "source_blob_sha1": "fe56fe90e041d5699538dd2d78e2afa5757c708d",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "SF2025_Ganglion_cell_density_mat",
+      "title": "Somaratna & Freeman 2025 author asset: Ganglion cell density.mat",
+      "authors": [
+        "Somaratna MA",
+        "Freeman AW"
+      ],
+      "publication_year": 2025,
+      "doi_or_canonical_url": "https://github.com/AlanFreeman/Colour/blob/5406d1533dae1678f94687379ac078a612f6170f/Ganglion%20cell%20density.mat",
+      "artifact_kind": "data_table",
+      "repository_commit": "5406d1533dae1678f94687379ac078a612f6170f",
+      "source_path": "data/source_snapshots/somaratna_freeman_5406d153/Ganglion cell density.mat",
+      "source_locator": "entire source file; binary MCOS table not numerically decoded",
+      "asset_sha256": "9eed078b386e09741117f7088bb4b5299e780f61a47fa9c4e51c9159490fe95e",
+      "source_blob_sha1": "10eb6eca68976793a4db7164fdb6e22850e5330f",
+      "license": "CC BY 4.0; License.txt",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual fixed-commit file downloaded and hashed. Code source, not primary measurement. MAT identity is not numerical table verification.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "author_code": "Downloaded identity/bytes verified; no numerical decoding or complete code audit claimed",
+        "upstream_papers": "not independently reread in this execution; preserve author citation labels and supplied audit limitations"
+      }
+    },
+    {
+      "source_id": "ISETMacaque_PackerConeRc",
+      "title": "ISETMacaque published_code_tabulation",
+      "authors": [
+        "ISETMacaque contributors"
+      ],
+      "publication_year": null,
+      "doi_or_canonical_url": "https://github.com/isetbio/ISETMacaque/blob/cf22ac9d681482ca1fcc365a423ef0c2be7916a3/toolbox/%2Bsimulator/%2Bload/PackerConeRc.m",
+      "artifact_kind": "code",
+      "repository_commit": "cf22ac9d681482ca1fcc365a423ef0c2be7916a3",
+      "source_path": "data/source_snapshots/isetmacaque_cf22ac9d/PackerConeRc.m",
+      "source_locator": "macaqueConeDensity: data 59-73,78-90,103-121,126-138; scaling 75,93,123,142; Rc 14-21,30-31",
+      "asset_sha256": "72408017cb5b6c4996b48c95050963057f61aab6e39154ea095062a8b5c35e9d",
+      "source_blob_sha1": null,
+      "license": "MIT; retained LICENSE",
+      "verification_level": "numeric_table_verified",
+      "provenance_notes": "Source-code table literals and scaling verified, not original measured cell counts. Exact species not inferred from repository name. Publication year 2026 is asset audit year, not underlying Packer paper year.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "Packer original measurement": "pending",
+        "local repository": "HEAD checked; whole working tree cleanliness not verified",
+        "publication_year": "Unknown original publication year; 2026 refers only to this asset audit"
+      }
+    },
+    {
+      "source_id": "ISETBio_WatsonSpacing",
+      "title": "ISETBio exact hexagonal-spacing relation",
+      "authors": [
+        "ISETBio contributors"
+      ],
+      "publication_year": null,
+      "doi_or_canonical_url": "https://github.com/isetbio/isetbio/blob/d2924c2fe1d41c7dc5af1006d8081735b08f1b35/calculators/%40WatsonRGCModel/WatsonRGCModel.m",
+      "artifact_kind": "code",
+      "repository_commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35",
+      "source_path": "data/source_snapshots/isetbio_d2924c2f/WatsonRGCModel.m",
+      "source_locator": "lines 113-117; spacingFromDensity=sqrt(2/(sqrt(3)*density))",
+      "asset_sha256": "796719bb03651887cddd36040b53e6db5aeedf4372888d37bb3450e6e7497a00",
+      "source_blob_sha1": null,
+      "license": "See retained ISETBio LICENSE (project-specific terms)",
+      "verification_level": "code_verified",
+      "provenance_notes": "Mathematical perfect-hex-mosaic conversion used by PackerConeRc; not macaque anatomical spacing measurement. Audit year is not paper publication year.",
+      "retrieved_at": "2026-10-10T10:51:59.797844+00:00",
+      "upstream_sources_checked": {
+        "Watson 2014 Eq A4": "author code comment only; not visually inspected paper equation",
+        "publication_year": "Unknown original publication year; 2026 refers only to this asset audit"
+      }
+    },
+    {
+      "source_id": "CHEN2024_BiophysModel_m",
+      "title": "Chen et al 2024 historical author BiophysModel.m",
+      "authors": [
+        "Chen Q",
+        "Rieke F",
+        "author repository contributors"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/src/model/BiophysModel.m",
+      "artifact_kind": "code",
+      "repository_commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2",
+      "source_path": "data/source_snapshots/chen2024_1bcf7c9a/BiophysModel.m",
+      "source_locator": "nonlinear branch lines 33-72; old-state R/P/C/G; S from Cnew, G from Sold",
+      "asset_sha256": "fb5ff0a6880d5c78421990981dcf31932b0d415d9d216deb73a64753e5f37937",
+      "source_blob_sha1": "8117c9f157fc8768993e41c521efe23aff8fc7dc",
+      "license": "MIT; Copyright 2024 chrischen2; retained LICENSE",
+      "verification_level": "code_verified",
+      "provenance_notes": "Actual pinned original bytes and Git blob verified. Nonlinear source code, not primary animal measurement or independent validation.",
+      "retrieved_at": "2026-10-10T11:30:09.521135+00:00",
+      "upstream_sources_checked": {
+        "author_files": "actual static inspection of nonlinear/parameter functions only",
+        "paper_scope": "provided independent audit; >20deg L/M, <50k R*/s, three Macaca sources",
+        "upstream_individual_measurements": "not independently audited; no per-cell metadata fabricated"
+      }
+    },
+    {
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "title": "Chen et al 2024 historical author initPhotoreceptorParams.m",
+      "authors": [
+        "Chen Q",
+        "Rieke F",
+        "author repository contributors"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/src/model/initPhotoreceptorParams.m",
+      "artifact_kind": "code",
+      "repository_commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2",
+      "source_path": "data/source_snapshots/chen2024_1bcf7c9a/initPhotoreceptorParams.m",
+      "source_locator": "timeStep line16; peripheralPrimateCone lines19-31; darkCurrent line69",
+      "asset_sha256": "dbff286bc0bda0fbc0aa87775f83285f5dc93d5028559d19efb64651b9ef4de0",
+      "source_blob_sha1": "086e324f5f5a38f04249c63b1650f68fea4d3586",
+      "license": "MIT; Copyright 2024 chrischen2; retained LICENSE",
+      "verification_level": "code_verified",
+      "provenance_notes": "Actual pinned original bytes and Git blob verified. Nonlinear source code, not primary animal measurement or independent validation.",
+      "retrieved_at": "2026-10-10T11:30:09.521135+00:00",
+      "upstream_sources_checked": {
+        "author_files": "actual static inspection of nonlinear/parameter functions only",
+        "paper_scope": "provided independent audit; >20deg L/M, <50k R*/s, three Macaca sources",
+        "upstream_individual_measurements": "not independently audited; no per-cell metadata fabricated"
+      }
+    },
+    {
+      "source_id": "CHEN2024_demoMain_m",
+      "title": "Chen et al 2024 historical author demoMain.m",
+      "authors": [
+        "Chen Q",
+        "Rieke F",
+        "author repository contributors"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/src/model/demoMain.m",
+      "artifact_kind": "code",
+      "repository_commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2",
+      "source_path": "data/source_snapshots/chen2024_1bcf7c9a/demoMain.m",
+      "source_locator": "identity/license only; demo never executed",
+      "asset_sha256": "f448fe4f9c0c1d3aa1a443240ff19fb6ff43e31912f57abb7e3ccee54bf2e88d",
+      "source_blob_sha1": "322935d64a4237153923ef26117e41a6d72f5919",
+      "license": "MIT; Copyright 2024 chrischen2; retained LICENSE",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual pinned original bytes and Git blob verified. Nonlinear source code, not primary animal measurement or independent validation.",
+      "retrieved_at": "2026-10-10T11:30:09.521135+00:00",
+      "upstream_sources_checked": {
+        "author_files": "actual static inspection of nonlinear/parameter functions only",
+        "paper_scope": "provided independent audit; >20deg L/M, <50k R*/s, three Macaca sources",
+        "upstream_individual_measurements": "not independently audited; no per-cell metadata fabricated"
+      }
+    },
+    {
+      "source_id": "CHEN2024_LICENSE",
+      "title": "Chen et al 2024 historical author LICENSE",
+      "authors": [
+        "Chen Q",
+        "Rieke F",
+        "author repository contributors"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://raw.githubusercontent.com/chrischen2/photoreceptorLinearization/1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2/LICENSE",
+      "artifact_kind": "code",
+      "repository_commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2",
+      "source_path": "data/source_snapshots/chen2024_1bcf7c9a/LICENSE",
+      "source_locator": "identity/license only; demo never executed",
+      "asset_sha256": "2a0fe3991f0323bd12ab145d0328acbf9dca63545ce6f569df69cdb319c848dc",
+      "source_blob_sha1": "8ca78f6d2010e1fdbc38127789f8e6bb96afb9b8",
+      "license": "MIT; Copyright 2024 chrischen2; retained LICENSE",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual pinned original bytes and Git blob verified. Nonlinear source code, not primary animal measurement or independent validation.",
+      "retrieved_at": "2026-10-10T11:30:09.521135+00:00",
+      "upstream_sources_checked": {
+        "author_files": "actual static inspection of nonlinear/parameter functions only",
+        "paper_scope": "provided independent audit; >20deg L/M, <50k R*/s, three Macaca sources",
+        "upstream_individual_measurements": "not independently audited; no per-cell metadata fabricated"
+      }
+    },
+    {
+      "source_id": "CHEN2024_Dryad_SourceData",
+      "title": "Chen et al 2024 verified public source Figure2-SourceData1.mat",
+      "authors": [
+        "Chen Q",
+        "Ingram NT",
+        "Baudin J",
+        "Angueyra JM",
+        "Sinha R",
+        "Rieke F"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://datadryad.org/dataset/doi:10.5061/dryad.q2bvq83vg",
+      "artifact_kind": "data_table",
+      "repository_commit": null,
+      "source_path": "data/source/chen2024_dryad_v3_325663/Figure2-SourceData1.mat",
+      "source_locator": "PrimateConeResponses{1:6}, exact fields and array inventory reports/chen2024_data_inventory.json",
+      "asset_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "source_blob_sha1": null,
+      "license": "CC0; actual official dataset metadata",
+      "verification_level": "numeric_table_verified",
+      "provenance_notes": "Actual asset bytes verified. MAT/README published hashes match user-provided archive. Data are source repeat means, not independent validation; no per-cell biology or preprocessing invented. No parameter record derived or retuned.",
+      "retrieved_at": "2026-10-10T12:06:17.223506+00:00",
+      "upstream_sources_checked": {
+        "actual_bytes": "archive inventory and file SHA256",
+        "structure": "actual MATLAB cell/field/shape/dtype inventory",
+        "units": "actual README, paper and pinned code checked",
+        "input_semantics_history": "unresolved negative rates, range and prehistory; model comparison NOT_RUN"
+      }
+    },
+    {
+      "source_id": "CHEN2024_Dryad_README",
+      "title": "Chen et al 2024 verified public source README.md",
+      "authors": [
+        "Chen Q",
+        "Ingram NT",
+        "Baudin J",
+        "Angueyra JM",
+        "Sinha R",
+        "Rieke F"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://datadryad.org/dataset/doi:10.5061/dryad.q2bvq83vg",
+      "artifact_kind": "supplement",
+      "repository_commit": null,
+      "source_path": "data/source/chen2024_dryad_v3_325663/README.md",
+      "source_locator": "Primate and mouse cone responses paragraphs: 0.1ms, R*/sec, normalized repeat means",
+      "asset_sha256": "f25cb72716327f5fc08cfe26cc423bc3364f8f331900dd1972eeb664c1911d03",
+      "source_blob_sha1": null,
+      "license": "CC0; actual official dataset metadata",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual asset bytes verified. MAT/README published hashes match user-provided archive. Data are source repeat means, not independent validation; no per-cell biology or preprocessing invented. No parameter record derived or retuned.",
+      "retrieved_at": "2026-10-10T12:06:17.223506+00:00",
+      "upstream_sources_checked": {
+        "actual_bytes": "archive inventory and file SHA256",
+        "structure": "actual MATLAB cell/field/shape/dtype inventory",
+        "units": "actual README, paper and pinned code checked",
+        "input_semantics_history": "unresolved negative rates, range and prehistory; model comparison NOT_RUN"
+      }
+    },
+    {
+      "source_id": "CHEN2024_Paper_93795",
+      "title": "Chen et al 2024 verified public source elife-93795-v1.pdf",
+      "authors": [
+        "Chen Q",
+        "Ingram NT",
+        "Baudin J",
+        "Angueyra JM",
+        "Sinha R",
+        "Rieke F"
+      ],
+      "publication_year": 2024,
+      "doi_or_canonical_url": "https://cdn.elifesciences.org/articles/93795/elife-93795-v1.pdf",
+      "artifact_kind": "paper",
+      "repository_commit": null,
+      "source_path": "data/source/chen2024_dryad_v3_325663/elife-93795-v1.pdf",
+      "source_locator": "pp5/15/18-19: fitting, scope, recordings and model methods",
+      "asset_sha256": "78409a7d5f1246e99fae149147090f11d4e94982e4eb724ddb4f49aa5d1a6966",
+      "source_blob_sha1": null,
+      "license": "CC BY; article copyright statement p1",
+      "verification_level": "identity_verified",
+      "provenance_notes": "Actual asset bytes verified. MAT/README published hashes match user-provided archive. Data are source repeat means, not independent validation; no per-cell biology or preprocessing invented. No parameter record derived or retuned.",
+      "retrieved_at": "2026-10-10T12:06:17.223506+00:00",
+      "upstream_sources_checked": {
+        "actual_bytes": "archive inventory and file SHA256",
+        "structure": "actual MATLAB cell/field/shape/dtype inventory",
+        "units": "actual README, paper and pinned code checked",
+        "input_semantics_history": "unresolved negative rates, range and prehistory; model comparison NOT_RUN"
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "parameter_id": "SF2025_tau",
+      "name": "tau",
+      "value": 0.014,
+      "unit": "s",
+      "shape": [],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 38; literal .014",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "author_assumption",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_kSens",
+      "name": "kSens",
+      "value": 17.8,
+      "unit": "mV/contrast-unit",
+      "shape": [],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 18; literal 17.8",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "author_assumption",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_kSur",
+      "name": "kSur",
+      "value": 1.54,
+      "unit": "dimensionless",
+      "shape": [],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 19; literal 1.54",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "author_assumption",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_kRect",
+      "name": "kRect",
+      "value": 7.2,
+      "unit": "Hz/mV",
+      "shape": [],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 17; literal 7.2",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "author_assumption",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_actRest",
+      "name": "actRest",
+      "value": [
+        21.8,
+        25.4
+      ],
+      "unit": "Hz",
+      "shape": [
+        2
+      ],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 10; literal [21.8, 25.4]",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "author_assumption",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_magRet",
+      "name": "magRet",
+      "value": 4.73,
+      "unit": "deg/mm",
+      "shape": [],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 20; literal 4.73",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "author_assumption",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_radOptCoef",
+      "name": "radOptCoef",
+      "value": [
+        1.4241e-05,
+        0.0,
+        0.011663
+      ],
+      "unit": "polynomial coefficients for radius_deg(e_deg), descending powers",
+      "shape": [
+        3
+      ],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 30; literal [1.4241e-05, 0, .011663]",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "source_fit",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_radHorCoef",
+      "name": "radHorCoef",
+      "value": [
+        -4.5667e-05,
+        0.0030709,
+        0.029977,
+        -3.261
+      ],
+      "unit": "polynomial coefficients for log(radius_deg)(e_deg), descending powers",
+      "shape": [
+        4
+      ],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 27; literal [-4.5667e-05, .0030709, .029977, -3.261]",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "source_fit",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "SF2025_radGangCoef",
+      "name": "radGangCoef",
+      "value": [
+        -1.3583e-06,
+        0.00014598,
+        0.0012385,
+        0.012601
+      ],
+      "unit": "polynomial coefficients for radius_deg(e_deg), descending powers",
+      "shape": [
+        4
+      ],
+      "source_id": "SF2025_setColLit_m",
+      "source_locator": "setColLit.m line 24; literal [-1.3583e-06, .00014598, .0012385, .012601]",
+      "derivation": "identity: parsed actual pinned author literal",
+      "evidence_kind": "source_fit",
+      "species": "source_specific_mixed",
+      "sample_context": "Author literature model; original sample conditions not comprehensively audited",
+      "retinal_region": "local source-specific patch; complete physiological region validity not established",
+      "meridian": "not assigned without decoded author arrays",
+      "coordinate_frame": "functional_visual_field",
+      "support_domain": null,
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "uncertainty": "Unknown author fit/measurement uncertainty; engineering test tolerance is separate",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_sigma",
+      "name": "sigma",
+      "value": 22.0,
+      "unit": "s^-1",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line20, peripheralPrimateCone; literal 22",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% receptor activity decay rate (1/sec)",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_phi",
+      "name": "phi",
+      "value": 22.0,
+      "unit": "s^-1",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line21, peripheralPrimateCone; literal 22",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% phosphodiesterase activity decay rate (1/sec)",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_eta",
+      "name": "eta",
+      "value": 2000.0,
+      "unit": "s^-2 (source effective normalization)",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line22, peripheralPrimateCone; literal 2000",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% phosphodiesterase activation rate constant (1/sec)",
+        "interface_unit_basis": "Source normalized effective activities; P formally s^-1 via dG=S-PG; R/eta formally s^-2 via dP=R+eta-phiP; gamma formally s^-2/R*. These are dimensional derivations, not measured molecule units."
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_gdark",
+      "name": "gdark",
+      "value": 35.0,
+      "unit": "uM",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line23, peripheralPrimateCone; literal 35",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% concentration of cGMP in darkness",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_k",
+      "name": "k",
+      "value": 0.01,
+      "unit": "pA/uM^3",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line24, peripheralPrimateCone; literal 0.01",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% constant relating cGMP to current",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_n",
+      "name": "n",
+      "value": 3.0,
+      "unit": "dimensionless",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line25, peripheralPrimateCone; literal 3",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% cooperativity for cGMP->current",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_cdark",
+      "name": "cdark",
+      "value": 1.0,
+      "unit": "uM",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line26, peripheralPrimateCone; literal 1",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% dark calcium concentration",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_beta",
+      "name": "beta",
+      "value": 9.0,
+      "unit": "s^-1",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line27, peripheralPrimateCone; literal 9",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% rate constant for calcium removal in 1/sec",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_m",
+      "name": "m",
+      "value": 4.0,
+      "unit": "dimensionless",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line28, peripheralPrimateCone; literal 4",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% cooperativity for cyclase, hill coef",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_kGC",
+      "name": "kGC",
+      "value": 0.5,
+      "unit": "uM",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line29, peripheralPrimateCone; literal 0.5",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% hill affinity for cyclase",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_gamma",
+      "name": "gamma",
+      "value": 10.0,
+      "unit": "s^-2/R* (source effective normalization)",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line30, peripheralPrimateCone; literal 10",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "% so stimulus can be in R*/sec (this is rate of increase in opsin activity per R*/sec)",
+        "interface_unit_basis": "Source normalized effective activities; P formally s^-1 via dG=S-PG; R/eta formally s^-2 via dP=R+eta-phiP; gamma formally s^-2/R*. These are dimensional derivations, not measured molecule units."
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    },
+    {
+      "parameter_id": "CHEN2024_timeStep",
+      "name": "timeStep",
+      "value": 0.0001,
+      "unit": "s",
+      "shape": [],
+      "source_id": "CHEN2024_initPhotoreceptorParams_m",
+      "source_locator": "initPhotoreceptorParams.m line16, peripheralPrimateCone; literal 1e-4",
+      "derivation": {
+        "value_transform": "identity actual source literal",
+        "source_comment": "",
+        "interface_unit_basis": "Source/paper convention preserved; timeStep is source numerical setting, not physiology constant"
+      },
+      "evidence_kind": "author_assumption",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "sample_context": "Published consensus from mixed three-Macaca source recordings; individual identities and uncertainty not available here",
+      "retinal_region": "peripheral >20deg only",
+      "meridian": "not reported per cell",
+      "coordinate_frame": "outer_segment",
+      "support_domain": {
+        "eccentricity": {
+          "unit": "deg",
+          "lower": 20,
+          "upper": null,
+          "lower_closed": false,
+          "upper_closed": false
+        },
+        "total_rate": {
+          "unit": "R*/s",
+          "lower": 0,
+          "upper": 50000,
+          "lower_closed": true,
+          "upper_closed": false
+        }
+      },
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "uncertainty": "Source consensus; per-cell and fit uncertainty not independently established",
+      "allowed_modes": [
+        "component_reference",
+        "numeric_fixture"
+      ],
+      "status": "usable_reference",
+      "assumption_approval_reference": null
+    }
+  ],
+  "profiles": [
+    {
+      "profile_id": "SomaratnaFreeman2025GaussianHCReference_source_specific",
+      "species": "source_specific_mixed",
+      "kind": "named_reference",
+      "parameter_ids": [
+        "SF2025_tau",
+        "SF2025_kSens",
+        "SF2025_kSur",
+        "SF2025_kRect",
+        "SF2025_actRest",
+        "SF2025_magRet",
+        "SF2025_radOptCoef",
+        "SF2025_radHorCoef",
+        "SF2025_radGangCoef"
+      ],
+      "conditions": {
+        "branch": "Gaussian-HC",
+        "input": "cone_contrast",
+        "background_adaptation": "absent"
+      },
+      "coordinate_frame": "functional_visual_field",
+      "explicit_opt_in": true,
+      "claim_limit": "Cross-species author-code linear reference only; no main physiology defaults, adaptation or author-array reproduction"
+    },
+    {
+      "profile_id": "Chen2024PeripheralPrimateCone_source_mixed_macaca",
+      "species": "source_mixed_Macaca_fascicularis_nemestrina_mulatta",
+      "kind": "named_reference",
+      "parameter_ids": [
+        "CHEN2024_sigma",
+        "CHEN2024_phi",
+        "CHEN2024_eta",
+        "CHEN2024_gdark",
+        "CHEN2024_k",
+        "CHEN2024_n",
+        "CHEN2024_cdark",
+        "CHEN2024_beta",
+        "CHEN2024_m",
+        "CHEN2024_kGC",
+        "CHEN2024_gamma",
+        "CHEN2024_timeStep"
+      ],
+      "conditions": {
+        "module": "outer_segment_current_only",
+        "region": ">20deg",
+        "cone_types": [
+          "L",
+          "M"
+        ],
+        "source_species": [
+          "M. fascicularis",
+          "M. nemestrina",
+          "M. mulatta"
+        ],
+        "public_input": "total_R*/s",
+        "time_step_seconds": 0.0001,
+        "no_bleaching_or_regeneration": true
+      },
+      "coordinate_frame": "outer_segment",
+      "explicit_opt_in": true,
+      "claim_limit": "Isolated peripheral LM nonlinear outer-segment current; mixed Macaca sources; no foveal/S/V/HC/bleaching or independent physiology claim"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_hc_joint_central_master_v2",
+  "asset_path": "data/atlas/hc_joint_central_master_v2.json",
+  "expected_asset_sha256": "8a7a3498d6558cb96d09b3f274b6e37d3db05d01612f6dc86e76a14ccc663a0e",
+  "density_profile_path": "configurations/hc_joint_synthetic_v1.json",
+  "research_generator_path": "configurations/hc_research_prototype_geometry_v1.json",
+  "seed": 20261010,
+  "canonical_bounds_mm": [
+    -0.4,
+    0.9,
+    -0.4,
+    0.4
+  ],
+  "max_cells": 60000,
+  "mask_source_id": "HC_physical_rectangular_tissue_mask_v1",
+  "scope": "Fixed central physical master covering the existing RF0/.035/.35 representative input and pair contexts; not whole RF0-3mm or 3-6mm coverage",
+  "mosaic_rule": "generate_joint_hc_fixed_canonical_master_then_crop",
+  "fallback": "NONE; out-of-domain or budget requests are unsupported",
+  "old_Poisson_preview": "Historical exports remain independent previews; never the default joint source",
+  "planning_estimates": {
+    "full_stage_physical_square_bounds_mm": [
+      -3.25,
+      3.25,
+      -3.25,
+      3.25
+    ],
+    "full_stage_density_mass_order64": 408495.92514610384,
+    "full_stage_two_sweep_proposals_estimate": 816991.8502922077,
+    "central_density_mass_order64": 11318.721795366748,
+    "central_two_sweep_proposals_estimate": 22637.443590733496,
+    "method": "Gauss-Legendre density-only cost estimate; not generation, source-domain closure or biological validation",
+    "core_numeric_arrays_bytes_per_cell_estimate": 128,
+    "serialized_bytes_per_cell_estimate": 650,
+    "generation_time": "No separate historical timer; estimate only same or smaller work scale than the 15735-cell prior master, actual time recorded on materialization"
+  }
+}

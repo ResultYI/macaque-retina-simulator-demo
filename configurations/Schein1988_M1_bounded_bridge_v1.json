@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "Schein1988_M1_bounded_bridge_v1",
+  "approval": {"utc": "2026-10-12T06:13:15Z", "message": "Sentinel_88b5e01aafc48191986a5e49b70b5982", "user_response": "允许"},
+  "source_profile": "Schein1988_M1_digitized_strict",
+  "source_curve_sha256": "b1444893bcb7a4f811718180609f53acce16e1192030ef08e6d756faf6e27323",
+  "unit": "mm",
+  "input": "cone IS radius; explicit RF-to-IS equality remains a project transfer",
+  "output": "P=r+displacement, OPL pedicle radius",
+  "central_radial_limit_P_mm": 0.15,
+  "central_limit_evidence": "Schein author pedicle-free anatomical/model inner boundary, delegated p502/p483/p497 references; not an r=0 individual cone measurement",
+  "central_join_r_mm": 0.025,
+  "central_method": "linear P; C0 only, no measured derivative claim",
+  "zero_displacement_r_mm": {"nasal": 3.1, "temporal": 2.6, "superior": 1.7, "inferior": 2.0},
+  "tail_method": "linear P from final digitized node to author-derived textual zero anchor; then identity",
+  "application_max_r_mm": 6.0,
+  "exact_origin": "radial limit only / DIRECTION_UNDEFINED unless an explicit named angle policy is supplied",
+  "angular_method": "same neighbouring cardinal nonnegative weights summing to one",
+  "bridge_and_outer_identity_evidence": "project_approximation",
+  "histology_thresholds": "retained independently in original textual_anchors.json; never averaged into the selected author-derived zero anchors",
+  "strict_source_replacement": false,
+  "physiological_validation": false
+}

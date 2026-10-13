@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "macaque_constrained_native_v1",
+  "execution_mode": "source_constrained_approximation",
+  "parameter_profile": "effective_dynamics_v1",
+  "species_cohort_policy": "Independent source cohorts retained; no single-animal full-retina claim",
+  "cone_route": "native_shared_H1_approximation",
+  "region": {
+    "target": "continuous center-transition-periphery target; current run is one independent patch",
+    "owner_bounds_mm": [
+      4.59,
+      4.61,
+      -0.01,
+      0.01
+    ],
+    "halo_mm": 0.04,
+    "frame": "functional_visual_field",
+    "regional_support_profile": "regional_support_v1",
+    "HC_interval_policy": "Select one individual animal interval in mapped physical OPL frame; central peak and isolated points are references, not 2D fields",
+    "regional_followup_validation": "STATIC_ONLY_NOT_RUN"
+  },
+  "geometry": {
+    "hard_support_mm": 0.04,
+    "RBC_to_rod_density_ratio": 0.05555555555555555,
+    "AII_density_cells_per_mm2": 5000,
+    "RBC_transfer": "rounded central degree36 formula transferred to selected peripheral ROI",
+    "AII_transfer": "1.5mm density anchor extended as constant within selected ROI"
+  },
+  "input_adapter": "contrast_reference_v1",
+  "initialization_policy": "uniform_background_outer_equilibria_finite_inner_prerun_v1",
+  "allowed_approximation_ids": [
+    "Packer_log_PCHIP_NT_angular_v1",
+    "LM_equal_project_v1",
+    "S_assay_central_angular_transfer_v1",
+    "Wassle_interval_stationarity_v1",
+    "HC_divergence_anchor_interpolation_v1",
+    "finite_induced_graph_boundary_v1",
+    "finite_background_prerun_v1",
+    "shared_H1_S_H2_kinetics_v1",
+    "effective_BC_AC_RGC_dynamics_v1",
+    "native_to_voltage_adapter_v1",
+    "rod_radial_source_anchor_v1",
+    "RBC_central_degree_geometry_transfer_v1",
+    "AII_density_anchor_geometry_transfer_v1",
+    "rod_inner_effective_dynamics_v1",
+    "glycine_unverified_primary_quotation_v1",
+    "independent_physical_reference_v1",
+    "RGB_display_proxy_v1",
+    "midget_Wool_iso_density_adapter_v1",
+    "McGregor_RF_OPL_rectangular_box_adapter_v1",
+    "McLaughlin_peripheral_slice_to_ROI_transfer_v1"
+  ],
+  "budgets": {
+    "max_population_cells": 8192,
+    "max_compile_bytes": 134217728
+  },
+  "solver": {
+    "method": "DOP853",
+    "rtol": 1e-07,
+    "atol": 1e-10,
+    "max_step": 5e-05,
+    "input_interpolation": "analytic"
+  },
+  "claim": "Runnable source-constrained mixed model; effective inner dynamics, source-anchor geometry transfers, finite boundary and transient initialization explicitly allowed; physiology_validation NOT_RUN"
+}

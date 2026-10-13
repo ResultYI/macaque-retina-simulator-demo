@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "configuration_id": "macaque_retina_configuration_v1",
+  "user_configuration_policy": "One shared GUI/CLI/Run configuration; historical profiles retained for provenance, no user-facing strict/research switch",
+  "run_defaults": {
+    "execution_profile": "atlas_population_revision_v1",
+    "parameter_profile": "effective_dynamics_v1",
+    "background_initialization_mode": "bounded_convergence",
+    "background_require_converged": true,
+    "background_max_wall_seconds": 1800.0,
+    "background_memory_limit_mb": 4096.0,
+    "background_min_available_mb": 1024.0,
+    "background_checkpoint_path": "reports/population_background_runs/20261012_authorized/background_checkpoint.json"
+  },
+  "active_run_status": "34 components/20 layers executed locally; saved 1.2ms transient passed; one AII row has2/3 RBC contacts; no physiological calibration claim",
+  "atlas_target": {
+    "atlas_profile_id": "retina_atlas_Schein_bridge_research_v1",
+    "s_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
+    "source_levels": "Verified quotation/digitization plus explicit project geometry, cross-species S partition and effective dynamics",
+    "gap_rate_ms_inverse": 0.0,
+    "internal_assembler": "atlas_midget_research_v1",
+    "internal_full_typed_callable": "retina_sim.atlas_runtime.atlas_typed_candidate_network",
+    "parasol_RF_seed_source": {
+      "status": "APPROVED_BOUND",
+      "artifact": "data/atlas/population_revised_r035_v1.json",
+      "origin": "independent author RF model with approved project transfers; not rod-derived",
+      "legacy_rod_derived_geometry_default_adoption": false
+    },
+    "available_owner_typed_status": "34 components/20 required layers executed; five RGC owner outputs; no unimplemented layers",
+    "complete_replacement_status": "LOCAL_EFFECTIVE_RUN_PASS_WITH_CAPACITY_DEFICIT",
+    "blockers": [
+      "RBC_AII_AMPA: one of 310 AII has actual degree2/target3 within40um; finite capacity deficit retained, no radius/gain rescue",
+      "HC r.035 four-zero instance unresolved; outside this local .35 artifact",
+      "Whole RF0-3 master not generated; local fixed artifact only",
+      "Scientific calibration/independent physiological validation not complete"
+    ],
+    "population_revision": {
+      "approval": "Sentinel_28318027a0ec8191a8ead57b6439c9c1",
+      "artifact": "data/atlas/population_revised_r035_v1.json",
+      "sha256": "af456b72ce087c372c29f30a0c74198d2602d1bb3db32211eccc8691c534dd6b",
+      "sampler_restoration": "fixed canonical equal-mass master then crop; historical Poisson retained only as history",
+      "population_package": "Packer quadratic central/non-log PCHIP/cos²; Vanni rounded RF D with approved half split"
+    },
+    "production_assembler": "retina_sim.atlas_population_network.atlas_population_network",
+    "accepted_run": "reports/population_revision_runs/20261012T104015129805Z_2f5499d9",
+    "population_revision_storage": {
+      "path": "data\\atlas\\graph_blocks_v1\\population_revised_r035_v1",
+      "source_json_sha256": "af456b72ce087c372c29f30a0c74198d2602d1bb3db32211eccc8691c534dd6b",
+      "logical_record_hash": "26dfe85b99ec3450756d6a9e56681d068ab61d90ce70d09468fb326b51c85a24",
+      "storage_manifest_hash": "9d53469cb5f0b958823fb782aa9c911593e4bba43a2bf85a7bae019031ff08de",
+      "files": 346,
+      "compressed_payload_bytes": 14718367,
+      "kind": "frozen_retina_graph_blocks_v1"
+    }
+  },
+  "background_preparation": {
+    "authorization": "Sentinel_6a4313c8bed48191ba4aaec294527b8a",
+    "status": "NUMERICAL_CONVERGENCE_PASS_STOCHASTIC_STATISTICS_INSUFFICIENT",
+    "criteria": "unchanged bounded_uniform_background_v1; all77state blocks covered; minimum1.25s; no stochastic stationarity claim",
+    "disk_resume": "complete identity-bound uniform-background envelope; no plain/old graph checkpoint fallback",
+    "safety": "1800s preparation cap,4GiB process peak/RSS cap,1GiB system available reserve; cooperative valid-state boundaries",
+    "preflight": "reports/population_background_verification_20261012/verification.json",
+    "run_directory": "reports/population_background_runs/20261012_authorized",
+    "coverage_blocks": 77,
+    "minimum_simulated_seconds": 1.25,
+    "checkpoint": "reports/population_background_runs/20261012_authorized/background_checkpoint.json",
+    "actual_simulated_seconds": 1.3,
+    "actual_wall_seconds": 1026.343903800007,
+    "all_state_blocks_covered": 77,
+    "steps_completed": true,
+    "postrun_verification": "reports/population_background_runs/20261012_authorized/postrun_verification.json"
+  }
+}

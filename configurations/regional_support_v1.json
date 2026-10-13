@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "regional_support_v1",
+  "validation_status": "STATIC_ONLY_NOT_RUN",
+  "ui_regions": {
+    "frame": "functional_visual_field",
+    "unit": "mm",
+    "classification": "project_navigation_convention_only",
+    "center_upper": 0.5,
+    "transition_upper": 3.0,
+    "parameter_binding": "UI labels never select or rescale physiological coefficients"
+  },
+  "roi_presets": {
+    "central_OPL_support": {
+      "label": "中央OPL支持",
+      "center_mm": [0.35, 0.0],
+      "size_mm": [0.002, 0.002],
+      "halo_mm": 0.04,
+      "coordinate_frame": "functional_visual_field",
+      "OPL_selection": "RF centre 0.35 mm maps to approximately 0.75 mm pedicle radius under the existing McGregor adapter; actual full mapped patch/arbor bounds are checked on build",
+      "HC_support": "explicit joint mosaic + central_OPL_equal_area_W2000 only; OPL support 0.5..1 mm",
+      "evidence_class": "project_navigation_choice; no central biological density or waveform fitted",
+      "status": "AII-to-midget, rod/RBC upstream generation support and BC-to-AC IPL point lift repaired; central build blocked by nine remaining RGC halo/typed IPL point-arbor support paths; no central time integration"
+    },
+    "custom": {
+      "label": "自定位置",
+      "status": "support_checked_on_build"
+    },
+    "center_design": {
+      "label": "中心目标·未跑",
+      "center_mm": [
+        0.15,
+        0.0
+      ],
+      "size_mm": [
+        0.02,
+        0.02
+      ],
+      "halo_mm": 0.04,
+      "HC_support": "unavailable: below the quoted 0.5..1 mm central author interval",
+      "status": "NOT_RUN_PROVIDER_GAP"
+    },
+    "central_author_anchor": {
+      "label": "中央作者锚点·未跑",
+      "center_mm": [
+        0.75,
+        0.0
+      ],
+      "size_mm": [
+        0.02,
+        0.02
+      ],
+      "halo_mm": 0.04,
+      "HC_support": "author scalar anchor only; no spatial field bound",
+      "status": "NOT_RUN_HC_FIELD_UNBOUND"
+    },
+    "transition_anchor": {
+      "label": "过渡来源锚点·未跑",
+      "center_mm": [
+        2.5,
+        0.0
+      ],
+      "size_mm": [
+        0.02,
+        0.02
+      ],
+      "halo_mm": 0.04,
+      "HC_profile": "Wassle_animal_9.8.99_interval",
+      "status": "STATIC_ONLY_NOT_RUN"
+    },
+    "peripheral_anchor": {
+      "label": "周边来源锚点",
+      "center_mm": [
+        4.6,
+        0.0
+      ],
+      "size_mm": [
+        0.02,
+        0.02
+      ],
+      "halo_mm": 0.04,
+      "HC_profile": "Wassle_animal_29.7.99_interval",
+      "status": "prior_short_run_only; regional follow-up code NOT_RUN"
+    }
+  },
+  "source_domains": {
+    "Packer_published_code_density": {
+      "frame": "functional_visual_field",
+      "unit": "mm",
+      "axis": "retinal_radius_and_NT_meridian",
+      "numerical_source": "60 literal nodes; local original/snapshot/CSV extraction match",
+      "provider": "log PCHIP, central cap, NT angular extension are project approximations",
+      "original_animal_measurement_verification": "pending"
+    },
+    "deMonasterio_S": {
+      "frame": "functional_visual_field",
+      "unit": "deg",
+      "axis": "N/T eccentricity",
+      "source_fit_range": [
+        2,
+        60
+      ],
+      "central": "assay square/peak bridge is a named project adapter",
+      "cell_type": "dye-stained S candidates; not universal opsin-defined identity",
+      "magnification": "0.223 mm/deg project conversion"
+    },
+    "Wassle_HC": {
+      "frame": "OPL",
+      "unit": "mm",
+      "axis": "physical_retinal_distance_from_fovea",
+      "domains": "individual animal interval rows; point rows do not authorize finite patches",
+      "central": "0.5..1 mm scalar author estimate retained as reference only; no constant central field or extrapolation to pit",
+      "primary_verification": "pending; local historical quotation matched"
+    },
+    "McGregor_displacement": {
+      "input_frame": "functional_visual_field",
+      "output_frames": [
+        "anatomical_retina",
+        "OPL"
+      ],
+      "unit": "mm",
+      "cell_type": "foveal RGC RF/soma pairs, one M. fascicularis",
+      "adapters": "published rounded anchors + Packer cross-source extension; pedicle share remains project assumption",
+      "recording_frame_transfer": "not an automatic adapter to another paper's recording location"
+    },
+    "Wool_midget": {
+      "frame": "temporal_equivalent",
+      "unit": "mm",
+      "range": [
+        0.25,
+        10
+      ],
+      "private_line": "effective target <=1 uses qualified cone/BC parent IDs",
+      "adapter": "Packer iso-density inverse is project approximation; not UI-region threshold"
+    },
+    "Chen_peripheral_LM": {
+      "frame": "functional_visual_field",
+      "unit": "deg",
+      "lower_bound_open": 20,
+      "cell_type": "LM cones",
+      "unsupported": [
+        "S",
+        "foveal cone"
+      ],
+      "outside_domain": "omit independent reference route; never transplant peripheral parameters"
+    },
+    "rod_landmark_field": {
+      "frame": "functional_visual_field",
+      "unit": "mm",
+      "central_rod_free_radius": 0.02,
+      "provider": "existing radial/angular source-landmark project field; not an independently digitized 2D density map"
+    },
+    "RBC_AII_geometry": {
+      "frame": "OPL/IPL",
+      "RBC": "2*rho_rod/36 central rounded-degree transfer",
+      "AII": "5000/mm2 at 1.5 mm anchor transferred as constant; independent of rod presence",
+      "classification": "source_anchored_approx_density"
+    },
+    "Sinha2017_midget_STA": {
+      "doi": "10.1016/j.cell.2017.01.005",
+      "role": "assay_target_not_mechanism_parameter",
+      "primary_verification": "delegated quotation; complete verified source terms pending",
+      "cell_type": "predominantly ON midget RGC; no automatic OFF/parasol transfer",
+      "assay": "spike-triggered average time to peak",
+      "distance_frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+      "unit": "mm",
+      "regions": [
+        {
+          "name": "foveal",
+          "lower": 0,
+          "upper": 1,
+          "upper_inclusive": false,
+          "time_to_peak_ms": 67,
+          "SD_ms": 6
+        },
+        {
+          "name": "central",
+          "lower": 2,
+          "upper": 4,
+          "upper_inclusive": true,
+          "time_to_peak_ms": 53,
+          "SD_ms": 6
+        },
+        {
+          "name": "peripheral",
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null,
+          "time_to_peak_ms": 37,
+          "SD_ms": 4
+        }
+      ],
+      "uncovered": "1..2 and 4..6 mm; no gap filling",
+      "charge_ratio_targets": {
+        "assay": "stimulus-specific inhibitory/excitatory transferred charge ratio, not conductance or connectivity weight",
+        "stimulus_condition": "complete source conditions pending; not bound to model",
+        "foveal": {
+          "mean": 0.06,
+          "SD": 0.05
+        },
+        "central": {
+          "mean": 0.33,
+          "SD": 0.14
+        },
+        "peripheral": {
+          "mean": 1.18,
+          "SD": 0.35
+        }
+      },
+      "frame_adapter_status": "unbound: optical RF radius or McGregor soma proxy is not the paper's recording location",
+      "prohibited_bindings": [
+        "membrane tau",
+        "global kernel stretching",
+        "gI/gE or AC-to-RGC weight from charge ratio",
+        "foveal parasol inhibition",
+        "all-RGC regional dynamics"
+      ]
+    },
+    "inner_retina_followup": {
+      "sources": [
+        "KhucTrong2008",
+        "Weber2005",
+        "Latimer2019",
+        "Crook2014",
+        "Cafaro2013",
+        "Crook2011",
+        "Crook2009"
+      ],
+      "source_frames": "per-paper recorded retinal site or estimated eccentricity; no UI/RF automatic conversion",
+      "binding": "typed observations and source-model candidates only; current shared HistoryConductanceRGC coefficients unchanged",
+      "primary_material": "delegated sources read; no local source-asset verification claim",
+      "missing": "five RGC types x foveal/central/peripheral intrinsic spike parameters; identified generic AC kinetics"
+    }
+  },
+  "dynamics_policy": {
+    "native_LM": "regional source support unresolved; retained named source-model/project regional extension",
+    "native_S_H2": "shared H1 kinetics explicitly unsupported by independent S/H2 fit",
+    "BC_AC_RGC": "shared effective numerical families across UI regions; region-specific physiological calibration NOT_BOUND",
+    "rod_inner": "RBC/AII conductance, release and kinetics remain effective; geometry transfer does not calibrate dynamics",
+    "Sinha_STA": "target only, no coefficient change or implicit optical-RF domain conversion",
+    "physical_cable_terminal_HC": "existing independent effective closure; not full physical calibration",
+    "RGC_source_candidates": "KhucTrong RC/relative-threshold model differs from current softplus/history; Crook NMDA absent; all candidates unbound, NOT_RUN",
+    "AC_source_candidates": "Wu ON-starburst multicompartment is not generic AC; Percival AII puff total is not individual RBC-AII synaptic gain"
+  },
+  "observation_catalog": "regional_observations_v1.json"
+}

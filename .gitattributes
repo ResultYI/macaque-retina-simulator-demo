@@ -1,0 +1,3 @@
+# Scientific asset, implementation and checkpoint identities use original bytes.
+# Disable automatic newline conversion, including on Windows clones.
+* -text

@@ -1,0 +1,3951 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "effective_dynamics_v1",
+  "claim": "Frozen existing effective dynamics; shared BC/AC kernels and RGC coefficients remain numerically identical where phenotype identification is absent; no new guessed calibration",
+  "allowed_modes": [
+    "engineering_preview",
+    "source_constrained_approximation"
+  ],
+  "migration": "Constants extracted from existing assembly 2026-10-11; source quotations retain historical extraction provenance and require separate primary verification",
+  "profiles": {
+    "PRIMARY_PATHWAY_project_profile": {
+      "corridor_bounds": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "retinal_domain_bounds",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "cone_density_scale": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_sampling_density_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_density_scale": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_sampling_density_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "magnification": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm/deg",
+        "meaning": "retinal_magnification",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "LM_ratio": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "L_to_M_ratio",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_free_radius": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "rod_free_region_radius",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_ring_peak_radius": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "effective_rod_ring_peak_radius",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_horizontal_peak": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "cells/mm^2",
+        "meaning": "rod_density_landmark",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_superior_peak": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "cells/mm^2",
+        "meaning": "rod_density_landmark",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_inferior_peak": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "cells/mm^2",
+        "meaning": "rod_density_landmark",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "HC_pool_radius_intercept": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "effective_contact_radius",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "HC_pool_radius_eccentricity_slope": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_radius_eccentricity_gain",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "diffuse_BC_pool_radius_intercept": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "effective_contact_radius",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "diffuse_BC_radius_eccentricity_slope": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_radius_eccentricity_gain",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "midget_RGC_radius_intercept": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "effective_contact_radius",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "midget_RGC_radius_eccentricity_slope": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_radius_eccentricity_gain",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "physical_blend_start": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "deg",
+        "meaning": "source_route_blend_start",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "physical_blend_extent": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "deg",
+        "meaning": "source_route_blend_extent",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "rod_RBC_target_degree": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_rod_RBC_degree",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "effective_RBC_stride": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "dimensionless",
+        "meaning": "effective_resolution_population_stride",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      },
+      "AII_center_sites": {
+        "binding": "derived",
+        "derivation": "Declared effective geometry; source landmarks cited in source ledger, interpolation/count policy unmeasured",
+        "unit": "mm",
+        "meaning": "effective_AII_inner_retinal_sites",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP",
+          "source_landmarks_are_not_a_digital_map": true
+        },
+        "uncertainty": "Replaceable geometry/resolution; not animal cell count"
+      }
+    },
+    "effective_physical_cone": {
+      "C": {
+        "binding": "literal",
+        "value": [
+          5e-12,
+          1e-11
+        ],
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "literal",
+        "value": [
+          2.5e-10,
+          5e-10
+        ],
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "axial": {
+        "binding": "literal",
+        "value": [
+          [
+            0.0,
+            2e-09
+          ],
+          [
+            2e-09,
+            0.0
+          ]
+        ],
+        "unit": "S",
+        "meaning": "axial_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "injection": {
+        "binding": "derived",
+        "derivation": "Two-compartment physical cone reduction; C/gL/axial/V anchor uncalibrated; current anchor derived from source equilibrium at1000R*/s; voltage anchor remains independent project approximation; parameter injection",
+        "unit": "dimensionless",
+        "meaning": "current_injection_distribution",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "current_anchor": {
+        "binding": "derived",
+        "derivation": "Two-compartment physical cone reduction; C/gL/axial/V anchor uncalibrated; current anchor derived from source equilibrium at1000R*/s; voltage anchor remains independent project approximation; parameter current_anchor",
+        "unit": "A",
+        "meaning": "absolute_outer_segment_current",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_deviation": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "physical_voltage_deviation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "voltage_anchor": {
+        "binding": "broadcast",
+        "value": -0.055,
+        "unit": "V",
+        "meaning": "physical_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_cone",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "physical_unit_adapter": {},
+    "effective_physical_terminal": {
+      "Vhalf": {
+        "binding": "broadcast",
+        "value": -0.036,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_terminal",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "slope": {
+        "binding": "broadcast",
+        "value": 0.004,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_terminal",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_physical_HC": {
+      "tau": {
+        "binding": "broadcast",
+        "value": 0.02,
+        "unit": "s",
+        "meaning": "effective_HC_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_HC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "K": {
+        "binding": "broadcast",
+        "value": 0.25,
+        "unit": "dimensionless",
+        "meaning": "HC_half_drive",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_HC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "n": {
+        "binding": "broadcast",
+        "value": 2.0,
+        "unit": "dimensionless",
+        "meaning": "HC_hill_exponent",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_HC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "kappa": {
+        "binding": "broadcast",
+        "value": 0.002,
+        "unit": "V",
+        "meaning": "HC_threshold_shift_gain",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_HC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "H_anchor": {
+        "binding": "broadcast",
+        "value": 0.001,
+        "unit": "dimensionless",
+        "meaning": "effective_HC_anchor",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_HC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "H_initial": {
+        "binding": "derived",
+        "unit": "dimensionless",
+        "meaning": "effective_HC_activation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_physical_HC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      }
+    },
+    "effective_midget_BC_ON": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Derived input baseline from declared native equilibrium and selected physical terminal reference",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Vref": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "terminal_voltage_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_voltage_gain": {
+        "binding": "broadcast",
+        "value": 0.01,
+        "unit": "V",
+        "meaning": "voltage_per_native_activation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_reference": {
+        "binding": "broadcast",
+        "value": 0.6931471805599453,
+        "unit": "dimensionless",
+        "meaning": "native_activation_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_BC_OFF": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Derived input baseline from declared native equilibrium and selected physical terminal reference",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Vref": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "terminal_voltage_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_voltage_gain": {
+        "binding": "broadcast",
+        "value": 0.01,
+        "unit": "V",
+        "meaning": "voltage_per_native_activation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_reference": {
+        "binding": "broadcast",
+        "value": 0.6931471805599453,
+        "unit": "dimensionless",
+        "meaning": "native_activation_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.076,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "type": "FMB",
+          "provenance_tag": "MEASURED_MACAQUE"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      }
+    },
+    "effective_diffuse_BC_ON": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Derived input baseline from declared native equilibrium and selected physical terminal reference",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Vref": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "terminal_voltage_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_voltage_gain": {
+        "binding": "broadcast",
+        "value": 0.01,
+        "unit": "V",
+        "meaning": "voltage_per_native_activation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_reference": {
+        "binding": "broadcast",
+        "value": 0.6931471805599453,
+        "unit": "dimensionless",
+        "meaning": "native_activation_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_ON",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_diffuse_BC_OFF": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Derived input baseline from declared native equilibrium and selected physical terminal reference",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Vref": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "terminal_voltage_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_voltage_gain": {
+        "binding": "broadcast",
+        "value": 0.01,
+        "unit": "V",
+        "meaning": "voltage_per_native_activation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_reference": {
+        "binding": "broadcast",
+        "value": 0.6931471805599453,
+        "unit": "dimensionless",
+        "meaning": "native_activation_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_diffuse_BC_OFF",
+          "cells": 15,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.073,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "type": "DB1",
+          "provenance_tag": "MEASURED_MACAQUE"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      }
+    },
+    "effective_S_ON_BC": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Derived input baseline from declared native equilibrium and selected physical terminal reference",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Vref": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "terminal_voltage_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_voltage_gain": {
+        "binding": "broadcast",
+        "value": 0.01,
+        "unit": "V",
+        "meaning": "voltage_per_native_activation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "native_reference": {
+        "binding": "broadcast",
+        "value": 0.6931471805599453,
+        "unit": "dimensionless",
+        "meaning": "native_activation_reference",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_rod_membrane": {
+      "C": {
+        "binding": "broadcast",
+        "value": 5e-12,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.07723875,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.04,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.04,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.002,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.002,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "current_anchor": {
+        "binding": "derived",
+        "derivation": "Effective reduced circuit profile; not measured macaque coefficients; parameter current_anchor",
+        "unit": "A",
+        "meaning": "absolute_outer_segment_current",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_membrane",
+          "cells": 96,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "rod_current_adapter": {},
+    "effective_rod_BC": {
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.06,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "derived",
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "rmax": {
+        "binding": "broadcast",
+        "value": 100.0,
+        "unit": "events/s",
+        "meaning": "release_attempt_rate",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Npool": {
+        "binding": "broadcast",
+        "value": 20.0,
+        "unit": "dimensionless",
+        "meaning": "release_pool_size",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "U": {
+        "binding": "broadcast",
+        "value": 0.2,
+        "unit": "dimensionless",
+        "meaning": "release_probability",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_recovery": {
+        "binding": "broadcast",
+        "value": 0.1,
+        "unit": "s",
+        "meaning": "release_recovery_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "r_half": {
+        "binding": "broadcast",
+        "value": -0.045,
+        "unit": "V",
+        "meaning": "release_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "r_slope": {
+        "binding": "broadcast",
+        "value": 0.004,
+        "unit": "V",
+        "meaning": "release_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_rod_BC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_AII_AC": {
+      "C": {
+        "binding": "broadcast",
+        "value": 2e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.06,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "broadcast",
+        "value": -0.055,
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_half": {
+        "binding": "broadcast",
+        "value": -0.05,
+        "unit": "V",
+        "meaning": "activation_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "release_slope": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "activation_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_release": {
+        "binding": "broadcast",
+        "value": 0.003,
+        "unit": "s",
+        "meaning": "release_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "rmax": {
+        "binding": "broadcast",
+        "value": 100.0,
+        "unit": "events/s",
+        "meaning": "release_attempt_rate",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "Npool": {
+        "binding": "broadcast",
+        "value": 5.0,
+        "unit": "dimensionless",
+        "meaning": "release_pool_size",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "U": {
+        "binding": "broadcast",
+        "value": 0.2,
+        "unit": "dimensionless",
+        "meaning": "release_probability",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_recovery": {
+        "binding": "broadcast",
+        "value": 0.1,
+        "unit": "s",
+        "meaning": "release_recovery_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "r_half": {
+        "binding": "broadcast",
+        "value": -0.045,
+        "unit": "V",
+        "meaning": "release_half_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "r_slope": {
+        "binding": "broadcast",
+        "value": 0.004,
+        "unit": "V",
+        "meaning": "release_voltage_slope",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_individual_TRPM1": {
+      "K": {
+        "binding": "broadcast",
+        "value": 0.25,
+        "unit": "dimensionless",
+        "meaning": "receptor_half_drive",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 320,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "hill": {
+        "binding": "broadcast",
+        "value": 4.0,
+        "unit": "dimensionless",
+        "meaning": "receptor_hill_exponent",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 320,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau": {
+        "binding": "broadcast",
+        "value": 0.01,
+        "unit": "s",
+        "meaning": "receptor_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 320,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gain": {
+        "binding": "derived",
+        "derivation": "Each rod contact nonlinear before pooling; Hill/gain/10ms gate temporary project approximation; parameter gain",
+        "unit": "S",
+        "meaning": "TRPM1_maximum_contact_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 320,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "drive0": {
+        "binding": "derived",
+        "unit": "dimensionless",
+        "meaning": "initial_release_drive",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 320,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      }
+    },
+    "effective_RBC_AII_AMPA": {
+      "tau_rise": {
+        "binding": "broadcast",
+        "value": 0.0002,
+        "unit": "s",
+        "meaning": "synaptic_rise_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 30,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_decay": {
+        "binding": "broadcast",
+        "value": 0.002,
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 30,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "g_peak": {
+        "binding": "broadcast",
+        "value": 2e-10,
+        "unit": "S",
+        "meaning": "single_event_peak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 30,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "ncontact": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter ncontact",
+        "unit": "dimensionless",
+        "meaning": "effective_release_site_multiplier",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 30,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "event_rate0": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter event_rate0",
+        "unit": "events/s",
+        "meaning": "expected_release_event_rate",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 30,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_AII_FMB_glycine": {
+      "tau_rise": {
+        "binding": "broadcast",
+        "value": 8e-05,
+        "unit": "s",
+        "meaning": "synaptic_rise_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_FMB_glycine",
+          "cells": 177,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_decay": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter tau_decay",
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_FMB_glycine",
+          "cells": 177,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "g_peak": {
+        "binding": "broadcast",
+        "value": 9.7e-10,
+        "unit": "S",
+        "meaning": "single_event_peak_conductance",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_FMB_glycine",
+          "cells": 177,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      },
+      "ncontact": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter ncontact",
+        "unit": "dimensionless",
+        "meaning": "effective_release_site_multiplier",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_FMB_glycine",
+          "cells": 177,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "event_rate0": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter event_rate0",
+        "unit": "events/s",
+        "meaning": "expected_release_event_rate",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_FMB_glycine",
+          "cells": 177,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "decay_minus100": {
+        "binding": "broadcast",
+        "value": 0.0021,
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "voltage_V": -0.1,
+          "provenance_tag": "MEASURED_MACAQUE"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      },
+      "decay_0": {
+        "binding": "broadcast",
+        "value": 0.004,
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "voltage_V": 0.0,
+          "provenance_tag": "MEASURED_MACAQUE"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      }
+    },
+    "effective_AII_DB1_glycine": {
+      "tau_rise": {
+        "binding": "broadcast",
+        "value": 0.00011,
+        "unit": "s",
+        "meaning": "synaptic_rise_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 45,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "tau_decay": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter tau_decay",
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 45,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "g_peak": {
+        "binding": "broadcast",
+        "value": 8e-10,
+        "unit": "S",
+        "meaning": "single_event_peak_conductance",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 45,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      },
+      "ncontact": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter ncontact",
+        "unit": "dimensionless",
+        "meaning": "effective_release_site_multiplier",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 45,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "event_rate0": {
+        "binding": "derived",
+        "derivation": "Peak-normalized double exponential expected-event conductance; times/site-overlap explicitly effective; parameter event_rate0",
+        "unit": "events/s",
+        "meaning": "expected_release_event_rate",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 45,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "decay_minus100": {
+        "binding": "broadcast",
+        "value": 0.0027,
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "voltage_V": -0.1,
+          "provenance_tag": "MEASURED_MACAQUE"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      },
+      "decay_0": {
+        "binding": "broadcast",
+        "value": 0.0053,
+        "unit": "s",
+        "meaning": "synaptic_decay_time_constant",
+        "source_id": "MCLAUGHLIN2021_glycine_anchors",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "voltage_V": 0.0,
+          "provenance_tag": "MEASURED_MACAQUE"
+        },
+        "uncertainty": "Source quotation retained; primary verification pending"
+      }
+    },
+    "effective_local_feedforward_AC": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": -0.3,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Finite causal AC residual; effective kernel and sampling, not fitted physiology; parameter baseline",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_local_crossover_AC": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": -0.3,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Finite causal AC residual; effective kernel and sampling, not fitted physiology; parameter baseline",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_widefield_AC": {
+      "kernel": {
+        "binding": "literal",
+        "value": [
+          0.5,
+          0.25,
+          -0.1
+        ],
+        "unit": "dimensionless",
+        "meaning": "causal_residual_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "sample_interval": {
+        "binding": "literal",
+        "value": 0.00073,
+        "unit": "s",
+        "meaning": "history_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "bias": {
+        "binding": "broadcast",
+        "value": -0.3,
+        "unit": "dimensionless",
+        "meaning": "activation_bias",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "baseline": {
+        "binding": "derived",
+        "derivation": "Finite causal AC residual; effective kernel and sampling, not fitted physiology; parameter baseline",
+        "unit": "dimensionless",
+        "meaning": "input_baseline",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "causal_input_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_RGC_ON": {
+      "C": {
+        "binding": "broadcast",
+        "value": 6e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 2e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.065,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.08,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "derived",
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      },
+      "alpha": {
+        "binding": "broadcast",
+        "value": 150.0,
+        "unit": "Hz",
+        "meaning": "spike_intensity_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "mu": {
+        "binding": "broadcast",
+        "value": -0.07,
+        "unit": "V",
+        "meaning": "spike_voltage_offset",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "beta": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "spike_voltage_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_history_kernel": {
+        "binding": "literal",
+        "value": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "unit": "V",
+        "meaning": "strict_past_spike_history_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_spike_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "spike_count_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "spike_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_RGC_ON_excitatory_midget_BC_ON": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON_excitatory_midget_BC_ON",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_RGC_ON_inhibitory_local_crossover_AC": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 4e-10,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON_inhibitory_local_crossover_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_RGC_OFF": {
+      "C": {
+        "binding": "broadcast",
+        "value": 6e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 2e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.065,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.08,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "derived",
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      },
+      "alpha": {
+        "binding": "broadcast",
+        "value": 150.0,
+        "unit": "Hz",
+        "meaning": "spike_intensity_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "mu": {
+        "binding": "broadcast",
+        "value": -0.07,
+        "unit": "V",
+        "meaning": "spike_voltage_offset",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "beta": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "spike_voltage_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_history_kernel": {
+        "binding": "literal",
+        "value": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "unit": "V",
+        "meaning": "strict_past_spike_history_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_spike_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "spike_count_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "spike_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_RGC_OFF_excitatory_midget_BC_OFF": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF_excitatory_midget_BC_OFF",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_midget_RGC_OFF_inhibitory_local_feedforward_AC": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 4e-10,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_OFF_inhibitory_local_feedforward_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_parasol_RGC_ON": {
+      "C": {
+        "binding": "broadcast",
+        "value": 6e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 2e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.065,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.08,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "derived",
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      },
+      "alpha": {
+        "binding": "broadcast",
+        "value": 150.0,
+        "unit": "Hz",
+        "meaning": "spike_intensity_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "mu": {
+        "binding": "broadcast",
+        "value": -0.07,
+        "unit": "V",
+        "meaning": "spike_voltage_offset",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "beta": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "spike_voltage_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_history_kernel": {
+        "binding": "literal",
+        "value": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "unit": "V",
+        "meaning": "strict_past_spike_history_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_spike_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "spike_count_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "spike_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_parasol_RGC_ON_excitatory_diffuse_BC_ON": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON_excitatory_diffuse_BC_ON",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_parasol_RGC_ON_inhibitory_widefield_AC": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 4e-10,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON_inhibitory_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_parasol_RGC_OFF": {
+      "C": {
+        "binding": "broadcast",
+        "value": 6e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 2e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.065,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.08,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "derived",
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      },
+      "alpha": {
+        "binding": "broadcast",
+        "value": 150.0,
+        "unit": "Hz",
+        "meaning": "spike_intensity_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "mu": {
+        "binding": "broadcast",
+        "value": -0.07,
+        "unit": "V",
+        "meaning": "spike_voltage_offset",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "beta": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "spike_voltage_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_history_kernel": {
+        "binding": "literal",
+        "value": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "unit": "V",
+        "meaning": "strict_past_spike_history_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_spike_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "spike_count_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "spike_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_parasol_RGC_OFF_excitatory_diffuse_BC_OFF": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF_excitatory_diffuse_BC_OFF",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_parasol_RGC_OFF_inhibitory_widefield_AC": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 4e-10,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF_inhibitory_widefield_AC",
+          "cells": 8,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_small_bistratified_S_ON": {
+      "C": {
+        "binding": "broadcast",
+        "value": 6e-11,
+        "unit": "F",
+        "meaning": "membrane_capacitance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "gL": {
+        "binding": "broadcast",
+        "value": 2e-09,
+        "unit": "S",
+        "meaning": "leak_conductance",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EL": {
+        "binding": "broadcast",
+        "value": -0.065,
+        "unit": "V",
+        "meaning": "leak_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EE": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "V",
+        "meaning": "excitatory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "EI": {
+        "binding": "broadcast",
+        "value": -0.08,
+        "unit": "V",
+        "meaning": "inhibitory_reversal",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "V0": {
+        "binding": "derived",
+        "unit": "V",
+        "meaning": "initial_membrane_voltage",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable",
+        "derivation": "Actual declared upstream/background conditional balance, not a measured operating voltage"
+      },
+      "alpha": {
+        "binding": "broadcast",
+        "value": 150.0,
+        "unit": "Hz",
+        "meaning": "spike_intensity_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "mu": {
+        "binding": "broadcast",
+        "value": -0.07,
+        "unit": "V",
+        "meaning": "spike_voltage_offset",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "beta": {
+        "binding": "broadcast",
+        "value": 0.005,
+        "unit": "V",
+        "meaning": "spike_voltage_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_history_kernel": {
+        "binding": "literal",
+        "value": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "unit": "V",
+        "meaning": "strict_past_spike_history_kernel",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "initial_spike_history": {
+        "binding": "broadcast",
+        "value": 0.0,
+        "unit": "dimensionless",
+        "meaning": "spike_count_history",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      "spike_interval": {
+        "binding": "literal",
+        "value": 0.001,
+        "unit": "s",
+        "meaning": "spike_sampling_interval",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_small_bistratified_S_ON_excitatory_S_ON_BC": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON_excitatory_S_ON_BC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_small_bistratified_S_ON_inhibitory_local_feedforward_AC": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 4e-10,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    },
+    "effective_small_bistratified_S_ON_excitatory_diffuse_BC_OFF": {
+      "gain": {
+        "binding": "broadcast",
+        "value": 1e-09,
+        "unit": "S",
+        "meaning": "synaptic_conductance_scale",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "evidence_class": "project_approximation",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+          "cells": 5,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    }
+  },
+  "source_assets": {
+    "PRIMARY_PATHWAY_project_profile": {
+      "path": "sources/primary_pathway_effective_profile.json",
+      "sha256": "6a6ed28b0abf28d230054cadcf79c2d801ef81a9f127e7b461edcc3a54547cc3",
+      "verification_level": "identity_verified"
+    },
+    "MCLAUGHLIN2021_glycine_anchors": {
+      "path": "sources/mclaughlin2021_verified_anchors.json",
+      "sha256": "fb8282bb803ebf1f824fe997e68d89be178eced90e97b0f25c45c30134453cae",
+      "verification_level": "identity_verified"
+    }
+  },
+  "geometry_assets": {
+    "WASSLE2000_HC_table2": {
+      "path": "sources/spatial/wassle2000_HC_density_tables.json",
+      "sha256": "852c71ebb9cbc63f126fe30f0ca360fe0ccfb794a95e5e9116e71d7e2d15a2c2",
+      "evidence_class": "project_approximation",
+      "representation": "source_quotation_plus_project_provider",
+      "primary_verification": "pending",
+      "expected_origin": "New local baseline only; original scientific transcription remains pending",
+      "verification_scope": "local_baseline_integrity_only"
+    },
+    "DEMONASTERIO1985_S_fit": {
+      "path": "sources/spatial/demonasterio1985_Scone_reference.json",
+      "sha256": "58866e1258023fe93e3abc0979a664db6b4e64d69aafe81aa98b579d97598925",
+      "evidence_class": "project_approximation",
+      "representation": "source_quotation_plus_project_provider",
+      "primary_verification": "pending",
+      "expected_origin": "New local baseline only; original scientific transcription remains pending",
+      "verification_scope": "local_baseline_integrity_only"
+    },
+    "MCGREGOR2018_nodes": {
+      "path": "sources/spatial/mcgregor2018_production_map_nodes.json",
+      "sha256": "5537db25920c83045fd866bc1f130496195c00273c673fdf035c877da331ae60",
+      "evidence_class": "project_approximation",
+      "representation": "source_quotation_plus_project_provider",
+      "primary_verification": "pending",
+      "expected_origin": "New local baseline only; original scientific transcription remains pending",
+      "verification_scope": "local_baseline_integrity_only"
+    }
+  },
+  "external_parameter_profiles": [
+    "Chen2024_primateRod_source"
+  ]
+}

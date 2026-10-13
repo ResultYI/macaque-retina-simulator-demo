@@ -1,0 +1,137 @@
+{
+  "schema_version": "architecture-1.0",
+  "design_version": "FINAL-v0.1",
+  "decision_authorization": [
+    "Sentinel_6b3255c42eb88191a20782279cf4d12e",
+    "Sentinel_2f61863b5450819198af37cd70cfa7b8",
+    "Sentinel_0ad101dcad608191b191967329027d9e: user-authorized overnight architecture completion, 2026-10-10T15:40Z"
+  ],
+  "entries": [
+    {
+      "id": "VH_native_spatial_pooling",
+      "classification": "project_approximation",
+      "source": "VH2005 Fig6A7",
+      "choice": "pool Vbar before aI; nonnegative unit-DC A/B",
+      "alternatives": [
+        "unparameterized physical synapse/HC composition",
+        "scalar original source only"
+      ],
+      "reason": "Complete source model reduces exactly for uniform fields; physical composition lacks paired calibration",
+      "impact": "Heterogeneous spatial/region validity not established"
+    },
+    {
+      "id": "shared_H1_kinetics_software_fixture_only",
+      "classification": "software_fixture",
+      "choice": "Explicit synthetic S/H2 instances may exercise all-type graph using unchanged source coefficients",
+      "alternatives": [
+        "Strict biological profile missing S/H2 remains blocked"
+      ],
+      "reason": "No source-complete S/H2 profile supplied; fixture tests assembly only",
+      "impact": "Never enabled by macaque source-native default; no S/H2 physiological claim"
+    },
+    {
+      "id": "Packer_log_PCHIP_angular_cap",
+      "classification": "project_approximation",
+      "source": "ISETMacaque cf22ac9d... PackerConeRc.m60rows",
+      "choice": "logPCHIP, logN/T cosine, finite central cap",
+      "alternatives": [
+        "unsupported divergent central power-law",
+        "only two meridians"
+      ],
+      "reason": "Bounded positive extension preserves source endpoints without invented peak",
+      "impact": "Unmeasured vertical/central anatomy; author Rc interpolation not reproduced"
+    },
+    {
+      "id": "greedy_capacity_transport",
+      "classification": "project_approximation",
+      "choice": "Sparse greedy equal-rho-mass capacitated centroid relaxation",
+      "alternatives": [
+        "exact scalable power-diagram OT backend not available",
+        "dense linear-program transport exceeds whole-domain memory",
+        "ordinary rho-weighted Lloyd rejected for wrong density exponent"
+      ],
+      "reason": "Preserves point count and equal capacities with existing NumPy/SciPy; resource-limited implementation",
+      "impact": "Partition not exact Laguerre; must expose mass residual/local count/NN/anisotropy/seams; no geometry-validation claim"
+    },
+    {
+      "id": "McGregor_rounded_composite_map",
+      "classification": "project_approximation_source_derived",
+      "source": "McGregor2018 onefascicularis676pairs + Packer nemestrina density",
+      "choice": "Published-rounded f40 anchors, source medians, PCHIP,15%author share,equal-count finite extension,C1join",
+      "alternatives": [
+        "fifth-order extrapolation rejected",
+        "human Drasdo offsets rejected",
+        "processed-pair replication retained"
+      ],
+      "reason": "Source-based finite macaque-only construction preserves anchors/count/positive Jacobian",
+      "impact": "Cross-species/individual transfer and unobserved outer map; smoothing/count error and T/I source-label issue remain explicit"
+    },
+    {
+      "id": "residual_inner_factorization",
+      "classification": "project_approximation",
+      "source": "FINAL-v0.1 source-informed operator choice; no fitted coefficient defaults supplied",
+      "choice": "Explicit BC/AC causal histories and nonnegative E/I conductance/history spike backend",
+      "alternatives": [
+        "all-channel reconstruction with unpaired/mouse borrowed constants",
+        "optional separately calibrated membrane/LIF"
+      ],
+      "reason": "Fewer invented ionic constants and concrete macaque current/spike calibration path",
+      "impact": "Individual effective BC/AC identities not identifiable from RGC alone; all numbers separately required"
+    },
+    {
+      "id": "terminal_quasi_steady_proxy",
+      "classification": "project_approximation",
+      "source": "Maddox2024 paired Vhalf/k",
+      "choice": "Activation-only nonloading readout; r=m only when explicitly selected",
+      "alternatives": [
+        "absolute Ca current requires gCa/E_Ca",
+        "dynamic Ca/release requiresbuffer/volume/clearance"
+      ],
+      "reason": "Activation workbook cannot identify missing current/biochemistry",
+      "impact": "Not vesicles/s, glutamate or fitted kinetics; HC shift still required"
+    },
+    {
+      "id": "overnight_explicit_full_layer_fixture",
+      "classification": "software_fixture",
+      "choice": "Runnable 69-cell/28-component three-region LMS/H1H2 integration with explicit inner QA coefficients, prescribed gaze, native HC feedback and explicit BC/AC presynaptic joint closure",
+      "source": "User-approved temporary engineering scope; real vH2005 source profile separately preserved",
+      "reason": "Required real-cell numerical calibrations/shape populations are not supplied; an executable interface fixture is permitted without inventing biological evidence",
+      "alternatives": [
+        "strict full_target configuration remains unbound",
+        "replace fixture coefficients with evidence-backed profiles later"
+      ],
+      "impact": "Tests/NPZ/checkpoint prove software execution only; source-native H1 reuse for S/H2 and QA point morphology cannot establish macaque physiology",
+      "approval_reference": "Sentinel_0ad101dcad608191b191967329027d9e: user-authorized overnight architecture completion, 2026-10-10T15:40Z",
+      "removable": true,
+      "measured_or_fitted_animal_data": false
+    },
+    {
+      "id": "explicit_delays_and_commensurate_clock",
+      "classification": "project_approximation",
+      "choice": "Method-of-steps edge buffers with explicit evidence/prehistory and interpolation; explicit shared integer-stride clock with held sampled outputs",
+      "source": "Software numerical implementation; connection time constants require individual parameter evidence",
+      "reason": "Supports bounded, causal, restorable state without artificial feedback latency or arbitrary kernel resampling",
+      "alternatives": [
+        "general asynchronous noncommensurate resampling",
+        "mixed author-discrete composition"
+      ],
+      "impact": "Continuous delayed signals use stated interpolation accuracy; arbitrary rates and mixed Chen author-discrete remain rejected",
+      "approval_reference": "Sentinel_0ad101dcad608191b191967329027d9e overnight temporary implementation scope"
+    },
+    {
+      "id": "rod_pathway_plugin_boundaries",
+      "classification": "software_fixture",
+      "choice": "Typed source/provider ABI with rejection for unbound rod/RBC/AII; arbitrary nonphysiological QA transport exercises the interface only",
+      "source": "No source-complete rod/RBC/AII mechanism selected; provider must separately supply evidence",
+      "reason": "Implement real compilation/runtime extension without inventing missing physiological equations",
+      "alternatives": [
+        "fabricate cone-derived rod defaults, rejected",
+        "delete rod-pathway targets, rejected"
+      ],
+      "impact": "Plugin boundary implemented and fixture executable; actual rod/RBC/AII physiology remains unmodeled",
+      "approval_reference": "Sentinel_0ad101dcad608191b191967329027d9e overnight temporary implementation scope"
+    }
+  ],
+  "parameter_calibration": "INCOMPLETE",
+  "empirical_validation": "NOT_RUN"
+}

@@ -1,0 +1,4225 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "regional_observations_v1",
+  "usage": "Reference-only source targets; never model parameter vectors",
+  "status": "STATIC_SOURCE_DOMAIN_AND_CANDIDATE_BINDINGS_NOT_RUN",
+  "source_materials": {
+    "Sinha2017": {
+      "doi": "10.1016/j.cell.2017.01.005",
+      "locator": "regional_retina_sources/Sinha2017.html/.txt; delegated source workspace, not attached local asset",
+      "species": "M. mulatta/nemestrina/fascicularis mixed",
+      "age_years": [
+        4,
+        21
+      ],
+      "binding_status": "local primary material pending"
+    },
+    "Saha2024": {
+      "doi": "10.1038/s41467-024-53061-3",
+      "expected_workbook_sha256": "7d063eb32145eb4954898a94e5a4f671367f30ca0379caa737d382874eef080b",
+      "locator": "retina_source_audit/Saha2024_SourceData.xlsx and Saha2024_verified_parameters.json; not locally attached",
+      "cell_identity": "no per-row general cell ID/species/exact eccentricity; no panel row pairing",
+      "excluded_unresolved_summaries": [
+        "Fig3 5000..50000 peripheral 31 values vs n23",
+        "Fig2 peripheral I0 27 values vs n30",
+        "SuppFig1 formula/count range mismatch",
+        "foveal FWHM count mismatch"
+      ]
+    },
+    "Baudin2019": {
+      "raw_data_doi": "10.5061/dryad.gv5k2j3",
+      "raw_waveform_status": "not downloaded or parsed in this project",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6344076/"
+    },
+    "Solomon2002": {
+      "doi": "10.1016/S0042-6989(02)00414-5",
+      "type": "functional MC/PC, not per-cell morphological classification",
+      "species": "M. fascicularis",
+      "frame": "in_vivo_ventral_visual_field_deg",
+      "background_td": 2000,
+      "figure_domains": "Fig1 0..10,20..30,>30 deg; Fig3 0..10 vs >35 deg",
+      "usage": "curve target provenance only; curve arrays not supplied; no td to R*/s conversion"
+    },
+    "McLaughlin2021": {
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7920536/",
+      "source_locator": "Methods Tissue preparation/Bipolar cell electrophysiology, Fig4/6",
+      "binding_status": "local original material/locator binding pending; existing local historical quotation contains correct 0.80 nS"
+    },
+    "Puthussery2014": {
+      "doi": "10.1523/JNEUROSCI.4855-13.2014",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4035522/",
+      "species": "M. mulatta/fascicularis",
+      "OFF_receptor": "predominantly KAR; HC paired control AMPA",
+      "published_waveform": "paired cone-FMB EPSC Fig3, published_figure only; raw arrays not locally available",
+      "prohibited_inferences": [
+        "plateau/peak as synaptic weight",
+        "15 s puff interval as recovery tau",
+        "unique residual kernel from puff"
+      ]
+    },
+    "Puthussery2013": {
+      "doi": "10.1523/JNEUROSCI.1249-13.2013",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3792449/",
+      "source_domain": "light-adapted 4..8 mm peripheral slice 31..33 C, DB3a/DB3b/DB4",
+      "usage": "active channel/multicompartment reference only; NOT_IMPLEMENTED; not FMB/IMB shared constants",
+      "reported_author_fits": {
+        "DB3a": {
+          "Na_Vhalf_z_mV": [
+            -39,
+            5.0
+          ],
+          "Ih_Vhalf_z_mV": [
+            -78,
+            6.3
+          ],
+          "Ih_tau_fast_slow_ms_at_minus105": [
+            42,
+            158
+          ]
+        },
+        "DB3b": {
+          "TCa_Vhalf_z_mV": [
+            -58,
+            4.2
+          ],
+          "Ih_Vhalf_z_mV": [
+            -90,
+            6.5
+          ],
+          "Ih_tau_fast_slow_ms_at_minus105": [
+            58,
+            357
+          ]
+        },
+        "DB4": {
+          "Na_Vhalf_z_mV": [
+            -39,
+            4.6
+          ],
+          "TCa_Vhalf_z_mV": [
+            -54,
+            5.5
+          ],
+          "Ih_Vhalf_z_mV": [
+            -84,
+            7.0
+          ],
+          "Ih_tau_fast_slow_ms_at_minus105": [
+            57,
+            332
+          ],
+          "resting_voltage_mean_SEM_mV": [
+            -59,
+            1.2
+          ],
+          "resting_voltage_n": 8
+        }
+      },
+      "limitations": "fixed-voltage tau pairs not full tau(V); AIS/NeuronC mechanism not added; no raw source arrays verified"
+    },
+    "Zhang2011": {
+      "doi": "10.1002/cne.22604",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3632401/",
+      "type": "H1/H2 spatial voltage response under adaptation conditions",
+      "prohibited_inference": "total lambda is sum of two sides, not one-sided decay; diameter change is not a gap-g multiplier"
+    },
+    "PackerDacey2005": {
+      "doi": "10.1167/5.11.9",
+      "canonical_url": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/10/orin-dacey-2005.pdf",
+      "source_locator": "Fig1B/p1039, Methods p1040-42",
+      "species": "M. nemestrina/fascicularis and Papio mixed; not pure macaque",
+      "background_td": 1000,
+      "observation_equation": "D_10%(x)=116.15+0.01857*x^3.8718; x mm, D um; upper fit bound 11 mm",
+      "source_lower_sampled_domain": "not resolved; no foveal extrapolation authorized",
+      "usage": "reference equation only; do not add a second surround or infer HC temporal kinetics",
+      "gap_parameter_status": "NOT_ADOPTED: source table unit/typography unresolved; no numeric resistance/g inserted"
+    },
+    "KhucTrong2008": {
+      "doi": "10.1038/nn.2199",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2575139/",
+      "scope": "M. fascicularis/nemestrina and Papio anubis; peripheral about 30 deg from dendritic field size; 32..34 C",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Latimer2019": {
+      "doi": "10.7554/eLife.47012",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6989090/",
+      "scope": "Six ON-parasol paired stimulus/current/spike files; manuscript species vs original cohort conflict unresolved per cell",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Weber2005": {
+      "doi": "10.1167/iovs.04-0834",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1351226/",
+      "scope": "Normal M. mulatta parasol pooled ON/OFF; 4..8 mm midtemporal; 36.5 C sharp electrode",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Crook2014": {
+      "doi": "10.1017/S0952523813000461",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4503220/",
+      "scope": "Near-peripheral ON/OFF parasol; M. nemestrina/fascicularis; about 36 C; clamp internal distinct from intrinsic physiology",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Cafaro2013": {
+      "doi": "10.1523/JNEUROSCI.4964-12.2013",
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3687519/",
+      "scope": "ON-midget/ON-parasol >20 deg; M. fascicularis/nemestrina/mulatta; 31..34 C",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Crook2011": {
+      "doi": "10.1523/JNEUROSCI.4385-10.2011",
+      "canonical_url": "https://www.cns.nyu.edu/~tony/vns/readings/crook-etal-2011.pdf",
+      "scope": "ON/OFF midget primary recording sites 2..4 mm; morphology at 1.2 mm does not extend full current-recording domain",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Crook2009": {
+      "doi": "10.1523/JNEUROSCI.1218-09.2009",
+      "canonical_url": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/10/CROOK-ET-AL.-2009.pdf",
+      "scope": "Small-bistratified central <20 deg/<4 mm; mixed macaque; 35..36 C",
+      "binding_status": "delegated primary-source reading; local original material not attached",
+      "delegated_workspace": "/workspace/shared/inner_retina_sources/",
+      "runtime_parameter_binding": null
+    },
+    "Wu2023": {
+      "scope": "named ON-starburst multicompartment source candidate only; cannot identify generic modeled AC",
+      "binding_status": "delegated candidate; full identity/conditions not locally bound",
+      "runtime_parameter_binding": null
+    },
+    "Percival2022": {
+      "scope": "AII puff total conductance 4.4 nS and +0.9 mV are whole-cell response observations; not single RBC-AII synapse conductance",
+      "binding_status": "delegated candidate; full identity/conditions not locally bound",
+      "runtime_parameter_binding": null
+    }
+  },
+  "records": [
+    {
+      "record_id": "Sinha2017:1",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "Gaussian noise; complete RGC-specific stimulus metadata pending",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.spikes",
+      "metric": "spike_STA_time_to_peak",
+      "value": 67,
+      "uncertainty": 6,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:2",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "central",
+        "bounds": {
+          "lower": 2,
+          "upper": 4,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "Gaussian noise; complete RGC-specific stimulus metadata pending",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.spikes",
+      "metric": "spike_STA_time_to_peak",
+      "value": 53,
+      "uncertainty": 6,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:3",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "Gaussian noise; complete RGC-specific stimulus metadata pending",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.spikes",
+      "metric": "spike_STA_time_to_peak",
+      "value": 37,
+      "uncertainty": 4,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:4",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "Gaussian noise; composite light-to-RGC excitation",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.excitatory_current",
+      "metric": "excitation_linear_filter_time_to_peak",
+      "value": 53,
+      "uncertainty": 6,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig6B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:5",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "central",
+        "bounds": {
+          "lower": 2,
+          "upper": 4,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "Gaussian noise; composite light-to-RGC excitation",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.excitatory_current",
+      "metric": "excitation_linear_filter_time_to_peak",
+      "value": 48,
+      "uncertainty": 4,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig6B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:6",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "Gaussian noise; composite light-to-RGC excitation",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.excitatory_current",
+      "metric": "excitation_linear_filter_time_to_peak",
+      "value": 38,
+      "uncertainty": 6,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig6B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:7",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "100% contrast step; holding/reversal, baseline and integration-window metadata pending",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.inhibitory_excitatory_charge",
+      "metric": "charge_IE_ratio",
+      "value": 0.06,
+      "uncertainty": 0.05,
+      "statistic": "mean_SD",
+      "unit": "dimensionless",
+      "n": null,
+      "locator": "Fig2C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:8",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "central",
+        "bounds": {
+          "lower": 2,
+          "upper": 4,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "100% contrast step; holding/reversal, baseline and integration-window metadata pending",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.inhibitory_excitatory_charge",
+      "metric": "charge_IE_ratio",
+      "value": 0.33,
+      "uncertainty": 0.14,
+      "statistic": "mean_SD",
+      "unit": "dimensionless",
+      "n": null,
+      "locator": "Fig2C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:9",
+      "source_id": "Sinha2017",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "stimulus": "100% contrast step; holding/reversal, baseline and integration-window metadata pending",
+        "temperature_C": [
+          31,
+          34
+        ]
+      },
+      "output_port": "RGC.inhibitory_excitatory_charge",
+      "metric": "charge_IE_ratio",
+      "value": 1.18,
+      "uncertainty": 0.35,
+      "statistic": "mean_SD",
+      "unit": "dimensionless",
+      "n": null,
+      "locator": "Fig2C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:10",
+      "source_id": "Sinha2017",
+      "target_type": "M_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "noise_voltage_filter_time_to_peak",
+      "value": 58.37,
+      "uncertainty": 9,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:11",
+      "source_id": "Sinha2017",
+      "target_type": "M_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "noise_voltage_filter_time_to_peak",
+      "value": 31.45,
+      "uncertainty": 2,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:12",
+      "source_id": "Sinha2017",
+      "target_type": "L_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "noise_voltage_filter_time_to_peak",
+      "value": 59.3,
+      "uncertainty": 4,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:13",
+      "source_id": "Sinha2017",
+      "target_type": "L_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "noise_voltage_filter_time_to_peak",
+      "value": 33.2,
+      "uncertainty": 3,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7B",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:14",
+      "source_id": "Sinha2017",
+      "target_type": "M_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "10 ms 300% contrast flash",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 60.68,
+      "uncertainty": 7,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:15",
+      "source_id": "Sinha2017",
+      "target_type": "M_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "10 ms 300% contrast flash",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 31.85,
+      "uncertainty": 2,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:16",
+      "source_id": "Sinha2017",
+      "target_type": "L_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "10 ms 300% contrast flash",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 59.44,
+      "uncertainty": 6,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:17",
+      "source_id": "Sinha2017",
+      "target_type": "L_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "10 ms 300% contrast flash",
+        "clamp_mode": "current_clamp"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 32.8,
+      "uncertainty": 1,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7C",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:18",
+      "source_id": "Sinha2017",
+      "target_type": "M_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "voltage_clamp"
+      },
+      "output_port": "cone.photocurrent",
+      "metric": "noise_current_filter_time_to_peak",
+      "value": 51.03,
+      "uncertainty": 3,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:19",
+      "source_id": "Sinha2017",
+      "target_type": "M_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "voltage_clamp"
+      },
+      "output_port": "cone.photocurrent",
+      "metric": "noise_current_filter_time_to_peak",
+      "value": 23.9,
+      "uncertainty": 2,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:20",
+      "source_id": "Sinha2017",
+      "target_type": "L_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "voltage_clamp"
+      },
+      "output_port": "cone.photocurrent",
+      "metric": "noise_current_filter_time_to_peak",
+      "value": 45.76,
+      "uncertainty": 6,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:21",
+      "source_id": "Sinha2017",
+      "target_type": "L_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 4000,
+        "temperature_C": [
+          31,
+          34
+        ],
+        "stimulus_diameter_um": 500,
+        "stimulus": "50% Gaussian noise 0..60 Hz",
+        "clamp_mode": "voltage_clamp"
+      },
+      "output_port": "cone.photocurrent",
+      "metric": "noise_current_filter_time_to_peak",
+      "value": 23.95,
+      "uncertainty": 3,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig7D",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:22",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 100,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 66.475,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 C4:C46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:23",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 100,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 52.408,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 L4:L46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:24",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 500,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 67.724,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 D4:D46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:25",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 500,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 46.421,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 M4:M46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:26",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 1000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 64.956,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 E4:E46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:27",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 1000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 45.02,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 N4:N46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:28",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 2000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 62.042,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 F4:F46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:29",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 2000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 42.532,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 O4:O46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:30",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 5000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 55.162,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 G4:G46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:31",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 5000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 38.89,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 P4:P46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:32",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 10000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 55.204,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 H4:H46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:33",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 10000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 36.193,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 Q4:Q46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:34",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 50000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 48.789,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 I4:I46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:35",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 50000,
+        "stimulus": "10 ms flash; exact contrast retained in verified source JSON",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 31.761,
+      "uncertainty": null,
+      "statistic": "source_cell_recomputed_mean",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig1C; XLSX Fig 1 R4:R46",
+      "representation": "recomputed_individual_source_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:36",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_step_Rstar_per_cone_s": [
+          1000,
+          10000
+        ],
+        "direction": "on",
+        "stimulus": "gain adaptation to light background step"
+      },
+      "output_port": "cone.gain_adaptation",
+      "metric": "adaptation_tau_on",
+      "value": 65.522,
+      "uncertainty": 5.424,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 6,
+      "locator": "XLSX Fig 3!B4:B9",
+      "representation": "summary_of_individual_author_single_exponential_fits",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "published_fit",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:37",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_step_Rstar_per_cone_s": [
+          1000,
+          10000
+        ],
+        "direction": "on",
+        "stimulus": "gain adaptation to light background step"
+      },
+      "output_port": "cone.gain_adaptation",
+      "metric": "adaptation_tau_on",
+      "value": 32.673,
+      "uncertainty": 1.806,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 15,
+      "locator": "XLSX Fig 3!C4:C18",
+      "representation": "summary_of_individual_author_single_exponential_fits",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "published_fit",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:38",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_step_Rstar_per_cone_s": [
+          1000,
+          10000
+        ],
+        "direction": "off",
+        "stimulus": "gain adaptation to light background step"
+      },
+      "output_port": "cone.gain_adaptation",
+      "metric": "adaptation_tau_off",
+      "value": 206.122,
+      "uncertainty": 21.61,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 6,
+      "locator": "XLSX Fig 3!I4:I9",
+      "representation": "summary_of_individual_author_single_exponential_fits",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "published_fit",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Saha2024:39",
+      "source_id": "Saha2024",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 6,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_inner_segment_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_step_Rstar_per_cone_s": [
+          1000,
+          10000
+        ],
+        "direction": "off",
+        "stimulus": "gain adaptation to light background step"
+      },
+      "output_port": "cone.gain_adaptation",
+      "metric": "adaptation_tau_off",
+      "value": 167.867,
+      "uncertainty": 7.906,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 15,
+      "locator": "XLSX Fig 3!J4:J18",
+      "representation": "summary_of_individual_author_single_exponential_fits",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "published_fit",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Baudin2019:40",
+      "source_id": "Baudin2019",
+      "target_type": "S_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 5000,
+        "stimulus": "voltage flash; complete flash condition pending",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 63.5,
+      "uncertainty": 1.8,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 29,
+      "locator": "Fig2E-H; Dryad DOI10.5061/dryad.gv5k2j3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Baudin2019:41",
+      "source_id": "Baudin2019",
+      "target_type": "S_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 5,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 5000,
+        "stimulus": "voltage flash; complete flash condition pending",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 45.3,
+      "uncertainty": 0.9,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 36,
+      "locator": "Fig2E-H; Dryad DOI10.5061/dryad.gv5k2j3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Baudin2019:42",
+      "source_id": "Baudin2019",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 5000,
+        "stimulus": "voltage flash; complete flash condition pending",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 56.1,
+      "uncertainty": 1.1,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig2E-H; Dryad DOI10.5061/dryad.gv5k2j3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Baudin2019:43",
+      "source_id": "Baudin2019",
+      "target_type": "S_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 50000,
+        "stimulus": "voltage flash; complete flash condition pending",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 59.1,
+      "uncertainty": 2.1,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 21,
+      "locator": "Fig2E-H; Dryad DOI10.5061/dryad.gv5k2j3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Baudin2019:44",
+      "source_id": "Baudin2019",
+      "target_type": "S_cone",
+      "region": {
+        "source_label": "peripheral",
+        "bounds": {
+          "lower": 5,
+          "lower_inclusive": false,
+          "upper": null
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 50000,
+        "stimulus": "voltage flash; complete flash condition pending",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 44.5,
+      "uncertainty": 0.9,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 28,
+      "locator": "Fig2E-H; Dryad DOI10.5061/dryad.gv5k2j3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Baudin2019:45",
+      "source_id": "Baudin2019",
+      "target_type": "LM_cone",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 0.5,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "cone_recording_site",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "background_Rstar_per_cone_s": 50000,
+        "stimulus": "voltage flash; complete flash condition pending",
+        "temperature_C": "approximately32"
+      },
+      "output_port": "cone.IS_voltage",
+      "metric": "flash_voltage_time_to_peak",
+      "value": 53.6,
+      "uncertainty": 1.3,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": null,
+      "locator": "Fig2E-H; Dryad DOI10.5061/dryad.gv5k2j3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:46",
+      "source_id": "Sinha2017",
+      "target_type": "pooled_wide_field_RGC",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "stimulus": "source Fig3 wide-field assay; complete conditions pending"
+      },
+      "output_port": "RGC.inhibitory_excitatory_charge",
+      "metric": "charge_IE_ratio",
+      "value": 1.0,
+      "uncertainty": 0.3,
+      "statistic": "reported_mean_error; verify error convention",
+      "unit": "dimensionless",
+      "n": null,
+      "locator": "Fig3",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Sinha2017:47",
+      "source_id": "Sinha2017",
+      "target_type": "foveal_parasol_RGC",
+      "region": {
+        "source_label": "foveal",
+        "bounds": {
+          "lower": 0,
+          "upper": 1
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "assay": "GABAA/PSD95 immunolabel volume"
+      },
+      "output_port": "anatomy.receptor_marker_volume",
+      "metric": "marker_volume_ratio",
+      "value": 1.22,
+      "uncertainty": 0.25,
+      "statistic": "reported_mean_error; verify error convention",
+      "unit": "dimensionless",
+      "n": null,
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated source quotation; original panel/conditions retained; no generative parameter inference",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:48",
+      "source_id": "McLaughlin2021",
+      "target_type": "FMB",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "event_peak_conductance",
+      "value": 0.97,
+      "unit": "nS",
+      "uncertainty": null,
+      "n": 20,
+      "statistic": "reported_mean",
+      "locator": "Fig4/results",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:49",
+      "source_id": "McLaughlin2021",
+      "target_type": "FMB",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000
+      },
+      "output_port": "BC.sIPSC_reversal_potential",
+      "metric": "event_reversal",
+      "value": -76,
+      "unit": "mV",
+      "uncertainty": null,
+      "n": 20,
+      "statistic": "reported_summary",
+      "locator": "Fig4/results",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:50",
+      "source_id": "McLaughlin2021",
+      "target_type": "FMB",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000,
+        "holding": "range across test voltages; per-voltage pairing pending"
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "10_90_rise_time",
+      "value": [
+        123,
+        245
+      ],
+      "unit": "us",
+      "uncertainty": null,
+      "n": 20,
+      "statistic": "range_not_double_exponential_tau_rise",
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:51",
+      "source_id": "McLaughlin2021",
+      "target_type": "FMB",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000,
+        "holding_mV": -100
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "event_decay_tau",
+      "value": 2.1,
+      "unit": "ms",
+      "uncertainty": 0.2,
+      "n": 20,
+      "statistic": "mean_SEM",
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:52",
+      "source_id": "McLaughlin2021",
+      "target_type": "FMB",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000,
+        "holding_mV": 0
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "event_decay_tau",
+      "value": 4.0,
+      "unit": "ms",
+      "uncertainty": 0.2,
+      "n": 20,
+      "statistic": "mean_SEM",
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:53",
+      "source_id": "McLaughlin2021",
+      "target_type": "DB1",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "event_peak_conductance",
+      "value": 0.8,
+      "unit": "nS",
+      "uncertainty": null,
+      "n": 7,
+      "statistic": "reported_mean",
+      "locator": "Fig4/results",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:54",
+      "source_id": "McLaughlin2021",
+      "target_type": "DB1",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000
+      },
+      "output_port": "BC.sIPSC_reversal_potential",
+      "metric": "event_reversal",
+      "value": -73,
+      "unit": "mV",
+      "uncertainty": null,
+      "n": 7,
+      "statistic": "reported_summary",
+      "locator": "Fig4/results",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:55",
+      "source_id": "McLaughlin2021",
+      "target_type": "DB1",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000,
+        "holding": "range across test voltages; per-voltage pairing pending"
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "10_90_rise_time",
+      "value": [
+        206,
+        278
+      ],
+      "unit": "us",
+      "uncertainty": null,
+      "n": 7,
+      "statistic": "range_not_double_exponential_tau_rise",
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:56",
+      "source_id": "McLaughlin2021",
+      "target_type": "DB1",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000,
+        "holding_mV": -100
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "event_decay_tau",
+      "value": 2.7,
+      "unit": "ms",
+      "uncertainty": 0.2,
+      "n": 7,
+      "statistic": "mean_SEM",
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "McLaughlin2021:57",
+      "source_id": "McLaughlin2021",
+      "target_type": "DB1",
+      "region": {
+        "source_label": "nasal_superior_inferior_peripheral",
+        "bounds": {
+          "lower": 8,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "adult M. mulatta",
+        "illumination": "low photopic slice",
+        "slice_thickness_um": 300,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "liquid_junction_correction_mV": -10,
+        "filter_Hz": 2000,
+        "sample_Hz": 10000,
+        "holding_mV": 0
+      },
+      "output_port": "BC.sIPSC_conductance",
+      "metric": "event_decay_tau",
+      "value": 5.3,
+      "unit": "ms",
+      "uncertainty": 0.3,
+      "n": 7,
+      "statistic": "mean_SEM",
+      "locator": "Fig4",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Puthussery2014:58",
+      "source_id": "Puthussery2014",
+      "target_type": "FMB",
+      "region": {
+        "source_label": "peripheral_slice",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "holding_mV": -70,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "illumination": "light adapted",
+        "stimulus": "0.5 mM glutamate dendritic puff 0.5 s"
+      },
+      "output_port": "BC.dendritic_receptor_current",
+      "metric": "plateau_peak_ratio",
+      "value": 0.64,
+      "unit": "dimensionless",
+      "uncertainty": 0.15,
+      "n": 11,
+      "statistic": "mean_SD",
+      "locator": "Fig1A",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Puthussery2014:59",
+      "source_id": "Puthussery2014",
+      "target_type": "DB1",
+      "region": {
+        "source_label": "peripheral_slice",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "holding_mV": -70,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "illumination": "light adapted",
+        "stimulus": "0.5 mM glutamate dendritic puff 0.5 s"
+      },
+      "output_port": "BC.dendritic_receptor_current",
+      "metric": "plateau_peak_ratio",
+      "value": 0.95,
+      "unit": "dimensionless",
+      "uncertainty": 0.07,
+      "n": 5,
+      "statistic": "mean_SD",
+      "locator": "Fig1A",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Puthussery2014:60",
+      "source_id": "Puthussery2014",
+      "target_type": "DB3a",
+      "region": {
+        "source_label": "peripheral_slice",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "holding_mV": -70,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "illumination": "light adapted",
+        "stimulus": "0.5 mM glutamate dendritic puff 0.5 s"
+      },
+      "output_port": "BC.dendritic_receptor_current",
+      "metric": "plateau_peak_ratio",
+      "value": 0.79,
+      "unit": "dimensionless",
+      "uncertainty": 0.17,
+      "n": 2,
+      "statistic": "mean_SD",
+      "locator": "Fig1A",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Puthussery2014:61",
+      "source_id": "Puthussery2014",
+      "target_type": "DB2",
+      "region": {
+        "source_label": "peripheral_slice",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "holding_mV": -70,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "illumination": "light adapted",
+        "stimulus": "0.5 mM glutamate dendritic puff 0.5 s"
+      },
+      "output_port": "BC.dendritic_receptor_current",
+      "metric": "plateau_peak_ratio",
+      "value": 0.22,
+      "unit": "dimensionless",
+      "uncertainty": 0.03,
+      "n": 6,
+      "statistic": "mean_SD",
+      "locator": "Fig1A",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Puthussery2014:62",
+      "source_id": "Puthussery2014",
+      "target_type": "DB3b",
+      "region": {
+        "source_label": "peripheral_slice",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "BC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "holding_mV": -70,
+        "temperature_C": [
+          31,
+          33
+        ],
+        "illumination": "light adapted",
+        "stimulus": "0.5 mM glutamate dendritic puff 0.5 s"
+      },
+      "output_port": "BC.dendritic_receptor_current",
+      "metric": "plateau_peak_ratio",
+      "value": 0.36,
+      "unit": "dimensionless",
+      "uncertainty": 0.17,
+      "n": 7,
+      "statistic": "mean_SD",
+      "locator": "Fig1A",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Zhang2011:63",
+      "source_id": "Zhang2011",
+      "target_type": "H1",
+      "region": {
+        "source_label": "mixed_3_10mm",
+        "bounds": {
+          "lower": 3,
+          "upper": 10,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "HC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "M. mulatta",
+        "temperature_C": 34,
+        "adaptation": "dark adapted",
+        "stimulus_nm": 500,
+        "stripe_width_um": 50,
+        "stripe_step_um": 120
+      },
+      "output_port": "HC.voltage_spatial_profile",
+      "metric": "RF_diameter_at_10_percent_peak",
+      "value": 2124,
+      "unit": "um",
+      "uncertainty": 305,
+      "n": 27,
+      "statistic": "mean_SD",
+      "locator": "Fig1-5",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Zhang2011:64",
+      "source_id": "Zhang2011",
+      "target_type": "H1",
+      "region": {
+        "source_label": "mixed_3_10mm",
+        "bounds": {
+          "lower": 3,
+          "upper": 10,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "HC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "M. mulatta",
+        "temperature_C": 34,
+        "adaptation": "dark adapted",
+        "stimulus_nm": 500,
+        "stripe_width_um": 50,
+        "stripe_step_um": 120
+      },
+      "output_port": "HC.voltage_spatial_profile",
+      "metric": "two_sided_total_space_constant",
+      "value": 1158,
+      "unit": "um",
+      "uncertainty": 137,
+      "n": 27,
+      "statistic": "mean_SD",
+      "locator": "Fig1-5",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Zhang2011:65",
+      "source_id": "Zhang2011",
+      "target_type": "H2",
+      "region": {
+        "source_label": "mixed_3_10mm",
+        "bounds": {
+          "lower": 3,
+          "upper": 10,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "HC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "M. mulatta",
+        "temperature_C": 34,
+        "adaptation": "dark adapted",
+        "stimulus_nm": 500,
+        "stripe_width_um": 50,
+        "stripe_step_um": 120
+      },
+      "output_port": "HC.voltage_spatial_profile",
+      "metric": "RF_diameter_at_10_percent_peak",
+      "value": 821,
+      "unit": "um",
+      "uncertainty": 57,
+      "n": 3,
+      "statistic": "mean_SD",
+      "locator": "Fig1-5",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Zhang2011:66",
+      "source_id": "Zhang2011",
+      "target_type": "H2",
+      "region": {
+        "source_label": "mixed_3_10mm",
+        "bounds": {
+          "lower": 3,
+          "upper": 10,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "HC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "M. mulatta",
+        "temperature_C": 34,
+        "adaptation": "dark adapted",
+        "stimulus_nm": 500,
+        "stripe_width_um": 50,
+        "stripe_step_um": 120
+      },
+      "output_port": "HC.voltage_spatial_profile",
+      "metric": "two_sided_total_space_constant",
+      "value": 427,
+      "unit": "um",
+      "uncertainty": 35,
+      "n": 3,
+      "statistic": "mean_SD",
+      "locator": "Fig1-5",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Zhang2011:67",
+      "source_id": "Zhang2011",
+      "target_type": "H1",
+      "region": {
+        "source_label": "mixed_3_10mm",
+        "bounds": {
+          "lower": 3,
+          "upper": 10,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "HC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "M. mulatta",
+        "temperature_C": 34,
+        "adaptation": "500 nm background >=5 min",
+        "stimulus_nm": 500,
+        "stripe_width_um": 50,
+        "stripe_step_um": 120,
+        "background_photons_per_um2_s": 563
+      },
+      "output_port": "HC.voltage_spatial_profile",
+      "metric": "light_dark_RF_diameter_fraction",
+      "value": 0.55,
+      "unit": "dimensionless",
+      "uncertainty": 0.06,
+      "n": 3,
+      "statistic": "mean_SD",
+      "locator": "Fig1-5",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Zhang2011:68",
+      "source_id": "Zhang2011",
+      "target_type": "H1",
+      "region": {
+        "source_label": "mixed_3_10mm",
+        "bounds": {
+          "lower": 3,
+          "upper": 10,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "HC_recording_site_anatomical_retina",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "species": "M. mulatta",
+        "temperature_C": 34,
+        "adaptation": "500 nm background >=5 min",
+        "stimulus_nm": 500,
+        "stripe_width_um": 50,
+        "stripe_step_um": 120,
+        "background_photons_per_um2_s": 563
+      },
+      "output_port": "HC.voltage_spatial_profile",
+      "metric": "two_sided_total_space_constant",
+      "value": 622,
+      "unit": "um",
+      "uncertainty": null,
+      "n": null,
+      "statistic": "reported_mean",
+      "locator": "Fig1-5",
+      "representation": "reported_summary",
+      "derivation": "Delegated original-source transcript; no parameter inference or waveform fitting",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "KhucTrong2008:effective_RC_time:ON_parasol_RGC:69",
+      "source_id": "KhucTrong2008",
+      "target_type": "ON_parasol_RGC",
+      "region": {
+        "source_label": "about 30 deg; dendritic-field estimate, not exact per-cell recording domain",
+        "bounds": {
+          "lower": null,
+          "upper": null,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "dendritic_field_estimated_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          32,
+          34
+        ],
+        "background_Rstar_per_M_cone_s": 4000,
+        "stimulus": "513 nm LED; 630 um spot; Gaussian noise 50% SD/mean, 0..60 Hz",
+        "internal": "K-aspartate for voltage; Cs/TEA/QX-314 for current"
+      },
+      "output_port": "RGC.current_to_voltage",
+      "metric": "effective_RC_time",
+      "value": 2,
+      "uncertainty": null,
+      "statistic": "approximately_reported",
+      "unit": "ms",
+      "n": null,
+      "locator": "Methods: model and small current steps",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "recording_domain_status": "approximate location; no exact applicability bound supplied"
+    },
+    {
+      "record_id": "KhucTrong2008:K_internal_input_resistance_range:ON_parasol_RGC:70",
+      "source_id": "KhucTrong2008",
+      "target_type": "ON_parasol_RGC",
+      "region": {
+        "source_label": "about 30 deg; dendritic-field estimate, not exact per-cell recording domain",
+        "bounds": {
+          "lower": null,
+          "upper": null,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "dendritic_field_estimated_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          32,
+          34
+        ],
+        "background_Rstar_per_M_cone_s": 4000,
+        "stimulus": "513 nm LED; 630 um spot; Gaussian noise 50% SD/mean, 0..60 Hz",
+        "internal": "K-aspartate for voltage; Cs/TEA/QX-314 for current"
+      },
+      "output_port": "RGC.input_resistance",
+      "metric": "K_internal_input_resistance_range",
+      "value": [
+        30,
+        50
+      ],
+      "uncertainty": null,
+      "statistic": "reported_range",
+      "unit": "MOhm",
+      "n": null,
+      "locator": "Methods: recordings",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "recording_domain_status": "approximate location; not pure leak"
+    },
+    {
+      "record_id": "KhucTrong2008:effective_pair_coupling_resistance:ON_parasol_RGC:71",
+      "source_id": "KhucTrong2008",
+      "target_type": "ON_parasol_RGC",
+      "region": {
+        "source_label": "about 30 deg; dendritic-field estimate, not exact per-cell recording domain",
+        "bounds": {
+          "lower": null,
+          "upper": null,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "dendritic_field_estimated_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          32,
+          34
+        ],
+        "background_Rstar_per_M_cone_s": 4000,
+        "stimulus": "513 nm LED; 630 um spot; Gaussian noise 50% SD/mean, 0..60 Hz",
+        "internal": "K-aspartate for voltage; Cs/TEA/QX-314 for current"
+      },
+      "output_port": "RGC.coupling",
+      "metric": "effective_pair_coupling_resistance",
+      "value": 880,
+      "uncertainty": 80,
+      "statistic": "mean_uncertainty_type_pending",
+      "unit": "MOhm",
+      "n": null,
+      "locator": "paired-cell recording/model",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "recording_domain_status": "possible AC intermediary; not direct RGC-RGC synapse"
+    },
+    {
+      "record_id": "Weber2005:resting_voltage:pooled_parasol_RGC:72",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "resting measurement; not EL"
+      },
+      "output_port": "RGC.voltage",
+      "metric": "resting_voltage",
+      "value": -53.03,
+      "uncertainty": 0.68,
+      "statistic": "mean_SE",
+      "unit": "mV",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Weber2005:whole_cell_input_resistance:pooled_parasol_RGC:73",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "0..-1 nA, .1 nA steps, 250 ms"
+      },
+      "output_port": "RGC.current_to_voltage",
+      "metric": "whole_cell_input_resistance",
+      "value": 21.73,
+      "uncertainty": 1.49,
+      "statistic": "mean_SE",
+      "unit": "MOhm",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Weber2005:membrane_decay_time:pooled_parasol_RGC:74",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "-1 nA, .5 ms; voltage decay single exponential"
+      },
+      "output_port": "RGC.current_to_voltage",
+      "metric": "membrane_decay_time",
+      "value": 2.69,
+      "uncertainty": 0.14,
+      "statistic": "mean_SE",
+      "unit": "ms",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Weber2005:rheobase_current:pooled_parasol_RGC:75",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "0..+1 nA, .1 nA steps, 250 ms; not voltage threshold"
+      },
+      "output_port": "RGC.injected_current_spikes",
+      "metric": "rheobase_current",
+      "value": 0.31,
+      "uncertainty": 0.04,
+      "statistic": "mean_SE",
+      "unit": "nA",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Weber2005:spike_amplitude:pooled_parasol_RGC:76",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "sharp electrode AP; current spike backend has no AP waveform"
+      },
+      "output_port": "RGC.voltage_spike_waveform",
+      "metric": "spike_amplitude",
+      "value": 45.2,
+      "uncertainty": 1.15,
+      "statistic": "mean_SE",
+      "unit": "mV",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Weber2005:spike_half_height_width:pooled_parasol_RGC:77",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "not absolute refractory"
+      },
+      "output_port": "RGC.voltage_spike_waveform",
+      "metric": "spike_half_height_width",
+      "value": 0.43,
+      "uncertainty": 0.02,
+      "statistic": "mean_SE",
+      "unit": "ms",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Weber2005:maximum_recorded_rate:pooled_parasol_RGC:78",
+      "source_id": "Weber2005",
+      "target_type": "pooled_parasol_RGC",
+      "region": {
+        "source_label": "midtemporal healthy recording sites",
+        "bounds": {
+          "lower": 4,
+          "upper": 8,
+          "lower_inclusive": true,
+          "upper_inclusive": true
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "RGC_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "superior/inferior_midtemporal",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": 36.5,
+        "species": "M. mulatta",
+        "age_years": [
+          9,
+          16
+        ],
+        "preparation": "isolated eyecup; sharp 1 M potassium acetate electrode",
+        "health": "Normal only; no glaucoma transfer",
+        "background": "source protocol not converted to current declared light context",
+        "protocol": "limited by injection protocol and cell inclusion; not physiological cap"
+      },
+      "output_port": "RGC.spikes",
+      "metric": "maximum_recorded_rate",
+      "value": 108.1,
+      "uncertainty": 8.21,
+      "statistic": "mean_SE",
+      "unit": "Hz",
+      "n": 61,
+      "locator": "Table3 Normal",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN"
+    },
+    {
+      "record_id": "Cafaro2013:gE_gI_cross_correlation_peak_lag:ON_midget_RGC:79",
+      "source_id": "Cafaro2013",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "peripheral recordings",
+        "bounds": {
+          "lower": 20,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "source_recording_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          31,
+          34
+        ],
+        "background_Rstar_per_s": {
+          "S_cone": 8000,
+          "M_cone": 5000,
+          "L_cone": 2500,
+          "rod": 20000
+        },
+        "stimulus": "560 um masked field; source stimulus retained",
+        "conductance_conversion": "voltage clamp +/-62 mV driving force",
+        "dynamic_clamp_reversals_mV": {
+          "E_e": 0,
+          "E_i": -90
+        },
+        "dynamic_clamp_amplitude": "joint scaling and <200 pA DC permitted; not raw absolute synaptic gain"
+      },
+      "output_port": "RGC.excitatory_inhibitory_conductance",
+      "metric": "gE_gI_cross_correlation_peak_lag",
+      "value": -8,
+      "uncertainty": 3,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 9,
+      "locator": "Fig3 full-field",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "sign_convention": "reported correlation convention; E leads I for midget; not AC intrinsic tau/delay",
+      "identified_AC_subtype": null
+    },
+    {
+      "record_id": "Cafaro2013:gE_gI_cross_correlation_negative_peak_lag:ON_parasol_RGC:80",
+      "source_id": "Cafaro2013",
+      "target_type": "ON_parasol_RGC",
+      "region": {
+        "source_label": "peripheral recordings",
+        "bounds": {
+          "lower": 20,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "source_recording_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          31,
+          34
+        ],
+        "background_Rstar_per_s": {
+          "S_cone": 8000,
+          "M_cone": 5000,
+          "L_cone": 2500,
+          "rod": 20000
+        },
+        "stimulus": "560 um masked field; source stimulus retained",
+        "conductance_conversion": "voltage clamp +/-62 mV driving force",
+        "dynamic_clamp_reversals_mV": {
+          "E_e": 0,
+          "E_i": -90
+        },
+        "dynamic_clamp_amplitude": "joint scaling and <200 pA DC permitted; not raw absolute synaptic gain"
+      },
+      "output_port": "RGC.excitatory_inhibitory_conductance",
+      "metric": "gE_gI_cross_correlation_negative_peak_lag",
+      "value": -0.1,
+      "uncertainty": 0.1,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 12,
+      "locator": "Fig3 full-field",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "sign_convention": "reported correlation convention; E leads I for midget; not AC intrinsic tau/delay",
+      "identified_AC_subtype": null
+    },
+    {
+      "record_id": "Cafaro2013:spike_triggered_conductance_relative_lag:ON_midget_RGC:81",
+      "source_id": "Cafaro2013",
+      "target_type": "ON_midget_RGC",
+      "region": {
+        "source_label": "peripheral recordings",
+        "bounds": {
+          "lower": 20,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "source_recording_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          31,
+          34
+        ],
+        "background_Rstar_per_s": {
+          "S_cone": 8000,
+          "M_cone": 5000,
+          "L_cone": 2500,
+          "rod": 20000
+        },
+        "stimulus": "560 um masked field; source stimulus retained",
+        "conductance_conversion": "voltage clamp +/-62 mV driving force",
+        "dynamic_clamp_reversals_mV": {
+          "E_e": 0,
+          "E_i": -90
+        },
+        "dynamic_clamp_amplitude": "joint scaling and <200 pA DC permitted; not raw absolute synaptic gain"
+      },
+      "output_port": "RGC.excitatory_inhibitory_conductance",
+      "metric": "spike_triggered_conductance_relative_lag",
+      "value": -7,
+      "uncertainty": 4,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 9,
+      "locator": "spike-triggered conductance analysis",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "sign_convention": "reported correlation convention; E leads I for midget; not AC intrinsic tau/delay",
+      "identified_AC_subtype": null
+    },
+    {
+      "record_id": "Cafaro2013:spike_triggered_conductance_relative_lag:ON_parasol_RGC:82",
+      "source_id": "Cafaro2013",
+      "target_type": "ON_parasol_RGC",
+      "region": {
+        "source_label": "peripheral recordings",
+        "bounds": {
+          "lower": 20,
+          "upper": null,
+          "lower_inclusive": false,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "source_recording_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          31,
+          34
+        ],
+        "background_Rstar_per_s": {
+          "S_cone": 8000,
+          "M_cone": 5000,
+          "L_cone": 2500,
+          "rod": 20000
+        },
+        "stimulus": "560 um masked field; source stimulus retained",
+        "conductance_conversion": "voltage clamp +/-62 mV driving force",
+        "dynamic_clamp_reversals_mV": {
+          "E_e": 0,
+          "E_i": -90
+        },
+        "dynamic_clamp_amplitude": "joint scaling and <200 pA DC permitted; not raw absolute synaptic gain"
+      },
+      "output_port": "RGC.excitatory_inhibitory_conductance",
+      "metric": "spike_triggered_conductance_relative_lag",
+      "value": 0.5,
+      "uncertainty": 1,
+      "statistic": "mean_SEM",
+      "unit": "ms",
+      "n": 9,
+      "locator": "spike-triggered conductance analysis",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "sign_convention": "reported correlation convention; E leads I for midget; not AC intrinsic tau/delay",
+      "identified_AC_subtype": null
+    },
+    {
+      "record_id": "Crook2009:phase_frequency_latency:small_bistratified_RGC:83",
+      "source_id": "Crook2009",
+      "target_type": "small_bistratified_RGC",
+      "region": {
+        "source_label": "central small-bistratified sample",
+        "bounds": {
+          "lower": 0,
+          "upper": 4,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "source_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          35,
+          36
+        ],
+        "stimulus": "Fig5C 2 mm spot, 48% contrast; phase-frequency latency from fitted linear phase segment",
+        "preparation": "RPE/choroid attached",
+        "light_condition": "source photopic; >=10000 Rstar/cone/s is author working condition for excluding rod contribution; not converted to td",
+        "component": "S"
+      },
+      "output_port": "RGC.spikes",
+      "metric": "phase_frequency_latency",
+      "value": 40,
+      "uncertainty": 3,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": 20,
+      "locator": "Fig5D",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "interpretation": "light-to-RGC output component; not cone/BC residual/spike-generator tau"
+    },
+    {
+      "record_id": "Crook2009:phase_frequency_latency:small_bistratified_RGC:84",
+      "source_id": "Crook2009",
+      "target_type": "small_bistratified_RGC",
+      "region": {
+        "source_label": "central small-bistratified sample",
+        "bounds": {
+          "lower": 0,
+          "upper": 4,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "source_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          35,
+          36
+        ],
+        "stimulus": "Fig5C 2 mm spot, 48% contrast; phase-frequency latency from fitted linear phase segment",
+        "preparation": "RPE/choroid attached",
+        "light_condition": "source photopic; >=10000 Rstar/cone/s is author working condition for excluding rod contribution; not converted to td",
+        "component": "LM"
+      },
+      "output_port": "RGC.spikes",
+      "metric": "phase_frequency_latency",
+      "value": 46,
+      "uncertainty": 3,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": 20,
+      "locator": "Fig5D",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "interpretation": "light-to-RGC output component; not cone/BC residual/spike-generator tau"
+    },
+    {
+      "record_id": "Crook2009:rod_input_phase_latency:small_bistratified_RGC:85",
+      "source_id": "Crook2009",
+      "target_type": "small_bistratified_RGC",
+      "region": {
+        "source_label": "central small-bistratified sample",
+        "bounds": {
+          "lower": 0,
+          "upper": 4,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "mm",
+        "origin": "foveal_pit",
+        "frame": "source_recording_site_retinal_distance_from_foveal_pit",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "condition": {
+        "temperature_C": [
+          35,
+          36
+        ],
+        "light_condition": "rod-permitting low light; not the photopic S/LM condition"
+      },
+      "output_port": "RGC.spikes",
+      "metric": "rod_input_phase_latency",
+      "value": 177,
+      "uncertainty": 36,
+      "statistic": "mean_SD",
+      "unit": "ms",
+      "n": 10,
+      "locator": "Fig3",
+      "representation": "reported_summary",
+      "derivation": "Delegated primary-source reading; no local numeric replay or generative fit",
+      "evidence_class": "measurement",
+      "source_binding_status": "delegated_summary_primary_material_not_local",
+      "usage": "reference_only_observation_target",
+      "runtime_parameter_binding": null,
+      "validation_status": "NOT_RUN",
+      "interpretation": "light-to-RGC latency; not rod membrane tau"
+    }
+  ],
+  "static_protocols": [
+    {
+      "adapter": "ConeObservationProfile",
+      "ports": [
+        "cone.photocurrent",
+        "cone.IS_voltage",
+        "cone.gain_adaptation"
+      ],
+      "metrics": [
+        "noise_current_filter_time_to_peak",
+        "flash_voltage_time_to_peak",
+        "adaptation_tau_on",
+        "adaptation_tau_off"
+      ],
+      "status": "NOT_RUN"
+    },
+    {
+      "adapter": "MidgetOutputObservation",
+      "port": "RGC.spikes",
+      "metric": "spike_STA_time_to_peak",
+      "status": "NOT_RUN"
+    },
+    {
+      "adapter": "MidgetExcitationObservation",
+      "port": "RGC.excitatory_current",
+      "metric": "excitation_linear_filter_time_to_peak",
+      "status": "NOT_RUN"
+    },
+    {
+      "adapter": "ChargeObservation",
+      "port": "RGC.inhibitory_excitatory_charge",
+      "requires": [
+        "holding",
+        "reversals",
+        "baseline subtraction",
+        "trace integration window"
+      ],
+      "status": "SOURCE_PROTOCOL_INCOMPLETE_NOT_RUN"
+    },
+    {
+      "adapter": "HCAnatomy",
+      "frame": "OPL/anatomical_retina",
+      "metric": "density/contact degree; not temporal kernel or functional weight",
+      "status": "regional_followup_NOT_RUN"
+    },
+    {
+      "adapter": "ParasolMCOutput",
+      "port": "RGC.spikes/transfer_curve",
+      "status": "source curve arrays missing; NOT_RUN"
+    },
+    {
+      "adapter": "OFFReceptorObservation",
+      "port": "BC.dendritic_receptor_current",
+      "source_type": "FMB/DB1/DB3a/DB2/DB3b separately",
+      "status": "NOT_RUN; explicit KAR dynamics NOT_IMPLEMENTED"
+    },
+    {
+      "adapter": "GlycineEventObservation",
+      "ports": [
+        "BC.sIPSC_conductance",
+        "BC.sIPSC_reversal_potential"
+      ],
+      "status": "NOT_RUN; clamp conditions distinct from modeled voltage interpolation"
+    },
+    {
+      "adapter": "HCSpatialObservation",
+      "port": "HC.voltage_spatial_profile",
+      "status": "NOT_RUN; source wavelengths/background units not mapped to current RGB input"
+    },
+    {
+      "adapter": "RGCIntrinsicObservation",
+      "ports": [
+        "RGC.current_to_voltage",
+        "RGC.voltage_spike_waveform",
+        "RGC.injected_current_spikes"
+      ],
+      "source": "Weber2005 Normal pooled parasol",
+      "status": "NOT_RUN; current model lacks injected-current/AP-waveform port"
+    },
+    {
+      "adapter": "PairedStimulusCurrentSpikeAsset",
+      "source": "Latimer2019_Figshare_v1",
+      "status": "NOT_RUN; local data/units/trial reader/species binding incomplete"
+    },
+    {
+      "adapter": "TypedInhibitionObservation",
+      "ports": [
+        "RGC.excitatory_inhibitory_conductance"
+      ],
+      "source": "Cafaro2013; Crook2011/2014 panel specific",
+      "status": "NOT_RUN; no AC-type identification or lag-to-kernel conversion"
+    },
+    {
+      "adapter": "SmallBistratifiedOutputObservation",
+      "port": "RGC.spikes",
+      "source": "Crook2009 component-specific phase latency",
+      "status": "NOT_RUN; not an intrinsic spike parameter"
+    }
+  ],
+  "generative_candidates": [
+    {
+      "candidate_id": "KhucTrong2008_peripheral_ON_parasol_RC_relative_threshold",
+      "source_id": "KhucTrong2008",
+      "source_model": "passive current-to-voltage RC, relative voltage threshold, imposed stereotyped AP waveform",
+      "target_type": "ON_parasol_RGC",
+      "source_condition": {
+        "temperature_C": [
+          32,
+          34
+        ],
+        "background_Rstar_per_M_cone_s": 4000,
+        "stimulus": "513 nm LED; 630 um spot; Gaussian noise 50% SD/mean, 0..60 Hz",
+        "internal": "K-aspartate for voltage; Cs/TEA/QX-314 for current"
+      },
+      "source_region": {
+        "source_label": "about 30 deg; dendritic-field estimate, not exact per-cell recording domain",
+        "bounds": {
+          "lower": null,
+          "upper": null,
+          "lower_inclusive": true,
+          "upper_inclusive": false
+        },
+        "unit": "deg",
+        "origin": "foveal_pit",
+        "frame": "dendritic_field_estimated_eccentricity",
+        "meridian": "unspecified",
+        "mapping_id": null
+      },
+      "parameters": {
+        "RC_time": {
+          "value": 2,
+          "unit": "ms",
+          "evidence_class": "author_assumption",
+          "basis": "approximately measured small-step RC used by source model"
+        },
+        "membrane_resistance": {
+          "value": 30,
+          "unit": "MOhm",
+          "evidence_class": "author_assumption",
+          "basis": "source single-compartment approximation; not pure gL"
+        },
+        "absolute_refractory": {
+          "value": 2.5,
+          "unit": "ms",
+          "evidence_class": "published_fit",
+          "basis": "spike autocorrelation match"
+        },
+        "relative_threshold_increment": {
+          "value": 4,
+          "unit": "mV",
+          "evidence_class": "author_assumption"
+        },
+        "relative_threshold_decay": {
+          "value": 8,
+          "unit": "ms",
+          "evidence_class": "author_assumption"
+        },
+        "relative_spike_threshold": {
+          "value": 4.5,
+          "unit": "mV",
+          "evidence_class": "author_assumption",
+          "basis": "relative origin chosen for about 20 Hz spontaneous rate; not absolute Vm"
+        }
+      },
+      "current_form": "HistoryConductanceRGC: conductance ODE + softplus rate + strict-past spike-count kernel; no absolute refractory/relative-threshold state",
+      "runtime_parameter_binding": null,
+      "status": "UNBOUND_MODEL_FORM_MISMATCH_NOT_RUN",
+      "missing": [
+        "original numerical AP waveform",
+        "exact threshold baseline adapter",
+        "compatible refractory/threshold architecture",
+        "per-cell species identity"
+      ],
+      "prohibited": [
+        "Rin to gL inversion",
+        "tau/Rin to claimed measured C",
+        "4 mV as AHP conductance",
+        "all-RGC or foveal transfer"
+      ]
+    },
+    {
+      "candidate_id": "Crook2014_parasol_NMDA_fraction",
+      "source_id": "Crook2014",
+      "target_type": "ON/OFF_parasol_RGC",
+      "source_model": "f(V)=1-Mg/(Mg+K_Mg*exp(V/V_delta)); fraction only",
+      "parameters": {
+        "Mg": {
+          "value": 1.2,
+          "unit": "mM",
+          "evidence_class": "author_assumption"
+        },
+        "pooled_K_Mg": {
+          "value": 3.5,
+          "unit": "mM",
+          "evidence_class": "published_fit",
+          "n": 9,
+          "types": "6 OFF + 3 ON"
+        },
+        "pooled_V_delta": {
+          "value": 22,
+          "unit": "mV",
+          "evidence_class": "published_fit"
+        },
+        "ON_isolated_K_Mg": {
+          "value": 3.3,
+          "uncertainty": 0.6,
+          "statistic": "mean_SD",
+          "unit": "mM",
+          "n": 4,
+          "evidence_class": "published_fit"
+        },
+        "ON_isolated_V_delta": {
+          "value": 19.5,
+          "uncertainty": 1.7,
+          "statistic": "mean_SD",
+          "unit": "mV",
+          "n": 4,
+          "evidence_class": "published_fit"
+        }
+      },
+      "clamp_reversals_mV": {
+        "E_cation": 0,
+        "E_Cl": -65
+      },
+      "clamp_reversal_scope": "recording internal conditions, not natural inhibitory reversal",
+      "runtime_parameter_binding": null,
+      "status": "UNBOUND_EXPLICIT_NMDA_BRANCH_ABSENT_NOT_RUN",
+      "not_inferred": [
+        "Gmax",
+        "receptor counts",
+        "open/close time constants",
+        "foveal parameters"
+      ]
+    },
+    {
+      "candidate_id": "Latimer2019_CBEM_author_model",
+      "source_id": "Latimer2019",
+      "source_model": "CBEM neglects capacitance; fitted conductance scale is nonidentifiable",
+      "manuscript_Python_reference": {
+        "E_e_mV": 0,
+        "E_i_mV": -80,
+        "E_l_mV": -60,
+        "g_l": 200,
+        "g_l_unit": "model_scale_not_measured_nS"
+      },
+      "old_MATLAB_example": {
+        "E_l_mV": -80,
+        "g_l": 250
+      },
+      "Python_rate_defaults": {
+        "alpha": 90,
+        "mu_mV": -53,
+        "beta_mV": 1.67,
+        "evidence_class": "author_assumption"
+      },
+      "runtime_parameter_binding": null,
+      "status": "UNBOUND_DIFFERENT_MODEL_AND_FRONTEND_NOT_RUN",
+      "prohibited": [
+        "copy light-to-g filters into explicit BC residual",
+        "copy g_l=200 as nS",
+        "claim simulated example as measured data"
+      ]
+    }
+  ],
+  "paired_data_assets": {
+    "Latimer2019_Figshare_v1": {
+      "doi": "10.6084/m9.figshare.9636854.v1",
+      "url": "https://figshare.com/articles/dataset/ON-Parasol_RGCs_for_the_conductance-based_encoding_model/9636854",
+      "license": "CC BY 4.0",
+      "cells": 6,
+      "delegated_verified_file": {
+        "name": "Cell_6.mat",
+        "bytes": 17007338,
+        "md5": "83be38d612d7e31bdf38b731cd2c3ebf",
+        "verification_scope": "delegated API MD5/header/shape only; no local copy or replay"
+      },
+      "fields": {
+        "ExcCurrents": [
+          30,
+          71000
+        ],
+        "ExcStm": [
+          30,
+          71000
+        ],
+        "InhCurrents": [
+          8,
+          71000
+        ],
+        "InhStm": [
+          8,
+          71000
+        ],
+        "SpikeStm": [
+          30,
+          71000
+        ],
+        "SpikeTimes": "30 cell arrays",
+        "fn": "060908Bc2"
+      },
+      "missing": [
+        "per-cell species",
+        "eccentricity",
+        "temperature",
+        "current unit",
+        "dt/time vector",
+        "trial padding/reader and spike-time units"
+      ],
+      "species_conflict": "Latimer claims M. mulatta; original 2008 cohort includes M. fascicularis/nemestrina and Papio anubis; no per-cell resolution",
+      "current_to_conductance_scope": "manuscript approximately +/-70 mV driving force; not Cafaro +/-62 mV or Crook -65 mV",
+      "author_code": {
+        "repository": "https://github.com/pillowlab/CBEM",
+        "commit": "7beb7e72b0678192f0bc98392a678cdff9601791",
+        "execution": "not executed"
+      },
+      "status": "ASSET_REGISTERED_REPLAY_NOT_READY_NOT_RUN"
+    }
+  },
+  "source_mechanism_constraints": {
+    "Crook2014": {
+      "typed_targets": "ON/OFF parasol; near peripheral; no exact entire-cohort 5-mm assignment",
+      "postsynaptic_peaks_nS_at_5Hz_1mm_50pct": {
+        "ON": [
+          72,
+          10
+        ],
+        "OFF": [
+          52,
+          12
+        ],
+        "uncertainty": "reported +/-; statistic type pending"
+      },
+      "peak_scope": "whole-cell stimulus response; never single BC/AC edge conductance",
+      "Cs_TEA_QX314_measurements": {
+        "C_pF": [
+          67,
+          8
+        ],
+        "Rin_MOhm": [
+          61,
+          25
+        ],
+        "zero_current_mV": [
+          -38,
+          8
+        ],
+        "n": 21,
+        "scope": "clamp internal; no natural leak/rest inference"
+      },
+      "frequency_specific": "glycinergic crossover vs GABA feedforward and ON/OFF differences; no one inhibitory tau",
+      "condition_conflict": "Methods/Fig9 contrast 100%/50%; keep panel-specific; curves not digitized"
+    },
+    "Crook2011": {
+      "typed_targets": [
+        "ON_midget_RGC",
+        "OFF_midget_RGC"
+      ],
+      "region_mm": [
+        2,
+        4
+      ],
+      "temperature_C": 36,
+      "background_Rstar_per_cone_s": [
+        100000,
+        1000000
+      ],
+      "ports": [
+        "RGC.excitatory_current",
+        "RGC.inhibitory_current"
+      ],
+      "decomposition": "inhibitory GHK and near-linear excitation only Vh>-25 mV; no global ohmic approximation from source",
+      "constraint": "L/M excitation mainly opponent; corresponding inhibition in phase and not L/M selective; no per-edge gain extraction",
+      "status": "source constraints only; waveform arrays/parameter fit not supplied"
+    },
+    "Crook2009": {
+      "path": "parallel S-ON and LM-OFF excitation supported under stated conditions",
+      "intervention": "L-AP4 blocks S-ON and retains LM-OFF; glycine/GABA block does not abolish basic opponency",
+      "prohibited": [
+        "set AC gain zero",
+        "use output phase latency as SBC membrane tau",
+        "reverse Baudin single-cone conclusion"
+      ]
+    },
+    "Cafaro2013": {
+      "functional_AC_identity": "unidentified; target-specific functional timing not named subtype kinetics",
+      "split_field": "ON-parasol crossover timing changes with stimulus; crossover does not mandate fixed anti-phase"
+    },
+    "Wu2023": {
+      "status": "candidate only; no generic AC substitution or architecture expansion"
+    },
+    "Percival2022": {
+      "AII_puff_observation": {
+        "whole_cell_conductance_nS": 4.4,
+        "depolarization_mV": 0.9
+      },
+      "single_RBC_AII_gmax": null,
+      "status": "candidate only; not a single synapse calibration"
+    }
+  }
+}

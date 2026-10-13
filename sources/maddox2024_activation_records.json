@@ -1,0 +1,69 @@
+{
+  "records": [
+    {
+      "source_cell_ordinal": 1,
+      "holding_mV": -90,
+      "Vhalf_mV": -33.65,
+      "k_mV": 3.736,
+      "locator": "Sheet1 K4,K11",
+      "evidence_class": "published_fit",
+      "source_id": "MADDOX2024_fig5_workbook"
+    },
+    {
+      "source_cell_ordinal": 2,
+      "holding_mV": -90,
+      "Vhalf_mV": -35.19,
+      "k_mV": 4.12,
+      "locator": "Sheet1 K5,K12",
+      "evidence_class": "published_fit",
+      "source_id": "MADDOX2024_fig5_workbook"
+    },
+    {
+      "source_cell_ordinal": 3,
+      "holding_mV": -90,
+      "Vhalf_mV": -42.98,
+      "k_mV": 3.858,
+      "locator": "Sheet1 K6,K13",
+      "evidence_class": "published_fit",
+      "source_id": "MADDOX2024_fig5_workbook"
+    },
+    {
+      "source_cell_ordinal": 1,
+      "holding_mV": -50,
+      "Vhalf_mV": -34.4,
+      "k_mV": 3.226,
+      "locator": "Sheet1 L4,L11",
+      "evidence_class": "published_fit",
+      "source_id": "MADDOX2024_fig5_workbook"
+    },
+    {
+      "source_cell_ordinal": 2,
+      "holding_mV": -50,
+      "Vhalf_mV": -34.92,
+      "k_mV": 3.727,
+      "locator": "Sheet1 L5,L12",
+      "evidence_class": "published_fit",
+      "source_id": "MADDOX2024_fig5_workbook"
+    },
+    {
+      "source_cell_ordinal": 3,
+      "holding_mV": -50,
+      "Vhalf_mV": -43.96,
+      "k_mV": 2.728,
+      "locator": "Sheet1 L6,L13",
+      "evidence_class": "published_fit",
+      "source_id": "MADDOX2024_fig5_workbook"
+    }
+  ],
+  "species": "M. mulatta",
+  "animals": 1,
+  "regional_discrepancy": "Methods central-retina punches; worksheet Peripheral. Exact eccentricity/cone identity unknown.",
+  "not_supplied": [
+    "gCa_max",
+    "E_Ca",
+    "kinetics",
+    "Ca/release conversion",
+    "HC shift gain"
+  ],
+  "source_asset_sha256": "df7b88ce170bfc1dce2867937cacd7bd0315f419a2b86d5a5b36fbc4d76a959c"
+}

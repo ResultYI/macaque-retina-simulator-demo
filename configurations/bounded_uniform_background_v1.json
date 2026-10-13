@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "bounded_uniform_background_v1",
+  "evidence_class": "project_numerical_policy",
+  "policy": {
+    "profile_id": "bounded_uniform_background_v1",
+    "window_seconds": 0.1,
+    "stable_windows": 3,
+    "minimum_seconds": 1.0,
+    "known_tau_multiplier": 5.0,
+    "delay_multiplier": 2.0,
+    "max_sim_seconds": 10.0,
+    "max_wall_seconds": 60.0,
+    "max_observations": 100000,
+    "monitor_step_seconds": 0.0001,
+    "relative_tolerance": 0.0001,
+    "stochastic_burnin_seconds": 0.0,
+    "require_converged": false
+  },
+  "tolerance_contract": "den_i = unit-specific absolute tolerance + rtol * frozen max(abs(initial_i), unit-specific numerical floor)",
+  "voltage_atol_V": 0.00001,
+  "normalized_state_atol": 0.0001,
+  "other_units": "explicit NUMERICAL_UNIT_SCALES registry in retina_sim/background.py; unregistered state units return INCONCLUSIVE",
+  "criteria": ["maximum observed within-window excursion", "window_seconds * maximum original RHS", "window_seconds * pure one-step transition defect / native period", "finite/domain and timestamp/history consistency", "consecutive complete windows after explicit minimum duration"],
+  "stochastic_criterion": "graded states independent of generated spikes checked deterministically; seeded spike histories advance and burn in separately; stationarity statistics require an explicitly supplied statistical acceptance policy",
+  "monitoring_scope": "accepted event endpoints plus explicit numerical monitoring grid; sub-grid extrema are not a mathematical certificate",
+  "budget_policy": "simulation cap, independent wall-time and observation budgets; incomplete windows cannot pass; last valid state retained",
+  "cache_enabled": false,
+  "claim": "numerical preparation policy; no universal biological adaptation duration or physiological validation"
+}

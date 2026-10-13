@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "retina_contact_geometry_effective_v1",
+  "execution_mode": "source_constrained_approximation",
+  "parameter_profile": "effective_dynamics_v1",
+  "species_cohort_policy": "Independent source cohorts retained; no single-animal full-retina claim",
+  "cone_route": "native_finite_geometry_zero_contact_approximation_v1",
+  "region": {
+    "target": "continuous center-transition-periphery target; current run is one independent patch",
+    "owner_bounds_mm": [
+      0.34,
+      0.36,
+      -0.01,
+      0.01
+    ],
+    "halo_mm": 0.04,
+    "frame": "functional_visual_field",
+    "regional_support_profile": "regional_support_v1",
+    "HC_interval_policy": "joint source-constrained synthetic physical HC mosaic and named bounded constant-footprint prior",
+    "regional_followup_validation": "STATIC_ONLY_NOT_RUN"
+  },
+  "geometry": {
+    "hard_support_mm": 0.04,
+    "RBC_to_rod_density_ratio": 0.05555555555555555,
+    "AII_density_cells_per_mm2": 5000,
+    "RBC_transfer": "rounded central degree36 formula transferred to selected peripheral ROI",
+    "AII_transfer": "1.5mm density anchor extended as constant within selected ROI"
+  },
+  "input_adapter": "contrast_reference_v1",
+  "initialization_policy": "uniform_background_outer_equilibria_finite_inner_prerun_v1",
+  "allowed_approximation_ids": [
+    "Packer_log_PCHIP_NT_angular_v1",
+    "LM_equal_project_v1",
+    "S_assay_central_angular_transfer_v1",
+    "Wassle_interval_stationarity_v1",
+    "HC_divergence_anchor_interpolation_v1",
+    "finite_induced_graph_boundary_v1",
+    "finite_background_prerun_v1",
+    "shared_H1_S_H2_kinetics_v1",
+    "effective_BC_AC_RGC_dynamics_v1",
+    "native_to_voltage_adapter_v1",
+    "rod_radial_source_anchor_v1",
+    "RBC_central_degree_geometry_transfer_v1",
+    "AII_density_anchor_geometry_transfer_v1",
+    "rod_inner_effective_dynamics_v1",
+    "glycine_unverified_primary_quotation_v1",
+    "independent_physical_reference_v1",
+    "RGB_display_proxy_v1",
+    "midget_Wool_iso_density_adapter_v1",
+    "McGregor_RF_OPL_rectangular_box_adapter_v1",
+    "McLaughlin_peripheral_slice_to_ROI_transfer_v1",
+    "HC_finite_geometry_population_reference_v1",
+    "HC_bounded_edges_047_104_constant_footprint_v1",
+    "S_ON_effective_positive_input_legacy_selection_v1",
+    "finite_geometry_zero_contact_execution_v1"
+  ],
+  "budgets": {
+    "max_population_cells": 60000,
+    "max_compile_bytes": 536870912,
+    "max_recording_window_bytes": 536870912
+  },
+  "solver": {
+    "method": "DOP853",
+    "rtol": 1e-07,
+    "atol": 1e-10,
+    "max_step": 5e-05,
+    "input_interpolation": "analytic"
+  },
+  "claim": "Named research prototype with unscaled source geometry, certified finite zero-contact execution, explicitly uncalibrated effective dynamics and bounded anchor extrapolation; no physiological validation claim",
+  "evidence_class": "project_approximation",
+  "approval": "User autonomous continuation authorization 2026-10-11 15:19:48 UTC; parent supplied three-rule executable contract",
+  "contact_frame": "IPL",
+  "contact_metric": "point_proxy",
+  "hard_support_mm": 0.04,
+  "midget_anchor": "unchanged qualified parent BC P site",
+  "small_bistratified_anchor": "frozen S-parent BC P site; same xy, separate ON/OFF postsynaptic regions",
+  "parasol_anchor": "one equal-weight centroid of all correct excitatory BC subtype candidates inside the frozen P-chart seed's 40um ball; empty pool rejects; final contacts queried again at frozen centroid",
+  "local_AC_sampling": "independent typed effective units at frozen BC/cone and RGC sampling sites in the required IPL guard; deduplicate by site ID and AC type",
+  "widefield_AC_sampling": {
+    "kind": "fixed_global_square_grid",
+    "origin_mm": [
+      0.0,
+      0.0
+    ],
+    "spacing_mm": 0.013333333333333334,
+    "spacing_formula": "40um / 3",
+    "is_biological_density": false
+  },
+  "RGC_degree": {
+    "midget_inhibition": 1,
+    "nonmidget": 8,
+    "semantics": "strict existing integer target; no cap substitution"
+  },
+  "weights": "preserve existing normalized activation pooling and existing total synaptic gain; absolute per-edge chemical/gap conductances unchanged",
+  "strata": {
+    "midget_RGC_ON": [
+      "ON"
+    ],
+    "midget_RGC_OFF": [
+      "OFF"
+    ],
+    "parasol_RGC_ON": [
+      "ON"
+    ],
+    "parasol_RGC_OFF": [
+      "OFF"
+    ],
+    "small_bistratified_S_ON": [
+      "ON",
+      "OFF"
+    ],
+    "local_feedforward_AC": {
+      "input": [
+        "ON"
+      ],
+      "output": [
+        "OFF"
+      ]
+    },
+    "local_crossover_AC": {
+      "input": [
+        "OFF"
+      ],
+      "output": [
+        "ON"
+      ]
+    },
+    "widefield_AC": {
+      "input": [
+        "ON"
+      ],
+      "output": [
+        "ON",
+        "OFF"
+      ]
+    }
+  },
+  "generation": "finite feedforward guard: P-chart seed support + AC support + BC input support, with fixed-grid rounding guard; inverse existing P chart to RF; preserve original RGC output cohort and all its dynamic halo nodes",
+  "boundary": {
+    "new_external_background": "NOT_ENABLED",
+    "new_recurrent_truncation": "NOT_ENABLED",
+    "existing_finite_graph": "retain existing named finite-induced graph; recurrent closure remains uncertified"
+  },
+  "geometry_contract_version": "1.0",
+  "base_IPL_geometry_profile": "p_chart_typed_effective_ipl_v1",
+  "contact_policy": "finite_geometry_first_v1",
+  "per_cone_exact_divergence": false,
+  "divergence_reference_role": "population_diagnostic",
+  "rescale_to_divergence_target": false,
+  "S_ON_effective_contract": {
+    "contract_id": "S_ON_effective_positive_input_legacy_selection_v1",
+    "pre": "S_ON_BC",
+    "post": "small_bistratified_S_ON",
+    "post_region": "ON",
+    "selector": "existing_legacy_selector",
+    "legacy_selection_budget": 8,
+    "minimum_legal_selected_inputs": 1,
+    "exact_target_enforcement": false,
+    "weight_policy": "existing_normalized_activation_pooling",
+    "calibration_status": "effective_uncalibrated",
+    "is_anatomical_convergence": false
+  },
+  "HC_defaults": {
+    "geometry_profile": "hc_joint_synthetic_v1",
+    "arbor_profile": "W2000_equal_area_bounded_edges_047_104",
+    "geometry_json": "configurations/hc_research_prototype_geometry_v1.json"
+  },
+  "execution_acceptance": {
+    "status": "ADAPTER_IMPLEMENTED_PENDING_FULL_RUN",
+    "historical_blocker_evidence": "reports/central_build_acceptance/20261011T154651831130Z/blocker_details.json",
+    "physiological_validation": "NOT_RUN"
+  },
+  "zero_contact_execution": {
+    "policy_id": "finite_geometry_zero_contact_execution_v1",
+    "empty_feedback": "exact finite partner sum zero after independent full support certification",
+    "nonempty_feedback": "existing unit-DC weights and source RHS unchanged",
+    "background": "same finite graph nonlinear equilibrium; zero-feedback cone release computed with no feedback term",
+    "all_cones_retained": true,
+    "missing_domain_empty_rows": "REJECT",
+    "evidence_class": "project_approximation",
+    "approval": "Parent decision under user autonomous continuation authorization, 2026-10-11: permit certified finite-geometry true zero, original VH file unchanged"
+  }
+}

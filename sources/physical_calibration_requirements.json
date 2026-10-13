@@ -1,0 +1,20 @@
+{
+  "schema_version":"architecture-1.0",
+  "route":"physical_current_voltage_terminal",
+  "enabled_default_profile":false,
+  "available_foveal_reference":{
+    "source_commit":"c42f1a68e24a23cf993c479ab80aaede6dc3c593",
+    "source_blob":"78df62ae79a0f028fe61f9e33e5cd215f01d1862",
+    "source_url":"https://github.com/wienbar/ConeBackpropagationCode_2026/blob/c42f1a68e24a23cf993c479ab80aaede6dc3c593/ConeObj_v4.py",
+    "acquisition":"Parent verified source transcription; not newly executed/redistributed author channel code",
+    "specific_capacitance":{"value":0.01,"unit":"F/m^2","original":"1 microF/cm^2","evidence":"author source/passive fit convention"},
+    "axial_resistivity":{"value":0.768,"unit":"ohm m","original":"76.8 ohm cm","evidence":"foveal-equivalent published fit"},
+    "effective_conductance":{"value":0.833,"unit":"S/m^2","original":"83.3e-6 S/cm^2","evidence":"foveal-equivalent published fit; source argument passiveConductance not honored"},
+    "length_diameter_um":{"IS":[30,3.5],"soma":[5.5,5.5],"axon":[400,1.6],"terminal":[7,4.5]},
+    "claim_limit":"One long/slender foveal reference, not all-retina morphology/passive constants; rod/mixed-neuron channel code excluded"
+  },
+  "available_terminal_fit":"sources/maddox2024_activation_records.json",
+  "required_without_defaults":["background-current anchor and calibration","voltage anchor versus operating condition","region/operating-voltage effective conductance or matched impedance","compartment morphology/area/endcap convention","source normalized input distribution","gCa_max/E_Ca if absolute current desired","activation kinetics if dynamic gate desired","release/HC effective transfer and temporal calibration","HC activation-to-threshold-shift gain","terminal volume/buffering/clearance if Ca concentration requested"],
+  "prohibited_defaults":["-40mV resting voltage","arbitrary pA-to-mV/native gain","complete Chen dark current into anchored passive deviation model","rod active channels relabelled macaque cone","1-m release sign","unidentified HC feedback constant"],
+  "physiological_calibration":"INCOMPLETE"
+}

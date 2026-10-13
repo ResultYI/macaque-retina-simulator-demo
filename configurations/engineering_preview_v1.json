@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "engineering_preview_v1",
+  "execution_mode": "engineering_preview",
+  "parameter_profile": "legacy_effective_v1",
+  "species_cohort_policy": "Synthetic engineering replay; no animal-density claim",
+  "cone_route": "legacy_native_Chen_blend_approximation",
+  "region": {"owner_bounds_mm": [0.004,7.2,-0.04,0.04],"halo_mm": 0,"frame": "functional_visual_field"},
+  "geometry": {"density_policy": "explicit effective sampling counts; original narrow corridor and y0 AII replay"},
+  "input_adapter": "legacy_rgb_proxy_v1",
+  "initialization_policy": "legacy_finite_prerun",
+  "allowed_approximation_ids": ["legacy_effective_geometry_v1","legacy_native_Chen_blend_v1","legacy_first_frame_prerun_v1","effective_dynamics_v1","RGB_display_proxy_v1"],
+  "budgets": {"max_compile_bytes": 1073741824},
+  "solver": {"method": "DOP853","rtol": 1e-7,"atol": 1e-10,"max_step": 0.00005,"input_interpolation": "analytic"},
+  "claim": "Historical engineering preview/replay; no physiology validation or calibrated native/physical adapter"
+}

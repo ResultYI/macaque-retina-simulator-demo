@@ -1,0 +1,362 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "来源账本及分物种 profile v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "species_policy",
+    "sources",
+    "parameters",
+    "profiles"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "species_policy": {
+      "type": "object",
+      "required": [
+        "policy",
+        "approval_reference",
+        "named_reference"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "title",
+          "authors",
+          "publication_year",
+          "doi_or_canonical_url",
+          "artifact_kind",
+          "repository_commit",
+          "source_path",
+          "source_locator",
+          "asset_sha256",
+          "source_blob_sha1",
+          "license",
+          "verification_level",
+          "provenance_notes",
+          "retrieved_at",
+          "upstream_sources_checked"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authors": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "publication_year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "doi_or_canonical_url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifact_kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "repository_commit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "source_blob_sha1": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification_level": {
+            "enum": [
+              "identity_verified",
+              "code_verified",
+              "numeric_table_verified",
+              "primary_measurement_verified"
+            ]
+          },
+          "provenance_notes": {
+            "type": "string",
+            "minLength": 1
+          },
+          "retrieved_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "upstream_sources_checked": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "parameter_id",
+          "name",
+          "value",
+          "unit",
+          "shape",
+          "source_id",
+          "source_locator",
+          "derivation",
+          "evidence_kind",
+          "species",
+          "sample_context",
+          "retinal_region",
+          "meridian",
+          "coordinate_frame",
+          "support_domain",
+          "conditions",
+          "uncertainty",
+          "allowed_modes",
+          "status",
+          "assumption_approval_reference"
+        ],
+        "properties": {
+          "parameter_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": [
+              "number",
+              "array",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "shape": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "derivation": {
+            "type": [
+              "string",
+              "object"
+            ]
+          },
+          "evidence_kind": {
+            "enum": [
+              "measured",
+              "source_fit",
+              "author_assumption",
+              "project_assumption",
+              "synthetic_fixture",
+              "unknown"
+            ]
+          },
+          "species": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sample_context": {
+            "type": "string",
+            "minLength": 1
+          },
+          "retinal_region": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meridian": {
+            "type": "string",
+            "minLength": 1
+          },
+          "coordinate_frame": {
+            "type": "string",
+            "minLength": 1
+          },
+          "support_domain": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "conditions": {
+            "type": "object"
+          },
+          "uncertainty": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowed_modes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "enum": [
+                "full_physiology",
+                "component_reference",
+                "numeric_fixture"
+              ]
+            }
+          },
+          "status": {
+            "enum": [
+              "usable_reference",
+              "usable_physiology",
+              "blocked"
+            ]
+          },
+          "assumption_approval_reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profile_id",
+          "species",
+          "kind",
+          "parameter_ids",
+          "conditions",
+          "coordinate_frame",
+          "explicit_opt_in",
+          "claim_limit"
+        ],
+        "properties": {
+          "profile_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "species": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "macaque_main",
+              "named_reference",
+              "synthetic_fixture"
+            ]
+          },
+          "parameter_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "conditions": {
+            "type": "object"
+          },
+          "coordinate_frame": {
+            "type": "string",
+            "minLength": 1
+          },
+          "explicit_opt_in": {
+            "type": "boolean"
+          },
+          "claim_limit": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "macaque_main"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "type": "string",
+                  "pattern": "^M\\."
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "named_reference"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "explicit_opt_in": {
+                  "const": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "description": "Structural validation is separate from semantic loader asset/species/domain/condition checks. Author mixture only for explicitly selected named reference; not main defaults."
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "p_chart_typed_effective_ipl_v1",
+  "evidence_class": "project_approximation",
+  "approval": "User approved non-midget upstream anchors and independent effective AC sampling, 2026-10-11 14:17:35; delegated approval received by implementation task",
+  "contact_frame": "IPL",
+  "contact_metric": "point_proxy",
+  "hard_support_mm": 0.04,
+  "midget_anchor": "unchanged qualified parent BC P site",
+  "small_bistratified_anchor": "frozen S-parent BC P site; same xy, separate ON/OFF postsynaptic regions",
+  "parasol_anchor": "one equal-weight centroid of all correct excitatory BC subtype candidates inside the frozen P-chart seed's 40um ball; empty pool rejects; final contacts queried again at frozen centroid",
+  "local_AC_sampling": "independent typed effective units at frozen BC/cone and RGC sampling sites in the required IPL guard; deduplicate by site ID and AC type",
+  "widefield_AC_sampling": {"kind": "fixed_global_square_grid", "origin_mm": [0.0, 0.0], "spacing_mm": 0.013333333333333334, "spacing_formula": "40um / 3", "is_biological_density": false},
+  "RGC_degree": {"midget_inhibition": 1, "nonmidget": 8, "semantics": "strict existing integer target; no cap substitution"},
+  "weights": "preserve existing normalized activation pooling and existing total synaptic gain; absolute per-edge chemical/gap conductances unchanged",
+  "strata": {"midget_RGC_ON": ["ON"], "midget_RGC_OFF": ["OFF"], "parasol_RGC_ON": ["ON"], "parasol_RGC_OFF": ["OFF"], "small_bistratified_S_ON": ["ON", "OFF"], "local_feedforward_AC": {"input": ["ON"], "output": ["OFF"]}, "local_crossover_AC": {"input": ["OFF"], "output": ["ON"]}, "widefield_AC": {"input": ["ON"], "output": ["ON", "OFF"]}},
+  "generation": "finite feedforward guard: P-chart seed support + AC support + BC input support, with fixed-grid rounding guard; inverse existing P chart to RF; preserve original RGC output cohort and all its dynamic halo nodes",
+  "boundary": {"new_external_background": "NOT_ENABLED", "new_recurrent_truncation": "NOT_ENABLED", "existing_finite_graph": "retain existing named finite-induced graph; recurrent closure remains uncertified"},
+  "claim": "Effective computational geometry and sampling; not measured typed IPL anatomy, AC density, stratum depth or calibrated physiology"
+}

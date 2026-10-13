@@ -1,0 +1,3134 @@
+Pro 猕猴模拟器规格咨询完整记录
+
+请先阅读独立审查。三份 Pro 原文未经改写，包含已指出的错误，不是已经通过生理审计的完整实施规格。
+
+
+
+============================================================
+pro_macaque_spec_review.txt
+============================================================
+
+Pro 猕猴中心周边模拟器规格独立审查
+
+审查日期 2026-10-10
+结论：NOT READY 作为完整生理模型实施依据。可保留为研究目标和开发边界草案；不得把任何一稿当成已经核实、参数齐全、可以直接生成完整猕猴视网膜的规格。
+
+一 咨询执行记录
+
+使用 dot 云浏览器，不是用户电脑浏览器。
+会话 https://chatgpt.com/c/6ac70c68-0814-83ee-a87c-1077bf332d51
+实际模式：Pro；2026-10-10 10:35:10 UTC 在模型菜单确认 Pro，第 5 项，共 5 项。未升级付费，未改用其他模式代替。
+本次完整规格任务：初问 10:37:05 UTC，纠错追问 10:39:46 UTC，最终纠错追问 10:43:00 UTC；三稿已完整保存，最后答复 10:43:25 UTC 已完成。
+网页搜索选项在输入框可见。这个界面状态不等于论文已经被完整读过。
+
+二 原文文件与优先级
+
+pro_macaque_spec_draft1_raw.txt：Pro 初稿，讨论版，包含不闭合机制占位和错误。仅用于保留咨询记录。
+pro_macaque_spec_appendix1_raw.txt：第一轮补稿，承认未知机制，但仍有单位、反馈和来源问题。
+pro_macaque_spec_appendix2_raw.txt：最终合同补稿，进一步撤回错误，仍有以下关键缺陷。最后一稿不应自动覆盖独立核验结果。
+三份原文未经改写。原文中的错误不能由于收进咨询文件而获得可信地位。
+
+三 已有的有用部分
+
+1. 项目目标包含显式细胞、空间位置、层间连接和状态演化，中心、周边及其过渡没有被正式删去。
+2. 将 source manifest、坐标、mosaic、稀疏连接、状态求解器和功能验证区分为依赖模块，有利于分阶段交付。
+3. 明确要求无法核定的生理项 BLOCKED，不允许以未注明来源的常数静默填空。
+4. 最终稿撤回“按层更新顺序产生一 dt 生理延迟”，提出联合状态与联合 RHS。这只是软件契约，不是实际细胞动力学方程。
+5. 最终稿补入计数的 dt：在自行选择的条件泊松假设下，N~Poisson(rate*dt)，至少一次事件概率 1-exp(-rate*dt)。这是数学正确的采样关系，不是对所有猕猴 RGC 放电统计的实测结论。
+6. 可以据此开发证据登记、校验、覆盖报告和通用数据结构；具名作者参考组件须另附源码核验后的方程、符号、初始化和数值测试。
+
+四 必须阻止流入实现的错误
+
+A 光学到 R*/s 的最后稿仍量纲不闭合
+最终稿令 integral A(x,y) dxdy=1，然后令 P(lambda)=integral E(lambda,x,y) A(x,y) dxdy 并称其单位 W/nm。
+若 x,y 用 m，归一化 A 的单位就是 m^-2；这个积分仍是 W/(m^2 nm)，只是加权平均辐照度，不是接收功率。缺少有效收集面积。
+因此其后得到的量仍不能被标为绝对 R*/s。
+两种不混淆的数学写法：
+- 令采光掩膜 a_i(x,y) 无量纲，其面积积分为 A_eff,i [m^2]，则 P_i(lambda,t)=integral E_r(lambda,x,y,t)*a_i(x,y) dA，单位 W/nm。
+- 或令 w_i 面积积分为 1 [w_i 单位 m^-2]，先取加权平均 Ebar_i，然后乘 A_eff,i [m^2]。
+随后 Rstar_i(t)=integral P_i(lambda,t)*eta_i(lambda)*lambda_m/(h*c) d(lambda_nm)。
+E_r 是经光学后视网膜光谱辐照度 W/(m^2 nm)；lambda_m=lambda_nm*1e-9；eta_i(lambda) 是明确定义的光子到异构化概率，无量纲。若透过率已计入 E_r，不应再次当“optical efficiency”重复相乘。
+对应离散合同可写为：先以空间积分权重形成每个 cone 的光谱功率，再求 sum_l P_i,l*eta_i,l*(lambda_l*1e-9)/(h*c)*DeltaLambda_l。输入波长与带宽必须注明 nm，区域面积须转换 m^2。
+这些只是量纲和接口校验，不提供未知的 macaque 光学、有效面积、吸收率等生理参数。不完整的标定仍应阻止 absolute R*/s 模式；相对刺激必须明确另标。
+最终稿虽说禁止 RGB 直接转 R*/s，但没有闭合绝对标定方法。
+
+B Packer 表的证据类别被再次误标
+最终稿先称 published_code_tabulation，却在同一记录中写 status: measured_source_table，造成原始实测与公开代码转录表混淆。
+应保留 published_code_tabulation_not_original_counts；来源是 ISETMacaque 固定 commit 的 PackerConeRc.m，不能冒充 Packer raw cell counts。
+咨询方核实的完整表为60行鼻侧/颞侧数据。三个示例点不是完整函数。
+严格 e=0、垂直经线及表外区域不能靠无声插值/外推补齐。210 µm/deg 是该代码使用的假设，非所有猕猴通用常数。
+M. nemestrina 的物种信息应由 Packer 原文审计记录支持；不要仅从仓库名称猜定具体物种。
+最后稿的 source repository、filename、行号/表范围与引用关系字段仍不齐全。
+
+C Saha 实验条件不是动力学参数
+最终稿已将 peripheral 改成 >6 mm，也承认 Eq2 是 flash-response 描述性拟合，非细胞机制。
+但仍把实验区域写在 parameter_id 下。实现时需要 experiment condition 类型，与细胞参数、估计参数及输出统计分开。
+foveal 0–0.5 mm 和 peripheral >6 mm 的两组数据不能凭此证明中间每个位置的连续动力学函数。连续插值属于待声明、待检验的模型假设。
+其示例 YAML 有紧贴冒号、空字段与未定义类型等问题，不能当作通过验证的 schema 文件。
+
+D 动力学没有实际闭合
+cone/HC/BC/AC/RGC 多处仍是抽象 F、未选择机制、未定义状态和参数。sign convention 仅说“必须定义”，不等于定义完成。
+联合 RHS 的建议可以作为数值层架构，但还没有可实施的具体生理 RHS。
+Somaratna–Freeman 作者线性 ODE 可以作为具名 reference component，须由独立源式附录提供；它不能被重新命名为完整 nonlinear phototransduction 或完整 retina。
+泊松 spike 模块也只能明确标 modeling assumption，不能自动取代作者 rate/generator-potential 输出。
+
+E 数值与工程规格仍只是纲要
+最后稿没有给出完整的函数签名、shape、单位系统、CSR 行列约定、边类型约束、state registry、checkpoint 内容和恢复验证条件。
+未充分规定非均匀点上的离散细胞权重与连续面积求积权重何时使用；真实离散突触的细胞和不能不加区别地全部乘 Voronoi 面积。
+未给初始化、预热停止准则、边界处理、眼动采样、有效求解器容差、dt 收敛指标、存储复杂度和可复现输出清单。
+因此不能把“允许实现 sparse graph/solver”理解为已提供足够详细的生产实现规范。
+
+五 来源读取程度
+
+以下是 Pro 在答复中的自述，不等于本审查已独立验证它实际阅读的全部页码、代码或补充材料：
+- 第一补稿称读了 Saha 2024 Nature 页面和 Somaratna 2025 页面，未读 ISETMacaque、Packer/Schein/Wool 全文及所有补充材料。
+- 最后补稿称本轮实际打开 Macular Frontiers 正文；明确未重新打开 ISETMacaque commit、Saha 原始补充材料、Somaratna 作者源码、Packer/Schein/Wool 原文。
+- ISETMacaque commit/具体数值、Saha Eq2 的正确性质、Macular 1.5.6 和作者 ODE 源码的事实来自咨询方独立核验后输入，不能再标成 Pro 独立发现。
+- Pro 没有交出可逐项审计的完整 source ledger。正文引用或 source-search 选项存在，不等于每个数值已核。
+
+六 可分阶段交付与不能宣称完成
+
+可先交 Codex，但必须附具体补充规格：
+- 证据对象、参数类型、单位校验、功能依赖与错误处理。
+- 位置与坐标数据结构、不可混淆的 soma/RF/采光位置。
+- 已核 Packer 公开代码表导入、源哈希与范围验证。
+- coverage report：已支持和未知的经线、离心度、细胞类、亮度条件。
+- 稀疏图与状态框架、checkpoint 和数值回归测试。
+- 独立源码审计完毕的 Somaratna–Freeman named reference component，不扩大其生理覆盖声明。
+
+禁止凭 Pro 原稿猜出来：
+- 光转导和非线性适应参数。
+- 跨中心周边的未知动力学插值。
+- LMS 类型比例/空间分布、foveal displacement、RF几何、具体突触拓扑和延迟的未核定部分。
+- 真实全细胞类型的 BC/AC/RGC 机制。
+- saccade suppression 或人类错觉的成功结论。
+- 用统一 patch、RGB 均值或 cone-like 图像滤波器冒充用户要的模拟器。
+- 用“有输出”“单元测试通过”冒充生理验证或完整项目完成。
+
+仍需要研究范围决策的项：
+- 明确目标 macaque 物种，或者明确混合物种证据的策略。
+- 第一阶段亮度范围与首批细胞通路的先后次序。先做某条具名参考通路不等于删掉总目标；如确实削减已确认范围须先取得用户批准。
+- 功能验证从何处开始，以及哪些条件只能标为待覆盖。不能让现有小范围数据替代中心周边全目标。
+
+七 Macular 1.5.6 最新独立源码核验补充
+
+咨询方已在实际桌面环境核定 Macular 1.5.6：
+- .mac 支持任意逐 cell 坐标。
+- 支持独立 parameter 对象；GUI 和 batch 常见入口会统一赋值。
+- VisualFlow 路径仍使用全局 RF 和单 polarity。
+- 另有 RodAndCone worker，但未接入口；其中 rod 复制 ON 的代码错误需单列缺陷，不能假称现成完整通路。
+这些是咨询方实际版本审计结果，不是 Pro 自己读源码所得。不能再说 Macular 核心不支持非均匀位置或逐 cell 参数。是否复用、扩展 worker 或独立实现，应依据具体入口和组件缺口，不应依据旧文档把核心能力一概否定。
+本项目已定自有模拟器主线；以上比较事实仅用于准确借鉴和避免重复劳动，不自动改变实现主线。
+
+八 下游的正确阅读方式
+
+源式审计附录的已核方程和参数优先于 Pro 草案。
+本审查只检查咨询输出的数学、证据和实现边界，不声称完成所有 retina 文献或模型查新。
+保留 Pro 完整原文是为了透明记录，不是质量认证。最终可以交付可靠的开发合同和逐步积累的参考组件；现阶段无法诚实交付“完全符合所有猕猴生理构造”的封闭全模型。
+
+
+
+
+============================================================
+pro_macaque_spec_draft1_raw.txt
+============================================================
+
+# 猕猴中心—周边连续视网膜模拟器规格（讨论版）
+
+## A. 目标、边界与覆盖矩阵
+
+### 一句话目标
+
+构建一个**可追溯 macaque 视网膜空间—动态模型**：从外界光场、眼动导致的 retinal image shift，到 cone mosaic、层级连接、BC/AC/RGC 状态演化，形成中心到周边连续变化的群体响应，并用功能验证检验这些生理约束是否改变视觉编码。
+
+Macular 本身定位是一个多尺度 retina / primary visual system 模拟平台，支持多层 cell、synapse 和自定义方程，而不是一个固定 retina 数据库。([Macular paper](https://arxiv.org/abs/2512.13052)) [arXiv](https://arxiv.org/abs/2512.13052?utm_source=chatgpt.com)
+
+目标不是：
+
+- 完整模拟整个视觉系统；
+- 证明所有视觉现象由 retina 产生；
+- 建造“数字猴脑”。
+
+目标是：
+
+> 建立一个空间组织和动态机制都可追溯的 macaque retinal model。
+
+---
+
+## 完整目标覆盖矩阵
+
+|模块|目标状态|第一阶段|
+|-|-|-|
+|物种|Macaque|必须固定 species，不混合 M. mulatta/fascicularis/nemestrina|
+|视野|fovea→periphery连续过渡|必须保留|
+|cone mosaic|显式非均匀|必须|
+|L/M/S cone|规划|第一阶段保留接口|
+|rod|规划|后续|
+|horizontal cell|规划|按数据成熟度加入|
+|BC ON/OFF|必须|第一动态层|
+|AC|必须|第二阶段|
+|RGC|必须|第一功能输出|
+|V1|不属于首要目标|暂不|
+|saccade输入|支持|不是首验证|
+|saccadic suppression|后续测试|不是模型定义目标|
+
+---
+
+## 未知项必须标记
+
+以下不能假设：
+
+- 完整 macaque cone density map；
+- 连续 eccentricity 参数；
+- 所有RGC subtype；
+- 每类synapse权重；
+- 每个区域 adaptation参数。
+
+
+缺少数据时：
+
+代码中必须：
+
+```text
+parameter = unknown
+```
+
+不能：
+
+随便填论文平均值。
+
+---
+
+# 路线选择：推荐 B（独立 Python/PyTorch simulator core）
+
+## 为什么不是直接扩展 Macular？
+
+Macular优势：
+
+- graph；
+- cell；
+- synapse；
+- state simulation。
+
+但当前目标最大挑战：
+
+不是创建cell。
+
+而是：
+
+**每个cell随空间位置变化。**
+
+Macular论文和文档显示它支持三维结构和自定义cell/synapse。[arXiv](https://arxiv.org/abs/2512.13052?utm_source=chatgpt.com)
+
+但是如果现有配置：
+
+- 同层参数共享；
+- uniform generator；
+
+那么只改坐标不足。
+
+---
+
+## 推荐架构
+
+Python/PyTorch core：
+
+负责：
+
+- anatomy；
+- sparse graph；
+- state update；
+- analysis。
+
+Macular：
+
+作为：
+
+- 方法参考；
+- 对照；
+- 部分方程来源。
+
+不是fork。
+
+---
+
+## 推翻推荐的条件
+
+以下情况会改变选择：
+
+1. Macular现有接口已经支持：
+   - per-cell parameter；
+   - nonuniform mosaic；
+   - spatially varying RF；
+   
+   且修改成本低。
+
+2. 教授要求：
+
+“论文必须基于Macular扩展”。
+
+---
+
+# B. 系统结构与数学定义
+
+总体：
+
+\[
+Light(x,y,\lambda,t)
+\]
+
+↓
+
+Optics
+
+↓
+
+Cone mosaic
+
+↓
+
+Phototransduction
+
+↓
+
+HC feedback
+
+↓
+
+BC
+
+↓
+
+AC
+
+↓
+
+RGC
+
+↓
+
+Spike/response
+
+
+---
+
+# Module 1：光场与 retinal projection
+
+## 输入
+
+外部刺激：
+
+\[
+L(\theta_x,\theta_y,\lambda,t)
+\]
+
+单位：
+
+- angular coordinate；
+- wavelength；
+- time。
+
+
+---
+
+## eye movement
+
+眼动不是控制模型。
+
+输入：
+
+gaze trajectory：
+
+\[
+g(t)
+\]
+
+转换：
+
+\[
+\theta_{retina}
+=
+\theta_{world}-g(t)
+\]
+
+
+输出：
+
+retinal image：
+
+\[
+I_{ret}(x,y,t)
+\]
+
+
+---
+
+必须避免：
+
+未来信息。
+
+---
+
+# Module 2：Cone mosaic
+
+## 输出
+
+每个cone：
+
+\[
+c_i
+\]
+
+字段：
+
+```text
+type
+L/M/S
+soma_coord_mm
+aperture
+RF_center
+```
+
+---
+
+## 光采样
+
+不是point sample。
+
+
+应该：
+
+\[
+q_i(t)
+=
+\int_A
+I(x,y,t)
+W_i(x,y)
+dxdy
+\]
+
+
+其中：
+
+\(W_i\)
+
+是cone aperture。
+
+---
+
+## 注意
+
+RGB不能直接作为cone response。
+
+需要：
+
+spectral conversion：
+
+\[
+I_\lambda
+\rightarrow
+L/M/S
+\]
+
+如果没有：
+
+display calibration：
+
+只能做：
+
+relative luminance。
+
+不能称：
+
+R*/s。
+
+
+---
+
+# Module 3：Phototransduction
+
+输入：
+
+cone photon signal：
+
+\[
+q_i(t)
+\]
+
+
+输出：
+
+cone response：
+
+\[
+r_i(t)
+\]
+
+
+一般形式：
+
+\[
+\tau_c
+\frac{dr}{dt}
+=
+F(q_i,r_i)
+\]
+
+
+其中：
+
+F未知时：
+
+必须来自参数表。
+
+---
+
+不能：
+
+直接：
+
+pixel→cone activation。
+
+
+---
+
+# Module 4：Horizontal / Bipolar / Amacrine
+
+## HC
+
+输入：
+
+cone population：
+
+\[
+C_i
+\]
+
+输出：
+
+feedback：
+
+\[
+H_i
+\]
+
+
+一般：
+
+\[
+H_i=
+\sum_j w_{ij}C_j
+\]
+
+
+---
+
+## BC
+
+ON：
+
+\[
+B^{ON}
+=
+f(C-H)
+\]
+
+
+OFF：
+
+\[
+B^{OFF}
+=
+f(H-C)
+\]
+
+
+注意：
+
+ON/OFF inversion位置必须固定。
+
+---
+
+## AC
+
+输入：
+
+BC。
+
+输出：
+
+temporal modulation。
+
+例如：
+
+\[
+A_i(t)
+=
+G(B_i(t),A_i(t-\Delta t))
+\]
+
+
+---
+
+# Module 5：RGC
+
+输出：
+
+graded/spike。
+
+例如：
+
+membrane：
+
+\[
+\tau_R\dot V=
+F(B,A,V)
+\]
+
+
+spike：
+
+\[
+P(spike)=\sigma(V)
+\]
+
+
+---
+
+# C. 中心—周边空间模型
+
+## 必须同时覆盖
+
+不是：
+
+parafovea patch。
+
+
+---
+
+## 推荐工程策略
+
+完整目标：
+
+二维连续视野。
+
+第一实现：
+
+选择：
+
+一个 meridian sector。
+
+原因：
+
+macaque retina：
+
+eccentricity变化最关键。
+
+---
+
+这个不是永久限制。
+
+只是：
+
+连续模型验证。
+
+---
+
+## 需要维护两个坐标
+
+### soma
+
+\[
+s_i
+\]
+
+
+### RF center
+
+\[
+r_i
+\]
+
+
+不能混。
+
+---
+
+## RF
+
+包括：
+
+center：
+
+\[
+K_c
+\]
+
+surround：
+
+\[
+K_s
+\]
+
+
+例如：
+
+\[
+RF_i(x)
+=
+K_c-K_s
+\]
+
+
+---
+
+## 连接
+
+不是：
+
+最近邻。
+
+需要：
+
+距离权重：
+
+\[
+w_{ij}=f(d_{ij},ecc)
+\]
+
+
+---
+
+# D. 初始化与状态合同
+
+## 初始化
+
+每个simulation：
+
+保存：
+
+```text
+seed
+geometry version
+parameter manifest
+initial state
+```
+
+---
+
+## warm-up
+
+不能：
+
+每帧reset。
+
+必须：
+
+state:
+
+\[
+s(t)
+\]
+
+连续保存。
+
+
+---
+
+## checkpoint
+
+必须：
+
+支持：
+
+```
+save(t)
+restore(t)
+continue
+```
+
+恢复结果一致。
+
+---
+
+## 时间
+
+必须记录：
+
+\[
+\Delta t
+\]
+
+单位：
+
+seconds。
+
+
+不能：
+
+frame index冒充时间。
+
+---
+
+# E. 参数证据账本规范
+
+每个参数：
+
+必须有：
+
+```yaml
+parameter_id:
+species:
+value:
+unit:
+source:
+location:
+status:
+```
+
+---
+
+status：
+
+允许：
+
+- measured
+- derived
+- fitted
+- assumed
+- unknown
+
+
+---
+
+例如：
+
+错误：
+
+```python
+cone_density=10000
+```
+
+正确：
+
+```yaml
+cone_density:
+value:null
+status:unknown
+```
+
+---
+
+# F. Codex实现规范
+
+目录：
+
+```
+retina_sim/
+|
+|-- optics/
+|-- mosaic/
+|-- connectivity/
+|-- dynamics/
+|-- stimulus/
+|-- measurement/
+|-- validation/
+|-- provenance/
+```
+
+
+---
+
+## 数据结构
+
+Cell:
+
+```python
+Cell(
+ id,
+ type,
+ soma_xy,
+ rf_center_xy,
+ params,
+ state
+)
+```
+
+---
+
+Edge:
+
+COO：
+
+```text
+source
+target
+weight
+delay
+synapse_type
+```
+
+---
+
+State tensor：
+
+\[
+N_{cells}\times N_{state}
+\]
+
+
+---
+
+# timestep伪代码
+
+```python
+for t in time:
+
+    retinal_input = project_scene(
+        image[t],
+        gaze[t]
+    )
+
+    cone_state = update_cone(
+        retinal_input,
+        cone_state
+    )
+
+    hc_state = update_horizontal(
+        cone_state,
+        hc_state
+    )
+
+    bc_state = update_bipolar(
+        cone_state,
+        hc_state,
+        bc_state
+    )
+
+    ac_state = update_amacrine(
+        bc_state,
+        ac_state
+    )
+
+    rgc_state = update_rgc(
+        bc_state,
+        ac_state,
+        rgc_state
+    )
+
+    save_state()
+```
+
+---
+
+如果存在feedback：
+
+必须明确：
+
+同步还是：
+
+\[
+t+1
+\]
+
+延迟。
+
+不能隐藏循环。
+
+---
+
+# G. 必须验收项目
+
+## Geometry
+
+- density连续；
+- spacing统计；
+- center/periphery变化。
+
+
+---
+
+## RF
+
+- RF center；
+- RF size；
+- surround。
+
+
+---
+
+## Dynamics
+
+- dt收敛；
+- state continuity；
+- repeatability。
+
+
+---
+
+## Sign
+
+测试：
+
+- ON亮响应；
+- OFF暗响应。
+
+
+---
+
+## 禁止
+
+禁止：
+
+- hardcode response；
+- 预设错觉输出；
+- 用CNN替代retina；
+- uniform patch冒充whole retina。
+
+---
+
+# H. 校准与验证层级
+
+分开：
+
+## Level 1 anatomy
+
+验证：
+
+mosaic。
+
+
+---
+
+## Level 2 physiology
+
+验证：
+
+RF。
+
+---
+
+## Level 3 dynamics
+
+验证：
+
+temporal tuning。
+
+
+---
+
+## Level 4 behavior
+
+saccade-like。
+
+---
+
+不能：
+
+Level4失败后修改模型参数。
+
+---
+
+# I. 科学问题与消融
+
+主问题：
+
+> 在固定细胞预算和刺激条件下，macaque中心—周边空间组织以及eccentricity-dependent connectivity是否改变早期视觉群体编码？
+
+---
+
+关键对照：
+
+## Uniform
+
+同cell数量。
+
+---
+
+## Geometry only
+
+只改变：
+
+position。
+
+---
+
+## Geometry + RF
+
+加入：
+
+RF变化。
+
+---
+
+## Full dynamic
+
+加入：
+
+state。
+
+
+---
+
+创新不能写：
+
+“第一个nonuniform retina”。
+
+已有：
+
+ISETMacaque、其他retina模型覆盖部分空间建模。
+
+---
+
+可能贡献：
+
+> 一个可追溯的macaque center-periphery dynamic retinal simulator，并系统分析空间结构如何影响群体编码。
+
+---
+
+# J. 交付阶段
+
+## Phase 0
+
+参数和来源管理。
+
+停止条件：
+
+来源不清。
+
+---
+
+## Phase 1
+
+连续mosaic + RF geometry。
+
+交付：
+
+空间模型。
+
+
+---
+
+## Phase 2
+
+动态网络。
+
+交付：
+
+BC/AC/RGC。
+
+
+---
+
+## Phase 3
+
+saccade-like输入测试。
+
+---
+
+# 最后说明
+
+这份规格是：
+
+**待来源逐项核验的实现规范。**
+
+我不能因为当前是Pro模式就把：
+
+- 未确认参数；
+- 未确认物种数据；
+- 未确认代码接口；
+
+写成事实。
+
+真正开始实现前，仍需要冻结：
+
+1. macaque species；
+2. 首阶段视野范围；
+3. cone/RGC subtype范围；
+4. 参数来源表；
+5. Macular是否作为底层运行框架还是参考实现。
+
+在这些确认前，任何“完全符合生理”的说法都应该改成：
+
+> “基于已公开 macaque 生理约束的可追溯模拟器”。
+
+
+
+============================================================
+pro_macaque_spec_appendix1_raw.txt
+============================================================
+
+先说明本轮能做到和不能做到的范围：
+
+我实际打开并读取了：
+
+1. **Saha et al. 2024 Nature Communications**
+   - 原文页面可访问；
+   - 我确认其主要结果：macaque foveal（0–0.5 mm）与 peripheral（>6 mm）cone adaptation 差异；使用whole-cell patch记录cone voltage response；讨论Ih与adaptation相关。  
+   - 重要纠正：它不是给出一个完整cone adaptation机制方程，而是通过实验响应拟合分析gain、kinetics、adaptation timescale。([Saha 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11470117/))
+
+2. **Somaratna & Freeman 2025 J Neurophysiology**
+   - 页面可访问；
+   - 我确认该模型包含：
+     - cones；
+     - H1 horizontal cells；
+     - midget bipolar cells；
+     - midget ganglion cells。
+   - 它不是“静态模型”；其目标包含RF construction和时间响应。([Somaratna 2025](https://journals.physiology.org/doi/full/10.1152/jn.00302.2024))
+
+我没有在本轮打开：
+
+- Macular源码；
+- ISETMacaque源码；
+- Packer/Schein/Wool原文全文；
+- 所有补充材料。
+
+因此下面**不会填写未经读取的生理方程参数**。这一版作为规格附录，重点补齐：
+
+- 数学闭合方式；
+- 参数阻断规则；
+- 哪些地方必须BLOCKED。
+
+---
+
+# M1附录：逐层数学闭合规范（修正版）
+
+## 0. 总原则
+
+任何层必须满足：
+
+\[
+input \rightarrow state \rightarrow output
+\]
+
+禁止：
+
+```text
+input → f(input) → response
+```
+
+形式的黑箱生理函数。
+
+如果机制未知：
+
+标记：
+
+```
+BLOCKED(parameter/mechanism)
+```
+
+而不是填默认ODE。
+
+---
+
+# M1. 光学与光子输入
+
+## 输入
+
+外部场：
+
+\[
+L(\lambda,\theta_x,\theta_y,t)
+\]
+
+单位：
+
+\[
+W/(m^2 sr\,nm)
+\]
+
+
+---
+
+## 光学投影
+
+经过眼模型：
+
+\[
+L_{ret}(\lambda,x,y,t)
+=
+\mathcal{O}
+(L)
+\]
+
+
+其中：
+
+\(\mathcal O\)
+
+包含：
+
+- pupil；
+- optics PSF；
+- retinal magnification。
+
+
+---
+
+当前：
+
+这些参数：
+
+状态：
+
+```
+BLOCKED
+```
+
+除非来源提供：
+
+- species；
+- wavelength；
+- pupil condition。
+
+
+不能直接把pixel亮度变成cone photon。
+
+
+---
+
+# M2. Cone mosaic
+
+每个cone：
+
+状态：
+
+\[
+c_i
+\]
+
+包含：
+
+\[
+(x_i^{soma},
+x_i^{RF},
+type_i)
+\]
+
+
+其中：
+
+type：
+
+\[
+\in
+\{L,M,S\}
+\]
+
+
+---
+
+## aperture integration
+
+不是point sampling：
+
+\[
+q_i(t)
+=
+\int_A
+L_{ret}(x,y,\lambda,t)
+A_i(x,y)
+dxdy
+\]
+
+
+输出：
+
+cone photon catch：
+
+单位：
+
+\[
+photons/s
+\]
+
+或：
+
+\[
+R^*/s
+\]
+
+
+---
+
+## 当前缺失
+
+以下不能填：
+
+- macaque全视野cone density函数；
+- S-cone区域规则；
+- aperture diameter连续模型。
+
+
+状态：
+
+BLOCKED。
+
+
+---
+
+# M3. Phototransduction
+
+这里必须修正上一版。
+
+不能写：
+
+\[
+r=f(q)
+\]
+
+---
+
+## 最低合法形式
+
+输入：
+
+\[
+q_i(t)
+\]
+
+
+输出：
+
+cone generator signal：
+
+例如：
+
+\[
+V_i(t)
+\]
+
+
+单位：
+
+mV。
+
+
+---
+
+状态：
+
+\[
+x_i
+\]
+
+
+一般：
+
+\[
+\dot{x_i}=F_{cone}(x_i,q_i,\theta_i)
+\]
+
+
+但是：
+
+如果没有具体机制来源：
+
+\[
+F_{cone}=BLOCKED
+\]
+
+
+---
+
+## 已知信息
+
+Saha：
+
+提供：
+
+- response kinetics；
+- gain adaptation；
+- fovea/periphery差异。
+
+但不是完整光转导方程。([Saha 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11470117/))
+
+
+因此：
+
+可以用于：
+
+parameter constraint。
+
+不能直接写成：
+
+cone ODE。
+
+
+---
+
+# M4. Cone adaptation
+
+建议采用：
+
+实验约束模型，而非伪生理ODE。
+
+
+例如：
+
+输出：
+
+\[
+V(t)
+=
+g(b)
+\cdot h(t)
+\]
+
+其中：
+
+background：
+
+\[
+b
+\]
+
+
+gain：
+
+\[
+g(b)
+\]
+
+
+time constant：
+
+\[
+\tau(b)
+\]
+
+
+---
+
+状态：
+
+\[
+a(t)
+\]
+
+
+例如：
+
+\[
+\tau_a(b)\frac{da}{dt}
+=
+u-a
+\]
+
+
+但是：
+
+\[
+\tau_a
+\]
+
+和：
+
+\[
+g
+\]
+
+必须来自：
+
+experiment fit。
+
+
+否则：
+
+BLOCKED。
+
+
+---
+
+Saha可以支持：
+
+foveal/peripheral adaptation参数不同：
+
+但只能支持：
+
+区域差异。
+
+不能支持：
+
+中间eccentricity连续函数。([Saha 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11470117/))
+
+
+---
+
+# M5. Horizontal feedback
+
+这是上一版最大漏洞。
+
+不能：
+
+HC计算完但不反馈。
+
+---
+
+定义：
+
+cone输出：
+
+\[
+C_i
+\]
+
+
+HC：
+
+\[
+H_j(t)
+=
+\sum_i w_{ji}C_i(t-\Delta_{ji})
+\]
+
+
+反馈：
+
+必须明确作用位置。
+
+
+例如：
+
+cone terminal modulation：
+
+\[
+C'_i=
+C_i-\alpha
+\sum_jw_{ij}H_j
+\]
+
+
+或者：
+
+cone gain modulation：
+
+\[
+C'_i=
+G(H_i)C_i
+\]
+
+
+---
+
+两种机制不能混。
+
+当前：
+
+具体macaque参数：
+
+BLOCKED。
+
+
+---
+
+Somaratna 2025支持：
+
+cone-H1-midget pathway结构存在。([Somaratna 2025](https://journals.physiology.org/doi/full/10.1152/jn.00302.2024))
+
+但：
+
+不能认为它给出了完整HC feedback全部机制。
+
+
+---
+
+# M6. Bipolar ON/OFF
+
+输入：
+
+\[
+C'
+\]
+
+
+---
+
+## ON
+
+如果定义：
+
+亮刺激增加输出：
+
+\[
+B_{ON}
+\]
+
+
+则：
+
+\[
+B_{ON}
+=
+F_{ON}(C')
+\]
+
+
+---
+
+## OFF
+
+暗刺激增强：
+
+\[
+B_{OFF}
+=
+F_{OFF}(C')
+\]
+
+
+---
+
+必须记录：
+
+sign convention：
+
+例如：
+
+\[
+\Delta C'>0
+\]
+
+代表：
+
+cone hyperpolarization还是depolarization？
+
+
+因为：
+
+cone光增通常导致：
+
+photoreceptor hyperpolarization。
+
+不能直接：
+
+brightness↑ → voltage↑。
+
+
+---
+
+当前：
+
+ON/OFF内部非线性：
+
+BLOCKED。
+
+---
+
+# M7. Amacrine
+
+当前不要伪造完整AC网络。
+
+
+必须定义：
+
+选择：
+
+- 哪类AC；
+- inhibitory/excitatory；
+- target。
+
+
+状态：
+
+如果没有：
+
+BLOCKED。
+
+
+---
+
+# M8. RGC
+
+输出：
+
+不要：
+
+\[
+P(spike)=sigmoid(V)
+\]
+
+这确实错误。
+
+---
+
+正确：
+
+rate模型：
+
+\[
+\lambda(t)
+=
+f(V(t))
+\]
+
+单位：
+
+Hz。
+
+
+---
+
+spike：
+
+时间bin：
+
+\[
+\Delta t
+\]
+
+
+count：
+
+\[
+N_t
+\sim
+Poisson(\lambda(t)\Delta t)
+\]
+
+
+概率：
+
+\[
+P(N_t=k)
+=
+\frac{
+(\lambda\Delta t)^k e^{-\lambda\Delta t}
+}{k!}
+\]
+
+
+Bernoulli：
+
+只有：
+
+\[
+P(N_t\ge1)
+=
+1-e^{-\lambda\Delta t}
+\]
+
+时使用。
+
+
+---
+
+因此：
+
+dt必须进入。
+
+---
+
+# M2. 单步离散更新
+
+采用：
+
+## explicit delayed update
+
+原因：
+
+避免HC↔cone循环。
+
+---
+
+时间：
+
+\[
+t_n=n\Delta t
+\]
+
+
+保存：
+
+old state：
+
+\[
+S_n
+\]
+
+
+---
+
+步骤：
+
+## 1 cone input
+
+读取：
+
+\[
+I_n
+\]
+
+
+---
+
+## 2 cone
+
+\[
+C_{n+1}
+=
+F_C(C_n,I_n)
+\]
+
+
+---
+
+## 3 HC
+
+读取：
+
+\[
+C_n
+\]
+
+而不是：
+
+C new。
+
+
+\[
+H_{n+1}
+=
+F_H(H_n,C_n)
+\]
+
+
+延迟：
+
+\[
+\Delta_H
+\]
+
+
+---
+
+## 4 BC
+
+读取：
+
+\[
+C_{n+1},H_{n+1}
+\]
+
+
+---
+
+## 5 AC
+
+读取：
+
+BC。
+
+
+---
+
+## 6 RGC
+
+读取：
+
+BC+AC。
+
+
+---
+
+## 7 spike
+
+根据：
+
+\[
+\lambda_n
+\]
+
+采样。
+
+
+---
+
+完整：
+
+```python
+for t:
+
+    retinal = optics(scene[t], gaze[t])
+
+    cone_new = cone_update(
+        cone_old,
+        retinal
+    )
+
+    hc_new = hc_update(
+        hc_old,
+        cone_old
+    )
+
+    bc_new = bc_update(
+        cone_new,
+        hc_new
+    )
+
+    ac_new = ac_update(
+        ac_old,
+        bc_new
+    )
+
+    rgc_new = rgc_update(
+        rgc_old,
+        bc_new,
+        ac_new
+    )
+
+    spike = sample(
+        rgc_rate,
+        dt,
+        seed
+    )
+
+    save()
+```
+
+---
+
+如果未来采用：
+
+instantaneous feedback：
+
+必须改：
+
+implicit solver。
+
+当前不采用。
+
+---
+
+# M3. 参数账本（当前可确认部分）
+
+以下只列我本轮能确认的。
+
+---
+
+## P001
+
+name:
+
+foveal cone region
+
+value:
+
+0–0.5 mm
+
+status:
+
+measured
+
+species:
+
+macaque
+
+source:
+
+Saha 2024 Nature Communications
+
+DOI:
+
+10.1038/s41467-024-53061-3
+
+
+用途：
+
+cone adaptation区域比较。
+
+
+---
+
+## P002
+
+peripheral cone region
+
+value:
+
+>6 mm
+
+status:
+
+measured
+
+species:
+
+macaque
+
+source:
+
+Saha 2024
+
+用途：
+
+fovea/periphery adaptation比较。
+
+
+---
+
+## P003
+
+cell types
+
+value:
+
+cone → H1 → midget BC → midget RGC
+
+status:
+
+model structure
+
+species:
+
+macaque
+
+source:
+
+Somaratna & Freeman 2025
+
+DOI:
+
+10.1152/jn.00302.2024
+
+
+用途：
+
+pathway topology。
+
+
+---
+
+## P004
+
+cone adaptation mechanism
+
+value:
+
+unknown
+
+status:
+
+BLOCKED
+
+原因：
+
+Saha提供实验拟合和Ih解释，不提供完整phototransduction ODE。
+
+
+---
+
+## P005
+
+HC feedback equation
+
+value:
+
+unknown
+
+status:
+
+BLOCKED
+
+原因：
+
+需要具体mechanistic source。
+
+
+---
+
+# 当前阻断physiological run的unknown
+
+必须解决：
+
+1. macaque cone mosaic生成规则；
+2. cone aperture；
+3. phototransduction模型；
+4. HC feedback位置；
+5. BC subtype；
+6. AC选择；
+7. RGC subtype。
+
+
+---
+
+# M4. 本轮实际读源清单
+
+|来源|状态|提取内容|
+|-|-|-|
+|Macular paper/docs|本轮未重新打开全文，仅沿用此前读取状态|平台能力|
+|Saha 2024 Nat Commun|已打开正文页面|fovea/periphery cone adaptation结果|
+|Somaratna 2025 J Neurophysiology|已打开页面|cone-H1-midget BC-RGC结构|
+|ISETMacaque|未打开|unknown|
+|Packer/Schein/Wool|未打开|unknown|
+
+---
+
+# 本轮结论
+
+上一版最大的问题不是“不够复杂”，而是：
+
+**把未知机制伪装成方程。**
+
+修正后的规范应该允许：
+
+- geometry先实现；
+- dynamic逐层冻结；
+- 未知机制BLOCKED。
+
+真正可信的 simulator 不应该有大量漂亮公式，而应该有：
+
+1. 每个公式来源；
+2. 每个未知位置；
+3. 每个假设边界。
+
+当前可以继续设计基础设施，但不能声称已经具备“完整生理模型”。目前最合理的下一阶段仍然是建立：
+
+- 参数manifest；
+- anatomy layer；
+- state接口；
+
+然后逐项填充经过来源确认的机制。
+
+
+
+============================================================
+pro_macaque_spec_appendix2_raw.txt
+============================================================
+
+# 勘误 + 实现合同附录（v0.2）
+
+## 0. 证据边界声明
+
+本轮我实际通过网页读取了：
+
+- Macular 论文公开正文页面：
+  - https://www.frontiersin.org/journals/neuroinformatics/articles/10.3389/fninf.2025.1726374/full
+  - 内容确认：
+    - Macular 是多层 cell/synapse 图模拟平台；
+    - cell 由状态变量、参数、动力学方程和输入定义；
+    - graph 保存 cell 坐标、连接和初始状态；
+    - MTE 可扩展 cell/synapse 类型；
+    - 示例包含 BC、AC、RGC、V1 等层。   [Frontiers](https://www.frontiersin.org/journals/neuroinformatics/articles/10.3389/fninf.2025.1726374/full?utm_source=chatgpt.com)
+
+未在本轮重新打开：
+
+- ISETMacaque commit；
+- Saha 原始补充材料；
+- Somaratna 作者源码；
+- Packer/Schein/Wool原文。
+
+因此：
+
+以下引用这些来源的位置和参数记录时，明确标注：
+
+> “咨询方提供的已核代码/文献证据”
+
+而不是我本轮独立读取。
+
+---
+
+# 一、对前两稿错误的正式撤回
+
+## 错误1：cone输入量纲错误
+
+之前：
+
+\[
+q_i=\int_A I(x,y,t)dxdy
+\]
+
+直接称：
+
+R*/s。
+
+这是错误。
+
+原因：
+
+辐射量、视网膜照度、光子数、异构化事件不是同一物理量。
+
+---
+
+## 正确量纲链
+
+### 1. 场景光谱辐亮度
+
+输入：
+
+\[
+L_e(\lambda,\theta_x,\theta_y,t)
+\]
+
+单位：
+
+\[
+W\,m^{-2}\,sr^{-1}\,nm^{-1}
+\]
+
+
+---
+
+### 2. 经过眼光学
+
+得到：
+
+retinal spectral irradiance：
+
+\[
+E_r(\lambda,x,y,t)
+\]
+
+单位：
+
+\[
+W\,m^{-2}\,nm^{-1}
+\]
+
+
+---
+
+### 3. cone aperture积分
+
+第 i 个 cone：
+
+aperture：
+
+\[
+A_i(x,y)
+\]
+
+归一化：
+
+\[
+\int A_i(x,y)dxdy=1
+\]
+
+
+接收功率：
+
+\[
+P_i(\lambda,t)
+=
+\int
+E_r(\lambda,x,y,t)
+A_i(x,y)
+dxdy
+\]
+
+单位：
+
+\[
+W\,nm^{-1}
+\]
+
+
+---
+
+### 4. photon conversion
+
+波长：
+
+\[
+\lambda
+\]
+
+必须转换：
+
+\[
+\lambda_{m}=10^{-9}\lambda_{nm}
+\]
+
+
+单光子能量：
+
+\[
+E_\gamma=
+\frac{hc}{\lambda_m}
+\]
+
+
+其中：
+
+- h：
+  J·s
+- c：
+  m/s
+
+
+---
+
+光子流：
+
+\[
+\Phi_i(\lambda,t)
+=
+\frac{P_i(\lambda,t)}
+{hc/\lambda_m}
+\]
+
+单位：
+
+photons/s/nm
+
+
+---
+
+### 5. isomerization
+
+最终：
+
+\[
+R_i^*
+=
+\eta_i
+\int
+\Phi_i(\lambda,t)
+S_i(\lambda)d\lambda
+\]
+
+单位：
+
+\[
+R^*/s
+\]
+
+其中：
+
+- \(S_i(\lambda)\)：cone spectral sensitivity；
+- \(\eta_i\)：optical/quantum efficiency。
+
+
+---
+
+## 没有这些条件时
+
+禁止：
+
+RGB → R*/s。
+
+必须返回：
+
+```text
+ERROR_ABSOLUTE_PHOTOMETRY_UNAVAILABLE
+```
+
+允许：
+
+相对刺激：
+
+例如：
+
+contrast normalized。
+
+但输出必须标：
+
+relative response。
+
+
+---
+
+# 二、cone / HC / BC / AC / RGC 动力学合同修正
+
+## 1. cone phototransduction
+
+之前错误：
+
+写：
+
+\[
+F_{cone}
+\]
+
+然后假装完整。
+
+撤回。
+
+---
+
+当前状态：
+
+## BLOCKED
+
+原因：
+
+需要：
+
+- 具体光转导模型；
+- 参数；
+- species；
+- illumination。
+
+
+---
+
+软件接口：
+
+允许：
+
+```python
+cone_model.update(
+    Rstar,
+    state,
+    params
+)
+```
+
+但是：
+
+params缺失时：
+
+禁止运行physiological mode。
+
+
+---
+
+# 2. cone adaptation
+
+Saha 2024：
+
+不能作为动态机制方程。
+
+你指出正确：
+
+Eq2是flash response拟合，不是cone adaptation ODE。
+
+因此：
+
+以下禁止：
+
+```python
+tau = Saha_Eq2
+```
+
+---
+
+允许：
+
+建立：
+
+experiment_fit parameter：
+
+例如：
+
+```yaml
+cone_response_peak:
+status: fitted_from_experiment
+```
+
+但不能写：
+
+mechanistic phototransduction。
+
+
+---
+
+# 3. HC feedback
+
+之前：
+
+```text
+cone update
+↓
+HC update
+```
+
+然后人为延迟。
+
+撤回。
+
+没有来源不能创造dt delay。
+
+
+---
+
+正确软件合同：
+
+定义联合系统：
+
+状态：
+
+\[
+X=
+[
+C,H,B,A,R
+]
+\]
+
+
+连续：
+
+\[
+\frac{dX}{dt}
+=
+F(X,I,\Theta)
+\]
+
+
+其中：
+
+\[
+F
+\]
+
+由component提供。
+
+
+---
+
+如果采用 Somaratna reference component：
+
+必须：
+
+读取作者方程后冻结。
+
+---
+
+软件层：
+
+solver负责：
+
+\[
+X_{t+\Delta t}
+=
+Solver(F,X_t)
+\]
+
+而不是：
+
+layer顺序制造生理时间。
+
+
+---
+
+# 4. ON/OFF sign convention
+
+必须定义。
+
+cone：
+
+光增加通常导致：
+
+photoreceptor hyperpolarization。
+
+因此：
+
+不能：
+
+brightness↑ = voltage↑。
+
+
+---
+
+每个component必须声明：
+
+```yaml
+sign_convention:
+  positive:
+  unit:
+  biological_meaning:
+```
+
+例如：
+
+未知：
+
+BLOCKED。
+
+
+---
+
+# 5. RGC spike
+
+之前：
+
+\[
+P(spike)=sigmoid(V)
+\]
+
+错误。
+
+---
+
+正确：
+
+rate：
+
+\[
+\lambda(t)
+\]
+
+单位：
+
+Hz。
+
+
+---
+
+离散：
+
+\[
+N_t\sim Poisson(\lambda_t\Delta t)
+\]
+
+
+若只判断：
+
+至少一次spike：
+
+\[
+P(N_t>0)
+=
+1-e^{-\lambda_t\Delta t}
+\]
+
+
+dt必须进入。
+
+---
+
+# 三、机器可检查 schema
+
+以下不是完整参数表，而是最低合同。
+
+---
+
+## 1. source
+
+```yaml
+source_id: S_Saha2024
+type: paper
+species: macaque
+url: https://...
+doi: 10.1038/s41467-024-53061-3
+location: unknown_until_verified
+status: verified_by_consultant
+```
+
+---
+
+## 2. parameter
+
+示例：
+
+### Packer cone density（咨询方核代码证据）
+
+```yaml
+parameter_id: cone_density_temporal_mm
+value:
+  - ecc_mm: 1.315752141746
+    density: 25405.44699554
+  - ecc_mm: 2.100173359397
+    density: 15568.20285694
+  - ecc_mm: 3.133501162542
+    density: 11903.25054881
+
+unit: cones/mm^2
+
+species:
+  macaque: unknown_exact_species
+
+source:
+  type: published_code_tabulation
+  repository: ISETMacaque
+  commit:
+    cf22ac9d681482ca1fcc365a423ef0c2be7916a3
+
+status:
+  measured_source_table
+
+uncertainty:
+  unknown
+
+transformation:
+  interpolation_required: true
+
+allowed_use:
+  local_density_reference_only
+```
+
+注意：
+
+不能写：
+
+“完整macaque cone map”。
+
+---
+
+## 3. Saha adaptation condition（咨询方核文献）
+
+```yaml
+parameter_id: cone_adaptation_region
+
+value:
+  central_region:
+    0-0.5mm
+  peripheral_region:
+    >6mm
+
+unit:mm retinal eccentricity
+
+species:
+  macaque
+
+source:
+  doi:10.1038/s41467-024-53061-3
+
+status:
+  measured_experimental_condition
+
+not:
+  continuous_eccentricity_function
+```
+
+---
+
+## 4. geometry
+
+```yaml
+geometry_id:
+species:
+meridian:
+eccentricity_range:
+coordinate_system:
+magnification_model:
+source:
+status:
+```
+
+---
+
+## 5. component
+
+```yaml
+component_id:
+name:
+input_units:
+output_units:
+state_variables:
+equation_source:
+status:
+```
+
+---
+
+## 6. dataset
+
+```yaml
+dataset_id:
+species:
+stimulus:
+illumination:
+license:
+field:
+```
+
+---
+
+## 7. run
+
+```yaml
+run_id:
+code_commit:
+parameter_manifest_hash:
+seed:
+dt:
+solver:
+checkpoint:
+```
+
+---
+
+# 四、实现合同
+
+## 当前允许实现
+
+## A. Anatomy infrastructure
+
+允许：
+
+- cell object；
+- soma coordinate；
+- RF coordinate；
+- sparse graph；
+- coverage report。
+
+
+---
+
+## B. Geometry
+
+允许使用：
+
+Packer代码表作为局部density输入。
+
+但是必须输出：
+
+coverage：
+
+```text
+supported:
+eccentricity=[known]
+
+unknown:
+outside
+```
+
+
+---
+
+## C. Sparse graph
+
+格式：
+
+CSR/COO：
+
+edge:
+
+```text
+src
+dst
+weight
+delay
+type
+```
+
+---
+
+## D. State engine
+
+支持：
+
+\[
+dX/dt=F(X,I)
+\]
+
+
+但：
+
+F必须来自component。
+
+
+---
+
+# 五、禁止Codex猜实现
+
+以下禁止：
+
+## 1
+
+禁止：
+
+```python
+cone_response = rgb.mean()
+```
+
+冒充cone。
+
+
+---
+
+## 2
+
+禁止：
+
+```python
+density = interpolation(all_retina)
+```
+
+没有来源。
+
+
+---
+
+## 3
+
+禁止：
+
+```python
+tau=20ms
+```
+
+没有source。
+
+
+---
+
+## 4
+
+禁止：
+
+完整macaque声明：
+
+如果只有：
+
+局部density表。
+
+
+---
+
+# 六、依赖DAG
+
+```
+Source manifest
+        |
+        v
+Coordinate system
+        |
+        v
+Mosaic generator
+        |
+        v
+Sparse connectivity
+        |
+        v
+State engine
+        |
+        v
+Reference components
+        |
+        v
+Functional validation
+```
+
+---
+
+# 七、验收标准
+
+## Geometry
+
+必须：
+
+- soma coordinate可追踪；
+- RF coordinate独立；
+- density coverage报告。
+
+
+---
+
+## Dynamics
+
+必须：
+
+- checkpoint复现；
+- seed一致；
+- dt convergence。
+
+
+---
+
+工程容差：
+
+可以定义：
+
+例如：
+
+数值误差范围。
+
+但：
+
+不能称生理误差。
+
+
+---
+
+## 生理验证
+
+分：
+
+1. anatomy fit
+2. RF fit
+3. temporal tuning
+4. behavior phenomenon
+
+
+不能混。
+
+
+---
+
+# 八、明确不能交付的内容
+
+当前不能声称完成：
+
+1. 完整macaque retina。
+2. 完整cone phototransduction。
+3. 完整HC反馈。
+4. 完整ON/OFF BC机制。
+5. 完整AC网络。
+6. saccadic suppression解释。
+7. 人类视觉错觉解释。
+
+
+---
+
+# 九、最终交Codex清单
+
+## 允许实现
+
+- 参数系统；
+- provenance系统；
+- mosaic数据结构；
+- sparse graph；
+- solver框架；
+- 单元测试。
+
+
+---
+
+## 禁止实现
+
+- 未来源公式；
+- 默认生理参数；
+- 隐藏归一化；
+- RGB伪cone；
+- fake biological validation。
+
+
+---
+
+## 需要用户/教授确认
+
+1. macaque species：
+   - M. mulatta?
+   - M. fascicularis?
+   - 其他？
+
+2. 第一阶段illumination：
+
+photopic是否作为工程范围。
+
+3. 首批cell subtype。
+
+4. 是否接受reference component逐层接入。
+
+---
+
+# 十、状态总结
+
+这不是一个“完整生理模拟器规格”。
+
+它是：
+
+> 一个不会伪造生理事实的 simulator implementation contract。
+
+当前可以交给Codex实现的是：
+
+- 软件基础设施；
+- 数据结构；
+- provenance；
+- anatomy graph framework。
+
+
+不能交付的是：
+
+“自动生成完全符合猕猴生理的视网膜”。
+
+真正的研究质量来自：
+
+每增加一个机制，都能回答：
+
+**这个机制来自哪里？加入后改变了什么可测预测？如果删掉它，哪个现象会失败？**
+
+而不是从一开始填满所有方程。
+

@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_hc_candidate_v1",
+  "default_selected": false,
+  "allowed_mode": "explicit connection_preview only for inward or peripheral candidates",
+  "coordinate_frame": "OPL",
+  "unit": "mm",
+  "position_meaning": "anatomical_position",
+  "source_assets": [
+    {
+      "path": "data/source_packages/20261012/hc/Wassle_2000.pdf",
+      "sha256": "32c3b7a0b41f5a434724e04698c98ac80efc960baf224b65ebfa42d313e02609",
+      "role": "original primary paper",
+      "identity_meaning": "frozen bytes, not physiological validation"
+    },
+    {
+      "path": "data/source_packages/20261012/hc/Wassle_2000.txt",
+      "sha256": "289f1651658dcb5a1cd0b07eb2038a28a471af9615be447bf8a6985f0c2bdf6e",
+      "role": "primary paper text extraction",
+      "identity_meaning": "frozen bytes, not physiological validation"
+    },
+    {
+      "path": "data/source_packages/20261012/hc/hc_density_wassle2000.json",
+      "sha256": "850f0abc91f1bc3b38b9ad966d3c2d2e6a5cac29547fe0a59f95588c0832e832",
+      "role": "primary table extraction; not arbor",
+      "identity_meaning": "frozen bytes, not physiological validation"
+    },
+    {
+      "path": "configurations/hc_arbor_W2000_equal_area_bounded_edges_047_104.json",
+      "sha256": "b87bfb2d2c883a8139cd55e5d5f01d6eae3c8cfd74e12372ff0983f384a2c7e3",
+      "role": "existing central effective disk reference, no default replacement",
+      "identity_meaning": "frozen bytes, not physiological validation"
+    }
+  ],
+  "verified_density_rows_path": "data/source_packages/20261012/hc/hc_density_wassle2000.json",
+  "source_record": {
+    "author_year": "Wassle et al. 2000",
+    "doi": "10.1017/S0952523800174097",
+    "source_url": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/09/Wassle-et-al.-2000.pdf",
+    "locator": "printed p599; PDFpage9; central .5-1 and temporal5-6mm convergence and density discussion",
+    "primary_scope": "Actual W2000 full-text passage checked; cited Golgi/Boycott/Wassle1989 original measurements are quotations, not independently re-extracted in this provider.",
+    "species": "W2000 paper includes M.fascicularis/M.mulatta/M.nemestrina; quoted central/peripheral morphology cohort not identified by passage",
+    "specimen": null,
+    "evidence_class": "reported literature convergence/density anchors; project arithmetic and contact-area model remain separate",
+    "peripheral_H1_geometry_caution": "Periphery H1 cone contacts follow major branches, not a filled circular envelope; this provider explicitly supplies effective disk prior only."
+  },
+  "source_domains": [
+    {
+      "coordinate_frame": "OPL",
+      "unit": "mm",
+      "role": "physical-retina central convergence/density anchor transfer",
+      "radial_interval": [
+        0.5,
+        1
+      ],
+      "meridian": "not specified",
+      "evidence": "source passage anchors, not measured maximum arbor radius"
+    },
+    {
+      "coordinate_frame": "anatomical_retina",
+      "unit": "mm",
+      "role": "quoted temporal peripheral convergence/cone-density band",
+      "radial_interval": [
+        5,
+        6
+      ],
+      "meridian": "temporal",
+      "application_frame": "OPL",
+      "transfer_id": "SOURCE_REPORTED_LOCAL_DENSITY_TO_OPL_PROJECT_TRANSFER",
+      "evidence": "quoted morphology counts and approximate cone density; OPL interpretation is conditional project transfer"
+    }
+  ],
+  "central": {
+    "source_interval_mm": [
+      0.5,
+      1
+    ],
+    "reported_convergence": {
+      "H1": [
+        6,
+        7
+      ],
+      "H2": [
+        15,
+        15
+      ]
+    },
+    "project_selected_convergence": {
+      "H1": 6.5,
+      "H2": 15
+    },
+    "convergence_selection": "H1 range midpoint is project arithmetic; H2 reported about15",
+    "reported_cone_density_cells_mm2": 32000,
+    "radius_mm": {
+      "H1": 0.00804,
+      "H2": 0.01222
+    },
+    "derivation": "sqrt(C/(pi*rho)) rounded values retained from existing approved effective disk",
+    "evidence_class": "project_approximation",
+    "shape": "equivalent_area_effective_disk_not_measured_branch_arbor"
+  },
+  "central_inward_candidate": {
+    "candidate_id": "central_constant_footprint_prior_v1",
+    "application_anchor_interval_mm": [
+      0,
+      0.5
+    ],
+    "selected_by_default": false,
+    "requires_explicit_connection_preview": true,
+    "evidence_status": "EXTRAPOLATED_UNCALIBRATED",
+    "selection_is_coverage_completion": false,
+    "joint_profile_failure": "JOINT_PROFILE_UNSUPPORTED if density/arbor/coordinate alignment yields unsubstantiated extensive central zero feedback; never repaired by enlarging radius or zero-adapter claims"
+  },
+  "peripheral": {
+    "source_interval_mm": [
+      5,
+      6
+    ],
+    "source_meridian": "temporal",
+    "reported_convergence": {
+      "H1": [
+        18,
+        18
+      ],
+      "H2": [
+        16,
+        22
+      ]
+    },
+    "reported_convergence_precision": {
+      "H1": "about18",
+      "H2": "quoted range16-22 from Golgi morphology"
+    },
+    "project_selected_convergence": {
+      "H1": 18,
+      "H2": 19
+    },
+    "convergence_selection": "H2 range midpoint19 is explicit project summary; no individual cell degree imposed",
+    "reported_cone_density_cells_mm2": 6000,
+    "density_precision": "about6000 in source passage",
+    "density_transfer_id": "SOURCE_REPORTED_LOCAL_DENSITY_TO_OPL_PROJECT_TRANSFER",
+    "density_basis": "all cones/pedicles; no assumed S fraction, L/M adjustment or independent density rescaling",
+    "formula": "radius_mm = sqrt(project_selected_C / (pi * positive_supported_anchor_density_cells_mm2))",
+    "anchor_only": true,
+    "radius_at_arbitrary_query_from_inverse_density": false,
+    "evidence_class": "project_approximation"
+  },
+  "interpolation": {
+    "project_knots_mm": [
+      1,
+      5,
+      6
+    ],
+    "knot_evidence_class": "project_approximation",
+    "interval_treatment": "original source intervals .5-1 and5-6 remain recorded; endpoint stationarity nodes1/5/6 are explicit model choices, not measured exact eccentricities or fake5.5mm samples",
+    "radial_method": "PCHIP of log finite positive anchor radius, extrapolate=False",
+    "angular_method": "log-linear between neighbouring canonical cardinal ray curves when actual density callback provides directional anchors",
+    "meridian_policy": "peripheral temporal convergence transferred to cardinal rays as project approximation; source-density mode is axisymmetric, actual-density mode can vary anchor radii",
+    "bound_policy": "interpolated radius bounded by maximum finite supported radius node; no clamping or automatic radial extrapolation",
+    "application_anchor_interval_mm": [
+      1,
+      6
+    ],
+    "outside_application": "unsupported; no radius inferred from unsupported or zero density"
+  },
+  "HC_soma_density": {
+    "reuse": "retina_sim.hc_mosaic.HCDensityProfile total density + H1 fraction, physical anatomical_retina mm",
+    "source_interval_policy": "original six Table2 intervals/points and animal identities retained; midpoint interpolation is labelled project approximation",
+    "central_shape": "existing source-informed log smoothstep; total250 centre/23000 near.6 and pH1=.8 transfer remains approximation",
+    "support_radius_mm": 7.1,
+    "global_tiling": "root integration supplies shared stable-ID tiles; this provider never seeds an ROI-specific HC mosaic"
+  },
+  "contact_contract": {
+    "representation": "effective filled disk is a finite project prior, not measured peripheral H1 contact branches",
+    "morphology_nodes": "per-ID validated pass-through; branch nodes and finite thresholds preserved, no conversion into a filled envelope",
+    "H1_eligibility": "exclude S only after same cone mosaic types are resolved; unknown S identity is not guessed here",
+    "H2_eligibility": "all independently resolved cone types; no substitute typed density fields",
+    "single_cone_divergence_quota": false,
+    "source_application_query_domains_separate": true,
+    "zero_contact": "prediction of selected joint geometry only; absent source support is not biological zero"
+  },
+  "claim": "Explicit finite HC geometry candidates for connection preview; sources and interpolated/extrapolated prior remain separate. Does not certify source coverage, complete central feedback, dynamic HC gap, exterior recurrent closure or physiological calibration."
+}

@@ -1,0 +1,72 @@
+{
+  "source_url": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/09/Wassle-et-al.-2000.pdf",
+  "coordinate_frame": "physical retinal eccentricity",
+  "table2": [
+    {
+      "animal": "9.8.99",
+      "eccentricity_interval_mm": [
+        2,
+        3
+      ],
+      "H1": 6360,
+      "H2": 1586
+    },
+    {
+      "animal": "99.5018.1",
+      "eccentricity_interval_mm": [
+        3.5,
+        3.5
+      ],
+      "H1": 4700,
+      "H2": 1600
+    },
+    {
+      "animal": "29.7.99",
+      "eccentricity_interval_mm": [
+        4,
+        5
+      ],
+      "H1": 2665,
+      "H2": 947
+    },
+    {
+      "animal": "97.3017.3",
+      "eccentricity_interval_mm": [
+        5.6,
+        5.6
+      ],
+      "H1": 2278,
+      "H2": 933
+    },
+    {
+      "animal": "96.5018.2",
+      "eccentricity_interval_mm": [
+        6.3,
+        6.3
+      ],
+      "H1": 1950,
+      "H2": 1150
+    },
+    {
+      "animal": "101.9026.7",
+      "eccentricity_interval_mm": [
+        7.1,
+        7.1
+      ],
+      "H1": 1914,
+      "H2": 1133
+    }
+  ],
+  "unit": "cells/mm^2",
+  "evidence_class": "measurement",
+  "central_author_estimate": {
+    "eccentricity_interval_mm": [
+      0.5,
+      1
+    ],
+    "H1": 18400,
+    "H2": 4600
+  },
+  "central_evidence_class": "author_assumption",
+  "notes": "Interval midpoint, mixed animals, inner cap and axial symmetry are separate project constructions, not individual measured profile"
+}
