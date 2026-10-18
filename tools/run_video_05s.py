@@ -1,6 +1,7 @@
 """Explicit original-HC v7 video trial; bounded ISET, 1-ms observed states.
 
-No new background is prepared. A mismatched converged checkpoint is fatal.
+No new background is prepared. Strict convergence is the default. Transient
+initialization requires explicit --background-mode transient and --background-source.
 This route does not qualify the new functional-HC graph or full physiology.
 """
 from pathlib import Path
@@ -102,10 +103,17 @@ def state_manifest(compiled,runner,plan):
 
 
 def main():
+    from tools.video_background_start import (
+        add_background_arguments, select_background_source, restore_background_start, begin_media_stimulus)
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--media',type=Path,required=True);parser.add_argument('--start',type=float,default=0.)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--resume',action='store_true',help='Strictly resume this output and its latest full checkpoint')
+    parser.add_argument('--group-optical-frames',action='store_true',help='Explicit grouped_tiles_v1 optical requests; original exporter and 100-us mapping retained')
+    parser.add_argument('--prepared-input-from',type=Path,help='Strictly reuse the exact input packet of a completed same-video/configuration/model run')
+    parser.add_argument('--fast-lossless-storage',action='store_true',help='Same checkpoint JSON bytes and decoded NPZ data; encode checkpoint subtrees once and store NPZ without DEFLATE')
+    parser.add_argument('--skip-empty-link-publication',action='store_true',help='Explicit equivalent procedure: avoid unused full-state packing when link-delay buffers are empty')
+    add_background_arguments(parser)
     args=parser.parse_args();output=(ROOT/args.output).resolve();media_path=args.media.resolve()
     if not output.is_relative_to(ROOT) or args.start<0:raise ValueError('Project output and nonnegative clip start required')
     if media_path.name in {'synthetic_rgb_50fps.avi','local_spot_8Hz.avi'}:
@@ -138,6 +146,10 @@ def main():
     from retina_sim.execution_backends import make_runner
     from retina_sim.contracts import SolverConfig
     from retina_sim.recording import RecordingPlan,NPZWindowRecorder
+    write_checkpoint,recorder_type=checkpoint_file,NPZWindowRecorder
+    if args.fast_lossless_storage:
+        from retina_sim.lossless_video_storage import checkpoint_file_spooled,StoredNPZWindowRecorder
+        write_checkpoint,recorder_type=checkpoint_file_spooled,StoredNPZWindowRecorder
     from retina_sim.recording_indices import IndexedRecordingPlan
     from retina_sim.offline_input import rebase_offline_inputs
     from retina_sim.streamed_input import load_streamed_input
@@ -167,17 +179,54 @@ def main():
     save(output/'media_probe.json',media_info)
     original=ROOT/'reports/human_disk3mm_floor_transition_v7/transition'
     source=json.loads((original/'manifest.json').read_bytes())
-    cfg=replace(RunConfig.from_dict(source['configuration']),media_path=str(media_path),start_seconds=args.start,
+    configuration,background_checkpoint,background_identity=select_background_source(
+        ROOT,original,source['configuration'],args.background_mode,args.background_source)
+    cfg=replace(RunConfig.from_dict(configuration),media_path=str(media_path),start_seconds=args.start,
         duration_seconds=.5,sample_seconds=.001,window_seconds=.002)
+    if args.restore_diagnostics:
+        import hashlib
+        from retina_sim.background_checkpoint import checkpoint_hash_diagnostics
+        diagnostic_tick=time.perf_counter();serialized=background_checkpoint.read_bytes()
+        snapshot=checkpoint_hash_diagnostics(json.loads(serialized),hashlib.sha256(serialized).hexdigest())
+        save(output/'restore_before_backend.json',snapshot)
+        if any(snapshot[key]['expected']!=snapshot[key]['actual'] for key in ('complete','auxiliary','report')):
+            raise ValueError('Source checkpoint hash rejection before backend setup; no assembly performed')
+        del serialized,snapshot;gc.collect()
+        phases['restore_pre_backend_diagnostics']=time.perf_counter()-diagnostic_tick;boundary()
     identity={'media_sha256':file_sha(media_path),'start_seconds':args.start,'duration_seconds':.5,
         'source_manifest_sha256':file_sha(original/'manifest.json'),'compiler':compiler,
         'execution_environment':execution_environment,
         'route':'original_HC_v7_only','new_functional_HC_acceptance':False}
+    if background_identity is not None:
+        identity['background_start']=dict(background_identity,driver_sha256=file_sha(Path(__file__)),
+            selector_sha256=file_sha(ROOT/'tools/video_background_start.py'))
+    if args.group_optical_frames and args.prepared_input_from is None:
+        from retina_platform.grouped_disk_capture import SCHEMA as group_schema
+        identity['optical_grouping']={'schema':group_schema,
+            'planner_sha256':file_sha(ROOT/'retina_platform/grouped_disk_capture.py'),
+            'frontend_sha256':file_sha(ROOT/'retina_platform/streamed_disk_frontend.py')}
+    prepared_binding=None
+    if args.prepared_input_from is not None:
+        from tools.prepared_video_input import prepared_input_binding
+        admission_tick=time.perf_counter()
+        prepared_binding=prepared_input_binding(ROOT,args.prepared_input_from,cfg,identity)
+        phases['prepared_input_admission']=time.perf_counter()-admission_tick
+        identity['prepared_input']=prepared_binding
+    if args.fast_lossless_storage:
+        identity['storage_execution']={'procedure':'once_encoded_checkpoint_and_stored_NPZ_v1',
+            'source_sha256':file_sha(ROOT/'retina_sim/lossless_video_storage.py'),
+            'checkpoint_builder_sha256':file_sha(ROOT/'retina_sim/checkpoint_streaming.py'),
+            'checkpoint_protocol_and_numeric_record_values':'unchanged'}
+    if args.skip_empty_link_publication:
+        from retina_sim.no_delay_publication import procedure_identity
+        identity['advance_execution']=procedure_identity()
     previous=json.loads((output/'trial.json').read_bytes()) if args.resume else None
     if previous and previous['identity']!=identity:raise ValueError('Resume media/clip/source/compiler differs')
+    initialization=None
     def progress(phase,**values):
-        row={'status':phase,'identity':identity,'phase_seconds':phases,'wall_seconds':time.perf_counter()-wall,
+        row={'status':phase,'worker_pid':os.getpid(),'identity':identity,'phase_seconds':phases,'wall_seconds':time.perf_counter()-wall,
              'memory':guard.last,'memory_statistics':memory_statistics,**values}
+        if initialization is not None:row['background_initialization']=initialization
         save(output/'trial.json',row);print(json.dumps({k:v for k,v in row.items() if k not in ('identity','memory')}),flush=True)
     progress('ASSEMBLY');tick=time.perf_counter()
     construction=replace(cfg,native_background_values=None,frontend_signature='')
@@ -198,17 +247,34 @@ def main():
     runner=make_runner(compiled,cfg.neural_integration_backend)
     solver=SolverConfig(**solver_definition);reference=runner.initialize(solver)
     phases['runner_and_reference']=time.perf_counter()-tick;tick=time.perf_counter()
+    if args.background_mode=='transient':
+        from retina_sim.execution_backends import verify_cuda_execution,CUDA_BACKENDS
+        if cfg.neural_integration_backend in CUDA_BACKENDS:
+            progress('CPU_GPU_100US_QUALIFICATION')
+            qualification=verify_cuda_execution(runner,solver,cfg.light_context())
+            phases['CPU_GPU_100us_qualification']=time.perf_counter()-tick
+            save(output/'execution_backend_check.json',qualification);boundary();tick=time.perf_counter()
     frozen_background_context=cfg.light_context().background_context_hash
     store=BackgroundCheckpointStore(ROOT,runner,reference,cfg.light_context(),cfg.background_policy())
     phases['strict_binding_construction']=time.perf_counter()-tick
     if not args.resume:
         tick=time.perf_counter()
-        state,envelope=store.load(original/'matched_response/background_checkpoint.json',require_converged=True)
+        state,envelope,initialization=restore_background_start(store,background_checkpoint,args.background_mode,
+            diagnostic_path=output/'restore_inside_loader.json' if args.restore_diagnostics else None)
+        save(output/'background_initialization.json',initialization)
         del envelope
         origin=state.time_seconds
         phases['strict_restore']=time.perf_counter()-tick;boundary()
-        progress('STRICT_BACKGROUND_RESTORED',absolute_background_time_seconds=origin,
+        progress('TRANSIENT_BACKGROUND_RESTORED' if args.background_mode=='transient' else 'STRICT_BACKGROUND_RESTORED',
+            absolute_background_time_seconds=origin,background_initialization=initialization,
             model_hash=runner.model.model_hash,background_fallback_performed=False)
+    else:
+        initialization_path=output/'background_initialization.json'
+        if initialization_path.is_file():
+            initialization=json.loads(initialization_path.read_bytes())
+        elif args.background_mode=='strict' and background_identity is None:
+            initialization={'mode':'strict','status':None,'test_scope':'Legacy strict video resume; original state metadata retained'}
+        else:raise ValueError('Explicit background-start resume requires its saved initialization metadata')
     from retina_platform.media import MediaSource
     with MediaSource(media_path) as media:
         gaze=lambda t:np.array([cfg.gaze_x_deg,cfg.gaze_y_deg])
@@ -216,12 +282,20 @@ def main():
         progress('BOUNDED_ISET_INPUT');tick=time.perf_counter()
         if args.resume:
             saved=json.loads((output/'manifest.json').read_bytes());cfg=RunConfig.from_dict(saved['config'])
+        if prepared_binding is not None:
+            from tools.prepared_video_input import load_prepared_input
+            packet,stores,input_summary=load_prepared_input(prepared_binding,compiled,runner.model.model_hash,cfg)
+            save(output/'input_stream.json',{'schema':'bounded_global_input_pointer_v1',
+                'manifest_path':packet.source_summary['source_file'],
+                'manifest_sha256':packet.source_summary['source_sha256'],'prepared_input':prepared_binding})
+        elif args.resume:
             packet,stores=load_streamed_input(output/'input_stream_shards/manifest.json',compiled,cfg.light_context(),
                 reference_id=compiled.global_disk_circuit.record['reference_id'])
             input_summary=packet.source_summary
         else:
             frontend=StreamedDiskMixedReferenceFrontend(cfg,compiled,media,gaze,ROOT,input_path=output/'input_stream.json',
-                on_status=lambda text:progress('BOUNDED_ISET_INPUT',input_status=text),on_boundary=boundary)
+                on_status=lambda text:progress('BOUNDED_ISET_INPUT',input_status=text),on_boundary=boundary,
+                group_frames=args.group_optical_frames)
             packet,input_summary=frontend.bundle,frontend.summary
         phases['ISET_input_or_strict_input_cache_load']=time.perf_counter()-tick;boundary()
         if cfg.light_context().background_context_hash!=frozen_background_context:
@@ -234,9 +308,7 @@ def main():
             origin=state.input_position['stimulus_origin_seconds'];del checkpoint
             archive_uncommitted_windows(output,state.input_position['recorded_window_count'])
             phases['strict_restore']=time.perf_counter()-tick
-        state.input_position.update(phase='media_stimulus',stimulus_origin_seconds=origin,
-            input_source_sha256=packet.source_summary['source_sha256'],
-            recorded_window_count=state.input_position.get('recorded_window_count',0))
+        begin_media_stimulus(state,packet.source_summary['source_sha256'],origin,initialization)
         boundary()
         selected,cone_rows,hc_rows=recording_cohort(compiled)
         plan=IndexedRecordingPlan(RecordingPlan(ports=(),states=None,cell_ids=selected,max_bytes=64*1024**2))
@@ -253,13 +325,19 @@ def main():
                 'scalar_count':scalar_count,'samples':501,'sample_seconds':.001,'unique_raw_state_bytes':scalar_count*501*8,
                 'recorded_cones':len(cone_rows),'recorded_HC':len(hc_rows),'states':'all registered internal states in cohort',
                 'timestamped_spikes':'window metadata','full_graph_arbitrary_time_replay':'not implemented','alignment':alignment},
-            'identity':identity,'physiological_calibration':'NOT_COMPLETE','source_graph':'original HC v7, not functional HC acceptance'}
+            'identity':identity,'background_initialization':initialization,
+            'physiological_calibration':'NOT_COMPLETE','source_graph':'original HC v7, not functional HC acceptance'}
         save(output/'manifest.json',manifest)
         if not args.resume:
-            receipt=checkpoint_file(runner,state,output/'start_checkpoint.json')
+            receipt=write_checkpoint(runner,state,output/'start_checkpoint.json')
             phases['start_checkpoint_write']=receipt['seconds']
-            checkpoint_file(runner,state,output/'latest_checkpoint.json')
-        recorder=NPZWindowRecorder(output/'windows');recorder.windows=len(list((output/'windows').glob('window_*.npz')))
+            phases['initial_latest_checkpoint_write']=write_checkpoint(runner,state,output/'latest_checkpoint.json')['seconds']
+        advance=runner.advance
+        if args.skip_empty_link_publication:
+            from retina_sim.no_delay_publication import no_empty_link_advance
+            advance,procedure=no_empty_link_advance(runner)
+            if procedure!=identity['advance_execution']:raise ValueError('Advance execution procedure changed after admission')
+        recorder=recorder_type(output/'windows');recorder.windows=len(list((output/'windows').glob('window_*.npz')))
         phases['advance_and_record']=0.;phases['record_files_write']=0.;phases['rolling_checkpoint_write']=0.
         last_checkpoint=time.perf_counter()
         try:
@@ -268,24 +346,24 @@ def main():
                 completed=int(round((state.time_seconds-origin)/.001));end=min(500,completed+2)
                 samples=times[completed if completed==0 else completed+1:end+1]
                 tick=time.perf_counter()
-                state,result=runner.advance(state,channels,float(times[end]),sample_times=samples,recording_plan=plan)
+                state,result=advance(state,channels,float(times[end]),sample_times=samples,recording_plan=plan)
                 phases['advance_and_record']+=time.perf_counter()-tick;tick=time.perf_counter()
-                temporary=NPZWindowRecorder(output/'window_pending').consume(result)
+                temporary=recorder_type(output/'window_pending').consume(result)
                 destination=recorder.directory/('window_%08d.npz'%recorder.windows)
                 os.replace(temporary,destination);recorder.windows+=1
                 state.input_position['recorded_window_count']=recorder.windows
                 phases['record_files_write']+=time.perf_counter()-tick
                 if time.perf_counter()-last_checkpoint>=60:
-                    phases['rolling_checkpoint_write']+=checkpoint_file(runner,state,output/'latest_checkpoint.json')['seconds']
+                    phases['rolling_checkpoint_write']+=write_checkpoint(runner,state,output/'latest_checkpoint.json')['seconds']
                     last_checkpoint=time.perf_counter()
                 progress('ADVANCING',stimulus_seconds=state.time_seconds-origin,windows=recorder.windows,
                     integration_metrics=dict(runner.integration_metrics))
         except BaseException:
-            checkpoint_file(runner,state,output/'latest_checkpoint.json')
+            write_checkpoint(runner,state,output/'latest_checkpoint.json')
             progress('STOPPED_WITH_FULL_CHECKPOINT',stimulus_seconds=state.time_seconds-origin)
             raise
-        phases['end_checkpoint_write']=checkpoint_file(runner,state,output/'end_checkpoint.json')['seconds']
-        checkpoint_file(runner,state,output/'latest_checkpoint.json')
+        phases['end_checkpoint_write']=write_checkpoint(runner,state,output/'end_checkpoint.json')['seconds']
+        phases['final_latest_checkpoint_write']=write_checkpoint(runner,state,output/'latest_checkpoint.json')['seconds']
         progress('COMPLETED' if state.time_seconds>=times[-1]-1e-12 else 'STOPPED_WITH_FULL_CHECKPOINT',
             stimulus_seconds=state.time_seconds-origin,windows=recorder.windows,integration_metrics=dict(runner.integration_metrics),
             recording=manifest['recording'],background_fallback_performed=False)

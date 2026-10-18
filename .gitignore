@@ -35,6 +35,8 @@ htmlcov/
 /data/source/
 /data/source_packages/
 /data/source_snapshots/
+/vendor_pinned/
+/data/notebook_transfer_*/
 
 # Local media and generated export bundles.
 *.mp4

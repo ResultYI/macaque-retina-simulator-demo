@@ -9,6 +9,13 @@ from retina_sim.contracts import ContractError
 from retina_sim.disk_graph_storage import save_json
 
 
+def _ready_marker(output):
+    name=os.path.abspath(os.fspath(output)+'.ready')
+    if os.name=='nt' and not name.startswith('\\\\?\\'):
+        name='\\\\?\\UNC\\'+name[2:] if name.startswith('\\\\') else '\\\\?\\'+name
+    return Path(name)
+
+
 def _terminate_owned(process):
     if process.poll() is not None:return
     if os.name=='nt':
@@ -28,6 +35,7 @@ def run_batch(root,profile,jobs,directory,on_status,on_boundary):
     expression="addpath('"+quote(root/'tools')+"');export_disk_mixed_batch('"+quote(batch)+"');"
     pref=directory/'matlab_preferences';temporary=directory/'matlab_temp';pref.mkdir(exist_ok=True);temporary.mkdir(exist_ok=True)
     environment=dict(os.environ,MATLAB_PREFDIR=str(pref),TEMP=str(temporary),TMP=str(temporary))
+    ready_markers=[_ready_marker(job['output']) for job in jobs]
     with (directory/('stdout_'+batch.stem+'.log')).open('wb') as out,(directory/('stderr_'+batch.stem+'.log')).open('wb') as err:
         process=subprocess.Popen([profile['matlab_executable'],'-batch',expression],env=environment,stdout=out,stderr=err,
             creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
@@ -36,7 +44,7 @@ def run_batch(root,profile,jobs,directory,on_status,on_boundary):
             while process.poll() is None:
                 if on_boundary is not None and on_boundary() is False:
                     raise ContractError('Global ISET capture stopped at requested boundary; completed tile files retained')
-                completed=sum(Path(job['output']+'.ready').is_file() for job in jobs)
+                completed=sum(marker.is_file() for marker in ready_markers)
                 if completed>done:done=completed;last_progress=time.monotonic()
                 if time.monotonic()-last_progress>profile['maximum_export_wall_seconds']:
                     raise ContractError('Global ISET tile exceeded original per-export wall budget; completed tiles retained')

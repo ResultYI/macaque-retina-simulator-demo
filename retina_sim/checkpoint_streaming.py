@@ -50,19 +50,20 @@ def _legacy_hash(value):
     return digest.hexdigest()
 
 
-def _checkpoint(runner,state):
+def _checkpoint(runner,state,*,hash_value=None):
+    hash_value=_legacy_hash if hash_value is None else hash_value
     if state.assembly_hash!=runner.compiled.assembly_hash:
         raise ContractError('Checkpoint state/assembly identity mismatch')
     validate_state(state.dynamic,runner.model)
     data={field.name:getattr(state.dynamic,field.name) for field in fields(state.dynamic)}
     data['solver_config']=asdict(state.solver_config)
-    dynamic={'checkpoint_version':'1.0','state':data,'payload_hash':_legacy_hash(data)}
+    dynamic={'checkpoint_version':'1.0','state':data,'payload_hash':hash_value(data)}
     payload={'assembly_hash':runner.compiled.assembly_hash,'dynamic':dynamic,
         'grid_origin_seconds':state.grid_origin_seconds,'sample_index':state.sample_index,
         'spike_states':state.spike_states,'delay_states':state.delay_states,
         'input_position':state.input_position,'link_delay_states':state.link_delay_states,
         'component_tick_indices':state.component_tick_indices}
-    return {'version':'retina-architecture-1.0','payload':payload,'payload_hash':_legacy_hash(payload)}
+    return {'version':'retina-architecture-1.0','payload':payload,'payload_hash':hash_value(payload)}
 
 
 def save_background_streamed(store,path,state,report=None,*,origin_seconds=0.,safety=None):

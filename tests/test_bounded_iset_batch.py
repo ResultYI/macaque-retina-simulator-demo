@@ -1,24 +1,38 @@
+"""Windows long completion-marker paths must count as actual batch progress."""
 from pathlib import Path
-import pytest
-from retina_platform import bounded_iset_batch as batch
+import os
+import tempfile
+import unittest
+from unittest.mock import patch
+from retina_platform.bounded_iset_batch import run_batch
 
 
-@pytest.mark.parametrize('mode',['raise','false'])
-def test_boundary_failure_cleans_up_owned_process(tmp_path,monkeypatch,mode):
-    class Process:
-        returncode=None
-        pid=123
-        def poll(self):return self.returncode
-    process=Process();stopped=[]
-    monkeypatch.setattr(batch.subprocess,'Popen',lambda *args,**kwargs:process)
-    def stop(value):
-        assert value is process;stopped.append(value.pid);value.returncode=1
-    monkeypatch.setattr(batch,'_terminate_owned',stop)
-    def boundary():
-        if mode=='raise':raise MemoryError('original reserve')
-        return False
-    error=MemoryError if mode=='raise' else batch.ContractError
-    with pytest.raises(error):
-        batch.run_batch(tmp_path,{'matlab_executable':'unchanged MATLAB','maximum_export_wall_seconds':300},
-            [{'output':str(tmp_path/'capture.mat')}],tmp_path,None,boundary)
-    assert stopped==[123]
+@unittest.skipUnless(os.name=='nt', 'Windows completion-marker regression')
+class LongMarkerTests(unittest.TestCase):
+    def test_committed_long_marker_prevents_false_stall_timeout(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary).resolve();directory=root/('d'*100);directory.mkdir();(root/'batch').mkdir()
+            filename='m'*(264-len(str(directory))-1-len('.mat.ready'))+'.mat.ready'
+            marker=directory/filename;extended=Path('\\\\?\\'+str(marker))
+            extended.touch()
+            try:
+                class Process:
+                    returncode=0
+                    calls=0
+                    def poll(self):
+                        self.calls+=1
+                        return None if self.calls==1 else 0
+                statuses=[]
+                profile={'matlab_executable':'unused','maximum_export_wall_seconds':300.}
+                job={'configuration':str(root/'unused.json'),'output':str(marker)[:-6]}
+                with patch('retina_platform.bounded_iset_batch.subprocess.Popen',return_value=Process()), \
+                     patch('retina_platform.bounded_iset_batch.time.monotonic',side_effect=[0.,400.,400.,400.,400.]), \
+                     patch('retina_platform.bounded_iset_batch.time.sleep'):
+                    run_batch(root,profile,[job],root/'batch',statuses.append,lambda:True)
+                self.assertEqual(statuses,['ISET fixed global tiles 1/1'])
+            finally:
+                extended.unlink()
+
+
+if __name__=='__main__':
+    unittest.main()

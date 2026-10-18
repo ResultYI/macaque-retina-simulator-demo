@@ -55,7 +55,7 @@ def save_shard(directory, name, values):
 
 class StreamedDiskMixedReferenceFrontend(DiskMixedReferenceFrontend):
     def __init__(self, config, compiled, media, gaze, root, *, input_path,
-                 on_status=None, on_boundary=None):
+                 on_status=None, on_boundary=None, group_frames=False):
         began=time.perf_counter();phases={}
         self.config, self.compiled, self.root = config, compiled, Path(root).resolve()
         self.input_path = Path(input_path).resolve()
@@ -102,6 +102,7 @@ class StreamedDiskMixedReferenceFrontend(DiskMixedReferenceFrontend):
         reference_jobs=[]
         (refraw, refmeta), actual = _capture_request(self.root,profile,self.reference_directory,data,export,
             on_status=on_status,on_boundary=on_boundary,defer_jobs=reference_jobs)
+        reference_actual = actual
         if refraw is None:
             _run_batch(self.root,profile,reference_jobs,self.reference_directory,on_status,on_boundary)
             refraw,refmeta=_finish_capture(self.reference_directory,refmeta['pending_path'],refmeta['signature'])
@@ -135,7 +136,7 @@ class StreamedDiskMixedReferenceFrontend(DiskMixedReferenceFrontend):
                 tiles.append((tile,rows,kept,np.asarray([lookup[int(rows[i])] for i in kept],dtype=np.int64)))
         width,height = media.info['width'],media.info['height']
         ppd = width/config.field_width_deg
-        jobs, tasks = [], [[] for _ in exposures]
+        jobs, tasks, labels = [], [[] for _ in exposures], {}
         tick=time.perf_counter();decode_seconds=0.
         for exposure,(t,frame_index,pose) in enumerate(exposures):
             decode_tick=time.perf_counter()
@@ -165,6 +166,10 @@ class StreamedDiskMixedReferenceFrontend(DiskMixedReferenceFrontend):
                 (raw,meta),called = _capture_request(self.root,profile,cache,data,export,
                     on_status=on_status,on_boundary=on_boundary,defer_jobs=jobs)
                 actual |= called
+                if group_frames and called:
+                    labels[str((cache/'export.json').resolve())] = {
+                        'tile':tile, 'exposure_index':exposure, 'video_time_seconds':float(t),
+                        'decoded_frame_index':frame_index, 'gaze_deg':pose.tolist()}
                 # Do not retain loaded tile arrays or RGB across exposures.
                 tasks[exposure].append((cache,signature,meta.get('pending_path'),kept,local,tile['tile_index']))
                 del raw
@@ -172,21 +177,40 @@ class StreamedDiskMixedReferenceFrontend(DiskMixedReferenceFrontend):
                 on_status('ISET bounded exposures prepared %d/%d'%(exposure+1,len(exposures)))
         phases['decode_crop_and_prepare_tile_requests']=time.perf_counter()-tick
         phases['media_frame_decode_or_cache_copy_and_float_conversion']=decode_seconds
+        group_views, grouping = {}, None
+        if group_frames:
+            from .grouped_disk_capture import group_missing_jobs
+            tick=time.perf_counter();legacy_missing=len(jobs)
+            jobs,group_views,grouping=group_missing_jobs(self.root,profile,jobs,labels,scope,
+                on_status=on_status,on_boundary=on_boundary)
+            actual = reference_actual or bool(jobs)
+            grouping['legacy_captures_reused']=len(exposures)*len(tiles)-legacy_missing
+            save_json(directory/'grouped_requests.json',grouping)
+            phases['group_missing_tile_frames']=time.perf_counter()-tick
         tick=time.perf_counter()
-        _run_batch(self.root,profile,jobs,directory,on_status,on_boundary)
+        batch_status=(lambda text:on_status(text.replace('ISET fixed global tiles','ISET grouped tile jobs'))) if group_frames and on_status else on_status
+        _run_batch(self.root,profile,jobs,directory,batch_status,on_boundary)
         phases['MATLAB_tile_batch']=time.perf_counter()-tick
         tick=time.perf_counter()
         count_shards, exposure_records, first_raw, first_meta, background = [], [], None, None, None
         for exposure,entries in enumerate(tasks):
             captures, rows, evidence = [], [], []
             for cache,signature,pending,kept,local,tile_index in entries:
-                raw,meta = (_finish_capture(cache,pending,signature) if pending is not None
-                            else read_disk_capture(cache/'capture.mat',signature))
+                view=group_views.get(str(cache.resolve()))
+                if view is not None:
+                    from .grouped_disk_capture import read_group_frame
+                    raw,meta=read_group_frame(view);cache=Path(view['directory'])
+                else:
+                    raw,meta = (_finish_capture(cache,pending,signature) if pending is not None
+                                else read_disk_capture(cache/'capture.mat',signature))
                 captures.append((dict(raw,expected_counts=raw['expected_counts'][:,kept],
                     background_counts=raw['background_counts'].reshape(-1)[kept],
                     diameters_um=raw['diameters_um'].reshape(-1)[kept]),meta))
                 rows.append(local)
                 evidence.append({'tile_index':tile_index,'capture_sha256':file_sha(cache/'capture.mat'),'directory':str(cache)})
+                if view is not None:
+                    evidence[-1].update(capture_frame_index=view['capture_frame_index'],
+                        grouped_capture_schema=grouping['schema'],frame_source=view['frame_source'])
             joined = join_captures(rows,captures,len(active),reference_identity=scope)
             if background is None:
                 background = joined['background_counts'].copy()
@@ -245,6 +269,13 @@ class StreamedDiskMixedReferenceFrontend(DiskMixedReferenceFrontend):
             tile_export_jobs_this_run=len(jobs),active_optical_tiles=len(tiles),
             temporal_history='Unchanged exporter captures one memoryless OI; phototransduction/noise absent. Neural state is continuous across all frames.',
             rod_input_chunks=rod_evidence)
+        if grouping is not None:
+            producer.update(optical_grouping={'schema':grouping['schema'],
+                'requests_path':'grouped_requests.json','requests_sha256':file_sha(directory/'grouped_requests.json'),
+                'legacy_captures_reused':grouping['legacy_captures_reused'],
+                'missing_legacy_frame_requests':grouping['missing_legacy_frame_requests'],
+                'group_capture_requests':grouping['group_capture_requests']})
+            producer['storage_source_sha256']['retina_platform/grouped_disk_capture.py']=file_sha(Path(__file__).with_name('grouped_disk_capture.py'))
         manifest = {'schema':SCHEMA,'version':'1.0','global_graph':circuit.binding,
             'geometry_identity':self.geometry_identity,'background_context_hash':config.light_context().background_context_hash,
             'reference_id':circuit.record['reference_id'],'edges_seconds':edges.tolist(),

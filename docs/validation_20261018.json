@@ -1,0 +1,253 @@
+{
+  "schema": "sanitized_notebook_validation_receipt_v1",
+  "experiment_date_UTC": "2026-10-18",
+  "scope": "Recorded existing results only; no data, local environment or checkpoints bundled",
+  "physiology": {
+    "graph": "original_HC_v7",
+    "dependency_nodes": 879437,
+    "registered_states": 4967023,
+    "state_blocks": 77,
+    "background": "1.012s NOT_REACHED transient",
+    "full_macaque_or_steady_state_acceptance": false,
+    "human_cone_optics_borrowing": true,
+    "new_functional_HC_default_or_acceptance": false
+  },
+  "model_sha256": "194cc89bb9026dbffa71eb0c6be385707f904f205af15ce5ded16c7ae2edbcd0",
+  "assembly_sha256": "53f2b052d13d7982727ad04c2c2f8730fcad968f16028ce6010c74fd85a2050e",
+  "input_manifest_sha256": "38cb38afd58deb93b433806d619f442602f84fc4237e3c8d1364ea27d2d33c6f",
+  "complete0_5s": {
+    "status": "MATCHED_ACTUAL_VIDEO_05S_EQUIVALENCE_AND_PERFORMANCE_PASS",
+    "duration_seconds_each": 0.5,
+    "samples_each": 501,
+    "windows_each": 250,
+    "full_state_scalars": 4967023,
+    "checks": {
+      "same_configuration": true,
+      "same_model": true,
+      "same_assembly": true,
+      "same_exact_input_manifest": true,
+      "same_frozen_background": true,
+      "same_initial_checkpoint_bytes": true,
+      "same_final_checkpoint_bytes": true,
+      "same_solver_calls": true,
+      "same_nfev": true,
+      "recorded_numeric_bits_equal": true,
+      "recorded_units_meanings_equal": true,
+      "all_scientific_and_event_metadata_equal": true,
+      "same_checkpoint_trigger_and_timer_reset_rules": true,
+      "frozen_numerical_sources_unchanged": true
+    },
+    "maximum_recorded_absolute_difference": 0.0,
+    "full_state_clock_RNG_history_identity_proof": {
+      "initial_sha256": "0414f308081f3a59b8da0544d1cd28deff738a4a3c5e788668d3ffd419a58337",
+      "baseline_final_sha256": "370d851824140e0b525cdf631561e28638012f31cf7e52950820b4a7f07ae3b0",
+      "optimized_final_sha256": "370d851824140e0b525cdf631561e28638012f31cf7e52950820b4a7f07ae3b0",
+      "meaning": "Identical original-protocol whole files include every registered state and every auxiliary clock/RNG/history/input field"
+    },
+    "baseline": {
+      "end_to_end_seconds": 3441.191924300001,
+      "input_preparation_seconds": 208.1675624999989,
+      "pure_solver_seconds_included_in_advance": 1355.5719156007108,
+      "advance_and_memory_record_seconds": 2137.9426449000384,
+      "record_files_write_seconds": 168.29904149999493,
+      "all_checkpoint_write_seconds": 596.781891100014,
+      "rolling_checkpoint_write_seconds": 537.3251984000162,
+      "video_processing_seconds": 2843.5668848000496,
+      "video_processing_and_all_checkpoints_seconds": 2903.0235775000474,
+      "solver_calls": 5616,
+      "nfev": 84420
+    },
+    "optimized": {
+      "end_to_end_seconds": 2750.175200999998,
+      "input_preparation_seconds": 11.601640699998825,
+      "pure_solver_seconds_included_in_advance": 1353.4150187999549,
+      "advance_and_memory_record_seconds": 2135.883550199971,
+      "record_files_write_seconds": 20.125560700005735,
+      "all_checkpoint_write_seconds": 266.00862570000027,
+      "rolling_checkpoint_write_seconds": 238.150469900007,
+      "video_processing_seconds": 2394.159580799984,
+      "video_processing_and_all_checkpoints_seconds": 2422.017736599977,
+      "solver_calls": 5616,
+      "nfev": 84420
+    }
+  },
+  "complete0_5s_conditions": {
+    "warm_optical_inputs": true,
+    "optical_preparation_excluded": true,
+    "diagnostic_metadata_exceptions": [
+      "compute_backend.plan_seconds",
+      "compute_backend.compile_or_cache_load_seconds"
+    ],
+    "checkpoint_policy": "Original>=60wall seconds after prior write completion at original2ms boundary",
+    "rolling_counts_baseline_optimized": [
+      35,
+      33
+    ],
+    "window_file_bytes_baseline_optimized": [
+      957554385,
+      7897957836
+    ],
+    "full_graph_every1ms_checkpoint": false,
+    "observed_scalar_count_each_sample": 37449
+  },
+  "profile20_40ms": {
+    "status": "ACTUAL_20_TO_40MS_PAIRED_TIMING_AND_EQUIVALENCE_PASS",
+    "timed_duration_seconds_each": 0.02,
+    "control_advance_seconds": 86.5671537000162,
+    "profile_advance_seconds": 87.18724259996088,
+    "paired_relative_difference_percent": 0.7163096780257838,
+    "all_observed_numeric_bytes_units_scientific_event_metadata_equal": true,
+    "complete_endpoint_state_clock_RNG_history_checkpoint_SHA256": {
+      "control": "db7f3ba00ad464b28b7f2511f1cbf3a83f237e56ea8009ad3cc1e9aa8d966d35",
+      "profile": "db7f3ba00ad464b28b7f2511f1cbf3a83f237e56ea8009ad3cc1e9aa8d966d35"
+    }
+  },
+  "profile20_40ms_exclusive_rows": {
+    "solver.call": {
+      "calls": 225,
+      "inclusive_seconds": 55.74701319995802,
+      "exclusive_seconds": 54.39151800010586
+    },
+    "state.constructor_copy_and_finite_check": {
+      "calls": 70205,
+      "inclusive_seconds": 8.642228501412319,
+      "exclusive_seconds": 8.642228501412319
+    },
+    "signals.CPU_evaluate": {
+      "calls": 245,
+      "inclusive_seconds": 11.06340990010358,
+      "exclusive_seconds": 7.699444000318181
+    },
+    "state.flat_replace": {
+      "calls": 1595,
+      "inclusive_seconds": 11.322184800097602,
+      "exclusive_seconds": 7.447861798063968
+    },
+    "advance.other": {
+      "calls": 10,
+      "inclusive_seconds": 86.81267610004579,
+      "exclusive_seconds": 3.012760900048306
+    },
+    "state.array_copy": {
+      "calls": 1608,
+      "inclusive_seconds": 2.6874555000686087,
+      "exclusive_seconds": 2.6874555000686087
+    },
+    "history.observation_delay": {
+      "calls": 225,
+      "inclusive_seconds": 3.0897070002247347,
+      "exclusive_seconds": 0.9803702003700892
+    },
+    "record.metadata": {
+      "calls": 10,
+      "inclusive_seconds": 0.8056248000211781,
+      "exclusive_seconds": 0.8056248000211781
+    },
+    "history.arrival_prune_payload": {
+      "calls": 225,
+      "inclusive_seconds": 0.7166177999752108,
+      "exclusive_seconds": 0.7166177999752108
+    },
+    "record.values": {
+      "calls": 20,
+      "inclusive_seconds": 1.112057799982722,
+      "exclusive_seconds": 0.15050509975117166
+    },
+    "events.spikes_RNG": {
+      "calls": 100,
+      "inclusive_seconds": 0.09676270005002152,
+      "exclusive_seconds": 0.09676270005002152
+    },
+    "history.fork_or_JSON": {
+      "calls": 50,
+      "inclusive_seconds": 0.05164759996114299,
+      "exclusive_seconds": 0.0479271999647608
+    },
+    "record.dispatch": {
+      "calls": 225,
+      "inclusive_seconds": 0.5653999001078773,
+      "exclusive_seconds": 0.03423500013013836
+    },
+    "sample.causal_transition": {
+      "calls": 368,
+      "inclusive_seconds": 0.033099100037361495,
+      "exclusive_seconds": 0.033099100037361495
+    },
+    "sample.other": {
+      "calls": 225,
+      "inclusive_seconds": 15.179644600139,
+      "exclusive_seconds": 0.032735999586293474
+    },
+    "integration.prepare_finalize": {
+      "calls": 225,
+      "inclusive_seconds": 59.351191500012646,
+      "exclusive_seconds": 0.020403800081112422
+    },
+    "events.flush": {
+      "calls": 235,
+      "inclusive_seconds": 0.006169399945065379,
+      "exclusive_seconds": 0.006169399945065379
+    },
+    "record.index_selection": {
+      "calls": 2790,
+      "inclusive_seconds": 0.00330640007450711,
+      "exclusive_seconds": 0.00330640007450711
+    },
+    "input.stimulus_construction": {
+      "calls": 10,
+      "inclusive_seconds": 0.002687599990167655,
+      "exclusive_seconds": 0.002687599990167655
+    },
+    "history.publish_links": {
+      "calls": 675,
+      "inclusive_seconds": 0.0007088000420480967,
+      "exclusive_seconds": 0.0007088000420480967
+    },
+    "state.validation": {
+      "calls": 10,
+      "inclusive_seconds": 0.00025350000942125916,
+      "exclusive_seconds": 0.00025350000942125916
+    }
+  },
+  "profile_caveat": "Nested exclusive rows are additive; inclusive rows overlap. Outer function exit/boundary0.3745665s is separate. No full-run extrapolation.",
+  "no_delay20_40ms": {
+    "status": "NO_DELAY_PUBLICATION_ACTUAL_20MS_EQUIVALENCE_AND_TIMING_PASS",
+    "timed_duration_seconds_each": 0.02,
+    "control_advance_seconds": 86.32939300000726,
+    "patched_advance_seconds": 81.78342910003266,
+    "advance_seconds_saved": 4.545963899974595,
+    "advance_reduction_percent": 5.265835588551182,
+    "advance_speedup": 1.05558539119721,
+    "control_solver_seconds_included": 55.75915040013206,
+    "patched_solver_seconds_included": 55.741987899833475,
+    "control_outside_solver_seconds": 30.5702425998752,
+    "patched_outside_solver_seconds": 26.041441200199188,
+    "solver_calls_each": 225,
+    "nfev_each": 3510,
+    "all_paired_metadata_including_diagnostic_timers_equal": true,
+    "original_numerical_source_files_unchanged": true,
+    "complete_endpoint_state_clock_RNG_history_checkpoint_SHA256": {
+      "control": "db7f3ba00ad464b28b7f2511f1cbf3a83f237e56ea8009ad3cc1e9aa8d966d35",
+      "patched": "db7f3ba00ad464b28b7f2511f1cbf3a83f237e56ea8009ad3cc1e9aa8d966d35",
+      "previous_independent_40ms": "db7f3ba00ad464b28b7f2511f1cbf3a83f237e56ea8009ad3cc1e9aa8d966d35"
+    },
+    "execution_procedure": {
+      "procedure": "skip_empty_link_publication_v1",
+      "source_sha256": "0f62e2ec0edff0103591ef6c31be3cc35e9bbb21f31d388ad98d85f8d50bb860",
+      "original_hybrid_sha256": "29c5d19e495d76b8fc86c17adb5eb54235ac3fb2d73e17d1d77b8e03609b643b",
+      "guarded_publication_sites": 4,
+      "model_state_solver_RNG_history_checks": "unchanged",
+      "scope": "Skip only pure unused _flat before an empty publication; original nonempty path retained"
+    }
+  },
+  "no_delay_caveat": "One same-process sequential20ms pair only, no complete0.5s no-delay benchmark",
+  "delay_fixture_regression": {
+    "publication_calls_each": 98,
+    "flat_calls_original_patched": [
+      200,
+      200
+    ],
+    "observer_and_complete_state_equal": true
+  },
+  "paused_future_work": "State/Quantity buffers and same-state pure-evaluate cache; not implemented or tested"
+}

@@ -14,6 +14,28 @@ def atomic_json(path,value):
     os.replace(temporary,path)
 
 
+def checkpoint_hash_diagnostics(value, file_sha256, *, complete_hash=None, auxiliary_hash=None):
+    """Read-only witnesses for a rejected load; never replace stored identities."""
+    checkpoint=value['checkpoint'];payload=checkpoint['payload']
+    auxiliary={k:payload[k] for k in ('grid_origin_seconds','sample_index','component_tick_indices',
+        'spike_states','delay_states','link_delay_states','input_position')}
+    actual_complete=canonical_hash(checkpoint) if complete_hash is None else complete_hash
+    actual_auxiliary=canonical_hash(auxiliary) if auxiliary_hash is None else auxiliary_hash
+    actual_report=canonical_hash(value.get('report'))
+    return {'file_sha256':file_sha256,
+        'complete':{'expected':value['complete_checkpoint_hash'],'actual':actual_complete},
+        'auxiliary':{'expected':value['auxiliary_time_rng_history_hash'],'actual':actual_auxiliary},
+        'report':{'expected':value['report_hash'],'actual':actual_report},
+        'payload_fields':{key:canonical_hash(item) for key,item in payload.items()},
+        'spike_components':{key:canonical_hash(item) for key,item in payload['spike_states'].items()},
+        'absolute_time_seconds':value['absolute_time_seconds'],
+        'dynamic_time_seconds':payload['dynamic']['state']['time_seconds'],
+        'grid_origin_seconds':payload['grid_origin_seconds'],'sample_index':payload['sample_index'],
+        'component_tick_indices':payload['component_tick_indices'],
+        'canonical_hash_module':canonical_hash.__module__,
+        'canonical_hash_source_sha256':hashlib.sha256(Path(__file__).with_name('canonical_stream.py').read_bytes()).hexdigest()}
+
+
 class MemoryGuard:
     """Cooperative check at integration boundaries; leaves the last valid state."""
     def __init__(self,max_rss_bytes=4*1024**3,min_available_bytes=1024**3):
@@ -86,13 +108,14 @@ class BackgroundCheckpointStore:
             'absolute_time_seconds':state.time_seconds,'preparation_origin_seconds':float(origin_seconds),'report':report,'safety':safety}
         value['report_hash']=canonical_hash(report)
         atomic_json(path,value);return value
-    def load(self,path,*,require_converged=False,decode_mode=None):
+    def load(self,path,*,require_converged=False,decode_mode=None,diagnostic_path=None):
         if decode_mode is None:decode_mode=os.environ.get('RETINA_CHECKPOINT_DECODER','auto')
         if decode_mode not in ('auto','legacy','parsed'):raise ContractError('Unknown checkpoint decoding mode')
         tick=time.perf_counter();begin=tick;parts={}
         self._require_current_geometry()
         now=time.perf_counter();parts['geometry_validation_seconds']=now-tick;tick=now
         serialized=Path(path).read_bytes()
+        serialized_sha256=hashlib.sha256(serialized).hexdigest() if diagnostic_path is not None else None
         now=time.perf_counter();parts['file_read_seconds']=now-tick;tick=now
         value=json.loads(serialized);del serialized
         now=time.perf_counter();parts['envelope_JSON_parse_seconds']=now-tick;tick=now
@@ -101,12 +124,32 @@ class BackgroundCheckpointStore:
         now=time.perf_counter();parts['binding_validation_seconds']=now-tick;tick=now
         checkpoint=value['checkpoint'];payload=checkpoint['payload']
         auxiliary={k:payload[k] for k in ('grid_origin_seconds','sample_index','component_tick_indices','spike_states','delay_states','link_delay_states','input_position')}
-        if canonical_hash(checkpoint)!=value['complete_checkpoint_hash'] or canonical_hash(auxiliary)!=value['auxiliary_time_rng_history_hash']:
+        complete_hash=canonical_hash(checkpoint);auxiliary_hash=canonical_hash(auxiliary)
+        if diagnostic_path is not None:
+            diagnostic=checkpoint_hash_diagnostics(value,serialized_sha256,
+                complete_hash=complete_hash,auxiliary_hash=auxiliary_hash)
+            atomic_json(diagnostic_path,diagnostic)
+        if complete_hash!=value['complete_checkpoint_hash'] or auxiliary_hash!=value['auxiliary_time_rng_history_hash']:
             raise ContractError('Complete checkpoint time/RNG/history/delay identity changed')
         if canonical_hash(value.get('report'))!=value.get('report_hash'):raise ContractError('Background numerical report identity changed')
         now=time.perf_counter();parts['envelope_hash_validation_seconds']=now-tick;tick=now
         from .checkpoint_loading import restore_retina_payload
         state,procedure=restore_retina_payload(self.runner,checkpoint,expected_input_context=self.expected_context,mode=decode_mode)
+        if diagnostic_path is not None:
+            decoded=json.loads(self.runner.checkpoint(state));decoded_payload=decoded['payload']
+            decoded_auxiliary={k:decoded_payload[k] for k in auxiliary}
+            diagnostic['after_decode']={
+                'source_envelope_complete_hash':canonical_hash(checkpoint),
+                'decoded_complete_hash':canonical_hash(decoded),
+                'decoded_auxiliary_hash':canonical_hash(decoded_auxiliary),
+                'time_seconds':state.time_seconds,'grid_origin_seconds':state.grid_origin_seconds}
+            diagnostic['after_decode']['source_and_decoded_equal']=(
+                diagnostic['after_decode']['source_envelope_complete_hash']==complete_hash and
+                diagnostic['after_decode']['decoded_complete_hash']==complete_hash and
+                diagnostic['after_decode']['decoded_auxiliary_hash']==auxiliary_hash)
+            atomic_json(diagnostic_path,diagnostic);del decoded,decoded_payload,decoded_auxiliary
+            if not diagnostic['after_decode']['source_and_decoded_equal']:
+                raise ContractError('Restore decoding changed complete checkpoint or mutable auxiliary state')
         now=time.perf_counter();parts['state_decode_and_validation_seconds']=now-tick;tick=now
         if state.time_seconds!=value['absolute_time_seconds'] or value['preparation_origin_seconds']>state.time_seconds:
             raise ContractError('Background checkpoint absolute preparation time mismatch')
