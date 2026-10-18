@@ -8,7 +8,9 @@ from retina_sim.contracts import ContractError, SolverConfig, canonical_hash
 from retina_sim.background import constant_background_channels
 from retina_sim.background_checkpoint import MemoryGuard, prepare_with_checkpoint
 from retina_sim.recording import RecordingPlan, NPZWindowRecorder
-from retina_sim.execution_backends import make_runner, verify_cuda_execution, CUDA
+from retina_sim.execution_backends import make_runner, verify_cuda_execution, CUDA_BACKENDS
+from retina_sim.background_advance import choose_background_runner
+from retina_sim.recording_indices import indexed_recording_plan
 from retina_sim.disk_graph_storage import save_json
 
 
@@ -114,7 +116,7 @@ def paired_response(config, compiled, audit, frontend, media, directory):
     print('ACTUAL_COMPUTE_BACKEND',json.dumps(runner.model.compute_metadata,default=str),flush=True)
     solver = SolverConfig(**audit['resolved_execution_profile']['solver'])
     execution_check = None
-    if config.neural_integration_backend == CUDA:
+    if config.neural_integration_backend in CUDA_BACKENDS:
         execution_check = verify_cuda_execution(runner,solver,config.light_context())
         save_json(directory/'execution_backend_check.json',execution_check)
         print('ACTUAL_FULL_NETWORK_CUDA_CPU_COMPARISON_PASS',execution_check['state_scalars'],
@@ -127,12 +129,15 @@ def paired_response(config, compiled, audit, frontend, media, directory):
             integration_metrics=runner.integration_metrics))
         print('BACKGROUND_PREPARATION', directory.parent.name, current.time_seconds, row['phase'],
               'integration_seconds='+str(runner.integration_metrics['integration_wall_seconds']), flush=True)
+    background_runner,background_procedure=choose_background_runner(runner)
+    preparation_started=time.perf_counter()
     prepared, preparation, store = prepare_with_checkpoint(
-        Path(__file__).resolve().parents[1], runner, reference, config.light_context(), policy, checkpoint,
+        Path(__file__).resolve().parents[1], background_runner, reference, config.light_context(), policy, checkpoint,
         guard=MemoryGuard(int(config.background_memory_limit_mb*1024**2),
                           int(config.background_min_available_mb*1024**2)), on_progress=preparation_progress,
         resume_path=config.background_checkpoint_path or None,
         checkpoint_interval_seconds=config.background_checkpoint_interval_seconds)
+    preparation_this_run_seconds=time.perf_counter()-preparation_started
     save_json(directory/'background_initialization.json', preparation)
     if not preparation['converged']:
         raise ContractError('Original background convergence not reached: '+preparation['status']+
@@ -153,14 +158,17 @@ def paired_response(config, compiled, audit, frontend, media, directory):
                         for name in stimulus}
     if not any(value > 0 for value in input_difference.values()):
         raise ContractError('Existing controlled image does not differ from the declared background')
-    plan = RecordingPlan(states=tuple(name+'.terminal_release' for name in bc),
-                         cell_ids=frozenset(ids), max_bytes=64*1024**2)
+    plan = indexed_recording_plan(RecordingPlan(states=tuple(name+'.terminal_release' for name in bc),
+                         cell_ids=frozenset(ids), max_bytes=64*1024**2))
     times,recording_alignment = aligned_response_times(runner,grid_origin,origin,duration)
     relative_times = times-origin
-    outputs = {}; restores = {}; terminal_checks = {}
+    outputs = {}; restores = {}; terminal_checks = {};branch_timings={}
     for name, channels in (('background', background), ('stimulus', stimulus)):
+        restore_started=time.perf_counter()
         state, saved = store.load(checkpoint, require_converged=True)
+        restore_seconds=time.perf_counter()-restore_started;hash_started=time.perf_counter()
         restored_hash = canonical_hash(json.loads(runner.checkpoint(state)))
+        restore_hash_seconds=time.perf_counter()-hash_started
         if restored_hash != saved['complete_checkpoint_hash']:
             raise ContractError('Matched branch full-state restore differs before execution')
         restores[name] = {'complete_checkpoint_hash': restored_hash,
@@ -173,8 +181,11 @@ def paired_response(config, compiled, audit, frontend, media, directory):
                 raise ContractError('Functional-check memory budget: ' + str(guard.last))
             if time.monotonic()-last[0] > 15:
                 print('MATCHED_PATHWAY_RESPONSE', name, t, flush=True); last[0] = time.monotonic()
+        advance_started=time.perf_counter()
         state, result = runner.advance(state, channels, origin+duration, sample_times=times,
                                        recording_plan=plan, state_observer=observe)
+        branch_timings[name]={'strict_restore_seconds':restore_seconds,'restored_full_state_hash_seconds':restore_hash_seconds,
+            'advance_and_record_seconds':time.perf_counter()-advance_started,'simulation_seconds':duration}
         if not all(np.all(np.isfinite(q.values)) for q in result.outputs_with_units.values()):
             raise ContractError('Nonfinite actual matched-response output')
         terminal_checks[name] = {}
@@ -207,6 +218,10 @@ def paired_response(config, compiled, audit, frontend, media, directory):
             differences.get(name+'.activation', {}).get('max_abs_difference', 0.) > 0 for name in bc):
         raise ContractError('No demonstrated actual native-release -> BC-terminal -> owner-RGC voltage difference')
     report = {'status': 'MATCHED_STATIC_INPUT_PATHWAY_RESPONSE_PASS_NUMERICALLY_PREPARED', 'duration_seconds': duration,
+        'execution_procedures':{'background':background_procedure,'recording_indices':plan.procedure_identity},
+        'stage_timings_seconds':{'background_prepare_or_restore_this_run':preparation_this_run_seconds,
+            'background_stage_kind':'converged_checkpoint_reuse' if preparation.get('cache_reused') else 'fresh_or_partial_resume_preparation',
+            'historical_background_report_wall_seconds':preparation['wall_seconds'],'branches':branch_timings},
         'neural_windows': 2, 'ISET_exports_added': 0, 'target_RGC': target, 'recorded_cell_ids': ids,
         'neural_integration_backend': config.neural_integration_backend, 'execution_backend_check': execution_check,
         'recording_clock_alignment': recording_alignment,

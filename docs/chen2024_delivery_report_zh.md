@@ -50,22 +50,22 @@ synthetic 闪光非线性残差 0.23894008765773833 pA，只说明该固定 kern
 实际检查命令：
 
 ```text
-C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\extract_packer_cone_density.py --verify
+python -B D:\macaque_retina_simulator\tools\extract_packer_cone_density.py --verify
 ```
 退出码 0；日志 `reports/20261010T115050664306Z/check_0.log`。
 
 ```text
-C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_a.py -q
+python -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_a.py -q
 ```
 退出码 0；日志 `reports/20261010T115050664306Z/check_1.log`。
 
 ```text
-C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_b.py -q
+python -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_b.py -q
 ```
 退出码 0；日志 `reports/20261010T115050664306Z/check_2.log`。
 
 ```text
-C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_c.py -q
+python -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_c.py -q
 ```
 退出码 0；日志 `reports/20261010T115050664306Z/check_3.log`。
 

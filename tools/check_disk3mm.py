@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--check-pathway-response',action='store_true',help='Matched20ms static-image/background response after existing background convergence on each selected region')
     parser.add_argument('--resource-profile',type=Path,help='Explicit execution-resource budgets; numerical convergence criteria remain unchanged')
     parser.add_argument('--resume-background',type=Path,help='Resume the identity-matching full background checkpoint for a single region')
+    parser.add_argument('--stop-on-blocker',action='store_true',help='Retain the first blocked region and stop before starting another expensive region')
     args=parser.parse_args();output=(ROOT/args.output).resolve()
     if not output.is_relative_to(ROOT):raise ValueError('Validation output must stay inside project')
     config_path=(ROOT/args.circuit_configuration).resolve()
@@ -56,16 +57,21 @@ def main():
             'steady_state_claim':False,'physiological_validation':False,'neural_windows':0,'default_adopted':False}
         try:
             print('REGION_GRAPH_QUALIFICATION',name,flush=True)
-            view=circuit.owner_view(bounds)
+            view=circuit.owner_view(bounds,empty_chemical_input_policy=configuration.get('empty_chemical_input_policy','reject_empty_chemical_input_v1'))
             print('REGION_GRAPH_QUALIFIED',name,'nodes='+str(view['global_node_count']),'ready='+str(view['runtime_ready']),flush=True)
             report.update(selected_global_nodes=view['global_node_count'],empty_output_samples=view['empty_output_samples'],
-                unsupported_rows=view['unsupported_rows'])
+                unsupported_rows=view['unsupported_rows'],empty_chemical_input_policy=view['empty_chemical_input_policy'],
+                declared_empty_chemical_sums=view['declared_empty_chemical_sums'])
             if args.qualification_only:
                 report['status']='GRAPH_QUALIFICATION_PASS_PENDING_RUNTIME' if view['runtime_ready'] else 'SOURCE_GEOMETRY_UNSUPPORTED'
                 report['claim']='Exact frozen graph qualification only; no optical capture, background preparation or neural execution'
-                results[name]=report;save_json(directory/'check.json',report);view=None;gc.collect();continue
+                results[name]=report;save_json(directory/'check.json',report);view=None;gc.collect()
+                if args.stop_on_blocker and not report['status'].startswith('GRAPH_QUALIFICATION_PASS'):break
+                continue
             if not view['runtime_ready']:
-                report['status']='SOURCE_GEOMETRY_UNSUPPORTED';results[name]=report;save_json(directory/'check.json',report);continue
+                report['status']='SOURCE_GEOMETRY_UNSUPPORTED';results[name]=report;save_json(directory/'check.json',report)
+                if args.stop_on_blocker:break
+                continue
             config=RunConfig.from_dict({'execution_profile':'atlas_isetbio_geometry_v1','circuit_configuration_path':str(config_path.relative_to(ROOT)),
                 'owner_x_mm':x,'owner_y_mm':y,'owner_width_mm':width,'owner_height_mm':width,'max_spatial_cells':2000000,
                 'duration_seconds':.0001,'window_seconds':.0001,'sample_seconds':.0001,'warmup_seconds':0.,
@@ -135,6 +141,7 @@ def main():
         gc.collect()  # Sequential ROIs must not retain the previous full dependency view.
         save_json(output/'delivery.json',{'regions':results,'full3mm_runtime_complete':False,'default_changed':False,
             'claim':'Representative mechanism/input verification only; no steady-state or physiological calibration claim'})
+        if args.stop_on_blocker and report['status'] in ('BLOCKED','SOURCE_GEOMETRY_UNSUPPORTED'):break
     save_json(output/'delivery.json',{'regions':results,'matched_pathway_responses':responses,'full3mm_runtime_complete':False,'default_changed':False,
         'claim':'Representative mechanism/input verification only; no steady-state or physiological calibration claim'})
     if args.figure:

@@ -95,8 +95,9 @@ def runtime_record(root,circuit,view):
 
 class DiskSpatialAsset:
     allow_absent_contact_targets=True
-    def __init__(self,circuit,view,record,*,max_compile_bytes):
+    def __init__(self,circuit,view,record,*,max_compile_bytes,empty_chemical_input_policy='reject_empty_chemical_input_v1'):
         self.circuit=circuit;self.view=view;self.source=record;self.max_compile_bytes=max_compile_bytes
+        self.empty_chemical_input_policy=empty_chemical_input_policy
         self.binding={'global_graph':circuit.binding,'view_sha256':record.semantic_hash};self._pools={}
         self._ids={name:tuple(table['global_cell_ids']) for name,table in dict(record['inner_tables'],cones=record['cones'],HC=record['HC']['table'],**record['rod_inner']['tables']).items()}
     def _descriptor(self,name):
@@ -137,6 +138,15 @@ class DiskSpatialAsset:
         if tuple(pre_ids)!=expected_pre or tuple(post_ids)!=self._ids[d['post']]:raise ContractError('Frozen primary contact population ordering differs: '+name)
         rows=[dict(row,post_global_row=row['post_index'],post_index=j) for j,row in enumerate(rows)]
         return matrix,rows,None if geometry.overlap is None else np.asarray(geometry.overlap[entries])
+    def empty_chemical_declaration(self,name,pre,post,matrix):
+        from .finite_input_support import EMPTY_SUM_POLICY
+        if self.empty_chemical_input_policy!=EMPTY_SUM_POLICY or name!='RBC_AII_AMPA':return None
+        if (pre,post)!=('rod_BC','AII_AC') or matrix.shape!=(len(self._ids[post]),len(self._ids[pre])):
+            raise ContractError('Frozen empty chemical declaration route/order differs')
+        empty=np.flatnonzero(np.diff(matrix.indptr)==0)
+        if not len(empty):return None
+        return {'policy':EMPTY_SUM_POLICY,'evidence_class':'project_approximation','source_graph':self.circuit.binding,
+            'source_route':self._descriptor(name)['binding'],'cell_ids':[self._ids[post][i] for i in empty]}
     def contact_record(self,cid):
         d,matrix,_,geometry,entries=self._contact(cid);coo=matrix.tocoo()
         pre=tuple(d['pre_ID_prefix']+gid for gid in self._ids[d['pre']]);post=self._ids[d['post']]
@@ -211,13 +221,14 @@ def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,hal
     atlas_profile=circuit.record['source_profiles']['cone_atlas']
     if configuration.get('atlas_profile')!=atlas_profile:
         raise ContractError('Selected circuit cone atlas differs from frozen graph; no species-route fallback')
-    view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'])
+    policy=configuration.get('empty_chemical_input_policy','reject_empty_chemical_input_v1')
+    view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'],empty_chemical_input_policy=policy)
     if max(len(rows) for rows in view['selected_rows'].values())>max_spatial_cells:
         raise ContractError('Exact global view exceeds requested per-population budget; no thinning or crop normalization')
     guard=MemoryGuard(min_available_bytes=configuration['budgets']['minimum_available_bytes'])
     if not guard.check():raise ContractError('Insufficient available RAM for the unchanged global dependency view')
     record,context=runtime_record(root,circuit,view)
-    spatial=DiskSpatialAsset(circuit,view,record,max_compile_bytes=configuration['budgets']['max_compile_bytes'])
+    spatial=DiskSpatialAsset(circuit,view,record,max_compile_bytes=configuration['budgets']['max_compile_bytes'],empty_chemical_input_policy=policy)
     compiled,channels,audit=atlas_midget_network(root,duration=duration,light_context=light_context,owner_bounds_mm=owner_bounds_mm,
         halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed,connection_record=record,atlas_profile_id=atlas_profile,
         allow_empty_owner_outputs=True,spatial_asset=spatial,_atlas_context=context,max_compile_bytes=spatial.max_compile_bytes)

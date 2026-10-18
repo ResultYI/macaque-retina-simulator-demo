@@ -114,7 +114,8 @@ class RunConfig:
                    'ipl_geometry_profile','requested_owner_output',
                    'neural_integration_backend',
                    'background_initialization_mode','background_policy_path','background_checkpoint_path','background_require_converged')]
-        if self.neural_integration_backend not in ('scipy_cpu_v1','cuda_native_joint_dop853_float64_v1'):
+        from retina_sim.execution_backends import BACKENDS
+        if self.neural_integration_backend not in BACKENDS:
             raise ValueError('Unknown explicit numerical integration backend')
         if self.background_initialization_mode not in ('fixed_prerun','bounded_convergence'):
             raise ValueError('Unknown background initialization mode')

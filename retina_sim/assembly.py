@@ -373,13 +373,17 @@ class RetinaBuilder:
             channels.add(external.channel)
             if key in input_sources: raise AssemblyError(['Cannot implicitly combine external and connected input'])
             input_sources[key]=[('external',external.channel)]
+        component_specs={component.component_id:component for component in spec.components}
         for cid,c in components.items():
             for port in c.inputs:
                 if (cid,port) not in input_sources: issues.append(f'{cid}.{port}: no bound input')
                 elif all(kind in ('link','delayed') for kind,source in input_sources[(cid,port)]):
                     incoming=[x for x in compiled if x.specification.target_component==cid and x.specification.target_port==port]
                     totals=sum((np.asarray(x.matrix.sum(axis=1)).ravel() for x in incoming),np.zeros(len(c.inputs[port].cell_ids)))
-                    if np.any(totals<=0):issues.append(f'{cid}.{port}: explicit positive contact/input support missing for some cells; no implicit zero drive')
+                    from .finite_input_support import declared_empty_rows
+                    try:allowed=declared_empty_rows(component_specs[cid],c,port,totals,incoming,self.sources.root,mode)
+                    except ContractError as exc:issues.append(f'{cid}.{port}: {exc}');allowed=np.zeros(len(totals),dtype=bool)
+                    if np.any((totals<0)|((totals==0)&~allowed)):issues.append(f'{cid}.{port}: explicit positive contact/input support missing for some cells; no implicit zero drive')
         # Output feedthrough graph, distinct from state feedback in the simultaneous RHS.
         dependencies={}
         for cid,c in components.items():

@@ -1,6 +1,101 @@
 # 猕猴中心—周边连续视网膜模拟器：当前架构与交付说明
 
 
+## 本次代码上传状态（2026-10-18）
+
+当前review代码已整理供另一台电脑重跑；main及科学默认不变。真实0.5秒视频任务未完成：原内存保护中止首次光学准备，释放重复构建JSON后的重试由用户要求安全停止，尚未开始神经推进。有效私有tile与完整旧背景保留在本机，不上传素材、私人路径/日志、派生捕获或大checkpoint。下文“等待视频”“已启动”等为按日期保留的历史阶段记录，不能读作0.5秒成功。依赖与资产要求见README及`docs/pro_review_supplement/reproduction_assets.json`；跨机器/后端不假定bitwise兼容。
+
+
+## 等价执行性能修正与真实配对结果（2026-10-18 UTC）
+
+A/B 已在真实旧HC过渡区图完成顺序测量：RF框(.96,1.04,-.04,.04)mm，879437个依赖节点、34组件、530929个锥细胞、344287个HC、4967023个注册状态标量。细胞、图、权重、方程、FP64、原DOP853设置、事件/监测时刻、历史、延迟、RNG和停止条件保持原样。没有OPL卷积替换、多速率、分裂或降阶。默认仍未切换，新功能HC中央图的生理/背景验收仍未完成。
+
+| 配对范围 | 原路径 | 修正路径 | 本次速度比 |
+|---|---:|---:|---:|
+| 已收敛完整状态，1ms背景推进，schema未缓存→全部A优化 | 7.362557s | 5.381850s | 1.368× |
+| 同上，schema已缓存，仅state-only增量 | 6.132197s | 5.381850s | 1.139× |
+| 同一已收敛状态，2ms刺激与完整所选记录，固定ID索引缓存 | 13.887739s | 6.335494s | 2.192× |
+| 相同工厂初态，100µs完整GPU推进与记录，仅B紧凑桥接 | 0.514364s | 0.583345s | 0.882× |
+
+A复用原2.099999999999879s收敛检查点，不重跑适应。1ms三臂均为25次原监测、12次solver、180 nfev；完整状态、所有监测结果、时钟、RNG、history/delay/input均完全相同。2ms记录的状态、输出、单位、ID顺序和元数据也完全相同。A先丢弃一次完整窗口预热，再各计时一次；B每个进程均先丢弃一次完整100µs窗口，再各计时一次，保留全部17 nfev和原观察时刻。B还比较原始/扰动两组完整RHS及全部实际native外向消费者驱动，初态/终态每个4967023标量按float64位模式独立复查，完整因果辅助JSON逐字节相同，全部所选输出及单位/ID相同。两套大网从未并存。每方另一次同态100µs cProfile复算已核验相同，profile开销不计入上表。单对数据没有统计分布，不能相乘或外推完整背景速度。
+
+实现为：`engine._state_schema_hash`只缓存同一深层不可变schema；`background_advance.StateOnlyBackgroundRunner`在源码固定且读出无副作用的机制上跳过空trace/SimulationResult/元数据，其余积分与完整监测照常；`recording_indices.IndexedRecordingPlan`缓存固定不可变ID索引，保留顺序/单位/返回隔离，可变结构回退且缓存有界。GUI与匹配响应调用者已接入，并分别记录本次准备、同身份恢复与刺激耗时；原本已有的背景缓存不重复算作新收益。38项联合回归通过（新A/B18、此前schema7、已有时钟/前端13；不是38项新生理验证）。小模型1.44/1.22×为较早初步数据，真实结果以上表为准。
+
+B是显式可选`cuda_compact_native_joint_dop853_float64_v2`：所有实际编译外向release消费者形成650列确定性并集，私有inner CSR只改列地址，系数和行内求和顺序不变。每RHS外向release由4247432 bytes降到5200 bytes；完整cone/HC及A/B反馈仍在GPU求解，监测、history和记录仍用完整模型。light每次仍验证原端口合同，按实际float64位比较复用缓冲，支持值变更/连续输入而不依赖对象ID或ZOH标签。传输字节比不是墙钟倍速。资源候选为`configurations/disk3mm_validation_resources_v4_cuda_compact.json`，预算与v3相同，未切默认。B有独立执行/模型身份，旧CPU/v1检查点仍拒绝，不迁移或重标。
+
+严格恢复曾正确拒绝当前编译器：AII空和修复使`assembly.py`从旧SHA4fed0da9…改为bbe18564…，而assembly身份包含编译器文件原始字节。仅核对8个积分文件不够判断旧检查点兼容。本次在独立诊断进程中实际执行审阅提交3333811中留存的原编译器源码，路径`reports/current_wip_review/frozen_v7_compiler/assembly.py`，完整SHA为4fed0da9eee54bb91b8e0d7823b9e1c9e34204d95bfb2a754e3b72589ebbd7c7；没有伪造hash、改写检查点或覆盖当前源码。另18个原运行时/CUDA文件与该提交逐字节一致。原检查点全部绑定差异为空、完整严格恢复通过，文件SHA仍与此前profile记录一致。B沿用同一冻结编译器，自己初始化原工厂值，初态全值及图/参数/schema/clock/input/solver绑定均与原路径相同；没有把旧检查点导入v2。
+
+装配/恢复仍明显影响周转：A装配199.65s，runner与绑定52.16s，严格完整恢复50.81s，均单列，历史四小时准备不计入本次恢复耗时。1ms state-only的积分内层为1.614s，整窗5.382s，其差额包含原监测、事件、状态处理等，不能全归为可删元数据。B未profile计时中原积分内层0.157s→0.139s，整窗如表；全部profile函数和交叠关系保留在case.json，不能把inclusive时间相加。监测/记录的完整CPU求值、GPU同步、装配及完整检查点序列化仍是残余成本。 本次B整窗增加13.41%，因此未证实整体提速，显著收益来自A；B继续保持可选候选。B未profile计时的非积分差额约占整窗76.2%，含记录/事件/状态处理等必要工作。诊断profile中57次Tensor.item同步、5次完整network.evaluate（包括native evaluation_context）突出；这些inclusive时间相互交叠，profile自身也改变GPU发射节奏，不能据此直接推算常规吞吐。
+
+
+证据：`reports/performance_real_prepared_A_v4/result.json`、`background_binding_differences.json`、`legacy_bridge_case/`；`reports/performance_real_compact_B_v1/case.json`、完整初末状态NPZ/辅助JSON、两组RHS/驱动和输出、同态profile；`reports/current_wip_review/handoff_status.json`汇总独立文件复查。关闭收据为`user_authorized_androws_close.json`，较早内存阻塞/失败尝试及旧结果全部保留。固定公开审阅提交3333811未覆盖，后续本地修改尚未推送。
+
+节点选择仍先于工厂、状态、ISET和积分。非零有向BFS证明旧过渡区879437、新功能HC中央894425节点均无冗余选择；仅第一个midget ON也分别需875557、890625节点，因为原native反馈分别为875216、890559节点的单一强连通分量。这是当前有限图的依赖事实，不是小ROI生物学必需全网的证明，也不授权裁剪反馈。功能HC部分背景保留在绝对t=.124s，未收敛、未重启；134个无RBC化学输入AII的项目空和（118有gap、16无gap）不等于真实无支配的测量结论。人锥细胞借用、有效动力学/亚型、AII支配等科学缺口保持明确。
+
+## 严格恢复唯一热点与反序复测（2026-10-18）
+
+本轮只消除严格恢复中两次大型JSON往返。`engine.restore_payload`复用原动态状态检查；`checkpoint_loading`仅对原HybridRunner.restore源码固定且适用的分支使用已解析对象，保留外层/内层hash、模型/参数/schema、输入相位、有限值/shape、绝对时间及收敛检查。可变RNG/history/delay/输入容器仍深复制，返回envelope与state互不别名。自定义/未审阅restore或RK2回退原路径，坏文件仍直接拒绝。`BackgroundCheckpointStore.load`默认auto，回退可设置`RETINA_CHECKPOINT_DECODER=legacy`或显式`decode_mode='legacy'`。没有改状态/检查点格式或模型身份。
+
+真实311445018-byte原v7检查点，单进程先丢弃一次完整legacy载入预热，再按parsed→legacy反序各测一次：50.844s→38.638s，时间减少24.01%，速度比1.316。文件读取仅0.071/0.068s，首层JSON解析约3.89s，原几何校验约4.7–4.8s、envelope hash约14.7s仍保留。状态解码/校验27.43s→15.12s；旧路径额外生成并解析约328MB及97MB JSON，新路径只保留首次文件解析。不得把整个严格恢复叫作磁盘I/O。
+
+本次装配204.49s，其中两次顶层RetinaBuilder.build分别45.16/45.57s（25组件→34组件，都含native）；不能据此直接删掉中间构建，当前基准传递仍依赖它。执行器15.36s、初态1.44s、完整绑定34.72s、既有光输入缓存严格加载6.81s。一次性实际setup共263.06s；加上预热后的parsed恢复为301.70s的分段预算，非新视频冷启动时间。2ms记录也按新indexed→旧ordinary反序，每方先丢弃一次同输入完整窗口：15.160s→6.145s（2.467×），均23 solver/334 nfev。全状态位模式、身份、RNG/history/delay/input、输出单位/ID及元数据一致。基准进程总497.10s包含预热、重复核验和工件IO，不是生产推理时间。33项相关回归分两日志通过（31+新增2）。没有再跑B或长背景。
+
+CPU monitor/readout暂未合并：compiled RHS不直接调用Python evaluate；监测sampling=True与普通record不同，同一时刻历史转换前后也不是同一状态。仅按时间缓存会误用结果。本轮唯一建议路径为既有后端（该图为GPU-v1）+A+auto严格解析恢复，B继续可选且不默认开启。证据`reports/performance_strict_restore_reverse_v1/result.json`及`reports/parsed_checkpoint_regression_v1.log`、`v2.log`。
+
+## 0.5秒真实视频、有界输入与内部状态回看（2026-10-18）
+
+用户已授权实际0.5s视频试跑；目前仍等待真实本机路径和片段起点，尚未运行该视频。项目现有0.12s/50fps/6帧/480×270合成QA和8Hz光斑不能充当真实素材；历史引用`<LOCAL_VIDEO_PATH>`为ObjectNotFound。没有下载、循环或替换输入。
+
+原输入的19.87GiB是仅0.5s的保守预算估算，未实际分配。`disk_frontend.py:130–132`硬编码0.0001s，得到5000个窗口、5001个边界，按5001×(530929 cone+2306 rod)×8=21,333,665,880B检查；真实原始数组分别为float64 `native_counts[5000,530929]`及`rod_values[5001,2306]`，合计约19.8646GiB，转换时还会产生副本。128MiB来自`iset_frontend.py:13`。MATLAB先按视频帧/注视去重计算OI，随后`export_disk_mixed_reference.m:73–79`将相同计数重复写至每个100µs窗口。导出器明确只做捕获，无上游光转导、光子噪声或跨帧动态状态；100µs是项目输入格点要求，不是该ISET光学过程要求。
+
+新增显式`StreamedDiskMixedReferenceFrontend`与`streamed_input.py`保存每个实际(frame,gaze)的单窗口原始计数、完整原100µs索引和分块原rod采样。固定注视、从0秒开始的50fps/0.5s例子为25个光学曝光×148个固定tile=3700任务，在原batch执行器的一次tile批次中处理；不重复成37000任务，不创建all-cone×all-time矩阵。连续变化的注视不会被合并或降采样。严格参考/背景绑定继续使用原one-window全局packet读取器，额外分片及曝光provenance均冻结hash并校验，数值LRU合计上限64MiB，每分片仍受128MiB预算。原光学导出器、`disk_frontend.py`、LMS系数、全局增益、图、状态方程、求解器和背景身份均未改动。新存储源身份单独记录。
+
+实际通道是ZOH窗口均值。特别保留原`np.diff(edges)`的float64窗口宽度，再按原顺序执行counts/width/alpha；提前除名义100µs并复用速率会产生微小差异。所有原breakpoint、searchsorted(right)、最终窗口夹取、杆通道sample端点及现有背景重定位/左右极限规则均保留。神经状态跨所有帧和块持续，不逐帧重置。
+
+验证：13项直接回归通过（`reports/streamed_input_regression_v1.log`，14.88s），覆盖QA视频所有bin/中点/边界两侧、注视key、坏hash/布局/值/预算拒绝、完整准备与严格重载、背景重定位、恢复保留和完整checkpoint协议及状态读取。一次真实pinned ISET小对照在2 cone+2 rod、20.3ms、203窗口、两帧上逐位一致，前端及背景签名一致，42.8656s；证据`reports/streamed_input_actual_ISET_QA_v2/result.json`。这是合成QA几何/视频的输入存储等价检查，不是大图推进、0.5秒视频、物种标定或新functional-HC验收。沙盒首次MATLAB启动遇MathWorks5201，未进入光学计算；一次获准的沙盒外同安装运行成功，未改环境或安装软件。随后仅增加分段计时，无数值改变。
+
+专用入口：`python -B -X utf8 tools/run_video_05s.py --media <真实视频路径> --start 0 --output reports/<新目录>`；`--resume`只继续同目录、同素材/片段/源/旧编译器及严格相符的完整checkpoint。该入口保留原v7过渡区879437-node图及2.099999999999879s收敛背景，实际加载留存旧compiler，任何身份不符立即停止，不启动长背景；不是新functional-HC中央图验收。入口及其状态记录/读取和checkpoint函数经过小fixture回归，完整大图视频执行尚待真实素材。独立主GUI默认未切换到此实验入口。
+
+记录为正式观察队列650 cone、616 HC及全部已选内网/接触状态，共37449个注册标量×501点×8=150095592B（143.1423MiB原始数据），1ms采样且分块不重复端点。状态key及单位/ID写入结果manifest，可由现有ResultStore/GUI历史读取。原timestamped spike events保留在窗口metadata；完整起点、终点及60s wall间隔滚动checkpoint保留全依赖图动态数组、RNG、clock、history/delay和输入位置。恢复时超出最近checkpoint的窗口保留归档后重算；`STOP`文件可在块边界停止。没有逐时刻保存全网辅助缓冲，也没有实现全图任意连续时间checkpoint replay viewer。其他点或细胞不能由143MiB观察数据直接推断。
+
+一次前向可缓存同视频/同输入/模型/记录设置，之后回看读取结果；换视频仍需新推进。入口分别记录装配、ISET准备/缓存、runner、严格绑定/恢复、推进和记录、结果写盘及checkpoint写盘；前端还区分decode/crop、MATLAB tile batch和校验/绑定，decode为准备子项不可重复相加。没有冷ISET大图或0.5秒神经wall-time测量，不按42.9s小QA、100µs GPU或历史668.282s静图整体交付线性外推。预检`tools/check_video_recording_budget.py`当前仅剩真实素材路径阻塞。
+
+## HC等价热点修正与短窗口实测（2026-10-18）
+
+按新Pro主体方案仅做一个等价工程改动，不改HC方程、A/B权重/接线、FP64、DOP853、时钟、RNG/history、监测准则或记录。未重复SCC/闭包搜索，未加HC-HC gap、局部域截断、Schur/线性化、低秩或分区积分。旧0.514→0.583s是GPU v1与compact GPU比较，不是GPU对CPU，本次另做同进程新配对。
+
+实际原图仍为530929 cone+344287 HC、4967023状态。一次完整100µs窗口的诊断保留原数值监测和记录，17次RHS；三次SpMV的CUDA event总量分别Bh10.5635、AVbar9.4567、Az1 10.5276ms，合计30.5477ms，约占native GPU算子时间17%，不是主要成本。对同一保存trace按External id/父CPU算子归属分解，纯device kernel分别为9.2393/9.1382/10.2014ms，native逐元素数学112.1320ms，native域/输出检查34.9247ms，重复joint全向量finite检查11.8000ms；此kernel分解与event跨度不是同一量，不重复相加。HtoD116.16MB/6.02ms、DtoH195.63MB/13.45ms；设备内部拷贝另记，不能称全是PCIe流量。136次cudaStreamSynchronize的CPU跨度162.06ms包含等待前序GPU工作，不是纯同步调用成本。
+
+带profiler的全窗口1.1978s中，原数值monitor4次0.4069s、CPU model.evaluate9次0.3176s、CPU monitor RHS4次0.1284s、CPU inner17次0.0232s；这些包含关系重叠。diagnosis/trace只定位成本，不当吞吐。CUDA/CPU源码算子已在构建时绑定；无每RHS重新归一化。实际Numba执行数组内A位于两个不重叠的CSR区域，权重、indices、indptr均为独立副本，单份60800288B（57.984MiB），整个编译计划数组296670976B。共享有确定内存价值，但本轮未混入第二个布局改动或强制CPU后端，也未把它当成巨大提速。
+
+新增显式可选`cuda_native_joint_cpu_finite_validation_float64_v1`（`gpu_joint_validation.py`）。原pinned CudaNative已完整验证native导数及release；内网导数本来在CPU/Numba以float64计算，因此在CPU检查全部inner导数，再原样float64上传，即可覆盖原joint最终检查的全部分量。省去拼接后对4967023标量重复做GPU isfinite/reduction及每RHS一次主机判定；保留native原有两次检查、全部release传输、端口校验和求解器原检查。内网external端口/期望channel集合预绑定，无跨RK stage动态缓存。源码pin失配、自定义native、非有限值或错布局均拒绝。普通make_runner工厂可显式选此候选；默认配置、v1及compact旧路径保留。
+
+一次完整warmup/臂丢弃，候选先、原GPU后，同一模型实例的静态算子可顺序复用。均100µs、1 solver、17 nfev、相同4个observer点、原全状态数值monitor及同一indexed记录：
+
+| 本次未插桩窗口 | 原GPU v1 | CPU finite检查候选 |
+|---|---:|---:|
+| 完整推进、原monitor和记录 | 1.1297707s | 1.0552959s |
+| 其中积分 | 0.3685838s | 0.1700224s |
+| 原数值monitor | 0.3948836s | 0.4066298s |
+
+完整窗口约1.0706×、wall减少6.59%，只有一对，不作为统计分布或长背景/0.5s吞吐预测，也不把74.5ms差值全部归因于11.8ms的GPU kernel。全部4967023个最终状态bitpattern、原monitor报告、输出/单位、完整clocks/RNG/spike/history/delay/input辅助数据及执行点一致；插桩结果也与未插桩原路径一致。9个最终不同回归case通过；日志保留最初QA错误选择R作负值拒绝样本、后改为源显式约束X的修正及复测，未更改模型域规则。记录/非backend metadata与候选自身checkpoint往返由小图回归覆盖。
+
+本进程峰值RSS5232607232B（4.874GiB）、GPU peak allocated1764893184B（1.644GiB），最后可用物理约12.10GiB，原8GiB余量未变。两臂共享静态算子，未测独立每臂峰值或实际CSR内存节省。装配162.6615s、runner/init16.6341s、既有输入严格加载6.4814s，未做ISET或长背景。
+
+本次fresh pair未设置OPENBLAS_NUM_THREADS，旧记录为1；此字段进入现有执行身份。科学binding与保留旧GPU case逐字段相同，但本轮原model08644122…及候选96e22c12…应按本次独立身份解释，未恢复旧背景、未拼接旧耗时。候选有独立执行/model hash，旧背景checkpoint应拒绝，不迁移。另修视频入口在NumPy载入前从留存v7执行记录复现OPENBLAS=1；若NumPy已载入且设置不符则要求新进程，防止将错误进程设置套上旧身份，未升级或改变conda环境。
+
+结论：停止本例SpMV融合调优；本轮交付的是小幅实测收益的验证/同步优化，保持显式可选。当前旧背景/真实视频仍走原v1；更大成本在必须的CPU监测/读出及native逐元素数学，后续若继续，只考虑同一次同状态计算中的复用/融合并保留完整校验，不能跨stage缓存或偷换模型。真实视频路径仍待提供，0.5s未执行。证据统一在`reports/hc_equivalent_short_v1/result.json`及同目录diagnosis/trace/两臂完整数组与辅助数据；测试`reports/gpu_joint_validation_regression_v1.log`。
+
+## HC计算诊断快照：后续方案边界（2026-10-18）
+
+旧图A为344287×530929、B为530929×344287，各3627874个非零；functional中央图A为344901×545658、B为545658×344901，各3577939个非零。每cone有R/E/X/C/V/gi/Vbar/z1八状态，每HC有z2/h两状态；每RHS计算Bh、A·Vbar、A·z1三个稀疏乘法。反馈为q=sigmoid((V−Bh−Vk)/Vn)，HC池化适应为((A·Vbar)/VI)^mu，z2/h沿原tau2/tauh演化；没有独立HC↔HC电耦合算子，内网AII等另有电耦合。S/H2仍共享H1项目动力学，不能称独立实测校准。
+
+现闭包用预存分量加速再逐route反向追溯。独立非零有向BFS/SCC核查旧/新图无冗余选入节点，native分别形成875216/890559-node单个强连通分量；只请求一个midget ON输出仍需875557/890625节点。因此仅将无向分量换成SCC不能缩小这两个具体图，不代表生理上小ROI必需全盘。源证据在既有`closure_and_AII_finite_support_audit_v2.json`。
+
+CPU已有Numba并行逐行CSR和native行融合，无fastmath/跨行归约；GPU以float64常驻A/B和native状态，保留DOP853，内网逐阶段经CPU/Numba。权重和归一化只在构建时确定。CPU Plan.csr为A两次乘法重复存储权重/indices/pointers，属于潜在等价内存/构建优化点，不能误称每RHS重复归一化。GPU每阶段有效性.item同步及内网传输、全量监测/读出仍有成本。
+
+既有旧/compact桥接100µs实测全窗口0.514/0.583s、积分0.157/0.139s；compact整体未提速。诊断profile的57次.item共0.381s包含此前GPU工作的等待，inclusive不可相加；三次SpMV的后续实际分解见上节短窗口实测。背景监测要求全注册状态，正式记录仅观察队列；旧长背景非积分约79%不可当成HC纯算术。后续严格等价候选为CSR常量复用、保留逐行加法次序的融合、明确同步边界及读出复用；需短对照和完整状态/causal辅助校验，已实施的唯一验证/同步候选及其适用边界见上节；未改HC数学。局部域+边界/衰减误差、降阶、改方程/积分器、删边或高斯替换均属科研取舍，等待具体方案及用户授权；未开新长背景。
+
 ## Current result: human cone reuse candidate blocked (2026-10-17 UTC)
 
 The single main configuration remains unchanged: `configurations/retina_platform_v1.json` still selects the earlier finite local macaque route `configurations/atlas_isetbio_source_stop_shared_v1.json`. The new candidate is `configurations/atlas_human_borrowed_disk3mm_v1.json`; it has **not** passed neural acceptance or replaced the default.
@@ -156,7 +251,7 @@ checkpoint 保存膜/化学/历史/释放池状态、事件索引、延迟历史
 从 `D:\macaque_retina_simulator` 启动：
 
 ```powershell
-& 'C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe' -B tools/run_full_target.py
+& 'python' -B tools/run_full_target.py
 ```
 
 同一入口提供 `--duration`、`--warmup`、`--window`、`--sample-step`、`--bounds`、显式密度/数量、seed、secondary strength 和 `--ablate ampa|gap|glycine`。原 `run_full_network_fixture.py` 仍是旧软件 fixture 的入口；当前主线入口是 `run_full_target.py`。必要检查入口是 `tools/run_primary_integration.py`。
@@ -192,9 +287,9 @@ checkpoint 保存膜/化学/历史/释放池状态、事件索引、延迟历史
 
 ```powershell
 Set-Location 'D:\macaque_retina_simulator'
-& 'C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe' -B tools/run_full_target.py
+& 'python' -B tools/run_full_target.py
 # 原长时选项保留；本次未宣称该时长通过。
-& 'C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe' -B tools/run_full_target.py --warmup .2 --duration .12 --window .01
+& 'python' -B tools/run_full_target.py --warmup .2 --duration .12 --window .01
 ```
 
 当前默认命令实际完成于 `reports/full_target_runs/20261011T000323412125Z`：24.839 s（完整阶段日志24.851 s；含构建/初始化、求解、记录、manifest与checkpoint写出），初始化阶段14.615 s；实际ODE积分9.023 s，共89次solve_ivp、2989次RHS，最小事件区间10 μs（非整比0.73 ms/0.1 ms时钟交点导致）、最大161次RHS/区间。DOP853、rtol=1e-7、atol=1e-10、max_step=50 μs保持原值。默认执行不是长期性能承诺，但交付入口已不再默认尝试被中止的0.32 s运行。
@@ -230,7 +325,7 @@ Set-Location 'D:\macaque_retina_simulator'
 <!-- local-platform-detail -->
 ## 本地可视化平台与默认配置修正（2026-10-11）
 
-入口仍为 `run_retina_gui.cmd`，复用 `C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe`；未升级环境。GUI 默认“源约束混合”，提供背景、目标位置预设、自定 owner ROI 中心/宽高、halo 与原有运行/暂停/继续/停止、结果视图和导出。停跑后新增的位置选择与区域路径均为 `NOT_RUN`；选择预设只填写几何值，不自动改变动力学。`configurations/source_roi_display_v1.json` 可直接载入。工程 preview 数量控件只用于 preview；不改变 source-density 数量。CLI `tools/run_full_target.py` 默认同一个 `macaque_constrained_native_v1`，可显式选择 `--profile engineering_preview_v1`。直接调用旧 `full_target_network` 的默认参数继续提供历史工程兼容；新调用传 `execution_profile='source_constrained_approximation'`。
+入口仍为 `run_retina_gui.cmd`，复用 `python`；未升级环境。GUI 默认“源约束混合”，提供背景、目标位置预设、自定 owner ROI 中心/宽高、halo 与原有运行/暂停/继续/停止、结果视图和导出。停跑后新增的位置选择与区域路径均为 `NOT_RUN`；选择预设只填写几何值，不自动改变动力学。`configurations/source_roi_display_v1.json` 可直接载入。工程 preview 数量控件只用于 preview；不改变 source-density 数量。CLI `tools/run_full_target.py` 默认同一个 `macaque_constrained_native_v1`，可显式选择 `--profile engineering_preview_v1`。直接调用旧 `full_target_network` 的默认参数继续提供历史工程兼容；新调用传 `execution_profile='source_constrained_approximation'`。
 
 配置实际数值从 `effective_dynamics_v1.json`/`legacy_effective_v1.json` 解析，37 个参数族、254 项常量或推导绑定。C/gL、BC/AC 核、五类 RGC 共同数值等未为了看起来生理而换成猜测。均匀广播值和固定向量有单位/语义检查，背景电流 anchor、baseline、接触增益等保持明确推导；最终全部实际向量见每次运行的 `resolved_profile.json`。execution profile 同时声明路线、solver、预算、区域、source/cohort policy 与精确 allowed approximation IDs。内层共享参数代表尚未辨识型间动力学。
 
@@ -277,7 +372,7 @@ static/dynamic measurement 共用来源身份检查，要求 primary verificatio
 
 Packer 原 manifest 的原始路径为 `D:\retipath\experiments\retipath_foveal_v1\exploratory_v2\vendor_pinned\isetmacaque_cf22ac9d`。本次只读逐值比较确认：该路径的原 MATLAB 与项目快照原始字节完全一致；从四个源矩阵重新提取的 60 行（temporal foveal/peripheral 13/15，nasal 13/19）与当前 CSV 的 10 列全部一致，共 600 个字段、其中 120 个核心数值，无数值或元数据字段差异；提取 CSV 原始字节和历史 manifest 完整对象也一致。这是代码数表提取一致性，Packer 原始动物测量表尚未独立核实。
 
-Wässle 当前完整 JSON 与修改前历史 `C:\Users\PC_User\Documents\Codex\2026-10-10\task-2\prepare_spatial_sources.py` 中的转录对象一致：Table 2 的 6 行共 30 个标量字段，其中 24 个数值；中央 author estimate 另 4 个数值，均无差异。默认所取 animal 29.7.99 的 `[4,5] mm`、H1=2665/H2=947 也匹配合同的明确数值约束。历史脚本仍是手工来源引述，项目没有保存该原始 PDF，故其六行数表与中央 author estimate 未独立对原页核实，不升级为 primary_verified。
+Wässle 当前完整 JSON 与修改前历史 `<USER_HOME>\Documents\Codex\2026-10-10\task-2\prepare_spatial_sources.py` 中的转录对象一致：Table 2 的 6 行共 30 个标量字段，其中 24 个数值；中央 author estimate 另 4 个数值，均无差异。默认所取 animal 29.7.99 的 `[4,5] mm`、H1=2665/H2=947 也匹配合同的明确数值约束。历史脚本仍是手工来源引述，项目没有保存该原始 PDF，故其六行数表与中央 author estimate 未独立对原页核实，不升级为 primary_verified。
 
 Packer MATLAB/CSV、Wässle JSON 的 LF 与 CRLF 形式都不匹配合同另一组 hash，已排除纯换行解释；Wässle 另检查 84 种常见无语义变化 JSON 序列化，均不匹配。合同 hash 所对应的另一版原始文件字节未提供，所以不能由 hash 单独判断是其他序列化/元数据差异还是数据值变化。实际结论是本地历史内容的逐值差异为零，合同另一版差异尚缺对应文件可比；没有改写任何来源文件凑 hash。身份一致、提取一致和生理有效性是不同范围。
 

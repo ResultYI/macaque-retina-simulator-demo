@@ -86,20 +86,35 @@ class BackgroundCheckpointStore:
             'absolute_time_seconds':state.time_seconds,'preparation_origin_seconds':float(origin_seconds),'report':report,'safety':safety}
         value['report_hash']=canonical_hash(report)
         atomic_json(path,value);return value
-    def load(self,path,*,require_converged=False):
+    def load(self,path,*,require_converged=False,decode_mode=None):
+        if decode_mode is None:decode_mode=os.environ.get('RETINA_CHECKPOINT_DECODER','auto')
+        if decode_mode not in ('auto','legacy','parsed'):raise ContractError('Unknown checkpoint decoding mode')
+        tick=time.perf_counter();begin=tick;parts={}
         self._require_current_geometry()
-        value=json.loads(Path(path).read_bytes())
+        now=time.perf_counter();parts['geometry_validation_seconds']=now-tick;tick=now
+        serialized=Path(path).read_bytes()
+        now=time.perf_counter();parts['file_read_seconds']=now-tick;tick=now
+        value=json.loads(serialized);del serialized
+        now=time.perf_counter();parts['envelope_JSON_parse_seconds']=now-tick;tick=now
         if value.get('schema')!='retina-uniform-background-checkpoint-1' or value.get('binding')!=self.binding or value.get('binding_hash')!=self.binding_hash:
             raise ContractError('Background checkpoint actual graph/weights/parameters/background/solver/schema identity mismatch; no fallback')
+        now=time.perf_counter();parts['binding_validation_seconds']=now-tick;tick=now
         checkpoint=value['checkpoint'];payload=checkpoint['payload']
         auxiliary={k:payload[k] for k in ('grid_origin_seconds','sample_index','component_tick_indices','spike_states','delay_states','link_delay_states','input_position')}
         if canonical_hash(checkpoint)!=value['complete_checkpoint_hash'] or canonical_hash(auxiliary)!=value['auxiliary_time_rng_history_hash']:
             raise ContractError('Complete checkpoint time/RNG/history/delay identity changed')
         if canonical_hash(value.get('report'))!=value.get('report_hash'):raise ContractError('Background numerical report identity changed')
-        state=self.runner.restore(json.dumps(checkpoint),expected_input_context=self.expected_context)
+        now=time.perf_counter();parts['envelope_hash_validation_seconds']=now-tick;tick=now
+        from .checkpoint_loading import restore_retina_payload
+        state,procedure=restore_retina_payload(self.runner,checkpoint,expected_input_context=self.expected_context,mode=decode_mode)
+        now=time.perf_counter();parts['state_decode_and_validation_seconds']=now-tick;tick=now
         if state.time_seconds!=value['absolute_time_seconds'] or value['preparation_origin_seconds']>state.time_seconds:
             raise ContractError('Background checkpoint absolute preparation time mismatch')
+        now=time.perf_counter();parts['absolute_time_validation_seconds']=now-tick;tick=now
         if require_converged:self.require_convergence(value)
+        now=time.perf_counter();parts['convergence_validation_seconds']=now-tick
+        parts['load_total_seconds']=now-begin
+        self.last_load_timings=parts;self.last_load_procedure=procedure
         return state,value
     def require_convergence(self,value):
         report=value.get('report') or {};coverage=self.coverage();windows=report.get('windows',[])

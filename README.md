@@ -1,10 +1,22 @@
+<!-- portable-current-code -->
+## 当前代码与另一台电脑重跑
+
+本review分支包含等价执行A、可选GPU传输/验证候选、有界ISET输入、严格checkpoint与记录修正。科学默认未切换。0.5秒真实视频未完成：首次受原内存保护阻塞，重试随后由用户停止；没有视频吞吐验收结论。私人素材、路径、帧、捕获、日志、完整checkpoint和大输入缓存均不在本次上传中。
+
+在笔记本先准备Python3.11及`requirements.txt`；可选Numba/CUDA还需匹配本机的Numba、PyTorch和驱动，桌面实际版本见[小型验证摘要](docs/pro_review_supplement/performance_update.json)。96GB内存增加容量，不保证CPU/GPU速度或逐位一致。设置`RETINA_PYTHON`指向本机解释器后运行`run_retina_gui.cmd`，或用`python -B -m retina_platform --help`查看共享CLI。
+
+大图不能仅靠clone运行。[外部资产及获取/重建入口](docs/pro_review_supplement/reproduction_assets.json)列出pinned ISET仓库、官方cone文件及hash、源文献、被忽略的冻结master/graph/block文件和历史构建阶段。将光学example复制为被忽略的本地配置并修改安装路径。精确旧图需要另备与配置hash相符的完整本地资产包；历史阶段脚本还依赖前置catalog/build manifests。没有这些资产时，应从合法来源重建新版本并重新绑定/预适应，不能伪称恢复旧图。
+
+Numba/GPU编译缓存需在本机重建。完整背景checkpoint只有所有严格身份兼容时才能复用；改硬件、后端、运行库或光学配置后不要改hash强行加载。`tools/run_video_05s.py`是依赖指定本地v7背景/manifest的历史benchmark入口，缺少该包时使用共享GUI/CLI建立自己的运行。更多范围与科学缺口见[统一设计说明](docs/core_design.md)。
+<!-- /portable-current-code -->
+
 <!-- local-platform-entry -->
 ## 本地可视化模拟器
 
 双击项目根目录的 `run_retina_gui.cmd`。也可在本目录运行：
 
 ```powershell
-& 'C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe' -B -m retina_platform
+& 'python' -B -m retina_platform
 ```
 
 导入图像或视频，设置时间段与有效分辨率后运行。支持暂停/继续、停止并保留已完成窗口，查看所有已配置层的真实细胞坐标与所选细胞记录，保存/载入配置、载入平台及已有核心结果、导出图/CSV/完整结果目录。详见 [统一说明](docs/core_design.md#本地可视化平台)。
@@ -84,7 +96,7 @@
 
 Set-Location 'D:\macaque_retina_simulator'
 
-& 'C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe' -B .\tools\run_checks.py
+& 'python' -B .\tools\run_checks.py
 
 ```
 

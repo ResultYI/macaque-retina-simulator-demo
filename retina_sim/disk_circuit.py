@@ -127,7 +127,10 @@ class GlobalDiskCircuit:
             rows=np.flatnonzero(keep[offsets[name]:offsets[name]+counts[name]])
             target=selected.setdefault(name,set());before=len(target);target.update(map(int,rows));changed|=len(target)>before
         return changed
-    def owner_view(self,bounds,*,outputs=OUTPUTS,max_nodes=2000000):
+    def owner_view(self,bounds,*,outputs=OUTPUTS,max_nodes=2000000,empty_chemical_input_policy='reject_empty_chemical_input_v1'):
+        from .finite_input_support import EMPTY_SUM_POLICY,REJECT_EMPTY_POLICY
+        if empty_chemical_input_policy not in (EMPTY_SUM_POLICY,REJECT_EMPTY_POLICY):
+            raise ContractError('Unknown frozen empty chemical input policy')
         roi=DiskAtlasROI(tuple(bounds),tuple(bounds),self.record['reference_id'],owner_radius_mm=3.,query_radius_mm=3.)
         selected={};owner={};seen={};empty=[];blocked_owner=[]
         for name in outputs:
@@ -154,9 +157,17 @@ class GlobalDiskCircuit:
                 target=selected.setdefault(descriptor['pre'],set());before=len(target);target.update(map(int,parents));changed|=len(target)>before
             if sum(map(len,selected.values()))>max_nodes:raise ContractError('Exact global dependency closure exceeds execution node budget; no crop or thinning applied')
         selected={name:np.asarray(sorted(indices),dtype=np.int64) for name,indices in selected.items() if indices}
-        unsupported=list(blocked_owner)
+        unsupported=list(blocked_owner);empty_chemical=[]
         for descriptor in self.record['routes']:
             post=selected.get(descriptor['post'])
+            if post is not None and descriptor['kind']=='primary_chemical':
+                rows,matrix,_,_=self.route(descriptor).selected_rows(post)
+                for index in rows[np.diff(matrix.indptr)==0]:
+                    row={'route':descriptor['route_id'],'post_global_row':int(index),
+                        'status':'EMPTY_ACTUAL_PRIMARY_CHEMICAL_ROW'}
+                    if empty_chemical_input_policy==EMPTY_SUM_POLICY and descriptor['route_id']=='RBC_AII_AMPA':
+                        empty_chemical.append(dict(row,policy=EMPTY_SUM_POLICY,evidence_class='project_approximation'))
+                    else:unsupported.append(row)
             if post is None or descriptor['kind'] not in ('inner_chemical','native'):continue
             _,_,audits,statuses=self.route(descriptor).selected_rows(post)
             unsupported.extend({'route':descriptor['route_id'],'post_global_row':int(index),'status':status,
@@ -164,6 +175,7 @@ class GlobalDiskCircuit:
         return {'schema':'exact_global_disk_dependency_view_v1','graph':self.binding,'owner_bounds_mm':tuple(bounds),'owner_disk_radius_mm':3.,
             'selected_rows':selected,'owner_output_rows':owner,'empty_output_samples':tuple(empty),'unsupported_rows':unsupported,
             'runtime_ready':not unsupported,'geometry_regenerated':False,'weights_renormalized':False,
+            'empty_chemical_input_policy':empty_chemical_input_policy,'declared_empty_chemical_sums':empty_chemical,
             'global_node_count':sum(map(len,selected.values())),'physical_calibration':False}
     def table_record(self,name,indices):
         table=self.table(name);canonical=table.rows(indices)

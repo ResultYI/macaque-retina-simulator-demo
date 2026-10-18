@@ -338,6 +338,8 @@ class SimulationSession:
     def _run(self):
         media, runner, state = None, None, None
         wall_start = time.perf_counter()
+        phase_timings={'background_prepare_this_run_seconds':None,'same_identity_background_restore_this_run_seconds':None,
+            'stimulus_input_window_seconds':0.,'stimulus_advance_and_record_seconds':0.}
         try:
             if str(self.project_root) not in sys.path:
                 sys.path.insert(0, str(self.project_root))
@@ -477,10 +479,17 @@ class SimulationSession:
                             stream.write(json.dumps(row['last_window'],ensure_ascii=False,allow_nan=False)+'\n')
                     self._event('progress','running',phase='background_preparation',
                         preparation_wall_seconds=row['wall_seconds'],solver_metrics=dict(runner.integration_metrics))
-                state,preparation_report,_=prepare_with_checkpoint(self.project_root,runner,state,self.config.light_context(),policy,
+                from retina_sim.background_advance import choose_background_runner
+                background_runner,background_procedure=choose_background_runner(runner)
+                manifest['runtime']['background_execution_procedure']=background_procedure
+                phase_started=time.perf_counter()
+                state,preparation_report,_=prepare_with_checkpoint(self.project_root,background_runner,state,self.config.light_context(),policy,
                     self.path/'background_checkpoint.json',resume_path=resume,guard=guard,
                     on_progress=preparation_progress,on_boundary=self._boundary,
                     checkpoint_interval_seconds=self.config.background_checkpoint_interval_seconds)
+                phase_key='same_identity_background_restore_this_run_seconds' if preparation_report.get('cache_reused') else 'background_prepare_this_run_seconds'
+                phase_timings[phase_key]=time.perf_counter()-phase_started
+                manifest['runtime']['this_run_phase_wall_seconds']=dict(phase_timings)
                 self._sim_time=state.time_seconds;self._stimulus_origin=state.time_seconds
                 total=self._total=state.time_seconds+self.config.duration_seconds
                 _record_preparation_metadata(manifest,resolved,preparation_report)
@@ -508,6 +517,9 @@ class SimulationSession:
             state.input_position.update(phase='media_stimulus',stimulus_origin_seconds=self._stimulus_origin)
             channels_source.set_origin(self._stimulus_origin,state.grid_origin_seconds)
             recorder = NPZWindowRecorder(self.path / 'windows')
+            from retina_sim.recording_indices import indexed_recording_plan
+            trace_plan=indexed_recording_plan(RecordingPlan(states=(),cell_ids=getattr(compiled,'platform_recording_cell_ids',None),
+                max_bytes=audit['resolved_execution_profile']['budgets'].get('max_recording_window_bytes',64*1024*1024)))
             warmup_ticks = int(round(self._stimulus_origin / AUTHOR_STEP))
             total_ticks = int(round(total / AUTHOR_STEP))
             window_ticks = int(round(self.config.window_seconds / AUTHOR_STEP))
@@ -525,7 +537,9 @@ class SimulationSession:
                 warming = first < warmup_ticks
                 last = min(first + window_ticks, warmup_ticks if warming else total_ticks)
                 stop = aligned(last)
+                input_started=time.perf_counter()
                 channels = channels_source.window(state.time_seconds, stop)
+                if not warming:phase_timings['stimulus_input_window_seconds']+=time.perf_counter()-input_started
                 if warming:
                     before=[a.copy() for a in state.ordered_state_arrays]
                     state, _ = runner.advance(state, channels, stop, recording_plan=RecordingPlan(ports=(), states=(), cell_ids=()))
@@ -545,9 +559,9 @@ class SimulationSession:
                 else:
                     ticks = list(range(first, last, sample_ticks)) + [last]
                     times = np.array([aligned(tick) for tick in ticks]); times[0], times[-1] = state.time_seconds, stop
-                    state, result = runner.advance(state, channels, stop, sample_times=times,
-                        recording_plan=RecordingPlan(states=(),cell_ids=getattr(compiled,'platform_recording_cell_ids',None),max_bytes=audit['resolved_execution_profile']['budgets'].get(
-                            'max_recording_window_bytes',64*1024*1024)))
+                    advance_started=time.perf_counter()
+                    state, result = runner.advance(state, channels, stop, sample_times=times,recording_plan=trace_plan)
+                    phase_timings['stimulus_advance_and_record_seconds']+=time.perf_counter()-advance_started
                     if not all(np.all(np.isfinite(q.values)) for q in result.outputs_with_units.values()):
                         raise RuntimeError('核心输出出现非有限数值')
                     declared = {p['key']: p for c in manifest['components'] for p in c['ports'].values()}
@@ -574,6 +588,8 @@ class SimulationSession:
             _atomic_text(self.path / 'final_checkpoint.json', checkpoint)
             stopped = int(round(state.time_seconds / AUTHOR_STEP)) < total_ticks
             manifest['media'] = dict(media.info)
+            manifest['runtime']['this_run_phase_wall_seconds']=dict(phase_timings)
+            manifest['runtime']['recording_indices_procedure']=getattr(trace_plan,'procedure_identity',{'procedure':'legacy_recording_indices'})
             _atomic_json(self.path / 'manifest.json', manifest)
             _atomic_json(self.path / 'summary.json', {'status': 'stopped' if stopped else 'completed',
                          'simulation_time_seconds': state.time_seconds, 'windows': self._windows,

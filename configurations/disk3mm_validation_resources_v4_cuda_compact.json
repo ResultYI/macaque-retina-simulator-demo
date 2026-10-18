@@ -1,0 +1,32 @@
+{
+  "schema": "disk3mm_validation_resources_v1",
+  "profile_id": "disk3mm_validation_resources_v4_cuda_compact",
+  "evidence_class": "project_numerical_execution_backend_and_resource_budget",
+  "status": "OPT_IN_REAL_ORIGINAL_HC_GRAPH_EXACT_PAIR_PASS_NO_FULL_WINDOW_SPEED_GAIN_IN_SINGLE_100US_PAIR",
+  "reason": "Compact transfer of every actual compiled outward native-release consumer, plus bitwise value-coherent light buffer reuse. Full native feedback, states and joint DOP853 retained. The original-HC frozen graph passed full RHS/state/causal-aux/output comparison against the original GPU backend. Its single warmed100us full window was0.5143643s original versus0.5833452s compact, while integration was0.1572754s versus0.1387892s. No whole-window speed gain established; retain as opt-in. Actual full-grid100us CPU comparison remains mandatory on a new launch; no old-checkpoint migration.",
+  "real_pair_evidence": "reports/performance_real_compact_B_v1/case.json",
+  "run_config": {
+    "neural_integration_backend": "cuda_compact_native_joint_dop853_float64_v2",
+    "background_memory_limit_mb": 14336.0,
+    "background_min_available_mb": 8192.0,
+    "background_max_wall_seconds": 21600.0,
+    "background_checkpoint_interval_seconds": 300.0
+  },
+  "process_environment": {"OPENBLAS_NUM_THREADS": "1"},
+  "execution": {
+    "native_arithmetic_dtype": "float64",
+    "joint_integrator": "Unchanged original gpu_dop853 implementation and solver configuration",
+    "inner_derivatives": "All compiled consumers, private CSR column addresses; identical coefficients and within-row reduction order",
+    "native_feedback": "Complete original cone/HC states and original A/B matrices",
+    "light_buffer": "Original per-call Quantity/port validation; compare actual float64 bits, including changes in analytic inputs and signed zero",
+    "event_history_recording_RNG": "Original HybridRunner and full CPU model readouts",
+    "background_monitor": "Original complete monitor, observation times and criteria; pure empty recording may use state-only adapter",
+    "checkpoint_backend_identity": "Separate explicit compact implementation hash; CPU and original CUDA checkpoints reject without migration",
+    "periodic_checkpoint_seconds": 300,
+    "complete_window_and_final_checkpoints": "always retained",
+    "silent_CPU_fallback": false
+  },
+  "unchanged": ["max_sim_seconds=10", "max_observations=100000", "minimum timing requirement", "consecutive complete windows", "state unit scales and tolerances", "monitor step", "DOP853 numerical method and tolerances", "source equations and values", "graph and cell counts", "event/time/RNG/history semantics"],
+  "default_adopted": false,
+  "physiological_validation": false
+}

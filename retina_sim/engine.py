@@ -4,6 +4,38 @@ import numpy as np
 from scipy.integrate import solve_ivp
 from .contracts import ContractError, Quantity, StateDerivativeVector, SimulationState, canonical_hash
 
+def _state_schema_hash(model):
+    """Reuse the identical hash only for an unchanged, deeply immutable registry.
+
+    Large populations repeat their cell-ID tuples across many state blocks.
+    Registry replacement still forces hashing; mutable/custom schemas retain
+    the original full validation on every call.
+    """
+    specs=model.state_specs
+    cached=getattr(model,"_engine_state_schema_identity",None)
+    if cached is not None and cached[0] is specs:return cached[1]
+    digest=canonical_hash(specs)
+    from .contracts import StateSpec
+    from .mechanism_contracts import MechanismStateSpec
+    immutable=type(specs) is tuple
+    checked_ids=set()
+    if immutable:
+        for spec in specs:
+            if (type(spec) not in (StateSpec,MechanismStateSpec)
+                or any(type(getattr(spec,key)) is not str for key in
+                       ("state_name","unit","meaning","initial_condition_source"))
+                or type(spec.shape) is not tuple or any(type(n) is not int for n in spec.shape)
+                or type(spec.cell_ids) is not tuple):
+                immutable=False;break
+            if id(spec.cell_ids) not in checked_ids:
+                if any(type(gid) is not str for gid in spec.cell_ids):
+                    immutable=False;break
+                checked_ids.add(id(spec.cell_ids))
+    if immutable:
+        try:model._engine_state_schema_identity=(specs,digest)
+        except (AttributeError,TypeError):pass
+    return digest
+
 def initialize_state(model,parameters,graph,initial_conditions,solver_config,time_seconds=0):
     if hasattr(model,"advance_author_discrete") and solver_config.method!="Chen2024AuthorDiscrete":
         raise ContractError("Chen2024 cannot silently switch to an adaptive solver")
@@ -15,10 +47,10 @@ def initialize_state(model,parameters,graph,initial_conditions,solver_config,tim
         q.require(spec.unit,spec.meaning,spec.shape)
         if q.evidence_tag!=model.evidence_tag: raise ContractError("Initial state evidence mismatch")
         arrays.append(q.values.copy())
-    return SimulationState(float(time_seconds),tuple(arrays),canonical_hash(model.state_specs),graph.graph_hash,parameters.parameter_hash,model.model_id,model.version,model.model_hash,solver_config.input_interpolation,solver_config,model.evidence_tag)
+    return SimulationState(float(time_seconds),tuple(arrays),_state_schema_hash(model),graph.graph_hash,parameters.parameter_hash,model.model_id,model.version,model.model_hash,solver_config.input_interpolation,solver_config,model.evidence_tag)
 
 def validate_state(state,model):
-    expected={"state_spec_hash":canonical_hash(model.state_specs),"graph_hash":model.graph.graph_hash,"parameter_hash":model.parameters.parameter_hash,"model_hash":model.model_hash,"model_id":model.model_id,"model_version":model.version}
+    expected={"state_spec_hash":_state_schema_hash(model),"graph_hash":model.graph.graph_hash,"parameter_hash":model.parameters.parameter_hash,"model_hash":model.model_hash,"model_id":model.model_id,"model_version":model.version}
     for key,value in expected.items():
         if getattr(state,key)!=value: raise ContractError(f"Incompatible state/checkpoint: {key}")
     if len(state.ordered_state_arrays)!=len(model.state_specs): raise ContractError("State registry length")
@@ -79,11 +111,20 @@ def checkpoint(state):
     return json.dumps(payload,sort_keys=True,allow_nan=False)
 
 def restore(serialized,expected_model_hashes):
-    from .contracts import SolverConfig
     payload=json.loads(serialized)
+    return restore_payload(payload,expected_model_hashes)
+
+def restore_payload(payload,expected_model_hashes):
+    """Decode the same already-parsed protocol with all original checks.
+
+    Copy the state mapping before constructor conversion so callers retain
+    their unchanged parsed document. Numeric arrays still receive the original
+    independent float64 copies and SimulationState finite/domain validation.
+    """
+    from .contracts import SolverConfig
     if payload["checkpoint_version"]!="1.0" or canonical_hash(payload["state"])!=payload["payload_hash"]:
         raise ContractError("Checkpoint payload corrupted")
-    data=payload["state"]
+    data=dict(payload["state"])
     for key in ("state_spec_hash","graph_hash","parameter_hash","model_hash","model_id","model_version"):
         if key not in expected_model_hashes or data[key]!=expected_model_hashes[key]:
             raise ContractError(f"Incompatible checkpoint: {key}")

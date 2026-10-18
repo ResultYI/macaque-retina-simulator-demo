@@ -111,6 +111,16 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
         if overlap is None:
             distance=np.linalg.norm(point(source)[c.col]-point(target)[c.row],axis=1);overlap=np.exp(-(distance/.03)**2)
         overlap=np.asarray(overlap)
+        declaration=(spatial_asset.empty_chemical_declaration(cid,pre,post,W)
+            if hasattr(spatial_asset,'empty_chemical_declaration') else None)
+        if declaration is not None:
+            from .finite_input_support import OPTION
+            for index,target_spec in enumerate(specs):
+                if target_spec.component_id==post:
+                    options=dict(target_spec.options)
+                    options[OPTION]=dict(options.get(OPTION,{}),excitation=declaration)
+                    specs[index]=replace(target_spec,options=options);break
+            else:raise ContractError('Declared empty chemical target component is absent')
         recipe['pools'][cid]={'matrix':csr_record(W),'rows':rows,'pre_ids':list(source.cells.cell_id),
             'post_ids':list(target.cells.cell_id),'overlap':overlap.tolist()}
         rates=initial_event_rate(registry.mechanism_profiles[source.cells.parameter_profile_id[0]])[c.col]
@@ -129,6 +139,7 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
             back=sparse.csr_matrix((np.ones(nn),(np.arange(nn),c.row)),shape=(nn,len(target.cells.cell_id)))
             links.append(_link(post,'voltage',cid,'postsynaptic_voltage',target,pop,back,'IPL'))
         chemical_audits[cid]={'edges':nn,'degree_rows':rows,'overlap_radius_mm':.03,'support_mm':.04,'weights_not_retuned':True}
+        if declaration is not None:chemical_audits[cid]['finite_empty_chemical_input']=declaration
     chemical('RBC_AII_AMPA','rod_BC','AII_AC','excitatory')
     chemical('AII_FMB_glycine','AII_AC','midget_BC_OFF','inhibitory');chemical('AII_DB1_glycine','AII_AC','diffuse_BC_OFF','inhibitory')
     def gap(left,right,pairs,gain,cid):

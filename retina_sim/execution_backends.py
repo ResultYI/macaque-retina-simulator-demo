@@ -5,7 +5,10 @@ from .contracts import ContractError
 
 CPU='scipy_cpu_v1'
 CUDA='cuda_native_joint_dop853_float64_v1'
-BACKENDS=(CPU,CUDA)
+CUDA_COMPACT='cuda_compact_native_joint_dop853_float64_v2'
+CUDA_CPU_FINITE='cuda_native_joint_cpu_finite_validation_float64_v1'
+CUDA_BACKENDS=(CUDA,CUDA_COMPACT,CUDA_CPU_FINITE)
+BACKENDS=(CPU,)+CUDA_BACKENDS
 
 
 def make_runner(compiled,backend=CPU):
@@ -15,6 +18,12 @@ def make_runner(compiled,backend=CPU):
     if backend==CUDA:
         from .gpu_hybrid import CudaHybridRunner
         return CudaHybridRunner(compiled)
+    if backend==CUDA_COMPACT:
+        from .gpu_compact import CompactCudaHybridRunner
+        return CompactCudaHybridRunner(compiled)
+    if backend==CUDA_CPU_FINITE:
+        from .gpu_joint_validation import CPUFiniteJointCudaRunner
+        return CPUFiniteJointCudaRunner(compiled)
     raise ContractError('Unknown explicit numerical integration backend: '+str(backend))
 
 

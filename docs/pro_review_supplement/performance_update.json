@@ -1,0 +1,86 @@
+{
+  "schema": "code_only_performance_update_v1",
+  "status": "WIP_NOT_PHYSIOLOGICAL_ACCEPTANCE",
+  "default_changed": false,
+  "runtime_observed_on_desktop": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "numba": "0.67.0",
+    "torch": "2.14.0+cu130",
+    "Pillow": "12.3.0",
+    "opencv-python-headless": "5.0.0.93",
+    "matplotlib": "not installed in this environment",
+    "pytest": "9.1.1",
+    "python": "3.11.16"
+  },
+  "A": {
+    "scope": "Old HC v7 frozen graph; same complete state/monitor and recorded outputs",
+    "schema_and_state_only_background_1ms_seconds": [
+      7.3625574,
+      5.3818502
+    ],
+    "indexed_recording_2ms_seconds": [
+      13.8877391,
+      6.3354943
+    ],
+    "strict_restore_reverse_seconds": [
+      50.8443455,
+      38.6376847
+    ],
+    "complete_states_clocks_RNG_history_delay_and_outputs_equal": true
+  },
+  "B_optional": {
+    "backend": "cuda_compact_native_joint_dop853_float64_v2",
+    "same_GPU_path_pair_100us_seconds": [
+      0.5143643,
+      0.5833452
+    ],
+    "scope": "GPU v1 versus compact GPU, NOT CPU versus GPU; one pair; no full-window speed gain",
+    "default_adopted": false
+  },
+  "HC_optional": {
+    "backend": "cuda_native_joint_cpu_finite_validation_float64_v1",
+    "full_monitor_recorded_100us_seconds": [
+      1.129770700004883,
+      1.0552959000342526
+    ],
+    "speedup_single_pair": 1.0705724337299267,
+    "complete_4967023_states_monitor_causal_aux_and_outputs_equal": true,
+    "source_equations_edges_FP64_integrator_unchanged": true,
+    "default_adopted": false,
+    "old_checkpoints_migrate": false,
+    "SpMV_device_event_total_17_rhs_ms": 30.547744154930115,
+    "SpMV_primary_hotspot": false,
+    "A_duplicate_CSR_bytes_confirmed_not_shared_in_this_pair": 60800288
+  },
+  "bounded_input": {
+    "resident_numeric_LRU_limit_bytes": 67108864,
+    "original_source_grid_seconds": 0.0001,
+    "storage": "raw optical count dictionary + original per-window widths + ZOH; bounded original rod sampler",
+    "actual_ISET_QA": {
+      "cones": 2,
+      "rods": 2,
+      "windows": 203,
+      "seconds": 0.0203,
+      "frames": 2,
+      "bitwise_equal_to_eager": true
+    },
+    "regression": "13 direct cases passed; timing-only change had1 focused recheck; owned-process cleanup/control3 cases passed",
+    "whole_clip_19_87GiB_matrix_allocated": false
+  },
+  "real_video_05s": {
+    "completed": false,
+    "neural_forward_started": false,
+    "first_attempt": "Original8GiB available-memory reserve stopped optical preparation",
+    "retry": "Existing construction JSON compaction reduced Python peak; user stopped the retry before completion",
+    "private_media_paths_frames_hashes_captures_logs_and_results_in_repository": false,
+    "owned_MATLAB_cleanup_fixed": true,
+    "no_new_long_background": true
+  },
+  "limits": [
+    "Short timings are not full-video or full-background throughput estimates",
+    "New functional-HC central background/response acceptance remains incomplete",
+    "Only the recorded observation cohort is available at1ms; arbitrary full-graph continuous-time replay is not implemented",
+    "Different hardware/toolbox/runtime paths can change strict execution/input identities; no assumed bitwise portability"
+  ]
+}

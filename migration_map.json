@@ -8,7 +8,7 @@
       "current": "D:\\macaque_retina_simulator"
     },
     {
-      "historical": "C:\\Users\\PC_User\\Documents\\Codex\\2026-10-10\\task-2\\deepgaze_exploration",
+      "historical": "<USER_HOME>\\Documents\\Codex\\2026-10-10\\task-2\\deepgaze_exploration",
       "current": "D:\\macaque_retina_simulator\\exploratory\\deepgaze_exploration"
     }
   ],
@@ -21,7 +21,7 @@
     "all_original_entries_sizes_attributes_and_hashes_identical_immediately_after_move": true
   },
   "exploration_copy": {
-    "source": "C:\\Users\\PC_User\\Documents\\Codex\\2026-10-10\\task-2\\deepgaze_exploration",
+    "source": "<USER_HOME>\\Documents\\Codex\\2026-10-10\\task-2\\deepgaze_exploration",
     "destination": "D:\\macaque_retina_simulator\\exploratory\\deepgaze_exploration",
     "original_staging_deleted": false,
     "copied_original_files": 147,

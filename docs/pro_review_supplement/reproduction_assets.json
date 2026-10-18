@@ -1,0 +1,65 @@
+{
+  "schema": "external_runtime_and_asset_requirements_v1",
+  "code_clone_is_complete_runtime": false,
+  "ISETBio": {
+    "repository": "https://github.com/isetbio/isetbio.git",
+    "commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35"
+  },
+  "ISETCam": {
+    "repository": "https://github.com/ISET/isetcam.git",
+    "commit": "17146a9f0470cc89b58d583851f680187268506d"
+  },
+  "human_cone_positions": {
+    "source": "https://purl.stanford.edu/vm447vf0975",
+    "vendor_relative_file": "data/sdr/isetbio-mosaics/cone_lattices/right/nominal-fov-58deg.mat",
+    "sha256": "54eb0a9ef90511ca72782a194a7c6f17d5404e05794f7e4872c808d138f45728",
+    "import_entry": "python tools/build_human_disk3mm.py import",
+    "scope": "Explicit human-borrowed approximation; retain source license/attribution"
+  },
+  "source_papers_and_author_assets": {
+    "registry": "sources/registry.json",
+    "policy": "Obtain from each canonical source under its license; not bundled here"
+  },
+  "machine_setup": {
+    "optical_example": "configurations/iset_lcd_apple_mw_v1.example.json",
+    "local_ignored_profile": "configurations/iset_lcd_apple_mw_v1.json",
+    "requires": "Licensed MATLAB with the project-required toolboxes; pinned ISET and required official data; local paths must be set"
+  },
+  "frozen_generated_assets": {
+    "git_bundled": false,
+    "paths": [
+      "data/atlas/isetbio_macaque_cones_source_stop_v1_20261016/",
+      "data/atlas/circuit_source_stop_shared_v1_20261016/",
+      "data/atlas/population_masters/",
+      "data/atlas/isetbio_human_borrowed_cones_disk3mm_v1/",
+      "data/atlas/human_disk3mm_*/"
+    ],
+    "requirements": "Exact manifests plus all referenced blocks/NPY/NPZ arrays and their SHA256; copy a separately authorized local bundle or rebuild a NEW version",
+    "rebuild_entries": [
+      "tools/build_disk3mm.py (resumable stage argument)",
+      "tools/build_human_disk3mm.py import|geometry|prepare-delivery|midget-floor|refresh-input",
+      "tools/build_functional_hc.py",
+      "tools/build_isetbio_model.py --help",
+      "tools/freeze_source_stopped_lattice.py"
+    ],
+    "cold_rebuild_limit": "Historical stage scripts require their prior master/catalog/build manifests and may have local path constants. They are not a one-command cold rebuild of every recorded identity. Inspect their prerequisites; new assets require new configuration bindings and background qualification."
+  },
+  "checkpoints_and_caches": {
+    "git_bundled": false,
+    "paths": [
+      "reports/*/background_checkpoint.json",
+      "reports/iset_disk_input_cache/"
+    ],
+    "compatibility": "Graph, weights, parameters, schema, clocks, solver, background/input reference, implementation and numerical backend must strictly match. New GPU variants and changed hardware/runtime identities reject old checkpoints; rebuild native/Numba/GPU caches locally."
+  },
+  "historical_video_driver": {
+    "entry": "tools/run_video_05s.py",
+    "requires_local_v7_bundle": true,
+    "prerequisites": [
+      "reports/human_disk3mm_floor_transition_v7/transition/manifest.json",
+      "reports/human_disk3mm_floor_transition_v7/transition/matched_response/background_checkpoint.json",
+      "reports/performance_real_prepared_A_v4/legacy_bridge_case/case.json"
+    ],
+    "meaning": "Specific historical benchmark, not a clone-only generic launcher; without this exact local bundle use the shared GUI/CLI with a rebuilt graph and newly qualified background"
+  }
+}
