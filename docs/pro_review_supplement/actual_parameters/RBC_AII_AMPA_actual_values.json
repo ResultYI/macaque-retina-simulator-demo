@@ -1,0 +1,156 @@
+{
+  "original_local_sha256": "99094338efefc8c2cfb83ec7b111f93fe68df6a06fe1e53ed41c6886927d30d5",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "RBC_AII_AMPA",
+    "parameter_hash": "7fb1a8595f9e0daac3a9275411281bd9c533c0ff5845d0acd7f3fadef28bab7d",
+    "records": [
+      {
+        "parameter_id": "tau_rise",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              348
+            ],
+            "dtype": "float64",
+            "sha256": "ee1f6e2d3d17aef684f2bbb88e73b426a3216f236c7d6a1cd886c22ddb593573"
+          },
+          "unit": "s",
+          "meaning": "synaptic_rise_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau_rise",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 348,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "tau_decay",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [
+              348
+            ],
+            "dtype": "float64",
+            "sha256": "2f2f5dff02519086145730fa56e8042e75d877d6bcb292f77b65bb1572708a66"
+          },
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau_decay",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 348,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "g_peak",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              348
+            ],
+            "dtype": "float64",
+            "sha256": "585adb49d365bd73dc9f89b785deebc87eed744b70eb88a9da14d6a67477e19c"
+          },
+          "unit": "S",
+          "meaning": "single_event_peak_conductance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter g_peak",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 348,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "ncontact",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              348
+            ],
+            "dtype": "float64",
+            "sha256": "77aed8e1c3ec492cffdae79ffef3a336b048b86bdd32fcb5655afd361314f3ee"
+          },
+          "unit": "dimensionless",
+          "meaning": "effective_release_site_multiplier",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter ncontact",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 348,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "event_rate0",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              348
+            ],
+            "dtype": "float64",
+            "sha256": "0a6844503bf16869b6cc8aaa6516fa36b110a23c226fb56333a9309f9895a56e"
+          },
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter event_rate0",
+        "supported_domain": {
+          "effective_profile": "effective_RBC_AII_AMPA",
+          "cells": 348,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "excitatory",
+      "voltage_dependent_decay": false,
+      "enabled": true
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\RBC_AII_AMPA_actual_values.npz",
+      "sha256": "58c1e361a25a26bbab8680c219a25fd98bace6cb8203f69096e1340e236c1916"
+    },
+    "physiological_validation": false
+  }
+}

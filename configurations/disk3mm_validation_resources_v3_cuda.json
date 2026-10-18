@@ -1,0 +1,28 @@
+{
+  "schema": "disk3mm_validation_resources_v1",
+  "profile_id": "disk3mm_validation_resources_v3_cuda",
+  "evidence_class": "project_numerical_execution_backend_and_resource_budget",
+  "reason": "Explicit optional float64 CUDA native/joint DOP853 execution after focused cold-start, full-inner, event/history/RNG and checkpoint regressions. Actual native 1ms endpoint comparison retained all states and original solver tolerances; the full real dependency graph must independently pass its 100us CPU comparison before fresh required background preparation. No CPU checkpoint conversion.",
+  "run_config": {
+    "neural_integration_backend": "cuda_native_joint_dop853_float64_v1",
+    "background_memory_limit_mb": 14336.0,
+    "background_min_available_mb": 8192.0,
+    "background_max_wall_seconds": 21600.0,
+    "background_checkpoint_interval_seconds": 300.0
+  },
+  "process_environment": {"OPENBLAS_NUM_THREADS": "1"},
+  "execution": {
+    "native_arithmetic_dtype": "float64",
+    "joint_integrator": "DOP853 with installed SciPy tableau/controller/initial-step formula/dense polynomial; GPU arithmetic can round differently",
+    "inner_derivatives": "Original reviewed Numba plan at every identical joint Runge-Kutta stage; source links and weights retained",
+    "CUDA_CSR_storage": "Private sorted-column copy; original graph arrays and all weights unchanged; duplicate columns rejected",
+    "event_history_recording_RNG": "Original HybridRunner implementation",
+    "background_monitor": "Original CPU state/RHS/discrete-defect/history monitor and original thresholds",
+    "checkpoint_backend_identity": "Separate explicit CUDA identity; CPU checkpoints reject, no migration or time rebasing",
+    "periodic_checkpoint_seconds": 300,
+    "complete_window_and_final_checkpoints": "always retained",
+    "silent_CPU_fallback": false
+  },
+  "unchanged": ["max_sim_seconds=10", "max_observations=100000", "minimum timing requirement", "consecutive complete windows", "state unit scales and tolerances", "monitor step", "DOP853 numerical method and tolerances", "source equations and values", "graph and cell counts", "event/time/RNG/history semantics"],
+  "physiological_validation": false
+}

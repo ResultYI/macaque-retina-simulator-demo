@@ -1,0 +1,47 @@
+{
+  "original_local_sha256": "e8a8d51d44d9a09799d64ceb4775d1ed12429cc4262e475f20c6465dc64473da",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "parasol_RGC_OFF_inhibitory_widefield_AC",
+    "parameter_hash": "ffe0fa6dfa653ed896a456212314661cff857d50d701f46b4f4fa2e1653c30ac",
+    "records": [
+      {
+        "parameter_id": "gain",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              10
+            ],
+            "dtype": "float64",
+            "sha256": "4d6f7491506bbe03d5caac04a1e52626f1ce3d51c825160654274d70d9c43932"
+          },
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gain",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_OFF_inhibitory_widefield_AC",
+          "cells": 10,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "inhibitory",
+      "target_population_profile_id": "effective_parasol_RGC_OFF"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_inhibitory_widefield_AC_actual_values.npz",
+      "sha256": "9bae2dba419d0ccde69f83943e491886b794e416fbbf373a35d385c59f8bd89d"
+    },
+    "physiological_validation": false
+  }
+}

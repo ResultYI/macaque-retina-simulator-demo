@@ -1,0 +1,153 @@
+{
+  "original_local_sha256": "3646dd109d68d4ef09e406b37bc1a0208562b7dd8049c306c95ad4b76fc31920",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "local_feedforward_AC",
+    "parameter_hash": "08d153cd63a2770912936ef0cff745ac58fd32892b935aa81c29d36607063873",
+    "records": [
+      {
+        "parameter_id": "kernel",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "449c5d24e50ea3d8d6b1a34ab55f325d1fefe14759dd40342c82faef2fbaaceb"
+          },
+          "unit": "dimensionless",
+          "meaning": "causal_residual_kernel",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter kernel",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 199,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "sample_interval",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "cb529eddce2ef8826d77d57b8acb0f1b648ed6a4b1b5358696939aab6ee2b17c"
+          },
+          "unit": "s",
+          "meaning": "history_sampling_interval",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter sample_interval",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 199,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "bias",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              199
+            ],
+            "dtype": "float64",
+            "sha256": "1482fcf6eb8e0e56486642135489f4691218ace8b261c9244129b9cc04a523ef"
+          },
+          "unit": "dimensionless",
+          "meaning": "activation_bias",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter bias",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 199,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "baseline",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              199
+            ],
+            "dtype": "float64",
+            "sha256": "8b1415ee7eb2a9fd571709c6796ed3a922d5cb6f03966c42cabe38747dbc4339"
+          },
+          "unit": "dimensionless",
+          "meaning": "input_baseline",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter baseline",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 199,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "initial_history",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              3,
+              199
+            ],
+            "dtype": "float64",
+            "sha256": "e27bbf5f3ed72978429cc9a5ade41cb914553721848b5a19ac74420d009e91f5"
+          },
+          "unit": "dimensionless",
+          "meaning": "causal_input_history",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter initial_history",
+        "supported_domain": {
+          "effective_profile": "effective_local_feedforward_AC",
+          "cells": 199,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "polarity_representation": "stored_signed"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_feedforward_AC_actual_values.npz",
+      "sha256": "aa114a64f487cf45b5032aad40f679f99d49cc5603a3fa2d20ee6bc0f53a766a"
+    },
+    "physiological_validation": false
+  }
+}

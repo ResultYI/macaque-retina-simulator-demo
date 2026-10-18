@@ -1,0 +1,1850 @@
+{
+  "original_local_sha256": "0272e9aa01b84e7ef96445bd8f27622dae425e4473927bcc8da4a0db1b3265ef",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "region": "transition",
+    "bounds_RF_mm": [
+      0.96,
+      1.04,
+      -0.04,
+      0.04
+    ],
+    "global_graph": {
+      "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+      "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+    },
+    "background_preparation": "CONVERGED_UNDER_EXISTING_NUMERICAL_CRITERIA",
+    "steady_state_claim": false,
+    "physiological_validation": false,
+    "neural_windows": 2,
+    "default_adopted": false,
+    "selected_global_nodes": 879437,
+    "empty_output_samples": [],
+    "unsupported_rows": [],
+    "status": "ISET_NEURAL_MATCHED_RESPONSE_PASS_NUMERICALLY_PREPARED",
+    "components": 34,
+    "populations": {
+      "cones": 530929,
+      "HC": 344287,
+      "midget_BC_ON": 508,
+      "midget_BC_OFF": 152,
+      "diffuse_BC_ON": 142,
+      "diffuse_BC_OFF": 70,
+      "S_ON_BC": 56,
+      "local_feedforward_AC": 199,
+      "local_crossover_AC": 152,
+      "widefield_AC": 59,
+      "midget_RGC_ON": 152,
+      "midget_RGC_OFF": 152,
+      "parasol_RGC_ON": 11,
+      "parasol_RGC_OFF": 10,
+      "small_bistratified_S_ON": 21,
+      "rod": 2306,
+      "rod_membrane": 2306,
+      "rod_BC": 115,
+      "AII_AC": 116,
+      "individual_rod_RBC_contacts": 4600,
+      "RBC_AII_AMPA": 348,
+      "AII_FMB_glycine": 456,
+      "AII_DB1_glycine": 210
+    },
+    "actual_geometry": {
+      "schema": "compiled_typed_geometry_identity_v1",
+      "sha256": "50132147df8fc657f005e7ce314bdd91831d2bab3f60e09b84004d30a5dca373",
+      "fields": {
+        "hash_encoding": "actual_global_array_bytes_v1",
+        "assembly_hash": "53f2b052d13d7982727ad04c2c2f8730fcad968f16028ce6010c74fd85a2050e",
+        "actual_populations_hash": "16f67242ad748db92dca4134078cccc78495e606999fab9134b4d1761b6a9c26",
+        "actual_links_and_weights_hash": "904851c0b7550b508b1227beb4942ff962a9bdd6bd2e8108584c79958ee09242",
+        "native_spatial_weights_hash": "aee0051bbe3825b5c3d8b0f76b372f690c27a9c9184b4513a7107945d2b4c608",
+        "components_hash": "b697289d92f8b4885a7ae9d73d97fba94eded4b4983cd47edf5a67f7e32c32be",
+        "gap_topology_conductance_hash": "0015156ac4a62f0794dc11995a87bd8e9ca20430e8591dd8da3df0948f900f8d",
+        "clock_hash": "2839b5b90e49c2c4b33a75763058baafa0226edb3d29d3fbb58c56ea0297905f",
+        "source_binding": {
+          "execution_profile": "atlas_isetbio_geometry_v1",
+          "storage_kind": "global_disk_graph_v1",
+          "global_graph": {
+            "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+            "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+          },
+          "exact_view": {
+            "global_graph": {
+              "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+              "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+            },
+            "view_sha256": "f05e4a1222dbe16fea05aaef16b5baacf2840c14c9d454c13cd58115dd76a5df"
+          },
+          "input_plan": {
+            "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+            "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+          }
+        }
+      }
+    },
+    "elapsed_sim_seconds": 0.02,
+    "stimulus_origin_seconds": 2.099999999999879,
+    "background_checkpoint": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\matched_response\\background_checkpoint.json",
+    "branch_restores": {
+      "background": {
+        "complete_checkpoint_hash": "97a4d0998f32256d6697ef281863a63899f7f406a75e2f146c85cb47c484c152",
+        "absolute_time_seconds": 2.099999999999879,
+        "exact_restore": true
+      },
+      "stimulus": {
+        "complete_checkpoint_hash": "97a4d0998f32256d6697ef281863a63899f7f406a75e2f146c85cb47c484c152",
+        "absolute_time_seconds": 2.099999999999879,
+        "exact_restore": true
+      }
+    },
+    "ISET": {
+      "schema": "frozen_global_receptor_input_v1",
+      "version": "1.0",
+      "source_file": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\input.npz",
+      "source_sha256": "a5b5c405649c5f98c8d5e528e4e11c5e5a1db821ec458cab749ec398c81766f7",
+      "producer": {
+        "name": "Fixed global LCD-Apple/MW/ISETBio frontend",
+        "version": "1.0",
+        "source_id": "iset_lcd_apple_mw_v1",
+        "capture_sha256": "f739ba3abf3a63e2f36313b2c37c34cdb60f5341fa636fac3b16ff6853fc27ad",
+        "request_signature": "09f889af85deb066035b3336f504d6f41fff0792e43b6993c7d1e4a2cd3fbad9",
+        "frontend_signature": "42b88b4bcab820975c48254506b3d711d468e65218f6e25509284ccb4500e8b6",
+        "capture": {
+          "schema": "approved_mixed_capture_v1",
+          "matlab_version": "26.2.0.3386108 (R2026b)",
+          "profile_id": "iset_lcd_apple_mw_v1",
+          "scope": "approved_mixed_reference",
+          "request_signature": "09f889af85deb066035b3336f504d6f41fff0792e43b6993c7d1e4a2cd3fbad9",
+          "background_signature": "6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f",
+          "display_name": "LCD-Apple",
+          "wave_nm": [
+            380,
+            384,
+            388,
+            392,
+            396,
+            400,
+            404,
+            408,
+            412,
+            416,
+            420,
+            424,
+            428,
+            432,
+            436,
+            440,
+            444,
+            448,
+            452,
+            456,
+            460,
+            464,
+            468,
+            472,
+            476,
+            480,
+            484,
+            488,
+            492,
+            496,
+            500,
+            504,
+            508,
+            512,
+            516,
+            520,
+            524,
+            528,
+            532,
+            536,
+            540,
+            544,
+            548,
+            552,
+            556,
+            560,
+            564,
+            568,
+            572,
+            576,
+            580,
+            584,
+            588,
+            592,
+            596,
+            600,
+            604,
+            608,
+            612,
+            616,
+            620,
+            624,
+            628,
+            632,
+            636,
+            640,
+            644,
+            648,
+            652,
+            656,
+            660,
+            664,
+            668,
+            672,
+            676,
+            680,
+            684,
+            688,
+            692,
+            696,
+            700,
+            704,
+            708,
+            712,
+            716,
+            720,
+            724,
+            728,
+            732,
+            736,
+            740,
+            744,
+            748,
+            752,
+            756,
+            760,
+            764,
+            768,
+            772,
+            776,
+            780
+          ],
+          "gamma_shape": [
+            1024,
+            3
+          ],
+          "gamma_applied_once": true,
+          "fixed_radiance_gain": 0.22236702417654966,
+          "raw_reference_luminance_cd_m2": 63.620521545410156,
+          "reference_luminance_cd_m2": 14.14710605261292,
+          "I_ref_td": 100,
+          "reference_rgb": [
+            0.7353569830524495,
+            0.7353569830524495,
+            0.7353569830524495
+          ],
+          "q_ref_LMS_rstar_s": [
+            31728.32812499999,
+            24242.658203124993,
+            2733.4416503906245
+          ],
+          "reference_diameter_um": 6.326361168025856,
+          "blur_diameter_um": 6.326361168025856,
+          "diameter_range_um": [
+            6.326361168025856,
+            6.326361168025856
+          ],
+          "global_reference_definition_sha256": "6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f",
+          "spacing_policy": "Frozen global master median of six nearest; D=0.79*spacing; no tile/ROI aperture recomputation",
+          "optics_name": "human-MW",
+          "focal_length_m": 0.012775661443659351,
+          "pupil_diameter_mm": 3,
+          "OD_LMS": [
+            0.5,
+            0.5,
+            0.4
+          ],
+          "peak_efficiency_LMS": [
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666
+          ],
+          "lens_density": 1,
+          "macular_density": 0.35,
+          "macular_rule": "ISET human eccentricity rule in capture; human Lens applied only in optical image",
+          "OS_factors": [
+            0.9999999999999997,
+            0.9999999999999997,
+            0.9999999999999997
+          ],
+          "phototransduction_applied": false,
+          "photon_noise": "none",
+          "units": "expected R*/window",
+          "coordinates": "Frozen IS from named RF=IS project transfer; OI internally flips rows, RGB patch top maps positive functional y",
+          "finite_optical_support": "fixed canonical40um optical halos; no infinite-PSF/global calibration claim",
+          "reference_energy_spectrum_hex": [
+            "3ede81a5fbd9041b",
+            "3ed95d7ce1ca914c",
+            "3ed9a9de5479d32c",
+            "3ed645c4c64c388a",
+            "3ed1ab93a883fe46",
+            "3ed2836610f3d51a",
+            "3ed0c3c82696972d",
+            "3ed2e2baecdc19ef",
+            "3ed8ac8bffb0993c",
+            "3eeaff401c1c259c",
+            "3eff483069801f16",
+            "3f11e4dea480a79d",
+            "3f2381f134ece6a9",
+            "3f343409fdc1041f",
+            "3f439db80679fa83",
+            "3f521e1249340396",
+            "3f5bd58af69f134c",
+            "3f60bff8e062b8d3",
+            "3f5f0ead3310d73c",
+            "3f58d48c2195ad99",
+            "3f52a0ccc673bbe3",
+            "3f4c72e4e8f8f9f3",
+            "3f45d5b4eb42687f",
+            "3f41597e8eb65e32",
+            "3f3e962a4fddbf4f",
+            "3f3f383cd787df7e",
+            "3f41642d167abff8",
+            "3f43b149ebd44656",
+            "3f46486b9f07fbb8",
+            "3f489ac095af4450",
+            "3f4b3ebab9ad8f45",
+            "3f4d07541da7e1c2",
+            "3f4ec1d741a03f4a",
+            "3f50103464c6e005",
+            "3f50a410cc884d6a",
+            "3f5119717356e8bd",
+            "3f514d489957e132",
+            "3f519cc84ff44a4f",
+            "3f51ccb0058dce47",
+            "3f51e101ffda21ac",
+            "3f51f2b77b757d17",
+            "3f51f06eb084fb67",
+            "3f51aae8ec731e5f",
+            "3f5124bc7af478e2",
+            "3f505a2139968caa",
+            "3f4e70dc4ce8ac32",
+            "3f4c40b638af3238",
+            "3f4a0b08ed1cef04",
+            "3f47de53f18ad6ec",
+            "3f45fda27d882cd5",
+            "3f44afdca7a62793",
+            "3f44a2fbcbcdec64",
+            "3f45c85bde1b33a9",
+            "3f472358b3a02467",
+            "3f48a9f4f08304ec",
+            "3f49bf4f675879f6",
+            "3f49e32c2628b6e3",
+            "3f4a1f53cb98e08d",
+            "3f49e4e96bbf5716",
+            "3f497345f2cb535b",
+            "3f491a7c8a69f45b",
+            "3f4895b9653b9378",
+            "3f483876db36c934",
+            "3f48094e691d4390",
+            "3f481138d2f7977a",
+            "3f47afbf59fad35d",
+            "3f471e9d1ab0bf9b",
+            "3f4674d8a1ed825a",
+            "3f45c520b7981db4",
+            "3f44b49aba3de1f5",
+            "3f4389da7c0f63ff",
+            "3f427eff0da01d3b",
+            "3f41958e9bf1c9b7",
+            "3f409c509464b916",
+            "3f3efac565813cdc",
+            "3f3d0132c92ffcd5",
+            "3f3b1c2ab78d69c8",
+            "3f39285a7c87de82",
+            "3f374d2f67faff23",
+            "3f352ab81a3c0c44",
+            "3f336e71a58e7bae",
+            "3f31ada9e09b7af9",
+            "3f2fd32c7f3a34ea",
+            "3f2bea4e913cf424",
+            "3f2844d51ff4d403",
+            "3f24e60bb8eb92f5",
+            "3f219380ff9d2042",
+            "3f1e69285fc04797",
+            "3f1ac9769a2c14af",
+            "3f183f60282f0612",
+            "3f171a64bed12f4f",
+            "3f15cbebf9440a89",
+            "3f15eb1c03d1dfe3",
+            "3f15e0aae78085a4",
+            "3f174aa71e3f2722",
+            "3f16ce4c8a248491",
+            "3f15632e688a316b",
+            "3f1573f3998d4894",
+            "3f143e5fb47ffdce",
+            "3f13568444ec2f0c",
+            "3f14311ad2e6a902"
+          ],
+          "reference_gain_rule": "one foveal gain; exact emitted-spectrum identity across all tiles, no tile luminance refit",
+          "local_uniform_scene_luminance_after_fixed_gain_cd_m2": 14.14710605261292,
+          "tile_captures": [
+            {
+              "tile_index": [
+                -7,
+                -2
+              ],
+              "capture_sha256": "6d053fb0a902af8dc4dd5ecef7090f50caa8a24a842323783d57f4c3ecb78ae6",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\5bb3b783ff8b67e71814cbc698b5ebf7f7bbfa2c92f5c161ca07f53d2cd3031b"
+            },
+            {
+              "tile_index": [
+                -7,
+                -1
+              ],
+              "capture_sha256": "f7fc4fd21b9279ff8bcae19414e7117aeca33b38ce18c751e8ee4b17d61a8cee",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\38c20dcea0acc50ee28753b1950da7b5efb0933ca73d8dc7904281163ce23547"
+            },
+            {
+              "tile_index": [
+                -7,
+                0
+              ],
+              "capture_sha256": "513218dea2efb2937aec255d50ff87f37dbfd0b11dddcb393a5744c31cf27abe",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\a009788376c10ed6e46da1218c3ff944337282bac155d48e973d981cf533a2ac"
+            },
+            {
+              "tile_index": [
+                -7,
+                1
+              ],
+              "capture_sha256": "8ee8abac58f81328214eb5c1b9543dbf722c99138a621c3b5afb4dd04d8f582b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b534354778602e8319f7ebd52de58bf7fc03f7a94af3c4d47627aa5d1f34eb29"
+            },
+            {
+              "tile_index": [
+                -6,
+                -4
+              ],
+              "capture_sha256": "f47edd4042453dc3a2ff62455b91536228ceac86a895e56bff704896b7cf5c93",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\fe58414c055a0419eff723432581bbf5f7d84f668fa10dc6d46bf6db04def511"
+            },
+            {
+              "tile_index": [
+                -6,
+                -3
+              ],
+              "capture_sha256": "7322f62bd0a7cf5d2b17c126008161f9821ded532d5a1168d4391afcd7e55018",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\8e2ce92f2e8172304090a1d30c39a06819263750418d216f5a3f99663749d499"
+            },
+            {
+              "tile_index": [
+                -6,
+                -2
+              ],
+              "capture_sha256": "f1f195c8afa4f595ab16068d738d6844486b2a9949eaec5ab333d25c7ec49656",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\82528ae85a99a97f11d588b124393c4249f20b5987eb9bc01aca38d51bcef729"
+            },
+            {
+              "tile_index": [
+                -6,
+                -1
+              ],
+              "capture_sha256": "4312f80172820ce81a733765f2d3d9a3b0412475b97acbbbf373c1eae1b7f89e",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\09f691a3cf154b1a4bd6592be75487fdc5c0d559eb4b6e73b04f1c80752a8c38"
+            },
+            {
+              "tile_index": [
+                -6,
+                0
+              ],
+              "capture_sha256": "4215bbfb690115b7a8490ef1c73410ebe65d1acdc521fd0db18d19b8958e19d7",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\3aaa16d05d7d3147d867b3b280b08419f59f96ad3417940c3d2bebf43f4f651e"
+            },
+            {
+              "tile_index": [
+                -6,
+                1
+              ],
+              "capture_sha256": "2e85ece29b279f82df76c901409156e1908e83acd881a33a6e4b0fef002129e4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ac98be4b3eb19ace6861e5638226600192b16780dae5817da0e99179168b5d46"
+            },
+            {
+              "tile_index": [
+                -6,
+                2
+              ],
+              "capture_sha256": "dec4348643b8130ef322d027e457f4bc23d16514a1992491d06a0c3eaf4e8a6d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\4d02c735ef29f43870e0f0cd535b8a47b66fd14caa7bf6495d3ab95360bb4e6d"
+            },
+            {
+              "tile_index": [
+                -6,
+                3
+              ],
+              "capture_sha256": "779f5b5ba7e895419ff93dc976d71b4a0424cb6045dce673f7c6f2f918e95045",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\775bb18824b3f1a469bf025182ced1091a854a5ef3fe7873d4f36d3bba143124"
+            },
+            {
+              "tile_index": [
+                -5,
+                -5
+              ],
+              "capture_sha256": "d8cdee7bb672c416822ea5704c53ffef21812e3ddcdcbfea47fccea63a7a4e32",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\4d056a44be1b173e821f1a56d6f560ae3072edc8288446fd81458cfe5af43c9e"
+            },
+            {
+              "tile_index": [
+                -5,
+                -4
+              ],
+              "capture_sha256": "e6e4113a90804f0ec278ba4d6b836a0e9f51a93d65c63061938b0ea17152338d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\7e5e43de7b92a080a8fdf6fa20eec668e9f3d62143016c547aab914835c34009"
+            },
+            {
+              "tile_index": [
+                -5,
+                -3
+              ],
+              "capture_sha256": "22fffc87c3459ef0962e583c99ed683c1e289b3ef053f12ffb772c4fe839079b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\dcc93a450b19c7dda013d94164656b0ec0e9a933fbc9abfbf064333c01f4481d"
+            },
+            {
+              "tile_index": [
+                -5,
+                -2
+              ],
+              "capture_sha256": "bfc6d7c03271957ab5406902be15a32aa3d1f63d2b78ea718d41151fadd34383",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\09d2e49af737b504345692b27147fe3a762f0f7bd899d5746b991dd005d746c1"
+            },
+            {
+              "tile_index": [
+                -5,
+                -1
+              ],
+              "capture_sha256": "618a9e5d6b1d3aa4833126eacd5dacd5e15b5d13f896c0428a8f2283f3a76f6a",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\70c07378c9b73a26548625aa804f804d9d7d762bcc4bc7c991bffafb5910b03e"
+            },
+            {
+              "tile_index": [
+                -5,
+                0
+              ],
+              "capture_sha256": "a4a6467d715b84ece4238f2ca9967668fe62262749f196485b82db87ddc148e2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\29cc21a7c6a89b55a85adb07e23fd2df217111c3252ffdf29a451e925559a96e"
+            },
+            {
+              "tile_index": [
+                -5,
+                1
+              ],
+              "capture_sha256": "987d4b7c050fb941a41652040d2b8ce38515189e279b3d3bfa4d3706da3abbe2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\5677ef07b8a6012270ac8f3b8639fb9310b708b9dc04f589eeadb4fdf4cc5749"
+            },
+            {
+              "tile_index": [
+                -5,
+                2
+              ],
+              "capture_sha256": "7f17bee62963801d272eb12fe4eb22053ccf0b5eccfbc326a56109440fa46668",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\156ff14b8582d6874c7ed1c46556976feca565637587cbda681998f2ffa65f49"
+            },
+            {
+              "tile_index": [
+                -5,
+                3
+              ],
+              "capture_sha256": "9b6dfaee14c26b2555b610843d5c325c531de2ff33433bc9409323bb9c297e1a",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d44dab91a4bf0d2cdb4cfdc6ce2f57ff92d0574d7b576b6a48a5f13801225bf3"
+            },
+            {
+              "tile_index": [
+                -5,
+                4
+              ],
+              "capture_sha256": "50cf14f74b48e64d3090a723b5a8a1cc608f82c149ce15db9e1003f90eb1e96a",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\03a745795a9472e5586a2589b714bb85bd6273b2cb069b378b627d8197a0121d"
+            },
+            {
+              "tile_index": [
+                -4,
+                -6
+              ],
+              "capture_sha256": "6d08dc6e7433531c3bd861dc93ca3c8715521e8618fcace7b1aa63fcfb30d463",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\662da14ece020c27475fc5246071018134fb0cd036295c5a235a0ef43a4f6dc2"
+            },
+            {
+              "tile_index": [
+                -4,
+                -5
+              ],
+              "capture_sha256": "cfa8315838d2eb9bb4c855543f82e8f13c447dc76a3505c4bb501aacbd3a6761",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f36dea3985be4d2f651741d6c84235d19c51bde4d148b73e53bd52a52ba4db7c"
+            },
+            {
+              "tile_index": [
+                -4,
+                -4
+              ],
+              "capture_sha256": "2e61fd71f58cfca20bcd8b8b778a099c1efd478113349ddb09f84726304974ba",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\e1af1d1b03f0344bc1236ada8cfb32dea193771b092d46a358eb535590112a91"
+            },
+            {
+              "tile_index": [
+                -4,
+                -3
+              ],
+              "capture_sha256": "d4f5bd88d2bbb9a4328ade4cef2a3d0fc0740668b7252223ea1c0db87475168a",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\7e245043ac5e7ef42d72476a1093e5a977b7440a5ccfd681ca3e7815dd36dee1"
+            },
+            {
+              "tile_index": [
+                -4,
+                -2
+              ],
+              "capture_sha256": "8fe3bdfc7ebc1110a08ba0a51040a585bb7e04ddfebf89cf835da61538fb8978",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\fbbcaa6af4756413f563c0dbf01773f4b63980e41d7bce68eac42bcf0f8bdf26"
+            },
+            {
+              "tile_index": [
+                -4,
+                -1
+              ],
+              "capture_sha256": "129ef4285d4ff0d61d39fd8e8742f8f6ef81157c61a6966773d87d86816bdeef",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\de323c8c3a1cd866ecae81c74acb8b70eec05502f5939d10a01428a222af4089"
+            },
+            {
+              "tile_index": [
+                -4,
+                0
+              ],
+              "capture_sha256": "379509363b84ee25efebda2a14d816ceac14518f600d0fbe560d588791726ce8",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\baaf1e24ff81919d5152e10cb1eabaaecf81a71b3619e0f93d8900f60df79491"
+            },
+            {
+              "tile_index": [
+                -4,
+                1
+              ],
+              "capture_sha256": "51eb9382689408d1fb70b8f8c0e7d72c79efcfa7e388e3045a85eb62f4685b01",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\e5b7e49c899aae9742e1969fb4bbf54987db0333527dd498579b8d28fcbaef59"
+            },
+            {
+              "tile_index": [
+                -4,
+                2
+              ],
+              "capture_sha256": "ed33e90576d8ab4b5a3579125f9b4178d494348312cf3501849e07d6730090fb",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\788ecd97b9d78045a3f81061d171c0f8e8594dbc16aa5d8e5d319d43c0d6b565"
+            },
+            {
+              "tile_index": [
+                -4,
+                3
+              ],
+              "capture_sha256": "a79345e73dd1140520a6fe14facbf4e8630723a0c7b1fd56ba3eea19ee066be1",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\c5b388780c3b8bce185a98cfbb3b202c981a871bd493bc0969a826ced7795f15"
+            },
+            {
+              "tile_index": [
+                -4,
+                4
+              ],
+              "capture_sha256": "b01343702ceef66aec90da24c3aeee554f1cc57ec97c9b4bc9302e17dc810b37",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\bf7e8635f593687526df208ae5ecfc90a45cdeb65d6d620f53f3509037ff4fbd"
+            },
+            {
+              "tile_index": [
+                -4,
+                5
+              ],
+              "capture_sha256": "8b1b415c2c78fd8329b0a0f8798f6228d9f6b4de0799e7dcdc529bc27ecd319f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\36a95ca5163a9793359b438ed6ed6fe068d62e30d5b47025e85885c9279deb89"
+            },
+            {
+              "tile_index": [
+                -3,
+                -6
+              ],
+              "capture_sha256": "e689969024309cf161f4efc49f62337a2e840ec1b71a8c621465f59f50e28fb2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\430348edfaad7955e3eaa9510dc93cebbe4e6fec9be00b53f9bb658667fdac9d"
+            },
+            {
+              "tile_index": [
+                -3,
+                -5
+              ],
+              "capture_sha256": "aefe95f046af27022d9e5404b1b6ed3b346eb110c5543496c748d1e382a0b500",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\558e0b5f40f1331d08a2ed18c783f4f5f567d72e807c0594f73c2af8689368e5"
+            },
+            {
+              "tile_index": [
+                -3,
+                -4
+              ],
+              "capture_sha256": "6806cb40bb8a63ca0b96bbec8f63c04a4db7c5d2ce20265f8b972923e1f98c23",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ce8124a8a19ea49d3aa80df6a95cdc39f9fdbc0439bc5a51da4d35a99a531c25"
+            },
+            {
+              "tile_index": [
+                -3,
+                -3
+              ],
+              "capture_sha256": "5ce6e9703a9662b786b78fa12086f94f8596cbeddb22468ed7525461f7ee33f9",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\fa1aef50a8ff18d552e9dc35b394ad6620d386d96c3af4030363a3b37dcd1f9d"
+            },
+            {
+              "tile_index": [
+                -3,
+                -2
+              ],
+              "capture_sha256": "544fd930204d4eff46323d3347b1eb63c49e74bfcf12e39bdbffcc1a132bd573",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b3a033a29f4a101d2e00daa1beee0be9aeade2fad4bf5194748f025ba047ea5d"
+            },
+            {
+              "tile_index": [
+                -3,
+                -1
+              ],
+              "capture_sha256": "e872e37f9ea8704b0f946fa21e192aeda9b724a4d419a40224ed286e469eb6b1",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b9757a8bb11523f6bd5c2547cdbe24e432ae83f5bced8ca0c584ca97d9411bc9"
+            },
+            {
+              "tile_index": [
+                -3,
+                0
+              ],
+              "capture_sha256": "3691505f73f62f93f6f89c5d92966bc9db6a9422bcc23e68cfc5013d450e88e3",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d82501ae56ce496ece65e14e7a1eda37a29a86635d1d40b0fba6ccb379de14e4"
+            },
+            {
+              "tile_index": [
+                -3,
+                1
+              ],
+              "capture_sha256": "3195b8cfe728f100c87f68b0c3f4b6a708fd2552ba2ba99dc304765e77bb270c",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\eeb2a165b8874a406e6d5687115beb99041f6470be23ccc99ff80a65cf7846d7"
+            },
+            {
+              "tile_index": [
+                -3,
+                2
+              ],
+              "capture_sha256": "f4911a13da36163d3dce4a37d95fe6f9ad9b491db982248efc6ecfabe4169b33",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\799d5eca3453b93f2808c519321e49815790c833b2fc7fbecf40834e51ff5681"
+            },
+            {
+              "tile_index": [
+                -3,
+                3
+              ],
+              "capture_sha256": "fb2b03d825827e74ef96952870b9d64fff594a46e1446d4d53bfd32bab468541",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\93f0852055dd4449fe885322302bc983bc286a237f8a0dd4c59bf90ef25d8246"
+            },
+            {
+              "tile_index": [
+                -3,
+                4
+              ],
+              "capture_sha256": "c0611d3bafd4c7d568cc0194a9b351df55400377b113979d4cf1eefe3e492cf9",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\cf4d85fe4c148a6e04b8773d8dc5232495ce1e98bbd37f9570277eb9b21003f1"
+            },
+            {
+              "tile_index": [
+                -3,
+                5
+              ],
+              "capture_sha256": "38ff8de3237c4c83386fe727f5b8f9032f74d4c3930211b341ad085232efb163",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\2f420bd28c3938389d1984462bef55e8c57075bcce3a04cde9c67fc5348df823"
+            },
+            {
+              "tile_index": [
+                -2,
+                -7
+              ],
+              "capture_sha256": "4a854ccf073ee8701edce04568a78973310b867d1f4d7285fc1734d0130e92f8",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\4da4dc6fa68a2f6090a7ac161535713e2d800564f639183063b1476035fcf4c9"
+            },
+            {
+              "tile_index": [
+                -2,
+                -6
+              ],
+              "capture_sha256": "1813c3ac0e134b0d9e2cc856d1fa48a261f43a75063b2b8716cbb2b4dfb15512",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\14ebf39fbccd59f1b6f0b9b66bea9588e77233d2099045bba7d200b95a1350af"
+            },
+            {
+              "tile_index": [
+                -2,
+                -5
+              ],
+              "capture_sha256": "a2c4fd77995b4a29d1329b4906b0298cdbd9e8e8fb61dc72969ed907e4787c40",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ee2e0672a917cf7def7a6cc700782de9f73247510816adc2a0c86b847bed6727"
+            },
+            {
+              "tile_index": [
+                -2,
+                -4
+              ],
+              "capture_sha256": "77bbf9aea37b6f1ca5c11ddb46421af3ad19acf109f57e1759bcf4f43dd93405",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\12d9c04f746d5fbd9501bf75bff3550364ece3e7abb4b9286745839808a795ce"
+            },
+            {
+              "tile_index": [
+                -2,
+                -3
+              ],
+              "capture_sha256": "1d09cad554367520f77ba1636a7196e5b364014ab6d936424c0353f8a7ee8d4d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\5cb88bcf51b5ab26431b648af533da24295a39a456e8a8c954c62689c7c74013"
+            },
+            {
+              "tile_index": [
+                -2,
+                -2
+              ],
+              "capture_sha256": "a49dfc3f17677c277f3b4aca371f947ac0f57c7af286976c4a23f06e483dfd3d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ea2cdd64b19e8e550ee53cf0e3c3258e0006f9140350c21de70a199fdd65d4c5"
+            },
+            {
+              "tile_index": [
+                -2,
+                -1
+              ],
+              "capture_sha256": "1abf7b3e8f0dbf0f2d4586de8891ec94413314e758ca420e646b496e3b901960",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\0b5bbb500b28b1f42247c53c1a55946fc1cfbec3758c04d5f83311f524a55ab1"
+            },
+            {
+              "tile_index": [
+                -2,
+                0
+              ],
+              "capture_sha256": "b0558d50e5e612a0dfc9fa9ca55522f8a46e95f6696c3597739caf4acd4a029e",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9c1a631f5c6e860e8d20346caed961dbba7efcdf2bcfc1b2e49293fefc6554eb"
+            },
+            {
+              "tile_index": [
+                -2,
+                1
+              ],
+              "capture_sha256": "24c33720bedfbbb2b6bdb5e39b9fec6d07ef74b1eeb2e257c5e273934d1a44a2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d36f0ab4b2edb51fe67b0b33e230ab637779e49560d1b208cc8aa665c4373de5"
+            },
+            {
+              "tile_index": [
+                -2,
+                2
+              ],
+              "capture_sha256": "99b1bb8b4020f51e88ce4e55937c73ef88efea2a7ded3beda2bf373b7950c86b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\0eb2f49bb2eb26cb045b54602a0b703b562ef8db286401133f833e5ca55fbf6c"
+            },
+            {
+              "tile_index": [
+                -2,
+                3
+              ],
+              "capture_sha256": "73af83d4a42d9cdefea8ae38b8416005fe11b2bba851fe9efd65da689d2b3b64",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\708cfdc0107e73754c5dda9ffa0422ad9b6a55557891b593e8562e04514c9603"
+            },
+            {
+              "tile_index": [
+                -2,
+                4
+              ],
+              "capture_sha256": "cc89ddd708755a811abf6ebf5994fde980f9dd38586d9e0626f8ba898fa08812",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ff6fa6d60ff7b22ec281ab2679fb7280e8d132cad1f5882fd2a0c58fd1960c64"
+            },
+            {
+              "tile_index": [
+                -2,
+                5
+              ],
+              "capture_sha256": "0ad89cae4a825ee751de33193ca0c624f8a7b35d3b309653f5db245b1259fbc2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\7ee073a034fa37b102d4bf3520297bceb4f2b6d78f618cfe1a8597288df3c687"
+            },
+            {
+              "tile_index": [
+                -2,
+                6
+              ],
+              "capture_sha256": "b14a840e4f0cd079522bfdba37901d52f4ff2612f934711a2f91a1205ba9514d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\0e4c46ae63801b8ee41231f7f805fc4ac8e50bce66181b9b813610f5990aafb7"
+            },
+            {
+              "tile_index": [
+                -1,
+                -7
+              ],
+              "capture_sha256": "4a511ac1baf130cc1e240d185737567a4b4849595e38cd9abd6bdbda77c0b280",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9da1420e064243537607d6de903ec9f432d30b5ce110cbcb243cb25e5aa517f2"
+            },
+            {
+              "tile_index": [
+                -1,
+                -6
+              ],
+              "capture_sha256": "c8ab9b9e4aef019149e5b40f17873af2f9fe94f3f80b7a04068367568b364670",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\8f81b1a6d8f948986b6e006c3f782c34ba82804f4a9e8e740b6602c8305efbd6"
+            },
+            {
+              "tile_index": [
+                -1,
+                -5
+              ],
+              "capture_sha256": "876996cb73cfc5aab091a387384e840adbc28a54f47c10cb7cdc874a8d39f6f4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\10b9e0f2ad2cbd12cee3eaef18bb2c4cf3273f2d6bcd8bde2191052263b8cf6a"
+            },
+            {
+              "tile_index": [
+                -1,
+                -4
+              ],
+              "capture_sha256": "5c90059744299534fddea68e182abca57f1bbb2119590545530f358bfcb41e85",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9f5b06220ac3dc2dad07239d29f1c0bfd27d0a3f6cbacffd54ca6990c48a44d1"
+            },
+            {
+              "tile_index": [
+                -1,
+                -3
+              ],
+              "capture_sha256": "a1948190f2c8ee166e4fa9c4c64284db4117f54cdb2434e93952b4b66ddae79c",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\7deeb9740c8521375ca041aaca97d9204ff7578c2fe5913c0f76e7a9b3ba1cb8"
+            },
+            {
+              "tile_index": [
+                -1,
+                -2
+              ],
+              "capture_sha256": "113954389a91a89abf118cb175ce45fa4e74244409bf613cbdb5878f13b4d445",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\8e5c91fc37ec3a746044a3f911a54ec2945e7e7ab248324ed371ccbe116ff6b9"
+            },
+            {
+              "tile_index": [
+                -1,
+                -1
+              ],
+              "capture_sha256": "72a0455479d319e87e8c7824be102f8e95f9c7344bdba835170d55b51436ba5c",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\013fb580d2facb76135e43a5ec9ef5e62ff6b5b66adae295a77f9b80141afea2"
+            },
+            {
+              "tile_index": [
+                -1,
+                0
+              ],
+              "capture_sha256": "8b179b1386bcd141898f206bfe50091e6be7082c4a85276633fc8c6f4ac9cbf1",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\60ce2aec51cd95a4ccf7475d7b7bc67738e8a37fffb4b8f114ff74b357c6a6a1"
+            },
+            {
+              "tile_index": [
+                -1,
+                1
+              ],
+              "capture_sha256": "4a13b408bce783da762ccbf2cdb1e49b6a670e3f7c8fc1dfc463843ef5c9b4cf",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\1b774341b45f5c0f1eb400f0d3ec81b36c0b25575bb2b3416c79f3b7dcfc2c9c"
+            },
+            {
+              "tile_index": [
+                -1,
+                2
+              ],
+              "capture_sha256": "b5ca0adda916e029a6df295556078f73ec3e1d40724813dab40f6d665fd14cff",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\454048f459eb09e54a36c9d017e5dca2324f7a498f7cd877181e8d0215a0e870"
+            },
+            {
+              "tile_index": [
+                -1,
+                3
+              ],
+              "capture_sha256": "343f4b654fffd27e2979d2eaac3c9b47dff3d53f06363c0549502d23a5f9be23",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\0709e68acae440e9ac3b38a5cb138f8dce8734711b2952d3146227362db27fde"
+            },
+            {
+              "tile_index": [
+                -1,
+                4
+              ],
+              "capture_sha256": "4ff247160cf64298b898fc450d59a582e071fe12c11795fedf96656c6822da54",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b8eafc5b3f56f7c23c8482c92e531c2b2fc98caa6a89efec05798546142f5d35"
+            },
+            {
+              "tile_index": [
+                -1,
+                5
+              ],
+              "capture_sha256": "2c4cf670af854ded5c22c11e2d9735c64f349e7bcf7a6e9c102fac0088405bb7",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\a4bf6406f0f7ed303643d8f7a3f4de14c4316126a9a0e7574f674cfb603aee61"
+            },
+            {
+              "tile_index": [
+                -1,
+                6
+              ],
+              "capture_sha256": "bbda08c45d33a65800afe20af3406c40680c9983902c0192b9acd2fda689e94d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\98d409c0129761426b61996599325175ee6b688c8bcd18490edf68ffffb0cb94"
+            },
+            {
+              "tile_index": [
+                0,
+                -7
+              ],
+              "capture_sha256": "b438c9b04f3d6ea788436b1b370622d2e1b7ae1affe7d8b4a44b6ee012f05c1f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\6f5b8a574cac1256b61108e08a46415d2276555e90ce9821d2d18600ac309ee6"
+            },
+            {
+              "tile_index": [
+                0,
+                -6
+              ],
+              "capture_sha256": "c3bc84a14b499809762739e0c6cdf7fa84b78419f29ccfd4074e64f05e8ca5bc",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9345564a061db134b500cd557a42c2bf4bc611ffd38fb009f7967b55bb59c5fd"
+            },
+            {
+              "tile_index": [
+                0,
+                -5
+              ],
+              "capture_sha256": "82ddfb1b695e61034a5f0cc602b9e281b0c0bba081794392dbda381967f99312",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\4e215c2f5af5c87a1b7e47d8c430dff2718a80651d855fa087e488ba6b562274"
+            },
+            {
+              "tile_index": [
+                0,
+                -4
+              ],
+              "capture_sha256": "0c81c28a58420d2b82a55bee45709389486009cf2b34e904990cef60e12df0e5",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\126b7b2f2bf5e012da3fce3b74f005b958411a01dc81e04cb7514a855d6a887b"
+            },
+            {
+              "tile_index": [
+                0,
+                -3
+              ],
+              "capture_sha256": "b909c13e9a6ddd47a86de3ef0926544b83bc60947b7069d12d7f8534c665293b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\1e068189971cfdf24a8e9c6c3b1828fbad9996215ac9a611f00c35631b598553"
+            },
+            {
+              "tile_index": [
+                0,
+                -2
+              ],
+              "capture_sha256": "46078ad921dcf4245e2bcf19abce00ba119f2d976ed36d28b123c0418040cbb9",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d561d7df4ff0c02546fe029a601701b849c3b5917c14af0272c89ea07cb693a1"
+            },
+            {
+              "tile_index": [
+                0,
+                -1
+              ],
+              "capture_sha256": "318e66219ac70967a5d77a678f862715574e629296d54536af40552c2d156415",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\abe9ea65b3eb2895664145bada721e18d818c12ee027a5b2e88ad7d87d545d3e"
+            },
+            {
+              "tile_index": [
+                0,
+                0
+              ],
+              "capture_sha256": "854955d229d1515026e6f905730d3564c1f049a1b4751ecdc23c838b8f1d4151",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\3f43bbc2b04bfb8c489ceebd00c9f4e291d4107c29375bb311eb2ed9836fa42b"
+            },
+            {
+              "tile_index": [
+                0,
+                1
+              ],
+              "capture_sha256": "3dc35d0c6f5b4e83c290f9652367671713d07f5cf5b65024de4fec9fc2b1fbc9",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\661b347c941ec7bb3fec56a509e02620fbdd8187bc8faf107a26d348995c0c43"
+            },
+            {
+              "tile_index": [
+                0,
+                2
+              ],
+              "capture_sha256": "fd4dbe39dc0766aa0190a7f52c012876a3f91eeef4a77155f6d539357a6d11b2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\fc3e8a39f6e5ac1ff55a193545697f8f34be0cb421cdcb9326b1984c9723fde3"
+            },
+            {
+              "tile_index": [
+                0,
+                3
+              ],
+              "capture_sha256": "f13d08d25ed54c0467b077512763c5ce6a0b7c8db64335df4468f4eb5fe9348c",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\71c0d26e821f49980543e3673103df65c973cf9230094fb2ad1341a9701305d8"
+            },
+            {
+              "tile_index": [
+                0,
+                4
+              ],
+              "capture_sha256": "8b1eb4a4e3dba61bcfb21ccc15c32d0d22374a9bcf681709836356b459b72e3f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f3b54331ceb127fdb336f1191cb31077cb5cc50afcbd33464e417cf1584e3583"
+            },
+            {
+              "tile_index": [
+                0,
+                5
+              ],
+              "capture_sha256": "f79a39aa6b15cd86f878caa40abd002cdfd40ae29cf03a661da0ee3de0ff4005",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b41fb228613dcea36845f8660ab2bc2260af7bf6982c237257054de4ac6b737a"
+            },
+            {
+              "tile_index": [
+                0,
+                6
+              ],
+              "capture_sha256": "e91dfbb8e276ed1a246611af04c5dc0071d911b0efa64169b6f4b2babe464dd5",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\510f68ecfe188f7bf51d4c3728ad976b77b5802256a7d0e8379ae2bfbe72e1dc"
+            },
+            {
+              "tile_index": [
+                1,
+                -7
+              ],
+              "capture_sha256": "3050bbf47ad3c8950a3253fceb7ec39592cdb4a246da08688b0b950539516f84",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9895e169082eb449cac9e818797f011b137ff7f6de0fa8e271ef7c915172edd2"
+            },
+            {
+              "tile_index": [
+                1,
+                -6
+              ],
+              "capture_sha256": "79f3eda32041c19c91119baf16d8c9102e32523309de88f65139e014de5df8a9",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\276edb3c80f176c422aecb64b8a4cae6ae696f61c82c1fd065058e1385ac931c"
+            },
+            {
+              "tile_index": [
+                1,
+                -5
+              ],
+              "capture_sha256": "c0ebd20cf1d42309780cae1b1ce47b3cb9647d81d39b590b3d46e8a720f2caf4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f5886ecf9466bd35859fb06fdee3d929a25b3971371c8fbf194e38db09e8a271"
+            },
+            {
+              "tile_index": [
+                1,
+                -4
+              ],
+              "capture_sha256": "3071e35a14d07d94d5ecd1a5a73c7ab5d518c4b03e121d41b0e4f42d453938fa",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\c9b72a2653a992d484ec37fe11db3d3289cf520314dec4230cd8ba60a896f1d6"
+            },
+            {
+              "tile_index": [
+                1,
+                -3
+              ],
+              "capture_sha256": "1aa6ad1de8d3f0cd07c076dd789c8d7533be572dbf38b1f056de06e497950e77",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b027be02885760aa125250a4bc5aae3c4ff1b30798dcf5d9c6351751f83bec9b"
+            },
+            {
+              "tile_index": [
+                1,
+                -2
+              ],
+              "capture_sha256": "c2d2b8c4ac0a60f0d8a84a5bdd5964d4a5b032370b158eb97c31158ff3ebcdca",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b8f284588bfe6255def4d60c2f81391f79a9bd535227b308bbffce6ce23cdb13"
+            },
+            {
+              "tile_index": [
+                1,
+                -1
+              ],
+              "capture_sha256": "8b7f6f1467b5d170cb4ba45867df9f80295b15d3422c8585f0e58db83cd07e76",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\2771914dd3deedac516c2e96bc1d15fc8136275f360ce4542fb63715c564696d"
+            },
+            {
+              "tile_index": [
+                1,
+                0
+              ],
+              "capture_sha256": "356cc84811920278f0b960ecc5649ff8a1832d60155f3293ad26217994cbee6b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f4bfd5eb8095f8b5c2ebe5c7943f8e849df213f0f6bad8a98fea715bd6650ef4"
+            },
+            {
+              "tile_index": [
+                1,
+                1
+              ],
+              "capture_sha256": "717f40129e1b47eee1b24c9f717fba4799391909f50c778131d013bb14298285",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\8d397ac13a6ae465e38106feb4ad732dbc64af1ba14472998746f3eb2be09e51"
+            },
+            {
+              "tile_index": [
+                1,
+                2
+              ],
+              "capture_sha256": "08d4fe7a13b804ce644b94f4844f8dda916029148f9daca6d40e823ddc593216",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\829b2f9a8a53993845d89f1595816d54583cca908d253bf1b3aeb02ad17fd017"
+            },
+            {
+              "tile_index": [
+                1,
+                3
+              ],
+              "capture_sha256": "ee656db2f61e77c7835227040307a871a74675ae7053cf10f7ccccf4fc18c11f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\746b2ca4789079bf8d37704c302cfe24ff979f3137d4245cef4cd7c0d298e2be"
+            },
+            {
+              "tile_index": [
+                1,
+                4
+              ],
+              "capture_sha256": "eded8c069231c7931a760629f8e7f73cff3478c881a1565b80cb3e3e79888980",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\230bfe97da3d88f96860a72ed84c369dac547d2a366ddf13ab7f8ec60211fa3d"
+            },
+            {
+              "tile_index": [
+                1,
+                5
+              ],
+              "capture_sha256": "f8416b3b522a2278aadba54be6edeee3f5e780cc9e646ba1ef091c0a3ce51cab",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\6aa751d9bba2a18aa7e2ff514b9a1e66edc693e2614f1e568312b5004a1f708d"
+            },
+            {
+              "tile_index": [
+                1,
+                6
+              ],
+              "capture_sha256": "d8f0e9b0fee4f3819d7f17d492ff0defd9ee6f4755e25c71b2225add7aca2415",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f46e1b2c190ea0edfbc34e6d8ceb5c6e57fd0437aa8f9e64118ed1d408e9e736"
+            },
+            {
+              "tile_index": [
+                2,
+                -6
+              ],
+              "capture_sha256": "1fc99b9adeb881bc73d75daf0b6369db7aff293e4d5341e84171b874c28fa7a4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\2a1b536d7d007af116827360aeef7104efe532f2d5b5e27bbcbceb50476f7d5f"
+            },
+            {
+              "tile_index": [
+                2,
+                -5
+              ],
+              "capture_sha256": "c0c01a022fdfeb5009bd68317e4ba07f7a860b728d90ac362f4ce3fc1f48dd29",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\a6b3261f6768ccf8b62572799964c54f9442222ad35d022a20b6af08b9bede1b"
+            },
+            {
+              "tile_index": [
+                2,
+                -4
+              ],
+              "capture_sha256": "46cd6a116aa4d6994654f7757ca1c4da58996e841407b5b746a8a436b24d6add",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\50f6887252a1ca1749ba64a6aab35123383aa8393a199a1e70625b594e8a90c1"
+            },
+            {
+              "tile_index": [
+                2,
+                -3
+              ],
+              "capture_sha256": "ad5b8549c933d4d3b400b2100406f8f7a7c516ab56e18af38c39e98487ba78d3",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\1e362ec4137fd11ab3b42490308b79ade2a1e6c3fce0384bcb6427a1eeae8535"
+            },
+            {
+              "tile_index": [
+                2,
+                -2
+              ],
+              "capture_sha256": "2386603b7cf578f924f88633c085870a08b70fba364c6f7e7abb90df482bf64a",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\93b5750471c422830cfbafae193361e025ab4671d7f986814b3b8a5d7f4eaa0c"
+            },
+            {
+              "tile_index": [
+                2,
+                -1
+              ],
+              "capture_sha256": "ffd9d8b3d0f3d015c247d2709028fa3e7f0633c23aa67b28aa42af55dcdaa6b5",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\27ee8043995f07d8f30431729e0adf3ba0531cde9aa3ca4e546b963a07912bcb"
+            },
+            {
+              "tile_index": [
+                2,
+                0
+              ],
+              "capture_sha256": "2ee50dbe44204da6b9b7d9fe618d5afd25741ad26c9dbb8ef525f2c347df714c",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ddc6d96c9407910dac537035579fd159734b32a454669010123522cf304b50f8"
+            },
+            {
+              "tile_index": [
+                2,
+                1
+              ],
+              "capture_sha256": "f447e1d14bb309347edaf11a0e0e7813324b619a6e16a55073a2a902500a5fdd",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\4b437103dc47ecbf545e305d805cb92a5c380a17fc690624228acda8ce1c0308"
+            },
+            {
+              "tile_index": [
+                2,
+                2
+              ],
+              "capture_sha256": "75e4e193f27315c9df2073e9c4f2128002a82c347f93478652cd76a769185850",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b4d0ec514d70ce5068914f617ed0b44cb56a515d0d81f7597ec74ffff5b3486b"
+            },
+            {
+              "tile_index": [
+                2,
+                3
+              ],
+              "capture_sha256": "b566e8400020311b804f4f2744e92651701bd6d6098ef979335b0237a57ae007",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\381651ac37ec3a6f7bf8beac9b32acca5cc582cca1a050ff67e828837971e1c3"
+            },
+            {
+              "tile_index": [
+                2,
+                4
+              ],
+              "capture_sha256": "c1739799249ac671acea2bb589d3cb7dae25d1290f0744f37e9263451489bc92",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\80a5ec6c18f9c100f65b5374a093646cb35a8458b0b744ecf2fd1b4d5f1f343b"
+            },
+            {
+              "tile_index": [
+                2,
+                5
+              ],
+              "capture_sha256": "ea878b1f5dc897aae49119066d4f863f02d6ff5b5f7fd06862e96d56ef0ac031",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\e2ab903248a607d17e9bb962e54f9688e6889d72f496f7528f946a248b6d93e9"
+            },
+            {
+              "tile_index": [
+                3,
+                -6
+              ],
+              "capture_sha256": "30bfdcfb4dcc35b245bea700362fc8cf881252b9b8bb9a7c491892dab6ce406b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9ca07d4dc832269f85cf657dc8305dc9d8c4627164bcdfa2458003e2af475189"
+            },
+            {
+              "tile_index": [
+                3,
+                -5
+              ],
+              "capture_sha256": "7b7772a26f3ff0d5a4a8b101bcb16d35b14d437f9b2ee6585b049a0008cd3561",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\72db465f7c9e80835503d7f5d1054eb6f3f2bf92a6208b0b220cdecf6c51e9e0"
+            },
+            {
+              "tile_index": [
+                3,
+                -4
+              ],
+              "capture_sha256": "d413e91c534c921f0f7473fb779ce87ef4b3b5d7cd3f8c5b15aa7a8830ac574f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\2ffa05bd83836a3b271d469e622355658842913af5fb2375ee5211231438bdfe"
+            },
+            {
+              "tile_index": [
+                3,
+                -3
+              ],
+              "capture_sha256": "2750da7dac4fa890a2029109046ceb8d64bac18866eb9127041dba69647bd733",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f352953b956fa6429cf2fd5b8eb882ed655b87a03fe29fea2baafd35a59c3cc4"
+            },
+            {
+              "tile_index": [
+                3,
+                -2
+              ],
+              "capture_sha256": "a8b7c0761c09b45d64b34eef2eb60cd266211935a4ddce33cffe9b806aa5abb7",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\cb7e7e5dcc4fb3e0c446cec808aeedba97a0736c48c9abdbfa394885f1ee5493"
+            },
+            {
+              "tile_index": [
+                3,
+                -1
+              ],
+              "capture_sha256": "e3e2f053a82e20ec156c385e4f835238e9125d4b9f0378bb660566960524392d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\c2035a717feffc3d2fff3fd0dd6f6e3491af170883e66e0710ed9862194b396b"
+            },
+            {
+              "tile_index": [
+                3,
+                0
+              ],
+              "capture_sha256": "bdadb54311feb2f72d1f01a6befde8d6da58356bbcd4adc511505c9af0c8b68b",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\8cba3c22ffa738b4c27a1bcb145d1b8aea430844e72cf75071ecd5e0b79a7d83"
+            },
+            {
+              "tile_index": [
+                3,
+                1
+              ],
+              "capture_sha256": "23c5c15740bbb72421de6c3403c6f4a6ed833b30a8eab6b479b4d84648c3472e",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\3d06b9b4adbfd0f560f30db50ab011590229feabc4a1cac0bf8c02fb1023f75c"
+            },
+            {
+              "tile_index": [
+                3,
+                2
+              ],
+              "capture_sha256": "60733dee8a9b5c3c7519de31ca06f4b2f75cddbee9570b17dcc797dd92d654bf",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\bacf1a02a1132253985843d52cca3f4bfe875a23d39af75abcefe160dab7d55f"
+            },
+            {
+              "tile_index": [
+                3,
+                3
+              ],
+              "capture_sha256": "572ab33eb7fedf8396fbf820e96dac26a086a7f4fe7a26286e7e6bb1fa16010c",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\3ee98583842f60a45ae668d584a000470e44ebde2bb5f298e3b0cb5b69cf4eca"
+            },
+            {
+              "tile_index": [
+                3,
+                4
+              ],
+              "capture_sha256": "c8e7c5eb07e26ae05dbcf63d9d6944ad8c8d6683c676e5862310a8d69a5186ef",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\f877fda6c70d222244771a80f566f25c3f4b46c214c4850053283ae0f01e885a"
+            },
+            {
+              "tile_index": [
+                3,
+                5
+              ],
+              "capture_sha256": "ac1668c45c41aebaf3e478d2958cd18dfe42ccec4aacfcfab7ca81609b83c621",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\127d0a9e4c9cd311a722ab76ec056b59b72c6555d746bc1f8fa0cd7e7c6f11d6"
+            },
+            {
+              "tile_index": [
+                4,
+                -5
+              ],
+              "capture_sha256": "9f528b695522afe2814bfcd80fa0e5d10f053719c0dd981a2dfee08b5b909cc4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\85bdcc25cb03008dabc3909d8c8fe2a2d0df560dc93bed61fd250d1278556a20"
+            },
+            {
+              "tile_index": [
+                4,
+                -4
+              ],
+              "capture_sha256": "0fd7315828144948304b286c5457f188db2806495ab864a1f2d220017bef234a",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\989025aea236c5e400062ca8d5f587536b1030e4adbbd9fdd0a27ce47b38ac72"
+            },
+            {
+              "tile_index": [
+                4,
+                -3
+              ],
+              "capture_sha256": "be28d51eb40eb82977ea46c202a5406438f5399a46b61160dcae0c23ef26af14",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\9471527255595d5e1d66e5c38691c32e17549357d327f959443c2a313ec766cb"
+            },
+            {
+              "tile_index": [
+                4,
+                -2
+              ],
+              "capture_sha256": "3f8073a9ab94d7282471f41c45229ef33971a73cd61b4cbd80d27d624710d863",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\0b2ba95509ed7d1bf5133c8c2860c56532f5dd85b157061e6b9546dfc513d282"
+            },
+            {
+              "tile_index": [
+                4,
+                -1
+              ],
+              "capture_sha256": "b6a631a3dea7e2713a3fdd76c0213fbd1f7aafcf9545fa1d1cf0f66326365040",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\229d01f601ac4a51cc5262b7658e709a7a06523450053f2fe8e2752a56e8ebf7"
+            },
+            {
+              "tile_index": [
+                4,
+                0
+              ],
+              "capture_sha256": "bf7e8d630b050ee4ca558de5ef074cb151688d1acf8579a06ae09de6c81b9f02",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\ab333bb813b81947ac6a8b6e1741784c3b4664dbeef25a733fdd7f0c41f69199"
+            },
+            {
+              "tile_index": [
+                4,
+                1
+              ],
+              "capture_sha256": "273daffe500f20bb1683fcd5ccf0606d7c1efc0c9f582e326c4cc73454ba37b4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\e7654250c7ae636b3d1850b3c4e220fb66a7b7d6ca290d8877c11efe3110455a"
+            },
+            {
+              "tile_index": [
+                4,
+                2
+              ],
+              "capture_sha256": "85307bf926acff903158aa456f81d0ade4d6fb0c0138163317c0916b0f4bfe67",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\29b790ceace8d1852471ca538fccf0b88ef2b732ba9b1b6544616eaedb92096b"
+            },
+            {
+              "tile_index": [
+                4,
+                3
+              ],
+              "capture_sha256": "6c4dd48b8519860b41c33a37540a118fed9aa731284fc4cedd607858edc321e8",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\612f4d51a661e98905056774e47d9b971fd6b6d334b96d56ba207de62247f8fa"
+            },
+            {
+              "tile_index": [
+                4,
+                4
+              ],
+              "capture_sha256": "e0a0b8314a815f6d94200dc72cb7394ea17e8ceb8f28d38e1bd464a2e03e3c82",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\cedeca843c33e613ce934a66a3276eab102a1c16925419d677b6a10e3e76d66b"
+            },
+            {
+              "tile_index": [
+                5,
+                -4
+              ],
+              "capture_sha256": "e41b4b3cd99c555f970aa1dbb1dce9771955016608a6a07373057e9ae231f3cb",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d6692c71179de25ff28032f5956fbb195ba39ad8fea0fcfadee422cb12d6cd1a"
+            },
+            {
+              "tile_index": [
+                5,
+                -3
+              ],
+              "capture_sha256": "43527f719bde5184a4709a2901581fe7466ab55e72a28024fc6404f8895424a4",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\5ed7d7461fdc4b7b2210c375556830147d03eb19d9e6dc819cb61651b8b51893"
+            },
+            {
+              "tile_index": [
+                5,
+                -2
+              ],
+              "capture_sha256": "1e2369b084b8803cc0d5efea22a930ab67aa8e0c80b5b7488578d2a128a8851d",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\55200cc7d9356f5ff1dae32d02dbbd3045ccf253cd65220323d938ebaad554ae"
+            },
+            {
+              "tile_index": [
+                5,
+                -1
+              ],
+              "capture_sha256": "c75c27dd023f5ef5d93bff5bf13be0ba47d6447840e5b6de9dc542d6508bc25f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d73a28915e3b7c0c37f80107987e5b286870d3944a42aea3edf6bb704170b50f"
+            },
+            {
+              "tile_index": [
+                5,
+                0
+              ],
+              "capture_sha256": "9095deee85c482efcae8479e835bdfd15476682e017d5016186ed782688d2063",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\c3101abd8679981ad897614d4a765511efb68b6cdd17738132e4836dc06d7e82"
+            },
+            {
+              "tile_index": [
+                5,
+                1
+              ],
+              "capture_sha256": "7d97df6677d6ec20c011339edc01dcb5e20833a43981ab6a602f4f549a6c4b5f",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\b257711f026ba09cf51d363e89cdc993eabea5e9a0ff9eca3b69a9158b93cc02"
+            },
+            {
+              "tile_index": [
+                5,
+                2
+              ],
+              "capture_sha256": "8c920005bb282f55931101f911b6c4379d0f65574bddb90e2d9b03e0cf3d96f8",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\e893d4a8451b37329696e357dc1ffb44c2e5ebc788af471f5a803100a7f494c0"
+            },
+            {
+              "tile_index": [
+                5,
+                3
+              ],
+              "capture_sha256": "04d67e75f8d972937e388cf00e68e341d372bcbb1d25b30e781cf1c795d87583",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\adbd8522bf769a82b3f86f022441a637da77d2e64aafd85de91aff9e90927371"
+            },
+            {
+              "tile_index": [
+                6,
+                -2
+              ],
+              "capture_sha256": "f748ed4f42a6f7287484653a768a0d4829a4e12691ca070b2c7d9a2c23b22160",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\6785c89038535c1b9b115beffff09a86a370cc3428d42155c9b494d93837a41f"
+            },
+            {
+              "tile_index": [
+                6,
+                -1
+              ],
+              "capture_sha256": "932fd5b232694d0a8db05946c26ae5d5338ae0a57952df7f8d4b92d2547917e7",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\1b052d51381e4765cfeb001f062660a445ac7df0eb184c36ebebf3afe3bf77fc"
+            },
+            {
+              "tile_index": [
+                6,
+                0
+              ],
+              "capture_sha256": "95be3a7871fd164a76d683def3f2d49b40888101606466bf4f4f7bc942b377b2",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\d9cb254e9ecf58e3b40a12aa64240dd20379607571200db0388c962d147cfdd6"
+            },
+            {
+              "tile_index": [
+                6,
+                1
+              ],
+              "capture_sha256": "0ab8f5cec77075a828dca03a8ea6afab541b9bcce4b543d84d402b9de7cc99d1",
+              "directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\tiles\\dfd5203a245044b5ecbbf5e05c31558f5a7860a457abaa12eda54d948d6987c3"
+            }
+          ],
+          "reference_scene_directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f\\reference"
+        },
+        "fixed_reference_bridge": {
+          "profile_id": "iset_lcd_apple_mw_v1_global_disk_fixed_LMS_reference",
+          "profile_sha256": "482a8efb39130ab2c55a1b7a5e936ff0bd90dc8973c4933f231ad87f3263ce64",
+          "reference_retinal_illuminance_td": 100.0,
+          "alpha_rstar_s_per_reference_td_LMS": {
+            "L": 317.2832812499999,
+            "M": 242.42658203124992,
+            "S": 27.334416503906244
+          },
+          "coefficient_policy": "fixed_LMS_reference_classes_not_per_cell_or_per_frame",
+          "capture_scope_sha256": "6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f",
+          "evidence_tag": "project_approximation",
+          "scope": "approved_mixed_reference",
+          "meaning": "reference_equivalent_cone_drive_not_general_photopic_td",
+          "physiological_calibration_claim": false
+        },
+        "source_hashes": {
+          "<PROJECT_ROOT>\\configurations\\iset_lcd_apple_mw_v1.json": "a971b718fc013e643b7af4a2b924478f3a8771fe812d186cc0f67cc5abd2c651",
+          "<PROJECT_ROOT>\\tools\\export_mixed_reference.m": "d87ffd0fa853e40ce04909657be4744b4b280ae4e21e3ba017178b028cebfc78",
+          "<PROJECT_ROOT>\\retina_platform\\iset_frontend.py": "52494973e8fe782627a127175f4b5353a242cd3f5127d98432556d6e088e8a5a",
+          "<ISETCAM_ROOT>\\data\\displays\\LCD-Apple.mat": "b4fb332f69f63c966b951e5f226d4d22653ba12cb2dd4aba0b66c29b90d16d17",
+          "<ISETCAM_ROOT>\\displays\\displayCreate.m": "43b0d2d052bbd1f5bd9a65287348d7a526f9e0b599257e2954e94bf334e5aa72",
+          "<ISETCAM_ROOT>\\displays\\displayGet.m": "152bfaf385e599d3d6ddab346c92a763aafd2eeed4bc72e8b7bfe701610ee00e",
+          "<ISETCAM_ROOT>\\opticalimage\\oiCreate.m": "0ed4f95fdb0bcae9ed2984448ebb9a248cb5d08599b09f68f3aceb87869bf7e7",
+          "<ISETCAM_ROOT>\\opticalimage\\oiCompute.m": "b396402825c30a326e64bacc2a7d3b9c97f5969eaf5a8929ccabb2318f0d7dc2",
+          "<ISETCAM_ROOT>\\opticalimage\\optics\\opticsCreate.m": "95872892a7e90d247449f47a951666c263b6674aa611be9cf0553f611e5d8613",
+          "<ISETBIO_ROOT>\\cones\\@cPhotoPigment\\cPhotoPigment.m": "8d2301c9a99d5cfe19550c828f596341dbb82a3cfcf27955fa66a0575b3f465d",
+          "<ISETBIO_ROOT>\\cones\\@Macular\\Macular.m": "902cd3014887c91a6bd5e37d0f8df2de062545e1b510f8906d096f6dae67fe25",
+          "<ISETBIO_ROOT>\\opticalimage\\@Lens\\Lens.m": "e9ef9a7e2915cae06e04f4d784744084cf8f0262da169f0bf3ba86bbe6ddf8ba",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\apertureBlurSigmaMicronsOfConeFromItsBlurZone.m": "96cd10424b0ca774f45045f3621799c3f4145c1af61d598252ba601dbcb222b6",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\assignConeTypes.m": "de7eb1a86ca4437a0dcb57ce4832f3c149ddd9038e12c244179cbd4dd7fb4986",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\cMosaic.m": "ec83cd5e7f89e2122b220c4c94c85df027ff2e3a209d747aaec0d7f95173de20",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\compute.m": "eb82aeb1b1beae0960215d240b66b2ca16950998548ea415c79df95961d54ec3",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeAbsorptionRate.m": "d501ed77974d90271b72fe6e10d19819c325263100ae2fe90266292d2a18b7dd",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeApertureAreasMetersSquared.m": "888c48e8df3925fe8fdd4a0b32d93ecf9c34512a2e223f356a51d061dc098bb7",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeConeApertureRodIntrusionInducedShrinkageFactors.m": "fe67d502490e65ef5fe45fcc8fdfa26b3cdc74131f9f4f16c35d4651ee1068ed",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeConeApertures.m": "9f05a6555a9f6c18c73889ace0df748ef85e2ec159c5acb586ab87c737c7fc1e",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeConeAperturesRefactored.m": "67ce3c74a457e1dce8d4668d2d467bd789e9005be3168a024f8f6741d5b1349c",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeEffectiveOSlengthAttenuationFactors.m": "f1daac09fbc60bafbf3e4c38395ac21b4341cc10202b8527d742b4506b5ad7f5",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeForOIensemble.m": "57cca33f0e01296fb282b3c6760250e7b773cc964701681278f629322eca55be",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeMPBoostFactors.m": "ee7be91a04be832fa762cd769cb6b59f533e1c55006c86b79fa29242983ab3d9",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\computeOuterSegmentLengthEccVariationAttenuationFactors.m": "d3c0e6e2d08761d0fd76bbcc8a7c7f29cb3fd27f671d25b7b30613267dae9ea2",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\coneIndicesOfCertainTypeWithinHorizontalSlice.m": "7e781f492bb94de271b31ec0ba59a49d65b2cde6de02568b8bf242c04243ebbd",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\cropMosaicDataForDesiredROI.m": "2843ad4319897b896ecfb8455036db427df1a41013c357193e5e1473954de4e5",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\cropMosaicToIncluceConesWithIndices.m": "7dfeee4b1d31214c719c4f2926b4c7c311f2699419669b7b4d85bc9c39c2f267",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\current.m": "0897e4e90454a06d3bd33cc2ed0a35253240c08dcd0baf65de1f2e9c1a7850fb",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\defaultParams.m": "4b55738eca9803db6600808ec9a55b48084cac5ca57ad2487855fd84fce9dd40",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\densityMap.m": "fb82bf7110a787d76421e209255bce6ec9771c7aedb7595b79b1de65742cf844",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\distanceDegreesToDistanceMicronsForCmosaic.m": "4005e01277806d20c8d250cbecc6edf8c679baf353a2d1f8d677d2d8cec59e7a",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\distanceMicronsToDistanceDegreesForCmosaic.m": "61419c51f3a27f6f7e75d0cb9b2250cba017db5af4d50ff435fca57ccf3098af",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\eccentricitiesForRetinaMeridianInEye.m": "3330ceec44df4509a76b21ab0651e6d28cd636cb964e8588f022a35a393530a5",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\electricallyCoupleConeResponses.m": "102bb4174a1061c7dd0d5198512e93b07ccbbd1162f405ff1ac1707b10301fad",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\emGenSequence.m": "f631413b951dcde8fa3e9d192dcaa036c152af4b111bd4f5a0576b9ede565780",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\excitations.m": "b3ce20482a7e9adfee927a694e231fc7376f5b48bbbe1f09aef2568a4d5b2305",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\generateApertureKernel.m": "ac1ad8909e33da4a3c1849137f33c5bacf4d0f0bc3f385cd83c59dbc75d6d28a",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\identifyOverlappingRFs.m": "9f7f26b9c14ca9e663a7aa7b8cbe8e6fe334503108e343856a09e8c8c1fdf668",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\importExternalConeData.m": "1de31d19853ebf3f901c6ce96be02904d378d753bc4747d007bf0d2f008628d1",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\indicesOfConesWithinROI.m": "ed8e563d13b1fecb0ba78cfe13c2d47be4bfeecd94cc931fa1332fa218a45733",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\initializeConePositions.m": "8d81cdf5575b694db109e565ce263c5b39e8a6e93fcf1ab6a8802a70add3d879",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\macularPigmentBoostFactors.m": "39f251e8d3c1cb134367ae5dc1c92119d93af727db8f020067183c466678e43b",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\meanIsomerizations.m": "211dcf088fd6ec1840e122a1c9314ab29b616efd61db6341572c097f68c85fea",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\movie.m": "10d5aa81ae3afc67bffc36403096f5b7bf9346c3a3585f607e10d556aea08c8a",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\noisyInstances.m": "351ebf027d7fd2d51652b6ecdf5d821f024ea66752f0e9f4f066e28f2229723b",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\odStruct.m": "258666a20123732904202e31f3d0a5551bfe73ca3ea3745936bb05c012b7b9aa",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\oiEnsembleGenerate.m": "37f3fd2642d40a7e958bfcaa66ddc578ce930312fc78705c12b098420f6a7fcf",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\outerSegmentLengthFromEccentricity.m": "6363b813ce9a92ddb49696c0c520361c00893afc6d9724f71e055f37463f47e7",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\photocurrentFromConeExcitationRateUsingBiophysicalOSmodel.m": "2edbb643e7b66383e10de9c14c2d7ca931a7d5d3a0ec0147ff7d3de6cead0c63",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\plot.m": "e9531adb5f73e7b792170f00c66511c372225d231624405aef7da914fb8fb481",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\reassignTypeOfCones.m": "d650fe949c027ff159eda11d168323af7b51ddc9a5a1711ab216058eaee2bb37",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\regenerateConePositions.m": "67663a3265bc21922c716567777578ae53f14cc7ddc17f89ec22f6e7b3624b7c",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\removeConesWithinOpticNerveHead.m": "dfd552b7afae6323bba272b5038ea8184cda22e9b74bb96abd528d2506b61862",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\retinalMeridiansForEccentricityInEye.m": "d482a522df5159917f12409046b64e025cd0159d91e23bc09d18cffa3a49e833",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\save.m": "8c80bbc6179b9b99d4e07910cf2545537b13d7fecaa37439250d49f9df42043f",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\semiTransparentContourPlot.m": "117c502c677a12fb688b84d7db782b48c14840ee520f7d29eae28f6468ed1ca7",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\shadowMaskForMosaic.m": "6a1c67e9d812d496db190ca632f6bc25628317d69d7cc177f90abfb0038a1e08",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\sizeDegreesToSizeMicronsForCmosaic.m": "96f9ade58d38ad4d3441635a067657749ced218d806be807fc94cb26631f1214",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\sizeMicronsToSizeDegreesForCmosaic.m": "b84408fcb8b9448638845cc1f7f2a3005eb2ad23db0a75f03b9655d8c7536a0f",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\suggestedScenePixelSizeDegs.m": "b2f2a3ed2efd475772c4e16d72246a1ea498285b035c1eea361c32470b09caea",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\updateStateGivenKeptConeIndices.m": "fa3466e5565111d309c949104fe35e81cc45500b5144c303d0761cf05f9ecdaa",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\visualize.m": "eeda58697ba2e10f8e8f11d538d0bace70c8edbfef48ca6ea13bcc6b1388c45d",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\visualizeFullAbsorptionsDensity.m": "bc0c88ef8b17c539306e0d98d8dadacea4ef3128b9ba54eafb1989f356929aa9",
+          "<ISETBIO_ROOT>\\cones\\cmosaic\\@cMosaic\\visualizeHorizontalConeActivationProfiles.m": "ad345190999d4130e2f583a7f24a8bfae4044e187741f3401facdb872628726a",
+          "<ISETBIO_ROOT>\\ganglioncells\\+RGCmodels\\+Watson\\+convert\\positionsToSpacings.m": "6016ab2bd396f876398306b602473e1aa3122673f85faa5d08d4e4945b87791e",
+          "<ISETBIO_ROOT>\\external\\psychtoolbox\\PsychColorimetricData\\PsychColorimetricMatFiles\\T_log10coneabsorbance_ss.mat": "ddd7755c606a78f06c50511c6008efca0b58cde3005f3cd117bbc25a6d9901d8",
+          "<ISETBIO_ROOT>\\data\\datafiles\\human\\lens\\lensPokornySmith.mat": "bba3be911b33208b03a06431c0450b6e6b9314ad6c407418fab2bb215229e974",
+          "<PROJECT_ROOT>\\tools\\export_disk_mixed_reference.m": "034c22330e154798588eb57d69e7cb80545d33caa97e35205380936eadf46ca7",
+          "<PROJECT_ROOT>\\tools\\export_disk_mixed_batch.m": "651e1b3d182392524c4c7365f5c221a8abe78bd94a72776041c42b7cd6b6feb6",
+          "<PROJECT_ROOT>\\retina_sim\\disk_input.py": "cc6cbfe713c1daed0fbfb49667ec182823b5dca446a8be5cd5c038b1a5fe726e",
+          "<PROJECT_ROOT>\\retina_platform\\disk_frontend.py": "393b60b353b3e95c1e2141005b44f97a090c173151b1ba5b1550e760dc53cd35"
+        },
+        "rod_input_scope": "existing effective RGB-weighted project rod drive; no ISET rod capture or physiological calibration claim",
+        "rod_input": {
+          "outside_fraction": {
+            "rod_light": 0.0
+          },
+          "frame_timestamps": [
+            {
+              "selected_frame_index": 0,
+              "requested_media_seconds": 0.0,
+              "decoded_timestamp_seconds": 0.0
+            }
+          ],
+          "media_timestamp_fallback_used": false
+        }
+      },
+      "background_context_hash": "6cfa556dd776ccf7f63f15482a0b1642f0d1ddbeca8e228b43dfb727918c692d",
+      "channels": {
+        "native_light": {
+          "channel": "native_light",
+          "population_id": "cones",
+          "consumer": "outer_native.light",
+          "consumer_mechanism": "VanHateren2005NativeConeH1",
+          "source_unit": "R*/window",
+          "consumer_unit": "td",
+          "input_stage": "reference_equivalent_cone_drive",
+          "cell_count": 530929,
+          "cell_ids_hash": "f035352d3cfa560f4fdf8b1f322f065e0056210170d1500a8e66434b77aadfa0",
+          "source_columns_reordered": false,
+          "coordinate_role": "rf",
+          "reference_id": "composite_macaque_nasal_positive_superior_positive_planar_v1",
+          "coordinate_registration": "frozen global RF=IS project chart",
+          "start_seconds": 0.0,
+          "stop_seconds": 0.0001,
+          "source_grid_step_seconds": 0.0001,
+          "representation": "integration_windows",
+          "time_axis_end_roundoff_seconds": 0.0,
+          "source_origin_seconds": 0.0,
+          "value_semantics": "expected",
+          "photon_noise": {
+            "owner": "none",
+            "model": "none"
+          },
+          "mechanism_ownership": {
+            "photopigment_capture": "upstream",
+            "phototransduction": "consumer",
+            "neural_noise": "consumer"
+          },
+          "background": {
+            "includes_background": true,
+            "unit": "td",
+            "value": 100.0,
+            "source_id": "iset_lcd_apple_mw_reference_v1"
+          },
+          "conversion": {
+            "source_unit": "R*/window",
+            "target_unit": "R*/s",
+            "meaning": "piecewise_constant_window_mean_not_instantaneous_rate",
+            "integration_window_edges_seconds": [
+              0.0,
+              0.0001
+            ],
+            "count_integral_preserved": true
+          },
+          "reference_bridge": {
+            "profile_id": "iset_lcd_apple_mw_v1_global_disk_fixed_LMS_reference",
+            "profile_sha256": "482a8efb39130ab2c55a1b7a5e936ff0bd90dc8973c4933f231ad87f3263ce64",
+            "reference_retinal_illuminance_td": 100.0,
+            "alpha_rstar_s_per_reference_td_LMS": {
+              "L": 317.2832812499999,
+              "M": 242.42658203124992,
+              "S": 27.334416503906244
+            },
+            "coefficient_policy": "fixed_LMS_reference_classes_not_per_cell_or_per_frame",
+            "capture_scope_sha256": "6812052080899a3490b6341be5b6e5dd4ec21c323cd2c6491d8a940531da603f",
+            "evidence_tag": "project_approximation",
+            "scope": "approved_mixed_reference",
+            "meaning": "reference_equivalent_cone_drive_not_general_photopic_td",
+            "physiological_calibration_claim": false
+          },
+          "prehistory": "Declared uniform background via existing rebase_stimulus_channels; no inferred experimental history",
+          "structural_validation": "PASS_NOT_PHYSIOLOGICAL_CALIBRATION",
+          "global_population_binding": {
+            "path": "data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json",
+            "sha256": "9c6c0e94eb0d69478c658d2a48c7bae22d603866abf6f5402eb924b46952db00"
+          },
+          "global_rows_sha256": "4a2cc73aad6ac687b270bc296c15de831ec5c3a950e0e8db281c9a7873470dd4"
+        },
+        "rod_light": {
+          "channel": "rod_light",
+          "population_id": "rod",
+          "consumer": "rod.light",
+          "consumer_mechanism": "Chen2024PrimateRodCurrent",
+          "source_unit": "R*/s",
+          "consumer_unit": "R*/s",
+          "input_stage": "photoisomerization",
+          "cell_count": 2306,
+          "cell_ids_hash": "6c49866ada42086b35a718b1f6e103fb14b676589f2b517d1a3cd0f9a09004b8",
+          "source_columns_reordered": false,
+          "coordinate_role": "rf",
+          "reference_id": "composite_macaque_nasal_positive_superior_positive_planar_v1",
+          "coordinate_registration": "existing nominal rod retinal/RF chart; no cone Henle transfer",
+          "start_seconds": 0.0,
+          "stop_seconds": 0.0001,
+          "source_grid_step_seconds": 0.0001,
+          "representation": "samples",
+          "time_axis_end_roundoff_seconds": 0.0,
+          "source_origin_seconds": 0.0,
+          "value_semantics": "deterministic",
+          "photon_noise": {
+            "owner": "none",
+            "model": "none"
+          },
+          "mechanism_ownership": {
+            "photopigment_capture": "upstream",
+            "phototransduction": "consumer",
+            "neural_noise": "consumer"
+          },
+          "background": {
+            "includes_background": true,
+            "unit": "R*/s",
+            "value": 5.0,
+            "source_id": "iset_lcd_apple_mw_reference_v1"
+          },
+          "conversion": null,
+          "reference_bridge": null,
+          "prehistory": "Declared uniform background via existing rebase_stimulus_channels; no inferred experimental history",
+          "structural_validation": "PASS_NOT_PHYSIOLOGICAL_CALIBRATION",
+          "global_population_binding": {
+            "path": "data/atlas/disk3mm_populations_v2/rods/manifest.json",
+            "sha256": "bd9091a6a1f5cc2f17f024aabf678777d3afeebec3f6c156898723e8d64a3270",
+            "count": 3348854,
+            "radius_mm": 3.25552
+          },
+          "global_rows_sha256": "eba6c2cf8d3a328ee10a1c827a16c212e57db3a8f100547b1a9bed77b3cb54f5"
+        }
+      },
+      "geometry_identity": {
+        "schema": "compiled_typed_geometry_identity_v1",
+        "sha256": "50132147df8fc657f005e7ce314bdd91831d2bab3f60e09b84004d30a5dca373",
+        "fields": {
+          "hash_encoding": "actual_global_array_bytes_v1",
+          "assembly_hash": "53f2b052d13d7982727ad04c2c2f8730fcad968f16028ce6010c74fd85a2050e",
+          "actual_populations_hash": "16f67242ad748db92dca4134078cccc78495e606999fab9134b4d1761b6a9c26",
+          "actual_links_and_weights_hash": "904851c0b7550b508b1227beb4942ff962a9bdd6bd2e8108584c79958ee09242",
+          "native_spatial_weights_hash": "aee0051bbe3825b5c3d8b0f76b372f690c27a9c9184b4513a7107945d2b4c608",
+          "components_hash": "b697289d92f8b4885a7ae9d73d97fba94eded4b4983cd47edf5a67f7e32c32be",
+          "gap_topology_conductance_hash": "0015156ac4a62f0794dc11995a87bd8e9ca20430e8591dd8da3df0948f900f8d",
+          "clock_hash": "2839b5b90e49c2c4b33a75763058baafa0226edb3d29d3fbb58c56ea0297905f",
+          "source_binding": {
+            "execution_profile": "atlas_isetbio_geometry_v1",
+            "storage_kind": "global_disk_graph_v1",
+            "global_graph": {
+              "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+              "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+            },
+            "exact_view": {
+              "global_graph": {
+                "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+                "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+              },
+              "view_sha256": "f05e4a1222dbe16fea05aaef16b5baacf2840c14c9d454c13cd58115dd76a5df"
+            },
+            "input_plan": {
+              "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+              "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+            }
+          }
+        }
+      },
+      "global_graph": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+        "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+      },
+      "source_identity_scope": "Frozen bytes/units/IDs only; no primary physiological verification",
+      "automatic_optics_gain_noise_or_phototransduction": false,
+      "cache_directory": "<PROJECT_ROOT>\\reports\\iset_disk_input_cache\\09f889af85deb066035b3336f504d6f41fff0792e43b6993c7d1e4a2cd3fbad9",
+      "actual_ISET_call": false,
+      "cache_reused": true,
+      "capture_producer": "real pinned ISET APIs on fixed global optical tiles",
+      "global_reference_origin_mm": [
+        0.0,
+        0.0
+      ],
+      "frontend_signature": "42b88b4bcab820975c48254506b3d711d468e65218f6e25509284ccb4500e8b6",
+      "background_drive_range_reference_td": [
+        9.484406629921963,
+        231.39895877511836
+      ]
+    },
+    "stochastic_statistics": "INSUFFICIENT_SHORT_REPRESENTATIVE_WINDOWS",
+    "wall_seconds": 666.6089999999967
+  }
+}

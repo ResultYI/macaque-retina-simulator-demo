@@ -78,7 +78,11 @@ def constant_background_channels(compiled, light_context, stop_seconds, *, start
             elif population_types=={'cone'}:value=light_context.cone_background_rstar_s
             else:raise ContractError('Background photoreceptor identity is ambiguous: '+external.channel)
         else:raise ContractError('No explicit background value for external input: '+external.channel)
-        q=Quantity(np.full(len(port.cell_ids),value),port.unit,port.meaning,port.evidence_tag)
+        values=np.full(len(port.cell_ids),value)
+        if port.meaning=='native_retinal_illuminance' and light_context.native_background_values is not None:
+            values=np.asarray(light_context.native_background_values,dtype=float)
+            if values.shape!=(len(port.cell_ids),):raise ContractError('Reference background cone IDs/count differ from consumer')
+        q=Quantity(values,port.unit,port.meaning,port.evidence_tag)
         discrete=c.time_contract.kind=='author_discrete'
         result[external.channel]=InputChannel(float(start_seconds),float(stop_seconds),lambda t,q=q:q,
             port.unit,port.meaning,'zero_order_hold' if discrete else interpolation,port.evidence_tag,

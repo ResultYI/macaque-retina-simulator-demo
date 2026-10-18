@@ -1,0 +1,16 @@
+{
+  "schema": "disk3mm_validation_resources_v1",
+  "profile_id": "disk3mm_validation_resources_v2",
+  "evidence_class": "project_execution_resource_budget",
+  "reason": "Retain the measured full dependency workload. Actual native derivative fusion is array-exact against the prior instruction path and reduces scratch storage; immutable delay-history rows avoid repeated JSON round trips. Allow bounded overnight execution, never relax numerical or physiological criteria.",
+  "run_config": {
+    "background_memory_limit_mb": 12288.0,
+    "background_min_available_mb": 8192.0,
+    "background_max_wall_seconds": 21600.0,
+    "background_checkpoint_interval_seconds": 300.0
+  },
+  "process_environment": {"OPENBLAS_NUM_THREADS": "1"},
+  "execution": {"native_independent_rows_maximum_threads": 8, "CSR_within_row_sum_order": "unchanged", "fastmath": false, "periodic_checkpoint_seconds": 300, "complete_window_and_final_checkpoints": "always retained"},
+  "unchanged": ["max_sim_seconds=10", "max_observations=100000", "minimum timing requirement", "consecutive complete windows", "state unit scales and tolerances", "monitor step", "original SciPy solver", "source equations and values", "graph and cell counts", "time/RNG/history/checkpoint values"],
+  "physiological_validation": false
+}

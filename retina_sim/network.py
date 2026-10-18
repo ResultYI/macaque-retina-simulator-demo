@@ -38,7 +38,7 @@ class NetworkStimulus:
 
 class JointNetwork:
     version='architecture-1.0'
-    def __init__(self,compiled):
+    def __init__(self,compiled,*,compute_backend='auto'):
         self.compiled=compiled; self.model_id=compiled.spec.model_id
         self.evidence_tag='synthetic_fixture' if all(c.evidence_tag=='synthetic_fixture' for c in compiled.components.values()) else 'composite_source_evidence'
         self.parameters=SimpleNamespace(parameter_hash=canonical_hash({k:c.parameters.parameter_hash for k,c in compiled.components.items()}))
@@ -59,11 +59,23 @@ class JointNetwork:
         for link in compiled.links:
             key=(link.specification.target_component,link.specification.target_port)
             self._incoming.setdefault(key,[]).append(link)
-        self.model_hash=canonical_hash({'assembly':compiled.assembly_hash,'runtime_sha256':{name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ('network.py','hybrid.py','background.py','recording.py','mechanism_contracts.py','delays.py','plugins.py','rod_pathway.py','ipl_geometry.py','spatial_profiles.py','hc_arbor.py','hc_geometry.py','hc_contact_diagnostics.py','finite_feedback_native.py')}})
+        self._context_providers={cid:c.native_model.evaluation_context for cid,c in compiled.components.items() if hasattr(c.native_model,'evaluation_context')}
+        self.model_hash=canonical_hash({'assembly':compiled.assembly_hash,'runtime_sha256':{name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ('network.py','hybrid.py','compiled_kernel.py','background.py','recording.py','mechanism_contracts.py','delays.py','plugins.py','rod_pathway.py','ipl_geometry.py','spatial_profiles.py','hc_arbor.py','hc_geometry.py','hc_contact_diagnostics.py','finite_feedback_native.py')}})
         self._gap_plans=[]
         for g in compiled.spec.gap_junctions:
             li={x:i for i,x in enumerate(compiled.components[g.left_component].outputs['voltage'].cell_ids)};ri={x:i for i,x in enumerate(compiled.components[g.right_component].outputs['voltage'].cell_ids)}
             self._gap_plans.append((g.left_component,g.right_component,np.array([li[x] for x in g.left_cell_ids]),np.array([ri[x] for x in g.right_cell_ids]),g.conductance_evidence.value.values))
+        if compute_backend not in ('auto','python','numba'):raise ContractError('Unknown compute backend')
+        self._compiled_rhs=None;self.compute_metadata={'backend':'python_reference','requested':compute_backend}
+        if compute_backend!='python':
+            from .compiled_kernel import CompiledRHS,UnsupportedKernel
+            try:self._compiled_rhs=CompiledRHS(self)
+            except (UnsupportedKernel,ImportError) as exc:
+                if compute_backend=='numba':raise ContractError('Requested compiled RHS unavailable: '+str(exc)) from exc
+                self.compute_metadata['fallback_reason']=str(exc)
+            if self._compiled_rhs is not None:self.compute_metadata=dict(self._compiled_rhs.metadata,requested=compute_backend)
+        # Persistent identity excludes timing/cache-load metadata.
+        self.model_hash=canonical_hash({'runtime':self.model_hash,'backend':{k:self.compute_metadata[k] for k in ('backend','numba_version','plan_hash') if k in self.compute_metadata}})
     def unpack(self,y):
         values=np.asarray(y);return tuple(values[s] for s in self._state_slices)
     def local_blocks(self,cid,y):
@@ -78,9 +90,11 @@ class JointNetwork:
                 if q.evidence_tag!=c.evidence_tag: raise ContractError('Component initial evidence mismatch')
                 result.append(Quantity(q.values,q.unit,q.meaning,self.evidence_tag))
         return tuple(result)
-    def evaluate(self,t,y,bundle,sampling=False,sampled_components=None):
+    def evaluate(self,t,y,bundle,sampling=False,sampled_components=None,*,_local=None):
         inputs={cid:{} for cid in self.compiled.components}; outputs={}
-        local={cid:self.local_blocks(cid,y) for cid in self.compiled.components}
+        local={cid:self.local_blocks(cid,y) for cid in self.compiled.components} if _local is None else _local
+        contexts={cid:provider(local[cid]) for cid,provider in self._context_providers.items()}
+        gathered={}
         for external in self.compiled.spec.external_inputs:
             q=bundle.channels[external.channel]; c=self.compiled.components[external.target_component]
             c.inputs[external.target_port].validate(q); inputs[external.target_component][external.target_port]=q
@@ -88,6 +102,10 @@ class JointNetwork:
             signals=outputs if signals is None else signals
             c=self.compiled.components[cid]; target=c.inputs[port]
             if port in inputs[cid]: return inputs[cid][port]
+            # Only final, acyclic signals share this per-evaluation cache.
+            # Closure trials use separate signal dictionaries and always recompute.
+            key=(cid,port);cacheable=signals is outputs
+            if cacheable and key in gathered:return gathered[key]
             incoming=self._incoming.get((cid,port),())
             if not incoming: raise ContractError('Unbound runtime input')
             values=np.zeros(len(target.cell_ids))
@@ -102,11 +120,13 @@ class JointNetwork:
                     query=t if bundle.delay_query_seconds is None else bundle.delay_query_seconds
                     values+=operator.apply(query,source,bundle.delay_buffers[operator.key],left_limit=bundle.delay_left_limit)
             q=Quantity(values,target.unit,target.meaning,target.evidence_tag)
+            if cacheable:gathered[key]=q
             return q
         def observe(cid,port,signals,trial=False):
             c=self.compiled.components[cid]
             dependencies={name:gather(cid,name,signals) for name in c.output_dependencies[port]}
             dependencies['__sampling__']=sampling and (sampled_components is None or cid in sampled_components); dependencies['__closure_trial__']=trial
+            if not trial and cid in contexts:dependencies['__evaluation_context__']=contexts[cid]
             return c.observe(port,t,local[cid],dependencies)
         for block in self.compiled.output_order:
             if not block.cyclic:
@@ -129,6 +149,7 @@ class JointNetwork:
             for name in c.inputs:
                 q=gather(cid,name); c.inputs[name].validate(q); inputs[cid][name]=q
                 if q.meaning in ('effective_synaptic_drive','effective_synaptic_activation','excitatory_conductance','inhibitory_conductance') and np.any(q.values<0): raise ContractError('Negative physical/effective input after closure')
+            if cid in contexts:inputs[cid]['__evaluation_context__']=contexts[cid]
         gap_currents={cid:np.zeros(len(c.outputs['voltage'].cell_ids)) for cid,c in self.compiled.components.items() if hasattr(c.native_model,'membrane_capacitance')}
         for l,r,ix,iy,conductance in self._gap_plans:
             current=conductance*(outputs[(r,'voltage')].values[iy]-outputs[(l,'voltage')].values[ix])
@@ -137,23 +158,31 @@ class JointNetwork:
             tag=self.compiled.components[cid].evidence_tag;q=Quantity(current,'A','electrical_gap_current',tag)
             inputs[cid]['__gap_current__']=q;outputs[(cid,'gap_current')]=q
         return inputs,outputs
-    def _checked_derivatives(self,t,y,bundle,parameters,graph):
+    def _checked_derivatives(self,t,y,bundle,parameters,graph,*,_retag=True):
         if parameters is not self.parameters or graph is not self.graph: raise ContractError('Joint RHS identity mismatch')
-        inputs,_=self.evaluate(t,y,bundle); derivatives=[]
+        local_blocks={cid:self.local_blocks(cid,y) for cid in self.compiled.components}
+        inputs,_=self.evaluate(t,y,bundle,_local=local_blocks); derivatives=[]
         for cid,c in self.compiled.components.items():
-            local=c.derivative(t,self.local_blocks(cid,y),inputs[cid])
+            local=c.derivative(t,local_blocks[cid],inputs[cid])
             if len(local)!=len(c.state_specs): raise ContractError('Component derivative count mismatch')
             for q,s in zip(local,c.state_specs):
-                q.require(s.unit+'/s',s.meaning+'_derivative',s.shape)
+                q.require(s.unit+'/s',s.meaning+'_derivative',s.shape,check_finite=not _retag)
                 if q.evidence_tag!=c.evidence_tag: raise ContractError('Component derivative evidence mismatch')
-                derivatives.append(Quantity(q.values,q.unit,q.meaning,self.evidence_tag))
+                # Flat RHS immediately copies into concatenate, so a second
+                # Quantity solely to change its evidence tag serves no purpose.
+                # New numeric results still pass the public Quantity constructor;
+                # structured/public derivatives retain their original isolation.
+                derivatives.append(Quantity(q.values,q.unit,q.meaning,self.evidence_tag) if _retag else q)
         return tuple(derivatives)
     def rhs(self,t,y,bundle,parameters,graph):
         return StateDerivativeVector(self._checked_derivatives(t,y,bundle,parameters,graph),self._state_spec_hash)
-    def rhs_flat(self,t,y,bundle,parameters,graph):
+    def rhs_flat_reference(self,t,y,bundle,parameters,graph):
         # Frozen registry identity is checked at initialize/advance. Every derivative
         # still passes unit, meaning, shape and evidence checks above on every call.
-        return np.concatenate([q.values for q in self._checked_derivatives(t,y,bundle,parameters,graph)])
+        return np.concatenate([q.values for q in self._checked_derivatives(t,y,bundle,parameters,graph,_retag=False)])
+    def rhs_flat(self,t,y,bundle,parameters,graph):
+        if self._compiled_rhs is not None:return self._compiled_rhs(t,y,bundle,parameters,graph)
+        return self.rhs_flat_reference(t,y,bundle,parameters,graph)
     def make_result(self,times,trajectory,input_contract,numeric_checks):
         output={}; rows={}
         # Record state directly and evaluate every declared output at its current state.

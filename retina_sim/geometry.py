@@ -50,6 +50,10 @@ class RetinalDomain:
         return (a[...,0]>=x0)&(a[...,0]<x1)&(a[...,1]>=y0)&(a[...,1]<y1)&np.asarray(self.mask(a),dtype=bool)
 
 def integrate_density(field,domain,relative_tolerance=1e-4,*,allow_zero=False):
+    # A fixed disk can supply an exact integral of its declared source field.
+    # The normal rectangular/masked-domain path remains unchanged.
+    if callable(getattr(domain,'density_integral',None)):
+        return domain.density_integral(field,relative_tolerance,allow_zero=allow_zero)
     x0,x1,y0,y1=domain.bounds_mm
     def column(x):
         value,error=quad(lambda y:float(field(np.array([[x,y]]))[0]) if bool(domain.mask(np.array([[x,y]]))[0]) else 0,y0,y1,epsabs=relative_tolerance*.1,epsrel=relative_tolerance*.1,limit=200)
@@ -117,7 +121,7 @@ def capacity_constrained_mosaic(field,domain,seed,*,quadrature_shape,iterations,
     locations=points[np.minimum(np.searchsorted(cumulative,targets),len(points)-1)].copy()
     rng=keyed_rng(seed,'geometry:'+domain.label)
     locations+=(rng.random(locations.shape)-.5)*np.array([(x1-x0)/nx,(y1-y0)/ny])*.1
-    worst=0
+    worst=0;roundoff_assignments=0
     for iteration in range(iterations):
         tree=cKDTree(locations);remaining=np.full(n,capacity);moments=np.zeros((n,2));assigned=np.zeros(n)
         for j in rng.permutation(len(points)):
@@ -126,7 +130,14 @@ def capacity_constrained_mosaic(field,domain,seed,*,quadrature_shape,iterations,
                 distances,candidates=tree.query(points[j],k=k);candidates=np.atleast_1d(candidates)
                 usable=[i for i in candidates if remaining[i]>capacity*1e-12]
                 if not usable:
-                    if k==n: raise ContractError('Capacity allocation exhausted numerically')
+                    if k==n:
+                        # All meaningful capacities are filled. Preserve total
+                        # mass by assigning only a floating tail within the
+                        # existing 1e-8 per-cell capacity audit; never change N.
+                        if amount<=capacity*1e-8:
+                            i=int(candidates[0]);moments[i]+=amount*points[j];assigned[i]+=amount;remaining[i]-=amount
+                            amount=0.;roundoff_assignments+=1;break
+                        raise ContractError('Capacity allocation exhausted numerically')
                     k=min(n,k*2);continue
                 for i in usable:
                     take=min(amount,remaining[i]);moments[i]+=take*points[j];assigned[i]+=take;remaining[i]-=take;amount-=take
@@ -141,6 +152,8 @@ def capacity_constrained_mosaic(field,domain,seed,*,quadrature_shape,iterations,
     if n>1 and np.any(nn<=0): raise ContractError('Duplicate cone points after capacity relaxation')
     ids=tuple(f'{domain.label}:cone:{i:09d}' for i in range(n));owner=domain.contains(locations,owner=True)
     diagnostics=dict(audit,algorithm='greedy_capacitated_transport_equal_rho_mass',exact_power_diagram=False,count_minus_density_mass=float(n-audit['mass']),maximum_integer_rounding_error=.5,algorithm_evidence='project_approximation; sparse neighborhood search, not exact Laguerre power cells',why='Available SciPy/NumPy implementation preserves target capacities without an unbounded dense LP; exact scalable transport solver not installed; ordinary rho-weighted Lloyd rejected',quadrature_mass_relative_residual=relative_error,maximum_capacity_relative_residual=worst,seed=seed,iterations=iterations,owner_count=int(owner.sum()),halo_count=int((~owner).sum()),minimum_nn_mm=float(np.nanmin(nn)) if n>1 else None,scaled_nn_cv=float(np.std(scaled)/np.mean(scaled)) if n>1 else None,axes_std_mm=np.std(locations,axis=0).tolist(),resource_estimate_bytes=estimate)
+    diagnostics['capacity_tail_roundoff_assignments']=roundoff_assignments
+    diagnostics['capacity_tail_policy']='existing_1e-8_per_cell_audit_bound; no count/density change'
     return Mosaic(Quantity(locations,'mm','functional_position','project_approximation','functional_visual_field'),ids,owner,diagnostics)
 
 class MosaicBackend:

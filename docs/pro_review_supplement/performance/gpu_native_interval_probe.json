@@ -1,0 +1,41 @@
+{
+  "original_local_sha256": "b97e58b03e8cedc470969eb0456c4336fdc97c944f1b61fc015bbc1b420243d1",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_native_warm_endpoint_benchmark_v1",
+    "duration_seconds": 0.001,
+    "cpu_fused_seconds": 9.431558700016467,
+    "cpu_nfev": 122,
+    "cpu_accepted_steps": 10,
+    "gpu_seconds": [
+      0.5405462000053376,
+      0.35591710000880994,
+      0.34998619998805225
+    ],
+    "gpu_median_seconds": 0.35591710000880994,
+    "warm_speed_ratio": 26.499313182151152,
+    "comparisons": [
+      {
+        "maximum_absolute_difference": 1.0658141036401503e-13,
+        "maximum_difference_over_solver_scale": 2.92750349304539e-09,
+        "nfev": 122,
+        "accepted_steps": 10
+      },
+      {
+        "maximum_absolute_difference": 1.0658141036401503e-13,
+        "maximum_difference_over_solver_scale": 2.92750349304539e-09,
+        "nfev": 122,
+        "accepted_steps": 10
+      },
+      {
+        "maximum_absolute_difference": 1.0658141036401503e-13,
+        "maximum_difference_over_solver_scale": 2.92750349304539e-09,
+        "nfev": 122,
+        "accepted_steps": 10
+      }
+    ],
+    "source_checkpoint_sha256": "35e6466103f9184265de7ecafc8b99fa48665ee19df919eb148cc72ec80054be",
+    "whole_network_validated": false,
+    "default_changed": false
+  }
+}

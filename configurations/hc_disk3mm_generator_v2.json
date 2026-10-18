@@ -1,0 +1,13 @@
+{
+  "profile_id": "hc_joint_synthetic_v1",
+  "arbor_profile_id": "W2000_equal_area_bounded_edges_047_104",
+  "generator": {
+    "sweeps": 2,
+    "max_depth": 24,
+    "max_partitions": 1000000,
+    "quadrature_order": 12,
+    "integration_relative_tolerance": 0.0001,
+    "max_quadrature_points": 96000000,
+    "max_proposals": 8000000
+  }
+}

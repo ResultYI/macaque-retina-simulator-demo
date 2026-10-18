@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "retina_disk3mm_scope_v1",
+  "approval": "User tongyi,2026-10-16;RBC/AII quantities,HC candidate geometry and unchanged effective dynamics on the3mm disk",
+  "target": {
+    "frame": "functional_visual_field",
+    "center_mm": [
+      0,
+      0
+    ],
+    "radius_mm": 3,
+    "shape": "disk",
+    "whole_retina_claim": false
+  },
+  "support": {
+    "owner_disk_radius_mm": 3.0,
+    "owner_max_OPL_radius_mm": 3.01552,
+    "hard_support_mm": 0.04,
+    "feedforward_support_steps": 3,
+    "inner_OPL_support_radius_mm": 3.13552,
+    "maximum_HC_footprint_radius_mm": 0.0317487213324989,
+    "cone_RF_query_radius_mm": 3.199017442664998,
+    "HC_master_OPL_radius_mm": 3.30777092280389,
+    "AII_master_IPL_radius_mm": 3.17552,
+    "RBC_master_radius_mm": 3.21552,
+    "rod_master_radius_mm": 3.25552,
+    "S_complete_macro_halfwidth_mm": 3.5,
+    "complete_cone_query_bounds_mm": [
+      -3.52,
+      3.52,
+      -3.52,
+      3.52
+    ],
+    "generator_initial_radius_mm": 4.576367059150485,
+    "ellipse_y_over_x": 1.2247,
+    "cone_source_outer_min_mm": 6.231638,
+    "parasol_owner_and_seed_radius_mm": 3.0,
+    "parasol_halo_extrapolation": false,
+    "boundary": "one finite canonical network; no exterior feedback, compensation or crop renormalization",
+    "whole_exterior_recurrent_closure": "NOT_CERTIFIED"
+  },
+  "RBC_density": "approved_rod_density/18",
+  "AII_density_cells_mm2": 5000,
+  "HC_geometry": "existing density,finite disks,inward extrapolation and directional-transfer rules",
+  "dynamics": "effective_dynamics_v1 unchanged throughout0-3mm",
+  "S_partition": "deMonasterio1985_mulatta_effective_S_v1 unchanged",
+  "Henle": "Schein1988_M1_bounded_bridge_v1 unchanged; exact origin direction remains unsupported",
+  "parasol": "existing independent RF model only0-3mm; no halo extrapolation",
+  "missing_contacts": "retain actual finite deficits; never enlarge support,fill neighbours,compensate or renormalize cropped weights",
+  "previous_complete_default": "reports/disk3mm_build_20261016/before/retina_platform_v1.json",
+  "activation": "CANDIDATE_BUILD_ONLY; do not switch default before acceptance",
+  "physiological_validation": false
+}

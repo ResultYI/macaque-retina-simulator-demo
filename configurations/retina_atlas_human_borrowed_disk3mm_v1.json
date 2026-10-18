@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "atlas_id": "macaque_composite_source_atlas",
+  "atlas_version": "1.0",
+  "reference_id": "composite_macaque_nasal_positive_superior_positive_planar_v1",
+  "owner_coordinate_role": "rf",
+  "phase1_rf_radius_mm": [
+    0.0,
+    3.0
+  ],
+  "phase2_rf_radius_mm": [
+    3.0,
+    6.0
+  ],
+  "source_registration": "physical_retinal_mm_equals_planar_RF_mm_project_transfer_v1",
+  "tile_size_mm": 0.032,
+  "seed": 20261012,
+  "mosaic_rule": "isetbio_fixed_human_borrowed_cone_master_v1",
+  "density_rule": "Packer1989_four_cardinal_log_linear_project_field_v1",
+  "central_cone_rule": "legacy_Packer_published_code_central_bridge_v1",
+  "central_rod_rule": "missing",
+  "S_partition_rule": "MartinGrunert1999_curve_pending_no_deMonasterio_substitution",
+  "Henle_rule": "Schein1988_M1_bounded_bridge_v1",
+  "boundary_mode": "finite_open_boundary",
+  "HC_dynamic_gap": "off",
+  "arbor_rule": "missing_direct_central_and_peripheral_arbor",
+  "claim": "Official human Curcio/Watson cone positions borrowed unchanged on the composite macaque project frame; other approved project pathways retained; not fully macaque physiological geometry",
+  "midget_rf_rule": "connected_cone_centroid_isetbio_v1",
+  "cone_master": {
+    "path": "data/atlas/isetbio_human_borrowed_cones_disk3mm_v1/manifest.json",
+    "sha256": "b80d1fbde059ac485803f077864373c587057a854d2bb09744b30b683f0650d6"
+  },
+  "HC_master_configuration": "configurations/atlas_hc_disk3mm_v1.json",
+  "cone_geometry_route": "official_human_borrowed_approximation_v1",
+  "density_rule_role": "Retained Packer provider only for existing S-selection scores/Wool project mapping; does not define imported human positions"
+}

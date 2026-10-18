@@ -1,0 +1,12 @@
+{
+  "schema": "disk3mm_validation_resources_v1",
+  "evidence_class": "project_execution_resource_budget",
+  "reason": "The exact 879437-node dependency view and complete JSON checkpoint preparation exceeded the previous 4 GiB lifetime process peak allowance. Preserve all states, convergence tolerances, clocks and source equations; explicitly budget the existing Windows host.",
+  "run_config": {
+    "background_memory_limit_mb": 12288.0,
+    "background_min_available_mb": 8192.0,
+    "background_max_wall_seconds": 7200.0
+  },
+  "unchanged": ["max_sim_seconds=10", "minimum timing requirement", "consecutive complete windows", "state unit scales and tolerances", "monitor step", "original solver and source values"],
+  "physiological_validation": false
+}

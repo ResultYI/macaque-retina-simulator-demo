@@ -1,30 +1,27 @@
-"""Run the same active project configuration used by the GUI; no profile switch."""
+"""Run the GUI's RunConfig/SimulationSession without opening a window."""
 from pathlib import Path
-import argparse,sys,queue,json
-
+import argparse,json,queue,sys,time
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+from retina_platform.config import RunConfig
+from retina_platform.backend import SimulationSession
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--media',type=Path,required=True)
-    parser.add_argument('--project-root',type=Path,default=Path(__file__).resolve().parents[1])
-    parser.add_argument('--output',type=Path)
-    parser.add_argument('--duration',type=float)
-    parser.add_argument('--background-checkpoint',type=Path,help='Resume/reuse an identity-bound complete background checkpoint')
-    parser.add_argument('--prepare-background',action='store_true',help='Use unchanged bounded numerical preparation before the stimulus')
-    args=parser.parse_args();root=args.project_root.resolve();sys.path.insert(0,str(root))
-    from retina_platform.config import RunConfig
-    from retina_platform.backend import SimulationSession
-    config=RunConfig.project_default(root);config.media_path=str(args.media.resolve())
-    if args.duration is not None:config.duration_seconds=args.duration
-    if args.prepare_background or args.background_checkpoint:
-        config.background_initialization_mode='bounded_convergence';config.background_require_converged=True
-    if args.background_checkpoint:config.background_checkpoint_path=str(args.background_checkpoint.resolve())
-    session=SimulationSession(config,root,args.output).start()
+    parser.add_argument('--config',type=Path,help='RunConfig JSON; otherwise current project default')
+    parser.add_argument('--media',type=Path,help='Explicit media override')
+    parser.add_argument('--output-root',type=Path)
+    args=parser.parse_args()
+    config=RunConfig.from_dict(json.loads(args.config.read_bytes())) if args.config else RunConfig.project_default(ROOT)
+    if args.media:config.media_path=str(args.media.resolve())
+    session=SimulationSession(config,ROOT,output_root=args.output_root).start()
+    previous=None;printed=0.
     while session.is_alive() or not session.events.empty():
-        try:event=session.events.get(timeout=.5)
+        try:event=session.events.get(timeout=.25)
         except queue.Empty:continue
-        print(json.dumps({k:event[k] for k in ('status','time','path','message')},ensure_ascii=False),flush=True)
-    if session.status!='completed':raise RuntimeError('Run failed: '+str(session.path))
+        key=(event['kind'],event['status'],event.get('phase'),event.get('message'))
+        if key!=previous or time.monotonic()-printed>=15:
+            print(json.dumps(event,ensure_ascii=False),flush=True);previous=key;printed=time.monotonic()
+    print(json.dumps({'status':session.status,'run_path':str(session.path or '')}),flush=True)
+    return 0 if session.status=='completed' else 2
 
-
-if __name__=='__main__':main()
+if __name__=='__main__':sys.exit(main())

@@ -14,17 +14,8 @@ class RunMode(str, Enum):
     NUMERIC_FIXTURE = "numeric_fixture"
 
 def canonical_hash(value):
-    def convert(v):
-        if isinstance(v, np.ndarray):
-            return {"dtype": str(v.dtype), "shape": list(v.shape), "data": v.tolist()}
-        if isinstance(v, Enum): return v.value
-        if hasattr(v, "__dataclass_fields__"):
-            return {k: convert(getattr(v, k)) for k in v.__dataclass_fields__}
-        if isinstance(v, dict): return {str(k): convert(x) for k, x in v.items()}
-        if isinstance(v, (list, tuple)): return [convert(x) for x in v]
-        return v
-    raw = json.dumps(convert(value), sort_keys=True, allow_nan=False, separators=(",", ":")).encode()
-    return hashlib.sha256(raw).hexdigest()
+    from .canonical_stream import stream_canonical_hash
+    return stream_canonical_hash(value)
 
 def finite_array(value, shape=None):
     a = np.array(value, dtype=np.float64, copy=True)
@@ -46,13 +37,17 @@ class Quantity:
         if not self.unit or not self.meaning or not self.evidence_tag:
             raise ContractError("Quantity requires unit, semantic meaning and evidence tag")
 
-    def require(self, unit, meaning, shape=None, frame=None):
+    def require(self, unit, meaning, shape=None, frame=None, *, check_finite=False):
         if (self.unit, self.meaning) != (unit, meaning):
             raise ContractError(f"Expected {unit}/{meaning}, received {self.unit}/{self.meaning}")
         if frame is not None and self.coordinate_frame != frame:
             raise ContractError(f"Coordinate frame {self.coordinate_frame} != {frame}")
         if shape is not None and self.values.shape != tuple(shape):
             raise ContractError(f"Shape {self.values.shape} != {shape}")
+        # Internal consumers that omit a second Quantity copy still check new
+        # dynamic values at their boundary, including a malformed provider.
+        if check_finite and not np.all(np.isfinite(self.values)):
+            raise ContractError("Nonfinite array")
         return self.values
 
 @dataclass(frozen=True)

@@ -1,0 +1,891 @@
+{
+  "original_local_sha256": "4f0f87ea74f889ec535b14960cd190416935989559651f86d909e5812d8ce6a6",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "outer_native",
+    "parameter_hash": "da0742fe4bb4e9bb1f8d7afa439db9cf5dfb3152a2114a28b009d46f59f73883",
+    "records": [
+      {
+        "parameter_id": "VH2005_tau_R",
+        "name": "tau_R",
+        "value": 0.49,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_E",
+        "name": "tau_E",
+        "value": 16.8,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_c_beta",
+        "name": "c_beta",
+        "value": 0.0028,
+        "unit": "ms^-1",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_k_beta",
+        "name": "k_beta",
+        "value": 0.000163,
+        "unit": "ms^-1/td",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_n_X",
+        "name": "n_X",
+        "value": 1.0,
+        "unit": "dimensionless",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_n_C",
+        "name": "n_C",
+        "value": 4.0,
+        "unit": "dimensionless",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_C",
+        "name": "tau_C",
+        "value": 2.89,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_a_C",
+        "name": "a_C",
+        "value": 0.0908,
+        "unit": "vH_native_current^-1",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_m",
+        "name": "tau_m",
+        "value": 4.0,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_gamma",
+        "name": "gamma",
+        "value": 0.678,
+        "unit": "dimensionless",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_is",
+        "name": "tau_is",
+        "value": 56.9,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_a_is",
+        "name": "a_is",
+        "value": 0.0709,
+        "unit": "vH_native_conductance/vH_native_voltage^gamma",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_g_t",
+        "name": "g_t",
+        "value": 151.1,
+        "unit": "vH_native_voltage",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_V_k",
+        "name": "V_k",
+        "value": -10.0,
+        "unit": "vH_native_voltage",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_V_n",
+        "name": "V_n",
+        "value": 3.0,
+        "unit": "vH_native_voltage",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_1",
+        "name": "tau_1",
+        "value": 4.0,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_2",
+        "name": "tau_2",
+        "value": 4.0,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_h",
+        "name": "tau_h",
+        "value": 20.0,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_V_I",
+        "name": "V_I",
+        "value": 19.7,
+        "unit": "vH_native_voltage",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_mu",
+        "name": "mu",
+        "value": 0.733,
+        "unit": "dimensionless",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_tau_a",
+        "name": "tau_a",
+        "value": 250.0,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      },
+      {
+        "parameter_id": "VH2005_observation_delay",
+        "name": "observation_delay",
+        "value": 2.82,
+        "unit": "ms",
+        "shape": [],
+        "source_id": "VH2005_source_supplement",
+        "source_locator": "Supplement PDF p3 (cover included) parameter block Fig6A/7; native/source units",
+        "derivation": {
+          "type": "published_fit",
+          "evidence_class": "published_fit",
+          "transcription": "literal complete profile; no fit/reaveraging",
+          "native_units": "Preserve source-effective units; no physical pA/mV interpretation",
+          "time_conversion": "RHS ms^-1 multiplied by1000 for seconds"
+        },
+        "evidence_kind": "source_fit",
+        "species": "macaque_H1_source_unspecified",
+        "sample_context": "Author Fig6A/7 H1-fit profile, not an individual whole-retina measurement",
+        "retinal_region": "source H1 fit; exact eccentricity unspecified",
+        "meridian": "source experiment unspecified",
+        "coordinate_frame": "native_source_functional",
+        "support_domain": null,
+        "conditions": {
+          "source_profile": "Fig6A/7 complete author profile",
+          "input": "td",
+          "voltage": "native relative/effective scale, not physical absolute mV",
+          "cohort": "primate/macaque H1 source fit; exact individual species not resolved in source-code supplement"
+        },
+        "uncertainty": "Not supplied per coefficient; regional/S/H2 validity not established",
+        "allowed_modes": [
+          "component_reference",
+          "numeric_fixture"
+        ],
+        "status": "usable_reference",
+        "assumption_approval_reference": null
+      }
+    ],
+    "binding_options": {
+      "explicit_opt_in": true,
+      "A": {
+        "sparse_CSR": true,
+        "shape": [
+          344287,
+          530929
+        ],
+        "data": {
+          "array_key": "a000000",
+          "shape": [
+            3627874
+          ],
+          "dtype": "float64",
+          "sha256": "c3625e1e2e0fa90738a9e6c6aaa3addefaac19994c1b7b2cbb421dd6e45e5f33"
+        },
+        "indices": {
+          "array_key": "a000001",
+          "shape": [
+            3627874
+          ],
+          "dtype": "int32",
+          "sha256": "b39fd035b84806177ae209ae64350a5ae9c19e9270254a523dabb5bb3a712403"
+        },
+        "indptr": {
+          "array_key": "a000002",
+          "shape": [
+            344288
+          ],
+          "dtype": "int32",
+          "sha256": "5c6406232484243085b6f20916c5bdbc9a6a94f1321e91a2fb2911d86c83e3ba"
+        }
+      },
+      "B": {
+        "sparse_CSR": true,
+        "shape": [
+          530929,
+          344287
+        ],
+        "data": {
+          "array_key": "a000003",
+          "shape": [
+            3627874
+          ],
+          "dtype": "float64",
+          "sha256": "e697378aa11d609fad6bceda8f26c6e5c860a60a0ddbd701bac390d04c0a3985"
+        },
+        "indices": {
+          "array_key": "a000004",
+          "shape": [
+            3627874
+          ],
+          "dtype": "int32",
+          "sha256": "043544a09d504f73980e6946d4f2e2cbacf6bbf41c8620e6b8ae986f6977d27e"
+        },
+        "indptr": {
+          "array_key": "a000005",
+          "shape": [
+            530930
+          ],
+          "dtype": "int32",
+          "sha256": "830f74f10cea8ed984dbe094bef4ef0bb9d5c0f3123983e1cdfb8453c6f1c0b1"
+        }
+      },
+      "background_td": {
+        "values": {
+          "array_key": "a000006",
+          "shape": [
+            530929
+          ],
+          "dtype": "float64",
+          "sha256": "3d68b6e66570b74f2427dc85191b9e425ade24416209a69459254bb5d39bbf46"
+        },
+        "unit": "td",
+        "meaning": "native_retinal_illuminance",
+        "evidence_tag": "project_approximation",
+        "coordinate_frame": null
+      },
+      "pooling_policy": "pool_Vbar_before_aI",
+      "geometry_frame": "OPL",
+      "observation_interval_seconds": 0.0001,
+      "unsupported_type_policy": "project_approximation_shared_H1_kinetics"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\outer_native_actual_values.npz",
+      "sha256": "317af925465dc602d8bf55155aa73a98fb43f2bbb3e6484c6a3d24c470b81de9"
+    },
+    "physiological_validation": false
+  }
+}

@@ -183,6 +183,33 @@ def test_delay_linear_timestamp_and_bounded_prehistory():
     np.testing.assert_allclose(d.at(.01).values,[8])
     clone=TimestampedDelay.from_payload(d.payload());np.testing.assert_array_equal(d.at(.01).values,clone.at(.01).values)
 
+
+def test_delay_state_fork_shares_only_immutable_rows():
+    import json
+    from retina_sim.recording import fork_timestamped_delay_payloads
+    base=q([0.,1.],'V','physical_membrane_voltage')
+    delay=TimestampedDelay(.002,[0.],[[0.,1.]],base,'linear')
+    original={'outer':delay.payload()};serialized=json.dumps(original,sort_keys=True)
+    fork=fork_timestamped_delay_payloads(original)
+    assert json.dumps(fork,sort_keys=True)==serialized
+    assert fork['outer']['history_values'][0] is original['outer']['history_values'][0]
+    assert isinstance(fork['outer']['history_values'][0],tuple)
+    fork['outer']['history_times'].append(.001)
+    fork['outer']['history_values'].append((2.,3.))
+    fork['outer']['prehistory']['values']=(9.,9.)
+    assert json.dumps(original,sort_keys=True)==serialized
+
+
+def test_vector_delay_matches_original_scalar_interpolation_exactly():
+    rng=np.random.default_rng(517);times=[0.,.0001,.00023,.00041]
+    values=rng.normal(size=(4,73));base=q(values[0],'V','physical_membrane_voltage')
+    delay=TimestampedDelay(.00002,times,values.tolist(),base,'linear')
+    for target in (0.,.00005,.0001,.00019,.00023,.00029,.00041):
+        actual=delay.at(target+delay.delay_seconds).values
+        effective=(target+delay.delay_seconds)-delay.delay_seconds
+        expected=np.array([np.interp(effective,times,values[:,k]) for k in range(values.shape[1])])
+        np.testing.assert_array_equal(actual,expected)
+
 def test_source_density_mosaic_capacity_and_exact_label_quota():
     raw=ROOT/'data/published_code/packer_cone_density.csv';field=PackerDensityField(read_density_tabulation(raw,hashlib.sha256(raw.read_bytes()).hexdigest()),central_policy='central_constant_cap',angular_policy='log_NT_cosine')
     domain=RetinalDomain((.99,1.01,-.01,.01),(.992,1.008,-.008,.008),lambda xy:np.ones(len(xy),bool),'synthetic_roi_mask','source_density_QA_ROI')

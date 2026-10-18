@@ -1,0 +1,47 @@
+{
+  "original_local_sha256": "098333591c1048469d5a464b9068169357df25831e64f9c9e5acce88b7d8448c",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "midget_RGC_ON_inhibitory_local_crossover_AC",
+    "parameter_hash": "3a9abe275a40c37a73f7762768187f1c6cf76428b9c76e29098c34ba12197b6d",
+    "records": [
+      {
+        "parameter_id": "gain",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "a122228dad4981ba2ea32d0ba9e59130b51ce661db9f9716c62dbe1951bf9a0f"
+          },
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gain",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON_inhibitory_local_crossover_AC",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "inhibitory",
+      "target_population_profile_id": "effective_midget_RGC_ON"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_inhibitory_local_crossover_AC_actual_values.npz",
+      "sha256": "c8cfc2969626285a27c66e3be02e092019c7cd6da0bbe61458ae1704e6e18b0e"
+    },
+    "physiological_validation": false
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "original_local_sha256": "e0f639c8ad8b223cd64a849f81f93abe0e19beca9fd09690a5885865a5a9eadc",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "AII_DB1_glycine",
+    "parameter_hash": "58d43576a8afec72f85bf7a8148110701131b92210e5ca4e4ae8457966c2982d",
+    "records": [
+      {
+        "parameter_id": "tau_rise",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "50bc25a440582c47432d9708ff37303f4c90162eae0d0ec0765858dd5ea76838"
+          },
+          "unit": "s",
+          "meaning": "synaptic_rise_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau_rise",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "tau_decay",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "2b83dcd0e647dbbfff81298cca77f8880eea9872b0783f014f191e08df9f7586"
+          },
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau_decay",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "g_peak",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "e34ea03af461f1b24a10b3ebe61886f366680188c314f38e4595a3e2a1344bcb"
+          },
+          "unit": "S",
+          "meaning": "single_event_peak_conductance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter g_peak",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "ncontact",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "f0f08f662cbcccb89a5ba410d3e9c0d3b84e3bb9275dc63b741ecbfc1e521728"
+          },
+          "unit": "dimensionless",
+          "meaning": "effective_release_site_multiplier",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter ncontact",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "event_rate0",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "b9f6145f3d72e2a086350dfdc4175ec96b54259a7fa5b1f51916d474f22016bc"
+          },
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter event_rate0",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "decay_minus100",
+        "value": {
+          "values": {
+            "array_key": "a000005",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "5303957319764d6f496946765dd617409a74e6c789493e671bd4c84a0dc3bd8f"
+          },
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter decay_minus100",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "decay_0",
+        "value": {
+          "values": {
+            "array_key": "a000006",
+            "shape": [
+              210
+            ],
+            "dtype": "float64",
+            "sha256": "02cd714acca6c3089f568553dae992679a074588b8034c9a5dce7f0a45537687"
+          },
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter decay_0",
+        "supported_domain": {
+          "effective_profile": "effective_AII_DB1_glycine",
+          "cells": 210,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "inhibitory",
+      "voltage_dependent_decay": true,
+      "enabled": true
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_DB1_glycine_actual_values.npz",
+      "sha256": "09658a3891ec0eaee96dbf3ac47e5c928c7e90ba5533cb1897b31e4b3ce2bb61"
+    },
+    "physiological_validation": false
+  }
+}

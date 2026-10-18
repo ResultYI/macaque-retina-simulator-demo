@@ -1,0 +1,43 @@
+{
+  "schema": "HC_effective_functional_projection_profile_v1",
+  "profile_id": "HC_W2000_divergence_functional_projection_v1",
+  "primary_source": {
+    "path": "data/source_packages/20261012/hc/Wassle_2000.pdf",
+    "sha256": "32c3b7a0b41f5a434724e04698c98ac80efc960baf224b65ebfa42d313e02609",
+    "doi": "10.1017/S0952523800174097",
+    "locator": "printed p599; source-reported convergence/density and derived per-cone divergence, p604 discussion",
+    "URL": "https://bpb-us-e1.wpmucdn.com/sites.uw.edu/dist/6/8438/files/2020/09/Wassle-et-al.-2000.pdf"
+  },
+  "divergence_anchors": {
+    "H1": [3.7, 7.5],
+    "H2": [2.2, 3.2],
+    "source_bands_mm": [[0.5, 1.0], [5.0, 6.0]],
+    "project_representative_radii_mm": [0.75, 5.5],
+    "H2_peripheral_3_2": "existing project midpoint of quoted2.7..3.7; not an individual measured cell",
+    "interpolation": "existing clipped linear mean-divergence rule from spatial_profiles.hc_contact_matrices; physical OPL radius",
+    "below0_5mm": "explicit uncalibrated constant central-anchor transfer"
+  },
+  "projection": {
+    "meaning": "effective functional association to existing typed HC reference anchors; not reconstructed dendrites or measured synapses",
+    "neighborhood": "nearest existing typed anchors, integer floor plus global stable residual allocation; no new cells or coordinates",
+    "support": "actual finite kth-anchor ball certified inside the complete fixed HC cohort for every owner cone; unsupported owner balls reject",
+    "boundary": "one finite canonical graph; halo-only exterior ranking and recurrent exterior closure remain uncertified",
+    "H1": "L/M only; existing S exclusion retained",
+    "H2": "all actual L/M/S cones",
+    "weights": "one per selected association, reciprocal topology; unit-DC A and B normalized once on the complete frozen graph",
+    "anatomical_reference": "original equal-area hard-disk contact graph is retained independently",
+    "kinetics": "unchanged native vH parameters; existing uncalibrated shared H1 kinetics for S/H2"
+  },
+  "evidence_classes": {
+    "reported_source_anchors": "literature quotation and author density/convergence derivation",
+    "radial_transfer_and_integer_allocation": "project_approximation",
+    "functional_projection_and_support": "project_approximation",
+    "individual_anatomical_contacts": "NOT_ESTABLISHED",
+    "physiological_calibration": "NOT_RUN"
+  },
+  "alternatives": [
+    "Original equal-area anatomical candidate retained; cannot guarantee central functional coverage",
+    "Packer-Dacey/Cottaris double-exponential mRGC surround remains an independent functional reference, not an H1/H2 dendrite reconstruction",
+    "No arbitrary radius multiplier, density change, synthetic partner or fitted gain"
+  ]
+}

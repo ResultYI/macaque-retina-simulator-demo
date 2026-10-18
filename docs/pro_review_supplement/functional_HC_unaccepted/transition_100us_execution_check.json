@@ -1,0 +1,74 @@
+{
+  "original_local_sha256": "17910253a809f974f749ae97de1da24076d766a54a35cdaa750abdd0f018098a",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "status": "FULL_REGISTERED_STATE_CUDA_CPU_100US_COMPARISON_PASS",
+    "state_scalars": 5086083,
+    "components": 34,
+    "duration_seconds": 0.0001,
+    "maximum_absolute_state_difference": 5.684341886080802e-14,
+    "maximum_difference_over_original_solver_scale": 7.810846766778327e-10,
+    "comparison_limit_fraction_of_original_solver_scale": 0.01,
+    "cpu_seconds": 2.866838399990229,
+    "cuda_seconds": 2.305887700000312,
+    "event_clocks_equal": true,
+    "rng_counts_history_equal": true,
+    "checkpoint_migration": false,
+    "original_solver": {
+      "method": "DOP853",
+      "rtol": 1e-06,
+      "atol": 1e-09,
+      "max_step": 0.0001
+    },
+    "numerical_execution": {
+      "backend": "numba_fused_native_rows_v1",
+      "numba_version": "0.67.0",
+      "fastmath": false,
+      "parallel": true,
+      "boundscheck": true,
+      "parent_dispatcher_cache": "disabled; fresh cross-kernel linking per process",
+      "plan_seconds": 0.9094874000002164,
+      "compile_or_cache_load_seconds": 2.3913388999935705,
+      "instruction_count": 643,
+      "scratch_bytes": 114827416,
+      "state_scalars": 5086083,
+      "external_scalars": 547964,
+      "plan_hash": "df7d460e8a22c0eb4a512e9f623d0f6c4ab74d6838250c74e9839760d5766578",
+      "scope": "CUDA native/joint DOP853; unchanged inner Numba plan, event/history/recording and CPU background monitor",
+      "parallel_scope": "independent native rows only; CSR within-row reduction order unchanged",
+      "native_threads_maximum": 8,
+      "helper_sha256": "d5c91bff00cd9fd3f8779029b2191263ef464169d918a061544c7a8750a1c923",
+      "process_environment": {
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "requested": "numba",
+      "integration_backend": {
+        "backend": "cuda_native_joint_dop853_float64_v1",
+        "torch_version": "2.14.0+cu130",
+        "cuda_version": "13.0",
+        "device": "NVIDIA GeForce RTX 4070 Ti SUPER",
+        "device_capability": [
+          8,
+          9
+        ],
+        "torch_cpu_threads": 1,
+        "scipy_version": "1.17.1",
+        "scipy_rk_sha256": "fa5d6300917f4f949e699b116f59ae147159d5c6147d55d940dc9d3303891056",
+        "scipy_common_sha256": "195293731f903bb58faf67a33408bde1a11d32fd37cc554eaf6e10d70dab6762",
+        "implementation_sha256": {
+          "gpu_native.py": "16a7081587c5a1b7a77410d9374c8547141062e6e5b8d43ec65df336e4c774da",
+          "gpu_dop853.py": "94d03925a324074338ff24a17e4d0e8f7cc3bf6aec88daf6527ea23d722b5f7e",
+          "gpu_hybrid.py": "f4447c356b540e630b43d9a1d3eb33a4e74c950581cdb40f21f4838dee19c82d"
+        },
+        "inner_plan_hash": "3b2af0b2d699542ecc419fc83092ac186f518500f4d0f2480b811bfe0393d17b",
+        "dtype": "float64",
+        "tf32": false,
+        "CUDA_CSR_storage": "Private sorted-column copy; original source arrays/weights untouched; duplicate columns rejected",
+        "source_equations_parameters_graph": "unchanged",
+        "bitwise_cpu_parity": false
+      }
+    },
+    "physiological_validation": false,
+    "background_preparation": "NOT_PERFORMED_BY_THIS_CHECK; actual required policy must still run from fresh initial state"
+  }
+}

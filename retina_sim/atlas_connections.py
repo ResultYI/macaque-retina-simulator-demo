@@ -229,6 +229,7 @@ class ConnectionAtlas:
             int(hashlib.sha256((g+'|effective_LM_stride4_v1').encode()).hexdigest()[:16],16)%4==0)
         inner_kwargs={'cone_subtypes':types,'configuration':self.inner_config,
             'diffuse_seed_cone_ids':diffuse_seeds,'include_widefield_ac':True,'max_effective_cells':max_cells}
+        inner_kwargs['midget_rf_rule']=self.atlas.config.get('midget_rf_rule','parent_seed_legacy')
         inner_kwargs.update(temporal_equivalent_mm=np.asarray([np.nan if v is None else v for v in equivalent]),
             temporal_equivalence_source_id='midget_Wool_iso_density_adapter_v1_frozen_Packer_published_code')
         inner=build_effective_inner(cones,**inner_kwargs)

@@ -1,0 +1,47 @@
+{
+  "original_local_sha256": "d92c4edb87a963fa5e24af6360835251c88e17f42cf04b36ea6ec7b8f75f6460",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+    "parameter_hash": "9b90bfa77d644e22c2aa1bc036d89d1a028bd29cd17c3d67e66b5ebe36f6ea62",
+    "records": [
+      {
+        "parameter_id": "gain",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              21
+            ],
+            "dtype": "float64",
+            "sha256": "b848ae5870704bd3eb20b862ccd39976ceb695aa69da19264ea5cff3caadcc27"
+          },
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gain",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+          "cells": 21,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "inhibitory",
+      "target_population_profile_id": "effective_small_bistratified_S_ON"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_inhibitory_local_feedforward_AC_actual_values.npz",
+      "sha256": "9c8b1c1eb636563e1a00c1b6cee92607813ea39d2f25081987363d54f1f57017"
+    },
+    "physiological_validation": false
+  }
+}

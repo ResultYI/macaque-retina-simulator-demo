@@ -1,0 +1,21 @@
+{
+  "original_local_sha256": "7be0d970a9cc7c3c7255dcd352e0eccd526e47d33d0cf02be27593d727b7ea03",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "rod_current_SI",
+    "parameter_hash": "3d6b76b1ae47111e8bdbee04c3e887018d7c35ff0becc4580de5a6bf288af9e1",
+    "records": [],
+    "binding_options": {
+      "source_unit": "pA",
+      "target_unit": "A",
+      "meaning": "absolute_outer_segment_current",
+      "target_population_profile_id": "effective_rod_membrane"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_current_SI_actual_values.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85"
+    },
+    "physiological_validation": false
+  }
+}

@@ -77,11 +77,18 @@ def _population(record,kind,profile,species,subtypes=None,opl_pre=None,opl_post=
         return None if v is None else q(v['values'],v['unit'],v['meaning'],v['frame'])
     rf=coordinate('rf');soma=coordinate('soma');pedicle=coordinate('opl_pedicle')
     if subtypes is None:subtypes=(record['population'],)*n
-    radial=np.linalg.norm((rf or soma).values,axis=1)
+    if rf is None and soma is None:
+        explicit=record.get('global_eccentricity')
+        if explicit is None:raise ContractError('Explicit eccentricity required when RF and soma coordinates are unavailable')
+        eccentricity=q(explicit['values'],explicit['unit'],'global_eccentricity',explicit['frame'])
+        radial=eccentricity.values;cell_frame=explicit['frame']
+    else:
+        cell_frame=rf.coordinate_frame if rf is not None else soma.coordinate_frame
+        radial=np.linalg.norm((rf or soma).values,axis=1)
+        eccentricity=q(radial,'mm','global_eccentricity',cell_frame)
     regions=tuple('center' if r<1 else 'transition' if r<5 else 'periphery' for r in radial)
     cells=CellTable(ids,(kind,)*n,tuple(subtypes),(species,)*n,('composite_declared',)*n,('registered_axes',)*n,
-        soma,rf,'mm',rf.coordinate_frame if rf is not None else soma.coordinate_frame,
-        q(radial,'mm','global_eccentricity',rf.coordinate_frame if rf is not None else soma.coordinate_frame),
+        soma,rf,'mm',cell_frame,eccentricity,
         (profile,)*n,(TAG,)*n)
     terminal=coordinate('ipl_preterminal')
     dendrite=coordinate('ipl_post_arbor')
@@ -102,9 +109,19 @@ def _contact_edges(contact,pre,post):
 
 def _owner_ids(table,bounds):
     if hasattr(table,'owner_ids'):return table.owner_ids(bounds)
+    if 'rf' not in table['coordinates']:return ()
     xy=np.asarray(table['coordinates']['rf']['values']);b=bounds
+    ids=tuple(table['global_cell_ids'])
+    if not ids and xy.size==0:return ()
+    if xy.shape!=(len(ids),2):raise ContractError('Owner RF coordinates must match the global IDs as an N-by-2 array')
     mask=(xy[:,0]>=b[0])&(xy[:,0]<b[1])&(xy[:,1]>=b[2])&(xy[:,1]<b[3])
-    return tuple(g for g,k in zip(table['global_cell_ids'],mask) if k)
+    return tuple(g for g,k in zip(ids,mask) if k)
+
+def _population_owner_mask(population,bounds):
+    coordinate=population.cells.rf_position or population.anatomical_positions
+    if coordinate is None:return [False]*len(population.cells.cell_id)
+    b=bounds
+    return [bool(b[0]<=xy[0]<b[1] and b[2]<=xy[1]<b[3]) for xy in coordinate.values]
 
 
 def _link(pre_component,pre_port,post_component,post_port,pre,post,W,frame,edge_ids=None):
@@ -118,10 +135,14 @@ def _link(pre_component,pre_port,post_component,post_port,pre,post,W,frame,edge_
 
 
 def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_mm=(.34,.36,-.01,.01),
-        halo_mm=.04,max_spatial_cells=60000,seed=20261010,connection_record=None,typed_completion=False):
+        halo_mm=.04,max_spatial_cells=60000,seed=20261010,connection_record=None,typed_completion=False,atlas_profile_id=None,allow_empty_owner_outputs=False,spatial_asset=None,_atlas_context=None,max_compile_bytes=None):
     root=Path(root);light=light_context or LightContext()
     execution=json.loads((root/'configurations'/(EXECUTION+'.json')).read_bytes())
-    atlas=ConnectionAtlas(root,atlas_profile_id=execution['atlas_profile'],s_partition_profile=execution['S_partition_profile'])
+    if atlas_profile_id is not None:execution=dict(execution,atlas_profile=atlas_profile_id)
+    atlas=ConnectionAtlas(root,atlas_profile_id=execution['atlas_profile'],s_partition_profile=execution['S_partition_profile']) if _atlas_context is None else _atlas_context
+    if max_compile_bytes is not None:
+        if not isinstance(max_compile_bytes,int) or max_compile_bytes<=0:raise ContractError('Explicit positive compile budget required')
+        execution=dict(execution,budgets=dict(execution['budgets'],max_compile_bytes=max_compile_bytes))
     b=tuple(owner_bounds_mm);roi=AtlasROI(b,(b[0]-halo_mm,b[1]+halo_mm,b[2]-halo_mm,b[3]+halo_mm),atlas.atlas.config['reference_id'])
     frozen=execution['frozen_default_graph']
     if connection_record is not None:
@@ -158,7 +179,8 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
     revised='population_revision' in record
     if revised:
         execution=dict(execution,requested_outputs=['midget_RGC_ON','midget_RGC_OFF','parasol_RGC_ON','parasol_RGC_OFF','small_bistratified_S_ON'],
-            profile_id='atlas_population_revision_v1',scope='Approved local .35 population revision with all typed owner pathways and unchanged dynamics')
+            profile_id=record['population_revision'].get('execution_profile_id','atlas_population_revision_v1'),
+            scope=record['population_revision'].get('scope','Approved local .35 population revision with all typed owner pathways and unchanged dynamics'))
         typed_completion=True
         graph_binding=dict(graph_binding,population_revision=record['population_revision'])
     elif typed_completion:
@@ -168,11 +190,18 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
             profile_id='atlas_typed_candidate_v1',
             scope='All available owner cone typed pathways and local/wide AC on the same actual finite atlas; full replacement blocked by explicit absent routes')
         graph_binding=dict(graph_binding,typed_completion=record['typed_completion'])
-    required={};needed=set()
+    canonical_targets=tuple(execution['requested_outputs'])
+    required={};needed=set();empty_owner_outputs=[]
     for name in execution['requested_outputs']:
         t=record['inner_tables'][name];required[name]=_owner_ids(t,b)
-        if not required[name]:raise ContractError('EMPTY_TARGET_OWNER: '+name)
+        if not required[name]:
+            if not allow_empty_owner_outputs:raise ContractError('EMPTY_TARGET_OWNER: '+name)
+            empty_owner_outputs.append(name)
         needed.update(required[name])
+    needed.update(record.get('required_global_dependency_ids',()))
+    if empty_owner_outputs:
+        execution=dict(execution,requested_outputs=[name for name in execution['requested_outputs'] if name not in empty_owner_outputs])
+        if not execution['requested_outputs']:raise ContractError('EMPTY_TARGET_OWNER: all requested outputs are empty samples')
     if typed_completion:
         for name in ('local_feedforward_AC','local_crossover_AC','widefield_AC'):
             table=record['inner_tables'][name];required[name]=_owner_ids(table,b)
@@ -185,13 +214,16 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
         if len(needed)==before:break
     cone_ids=set(record['cones']['global_cell_ids']);cone_needed=needed&cone_ids;hc_needed=set()
     hc_edges=record['HC_candidate_edges']
-    while True:
-        before=len(cone_needed)+len(hc_needed)
-        pairs=zip(hc_edges.pre,hc_edges.post) if hasattr(hc_edges,'pre') else ((e['cone_id'],e['hc_id']) for e in hc_edges)
-        for cone_id,hc_id in pairs:
-            if cone_id in cone_needed:hc_needed.add(hc_id)
-            if hc_id in hc_needed:cone_needed.add(cone_id)
-        if len(cone_needed)+len(hc_needed)==before:break
+    if spatial_asset is not None and hasattr(spatial_asset,'native_dependency_ids'):
+        cone_needed,hc_needed=spatial_asset.native_dependency_ids(cone_needed)
+    else:
+        while True:
+            before=len(cone_needed)+len(hc_needed)
+            pairs=zip(hc_edges.pre,hc_edges.post) if hasattr(hc_edges,'pre') else ((e['cone_id'],e['hc_id']) for e in hc_edges)
+            for cone_id,hc_id in pairs:
+                if cone_id in cone_needed:hc_needed.add(hc_id)
+                if hc_id in hc_needed:cone_needed.add(cone_id)
+            if len(cone_needed)+len(hc_needed)==before:break
     source_registry=load_core_registry(root);source_registry.runtime_profile=RuntimeProfile(root,execution['parameter_profile'])
     asset=root/'sources/primary_pathway_effective_profile.json'
     source_registry.register_source(SourceRecord(PROJECT_SOURCE,'Existing effective circuit parameters on actual atlas geometry',('Project implementation',),2026,
@@ -209,11 +241,14 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
     anchor=dict(zip(record['HC']['table']['global_cell_ids'],record['HC']['OPL_anchor']['values']))
     hc=_population(hr,'HC',PROFILE,native_parameters.profile.species,[hc_type[g] for g in hr['global_cell_ids']],opl_post=[anchor[g] for g in hr['global_cell_ids']]);pops['HC']=hc
     ci={g:i for i,g in enumerate(cones.cells.cell_id)};hi={g:i for i,g in enumerate(hc.cells.cell_id)}
-    he=hc_edges.select(ci,hi) if hasattr(hc_edges,'select') else [e for e in hc_edges if e['cone_id'] in ci and e['hc_id'] in hi]
-    raw=sparse.csr_matrix((np.ones(len(he)),([hi[e['hc_id']] for e in he],[ci[e['cone_id']] for e in he])),shape=(len(hi),len(ci)))
-    rsum=np.asarray(raw.sum(1)).ravel();csum=np.asarray(raw.sum(0)).ravel()
-    if np.any(rsum==0) or np.any(csum==0):raise ContractError('Actual atlas ancestor cone-HC component has an empty required native row; no phantom unit-DC input')
-    A=sparse.diags(1/rsum)@raw;B=sparse.diags(1/csum)@raw.T
+    he=spatial_asset.native_contact_summary(ci,hi) if spatial_asset is not None and hasattr(spatial_asset,'native_contact_summary') else (
+        hc_edges.select(ci,hi) if hasattr(hc_edges,'select') else [e for e in hc_edges if e['cone_id'] in ci and e['hc_id'] in hi])
+    if spatial_asset is None:
+        raw=sparse.csr_matrix((np.ones(len(he)),([hi[e['hc_id']] for e in he],[ci[e['cone_id']] for e in he])),shape=(len(hi),len(ci)))
+        rsum=np.asarray(raw.sum(1)).ravel();csum=np.asarray(raw.sum(0)).ravel()
+        if np.any(rsum==0) or np.any(csum==0):raise ContractError('Actual atlas ancestor cone-HC component has an empty required native row; no phantom unit-DC input')
+        A=sparse.diags(1/rsum)@raw;B=sparse.diags(1/csum)@raw.T
+    else:A,B=spatial_asset.native_matrices(cones,hc)
     outer=ComponentSpec('outer_native',KEY,{'cone':'cones','h1':'HC'},PROFILE,
         {'explicit_opt_in':True,'A':A,'B':B,'background_td':q(np.full(len(ci),light.native_background_td),'td','native_retinal_illuminance'),
          'pooling_policy':'pool_Vbar_before_aI','geometry_frame':'OPL','observation_interval_seconds':.0001,
@@ -224,6 +259,7 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
     by['outer_native']=cones;initial_activation={}
     selected={name:_subset(t,needed) for name,t in record['inner_tables'].items() if set(t['global_cell_ids'])&needed}
     for name in ('midget_BC_ON','midget_BC_OFF','diffuse_BC_ON','diffuse_BC_OFF')+(('S_ON_BC',) if typed_completion else ()):
+        if allow_empty_owner_outputs and name not in selected:continue
         t=selected[name];pid='effective_'+name;n=len(t['global_cell_ids'])
         contact=record['inner_contacts']['cones->'+name]
         anchors=dict(zip(contact['post_ids'],contact['post_positions']['values']))
@@ -239,7 +275,8 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
         links.append(_link('outer_native','release',name,'drive',cones,pop,W,'OPL'));binding_edges['cones->'+name]=edges
         initial_activation[name]=np.logaddexp(0.,source_registry.mechanism_profiles[pid].quantity('bias','dimensionless','activation_bias').values)
     for name,pre in (('local_feedforward_AC','diffuse_BC_ON'),('local_crossover_AC','diffuse_BC_OFF'))+(
-        (('widefield_AC','diffuse_BC_ON'),) if typed_completion and required['widefield_AC'] else ()):
+        (('widefield_AC','diffuse_BC_ON'),) if typed_completion and 'widefield_AC' in selected else ()):
+        if allow_empty_owner_outputs and name not in selected:continue
         t=selected[name];pid='effective_'+name;pop=_population(t,'AC',pid,'Macaque_effective_project_profile');pops[name]=pop;by[name]=pop
         W,edges=_matrix(_contact_edges(record['inner_contacts'][pre+'->'+name],pops[pre],pop),pops[pre],pop)
         if np.any(np.asarray(W.sum(1)).ravel()==0):raise ContractError('Required atlas AC row empty: '+name)
@@ -275,11 +312,12 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
         'midget_BC_ON','midget_BC_OFF','diffuse_BC_ON','diffuse_BC_OFF','local_feedforward_AC','local_crossover_AC','midget_RGC_ON','midget_RGC_OFF')+(
         ('S_ON_BC','small_bistratified_S_ON')+(('widefield_AC',) if 'widefield_AC' in pops else ()) if typed_completion else ())+(
         ('parasol_RGC_ON','parasol_RGC_OFF') if revised else ())
+    if allow_empty_owner_outputs:required_layers=tuple(layer for layer in required_layers if layer not in record['inner_tables'] or layer in pops)
     spec=ModelSpec(execution['profile_id'],tuple(pops.values()),tuple(specs),tuple(links),(ExternalInput('native_light','outer_native','light'),),required_layers,
         scope=execution['scope'],clock_policy={'kind':'explicit_event_clock','base_step_seconds':.0001,'sampled_output_hold':'zero_order_hold'})
     compiled=builder.build(spec,RunMode.REFERENCE)
     channels={'native_light':_sampled_native_light_channel(duration,light,cones.cells.rf_position.values[:,0])}
-    masks={name:[bool(b[0]<=xy[0]<b[1] and b[2]<=xy[1]<b[3]) for xy in (p.cells.rf_position or p.anatomical_positions).values] for name,p in pops.items()}
+    masks={name:_population_owner_mask(p,b) for name,p in pops.items()}
     unavailable={'rod_pathway':{'field':'PackerFourMeridianDensity(rod)','status':record['rod_inner']['metadata']['source_status'],
         'error':record['rod_inner']['metadata']['rod_source_error'],'old_profile':'analytic .020mm-free annulus to4mm peak is a separately labelled old project approximation; cannot pass as new raw Packer fine curve'},
         'AII':'independent geometry retained, source driver unavailable; no unapproved AII resting surrogate',
@@ -308,6 +346,12 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
             'unexecuted_geometry_population_counts':{name:len(t['global_cell_ids'])-len(pops[name].cells.cell_id) if name in pops else len(t['global_cell_ids'])
                 for name,t in record['inner_tables'].items()},
             'full_20_layer_network_claim':False,'background_steady_state_claim':False,'positive_gap':False,'passive_HC_instantiated':0}}
+    audit['atlas_runtime']['empty_owner_outputs']={name:'EMPTY_SAMPLE; full geometry retained; not biological absence' for name in empty_owner_outputs}
+    audit['atlas_runtime']['owner_target_contract']={
+        'canonical_outputs':list(canonical_targets),'active_owner_outputs':list(execution['requested_outputs']),
+        'status':{name:'EMPTY_SAMPLE' if name in empty_owner_outputs else 'INSTANTIATED_OWNER_PATH' for name in canonical_targets},
+        'empty_is_biological_absence':False,'synthetic_cells_added':False,
+        'empty_target_geometry_retained':True,'all_canonical_owner_paths_executed':not empty_owner_outputs}
     return compiled,channels,audit
 
 

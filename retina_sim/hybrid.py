@@ -7,7 +7,7 @@ from .contracts import ContractError,Quantity,SimulationState,SimulationResult,S
 from .engine import initialize_state,validate_state,checkpoint,restore,advance as native_advance
 from .chen2024 import author_discrete_config
 from .network import JointNetwork,NetworkStimulus,execution_metadata
-from .recording import RecordingPlan,TimestampedDelay
+from .recording import RecordingPlan,TimestampedDelay,fork_timestamped_delay_payloads
 from .provenance import CoverageReport
 
 @dataclass(frozen=True)
@@ -36,11 +36,11 @@ class RetinaState:
     def __getattr__(self,key): return getattr(self.dynamic,key)
 
 class HybridRunner:
-    def __init__(self,compiled):
+    def __init__(self,compiled,*,compute_backend='auto'):
         self.compiled=compiled
         first=next(iter(compiled.components.values()))
         self.discrete=first if len(compiled.components)==1 and first.time_contract.kind=='author_discrete' and hasattr(first.native_model,'initialize') else None
-        self.model=self.discrete.native_model if self.discrete else JointNetwork(compiled)
+        self.model=self.discrete.native_model if self.discrete else JointNetwork(compiled,compute_backend=compute_backend)
         self.history_dt=compiled.clock['history_base_seconds']
         self.strides=compiled.clock['component_tick_strides']
         self.event_clock=compiled.clock.get('scheduler_kind')=='explicit_event_clock'
@@ -123,15 +123,21 @@ class HybridRunner:
         targets=np.array(sorted(set(requested.tolist()+[float(stop)])))
         if len(y):
             from time import perf_counter
+            endpoint_only=not np.any(requested<stop)
             tick=perf_counter()
-            solution=solve_ivp(rhs,(start,stop),y,method=config.method,rtol=config.rtol,atol=config.atol,max_step=config.max_step,t_eval=targets,dense_output=False)
+            solution=solve_ivp(rhs,(start,stop),y,method=config.method,rtol=config.rtol,atol=config.atol,max_step=config.max_step,t_eval=None if endpoint_only else targets,dense_output=False)
             metrics=self.integration_metrics;metrics['solver_calls']+=1
             for key in ('nfev','njev','nlu'):metrics[key]+=getattr(solution,key,0)
             metrics['integration_wall_seconds']+=perf_counter()-tick
             metrics['minimum_interval_seconds']=min(metrics['minimum_interval_seconds'] or (stop-start),stop-start)
             metrics['maximum_nfev_per_interval']=max(metrics['maximum_nfev_per_interval'],solution.nfev)
             if not solution.success: raise ContractError('Joint integration failed: '+solution.message)
-            rows={float(t):a for t,a in zip(solution.t,solution.y.T)}; self._replace(state,solution.y[:,-1],stop)
+            # A successful terminal event is not arrival at the requested stop.
+            # Never label an earlier accepted state with a later timestamp.
+            if solution.status!=0 or not len(solution.t) or solution.t[-1]!=stop:
+                raise ContractError('Joint integration did not reach the requested endpoint')
+            rows={float(stop):solution.y[:,-1]} if endpoint_only else {float(t):a for t,a in zip(solution.t,solution.y.T)}
+            self._replace(state,solution.y[:,-1],stop)
         else:
             rows={float(t):y for t in targets}; self._replace(state,y,stop)
         return rows
@@ -171,7 +177,7 @@ class HybridRunner:
         estimate=8*len(times)*(scalar_count+extra_scalars+1)+128*event_bound+16*spike_cells+metadata_bound
         if estimate>plan.max_bytes: raise ContractError(f'Recording requires at least {estimate} bytes; select cells/windows or stream, never thin anatomy')
         # Functional API: fork mutable histories/RNG rather than mutate the input state.
-        state=RetinaState(state.dynamic,state.assembly_hash,state.grid_origin_seconds,state.sample_index,json.loads(json.dumps(state.spike_states)),json.loads(json.dumps(state.delay_states)),dict(state.input_position),json.loads(json.dumps(state.link_delay_states)),dict(state.component_tick_indices))
+        state=RetinaState(state.dynamic,state.assembly_hash,state.grid_origin_seconds,state.sample_index,json.loads(json.dumps(state.spike_states)),fork_timestamped_delay_payloads(state.delay_states),dict(state.input_position),json.loads(json.dumps(state.link_delay_states)),dict(state.component_tick_indices))
         rows={}; declarations={}; recorded=[]; record_ids={}; events={cid:[] for cid in state.spike_states}
         def flush_events(t):
             for cid,aux in state.spike_states.items():
@@ -268,6 +274,7 @@ class HybridRunner:
                 if len(indices) and (plan.ports is None or key in plan.ports):outputs[key]=Quantity(values,unit,meaning,c.evidence_tag);record_ids[key]=[ids[i] for i in indices]
         outputs['time']=Quantity(recorded,'s','absolute_time',self.model.evidence_tag)
         metadata=execution_metadata(self.compiled,plan.cell_ids); metadata.update({'recorded_cell_ids':record_ids,'spike_events':events,'spike_state_metadata':{cid:{'conditional_rate_Hz':np.array(aux['conditional_rate_Hz'])[plan.indices(self.compiled.components[cid].state_specs[0].cell_ids)].tolist(),'observation_scheme':aux.get('observation_scheme')} for cid,aux in state.spike_states.items()},'event_count':{cid:len(e) for cid,e in events.items()},'event_window_seconds':[start,stop],'conditional_rate_is_not_observed_window_rate':True,'clock_contract':self.compiled.clock,'link_delay_buffer_count':len(state.link_delay_states),'history_interval_seconds':self.history_dt,'observation_interval_seconds':self.observation_dt,'sampling_index':state.sample_index,'recording_estimate_bytes':estimate,'observation_delay':'Source final delay is timestamped readout only; interpolation explicitly linear; not inserted in feedback','global_state_layout':[{'name':s.state_name,'size':s.shape[0],'unit':s.unit,'meaning':s.meaning} for s in self.model.state_specs]})
+        metadata['compute_backend']=self.model.compute_metadata
         if len(recorded)!=len(times) or not np.allclose(recorded,times,rtol=0,atol=1e-12):raise ContractError('Recording timestamp coverage lost')
         state.input_position.update(last_time_seconds=float(stop),contracts=stimulus.input_contract)
         result=SimulationResult(self.compiled.run_mode,self.compiled.spec.model_id,canonical_hash({k:c.parameters.source_manifest_hash for k,c in self.compiled.components.items()}),stimulus.input_contract,outputs,CoverageReport(True,(),claim_limit='Executable architecture/reference or explicit software fixture; no physiological completion'),{'solver':asdict(config),'history_grid_held_fixed':True},'source_native_or_software_integration',metadata)

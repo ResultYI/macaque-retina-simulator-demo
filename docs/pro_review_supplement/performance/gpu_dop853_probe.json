@@ -1,0 +1,32 @@
+{
+  "original_local_sha256": "9b358fda92017f95aa514a054b057601fea52c914da79f83bd677fc6f0fe06e8",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "isolated_torch_dop853_execution_probe_v1",
+    "cases": [
+      {
+        "case": "nonautonomous_dense",
+        "maximum_absolute_state_difference": 1.1102230246251565e-16,
+        "same_times": true,
+        "nfev_cpu": 194,
+        "nfev_gpu": 194
+      },
+      {
+        "case": "actual_native_matrix_100us_dense",
+        "checkpoint_sha256": "35e6466103f9184265de7ecafc8b99fa48665ee19df919eb148cc72ec80054be",
+        "state_scalars": 4936006,
+        "maximum_absolute_state_difference": 4.263256414560601e-14,
+        "maximum_difference_over_solver_scale": 1.171586797314682e-09,
+        "same_times": true,
+        "nfev_cpu": 17,
+        "nfev_gpu": 17,
+        "cpu_seconds": 2.940011800004868,
+        "gpu_seconds": 0.5726082000182942
+      }
+    ],
+    "whole_network_validated": false,
+    "checkpoint_migration_performed": false,
+    "default_changed": false,
+    "physiological_validation": false
+  }
+}

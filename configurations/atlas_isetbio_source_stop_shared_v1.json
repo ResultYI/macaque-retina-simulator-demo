@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_isetbio_geometry_v1",
+  "atlas_profile": "retina_atlas_isetbio_source_stop_v1",
+  "frozen_graph": {
+    "artifact": "data/atlas/circuit_source_stop_shared_v1_20261016/local_population_graph.json",
+    "sha256": "3adf3a38a18c34bdee35d627e54fa4558c7219a6511951ed20b93c74f3e29e0b"
+  },
+  "owner_bounds_mm": [
+    0.34,
+    0.36,
+    -0.01,
+    0.01
+  ],
+  "halo_mm": 0.04,
+  "status": "LOCAL_NUMERICAL_PIPELINE_PASS",
+  "background_prepared": true,
+  "population_master_catalog": {
+    "path": "data/atlas/circuit_source_stop_shared_v1_20261016/population_catalog.json",
+    "sha256": "9463a754484e771e5350c952333132c49f53a6ca21c4c8305890a6ddcefe5183"
+  },
+  "migration": {
+    "status": "ACCEPTED_LOCAL_CONFIGURATION",
+    "canonical_target_outputs": [
+      "midget_RGC_ON",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF",
+      "small_bistratified_S_ON"
+    ],
+    "current_empty_owner_outputs": [],
+    "ready_for_single_default_switch": true,
+    "approved_boundary_contract": "finite_open_boundary; no exterior edges, compensation or crop renormalization",
+    "owner_target_contract": {
+      "canonical_outputs": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF",
+        "small_bistratified_S_ON"
+      ],
+      "active_owner_outputs": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF",
+        "small_bistratified_S_ON"
+      ],
+      "status": {
+        "midget_RGC_ON": "INSTANTIATED_OWNER_PATH",
+        "midget_RGC_OFF": "INSTANTIATED_OWNER_PATH",
+        "parasol_RGC_ON": "INSTANTIATED_OWNER_PATH",
+        "parasol_RGC_OFF": "INSTANTIATED_OWNER_PATH",
+        "small_bistratified_S_ON": "INSTANTIATED_OWNER_PATH"
+      },
+      "empty_is_biological_absence": false,
+      "synthetic_cells_added": false,
+      "empty_target_geometry_retained": true,
+      "all_canonical_owner_paths_executed": true
+    },
+    "runtime_status": "ACCEPTED_LOCAL_EFFECTIVE",
+    "stochastic_status": "STATISTICS_INSUFFICIENT",
+    "whole_network_steady_state_claim": false,
+    "physiological_validation": false
+  },
+  "typed_circuit_geometry": {
+    "path": "data/atlas/circuit_source_stop_shared_v1_20261016/circuit_geometry.json",
+    "sha256": "19aa42e13fd44d691847504fa7ad85b077bad22a8294ecd00a544e5883a92401"
+  },
+  "accepted_run": "reports/platform_runs/20261016T071417135148Z_0348ea84",
+  "background_checkpoint": {
+    "path": "reports/platform_runs/20261016T071417135148Z_0348ea84/background_checkpoint.json",
+    "sha256": "62ef8acde80854f191e1bf929d223c0c56adb7af0236506d7ded9c43dbb9333a"
+  }
+}

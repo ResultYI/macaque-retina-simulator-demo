@@ -46,6 +46,11 @@ class EffectiveMulattaSPartition:
         total=lambda xy:self.atlas.cones(Quantity(xy,'mm','functional_position','project_approximation','functional_visual_field'))
         labels,audit=assign_cone_types(mosaic,total,self.field,domain,self.config['LM_ratio'],
             'LM_equal_project_v1',seed,size)
+        if self.atlas.config['mosaic_rule']=='isetbio_fixed_human_borrowed_cone_master_v1':
+            audit.update(cone_geometry='official human-borrowed approximation',
+                S_quota='unchanged rounded integral of existing macaque effective S field on the complete macro',
+                selection_score='retained rhoS/rhoPacker score on actual human candidates, not measured human S probability',
+                LM_rule='unchanged named1:1 conditional rule on actual remaining candidates')
         result=(dict(zip(ids,labels.tolist())),dict(audit,global_label_bounds_mm=list(box),macro_key=[tx,ty],
             density_generated_cell_count=count,global_macro_seed=seed))
         self.cache[key]=result;return result

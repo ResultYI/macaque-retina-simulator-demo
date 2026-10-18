@@ -1,10 +1,83 @@
 # 猕猴中心—周边连续视网膜模拟器：当前架构与交付说明
 
+
+## Current result: human cone reuse candidate blocked (2026-10-17 UTC)
+
+The single main configuration remains unchanged: `configurations/retina_platform_v1.json` still selects the earlier finite local macaque route `configurations/atlas_isetbio_source_stop_shared_v1.json`. The new candidate is `configurations/atlas_human_borrowed_disk3mm_v1.json`; it has **not** passed neural acceptance or replaced the default.
+
+At the user's instruction, the macaque generator and old automatic waiter were stopped after a complete iteration5855 checkpoint. Current/best coordinates, all5855 history rows, initialization, RNG information and implementation identity were saved and verified in `reports/disk3mm_build_20261016/macaque_paused_20261017T140036Z/manifest.json`. The checkpoint SHA256 is `f7eab3454e757ce6b9a12dd1705d6884154fa3a87fcdeb80aabf2d35cf98fc95`. This is a paused, resumable result; the source stopping condition was not reached. No automatic fallback/resume is active.
+
+The candidate imports the locally verified official ISETBio right-eye nominal58-degree human cone lattice (actual MAT FOV58.5), pinned commit `d2924c2fe1d41c7dc5af1006d8081735b08f1b35`, official asset SHA256 `54eb0a9ef90511ca72782a194a7c6f17d5404e05794f7e4872c808d138f45728`. Its original coordinates are negated and converted from microns to millimetres using the official importer convention, then cropped to the existing complete support. There is no warp, density resampling, Packer fitting, jitter or gain correction. Original source row identities are retained. The complete square support contains705259 cones; the owner RF disk R=3mm contains505162; the fixed active optical/connection support contains545658. All active aperture neighborhoods are inside the complete support. Existing0.79-times-median-six-neighbor apertures were recomputed on actual imported positions.
+
+This is an explicit **human-borrowed approximation** on the composite macaque project frame. HC/rod/RBC/AII/parasol masters and existing physiological/effective coefficients remain. Cone-dependent IDs, BC/midget geometry, connected RF centres, finite contacts and optical tile/cache identities were rebuilt. Parasol source RF seeds and identities remain; their BC-dependent contact anchors are rebuilt by the existing rule. S labels retain macaque absolute macro quotas and legacy rhoS/rhoPacker selection scores on actual human candidates, with the named L:M1:1 rule. These scores are project selection weights, not measured human subtype probabilities. The actual S provider is the frozen `deMonasterio1985_mulatta_effective_S_v1` binding; an unused inherited `S_partition_rule` description in the atlas profile is historical metadata, not the executing S operator. Packer is also retained in the existing Wool temporal iso-density adapter; it does not generate the imported human coordinates. The earlier fixed-position source audit found human/Packer density ratios around0.57-0.72 at1mm and0.62-0.99 at3mm across meridians; these are source-function comparisons, not a physiological equivalence test.
+
+The actual frozen graph fails the unchanged global gates:
+
+- **7770 owner cones have no native HC feedback partner**, including78 directly in the central0.02mm owner. The exact central dependency view contains1630 unsupported native feedback rows. The fixed HC master, per-ID finite candidate arbors and no-nearest-fill policy are retained.
+- **533 owner midget candidates per ON/OFF polarity have `INCOMPLETE_MIDGET_CONVERGENCE_FINITE_SUPPORT`**, at RF radii1.1122-2.7576mm. These are interior finite-pool deficits, not a halo-only count. Targets and support were not relaxed.
+- The central(0,0)/0.02mm view has5975 nodes and is unsupported. Transition(1,0)/0.08mm and near-peripheral(2.85,0)/0.1mm views pass graph qualification with879437 and879720 nodes, respectively. This establishes graph qualification only. New human-route MATLAB/ISET capture, background preparation and neural responses were **not run** because the global scientific gates already failed.
+
+No partner filling, arbor enlargement, convergence-target change, cropped-weight renormalization or biological absence claim was used to hide the gaps. A scientific decision is required for this combination of geometry and retained rules. Continued macaque relaxation alone is not evidence that these compatibility gaps will disappear. The local effective/engineering routes remain distinct from this candidate.
+
+Authoritative results and exact bindings: `reports/human_disk3mm_build_20261017/final_delivery.json`, `feedback_gap_diagnosis.json`, and the frozen global graph manifest SHA256 `617247a7819cb1c6334ec7bff34ba0946034f4639ebe758c7c291fabb34d9074`. The final diagnostic image `geometry_blockers.png` plots actual geometry gaps; it is not a neural response figure. The old default SHA256 remains `054c057a17f6f66165f4a923dd2edf714b47454f3b9d26076c83c3c4af557006`. Fixture checks passed:13 existing ISET geometry cases,1 new explicit human species/asset/transform rejection case and15 disk structural/input/identity cases. The earlier focused background clock/RNG/continuation checks passed2 cases. These checks do not certify physiological calibration or whole-disk dynamics.
+
+The Pro semantic audit remains applicable: BC `activation` is the dynamic `terminal_release` of `HistoryBipolarTerminal`, which feeds AC/RGC; `generator_activation` is diagnostic. This implementation audit is separate from the unrun new-human-route dynamic acceptance. `conditional_rate` is hazard lambda, Bernoulli-bin expectation is `(1-exp(-lambda*dt))/dt`, and `window_rate` is realized count/window. vH C is author-scale calcium concentration in Supplement1 equations7-9; `I_os=X^nX` is current. Legacy serialized C labels remain for checkpoint compatibility and do not establish physical micromolar units. The2.82ms delay applies to `observed_Vh`; BC input uses pre-readout `outer_native.release`. Earlier1.2ms smoke results do not establish full pathway function.
+
+Wool Table1 uses D=Rc=sigma as radius with `exp[-d^2/(2*sigma^2)]` truncated at Rc. The existing project kernel `exp[-(d/Rc)^2]`, support `min(40um,Rc*sqrt(log100))`, finite candidate selection, fractional weights and normalization are separate project rules. Borrowing n/scale does not establish source-equivalent kernel geometry. Source references: [vH Supplement1](https://pure.rug.nl/ws/files/2938731/2005JVisvHaterenSupp1.pdf), [Wool article](https://pmc.ncbi.nlm.nih.gov/articles/PMC5815352/), [official ISETBio mosaic asset documentation](https://github.com/isetbio/isetbio/blob/d2924c2fe1d41c7dc5af1006d8081735b08f1b35/docs/sdr-mosaic-data.md).
+
+RBC=rod/18, AII=5000/mm^2, HC candidate geometry, shared S/H2 kinetics, BC/AC/RGC effective dynamics and physical soma displacement retain their documented project limitations. Whole3mm neural dynamics, stochastic stationarity, independent physiological validation and selective pathway causal controls remain unverified. No default adoption, new Git commit or push is represented as completed here. Historical sections below remain the record of earlier implementations and runs.
+
+
 本报告更新同一份 `docs/core_design.md`。当前主线是独立的猕猴视网膜模拟器，依据已确认的 FINAL v0.1 和随后核验的 rod–RBC–AII 合同继续实现。没有恢复旧 RetiPath、变化盲或下一注视点预测；没有使用 CNN 代替细胞和连接。没有安装软件、训练模型、拟合动物数据或启动服务。
 
-**当前唯一活动入口（2026-10-12）**是 `atlas_population_revision_v1`，GUI、公共CLI、几何预览和Run读取同一份冻结的局部 .35mm 人口图，生产读取现已采用多人口/连接分块容器。34组件/20层、77状态块/53,759标量已完成1.3秒数值背景准备及同checkpoint各20ms亮暗阶跃；匹配的准备状态继续有效，无旧图回退。一个AII行仍有RBC配额2/3缺额。背景/响应证据见“获批的同图背景准备与亮暗阶跃”，最新存储入口与界限见文末“多人口连接artifact的生产分块接入”；前文带日期的旧默认、零预运行或未接入描述属于历史状态。
+**2026-10-14历史 GUI 基线**采用 `atlas_population_revision_v1` 与同一份冻结局部 .35mm 人口图，34组件/20层、77状态块/53,759标量的参数、人口、连接、gap、时钟和solver绑定均未改变。日常图像/视频输入现已实际接入获批的 `iset_lcd_apple_mw_v1`：GUI Run → 真实 MATLAB/ISET 导出或身份匹配的捕获缓存 → Python 输入 → retina solver。新背景在2.10秒、1707.00秒墙钟内按原判据收敛；默认1.2ms真实GUI刺激运行通过，复用的是本轮新背景。2026-10-12旧RGB背景与20ms亮暗结果仅保留为历史，不作为新前端的适应/响应证据。一个AII行仍有RBC配额2/3缺额。
 
-2026-10-11 的旧 `retina_contact_geometry_effective_v1` 及其1.3秒数值背景准备/20ms刺激结果继续作为独立历史备份，不移作本次新图的适应证据。旧严格IPL、legacy source ROI及缩密度工程预览均保留。原VH文件未改，Chen外围LM独立参考仍未移植到中央。全网生理平衡、随机稳态、动力学校准和独立动物验证尚未完成。
+2026-10-11 的旧 `retina_contact_geometry_effective_v1`、旧source ROI/工程预览与其结果保持独立历史身份；GUI历史结果可读，但不会覆盖当前Run的混合参考前端，无RGB cone fallback。原VH/Chen等内部机制与生理参数未改，独立外围LM物理参考不拼入本次native主干。全猕猴光学/动力学校准、随机稳态与独立动物验证仍未完成。
+
+## 当前默认与新 cone 全链迁移（2026-10-16）
+
+唯一主配置仍为 `configurations/retina_platform_v1.json`，现选择 `atlas_isetbio_geometry_v1`，经 `circuit_configuration_path` 绑定 `configurations/atlas_isetbio_source_stop_shared_v1.json`。已冻结的5677步、121811点cone master的manifest SHA256为 `5ab2429aa920e9bd07f7a7d1a335edeffbbf8f263ddce731352809e7d6218a3a`。本轮没有重新生成mosaic，没有假造旧新cone逐细胞映射；新命名空间实际贯穿人口图、接触与权重、typed几何、ISET输入和背景身份。
+
+本次神经运行仍限于原owner `[.34,.36,-.01,.01] mm`、RF输入 `[.30,.40,-.05,.05] mm`及40µm halo。活动网络1590 cone、1053 HC、4586 rod、165 RBC、357 AII；34组件、20层、77状态块/58756标量，五类RGC owner均存在。固定HC和原独立parasol ON/OFF master保留；旧rod/RBC/AII master不能覆盖新cone依赖（rod上界相差约1.8µm），仅这三类按原已批准密度和采样规则建立新有限资产。接触、权重、内层表、parasol IPL锚及gap配方重新计算后冻结于 `data/atlas/circuit_source_stop_shared_v1_20261016`；生产装配只加载核验。owner必需输入行缺额0；RBC→AII仍有5/357行实际2/目标3联系，没有改40µm半径或补增益。有限开放外边界不变。
+
+实际验收经Tk Run按钮→固定版本MATLAB/ISETCam/ISETBio→Python网络完成，目录 `reports/platform_runs/20261016T071417135148Z_0348ea84`。本次真实导出新输入，未复用旧几何输入或背景。背景1.5s、538.895s墙钟按原判据数值收敛，77/77状态块覆盖；随后记录1.2ms、1窗口，保存输出均有限，完整运行578.562s。完整背景checkpoint由重新装配的同一几何成功加载，未再次推进时间。随机burn-in完成但统计仍为 `STATISTICS_INSUFFICIENT`，不声明整网随机稳态。混合来源光学、估计孔径、S/H2共享动力学、有效内层动力学及原跨物种/区域转移保持原近似身份，没有新增生理校准结论。
+
+构建核验、转换、GUI及新增无界面入口 `tools/run_retina.py` 读取同一RunConfig和冻结几何绑定。`tools/build_isetbio_model.py --verify-only --config <RunConfig>`可核验；构建仍需显式指定新atlas和输出。基础回归86项、最终共享人口绑定30项、默认切换4项通过。GUI证据 `reports/cone_master_migration_20261016/gui_final/check.json`，同一保存结果的可读图 `reports/cone_master_migration_20261016/response.png`，统一交付索引 `delivery.json`。最初启动受偏好目录写权限和许可通信阻塞，分别通过项目内运行目录及获准的沙箱外MATLAB执行解决。误重采样独立parasol的中间候选已停止并标为superseded，没有成为默认。
+
+默认在候选验收和checkpoint身份校验通过后原子切换。旧main配置保存在 `reports/cone_master_migration_20261016/before/retina_platform_v1.json`；还原此文件即可恢复旧默认，代码仍保留旧人口装配绑定。旧cone、人口图、typed几何、输入、背景和结果未删除或覆盖；旧缓存继续受身份检查，不能强行混用。
+
+用户已批准后续第一阶段目标为**中央凹为中心、半径3mm的二维圆盘，包含中心到近周边**，不代表全视网膜/远周边或新的生理规则。本轮没有扩域。现master的完整可查询方框仅为 `[-.512,.512]² mm`，生成椭圆半轴约 `.799370/.978989 mm`，不足以覆盖3mm圆盘。扩域须建立更大的固定cone总体及映射后依赖的HC/内层/rod总体、typed图和输入分块；不能复制本小patch或降低密度冒充覆盖。原获批Packer中央桥/方向插值、S跨种有效分配、Schein有界桥/外侧恒等、有效动力学和混合光学可保留原近似身份，不应再次当作新增假设。另需决定的是现有profile不支持处的补法，例如中央HC仍零接触时是否改变arbor/密度/接触规则，以及若强制精确r=0细胞时的位移方向策略；范围批准本身未授权这些改变。若要求各类型和各偏心位置均获生理校准，还需补相应动力学及形态来源；现有有效参数全域复用不能证明该验证。缺soma映射仍单列，RF/pedicle/IPL坐标不改名充当soma。
+
+## 有限 Benardete–Kaplan 功能时序比较（2026-10-14）
+
+独立参考在 `exploratory/benardete_kaplan_reference.py`；固定提交 `08aea38003db41c4753990038ed8ac9a75b2706a` 的两份 CSV、SHA 和原文定位保存在 `data/literature/benardete_kaplan_v1/sources.json`。P 的 `NLTL` 除以 `NL` 得到 `TL`；M 使用直接列出的 `TL` 中位数，不强制中位数乘积相等。时间由 ms 转秒，A 为 Hz/单位对比度的输出功能增益；各列中位数组成的向量不是实测单细胞或联合分布。M 原文 p.357 Eq.(3)、p.360 Eq.(4)、p.363 Table 2 已由父任务审阅者核对；`Ts=T0/[1+(c/C半)^2]` 保留平方，c 固定为本次幅值。Vanni 无平方实现另行注明；P 公式高清逐字符核验仍缺失。D 是电刺激到记录端的传播延迟，未赋给原生细胞内部机制。
+
+一次原生轨迹完成750ms的8Hz局部圆斑正弦刺激，后500ms/四周期计分，实际中心5个L/M cone capture基频幅值为3.6162%。按原128MiB预算拆成十个75ms输入快照，34组件/20层的同一状态、时钟、RNG和历史连续推进，无参数、连接、ID或默认配置改变。复用2.10s新ISET背景时，原checkpoint在原上下文通过全部15项身份检查；前端保存位置补丁逆向恢复旧SHA完全一致，且每段新背景向量与旧向量逐值完全相等。本次成功轨迹流程约588.9s，146,156次RHS、原生积分墙钟以manifest记录为准。两个前置失败与绘图库缺失记录保留，未计作原生响应结果。
+
+读数为事件生成用条件强度λ(t)，保留原生spike history。原v1把中心capture对比度当作B–K外部刺激对比度，直接增益叠图有口径错误；旧manifest、图与数组已完整保存于 `superseded_capture_normalization_v1`，明确标为superseded。v2仅后处理原存档：校验实际输入MAT/NPZ、固定LCD gamma/SPD与光度数据，按原gamma线性插值及光谱能量积分恢复光斑外部亮度，均匀外部参考约14.1471088cd/m²，与原记录相对差1.91e−7；未按capture比例估算或新标定。共同分母现为 `Lspot/Luniform_reference−1`，8Hz幅值4.86185%，中心capture的3.61615%仅作前端中介。原生增益依次为midget ON/OFF 41.99/41.00、parasol ON/OFF 371.97/128.02 Hz/单位外部亮度对比度，相应B–K参考为52.94/41.49、323.99/345.62。参考使用同一恢复的外部波形，Eq.(4)中的c固定为该外部8Hz幅值。
+
+原始λ、膜电压、输入快照和最终checkpoint未改变。因分母波形改变，四类原生计算相位统一减1.6288°；P参考相位不变，parasol ON/OFF参考相位分别增6.7999°/8.2906°，来自固定实验c的修正，而不是平移、翻转或拟合。逐周期幅相变化及单轨迹限制保留；仅一次8Hz采样不能估平均放电率传递函数或脉冲核。局部圆斑中心/周边未标定，当前100td/3mm混合参考与原约60cd/m²（P 5mm、约1178td）仍不同；重建的是实际ISET模型场景亮度，不是新增硬件测量。修正版 `comparison_analysis_v2.npz`、`manifest.json` 与 `comparison.png` 为当前分析，原 `native_response.npz` 的native数据仍有效，其旧reference字段由v1归档标为superseded。一致性核验通过，原生求解没有重跑。
+
+## 当前获批的混合参考光输入（2026-10-14）
+
+生产路径为 `retina_platform.backend.SimulationSession` → `MixedReferenceFrontend` → `tools/export_mixed_reference.m` → `load_offline_inputs` / `rebase_offline_inputs` → `HybridRunner.advance`。`configurations/iset_lcd_apple_mw_v1.json` 是唯一活动前端配置；界面简洁显示“混合参考输入 / LCD-Apple / human-MW”。缺MATLAB、源资产、身份或时间/单位合同不匹配时正常报错，不静默切回旧RGB cone点采样。独立作者参考/历史fixture继续保留，不代表本次日常前端。
+
+| 项目 | 实际采用与边界 |
+| --- | --- |
+| 显示输入 | ISETCam固定版 `displayCreate('LCD-Apple')` 的实测SPD（380–780nm、4nm采样）与1024×3 gamma表。视频数字RGB直接驱动gamma一次，cone路径不先做sRGB逆变换，也不改成线性gamma表。源图像/视频FOV、帧选择与时间戳保持；局部场采用明确的RGB重建与既有halo有限光学支持，属于数值近似。 |
+| optics | 显式 `oiCreate('human mw')` 与 `opticsCreate('human mw',0.0015,f_native_m)`；第二参数为3mm瞳孔的半径米。`f_native_m=223e-6/tan(1deg)=0.012775661443659351m`，保持项目223µm/deg。该项是按猕猴布局尺度缩放的人类MW近似，不是猕猴实测波前，未采用Thibos、AO或缺失的M838波前。 |
+| aperture | ISET `positionsToSpacings` 在冻结完整支持集2226 cones上取局部六近邻距离中位数，按ID取1465运行cones，`D_i=0.79×spacing_i`。每个cone保留独立pillbox集光面积，导入空间blur为`mean(D_i)`；本例均值3.2074938µm、范围0.9588927–6.7884120µm。位置、ID、类型均不生成/移动，直径是几何估计而非测量。 |
+| 光谱/filter/OS | ISET Stockman–Sharpe intrinsic absorbance；OD `[0.5,0.5,0.4]`，peak efficiency均2/3；human Lens密度1在optical image中应用一次，Macular密度0.35及其human偏心度规则在capture中应用，标准ISET OS衰减保留。本局部OS因子约0.589–0.689。人类借用与标准模型convention明确记录，未使用工程Gaussian吸收谱。 |
+| reference/alpha | 既有`u=0.5 linear`参考经对应数字RGB `[0.735356983]*3`进入LCD，计算一个固定谱辐亮度增益（本例0.2223670242），所有帧共用。3mm pupil的100td参考亮度为14.1471060526cd/m²。三个同条件L/M/S参考cone使用固定均值孔径与patch中心，不按每个运行cone重新标定。`alpha_class=q_ref_class/I_ref`；期望`R*/window`仅按原窗长转为窗均值，再除固定alpha，在原生τR之前驱动native cone/H1。变色光谱的结果称参考等效驱动，不称一般photopic td。 |
+| background/rod | 均匀参考场保留各cone的面积/位置差异，本例参考等效背景约9.12–450.54td；不逐细胞归一成100。该向量、前端/source/参数/图/时钟与solver身份共同绑定新背景缓存。Rod保持原独立sRGB加权R*/s输入与原动力学，不宣称共享完整ISET捕获。 |
+
+MATLAB导出的是无上游photon noise的expected capture，没有photocurrent或上游phototransduction；原H1/H2、BC/AC/RGC、杆通路和神经RNG继续由现有模型负责。L/M/S参考率本例为5221.3575/4084.8355/586.0268 R*/s，来自这套混合参考条件，不能冒称原vH实验绝对标定。完整捕获/参考/源码hash、角色和时序记录在运行manifest与输入NPZ中。每个新Run在自己的目录独占创建并校验 `input.npz`，`source_file` 和 `source_sha256` 指向该不可覆盖快照；相同 cone capture 可共享，但不同 rod 背景或同配置再次运行不改写首个Run的来源。旧共享缓存中的包不再由新Run覆盖；若历史来源此前已被覆盖，仅凭此次修复不能恢复其原字节，仍必须按原SHA核验。文件身份检查不等于生理验证。
+
+时间合同保留刺激相对窗口边与绝对状态时钟、作者100µs格及其前史。期望counts按原窗长转窗均值，窗口内ZOH，末端消费最后一个有效窗；计数与原窗口数组不改变。仅在≤1e-12s舍入误差内容许十进制时长与tick乘法末端差，并将rebased末端/重合knots对齐到既有时钟；真实覆盖缺失仍拒绝。离线输入和RGB帧各有128MiB预算，超限明确要求缩短所选记录，不删细胞或降密度。
+
+验证：66项相关唯一检查已覆盖输入/单位/窗口/背景和GUI历史上下文。真实ISET导出已完成；新背景完整77/77状态块在2.10s达到原判据，最后三窗最大残差0.74134、0.49693、0.33310。一次修复后的默认1.2ms实际Tk Run复用了身份匹配的新背景与真实ISET捕获缓存，重新执行retina solver（14次积分调用/250次RHS），34组件/20层输出有限。未复用旧RGB神经结果、未改阈值/生理增益、未跑全域或新机制研究。
+
+证据：`reports/platform_runs/20261014T001258071356Z_a376b1e0/background_initialization.json` 与新完整checkpoint；最终短运行 `reports/platform_runs/20261014T004903003981Z_ba858f3c`；GUI验收 `reports/isetbio_active_frontend/gui_20261014_final/check.json` 与 `response.png`。匹配缓存后本次短运行墙钟11.68s。两个此前窗口舍入失败保留为失败历史，不计为通过。该交付是获批混合参考前端，不是完成全部猕猴生理标定。
 
 ## 结构、逐项目标与执行路径
 
@@ -45,13 +118,13 @@ AII glycine 只进入选定 FMB-like 和 DB1-like OFF 终端。0.97/0.80 nS、�
 
 ## 空间、中心—周边与眼动输入
 
-cone mosaic 显式非均匀，来自已固定代码表的 Packer 密度曲线，经守恒目标数的 equal-rho-mass 容量近似生成。保留可替换 backend；不是精确 Laguerre，也不是普通加权 Lloyd。S 标签使用 de Monasterio 源拟合/中央 assay 约束和显式项目桥接，L/M 比率、magnification、种间转移分别声明。
+2026-10-14旧冻结人口图的 cone 采用 `piecewise_constant_poisson_tiles_v1`：固定全局分块上的分段常数 Poisson 采样；不能称已替换成等质量 master。HC 采用 joint canonical master；rod、RBC、AII 与 parasol ON/OFF 各用独立等质量 master，其他人口保持各自既有规则。已有 equal-rho-mass 后端并非所有活动人口的实际采样器，也不等于精确 Laguerre。S 标签使用 de Monasterio 源拟合/中央 assay 约束和显式项目桥接；L/M 比率、magnification、种间转移分别声明。此次只纠正说明，不重采样。
 
-RF/吸收点、胞体、OPL pedicle/dendrite、IPL terminal/arbor 使用各自坐标字段。McGregor 位移及其 cross-species 计数延伸保留已有证据与近似说明；RGC soma 不能代替 cone 吸收坐标。新连接查询使用所声明的 OPL/IPL 接触坐标，未测完整形态的部分是明确的点形态近似。rod 终端属于 OPL，BC 终端属于 IPL；合同已经按真实细胞类型区分。
+坐标接口区分 RF/吸收点、soma、OPL pedicle/dendrite 和 IPL terminal/arbor，缺失角色保持缺失。当前活动图五类 RGC 只有 `rf` 与 `ipl_post_arbor`，没有 soma 坐标；不能由角色可分离推称完整胞体位移已实现，也不复制 RF 伪造 soma。McGregor 等位移原语/独立历史参考保留已有证据与近似说明，但不等于本活动图已接入 RGC soma 映射；RGC soma 不能代替 cone 吸收坐标。新连接查询使用所声明的 OPL/IPL 接触坐标，未测完整形态的部分是明确的点形态近似。rod 终端属于 OPL，BC 终端属于 IPL；合同已经按真实细胞类型区分。
 
 rod 的环状径向形状和角度插值是来源地标约束下的项目近似，不是 digitized Packer 全图。AII 有独立的内视网膜位置，并保留靠近中央的 cone-driven 通路，不能随局部杆/RBC 缺失一起删除。默认有效分辨率的接触半径/汇聚不等于实测 arbor；实际边长、接触数、有效扩张和单位都输出到 manifest。没有悄悄把真实密度降采样后称作动物细胞数量。
 
-中心—周边连续 target 保留。当前默认实际运行一个周边二维 patch：owner `[4.59,4.61,-.01,.01] mm`，halo 40 µm，生成域 `[4.55,4.65,-.05,.05] mm`；尺寸属于计算选择。cone 数量为密度积分四舍五入，HC 在 OPL 独立积分。旧 x=.004..7.2、y=±.04 mm 缩密度走廊和显式有效计数仅供工程预览/历史复现。原 source_patch_v1 按映射后的 OPL halo 选择一个动物的 2–3 或 4–5 mm 区间，其他点锚与中央峰值不暗外推；另已授权实现 hc_joint_synthetic_v1 的 0–7.1 mm 合成场与联合mosaic/有限arbor接触。两者保持独立身份，新HC路径未运行，已跑patch不代表连续全域已经模拟。
+中心—周边连续 target 保留。2026-10-10历史source ROI运行的是周边二维 patch：owner `[4.59,4.61,-.01,.01] mm`，halo 40 µm，生成域 `[4.55,4.65,-.05,.05] mm`；尺寸属于计算选择。cone 数量为密度积分四舍五入，HC 在 OPL 独立积分。旧 x=.004..7.2、y=±.04 mm 缩密度走廊和显式有效计数仅供工程预览/历史复现。原 source_patch_v1 按映射后的 OPL halo 选择一个动物的 2–3 或 4–5 mm 区间，其他点锚与中央峰值不暗外推；另已授权实现 hc_joint_synthetic_v1 的 0–7.1 mm 合成场与联合mosaic/有限arbor接触。两者保持独立身份，新HC路径未运行，已跑patch不代表连续全域已经模拟。
 
 新默认 cone 统一 `native_shared_H1_approximation`，S/H2 与区域转移继续明确未标定；不使用 20–25° blend。旧 blend 只在具名历史工程预览中保留。`physical_effective_network` 提供五组件独立 Chen >20° LM + 既有 effective cable/terminal/HC 配置，不以 native 填补其他谱型或中心；物理参考仍不等于完成 release 校准。给定 gaze 只改变输入采样，不预测眼动。
 
@@ -59,9 +132,9 @@ rod 的环状径向形状和角度插值是来源地标约束下的项目近似�
 
 所有连续状态使用联合 RHS。Chen rod/cone author-discrete 状态在精确 0.1 ms 事件更新，期间电流 ZOH 保持；BC/AC 的历史时钟和 spike 时钟独立。新的 `explicit_event_clock` 支持互不整除的周期（默认 widefield AC=.73 ms，BC/RGC=1 ms），不四舍五入周期，也不改写源核。原来的 commensurate 模式仍可用。原有显式逐边延迟、前史、method-of-steps、时间戳缓冲和 checkpoint 继续可用。
 
-checkpoint 保存膜/化学/历史/释放池状态、事件索引、延迟历史、RNG 和输入背景上下文；跨窗口不重置。当前默认 2 ms 均匀背景预运行后记录 6 ms；outer/rod 化学状态按声明背景求固定点，内层有限预运行输出漂移诊断。该配置明确允许 `finite_background_prerun_v1`，非收敛输出 `INIT_NOT_CONVERGED_TRANSIENT_ALLOWED`，绝不标为 equilibrated。严格全确定性网络平衡及循环边界收敛尚未完成，不能把延长固定时长当作验证。
+checkpoint 保存膜/化学/历史/释放池状态、事件索引、延迟历史、RNG 和完整输入背景上下文；跨窗口不重置。当前GUI使用有界参考场背景准备：由既有名义参考初态开始，以各cone实际ISET捕获对应的参考等效驱动积分；初始化本身不声称已经适应。原数值政策要求完整0.1s窗口、连续3窗通过、最大归一化状态漂移/原RHS/离散缺陷≤1，并检查前史；最低已知时间要求1.25s，墙钟预算1800s，未达到时不开始刺激。该证书只覆盖注册状态的数值判据，不是全生理稳态、随机分布稳态或独立动物验证。旧2ms固定预运行/6ms记录属于历史工程配置。
 
-每个窗口输出所有层的有单位状态/端口，包括 rod photocurrent、接触 gate、RBC/AII 电位和释放池、预期事件率、AMPA/glycine 电导、各端 gap current、BC 原始历史生成量和终端电位、HC 反馈、RGC 条件强度/观察 spike 数。条件强度、实际窗口 firing rate 和 observed event count 分开。默认记录 1 ms；可用 `--sample-step` 指定更细的亚毫秒输出，预算会按实际状态和样本检查。
+每个窗口输出所有层的有单位状态/端口，包括 rod photocurrent、接触 gate、RBC/AII 电位和释放池、预期事件率、AMPA/glycine 电导、各端 gap current、BC 原始历史生成量和终端电位、HC 反馈、RGC 条件强度/观察 spike 数。条件强度、实际窗口 firing rate 和 observed event count 分开。当前GUI默认采样0.1ms；历史独立命令保留自己的记录设置。可用 `--sample-step` 指定更细的亚毫秒输出，预算会按实际状态和样本检查。
 
 参数证据由 `EvidenceValue`/profile 导出，含单位、来源、定位、适用域和不确定性。`measurement`、`published_fit`、`author_assumption`、`project_approximation` 与 `software_fixture` 保持区分，来源标签另列 `MEASURED_MACAQUE`、`AUTHOR_MODEL_PRIMATE`、`PROJECT_EFFECTIVE_TEMP`；默认没有隐含 `TRANSFER_RAT`。空间/接触系数也有独立几何证据条目。用于定参数的源值、曲线或拟合不能充当独立验证。
 
@@ -188,7 +261,7 @@ cone 使用未缩放的 Packer 派生二维 provider；rod 使用既有 source-l
 
 halo 是有限计算 buffer。当前边界是 finite induced graph，外部耦合省略，没有 reflection/重复细胞。HC/gap 循环有多跳和无限 recurrent 依赖；40 µm halo 不宣称消除边界误差。扩大 halo 的 owner 响应收敛、Gaussian 未生成域丢失质量和完整严格接线验证仍未完成，当前 profile 只允许明确 finite-boundary 近似。超过 cell/compile/input/recording 预算会报错，不暗缩密度、改 dt 或切换 preview。
 
-midget RGC 的 `parent_bc_ids` 为实际限定 ID，`effective_contact_target<=1` 时按 ID 建立一对一 BC→RGC 矩阵，不依赖索引排序或 nearest；越出声明接触范围拒绝，并更新实际连接审计。中央规则已做乱序父 ID 与越界回归，但当前 4.6 mm ROI 是外围汇聚路径。原HC patch provider保留独立的2–3与4–5 mm区间；新合成HC有限密度场及中央q→pedicle→arbor接触接口已实施，但中央形态跨度未设默认、全层运行未执行，因此不声称中央源约束全层ROI已通过验收。私线接触点现在取限定 parent BC 的 IPL terminal，RGC 解剖 soma 单独保存，不再把 soma 当突触点；Wool 分支按 iso-density temporal-equivalent radius 判断，不能用 UI 中心标签替代。新默认 native 路线没有 20–25° native/Chen blend；旧 blend 仅留于具名工程 preview。
+midget RGC 的 `parent_bc_ids` 为实际限定 ID，`effective_contact_target<=1` 时按 ID 建立一对一 BC→RGC 矩阵，不依赖索引排序或 nearest；越出声明接触范围拒绝，并更新实际连接审计。中央规则已做乱序父 ID 与越界回归，但当前 4.6 mm ROI 是外围汇聚路径。原HC patch provider保留独立的2–3与4–5 mm区间；新合成HC有限密度场及中央q→pedicle→arbor接触接口已实施，但中央形态跨度未设默认、全层运行未执行，因此不声称中央源约束全层ROI已通过验收。该历史路径私线接触点取限定 parent BC 的 IPL terminal，坐标原语可单独保存 soma、不把 soma 当突触点；当前活动图五类 RGC 的 soma 仍缺失，不能把这一接口能力表述成完整胞体位移已接入；Wool 分支按 iso-density temporal-equivalent radius 判断，不能用 UI 中心标签替代。新默认 native 路线没有 20–25° native/Chen blend；旧 blend 仅留于具名工程 preview。
 
 Maddox `source_operators.maddox_ca_activation` 需精确 `cellN_hold-90/-50` record ID，六对 Vhalf/k 实际与冻结原 workbook K/L 单元格配对核对，接既有 normalized Ca activation 算子。类型是 `published_fit`；未知 region/谱型、gCa/ECa、动力学、HC shift 和 release 不由此补齐。`examples.physical_effective_network.physical_effective_network` 是独立可运行五组件参考。合同补充的 Bryman/Wienbar 特定 foveal cable 原始资料在本项目未提供可核来源资产，本轮未造一个 source-verified peripheral cable；保留原 C/gL/axial/Vanchor effective closure。
 
@@ -639,3 +712,66 @@ GUI/公共CLI仍使用[同一默认配置](../configurations/retina_platform_v1.
 [atlas_runtime.py](../retina_sim/atlas_runtime.py) 中声明的短合成 native light 原先在装配后预分配整个 `duration/0.0001 × cones` 正弦数组，即使 GUI/背景路径随后替换该通道也会产生分配。现共享入口调用 `_sampled_native_light_channel`，仅缓存当前相邻两行，保留 `round(duration/0.0001)`、整数索引乘100µs的原网格、端点钳制及同一线性加权计算；单位td、input contract、来源/evidence、background context和适用域保持相同。此输入缓存不携带动力学状态，反向/跳时读取重算对应两行；背景平移、事件时钟、RNG、延迟及状态推进代码未修改。没有增加GUI参数、换生理值、默认配置或实验输入。
 
 [一次有界核验](../reports/native_light_input_check_20261012.json)使用7个位置、4.04ms小输入：351次数值/索引检查逐值相等（最大差0td），含采样点两侧、插值中点、反向与重复查询、末网格之后的钳制和越界拒绝；另14个背景平移及外部分块时间边界检查相等。内存单项用1,465个位置创建11s与1,100s通道，各只查询4次；缓存23,440bytes、phase11,720bytes，`tracemalloc`峰值88,017/87,929bytes。旧11s完整rates数组理论下限1,289,211,720bytes；没有为对比实际分配旧大数组。上述为通道Python/NumPy分配核验，不是整网RSS或耗时改进测量；35份受保护配置/输入状态代码/源资产哈希未变。未重新装配积分或准备背景，不增加全域0–3mm覆盖或生理验证结论。
+
+
+### 连续计算内核（2026-10-15）
+
+`HybridRunner(compiled, compute_backend='auto')` 默认对已核对的机制和无代数闭环、无连续边延迟的图使用 `numba_flat_rhs_v1`。`compute_backend='python'` 保留原参考路径，`'numba'` 要求实际可编译；auto 对不支持的图在 `result.metadata['compute_backend']` 中记录回退原因。当前34组件、77状态块、53,759标量全部保留。内核由实际绑定参数和CSR连接生成692条集中指令，float64、fastmath=False、非并行且检查边界；已核对工厂文件的固定SHA改变时必须重新审查lowering。每个内核实例的临时缓冲区受锁保护，每次重写状态、输入、运算结果和gap累加器，不跨状态缓存信号。
+
+仅连续RHS迁入编译调用，`rhs_flat_reference`、原观察函数和组件实现继续保留。SciPy求解器、误差容限、100 µs/730 µs时间事件、历史转移、PCG64消费和记录路径未改变。新的运行身份包括内核源码、后端、Numba版本及数值计划；编译耗时不参与身份。旧checkpoint的严格身份保护未放宽。比较脚本在逐项核对参数、连接、布局和时钟后仅作测试用途的状态身份迁移，不修改或重新预热旧背景缓存。
+
+[有限回归](../reports/compiled_kernel_20ms_20261015/summary.json)复用原B-K缓存输入与2.10 s背景状态，一次Python、一次Numba的20 ms窗口，均记录全部188组状态/端口轨迹、21个时点。首次编译2.337 s，随后进程载入编译缓存0.192 s；正常运行8.891→4.483 s（1.983倍），两路均225次求解、3,186次RHS。188组中49组逐字节一致；其余为浮点舍入差异，最大逐轨迹尺度归一化差3.345e-15；315个spike事件、RNG、历史计数和调度时刻完全一致。回归阈值是明示单位尺度下的轨迹差1e-10，不把求解器局部容限解释为全局误差保证。24项集中测试通过。此计时的全量记录比前一轮7.71 s仅记录RGC的口径更宽，不能混用来推算倍数。
+
+本轮不作750 ms外推。编译后3.490 s仍在求解器及RHS边界内，0.992 s在该边界外，包含输入、历史、观察和全量记录；未进一步剖析各自占比。
+
+
+### ISET cone与midget几何接入（2026-10-15，模型实现）
+
+本轮停止追加性能工作，保留已完成内核。新增`isetbio_geometry.py`、`export_isetbio_geometry.m`、`generate_isetbio_geometry.py`及`build_isetbio_model.py`。实际调用固定commit d2924c2fe1d41c7dc5af1006d8081735b08f1b35的`retinalattice.generatePatch`，其全部相关m文件逐一与本地Git blob核对。传入现有Packer M.nemestrina四方向密度/中央项目桥接的明确双线性表、项目.223mm/deg、由实际最大密度计算的最小spacing；同时替换spacing与角度转换回调，不使用默认人类Watson cone/midget密度。坐标极性按上游最终翻转配对。没有改变密度scale或既有S/LM规则。
+
+冻结master含114,949个cone点，完整可查询矩形仅为RF x/y各[-.512,.512]mm，不能称RF0–3mm全域。ID绑定固定master/source/key，不随ROI请求顺序或tile划分生成新点。上游请求50次迭代、其循环实际记录到51，因迭代上限结束，最终报告quality .6584；不宣称达到其.84质量条件。上游历史使用single后返回double的精度约定保留。此为可重现数值点阵，非逐细胞动物测量。
+
+midget继续采用已批准中央私线和外围Wool有效汇聚，未补独立猕猴midget密度。`connected_cone_centroid_isetbio_v1`从最终通过status gate的cone→BC→RGC权重计算RF中心，矩阵轴显式区分；与固定ISET`MosaicConnector.updateDestinationCentroidsFromInputs/weightedMean`相对应。私线精确保留父cone RF；多输入使用实际权重。RF中心不写成胞体，OPL/IPL锚点和独立胞体缺口保持；无有效输入时拒绝捏造中心。Parasol/SBC密度和来源均未扩展。
+
+当前(.34,.36,-.01,.01)mm owner及.04mm halo已重新建立受影响的HC/BC/AC/RGC和rod/RBC/AII连接。完整几何为2341cone、1054HC；owner24cone全部映射，均有HC候选。新owner自然没有small-bistratified目标，完整116个S cone/relay几何仍保存在图中；新模式明确记录EMPTY_SAMPLE，不改seed、密度或ROI强造样本。实际祖先视图装配29组件、70状态块：cone1564、HC1054、midget BC/RGC ON/OFF各24、parasol ON3/OFF2、rod4659、RBC168、AII367，保留6720个rod–RBC接点及1095个AMPA接点。此局部实例不称全部20层都有非空owner。
+
+等质量master重建暴露原分配器的浮点尾数耗尽错误；仅在原有1e-8容量审计上限内守恒分配尾数，数量/密度/审计阈值不变，新recipe记录生成代码SHA，旧master保留。孔径支持从新完整master按实际ID映射，按原0.79×六近邻中位spacing规则重算；输入与背景签名包含新图、位置、类型和支持。GUI新增可选择的“ISET几何”模式；切换清除旧几何的capture/native-background/checkpoint绑定，运行须准备独立收敛背景。旧默认`atlas_population_revision_v1`和历史文件保留。本轮只装配模型，没有新ISET刺激捕获、背景预热、神经刺激运行或性能实验。
+
+[统一核验](../reports/isetbio_model_20261015/verification.json)记录40项累计相关局部测试（本次共享目录9项）、装配与剩余缺口。可变cone ROI接口已实现，但完整神经图仍限定这个冻结局部实例；跨中心/周边运行尚需共享的rod/RBC/AII/parasol master与完整上游/边界支持，不能每个ROI重采样后冒称同一atlas。独立midget密度、HC全域来源/闭合及既有S/H2/内层动力学标定缺口仍未填，20°条带、停用rod/RBC及新的数值方法均未激活。
+
+
+#### 组件差异、统一配置边界与共享人口目录
+
+旧34→新29组件的五项差异是S_ON_BC、small_bistratified_S_ON，以及small-bistratified的S_ON_BC兴奋、diffuse_BC_OFF兴奋、local_feedforward_AC抑制三个conductance组件。七个状态块分别是S_ON_BC.history_0/1/2、activation、V、terminal_release和small_bistratified_S_ON.V。没有新增组件。保留组件的向量长度随新几何改变，总标量53759→59107，并非整体减少细胞计算量；逐项长度和单位见[component_diff.json](../reports/isetbio_model_20261015/component_diff.json)。同一半开owner框内旧L13/M13/S1，新L11/M13/S0。旧6个动态S-ON BC是该owner S-RGC的上游祖先，owner为空时整条对应执行路径不实例化；完整116个S cone/relay几何仍在冻结图中。模型代码支持五类目标，与这个局部实例实际只执行四类owner必须分开。运行audit新增canonical_outputs、active_owner_outputs及EMPTY_SAMPLE状态，不用假细胞或生物缺失声明补齐。
+
+midget数目仍是一颗非S cone分别建立ON/OFF候选，BC使用qualified parent私线；外围Wool源拟合约束汇聚和尺度，并不提供独立RGC密度，当前外围候选数量不能称测量校准。RF由最终通过状态门的cone→BC→RGC权重质心给出，当前中央minimum-one路径仍落在父cone位置；IPL点和胞体不是RF的同义字段。独立macaque midget密度的来源/模型选择未擅自补齐。
+
+点阵没有达到原生质量/位移停止条件：quality .6584相对源码条件.84；末次日志约.023µm是内部步位移的30分位而非最大误差，配置中位移tol为.000215µm。返回“iteration11”是上游打印的history索引，不可写成实际只跑11轮。对已有数据按实际双线性密度表积分，完整方框66803点对66348.309期望质量，差+0.6853%；owner24点对26.07361，差−7.9529%。这些只描述数值采样差异，不是生理误差、统计CI或收敛误差界；没有重新生成或长收敛实验。
+
+新[population_catalog.py](../retina_sim/population_catalog.py)将已生成rod/RBC/AII/parasol ON/OFF五个人口master冻结为同一目录，全部保留原source、namespace、ID、坐标与各自有限域。register_existing_masters只登记既有资产；SharedPopulationCatalog.crop不调用生成器。require_domain及footprint_coverage区分源覆盖不足与真实空样本，拒绝隐式RF/OPL/IPL换算、域外重采样、补边和密度缩放。revise_local_graph可显式使用共享目录；rebuild_roi_from_shared_masters已在另一个更窄owner(.341,.359,-.009,.009)mm通过真实几何重建，五个master的SHA和namespace全部不变。该测试没有神经积分。
+
+目录仅共享这五个人口的既有nominal RF/physical-chart点集；cone/HC各有原固定master，派生IPL锚点、BC/AC字段和连接完整性仍需自己的共享支持。这不是全域ROI动力学完成。未选20°条带，未停rod/RBC，未扩parasol/SBC来源。原默认继续保留，新GUI项明确是迁移候选，不能作为最终两套配置交付。最终应统一到一个canonical配置，历史作为fixture保留；统一前需明确五类目标/空owner合同、当前点阵的用途和数值接受标准、新输入/孔径/收敛背景身份，以及允许ROI的typed上游/有限边界支持。当前继续保留已批准private/Wool有效路线，无须重复批准；仅在升级为独立猕猴midget密度时才需另定来源与适用域。点阵最终数值接受/后续有界松弛标准尚未定，本轮不启动新长收敛。
+
+
+本轮补充`typed_view.CompiledTypedView`：在同一个既有完整有限神经网络内选择子ROI记录对象，保留各typed坐标角色、ID、原连接和权重。当前支持owner(.34,.36,-.01,.01)mm内的子框，RF输入域为(.3,.4,-.05,.05)mm；跨域、缺少非零输入行、未知内部空间依赖或要求外部递归闭合时明确拒绝。全owner闭包解析6928个组件/细胞节点、22364条边及2315个外部通道/细胞对，包含native A/B、rod化学路径和电耦合；仍是finite-open model，不能作为全视网膜外部闭合证明。`geometry_identity.py`把实际typed人口数组、CSR权重、native A/B、gap、组件参数/代码、时钟和冻结来源绑定为同一身份；新候选输入缺失该身份即拒绝，输入重基准和背景cache读写也复核，历史fixture继续沿用其旧合同。相关49项独立局部测试通过（两轮有重叠，详见统一核验）；背景缓存仅测试t=0存取，没有新预热、刺激或性能试验。扩大完整神经ROI仍需派生BC/AC/IPL共享资产和逐层外部边界合同；该旧master的日志q.6584单列保留；新独立点阵见下文，不自动迁移其typed图，默认切换仍暂停。
+
+
+当前固定域的共享派生资产已完成：`circuit_geometry.py`把原冻结图内的BC/AC/IPL表、接触和parasol锚点作字段hash绑定，并在`circuit_geometry.json`冻结实际native A/B、rod接触候选/权重、化学接点与overlap及gap配对/电导。装配直接加载，逐项核对实际人口/坐标/CSR/gap；禁用候选查询、锚点生成和gap最近邻的测试仍能装配原29组件/70状态块。参数及状态schema与冻结前一致。`owner_recording`返回原RecordingPlan，仅筛owner/记录，整网状态和接线保持相同。owner(.34,.36,-.01,.01)mm与RF输入(.3,.4,-.05,.05)mm未扩大；全owner必需输入行缺额0。完整派生几何含midget BC ON/OFF各2225、diffuse BC各597、local AC各2486、widefield AC924及S-ON BC116；这些表的存在不表示全部都是当前动态owner。16项本轮独立局部回归通过。有限开放边界已获批准，域外无边仍是其明示局限，无新增边界决定待批准。冻结坐标的新静态Delaunay诊断q第0.8百分位分别为完整查询方框.565054、RF输入.729506、owner.775375；它不复现MATLAB历史三角化/椭圆过滤或停止状态，日志.6584不能冒称该坐标集的重算质量。原算法阈值.84未降低，迭代上限停止与生理未验证分别保留；该段记录形成时300轮候选尚未获批、未运行；其后批准的独立候选及源停止修复见下文。没有新动力学、背景或性能实验，最终默认切换仍暂停。全部证据并入原统一核验。
+
+
+生成器数值修复与完整初始化覆盖（2026-10-15/16）：原固定Euler步首步翻转51个面，滞后Delaunay使第3步最近点对不属于缓存弹簧，第7步达到.007µm。`lattice_relaxation.py`保留原归一化排斥弹簧及gain1.1，修复拓扑缓存、内部面/全轨迹数值碰撞保护、隐式椭圆投影及double坐标/quality同步；不设生理最小距离。当前为`pinned_retinalattice_springs_numerical_repair_v4_source_stop`，12项局部回归通过。整数边编号去重与原二维排序在2400步完整121811点、364498条边上，连接及顺序、目标长度和弹簧力逐位一致；没有改变弹簧模型。旧资产及诊断均保留。
+
+用户2026-10-15 13:26 UTC批准补齐同一椭圆的初始化覆盖。`export_lattice_initialization_covered.m`保留源seed、spacing、旧方格相位和原Bernoulli sampler，114949个旧样本逐点逐序一致；候选由470164补至517388，独立重枚举确认原遗漏47224、补齐后0。继续原随机序列新增6862个，总121811点；未删点、改密度、改LMS或改变椭圆。原弹簧力与固定MATLAB同状态比对最大相对差3.1e-15。RF半轴保持约.799370与.978989mm，原完整查询方框仍为±.512mm，没有扩大运行canonical ROI。
+
+用户2026-10-16 01:33 UTC批准恢复源停止合同，从有效1400步末帧及完整历史续算；此前v3把内部第30百分位运动统计收紧为全点最大位移，不是等价的公式修补。当前合同为`(q第0.8百分位>.84 AND 原width历史条件) OR (源码内部p30运动量<.000215µm)`。源码运动量是`prctile(sqrt(sum(.2*F.^2,2)),30)`，Hazen百分位；内部掩码在名义未投影位置`x+.2*F`上取`ellipse_distance<-.00215µm`，即使安全回退缩小实际步长也不缩小该源码统计。.2是几何数值步长，不是生理时间；该统计与真实位移分别记录。width使用全部已保留历史，不改为滚动窗口；每步刷新拓扑的已批准修复使quality采样周期不同于原滞后缓存，不声称复现原未修复轨迹。1400步以前缺失的源码运动统计不补造。
+
+本轮在5677步首次由原内部p30支路停止：5676步为.000215003484µm，5677步为.000214910618µm，原容差.000215µm未改。末帧重算同一源码统计为.000214787336µm，仍通过；最后一次坐标更新逐位复现，坐标/quality精确对应。冻结的是5677步实际停止末帧，4724步最佳quality快照(.827074)另存，不冒充停止状态。
+
+| 最终状态 | 数值/状态 | 在停止合同中的作用 |
+|---|---|---|
+| q第0.8百分位（Hazen） | .825473076，未过.84 | quality支路未触发 |
+| 原width全历史条件 | 满足 | 与q条件共同构成quality支路 |
+| 源码内部p30运动量 | .000214910618µm < .000215µm | 实际触发停止 |
+| 全点最大真实位移 | 最后一步.021522959µm；末帧重算名义步.021319657µm | 仅诊断，不作为额外门槛，不表示全点静止 |
+
+完成资产为`data/atlas/isetbio_macaque_cones_source_stop_v1_20261016`，manifest SHA256=`5ab2429aa920e9bd07f7a7d1a335edeffbbf8f263ddce731352809e7d6218a3a`。121811点全部保留；517388个初始化候选独立重枚举遗漏0，重复0、机器精度近重合0、数值域外0（1e-10µm检查界，最大浮点超量1.08e-11µm）。全域最小NN为1.869425µm；整椭圆密度积分121491.06，计数差+.2633%，不是生物置信区间。既有`.79*median6NN`孔径估计下，整域28点、查询框2点有圆盘重叠，RF输入/owner为0；孔径未测量，该诊断不等同于真实细胞碰撞或生理验收。归档包含初始MAT/RNG、固定请求/来源、各段实现与状态链、停止前后坐标、最佳快照及核验；标准master读取器加载并逐坐标匹配。完整核验见`reports/lattice_coverage_repair_20261015/source_stop_final_20261016/verification.json`，最终几何/趋势图为`reports/lattice_coverage_repair_20261015/continuation/final_geometry_and_trends.png`。历史coveragefix/v3及旧master保留；新资产不得混用旧输入/背景；上述生成任务结束时尚未迁移默认与typed图，也未运行新背景或神经刺激。后续迁移结果见文首；生理验证仍未通过。

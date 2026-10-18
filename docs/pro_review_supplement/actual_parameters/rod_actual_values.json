@@ -1,0 +1,332 @@
+{
+  "original_local_sha256": "a98bb206b9a5708ce43773e44f800ae256ed92ea7f47f1ceae20c242a4ed0efc",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "rod",
+    "parameter_hash": "ce00333196688021b2ffac00818ccb99c05fa5ac174beec963bca7b37f98c257",
+    "records": [
+      {
+        "parameter_id": "sigma",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "0abd41904bb6b6c74687f5a94e5e4b40c5badb992d275e8f74d0280d9ee23bce"
+          },
+          "unit": "s^-1",
+          "meaning": "source_coefficient_sigma",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter sigma",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "phi",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "0abd41904bb6b6c74687f5a94e5e4b40c5badb992d275e8f74d0280d9ee23bce"
+          },
+          "unit": "s^-1",
+          "meaning": "source_coefficient_phi",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter phi",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "eta",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "312c9d039cf38e8d54af6da47045952d586731dbd3504ddba121a0123e68773d"
+          },
+          "unit": "s^-2 (source effective normalization)",
+          "meaning": "source_coefficient_eta",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter eta",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "gdark",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "ccc6102b5e43fe44bfb2cd05d75a264f223755d671bca90c304fabdef4fbeef7"
+          },
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_coefficient_gdark",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter gdark",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "k",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "c738dd99fada954a0be83cb94069e65973256ed5a199cd293841c789ad3b0910"
+          },
+          "unit": "pA/Chen_scaled_concentration^3",
+          "meaning": "source_coefficient_k",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter k",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "n",
+        "value": {
+          "values": {
+            "array_key": "a000005",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "161f4c0b1a18a0501127332c387e782b5acc10c6c7a9f7e494c1e3394c49bad5"
+          },
+          "unit": "dimensionless",
+          "meaning": "source_coefficient_n",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter n",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "cdark",
+        "value": {
+          "values": {
+            "array_key": "a000006",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712"
+          },
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_coefficient_cdark",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter cdark",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "beta",
+        "value": {
+          "values": {
+            "array_key": "a000007",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "e7b8ee63056a30fe915339c69a58a2c6524122e307384c171a612d2c97c26a3a"
+          },
+          "unit": "s^-1",
+          "meaning": "source_coefficient_beta",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter beta",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "m",
+        "value": {
+          "values": {
+            "array_key": "a000008",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "400c52dd5bd0047d64c0582af027b387a7938a64283d0d4f727331140cb6462c"
+          },
+          "unit": "dimensionless",
+          "meaning": "source_coefficient_m",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter m",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "kGC",
+        "value": {
+          "values": {
+            "array_key": "a000009",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "4cfa5b42ca669328764e67cd9a34bb8f90b16ed7ca8d85e8443783d7ccce15ed"
+          },
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_coefficient_kGC",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter kGC",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "gamma",
+        "value": {
+          "values": {
+            "array_key": "a000010",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "1bd0e0a5665ca1671b4e5d5fba44e0a4d09305d37633e56b58b1dd95c92a0775"
+          },
+          "unit": "s^-2/R* (source effective normalization)",
+          "meaning": "source_coefficient_gamma",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter gamma",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      },
+      {
+        "parameter_id": "timeStep",
+        "value": {
+          "values": {
+            "array_key": "a000011",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "244daf676b076b34d5be3f723196f6a9a2fa7e81a05c781394a14fa645e1d6d8"
+          },
+          "unit": "s",
+          "meaning": "source_coefficient_timeStep",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "published_fit",
+        "source_id": "CHEN2024_initPhotoreceptorParams_m",
+        "locator": "Unchanged pinned primateRod branch; geometry updated by approved population package; parameter timeStep",
+        "supported_domain": {
+          "effective_profile": "Chen2024_primateRod_source",
+          "cells": 2306,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "AUTHOR_MODEL_PRIMATE"
+        },
+        "uncertainty": "Source fit; no independent validation"
+      }
+    ],
+    "binding_options": {
+      "initial_background_rate": {
+        "values": {
+          "array_key": "a000012",
+          "shape": [
+            2306
+          ],
+          "dtype": "float64",
+          "sha256": "363ed4d6f6f9ce80b2b3b0f955fa17866aadb70688d4f8f8dfeda6714be510ec"
+        },
+        "unit": "R*/s",
+        "meaning": "photoisomerization_rate",
+        "evidence_tag": "project_approximation",
+        "coordinate_frame": null
+      }
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_actual_values.npz",
+      "sha256": "8216ad6b1585ad5ac56f12dbc2966c9587df58380c69752512d10bdd268c1081"
+    },
+    "physiological_validation": false
+  }
+}

@@ -1,0 +1,1222 @@
+{
+  "original_local_sha256": "92f293ed4b6c73a13cd373a8a6775e2599c1c9adb7bb4630c58a6bfb343d34b3",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "execution": {
+      "schema_version": "1.0",
+      "profile_id": "atlas_isetbio_geometry_v1",
+      "execution_mode": "frozen_global_disk_dependency_view",
+      "scope": "Exact finite dependency view of the approved global3mm disk; effective dynamics and declared unresolved source gaps retained",
+      "atlas_profile": "retina_atlas_human_borrowed_disk3mm_v1",
+      "S_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
+      "parameter_profile": "effective_dynamics_v1",
+      "requested_outputs": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF",
+        "small_bistratified_S_ON"
+      ],
+      "HC_gap_rate_ms_inverse": 0.0,
+      "passive_HC": "not instantiated at gap0; no demonstration orphans",
+      "runtime_view": "exact inner ancestors plus whole connected cone-HC components in the fixed finite atlas graph; no resampling, no edge fill, retained weights",
+      "unsupported_paths": "Actual frozen missing degrees/empty rows retained; exact selected rod/RBC/AII and independent parasol routes instantiated where graph-qualified",
+      "solver": {
+        "method": "DOP853",
+        "rtol": 1e-06,
+        "atol": 1e-09,
+        "max_step": 0.0001,
+        "input_interpolation": "linear"
+      },
+      "budgets": {
+        "max_compile_bytes": 4294967296
+      },
+      "initialization": "Declared construction background outer equilibrium; actual physical per-cone input background is prepared separately under the unchanged required numerical policy",
+      "scientific_validation": "NOT_RUN",
+      "old_success_profile_replaced": false,
+      "frozen_default_graph": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+        "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+      },
+      "BC_route": "Actual HistoryBipolarTerminal activation=dynamic terminal_release; generator_activation diagnostic only; original effective generator/terminal parameters retained",
+      "storage_kind": "global_disk_graph_v1",
+      "physiological_calibration": false,
+      "native_operator_representation": "finite_anatomical_candidate_contacts_with_explicit_missing_rows"
+    },
+    "parameter_profile": "effective_dynamics_v1",
+    "actual_values": {
+      "outer_native": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "da0742fe4bb4e9bb1f8d7afa439db9cf5dfb3152a2114a28b009d46f59f73883",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\outer_native_actual_values.json",
+          "sha256": "4f0f87ea74f889ec535b14960cd190416935989559651f86d909e5812d8ce6a6"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\outer_native_actual_values.npz",
+          "sha256": "317af925465dc602d8bf55155aa73a98fb43f2bbb3e6484c6a3d24c470b81de9"
+        }
+      },
+      "midget_BC_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "23575b9a63f57a44331ae948de9ab9ec0cb3265933221a501eaa944f10b7a0d9",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_ON_actual_values.json",
+          "sha256": "1d8f09e923cc34ca81b266a8d7b54c9b16edce3cef012d24697d0f605ae167ea"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_ON_actual_values.npz",
+          "sha256": "5910bd5b6b22b3fe0f22cf8cc7ae24c76bb00c0a57ff1b41a2d1f35811a14d11"
+        }
+      },
+      "midget_BC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "0e2e20aa67b77af47483b4bdd269509629141c35809542629323304fa3d40d17",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_OFF_actual_values.json",
+          "sha256": "addea0bdfaa57d00f879c200639009669a7e2ac9f37aafca05ed3a3b9f9c7aec"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_OFF_actual_values.npz",
+          "sha256": "d9d987f51fee7a1fd94d2bb23c4024ae467d991014d54bfea1a6c8bf4c45e752"
+        }
+      },
+      "diffuse_BC_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "7ba3f82acd9ce2f4671dbe25627451819cc603ee3e9a5b42030a24587664d5b9",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_ON_actual_values.json",
+          "sha256": "cd2cda720cd2e602b2d5ad3783647e161ca68feb15c9e9b624d5aab4993b751a"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_ON_actual_values.npz",
+          "sha256": "bf834b3d7276fd149b400e619d90b7d3b14186f1cd5591477a8985377376b5d4"
+        }
+      },
+      "diffuse_BC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "d247e31f4349e814b187333e13b2e304f27ce80f540c3138abee5d30c06bfe71",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_OFF_actual_values.json",
+          "sha256": "6197b34d110c119d05239d065069a8981fcf76615cd40d730fc15b79a1c108ac"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_OFF_actual_values.npz",
+          "sha256": "ca56260d9ab325011a1b8e55bcfc0fdffa466cac31ac0ab0f4b0a9e2ae019f45"
+        }
+      },
+      "S_ON_BC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "8d2a97ca8575746637194c45b2bafbbe3cdb4a038fdf52607e9681862a5b30de",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\S_ON_BC_actual_values.json",
+          "sha256": "431e6cc2d9754fcfb00ee652c8ea3c5a041406624dd157604c3dbc81f2741919"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\S_ON_BC_actual_values.npz",
+          "sha256": "d2b70b639c858993a5a47cf6010b5db39ed284821753f18c99d39c05902f8e1b"
+        }
+      },
+      "local_feedforward_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "08d153cd63a2770912936ef0cff745ac58fd32892b935aa81c29d36607063873",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_feedforward_AC_actual_values.json",
+          "sha256": "3646dd109d68d4ef09e406b37bc1a0208562b7dd8049c306c95ad4b76fc31920"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_feedforward_AC_actual_values.npz",
+          "sha256": "aa114a64f487cf45b5032aad40f679f99d49cc5603a3fa2d20ee6bc0f53a766a"
+        }
+      },
+      "local_crossover_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "553ed1a3cf9ef4fc0c21b445d8da12ac32163d9e1d596ad21dc6cba1c517ec3b",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_crossover_AC_actual_values.json",
+          "sha256": "c36fbd8e379487f2e90745ef962bdc340ca53598a97d82fcb5bb4c6f57cb19c2"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_crossover_AC_actual_values.npz",
+          "sha256": "1e39b6f096e63deafb50000a75cbb5cdb7abd586134199c444b04b2a78727512"
+        }
+      },
+      "widefield_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "77fe9e4626085afe240255f121991dd218a8d4aae619e3dfc3a39bfe29ae5901",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\widefield_AC_actual_values.json",
+          "sha256": "9bb0c74f7556197e61ee0e15347db6d85f7c7f75b18d7f693f6152ce00cef508"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\widefield_AC_actual_values.npz",
+          "sha256": "e2781f6d77004af6ab10daa5f6c7e7acfbda1ae5695f9acb011711fb418e0f2e"
+        }
+      },
+      "midget_RGC_ON_excitatory_midget_BC_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "f84bbdfe0e51f95db01989136e5c772b1d91195394d6f20c167d826500235632",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_excitatory_midget_BC_ON_actual_values.json",
+          "sha256": "4d47694953e3b77042cf3d7df90860d45cf7c3e74d06f32fd47c09c8a030a5a5"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_excitatory_midget_BC_ON_actual_values.npz",
+          "sha256": "288dd501f2f557e729c0c4b6f59a1fd98b1307988f2f7a57bc8144c10afb6974"
+        }
+      },
+      "midget_RGC_ON_inhibitory_local_crossover_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "3a9abe275a40c37a73f7762768187f1c6cf76428b9c76e29098c34ba12197b6d",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_inhibitory_local_crossover_AC_actual_values.json",
+          "sha256": "098333591c1048469d5a464b9068169357df25831e64f9c9e5acce88b7d8448c"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_inhibitory_local_crossover_AC_actual_values.npz",
+          "sha256": "c8cfc2969626285a27c66e3be02e092019c7cd6da0bbe61458ae1704e6e18b0e"
+        }
+      },
+      "midget_RGC_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "ed8c966d88f4c71157cb5c932c400acecab654b566ce1d7272249b9236408aae",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_actual_values.json",
+          "sha256": "7948a486758af7ab11c42b2b648d71a5eeb585aff6cc51e07b1bdbf599093fa6"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_actual_values.npz",
+          "sha256": "84a3a7cf90bbb0d122e5dd096e5fb12222501dddbb7d81dfc9f093b98f8ce5bc"
+        }
+      },
+      "midget_RGC_OFF_excitatory_midget_BC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "0d08a3cded19d24756e3b7532e574be6a169975a5ea66ac3b3b2581f1720b3c7",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_excitatory_midget_BC_OFF_actual_values.json",
+          "sha256": "b0bf9665dc0d5c8dca53591d36038cada7717d98e3b836524e1f9e7d8ff74897"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_excitatory_midget_BC_OFF_actual_values.npz",
+          "sha256": "288dd501f2f557e729c0c4b6f59a1fd98b1307988f2f7a57bc8144c10afb6974"
+        }
+      },
+      "midget_RGC_OFF_inhibitory_local_feedforward_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "9a6db54ebb93068c858e4788e073f7cc02e2d0560d5768853e82f3ad0f18386a",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_inhibitory_local_feedforward_AC_actual_values.json",
+          "sha256": "679be7c4cc7545a5ac80bd867195e3b2c9bd33fe35e0b7ca3a4a19b204c52b8c"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_inhibitory_local_feedforward_AC_actual_values.npz",
+          "sha256": "c8cfc2969626285a27c66e3be02e092019c7cd6da0bbe61458ae1704e6e18b0e"
+        }
+      },
+      "midget_RGC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "108dadee41841b713521120fabbf3795180c2cf4eadd1796c8f51cb7fe3d601b",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_actual_values.json",
+          "sha256": "dbfa9e2d6dd4c49adc29d4c484d650b296027fb5af774766e1c0c749d43a2c08"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_actual_values.npz",
+          "sha256": "84a3a7cf90bbb0d122e5dd096e5fb12222501dddbb7d81dfc9f093b98f8ce5bc"
+        }
+      },
+      "parasol_RGC_ON_excitatory_diffuse_BC_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "8529fac2c2efacd1591111586a6a9c5a008dd263d1253941b6366d1fa8c67d23",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_excitatory_diffuse_BC_ON_actual_values.json",
+          "sha256": "a7a333b53a4d3c5b94c1bd090c5e8095ffc8d37692e4d6b8578edfcd54caa098"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_excitatory_diffuse_BC_ON_actual_values.npz",
+          "sha256": "6cd4b5c1864ad0378a2849a8d3837f4f868658d6bc35658652ef8431b5c92492"
+        }
+      },
+      "parasol_RGC_ON_inhibitory_widefield_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "f8db9e63a8f6aab94821672ca5aa27214527046d07b7d8516928d52a31dc1db4",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_inhibitory_widefield_AC_actual_values.json",
+          "sha256": "67130b538f2b868a8a3ca34c4467dee9fe6f0f65f8eede88c8af69c61602fbf5"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_inhibitory_widefield_AC_actual_values.npz",
+          "sha256": "08b57184f4cceb861e00344115e784f076f0711eddf0e5c5bc4de1614b6aa24c"
+        }
+      },
+      "parasol_RGC_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "523e213e8ed974e364c01395e9ebc1572a27214a760023450dd226f1bc4dd6ba",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_actual_values.json",
+          "sha256": "a060ebd5a866ff69e2fa0ee8746314c5ef8e5e504af1eb06e1dac1baeca990c5"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_actual_values.npz",
+          "sha256": "dc68d604428846a471d3a6e45a0cadfc6b721bcf2f4a570ebdb5cb363e66ad53"
+        }
+      },
+      "parasol_RGC_OFF_excitatory_diffuse_BC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "1c8fd148d2334979786723252718bee7875c1237414f4dff30073c6e397faa4b",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_excitatory_diffuse_BC_OFF_actual_values.json",
+          "sha256": "970c066d7345310129407a926f9276cb1b78c2e51a6395c37f9a2a9652ad8655"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_excitatory_diffuse_BC_OFF_actual_values.npz",
+          "sha256": "5f3661d988247bba3e0031f3a9642934f53542d2a387940fb452257795bbe136"
+        }
+      },
+      "parasol_RGC_OFF_inhibitory_widefield_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "ffe0fa6dfa653ed896a456212314661cff857d50d701f46b4f4fa2e1653c30ac",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_inhibitory_widefield_AC_actual_values.json",
+          "sha256": "e8a8d51d44d9a09799d64ceb4775d1ed12429cc4262e475f20c6465dc64473da"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_inhibitory_widefield_AC_actual_values.npz",
+          "sha256": "9bae2dba419d0ccde69f83943e491886b794e416fbbf373a35d385c59f8bd89d"
+        }
+      },
+      "parasol_RGC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "47c97d307d796970aaaa0e31856b3af3d3f0269322faf4bfb81b5ae283f61a71",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_actual_values.json",
+          "sha256": "2166e869c85f2e7c1fbcf182b0bdd2a3a9e381dfb3516f80ba1bae12218df6d7"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_actual_values.npz",
+          "sha256": "eddf7ed43728b43a637732bb02052ca5c9af167621275e9b4b00fb6a0726e3f4"
+        }
+      },
+      "small_bistratified_S_ON_excitatory_S_ON_BC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "1dd50388c66267bf9a3892141b236229670df2ed198c66579b1dd721fcb84ff4",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_S_ON_BC_actual_values.json",
+          "sha256": "a7f066d69795c20e7e709c7aa712f0a4a4bc76bb5d80a3b873d4d5f8ca34a4dd"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_S_ON_BC_actual_values.npz",
+          "sha256": "eb00c1754e4ffd717269a1c345d42efbf60d790bac48c48a2e374cf608be429d"
+        }
+      },
+      "small_bistratified_S_ON_inhibitory_local_feedforward_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "9b90bfa77d644e22c2aa1bc036d89d1a028bd29cd17c3d67e66b5ebe36f6ea62",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_inhibitory_local_feedforward_AC_actual_values.json",
+          "sha256": "d92c4edb87a963fa5e24af6360835251c88e17f42cf04b36ea6ec7b8f75f6460"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_inhibitory_local_feedforward_AC_actual_values.npz",
+          "sha256": "9c8b1c1eb636563e1a00c1b6cee92607813ea39d2f25081987363d54f1f57017"
+        }
+      },
+      "small_bistratified_S_ON_excitatory_diffuse_BC_OFF": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "38f4e53c1c05fe27c0afd43e2991cad4b715795e477da22fe244664b9ea9d561",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_diffuse_BC_OFF_actual_values.json",
+          "sha256": "8fc4180ebeb5a863e31ef51201e156269323866ff88e9a00601347e77bd67025"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_diffuse_BC_OFF_actual_values.npz",
+          "sha256": "eb00c1754e4ffd717269a1c345d42efbf60d790bac48c48a2e374cf608be429d"
+        }
+      },
+      "small_bistratified_S_ON": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "9b022b7db0c0e29e8aee51ceec8aeb256859e3bb341a07e04ccb11d5281423c3",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_actual_values.json",
+          "sha256": "e0ad59ee3b6b649fdd88c09f28027173887a9ae00b1914c960f958b7060d2659"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_actual_values.npz",
+          "sha256": "430988963cd3f3eeaba71c31ce9eb1873f7b3cf361c1a39b693652cb15a675ce"
+        }
+      },
+      "rod": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "ce00333196688021b2ffac00818ccb99c05fa5ac174beec963bca7b37f98c257",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_actual_values.json",
+          "sha256": "a98bb206b9a5708ce43773e44f800ae256ed92ea7f47f1ceae20c242a4ed0efc"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_actual_values.npz",
+          "sha256": "8216ad6b1585ad5ac56f12dbc2966c9587df58380c69752512d10bdd268c1081"
+        }
+      },
+      "rod_membrane": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "58c65deccad2f9358ce0e0686779b701c20ff5cadc9056777632d955218c7ef5",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_membrane_actual_values.json",
+          "sha256": "6268b526630094db173aa711f8f16e26468b11f63ce5926d507ae475571de692"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_membrane_actual_values.npz",
+          "sha256": "2d28c942ea8298225a11e20d027fb097965ba4f1f906673bf0bad887b739e3f7"
+        }
+      },
+      "rod_current_SI": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "3d6b76b1ae47111e8bdbee04c3e887018d7c35ff0becc4580de5a6bf288af9e1",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_current_SI_actual_values.json",
+          "sha256": "7be0d970a9cc7c3c7255dcd352e0eccd526e47d33d0cf02be27593d727b7ea03"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_current_SI_actual_values.npz",
+          "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85"
+        }
+      },
+      "individual_rod_RBC_contacts": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "37e4ea909b125355091c8be333bb1ea25aa3a64ccd8152c6de504f0cb86c314c",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\individual_rod_RBC_contacts_actual_values.json",
+          "sha256": "38a05128f272f1c4576c383045c708137006d66db5c654101d6c6f739a6b7220"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\individual_rod_RBC_contacts_actual_values.npz",
+          "sha256": "800d5a4978651f995282d3415777111884ce9ef48745a234bc1c790e75e40e54"
+        }
+      },
+      "rod_BC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "2cb6d46cfd8a67314e9e6a6e7ca734c4b96a138d7f1731711593c65286208bde",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_BC_actual_values.json",
+          "sha256": "91fc05415732a6cbc8071f7cf21fec5650fbf25e69b2d694b9fcd1ba455b6fce"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_BC_actual_values.npz",
+          "sha256": "46a22ce0499237f8661139f0355e779ec8d7057ecd50a696e4b6a6a3297e673b"
+        }
+      },
+      "AII_AC": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "4d1545e4f1ac05450e96cc4c58a1e90f272b580bc0d9add47e2e38461611635f",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_AC_actual_values.json",
+          "sha256": "02ba7ab15007179f185848938316181c03b658f366d31adf02f5891eabd99d7f"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_AC_actual_values.npz",
+          "sha256": "579b4c20e03c56114fce35e65f75219cd93ad9ada4f24e1e7f16eed90cad9454"
+        }
+      },
+      "RBC_AII_AMPA": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "7fb1a8595f9e0daac3a9275411281bd9c533c0ff5845d0acd7f3fadef28bab7d",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\RBC_AII_AMPA_actual_values.json",
+          "sha256": "99094338efefc8c2cfb83ec7b111f93fe68df6a06fe1e53ed41c6886927d30d5"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\RBC_AII_AMPA_actual_values.npz",
+          "sha256": "58c1e361a25a26bbab8680c219a25fd98bace6cb8203f69096e1340e236c1916"
+        }
+      },
+      "AII_FMB_glycine": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "706ea5c6b773d851f34602b2b9856a4760aa64e5068e41fe08a2b82afa6ce7d4",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_FMB_glycine_actual_values.json",
+          "sha256": "f46fafbf19411e1c38c644698b890b24a5cb31ebeadca7a4c56507dec50cc259"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_FMB_glycine_actual_values.npz",
+          "sha256": "8c3115f90f040d78cbd0155e9a4bd982c4ca53a18797d45649daf7fa48cfcf56"
+        }
+      },
+      "AII_DB1_glycine": {
+        "schema": "actual_component_parameter_arrays_v1",
+        "parameter_hash": "58d43576a8afec72f85bf7a8148110701131b92210e5ca4e4ae8457966c2982d",
+        "metadata": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_DB1_glycine_actual_values.json",
+          "sha256": "e0f639c8ad8b223cd64a849f81f93abe0e19beca9fd09690a5885865a5a9eadc"
+        },
+        "actual_value_arrays": {
+          "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_DB1_glycine_actual_values.npz",
+          "sha256": "09658a3891ec0eaee96dbf3ac47e5c928c7e90ba5533cb1897b31e4b3ce2bb61"
+        }
+      }
+    },
+    "global_graph": {
+      "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+      "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+    },
+    "actual_geometry": {
+      "schema": "compiled_typed_geometry_identity_v1",
+      "sha256": "50132147df8fc657f005e7ce314bdd91831d2bab3f60e09b84004d30a5dca373",
+      "fields": {
+        "hash_encoding": "actual_global_array_bytes_v1",
+        "assembly_hash": "53f2b052d13d7982727ad04c2c2f8730fcad968f16028ce6010c74fd85a2050e",
+        "actual_populations_hash": "16f67242ad748db92dca4134078cccc78495e606999fab9134b4d1761b6a9c26",
+        "actual_links_and_weights_hash": "904851c0b7550b508b1227beb4942ff962a9bdd6bd2e8108584c79958ee09242",
+        "native_spatial_weights_hash": "aee0051bbe3825b5c3d8b0f76b372f690c27a9c9184b4513a7107945d2b4c608",
+        "components_hash": "b697289d92f8b4885a7ae9d73d97fba94eded4b4983cd47edf5a67f7e32c32be",
+        "gap_topology_conductance_hash": "0015156ac4a62f0794dc11995a87bd8e9ca20430e8591dd8da3df0948f900f8d",
+        "clock_hash": "2839b5b90e49c2c4b33a75763058baafa0226edb3d29d3fbb58c56ea0297905f",
+        "source_binding": {
+          "execution_profile": "atlas_isetbio_geometry_v1",
+          "storage_kind": "global_disk_graph_v1",
+          "global_graph": {
+            "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+            "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+          },
+          "exact_view": {
+            "global_graph": {
+              "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+              "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+            },
+            "view_sha256": "f05e4a1222dbe16fea05aaef16b5baacf2840c14c9d454c13cd58115dd76a5df"
+          },
+          "input_plan": {
+            "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+            "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+          }
+        }
+      }
+    },
+    "source_spec": {
+      "schema": "global_compiled_dependency_spec_v1",
+      "model_id": "atlas_disk3mm_dependency_v1",
+      "assembly_hash": "53f2b052d13d7982727ad04c2c2f8730fcad968f16028ce6010c74fd85a2050e",
+      "global_graph": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+        "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+      },
+      "exact_view_rows": {
+        "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\exact_view_rows.npz",
+        "sha256": "666bc51921999d8ac4e3d737ca1d139c1e7c7a74fac78ed716bcad481992a4c2",
+        "global_graph": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit_input_v2/manifest.json",
+          "sha256": "c28c19fd1234e08847e9cb6e2b1c8ad10f78208a13f7f2fba3083dd878f258c3"
+        }
+      },
+      "components": [
+        {
+          "id": "outer_native",
+          "mechanism": "VanHateren2005NativeConeH1",
+          "population_roles": {
+            "cone": "cones",
+            "h1": "HC"
+          },
+          "parameter_profile_id": "VH2005_Fig6A7_native_source",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "da0742fe4bb4e9bb1f8d7afa439db9cf5dfb3152a2114a28b009d46f59f73883",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\outer_native_actual_values.json",
+              "sha256": "4f0f87ea74f889ec535b14960cd190416935989559651f86d909e5812d8ce6a6"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\outer_native_actual_values.npz",
+              "sha256": "317af925465dc602d8bf55155aa73a98fb43f2bbb3e6484c6a3d24c470b81de9"
+            }
+          }
+        },
+        {
+          "id": "midget_BC_ON",
+          "mechanism": "HistoryBipolarTerminal",
+          "population_roles": {
+            "cells": "midget_BC_ON"
+          },
+          "parameter_profile_id": "effective_midget_BC_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "23575b9a63f57a44331ae948de9ab9ec0cb3265933221a501eaa944f10b7a0d9",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_ON_actual_values.json",
+              "sha256": "1d8f09e923cc34ca81b266a8d7b54c9b16edce3cef012d24697d0f605ae167ea"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_ON_actual_values.npz",
+              "sha256": "5910bd5b6b22b3fe0f22cf8cc7ae24c76bb00c0a57ff1b41a2d1f35811a14d11"
+            }
+          }
+        },
+        {
+          "id": "midget_BC_OFF",
+          "mechanism": "HistoryBipolarTerminal",
+          "population_roles": {
+            "cells": "midget_BC_OFF"
+          },
+          "parameter_profile_id": "effective_midget_BC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "0e2e20aa67b77af47483b4bdd269509629141c35809542629323304fa3d40d17",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_OFF_actual_values.json",
+              "sha256": "addea0bdfaa57d00f879c200639009669a7e2ac9f37aafca05ed3a3b9f9c7aec"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_BC_OFF_actual_values.npz",
+              "sha256": "d9d987f51fee7a1fd94d2bb23c4024ae467d991014d54bfea1a6c8bf4c45e752"
+            }
+          }
+        },
+        {
+          "id": "diffuse_BC_ON",
+          "mechanism": "HistoryBipolarTerminal",
+          "population_roles": {
+            "cells": "diffuse_BC_ON"
+          },
+          "parameter_profile_id": "effective_diffuse_BC_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "7ba3f82acd9ce2f4671dbe25627451819cc603ee3e9a5b42030a24587664d5b9",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_ON_actual_values.json",
+              "sha256": "cd2cda720cd2e602b2d5ad3783647e161ca68feb15c9e9b624d5aab4993b751a"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_ON_actual_values.npz",
+              "sha256": "bf834b3d7276fd149b400e619d90b7d3b14186f1cd5591477a8985377376b5d4"
+            }
+          }
+        },
+        {
+          "id": "diffuse_BC_OFF",
+          "mechanism": "HistoryBipolarTerminal",
+          "population_roles": {
+            "cells": "diffuse_BC_OFF"
+          },
+          "parameter_profile_id": "effective_diffuse_BC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "d247e31f4349e814b187333e13b2e304f27ce80f540c3138abee5d30c06bfe71",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_OFF_actual_values.json",
+              "sha256": "6197b34d110c119d05239d065069a8981fcf76615cd40d730fc15b79a1c108ac"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\diffuse_BC_OFF_actual_values.npz",
+              "sha256": "ca56260d9ab325011a1b8e55bcfc0fdffa466cac31ac0ab0f4b0a9e2ae019f45"
+            }
+          }
+        },
+        {
+          "id": "S_ON_BC",
+          "mechanism": "HistoryBipolarTerminal",
+          "population_roles": {
+            "cells": "S_ON_BC"
+          },
+          "parameter_profile_id": "effective_S_ON_BC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "8d2a97ca8575746637194c45b2bafbbe3cdb4a038fdf52607e9681862a5b30de",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\S_ON_BC_actual_values.json",
+              "sha256": "431e6cc2d9754fcfb00ee652c8ea3c5a041406624dd157604c3dbc81f2741919"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\S_ON_BC_actual_values.npz",
+              "sha256": "d2b70b639c858993a5a47cf6010b5db39ed284821753f18c99d39c05902f8e1b"
+            }
+          }
+        },
+        {
+          "id": "local_feedforward_AC",
+          "mechanism": "ResidualAC",
+          "population_roles": {
+            "cells": "local_feedforward_AC"
+          },
+          "parameter_profile_id": "effective_local_feedforward_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "08d153cd63a2770912936ef0cff745ac58fd32892b935aa81c29d36607063873",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_feedforward_AC_actual_values.json",
+              "sha256": "3646dd109d68d4ef09e406b37bc1a0208562b7dd8049c306c95ad4b76fc31920"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_feedforward_AC_actual_values.npz",
+              "sha256": "aa114a64f487cf45b5032aad40f679f99d49cc5603a3fa2d20ee6bc0f53a766a"
+            }
+          }
+        },
+        {
+          "id": "local_crossover_AC",
+          "mechanism": "ResidualAC",
+          "population_roles": {
+            "cells": "local_crossover_AC"
+          },
+          "parameter_profile_id": "effective_local_crossover_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "553ed1a3cf9ef4fc0c21b445d8da12ac32163d9e1d596ad21dc6cba1c517ec3b",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_crossover_AC_actual_values.json",
+              "sha256": "c36fbd8e379487f2e90745ef962bdc340ca53598a97d82fcb5bb4c6f57cb19c2"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_crossover_AC_actual_values.npz",
+              "sha256": "1e39b6f096e63deafb50000a75cbb5cdb7abd586134199c444b04b2a78727512"
+            }
+          }
+        },
+        {
+          "id": "widefield_AC",
+          "mechanism": "ResidualAC",
+          "population_roles": {
+            "cells": "widefield_AC"
+          },
+          "parameter_profile_id": "effective_widefield_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "77fe9e4626085afe240255f121991dd218a8d4aae619e3dfc3a39bfe29ae5901",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\widefield_AC_actual_values.json",
+              "sha256": "9bb0c74f7556197e61ee0e15347db6d85f7c7f75b18d7f693f6152ce00cef508"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\widefield_AC_actual_values.npz",
+              "sha256": "e2781f6d77004af6ab10daa5f6c7e7acfbda1ae5695f9acb011711fb418e0f2e"
+            }
+          }
+        },
+        {
+          "id": "midget_RGC_ON_excitatory_midget_BC_ON",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "midget_RGC_ON"
+          },
+          "parameter_profile_id": "effective_midget_RGC_ON_excitatory_midget_BC_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "f84bbdfe0e51f95db01989136e5c772b1d91195394d6f20c167d826500235632",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_excitatory_midget_BC_ON_actual_values.json",
+              "sha256": "4d47694953e3b77042cf3d7df90860d45cf7c3e74d06f32fd47c09c8a030a5a5"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_excitatory_midget_BC_ON_actual_values.npz",
+              "sha256": "288dd501f2f557e729c0c4b6f59a1fd98b1307988f2f7a57bc8144c10afb6974"
+            }
+          }
+        },
+        {
+          "id": "midget_RGC_ON_inhibitory_local_crossover_AC",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "midget_RGC_ON"
+          },
+          "parameter_profile_id": "effective_midget_RGC_ON_inhibitory_local_crossover_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "3a9abe275a40c37a73f7762768187f1c6cf76428b9c76e29098c34ba12197b6d",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_inhibitory_local_crossover_AC_actual_values.json",
+              "sha256": "098333591c1048469d5a464b9068169357df25831e64f9c9e5acce88b7d8448c"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_inhibitory_local_crossover_AC_actual_values.npz",
+              "sha256": "c8cfc2969626285a27c66e3be02e092019c7cd6da0bbe61458ae1704e6e18b0e"
+            }
+          }
+        },
+        {
+          "id": "midget_RGC_ON",
+          "mechanism": "HistoryConductanceRGC",
+          "population_roles": {
+            "cells": "midget_RGC_ON"
+          },
+          "parameter_profile_id": "effective_midget_RGC_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "ed8c966d88f4c71157cb5c932c400acecab654b566ce1d7272249b9236408aae",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_actual_values.json",
+              "sha256": "7948a486758af7ab11c42b2b648d71a5eeb585aff6cc51e07b1bdbf599093fa6"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_actual_values.npz",
+              "sha256": "84a3a7cf90bbb0d122e5dd096e5fb12222501dddbb7d81dfc9f093b98f8ce5bc"
+            }
+          }
+        },
+        {
+          "id": "midget_RGC_OFF_excitatory_midget_BC_OFF",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "midget_RGC_OFF"
+          },
+          "parameter_profile_id": "effective_midget_RGC_OFF_excitatory_midget_BC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "0d08a3cded19d24756e3b7532e574be6a169975a5ea66ac3b3b2581f1720b3c7",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_excitatory_midget_BC_OFF_actual_values.json",
+              "sha256": "b0bf9665dc0d5c8dca53591d36038cada7717d98e3b836524e1f9e7d8ff74897"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_excitatory_midget_BC_OFF_actual_values.npz",
+              "sha256": "288dd501f2f557e729c0c4b6f59a1fd98b1307988f2f7a57bc8144c10afb6974"
+            }
+          }
+        },
+        {
+          "id": "midget_RGC_OFF_inhibitory_local_feedforward_AC",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "midget_RGC_OFF"
+          },
+          "parameter_profile_id": "effective_midget_RGC_OFF_inhibitory_local_feedforward_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "9a6db54ebb93068c858e4788e073f7cc02e2d0560d5768853e82f3ad0f18386a",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_inhibitory_local_feedforward_AC_actual_values.json",
+              "sha256": "679be7c4cc7545a5ac80bd867195e3b2c9bd33fe35e0b7ca3a4a19b204c52b8c"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_inhibitory_local_feedforward_AC_actual_values.npz",
+              "sha256": "c8cfc2969626285a27c66e3be02e092019c7cd6da0bbe61458ae1704e6e18b0e"
+            }
+          }
+        },
+        {
+          "id": "midget_RGC_OFF",
+          "mechanism": "HistoryConductanceRGC",
+          "population_roles": {
+            "cells": "midget_RGC_OFF"
+          },
+          "parameter_profile_id": "effective_midget_RGC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "108dadee41841b713521120fabbf3795180c2cf4eadd1796c8f51cb7fe3d601b",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_actual_values.json",
+              "sha256": "dbfa9e2d6dd4c49adc29d4c484d650b296027fb5af774766e1c0c749d43a2c08"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_OFF_actual_values.npz",
+              "sha256": "84a3a7cf90bbb0d122e5dd096e5fb12222501dddbb7d81dfc9f093b98f8ce5bc"
+            }
+          }
+        },
+        {
+          "id": "parasol_RGC_ON_excitatory_diffuse_BC_ON",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "parasol_RGC_ON"
+          },
+          "parameter_profile_id": "effective_parasol_RGC_ON_excitatory_diffuse_BC_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "8529fac2c2efacd1591111586a6a9c5a008dd263d1253941b6366d1fa8c67d23",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_excitatory_diffuse_BC_ON_actual_values.json",
+              "sha256": "a7a333b53a4d3c5b94c1bd090c5e8095ffc8d37692e4d6b8578edfcd54caa098"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_excitatory_diffuse_BC_ON_actual_values.npz",
+              "sha256": "6cd4b5c1864ad0378a2849a8d3837f4f868658d6bc35658652ef8431b5c92492"
+            }
+          }
+        },
+        {
+          "id": "parasol_RGC_ON_inhibitory_widefield_AC",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "parasol_RGC_ON"
+          },
+          "parameter_profile_id": "effective_parasol_RGC_ON_inhibitory_widefield_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "f8db9e63a8f6aab94821672ca5aa27214527046d07b7d8516928d52a31dc1db4",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_inhibitory_widefield_AC_actual_values.json",
+              "sha256": "67130b538f2b868a8a3ca34c4467dee9fe6f0f65f8eede88c8af69c61602fbf5"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_inhibitory_widefield_AC_actual_values.npz",
+              "sha256": "08b57184f4cceb861e00344115e784f076f0711eddf0e5c5bc4de1614b6aa24c"
+            }
+          }
+        },
+        {
+          "id": "parasol_RGC_ON",
+          "mechanism": "HistoryConductanceRGC",
+          "population_roles": {
+            "cells": "parasol_RGC_ON"
+          },
+          "parameter_profile_id": "effective_parasol_RGC_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "523e213e8ed974e364c01395e9ebc1572a27214a760023450dd226f1bc4dd6ba",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_actual_values.json",
+              "sha256": "a060ebd5a866ff69e2fa0ee8746314c5ef8e5e504af1eb06e1dac1baeca990c5"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_actual_values.npz",
+              "sha256": "dc68d604428846a471d3a6e45a0cadfc6b721bcf2f4a570ebdb5cb363e66ad53"
+            }
+          }
+        },
+        {
+          "id": "parasol_RGC_OFF_excitatory_diffuse_BC_OFF",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "parasol_RGC_OFF"
+          },
+          "parameter_profile_id": "effective_parasol_RGC_OFF_excitatory_diffuse_BC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "1c8fd148d2334979786723252718bee7875c1237414f4dff30073c6e397faa4b",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_excitatory_diffuse_BC_OFF_actual_values.json",
+              "sha256": "970c066d7345310129407a926f9276cb1b78c2e51a6395c37f9a2a9652ad8655"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_excitatory_diffuse_BC_OFF_actual_values.npz",
+              "sha256": "5f3661d988247bba3e0031f3a9642934f53542d2a387940fb452257795bbe136"
+            }
+          }
+        },
+        {
+          "id": "parasol_RGC_OFF_inhibitory_widefield_AC",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "parasol_RGC_OFF"
+          },
+          "parameter_profile_id": "effective_parasol_RGC_OFF_inhibitory_widefield_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "ffe0fa6dfa653ed896a456212314661cff857d50d701f46b4f4fa2e1653c30ac",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_inhibitory_widefield_AC_actual_values.json",
+              "sha256": "e8a8d51d44d9a09799d64ceb4775d1ed12429cc4262e475f20c6465dc64473da"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_inhibitory_widefield_AC_actual_values.npz",
+              "sha256": "9bae2dba419d0ccde69f83943e491886b794e416fbbf373a35d385c59f8bd89d"
+            }
+          }
+        },
+        {
+          "id": "parasol_RGC_OFF",
+          "mechanism": "HistoryConductanceRGC",
+          "population_roles": {
+            "cells": "parasol_RGC_OFF"
+          },
+          "parameter_profile_id": "effective_parasol_RGC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "47c97d307d796970aaaa0e31856b3af3d3f0269322faf4bfb81b5ae283f61a71",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_actual_values.json",
+              "sha256": "2166e869c85f2e7c1fbcf182b0bdd2a3a9e381dfb3516f80ba1bae12218df6d7"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_OFF_actual_values.npz",
+              "sha256": "eddf7ed43728b43a637732bb02052ca5c9af167621275e9b4b00fb6a0726e3f4"
+            }
+          }
+        },
+        {
+          "id": "small_bistratified_S_ON_excitatory_S_ON_BC",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "small_bistratified_S_ON"
+          },
+          "parameter_profile_id": "effective_small_bistratified_S_ON_excitatory_S_ON_BC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "1dd50388c66267bf9a3892141b236229670df2ed198c66579b1dd721fcb84ff4",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_S_ON_BC_actual_values.json",
+              "sha256": "a7f066d69795c20e7e709c7aa712f0a4a4bc76bb5d80a3b873d4d5f8ca34a4dd"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_S_ON_BC_actual_values.npz",
+              "sha256": "eb00c1754e4ffd717269a1c345d42efbf60d790bac48c48a2e374cf608be429d"
+            }
+          }
+        },
+        {
+          "id": "small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "small_bistratified_S_ON"
+          },
+          "parameter_profile_id": "effective_small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "9b90bfa77d644e22c2aa1bc036d89d1a028bd29cd17c3d67e66b5ebe36f6ea62",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_inhibitory_local_feedforward_AC_actual_values.json",
+              "sha256": "d92c4edb87a963fa5e24af6360835251c88e17f42cf04b36ea6ec7b8f75f6460"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_inhibitory_local_feedforward_AC_actual_values.npz",
+              "sha256": "9c8b1c1eb636563e1a00c1b6cee92607813ea39d2f25081987363d54f1f57017"
+            }
+          }
+        },
+        {
+          "id": "small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+          "mechanism": "SynapticConductance",
+          "population_roles": {
+            "cells": "small_bistratified_S_ON"
+          },
+          "parameter_profile_id": "effective_small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "38f4e53c1c05fe27c0afd43e2991cad4b715795e477da22fe244664b9ea9d561",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_diffuse_BC_OFF_actual_values.json",
+              "sha256": "8fc4180ebeb5a863e31ef51201e156269323866ff88e9a00601347e77bd67025"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_diffuse_BC_OFF_actual_values.npz",
+              "sha256": "eb00c1754e4ffd717269a1c345d42efbf60d790bac48c48a2e374cf608be429d"
+            }
+          }
+        },
+        {
+          "id": "small_bistratified_S_ON",
+          "mechanism": "HistoryConductanceRGC",
+          "population_roles": {
+            "cells": "small_bistratified_S_ON"
+          },
+          "parameter_profile_id": "effective_small_bistratified_S_ON",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "9b022b7db0c0e29e8aee51ceec8aeb256859e3bb341a07e04ccb11d5281423c3",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_actual_values.json",
+              "sha256": "e0ad59ee3b6b649fdd88c09f28027173887a9ae00b1914c960f958b7060d2659"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_actual_values.npz",
+              "sha256": "430988963cd3f3eeaba71c31ce9eb1873f7b3cf361c1a39b693652cb15a675ce"
+            }
+          }
+        },
+        {
+          "id": "rod",
+          "mechanism": "Chen2024PrimateRodCurrent",
+          "population_roles": {
+            "cells": "rod"
+          },
+          "parameter_profile_id": "Chen2024_primateRod_source",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "ce00333196688021b2ffac00818ccb99c05fa5ac174beec963bca7b37f98c257",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_actual_values.json",
+              "sha256": "a98bb206b9a5708ce43773e44f800ae256ed92ea7f47f1ceae20c242a4ed0efc"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_actual_values.npz",
+              "sha256": "8216ad6b1585ad5ac56f12dbc2966c9587df58380c69752512d10bdd268c1081"
+            }
+          }
+        },
+        {
+          "id": "rod_membrane",
+          "mechanism": "ReceptorConductanceMembrane",
+          "population_roles": {
+            "cells": "rod_membrane"
+          },
+          "parameter_profile_id": "effective_rod_membrane",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "58c65deccad2f9358ce0e0686779b701c20ff5cadc9056777632d955218c7ef5",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_membrane_actual_values.json",
+              "sha256": "6268b526630094db173aa711f8f16e26468b11f63ce5926d507ae475571de692"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_membrane_actual_values.npz",
+              "sha256": "2d28c942ea8298225a11e20d027fb097965ba4f1f906673bf0bad887b739e3f7"
+            }
+          }
+        },
+        {
+          "id": "rod_current_SI",
+          "mechanism": "ExplicitPhysicalUnitConversion",
+          "population_roles": {
+            "cells": "rod_membrane"
+          },
+          "parameter_profile_id": "rod_current_adapter",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "3d6b76b1ae47111e8bdbee04c3e887018d7c35ff0becc4580de5a6bf288af9e1",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_current_SI_actual_values.json",
+              "sha256": "7be0d970a9cc7c3c7255dcd352e0eccd526e47d33d0cf02be27593d727b7ea03"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_current_SI_actual_values.npz",
+              "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85"
+            }
+          }
+        },
+        {
+          "id": "individual_rod_RBC_contacts",
+          "mechanism": "RodContactTRPM1",
+          "population_roles": {
+            "cells": "individual_rod_RBC_contacts"
+          },
+          "parameter_profile_id": "effective_individual_TRPM1",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "37e4ea909b125355091c8be333bb1ea25aa3a64ccd8152c6de504f0cb86c314c",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\individual_rod_RBC_contacts_actual_values.json",
+              "sha256": "38a05128f272f1c4576c383045c708137006d66db5c654101d6c6f739a6b7220"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\individual_rod_RBC_contacts_actual_values.npz",
+              "sha256": "800d5a4978651f995282d3415777111884ce9ef48745a234bc1c790e75e40e54"
+            }
+          }
+        },
+        {
+          "id": "rod_BC",
+          "mechanism": "ReceptorConductanceMembrane",
+          "population_roles": {
+            "cells": "rod_BC"
+          },
+          "parameter_profile_id": "effective_rod_BC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "2cb6d46cfd8a67314e9e6a6e7ca734c4b96a138d7f1731711593c65286208bde",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_BC_actual_values.json",
+              "sha256": "91fc05415732a6cbc8071f7cf21fec5650fbf25e69b2d694b9fcd1ba455b6fce"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\rod_BC_actual_values.npz",
+              "sha256": "46a22ce0499237f8661139f0355e779ec8d7057ecd50a696e4b6a6a3297e673b"
+            }
+          }
+        },
+        {
+          "id": "AII_AC",
+          "mechanism": "ReceptorConductanceMembrane",
+          "population_roles": {
+            "cells": "AII_AC"
+          },
+          "parameter_profile_id": "effective_AII_AC",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "4d1545e4f1ac05450e96cc4c58a1e90f272b580bc0d9add47e2e38461611635f",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_AC_actual_values.json",
+              "sha256": "02ba7ab15007179f185848938316181c03b658f366d31adf02f5891eabd99d7f"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_AC_actual_values.npz",
+              "sha256": "579b4c20e03c56114fce35e65f75219cd93ad9ada4f24e1e7f16eed90cad9454"
+            }
+          }
+        },
+        {
+          "id": "RBC_AII_AMPA",
+          "mechanism": "DoubleExponentialChemicalSynapse",
+          "population_roles": {
+            "cells": "RBC_AII_AMPA"
+          },
+          "parameter_profile_id": "effective_RBC_AII_AMPA",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "7fb1a8595f9e0daac3a9275411281bd9c533c0ff5845d0acd7f3fadef28bab7d",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\RBC_AII_AMPA_actual_values.json",
+              "sha256": "99094338efefc8c2cfb83ec7b111f93fe68df6a06fe1e53ed41c6886927d30d5"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\RBC_AII_AMPA_actual_values.npz",
+              "sha256": "58c1e361a25a26bbab8680c219a25fd98bace6cb8203f69096e1340e236c1916"
+            }
+          }
+        },
+        {
+          "id": "AII_FMB_glycine",
+          "mechanism": "DoubleExponentialChemicalSynapse",
+          "population_roles": {
+            "cells": "AII_FMB_glycine"
+          },
+          "parameter_profile_id": "effective_AII_FMB_glycine",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "706ea5c6b773d851f34602b2b9856a4760aa64e5068e41fe08a2b82afa6ce7d4",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_FMB_glycine_actual_values.json",
+              "sha256": "f46fafbf19411e1c38c644698b890b24a5cb31ebeadca7a4c56507dec50cc259"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_FMB_glycine_actual_values.npz",
+              "sha256": "8c3115f90f040d78cbd0155e9a4bd982c4ca53a18797d45649daf7fa48cfcf56"
+            }
+          }
+        },
+        {
+          "id": "AII_DB1_glycine",
+          "mechanism": "DoubleExponentialChemicalSynapse",
+          "population_roles": {
+            "cells": "AII_DB1_glycine"
+          },
+          "parameter_profile_id": "effective_AII_DB1_glycine",
+          "actual_values": {
+            "schema": "actual_component_parameter_arrays_v1",
+            "parameter_hash": "58d43576a8afec72f85bf7a8148110701131b92210e5ca4e4ae8457966c2982d",
+            "metadata": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_DB1_glycine_actual_values.json",
+              "sha256": "e0f639c8ad8b223cd64a849f81f93abe0e19beca9fd09690a5885865a5a9eadc"
+            },
+            "actual_value_arrays": {
+              "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_DB1_glycine_actual_values.npz",
+              "sha256": "09658a3891ec0eaee96dbf3ac47e5c928c7e90ba5533cb1897b31e4b3ce2bb61"
+            }
+          }
+        }
+      ],
+      "required_mechanisms": [
+        "cone_outer_segment",
+        "cone_native_synapse",
+        "HC_H1",
+        "HC_H2",
+        "midget_BC_ON",
+        "midget_BC_OFF",
+        "diffuse_BC_ON",
+        "diffuse_BC_OFF",
+        "S_ON_BC",
+        "local_feedforward_AC",
+        "local_crossover_AC",
+        "widefield_AC",
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF",
+        "small_bistratified_S_ON",
+        "rod",
+        "rod_BC",
+        "AII_AC"
+      ],
+      "scope": "Exact finite dependency view of one approved global3mm geometry; existing effective dynamics, missing source rows retained",
+      "parameters_and_native_options": "actual full arrays in content-identified per-component archives",
+      "recording": "BC/AC/RGC/primary contacts and feedforward cone/HC observation cohort; all dependency states still integrated",
+      "physiological_validation": false
+    },
+    "physiological_validation": false
+  }
+}

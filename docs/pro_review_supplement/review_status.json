@@ -1,0 +1,746 @@
+{
+  "schema": "physiology_WIP_review_v1",
+  "status": "WIP_NOT_FINAL_ACCEPTANCE",
+  "UTC": "2026-10-17T23:57:19.424695+00:00",
+  "review_branch": "review/physiology-wip-20261017T2356Z",
+  "base_commit": "1e4dec7ce8ba9cec801f122ba91ae33a9c141a46",
+  "default_changed_for_this_review": false,
+  "automatic_final_publisher": "STOPPED; human requested immediate WIP review",
+  "human_geometry": {
+    "raw_MAT_sha256": "54eb0a9ef90511ca72782a194a7c6f17d5404e05794f7e4872c808d138f45728",
+    "rule": "Official human right-eye nominal58deg positions, exact negative raw/1000 and fixed crop; no Packer warp or coordinate resampling",
+    "owner_cones": 505162,
+    "support_cones": 545658,
+    "labels": "Macaque absolute S macro-quota and L:M1:1 project split; not macaque density validation"
+  },
+  "functional_HC": {
+    "profile": "configurations/hc_functional_divergence_w2000_v1.json",
+    "graph_sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557",
+    "source": "Wassle2000 divergence anchors at0.5-1mm and5-6mm",
+    "anchors": {
+      "H1": [
+        3.7,
+        7.5
+      ],
+      "H2": [
+        2.2,
+        3.2
+      ]
+    },
+    "project_choices": [
+      "Representative radii0.75/5.5mm",
+      "H2 peripheral3.2 midpoint",
+      "Clipped linear radial transfer; central constant below0.5mm",
+      "Nearest existing typed HC anchors; H1 excludes S",
+      "Stable floor/fractional integer allocation",
+      "Reciprocal functional associations and global unit-DC A/B normalization"
+    ],
+    "existing_coordinates_and_densities_retained": true,
+    "functional_associations": 3577939,
+    "owner_feedback_empty_rows": 0,
+    "maximum_owner_support_um": 89.0147698955,
+    "original_anatomical_feedback_empty_owner_cones": 7770,
+    "anatomical_gap_resolved": false,
+    "independent_S_H2_kinetics": "NOT_CALIBRATED; shared H1 source values"
+  },
+  "midget_floor": {
+    "minimum": "floor(n) for original effective n>=1",
+    "recovered_existing_candidates_each_polarity": 533,
+    "partners_support_weights": "unchanged",
+    "original_ceil_deficits": "retained",
+    "population_average_target_satisfied": "NOT_ESTABLISHED"
+  },
+  "cell_groups": {
+    "photoreceptors": [
+      "L",
+      "M",
+      "S",
+      "rod"
+    ],
+    "HC": [
+      "H1",
+      "H2"
+    ],
+    "BC": [
+      "midget ON",
+      "midget OFF",
+      "diffuse ON",
+      "diffuse OFF",
+      "S-ON",
+      "RBC"
+    ],
+    "AC": [
+      "AII",
+      "local feedforward",
+      "local crossover",
+      "widefield"
+    ],
+    "RGC": [
+      "midget ON",
+      "midget OFF",
+      "parasol ON",
+      "parasol OFF",
+      "small bistratified S-ON"
+    ],
+    "scope": "Effective groups, not all macaque cell subtypes; BC/AC/RGC and rod-inner parameters remain partly project effective"
+  },
+  "acceptance": {
+    "original_HC_transition_v7": "PASS: required2.1s numerical background and matched20ms response; exact same full checkpoint restored to both branches",
+    "functional_HC_central": "Initial empty RF owner array rank bug fixed with3 unit regressions; short reassembly now reaches AII_AC.excitation explicit positive-support failure; no artificial input added",
+    "functional_HC_transition": "100us full-state CPU/CUDA comparison passed; further run stopped after central failure; no converged background/response claimed",
+    "functional_HC_near_peripheral": "NOT_RUN",
+    "three_ROI_acceptance": "INCOMPLETE",
+    "physiological_validation": false
+  },
+  "response_test": {
+    "stimulus": "One existing static controlled image/fixed gaze, expected ISET rate repeated20ms versus declared background",
+    "variables": "Actual native release, BC terminal activation/state and chosen owner midget RGC voltage",
+    "criteria": [
+      "All recorded outputs finite",
+      "Same complete checkpoint hash/time/RNG/history before both branches",
+      "Nonzero native release, some actual BC activation and chosen owner RGC voltage differences",
+      "Actual BC activation equals terminal_release; generator activation has no consumers"
+    ],
+    "not_established": [
+      "Biological amplitude/latency thresholds",
+      "Selective HC or rod causal isolation",
+      "Receptive field size tuning",
+      "Spike stationarity",
+      "All subtypes"
+    ],
+    "duration_seconds": 0.02,
+    "origin_seconds": 2.099999999999879,
+    "deltas": {
+      "outer_native.release": {
+        "max_abs_difference": 0.014510835225351681,
+        "unit": "dimensionless",
+        "first_floating_nonzero_seconds": 0.00010000000012144739
+      },
+      "midget_RGC_ON.voltage": {
+        "max_abs_difference": 1.8828077527066611e-06,
+        "unit": "V",
+        "first_floating_nonzero_seconds": 0.0011000000001213373
+      }
+    }
+  },
+  "performance": {
+    "actual_original_HC_transition_nodes": 879437,
+    "actual_scalar_states": 4967023,
+    "cones": 530929,
+    "HC": 344287,
+    "other_cells": 4221,
+    "background_sim_seconds": 2.099999999999879,
+    "passed_view_population_counts": {
+      "cones": 530929,
+      "HC": 344287,
+      "midget_BC_ON": 508,
+      "midget_BC_OFF": 152,
+      "diffuse_BC_ON": 142,
+      "diffuse_BC_OFF": 70,
+      "S_ON_BC": 56,
+      "local_feedforward_AC": 199,
+      "local_crossover_AC": 152,
+      "widefield_AC": 59,
+      "midget_RGC_ON": 152,
+      "midget_RGC_OFF": 152,
+      "parasol_RGC_ON": 11,
+      "parasol_RGC_OFF": 10,
+      "small_bistratified_S_ON": 21,
+      "rod": 2306,
+      "rod_membrane": 2306,
+      "rod_BC": 115,
+      "AII_AC": 116,
+      "individual_rod_RBC_contacts": 4600,
+      "RBC_AII_AMPA": 348,
+      "AII_FMB_glycine": 456,
+      "AII_DB1_glycine": 210
+    },
+    "passed_view_actual_links": [
+      {
+        "producer": "outer_native",
+        "port": "release",
+        "consumer": "midget_BC_ON",
+        "input": "drive",
+        "shape": [
+          508,
+          530929
+        ],
+        "edges": 508
+      },
+      {
+        "producer": "outer_native",
+        "port": "release",
+        "consumer": "midget_BC_OFF",
+        "input": "drive",
+        "shape": [
+          152,
+          530929
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "outer_native",
+        "port": "release",
+        "consumer": "diffuse_BC_ON",
+        "input": "drive",
+        "shape": [
+          142,
+          530929
+        ],
+        "edges": 1136
+      },
+      {
+        "producer": "outer_native",
+        "port": "release",
+        "consumer": "diffuse_BC_OFF",
+        "input": "drive",
+        "shape": [
+          70,
+          530929
+        ],
+        "edges": 560
+      },
+      {
+        "producer": "outer_native",
+        "port": "release",
+        "consumer": "S_ON_BC",
+        "input": "drive",
+        "shape": [
+          56,
+          530929
+        ],
+        "edges": 56
+      },
+      {
+        "producer": "diffuse_BC_ON",
+        "port": "activation",
+        "consumer": "local_feedforward_AC",
+        "input": "drive",
+        "shape": [
+          199,
+          142
+        ],
+        "edges": 796
+      },
+      {
+        "producer": "diffuse_BC_OFF",
+        "port": "activation",
+        "consumer": "local_crossover_AC",
+        "input": "drive",
+        "shape": [
+          152,
+          70
+        ],
+        "edges": 608
+      },
+      {
+        "producer": "diffuse_BC_ON",
+        "port": "activation",
+        "consumer": "widefield_AC",
+        "input": "drive",
+        "shape": [
+          59,
+          142
+        ],
+        "edges": 944
+      },
+      {
+        "producer": "midget_BC_ON",
+        "port": "activation",
+        "consumer": "midget_RGC_ON_excitatory_midget_BC_ON",
+        "input": "activation",
+        "shape": [
+          152,
+          508
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "midget_RGC_ON_excitatory_midget_BC_ON",
+        "port": "conductance",
+        "consumer": "midget_RGC_ON",
+        "input": "excitation",
+        "shape": [
+          152,
+          152
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "local_crossover_AC",
+        "port": "activation",
+        "consumer": "midget_RGC_ON_inhibitory_local_crossover_AC",
+        "input": "activation",
+        "shape": [
+          152,
+          152
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "midget_RGC_ON_inhibitory_local_crossover_AC",
+        "port": "conductance",
+        "consumer": "midget_RGC_ON",
+        "input": "inhibition",
+        "shape": [
+          152,
+          152
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "midget_BC_OFF",
+        "port": "activation",
+        "consumer": "midget_RGC_OFF_excitatory_midget_BC_OFF",
+        "input": "activation",
+        "shape": [
+          152,
+          152
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "midget_RGC_OFF_excitatory_midget_BC_OFF",
+        "port": "conductance",
+        "consumer": "midget_RGC_OFF",
+        "input": "excitation",
+        "shape": [
+          152,
+          152
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "local_feedforward_AC",
+        "port": "activation",
+        "consumer": "midget_RGC_OFF_inhibitory_local_feedforward_AC",
+        "input": "activation",
+        "shape": [
+          152,
+          199
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "midget_RGC_OFF_inhibitory_local_feedforward_AC",
+        "port": "conductance",
+        "consumer": "midget_RGC_OFF",
+        "input": "inhibition",
+        "shape": [
+          152,
+          152
+        ],
+        "edges": 152
+      },
+      {
+        "producer": "diffuse_BC_ON",
+        "port": "activation",
+        "consumer": "parasol_RGC_ON_excitatory_diffuse_BC_ON",
+        "input": "activation",
+        "shape": [
+          11,
+          142
+        ],
+        "edges": 88
+      },
+      {
+        "producer": "parasol_RGC_ON_excitatory_diffuse_BC_ON",
+        "port": "conductance",
+        "consumer": "parasol_RGC_ON",
+        "input": "excitation",
+        "shape": [
+          11,
+          11
+        ],
+        "edges": 11
+      },
+      {
+        "producer": "widefield_AC",
+        "port": "activation",
+        "consumer": "parasol_RGC_ON_inhibitory_widefield_AC",
+        "input": "activation",
+        "shape": [
+          11,
+          59
+        ],
+        "edges": 88
+      },
+      {
+        "producer": "parasol_RGC_ON_inhibitory_widefield_AC",
+        "port": "conductance",
+        "consumer": "parasol_RGC_ON",
+        "input": "inhibition",
+        "shape": [
+          11,
+          11
+        ],
+        "edges": 11
+      },
+      {
+        "producer": "diffuse_BC_OFF",
+        "port": "activation",
+        "consumer": "parasol_RGC_OFF_excitatory_diffuse_BC_OFF",
+        "input": "activation",
+        "shape": [
+          10,
+          70
+        ],
+        "edges": 80
+      },
+      {
+        "producer": "parasol_RGC_OFF_excitatory_diffuse_BC_OFF",
+        "port": "conductance",
+        "consumer": "parasol_RGC_OFF",
+        "input": "excitation",
+        "shape": [
+          10,
+          10
+        ],
+        "edges": 10
+      },
+      {
+        "producer": "widefield_AC",
+        "port": "activation",
+        "consumer": "parasol_RGC_OFF_inhibitory_widefield_AC",
+        "input": "activation",
+        "shape": [
+          10,
+          59
+        ],
+        "edges": 80
+      },
+      {
+        "producer": "parasol_RGC_OFF_inhibitory_widefield_AC",
+        "port": "conductance",
+        "consumer": "parasol_RGC_OFF",
+        "input": "inhibition",
+        "shape": [
+          10,
+          10
+        ],
+        "edges": 10
+      },
+      {
+        "producer": "S_ON_BC",
+        "port": "activation",
+        "consumer": "small_bistratified_S_ON_excitatory_S_ON_BC",
+        "input": "activation",
+        "shape": [
+          21,
+          56
+        ],
+        "edges": 168
+      },
+      {
+        "producer": "small_bistratified_S_ON_excitatory_S_ON_BC",
+        "port": "conductance",
+        "consumer": "small_bistratified_S_ON",
+        "input": "excitation",
+        "shape": [
+          21,
+          21
+        ],
+        "edges": 21
+      },
+      {
+        "producer": "local_feedforward_AC",
+        "port": "activation",
+        "consumer": "small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+        "input": "activation",
+        "shape": [
+          21,
+          199
+        ],
+        "edges": 168
+      },
+      {
+        "producer": "small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+        "port": "conductance",
+        "consumer": "small_bistratified_S_ON",
+        "input": "inhibition",
+        "shape": [
+          21,
+          21
+        ],
+        "edges": 21
+      },
+      {
+        "producer": "diffuse_BC_OFF",
+        "port": "activation",
+        "consumer": "small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+        "input": "activation",
+        "shape": [
+          21,
+          70
+        ],
+        "edges": 168
+      },
+      {
+        "producer": "small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+        "port": "conductance",
+        "consumer": "small_bistratified_S_ON",
+        "input": "excitation",
+        "shape": [
+          21,
+          21
+        ],
+        "edges": 21
+      },
+      {
+        "producer": "rod",
+        "port": "current",
+        "consumer": "rod_current_SI",
+        "input": "input",
+        "shape": [
+          2306,
+          2306
+        ],
+        "edges": 2306
+      },
+      {
+        "producer": "rod_current_SI",
+        "port": "output",
+        "consumer": "rod_membrane",
+        "input": "current",
+        "shape": [
+          2306,
+          2306
+        ],
+        "edges": 2306
+      },
+      {
+        "producer": "rod_membrane",
+        "port": "release",
+        "consumer": "individual_rod_RBC_contacts",
+        "input": "release",
+        "shape": [
+          4600,
+          2306
+        ],
+        "edges": 4600
+      },
+      {
+        "producer": "individual_rod_RBC_contacts",
+        "port": "conductance",
+        "consumer": "rod_BC",
+        "input": "excitation",
+        "shape": [
+          115,
+          4600
+        ],
+        "edges": 4600
+      },
+      {
+        "producer": "rod_BC",
+        "port": "event_rate",
+        "consumer": "RBC_AII_AMPA",
+        "input": "event_rate",
+        "shape": [
+          348,
+          115
+        ],
+        "edges": 348
+      },
+      {
+        "producer": "RBC_AII_AMPA",
+        "port": "conductance",
+        "consumer": "AII_AC",
+        "input": "excitation",
+        "shape": [
+          116,
+          348
+        ],
+        "edges": 348
+      },
+      {
+        "producer": "AII_AC",
+        "port": "event_rate",
+        "consumer": "AII_FMB_glycine",
+        "input": "event_rate",
+        "shape": [
+          456,
+          116
+        ],
+        "edges": 456
+      },
+      {
+        "producer": "AII_FMB_glycine",
+        "port": "conductance",
+        "consumer": "midget_BC_OFF",
+        "input": "inhibition",
+        "shape": [
+          152,
+          456
+        ],
+        "edges": 456
+      },
+      {
+        "producer": "midget_BC_OFF",
+        "port": "voltage",
+        "consumer": "AII_FMB_glycine",
+        "input": "postsynaptic_voltage",
+        "shape": [
+          456,
+          152
+        ],
+        "edges": 456
+      },
+      {
+        "producer": "AII_AC",
+        "port": "event_rate",
+        "consumer": "AII_DB1_glycine",
+        "input": "event_rate",
+        "shape": [
+          210,
+          116
+        ],
+        "edges": 210
+      },
+      {
+        "producer": "AII_DB1_glycine",
+        "port": "conductance",
+        "consumer": "diffuse_BC_OFF",
+        "input": "inhibition",
+        "shape": [
+          70,
+          210
+        ],
+        "edges": 210
+      },
+      {
+        "producer": "diffuse_BC_OFF",
+        "port": "voltage",
+        "consumer": "AII_DB1_glycine",
+        "input": "postsynaptic_voltage",
+        "shape": [
+          210,
+          70
+        ],
+        "edges": 210
+      }
+    ],
+    "functional_central_selected_nodes": 894425,
+    "functional_transition_short_check": {
+      "status": "FULL_REGISTERED_STATE_CUDA_CPU_100US_COMPARISON_PASS",
+      "state_scalars": 5086083,
+      "components": 34,
+      "duration_seconds": 0.0001,
+      "maximum_absolute_state_difference": 5.684341886080802e-14,
+      "maximum_difference_over_original_solver_scale": 7.810846766778327e-10,
+      "comparison_limit_fraction_of_original_solver_scale": 0.01,
+      "cpu_seconds": 2.866838399990229,
+      "cuda_seconds": 2.305887700000312,
+      "event_clocks_equal": true,
+      "rng_counts_history_equal": true,
+      "checkpoint_migration": false,
+      "original_solver": {
+        "method": "DOP853",
+        "rtol": 1e-06,
+        "atol": 1e-09,
+        "max_step": 0.0001
+      },
+      "numerical_execution": {
+        "backend": "numba_fused_native_rows_v1",
+        "numba_version": "0.67.0",
+        "fastmath": false,
+        "parallel": true,
+        "boundscheck": true,
+        "parent_dispatcher_cache": "disabled; fresh cross-kernel linking per process",
+        "plan_seconds": 0.9094874000002164,
+        "compile_or_cache_load_seconds": 2.3913388999935705,
+        "instruction_count": 643,
+        "scratch_bytes": 114827416,
+        "state_scalars": 5086083,
+        "external_scalars": 547964,
+        "plan_hash": "df7d460e8a22c0eb4a512e9f623d0f6c4ab74d6838250c74e9839760d5766578",
+        "scope": "CUDA native/joint DOP853; unchanged inner Numba plan, event/history/recording and CPU background monitor",
+        "parallel_scope": "independent native rows only; CSR within-row reduction order unchanged",
+        "native_threads_maximum": 8,
+        "helper_sha256": "d5c91bff00cd9fd3f8779029b2191263ef464169d918a061544c7a8750a1c923",
+        "process_environment": {
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "requested": "numba",
+        "integration_backend": {
+          "backend": "cuda_native_joint_dop853_float64_v1",
+          "torch_version": "2.14.0+cu130",
+          "cuda_version": "13.0",
+          "device": "NVIDIA GeForce RTX 4070 Ti SUPER",
+          "device_capability": [
+            8,
+            9
+          ],
+          "torch_cpu_threads": 1,
+          "scipy_version": "1.17.1",
+          "scipy_rk_sha256": "fa5d6300917f4f949e699b116f59ae147159d5c6147d55d940dc9d3303891056",
+          "scipy_common_sha256": "195293731f903bb58faf67a33408bde1a11d32fd37cc554eaf6e10d70dab6762",
+          "implementation_sha256": {
+            "gpu_native.py": "16a7081587c5a1b7a77410d9374c8547141062e6e5b8d43ec65df336e4c774da",
+            "gpu_dop853.py": "94d03925a324074338ff24a17e4d0e8f7cc3bf6aec88daf6527ea23d722b5f7e",
+            "gpu_hybrid.py": "f4447c356b540e630b43d9a1d3eb33a4e74c950581cdb40f21f4838dee19c82d"
+          },
+          "inner_plan_hash": "3b2af0b2d699542ecc419fc83092ac186f518500f4d0f2480b811bfe0393d17b",
+          "dtype": "float64",
+          "tf32": false,
+          "CUDA_CSR_storage": "Private sorted-column copy; original source arrays/weights untouched; duplicate columns rejected",
+          "source_equations_parameters_graph": "unchanged",
+          "bitwise_cpu_parity": false
+        }
+      },
+      "physiological_validation": false,
+      "background_preparation": "NOT_PERFORMED_BY_THIS_CHECK; actual required policy must still run from fresh initial state"
+    },
+    "background_wall_seconds": 15460.81949960001,
+    "neural_integration_wall_seconds": 3241.731596098776,
+    "outside_integration_wall_seconds": 12219.087903501233,
+    "outside_integration_fraction": 0.7903260175708898,
+    "remaining_breakdown": "Not yet separately measured: original monitor/evaluate, selection/metadata, validation/conversion/checkpoint IO; CPU/GPU transfers are inside integration timing",
+    "CPU_fusion": "Native-only RHS array-exact, measured3.16075x",
+    "CUDA": "Separate float64 joint DOP853 backend; native-only warm1ms benchmark26.499x, not whole-network speed",
+    "same_identity_reuse": "v7 strictly reused converged v6 checkpoint; no new background integration. New functional HC graph has different weights/binding and cannot reuse the old-HC background",
+    "next_action": "Short same-model profiler; prioritize high-cost exact metadata/selection/monitor/conversion work, not another multi-hour validation"
+  },
+  "dependencies": {
+    "python_environment": "Existing retipath_v1; no upgrade",
+    "torch": "2.14.0+cu130",
+    "CUDA": "13.0",
+    "GPU": "RTX4070TiSUPER",
+    "scipy": "1.17.1",
+    "numba": "0.67.0",
+    "OPENBLAS_NUM_THREADS": "1",
+    "dtype": "float64",
+    "fastmath_CPU": false,
+    "ISETBio_commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35",
+    "ISETCam_commit": "17146a9f0470cc89b58d583851f680187268506d",
+    "cache_identity": "Full graph/population/weights/parameters/solver/model/background/schema/clock identity; no cross-graph fallback"
+  },
+  "review_priorities": [
+    "retina_sim/atlas_runtime.py:_owner_ids",
+    "retina_sim/atlas_primary_rod.py:attach_primary_rod",
+    "retina_sim/assembly.py:positive support",
+    "retina_sim/hybrid.py:advance/record",
+    "retina_sim/background.py:_WindowMonitor.observe",
+    "retina_sim/background_checkpoint.py:save/load",
+    "retina_sim/engine.py:validate_state",
+    "retina_sim/network.py:evaluate/execution_metadata",
+    "retina_sim/recording.py:indices/delay payload",
+    "retina_sim/gpu_hybrid.py:CPU-GPU boundary",
+    "retina_sim/gpu_dop853.py:error norm synchronizations"
+  ],
+  "next_scientific_stage_not_started": "After minimum acceptance, propose one ROI/same background with a small bounded bright/dark and spot-size set; cost separately. Quantitative comparison only where original paper conditions/units match.",
+  "figure": {
+    "file": "transition_original_HC_response.png",
+    "source_variable": "midget_RGC_ON.voltage",
+    "cell_id": "atlas:5ef87c4e434f06aba02476d6731b55a290516c1b4a5b8672bcdd1f8c0c7e99e8",
+    "cell_selection": "first recorded owner ID",
+    "display_conversion": "V to uV, multiply by1e6",
+    "time_axis": "absolute recorded time minus actual stimulus origin, display only",
+    "sha256": "eb800cbc87c2691aff1114f84ab3d6893c3b797db9fbe36e5a6d763214b6bb9a",
+    "new_functional_HC_result": false
+  },
+  "third_party_notice": {
+    "file": "SCIPY_LICENSE.txt",
+    "source": "Installed SciPy1.17.1 license/notices",
+    "sha256": "564d63dbef2ef3eb1dec94908966d3edf5f11c487ee2cf2baf8bf3faef01bdd9"
+  }
+}

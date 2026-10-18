@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_isetbio_geometry_v1",
+  "storage_kind": "global_disk_graph_v1",
+  "atlas_profile": "retina_atlas_human_borrowed_disk3mm_v1",
+  "global_graph": {
+    "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit/manifest.json",
+    "sha256": "4b5674f89a019798cfe63e06b4a799e2927275db47c57b35496551c3bb988c11"
+  },
+  "input_plan": {
+    "path": "data/atlas/human_disk3mm_input_plan_v1/manifest.json",
+    "sha256": "22253cf3f6a4a356a07d0caa1bededa982e8f3702391631cc846630f9b36bddf"
+  },
+  "parameter_profile": "effective_dynamics_v1",
+  "owner_disk_radius_mm": 3.0,
+  "halo_mm": 0.04,
+  "budgets": {
+    "max_dependency_nodes": 2000000,
+    "max_compile_bytes": 4294967296,
+    "minimum_available_bytes": 8589934592
+  },
+  "status": "GLOBAL_GEOMETRY_FROZEN_PENDING_ASSEMBLY_AND_CAPTURE",
+  "default_adopted": false,
+  "migration": {
+    "status": "CANDIDATE_NOT_DEFAULT",
+    "canonical_target_outputs": [
+      "midget_RGC_ON",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF",
+      "small_bistratified_S_ON"
+    ],
+    "current_empty_owner_outputs": [],
+    "ready_for_single_default_switch": false,
+    "global_native_owner_zero_feedback_cones": 7770
+  }
+}

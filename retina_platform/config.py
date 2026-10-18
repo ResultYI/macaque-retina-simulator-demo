@@ -24,10 +24,13 @@ class RunConfig:
     gaze_csv: str = ''
     seed: int = 20261010
     execution_profile: str = 'retina_contact_geometry_effective_v1'
+    circuit_configuration_path: str = ''
     parameter_profile: str = 'effective_dynamics_v1'
     adaptation_policy: str = 'uniform_declared_background'
     background_source: str = 'RunConfig_declared_background'
-    rgb_adapter: str = 'contrast_reference_v1'
+    rgb_adapter: str = 'iset_lcd_apple_mw_v1'
+    frontend_signature: str = ''
+    native_background_values: tuple | None = None
     reference_linear_value: float = .5
     owner_x_mm: float = .35
     owner_y_mm: float = 0.
@@ -51,6 +54,8 @@ class RunConfig:
     background_checkpoint_path: str = ''
     background_memory_limit_mb: float = 4096.
     background_min_available_mb: float = 1024.
+    background_checkpoint_interval_seconds: float = 45.
+    neural_integration_backend: str = 'scipy_cpu_v1'
 
     def to_dict(self):
         return asdict(self)
@@ -71,7 +76,12 @@ class RunConfig:
         if unknown:
             raise ValueError('未知配置项: ' + ', '.join(sorted(unknown)))
         value=dict(value)
-        if value.get('execution_profile') in ('atlas_midget_research_v1','atlas_population_revision_v1'):
+        if value.get('execution_profile')=='atlas_isetbio_geometry_v1':
+            import json
+            defaults=json.loads((Path(__file__).resolve().parents[1]/'configurations/retina_platform_v1.json').read_bytes())['run_defaults']
+            for key,default in defaults.items():
+                if key.startswith('background_'):value.setdefault(key,'' if key=='background_checkpoint_path' else default)
+        if value.get('execution_profile') in ('atlas_midget_research_v1','atlas_population_revision_v1','atlas_isetbio_geometry_v1'):
             for key,default in {'warmup_seconds':0.,'duration_seconds':.0012,'window_seconds':.0012,
                 'sample_seconds':.0001,'owner_x_mm':.35,'max_spatial_cells':60000,
                 'hc_geometry_profile':'atlas_fixed_joint_master_v2','hc_arbor_profile':'atlas_source_arbor_v1',
@@ -99,12 +109,19 @@ class RunConfig:
             raise ValueError('请选择可读取的图像或视频')
         numeric = [f.name for f in fields(self) if f.name not in ('media_path', 'gaze_csv', 'execution_profile',
                    'parameter_profile', 'adaptation_policy', 'background_source','rgb_adapter','roi_preset',
+                   'frontend_signature','native_background_values','circuit_configuration_path',
                    'hc_geometry_profile','hc_arbor_profile','hc_geometry_path','hc_h1_radius_mm','hc_h2_radius_mm',
                    'ipl_geometry_profile','requested_owner_output',
+                   'neural_integration_backend',
                    'background_initialization_mode','background_policy_path','background_checkpoint_path','background_require_converged')]
+        if self.neural_integration_backend not in ('scipy_cpu_v1','cuda_native_joint_dop853_float64_v1'):
+            raise ValueError('Unknown explicit numerical integration backend')
         if self.background_initialization_mode not in ('fixed_prerun','bounded_convergence'):
             raise ValueError('Unknown background initialization mode')
         if not isinstance(self.background_require_converged,bool):raise ValueError('background_require_converged must be boolean')
+        if not isinstance(self.circuit_configuration_path,str):raise ValueError('Circuit configuration path must be text')
+        if self.circuit_configuration_path and self.execution_profile!='atlas_isetbio_geometry_v1':
+            raise ValueError('Explicit circuit configuration requires the frozen ISET geometry route')
         if self.background_initialization_mode=='bounded_convergence':
             if self.adaptation_policy!='uniform_declared_background':raise ValueError('Bounded preparation requires declared uniform background')
             self.background_policy()
@@ -117,10 +134,10 @@ class RunConfig:
                 raise ValueError(name+' requires a positive finite mm radius or an empty unconfigured value')
         if self.roi_preset not in ('custom','center_design','central_author_anchor','central_OPL_support','transition_anchor','peripheral_anchor'):
             raise ValueError('Unknown named ROI preset')
-        if self.execution_profile not in ('engineering_preview', 'source_constrained_approximation','retina_contact_geometry_effective_v1','atlas_midget_research_v1','atlas_population_revision_v1'):
+        if self.execution_profile not in ('engineering_preview', 'source_constrained_approximation','retina_contact_geometry_effective_v1','atlas_midget_research_v1','atlas_population_revision_v1','atlas_isetbio_geometry_v1'):
             raise ValueError('未知运行模式；全生理严格模式尚未标定')
         from retina_sim.ipl_geometry import read_ipl_geometry,TYPED_PROFILES
-        if self.execution_profile not in ('atlas_midget_research_v1','atlas_population_revision_v1'):
+        if self.execution_profile not in ('atlas_midget_research_v1','atlas_population_revision_v1','atlas_isetbio_geometry_v1'):
             read_ipl_geometry(Path(__file__).resolve().parents[1],self.ipl_geometry_profile)
             if self.hc_geometry_profile=='atlas_fixed_joint_master_v2':raise ValueError('Fixed atlas HC belongs to the atlas Run profile')
         if self.ipl_geometry_profile in TYPED_PROFILES and self.execution_profile=='engineering_preview':
@@ -130,7 +147,9 @@ class RunConfig:
         if self.parameter_profile not in ('legacy_effective_v1','effective_dynamics_v1'):
             raise ValueError('未知实际参数 profile')
         from retina_sim.hc_geometry import read_hc_geometry
-        if self.execution_profile in ('atlas_midget_research_v1','atlas_population_revision_v1'):
+        if self.execution_profile in ('atlas_midget_research_v1','atlas_population_revision_v1','atlas_isetbio_geometry_v1'):
+            if self.execution_profile=='atlas_isetbio_geometry_v1' and (self.background_initialization_mode!='bounded_convergence' or not self.background_require_converged):
+                raise ValueError('新ISET几何需要独立的有界收敛背景；旧几何checkpoint不能复用')
             if (self.hc_geometry_profile,self.hc_arbor_profile,self.ipl_geometry_profile)!=('atlas_fixed_joint_master_v2','atlas_source_arbor_v1','atlas_typed_inner_v1'):
                 raise ValueError('Atlas Run requires its fixed actual geometry; old geometry settings are not used')
             if self.parameter_profile!='effective_dynamics_v1' or self.adaptation_policy!='uniform_declared_background':
@@ -152,8 +171,10 @@ class RunConfig:
             from retina_sim.hc_arbor import validate_footprints
             validate_footprints(hc['footprints'],require_configured=True)
         self.light_context()
-        if self.rgb_adapter not in ('contrast_reference_v1','legacy_rgb_proxy_v1') or self.reference_linear_value<=0:
-            raise ValueError('光输入需要具名 adapter 与正 reference value')
+        if self.rgb_adapter!='iset_lcd_apple_mw_v1':
+            raise ValueError('旧 RGB 输入仅供历史结果读取；运行需要当前 LCD-Apple/MW 混合参考前端')
+        if self.native_background_td!=100 or self.reference_linear_value!=.5:
+            raise ValueError('已批准参考固定为 100 td 与既有 reference u=0.5；更改需新参考配置')
         for name in numeric:
             v = getattr(self, name)
             if isinstance(v, bool) or not isinstance(v, (float, int)) or not math.isfinite(v):
@@ -166,7 +187,7 @@ class RunConfig:
         for name in ('duration_seconds', 'window_seconds', 'sample_seconds', 'field_width_deg',
                      'native_background_td', 'cone_background_rstar_s', 'rod_background_rstar_s',
                      'owner_width_mm','owner_height_mm','halo_mm','max_spatial_cells',
-                      'background_max_sim_seconds','background_max_wall_seconds','background_memory_limit_mb','background_min_available_mb'):
+                      'background_max_sim_seconds','background_max_wall_seconds','background_memory_limit_mb','background_min_available_mb','background_checkpoint_interval_seconds'):
             if getattr(self, name) <= 0:
                 raise ValueError(name + ' 必须大于 0')
         if self.start_seconds < 0 or self.warmup_seconds < 0:
@@ -199,6 +220,11 @@ class RunConfig:
 
     def light_context(self):
         from retina_sim.runtime_profiles import LightContext
+        if self.rgb_adapter=='iset_lcd_apple_mw_v1':
+            return LightContext(self.native_background_td,self.cone_background_rstar_s,self.rod_background_rstar_s,
+                'iset_lcd_apple_mw_reference_v1','ISET_LCD_Apple_human_MW_mixed_reference',
+                'approved_mixed_reference:'+self.frontend_signature,self.adaptation_policy,'native_td',
+                self.rgb_adapter,self.reference_linear_value,self.field_width_deg,self.native_background_values)
         return LightContext(self.native_background_td, self.cone_background_rstar_s,
             self.rod_background_rstar_s, self.background_source, 'RGB_display_approximation',
             'uncalibrated_sRGB_weighted_display_mapping', self.adaptation_policy,'relative_intensity',
@@ -209,6 +235,17 @@ class RunConfig:
             self.owner_y_mm-self.owner_height_mm/2,self.owner_y_mm+self.owner_height_mm/2)
 
 def input_assumptions(config):
+    if config.rgb_adapter=='iset_lcd_apple_mw_v1':
+        return {'profile':'iset_lcd_apple_mw_v1','scope':'approved_mixed_reference',
+            'input_class':'LCD-Apple gamma/SPD -> scaled human-MW -> ISET cone capture -> fixed LMS reference-equivalent native drive',
+            'frontend_signature':config.frontend_signature,'evidence_class':'project_approximation',
+            'physiological_calibration':'MIXED_REFERENCE_NOT_FULL_MACAQUE','spectral_physical_calibration':False,
+            'rgb_transfer':'digital RGB drives measured LCD gamma once; no preceding sRGB inverse for cones',
+            'rod_input':'existing independent sRGB weighted rod route, not ISET capture',
+            'weights':{'rod':[.2126,.7152,.0722]},'reference_linear_value':config.reference_linear_value,
+            'field_width_deg':config.field_width_deg,'retinal_mm_per_degree':.223,
+            'light_context':config.light_context().manifest(config.warmup_seconds),
+            'includes_background':True,'native_interpolation':'held 100us integration-window means'}
     return {
         'profile': 'engineering_sRGB_profile', 'input_class': 'RGB_media_with_synthetic_engineering_light_mapping',
         'evidence_class': 'project_approximation', 'spectral_physical_calibration': False,

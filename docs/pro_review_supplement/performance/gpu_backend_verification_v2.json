@@ -1,0 +1,707 @@
+{
+  "original_local_sha256": "47cbd3be9d04c4b635917bb19e71ffdb26ba091cea5d549fa1705d9837e0a8da",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "focused_cuda_execution_verification_v2",
+    "tests_passed": 10,
+    "executions": [
+      {
+        "passed": 9,
+        "seconds": 54.35,
+        "original_record": "gpu_backend_verification.json"
+      },
+      {
+        "passed": 1,
+        "seconds": 11.35,
+        "selection": "test_named_factory_and_full_registered_verification"
+      }
+    ],
+    "source_sha256": {
+      "retina_sim/gpu_native.py": "16a7081587c5a1b7a77410d9374c8547141062e6e5b8d43ec65df336e4c774da",
+      "retina_sim/gpu_dop853.py": "94d03925a324074338ff24a17e4d0e8f7cc3bf6aec88daf6527ea23d722b5f7e",
+      "retina_sim/gpu_hybrid.py": "f4447c356b540e630b43d9a1d3eb33a4e74c950581cdb40f21f4838dee19c82d",
+      "retina_sim/execution_backends.py": "93ae12a216bf39ec5ec88b64038eddc5b8b8b9b0d89eff2ed2c623f37560032a",
+      "tests/test_gpu_hybrid.py": "a5c4ed7bc7ff1cfff0e16180205ad2bf3fba6fbb2ad65c204045ec3ba68c7efa"
+    },
+    "GUI_RunConfig_named_backend_validation": "PASS; serialized string excluded from numeric fields, unknown backend rejected",
+    "full_actual_dependency_comparison": {
+      "path": "reports/human_disk3mm_floor_transition_v6/transition/matched_response/execution_backend_check.json",
+      "sha256": "e971efffbc1878c403c933cfdf61528083a6a0221dbfbb6b1f7525e671c2369f",
+      "result": {
+        "status": "FULL_REGISTERED_STATE_CUDA_CPU_100US_COMPARISON_PASS",
+        "state_scalars": 4967023,
+        "components": 34,
+        "duration_seconds": 0.0001,
+        "maximum_absolute_state_difference": 5.684341886080802e-14,
+        "maximum_difference_over_original_solver_scale": 6.725452124065818e-10,
+        "comparison_limit_fraction_of_original_solver_scale": 0.01,
+        "cpu_seconds": 2.7947753999906126,
+        "cuda_seconds": 2.2614218999806326,
+        "event_clocks_equal": true,
+        "rng_counts_history_equal": true,
+        "checkpoint_migration": false,
+        "original_solver": {
+          "method": "DOP853",
+          "rtol": 1e-06,
+          "atol": 1e-09,
+          "max_step": 0.0001
+        },
+        "numerical_execution": {
+          "backend": "numba_fused_native_rows_v1",
+          "numba_version": "0.67.0",
+          "fastmath": false,
+          "parallel": true,
+          "boundscheck": true,
+          "parent_dispatcher_cache": "disabled; fresh cross-kernel linking per process",
+          "plan_seconds": 0.9170541999919806,
+          "compile_or_cache_load_seconds": 2.0528501000080723,
+          "instruction_count": 643,
+          "scratch_bytes": 112205640,
+          "state_scalars": 4967023,
+          "external_scalars": 533235,
+          "plan_hash": "7adc6a8d8fa650608ecf99937b21214acef56a8aac97444dc7e6d20d4bfd9013",
+          "scope": "CUDA native/joint DOP853; unchanged inner Numba plan, event/history/recording and CPU background monitor",
+          "parallel_scope": "independent native rows only; CSR within-row reduction order unchanged",
+          "native_threads_maximum": 8,
+          "helper_sha256": "d5c91bff00cd9fd3f8779029b2191263ef464169d918a061544c7a8750a1c923",
+          "process_environment": {
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "requested": "numba",
+          "integration_backend": {
+            "backend": "cuda_native_joint_dop853_float64_v1",
+            "torch_version": "2.14.0+cu130",
+            "cuda_version": "13.0",
+            "device": "NVIDIA GeForce RTX 4070 Ti SUPER",
+            "device_capability": [
+              8,
+              9
+            ],
+            "torch_cpu_threads": 1,
+            "scipy_version": "1.17.1",
+            "scipy_rk_sha256": "fa5d6300917f4f949e699b116f59ae147159d5c6147d55d940dc9d3303891056",
+            "scipy_common_sha256": "195293731f903bb58faf67a33408bde1a11d32fd37cc554eaf6e10d70dab6762",
+            "implementation_sha256": {
+              "gpu_native.py": "16a7081587c5a1b7a77410d9374c8547141062e6e5b8d43ec65df336e4c774da",
+              "gpu_dop853.py": "94d03925a324074338ff24a17e4d0e8f7cc3bf6aec88daf6527ea23d722b5f7e",
+              "gpu_hybrid.py": "f4447c356b540e630b43d9a1d3eb33a4e74c950581cdb40f21f4838dee19c82d"
+            },
+            "inner_plan_hash": "9b902fb08739dca3a4b92ed75713fbc411b74d9788494599aa691f6668236efa",
+            "dtype": "float64",
+            "tf32": false,
+            "CUDA_CSR_storage": "Private sorted-column copy; original source arrays/weights untouched; duplicate columns rejected",
+            "source_equations_parameters_graph": "unchanged",
+            "bitwise_cpu_parity": false
+          }
+        },
+        "physiological_validation": false,
+        "background_preparation": "NOT_PERFORMED_BY_THIS_CHECK; actual required policy must still run from fresh initial state"
+      }
+    },
+    "CPU_v5_recovery": "reports/runtime_acceleration_20261017/cpu_v5_retained_before_cuda_20261017T185542Z",
+    "physiological_validation": false,
+    "first_actual_complete_background_window": {
+      "source": "reports/human_disk3mm_floor_transition_v6/transition/matched_response/background_progress.json",
+      "snapshot": {
+        "phase": "background_window",
+        "wall_seconds": 732.9405485999887,
+        "last_window": {
+          "states": [
+            {
+              "state": "outer_native.R",
+              "unit": "td",
+              "maximum_observed_excursion_norm": 13009.797898526565,
+              "original_rhs_norm": 2655060.7956176675,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.E",
+              "unit": "td",
+              "maximum_observed_excursion_norm": 12974.960985127442,
+              "original_rhs_norm": 69636.24630601953,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.X",
+              "unit": "vH_native_precursor",
+              "maximum_observed_excursion_norm": 3257.994851053727,
+              "original_rhs_norm": 6430.6676776367885,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.C",
+              "unit": "vH_native_current",
+              "maximum_observed_excursion_norm": 3221.415218467198,
+              "original_rhs_norm": 6149.591006477274,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.Vis",
+              "unit": "vH_native_voltage",
+              "maximum_observed_excursion_norm": 2179.6080425781443,
+              "original_rhs_norm": 5747.354233657866,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.g_i",
+              "unit": "vH_native_conductance",
+              "maximum_observed_excursion_norm": 296.03385666749637,
+              "original_rhs_norm": 418.943213682324,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.Vbar",
+              "unit": "vH_native_voltage",
+              "maximum_observed_excursion_norm": 493.35310027940614,
+              "original_rhs_norm": 699.0860497495324,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.z1",
+              "unit": "vH_native_voltage",
+              "maximum_observed_excursion_norm": 4802.339934514603,
+              "original_rhs_norm": 22922.28983888615,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.z2",
+              "unit": "vH_native_voltage",
+              "maximum_observed_excursion_norm": 1400.6691016257057,
+              "original_rhs_norm": 10242.480873505965,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "outer_native.Vh",
+              "unit": "vH_native_voltage",
+              "maximum_observed_excursion_norm": 1228.5015631238682,
+              "original_rhs_norm": 3972.5984003833373,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "midget_BC_ON.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 217.86316154406987,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1562.3093614567929
+            },
+            {
+              "state": "midget_BC_ON.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 217.86316154406987,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1562.3093614567929
+            },
+            {
+              "state": "midget_BC_ON.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 217.86316154406987,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1562.3093614567929
+            },
+            {
+              "state": "midget_BC_ON.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 70.32780605929045,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 506.54701892521854
+            },
+            {
+              "state": "midget_BC_ON.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 52.591193545382474,
+              "original_rhs_norm": 249.99280771741715,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "midget_BC_ON.terminal_release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 196.60052252488651,
+              "original_rhs_norm": 664.2148485501986,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "midget_BC_OFF.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 205.81119572829903,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1562.3093614567929
+            },
+            {
+              "state": "midget_BC_OFF.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 205.81119572829903,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1562.3093614567929
+            },
+            {
+              "state": "midget_BC_OFF.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 205.81119572829903,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1562.3093614567929
+            },
+            {
+              "state": "midget_BC_OFF.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 67.36194703153176,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 511.84952001054324
+            },
+            {
+              "state": "midget_BC_OFF.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 114.52371978240512,
+              "original_rhs_norm": 537.5007438815368,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "midget_BC_OFF.terminal_release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 425.1245456182681,
+              "original_rhs_norm": 1471.8558452103125,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "diffuse_BC_ON.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 152.62537698031693,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1431.7508297772285
+            },
+            {
+              "state": "diffuse_BC_ON.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 152.62537698031693,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1431.7508297772285
+            },
+            {
+              "state": "diffuse_BC_ON.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 152.62537698031693,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1431.7508297772285
+            },
+            {
+              "state": "diffuse_BC_ON.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 49.4433887941087,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 464.7310676131333
+            },
+            {
+              "state": "diffuse_BC_ON.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 45.63787051428541,
+              "original_rhs_norm": 249.92941808444883,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "diffuse_BC_ON.terminal_release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 170.754498189975,
+              "original_rhs_norm": 631.8400631113441,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "diffuse_BC_OFF.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 150.2195455868127,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1418.3564758401544
+            },
+            {
+              "state": "diffuse_BC_OFF.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 150.2195455868127,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1418.3564758401544
+            },
+            {
+              "state": "diffuse_BC_OFF.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 150.2195455868127,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1418.3564758401544
+            },
+            {
+              "state": "diffuse_BC_OFF.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 49.15597398080285,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 464.9042734413133
+            },
+            {
+              "state": "diffuse_BC_OFF.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 109.50973956019153,
+              "original_rhs_norm": 506.6905225561833,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "diffuse_BC_OFF.terminal_release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 406.8553617344064,
+              "original_rhs_norm": 1396.6142770044007,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "S_ON_BC.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 269.74320638876156,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1594.833440792906
+            },
+            {
+              "state": "S_ON_BC.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 269.74320638876156,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1594.833440792906
+            },
+            {
+              "state": "S_ON_BC.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 269.74320638876156,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1594.833440792906
+            },
+            {
+              "state": "S_ON_BC.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 88.2123773480331,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 521.8933419146588
+            },
+            {
+              "state": "S_ON_BC.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 40.54111968434988,
+              "original_rhs_norm": 248.5477045315736,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "S_ON_BC.terminal_release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 151.6716081080216,
+              "original_rhs_norm": 653.4098011639899,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "local_feedforward_AC.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 158.5498024286347,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 608.8148683785488
+            },
+            {
+              "state": "local_feedforward_AC.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 158.51280908951048,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 608.8148683785488
+            },
+            {
+              "state": "local_feedforward_AC.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 158.48057381532885,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 608.8148683785488
+            },
+            {
+              "state": "local_feedforward_AC.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 43.59649279478461,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 168.64255998250144
+            },
+            {
+              "state": "local_crossover_AC.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 392.80722364412986,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1362.8282832477134
+            },
+            {
+              "state": "local_crossover_AC.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 392.7505142703086,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1362.8282832477134
+            },
+            {
+              "state": "local_crossover_AC.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 392.68001334778256,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 1362.8282832477134
+            },
+            {
+              "state": "local_crossover_AC.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 107.06529157771315,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 375.74205314006014
+            },
+            {
+              "state": "widefield_AC.history_0",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 149.0030738950851,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 590.8625048069674
+            },
+            {
+              "state": "widefield_AC.history_1",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 148.98262888077633,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 590.8625048069674
+            },
+            {
+              "state": "widefield_AC.history_2",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 148.9651188633373,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 590.8625048069674
+            },
+            {
+              "state": "widefield_AC.activation",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 40.986453133534106,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 163.42899118030647
+            },
+            {
+              "state": "midget_RGC_ON.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 44.57418311363924,
+              "original_rhs_norm": 82.35810216390969,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "midget_RGC_OFF.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 106.30832337034605,
+              "original_rhs_norm": 192.32376827631074,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "parasol_RGC_ON.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 36.353314638186916,
+              "original_rhs_norm": 70.79237679671435,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "parasol_RGC_OFF.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 94.48239389952384,
+              "original_rhs_norm": 170.33046450759485,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "small_bistratified_S_ON.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 96.9918321799752,
+              "original_rhs_norm": 196.65329128703388,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod.R",
+              "unit": "s^-2",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod.P",
+              "unit": "s^-1",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod.G",
+              "unit": "Chen_scaled_concentration",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod.C",
+              "unit": "Chen_scaled_concentration",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod.S",
+              "unit": "Chen_scaled_concentration/s",
+              "maximum_observed_excursion_norm": 5.704114666298739e-10,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 5.704114666298739e-07
+            },
+            {
+              "state": "rod_membrane.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod_membrane.release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "individual_rod_RBC_contacts.m",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod_BC.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 1.314047754450343e-12,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod_BC.release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "rod_BC.x",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 1.1102230246251565e-13,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_AC.V",
+              "unit": "V",
+              "maximum_observed_excursion_norm": 116.79463551946705,
+              "original_rhs_norm": 1733.3482100694396,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_AC.release",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 383.5654581930531,
+              "original_rhs_norm": 2946.610966966653,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_AC.x",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 182.95585507007604,
+              "original_rhs_norm": 272.28795278079787,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "RBC_AII_AMPA.a",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "RBC_AII_AMPA.b",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 0.0,
+              "original_rhs_norm": 0.0,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_FMB_glycine.a",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 1.2741472297880296,
+              "original_rhs_norm": 15.792209625863585,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_FMB_glycine.b",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 47.28394343522124,
+              "original_rhs_norm": 365.9044314990543,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_DB1_glycine.a",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 1.751950465672849,
+              "original_rhs_norm": 21.489962688612252,
+              "discrete_defect_norm": 0.0
+            },
+            {
+              "state": "AII_DB1_glycine.b",
+              "unit": "dimensionless",
+              "maximum_observed_excursion_norm": 61.90161327472605,
+              "original_rhs_norm": 436.14811033087,
+              "discrete_defect_norm": 0.0
+            }
+          ],
+          "maximum_norm": 2655060.7956176675,
+          "dominant": {
+            "state": "outer_native.R",
+            "component": "outer_native",
+            "cell_id": "atlas:d7653112036056470ba1ce30f79c1253b3fa99ff17c81cc7d34786afd343a0c3",
+            "criterion": "original_rhs",
+            "norm": 2655060.7956176675
+          },
+          "observations": 2346,
+          "domain_failures": [],
+          "passed": false,
+          "start_seconds": 0.0,
+          "stop_seconds": 0.1,
+          "complete_window": true,
+          "history_consistency_failures": [
+            "observation:outer_native:queue_not_constant_within_tolerance"
+          ],
+          "monitoring_budget_limited": false,
+          "consecutive_passed_windows": 0
+        },
+        "memory": {
+          "rss_bytes": 4913643520,
+          "process_peak_rss_bytes": 6476857344,
+          "available_physical_bytes": 15442206720,
+          "rss_limit_bytes": 15032385536,
+          "minimum_available_bytes": 8589934592
+        },
+        "absolute_time_seconds": 0.1,
+        "integration_metrics": {
+          "solver_calls": 1123,
+          "nfev": 16478,
+          "njev": 0,
+          "nlu": 0,
+          "integration_wall_seconds": 152.2675792001246,
+          "minimum_interval_seconds": 9.999999999996123e-06,
+          "maximum_nfev_per_interval": 26
+        }
+      },
+      "convergence_established": false,
+      "whole_network_speed_ratio": "NOT_CLAIMED from native-only benchmark"
+    },
+    "response_recording_clock_repair": {
+      "original_attempt": 6,
+      "original_status": "BACKGROUND_CONVERGED_RESPONSE_RECORDING_BLOCKED",
+      "reproduced_error": "Delay history was pruned for this readout; no substituted background",
+      "cause": "About1.2e-13s offset when adding the raw accumulated preparation origin to the recording grid; an event update can correctly prune the older bracket before that earlier requested stamp",
+      "fix": "Align interior recording requests to the existing absolute event clocks using the same1e-12 coincidence rule as background/GUI; preserve the exact prepared origin and20ms stop; record actual relative times",
+      "regressions_passed": 2,
+      "model_or_solver_core_changed": false,
+      "checkpoint_migration": false,
+      "source_sha256": {
+        "tools/disk3mm_response_check.py": "ef59bcd261e858d8f1541033df45e2575c1b81257a190f063c98d4319582c80f",
+        "tests/test_response_clock_alignment.py": "1f76acbc23db718803487027d1965aa8765bb57db20fdd424cbd242da2a4bfa1"
+      },
+      "converged_checkpoint_reuse": "Strict original binding/model/solver/criteria checks required in attempt7"
+    }
+  }
+}

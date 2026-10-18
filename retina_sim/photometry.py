@@ -84,3 +84,26 @@ def radiance_to_retinal_irradiance(*args,**kwargs):
 
 def rgb_to_photoisomerization_rate(*args,**kwargs):
     raise MissingCalibrationError("ERROR_ABSOLUTE_PHOTOMETRY_UNAVAILABLE: no RGB/display calibration")
+
+def photoisomerization_window_mean_rate(counts,window_edges_seconds):
+    """Convert declared integrated counts to held window means, not instantaneous rates."""
+    if counts.unit!='R*/window' or counts.meaning not in ('expected_photoisomerization_count','sampled_photoisomerization_count'):
+        raise ContractError('Window conversion requires explicit photoisomerization count semantics')
+    edges=window_edges_seconds.require('s','integration_window_edges')
+    values=counts.values
+    if edges.ndim!=1 or len(edges)<2 or np.any(np.diff(edges)<=0) or values.ndim!=2 or len(values)!=len(edges)-1:
+        raise ContractError('Increasing contiguous windows and one count row per window required')
+    if np.any(values<0):raise ContractError('Negative photoisomerization counts')
+    if counts.meaning=='sampled_photoisomerization_count' and np.any(values!=np.floor(values)):
+        raise ContractError('Sampled event counts must be integers')
+    if counts.evidence_tag!=window_edges_seconds.evidence_tag:raise ContractError('Window/count evidence mismatch')
+    return Quantity(values/np.diff(edges)[:,None],'R*/s','photoisomerization_rate',counts.evidence_tag)
+
+def photon_irradiance_to_energy(photons,wavelength_nm):
+    """SI photon-energy conversion only; no lens, macular, aperture or QE factor."""
+    flux=photons.require('photons/(s m^2 nm)','retinal_spectral_photon_irradiance')
+    wave=wavelength_nm.require('nm','wavelength')
+    if flux.ndim<1 or wave.ndim!=1 or flux.shape[-1]!=len(wave) or np.any(flux<0) or np.any(wave<=0) or np.any(np.diff(wave)<=0):
+        raise ContractError('Nonnegative photon spectrum and increasing positive wavelengths required')
+    if photons.evidence_tag!=wavelength_nm.evidence_tag:raise ContractError('Photon/wavelength evidence mismatch')
+    return Quantity(flux*PLANCK_J_S*LIGHT_M_S/(wave*1e-9),'W/(m^2 nm)','retinal_spectral_irradiance',photons.evidence_tag)

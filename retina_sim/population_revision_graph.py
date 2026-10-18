@@ -30,15 +30,31 @@ def density_budget(field,bounds):
         'estimated_bytes':side*side*80+n*96,'estimate_only':True}
 
 
-def revise_local_graph(root,max_cells=60000):
+def revise_local_graph(root,max_cells=60000,*,connection_record=None,atlas_profile_id=None,population_masters=None,rebuild_uncovered_masters=False):
     root=Path(root);execution=json.loads((root/'configurations/atlas_midget_research_v1.json').read_bytes());frozen=execution['frozen_default_graph']
-    raw=(root/frozen['path']).read_bytes()
-    if hashlib.sha256(raw).hexdigest()!=frozen['sha256']:raise ContractError('Original actual atlas graph identity mismatch')
-    atlas=ConnectionAtlas(root,atlas_profile_id=execution['atlas_profile'],s_partition_profile=execution['S_partition_profile'])
-    record=complete_typed_contacts(json.loads(raw),atlas);tables=record['inner_tables'];contacts=record['inner_contacts']
+    if connection_record is None:
+        raw=(root/frozen['path']).read_bytes()
+        if hashlib.sha256(raw).hexdigest()!=frozen['sha256']:raise ContractError('Original actual atlas graph identity mismatch')
+        connection_record=json.loads(raw)
+    atlas=ConnectionAtlas(root,atlas_profile_id=atlas_profile_id or execution['atlas_profile'],s_partition_profile=execution['S_partition_profile'])
+    record=complete_typed_contacts(connection_record,atlas);tables=record['inner_tables'];contacts=record['inner_contacts']
     cones=canonical(record['cones']);owner=tuple(record['atlas']['owner_domain']);reference=cones.reference_id
     seed_bounds=tuple(record['dependency_query']['expanded_RF_query_mm']);output_bounds=tuple(record['dependency_query']['requested_RF_query_mm'])
-    masters={};budget={};parasol_sites=[];source_tables={k:canonical(v) for k,v in tables.items()}
+    masters={};budget={};parasol_sites=[];source_tables={k:canonical(v) for k,v in tables.items()};rebuilt={}
+    def master_for(name,bounds,field,seed,source):
+        if population_masters is None:return materialize_equal_mass_master(root,name,bounds,field,seed,source,max_cells)
+        master=population_masters.master(name,expected_source=source)
+        try:population_masters.require_domain(name,bounds)
+        except ContractError as exc:
+            if not rebuild_uncovered_masters or 'MASTER_DOMAIN_INSUFFICIENT' not in str(exc):raise
+            # Explicit offline migration only. The unchanged density provider
+            # checks its own source domain; runtime ROI queries never opt in.
+            replacement=materialize_equal_mass_master(root,name,bounds,field,seed,source,max_cells)
+            rebuilt[name]={'previous':master.manifest(),'replacement':replacement.manifest(),
+                'reason':'new cone-dependent finite support exceeds old fixed population asset',
+                'density_and_sampling_laws_changed':False}
+            return replacement
+        return master
     def put(pre,post,pre_positions,post_positions,k,*,sigma=None,exact=False):
         pre_table=cones if pre=='cones' else source_tables[pre];post_table=source_tables[post]
         eligible=np.arange(len(pre_table.source_keys))
@@ -65,7 +81,8 @@ def revise_local_graph(root,max_cells=60000):
     for index,polarity in enumerate(('ON','OFF')):
         name='parasol_RGC_'+polarity;field=ApprovedParasolRFDensity(polarity);budget[name]=density_budget(field,seed_bounds)
         if budget[name]['rounded_estimate']>max_cells:raise ContractError('Local parasol master exceeds budget; no density reduction')
-        master=materialize_equal_mass_master(root,name,seed_bounds,field,20261014+index,field.metadata,max_cells);masters[name]=master
+        master=master_for(name,seed_bounds,field,20261014+index,field.metadata)
+        masters[name]=master
         seed=master.crop(AtlasROI(owner,output_bounds,reference),max_cells);rf=seed.coordinate('rf')
         p=atlas.atlas.henle.apply(rf);pre='diffuse_BC_'+polarity;bc=source_tables[pre]
         ready=np.array([i for i,s in enumerate(contacts['cones->'+pre]['row_status']) if s.startswith('READY')])
@@ -118,7 +135,9 @@ def revise_local_graph(root,max_cells=60000):
     for name,(field,source,bounds,seed) in fields.items():
         budget[name]=density_budget(field,bounds)
         if budget[name]['rounded_estimate']>max_cells:raise ContractError('Local '+name+' master exceeds budget; no density reduction')
-        master=materialize_equal_mass_master(root,name,bounds,field,seed,source,max_cells);masters[name]=master
+        master=master_for(name,bounds,field,seed,source)
+        if len(master.table.source_keys)>max_cells:raise ContractError('Shared complete population exceeds budget; no thinning: '+name)
+        masters[name]=master
         table=master.table;xy=table.coordinate('rf').values
         coords=dict(table.coordinates,ipl_preterminal=coordinate(xy,'terminal_position','IPL'),ipl_post_arbor=coordinate(xy,'dendritic_position','IPL'))
         rod_tables[name]=CanonicalCellTable(table.atlas_id,table.atlas_version,table.source_version,name,table.source_keys,coords,reference)
@@ -132,4 +151,20 @@ def revise_local_graph(root,max_cells=60000):
     record['population_revision']={'approval':APPROVAL,'budgets':budget,'masters':{k:m.manifest() for k,m in masters.items()},
         'master_domain_derivation':'parasol RF master from existing explicit RF dependency bounds; AII from actual owner BC IPL ancestors plus40um, union original rod/RF patch; RBC and rod each add one unchanged40um support',
         'HC_changed':False,'new_hard_rod_hole':False,'independent_parasol':True,'global_0_to_3_coverage':False}
+    if population_masters is not None:record['population_revision']['shared_catalog']=population_masters.binding
+    if rebuilt:record['population_revision']['explicit_migration_rebuilt_masters']=rebuilt
     return record
+
+
+def rebuild_roi_from_shared_masters(root,roi,catalog,*,atlas_profile_id='retina_atlas_isetbio_macaque_v1',max_cells=60000):
+    """Reuse fixed populations for a covered ROI; never generate replacement sites.
+
+    Cone/HC and contact-source coverage keep their existing independent checks.
+    The catalog's bounds do not certify recurrent closure or new source domains.
+    """
+    atlas=ConnectionAtlas(root,atlas_profile_id=atlas_profile_id,s_partition_profile='deMonasterio1985_mulatta_effective_S_v1')
+    if catalog.reference_id!=roi.reference_id or catalog.record['cone_master_binding']!=dict(atlas.atlas.config['cone_master']):
+        raise ContractError('Shared populations and cone geometry reference differ')
+    phase='phase2' if max(np.hypot(x,y) for x in roi.owner_bounds_mm[:2] for y in roi.owner_bounds_mm[2:])>3 else 'phase1'
+    source=atlas.preview(roi,max_cells=max_cells,phase=phase)
+    return revise_local_graph(root,max_cells,connection_record=source,atlas_profile_id=atlas_profile_id,population_masters=catalog)

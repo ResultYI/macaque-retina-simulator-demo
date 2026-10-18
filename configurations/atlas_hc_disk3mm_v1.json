@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_hc_disk3mm_v1",
+  "asset_path": "data/atlas/hc_disk3mm_master_v1.json",
+  "expected_asset_sha256": "cd2cf00b73dc391346c0f08363083d6af3ddfb3895d53fcd3f16b2204e621993",
+  "density_profile_path": "configurations/hc_joint_synthetic_v1.json",
+  "research_generator_path": "configurations/hc_disk3mm_generator_v3.json",
+  "seed": 20261010,
+  "canonical_bounds_mm": [
+    -3.30777092280389,
+    3.30777092280389,
+    -3.30777092280389,
+    3.30777092280389
+  ],
+  "max_cells": 600000,
+  "mask_source_id": "HC_fixed_rectangular_enclosure_of_disk3mm_support_v1",
+  "scope": "Approved disk3mm output with derived finite OPL support; same radial/source-transfer HC density and joint generator, no physiological calibration",
+  "mosaic_rule": "generate_joint_hc_fixed_canonical_master_then_crop",
+  "fallback": "NONE; out-of-domain or budget requests are unsupported",
+  "old_Poisson_preview": "Historical exports remain independent previews; never the default joint source",
+  "planning_estimates": {
+    "full_stage_physical_square_bounds_mm": [
+      -3.25,
+      3.25,
+      -3.25,
+      3.25
+    ],
+    "full_stage_density_mass_order64": 408495.92514610384,
+    "full_stage_two_sweep_proposals_estimate": 816991.8502922077,
+    "central_density_mass_order64": 11318.721795366748,
+    "central_two_sweep_proposals_estimate": 22637.443590733496,
+    "method": "Gauss-Legendre density-only cost estimate; not generation, source-domain closure or biological validation",
+    "core_numeric_arrays_bytes_per_cell_estimate": 128,
+    "serialized_bytes_per_cell_estimate": 650,
+    "generation_time": "No separate historical timer; estimate only same or smaller work scale than the 15735-cell prior master, actual time recorded on materialization"
+  },
+  "construction_integral_cache": {
+    "implementation_sha256": "fc58edf3b60688f7cc65fd5895240d999e934ef241d6a41a009482fb4d739af3",
+    "rule": "exact same bounds/order memoization; no quadrature/order/tolerance,partition or RNG changes"
+  }
+}

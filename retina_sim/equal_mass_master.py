@@ -14,6 +14,8 @@ def materialize_equal_mass_master(root,population,bounds,field,seed,source,max_c
         'seed':int(seed),'source':source,'generator':'greedy_capacitated_equal_rho_mass',
         'iterations':1,'quota':'floor(integral rho dA+.5) on fixed master only','boundary':'finite_open',
         'density_scale':1,'numpy_version':np.__version__}
+    recipe['generation_code_sha256']={name:hashlib.sha256((root/'retina_sim'/name).read_bytes()).hexdigest()
+        for name in ('geometry.py','spatial_profiles.py','equal_mass_master.py')}
     namespace=canonical_hash(recipe);label='fixed_population_master:'+namespace
     path=root/'data/atlas/population_masters'/(population+'_'+namespace[:20]+'.json')
     if path.exists():

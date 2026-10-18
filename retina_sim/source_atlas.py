@@ -32,7 +32,7 @@ class SourceDensityAtlas:
         path = self.root/'configurations'/(profile_id+'.json')
         self.config = json.loads(path.read_bytes())
         if (self.config.get('schema_version') != '1.0' or
-                self.config.get('mosaic_rule') != 'piecewise_constant_poisson_tiles_v1' or
+                self.config.get('mosaic_rule') not in ('piecewise_constant_poisson_tiles_v1','isetbio_fixed_macaque_cone_master_v1','isetbio_fixed_human_borrowed_cone_master_v1') or
                 self.config.get('boundary_mode') != 'finite_open_boundary' or
                 self.config.get('central_rod_rule') != 'missing'):
             raise ContractError('Unsupported source-atlas contract')
@@ -73,6 +73,18 @@ class SourceDensityAtlas:
             'Packer_fig_points':self.cones.bundle.manifest()['source_assets']['photoreceptor_points']['sha256'],
             'Packer_central_code_asset':self.cones.central.table.asset_sha256,'numpy_version':np.__version__})
         self._tiles = {}
+        self.cone_master=None
+        if self.config['mosaic_rule'] in ('isetbio_fixed_macaque_cone_master_v1','isetbio_fixed_human_borrowed_cone_master_v1'):
+            from .isetbio_geometry import FixedISETConeMaster,HUMAN_SCHEMA
+            self.cone_master=FixedISETConeMaster(self.root,self.config['cone_master'])
+            human=self.config['mosaic_rule']=='isetbio_fixed_human_borrowed_cone_master_v1'
+            if human != (self.cone_master.manifest['schema']==HUMAN_SCHEMA):
+                raise ContractError('Cone profile species route differs from the frozen master; no implicit fallback')
+            self.mosaic_namespace=canonical_hash({'legacy_density_namespace':self.mosaic_namespace,
+                'cone_master':self.cone_master.identity,'position_rule':'fixed_global_master_index_no_ROI_regeneration'})
+            importer_hash=hashlib.sha256((self.root/'retina_sim/isetbio_geometry.py').read_bytes()).hexdigest()
+            self.generation_code_hashes['isetbio_geometry.py']=importer_hash
+            self.source_version=canonical_hash({'source':self.source_version,'master':self.cone_master.identity,'importer':importer_hash})
 
     def _table(self, population, keys, positions, coordinates=None):
         rf = Quantity(np.asarray(positions).reshape((-1, 2)), 'mm', 'functional_position',
@@ -85,6 +97,10 @@ class SourceDensityAtlas:
         key = (population, tx, ty)
         if key not in self._tiles:
             s = self.config['tile_size_mm']
+            if population=='cones' and self.cone_master is not None:
+                keys,xy=self.cone_master.tile(tx,ty,s)
+                self._tiles[key]=self._table(population,keys,xy)
+                return self._tiles[key]
             center = np.array([[(tx+.5)*s, (ty+.5)*s]])
             q = Quantity(center, 'mm', 'functional_position', 'project_approximation', 'functional_visual_field')
             provider = self.cones if population == 'cones' else self.rods
@@ -166,4 +182,5 @@ class SourceDensityAtlas:
             'missing':['S full density partition','HC central/peripheral direct arbor',
                        'IPL preterminal','IPL postsynaptic arbor','soma'],
             'claim':self.config['claim']}
+        if self.cone_master is not None:audit['cone_master']=dict(self.config['cone_master'])
         return AtlasPatch(selection,mapped,status,audit)

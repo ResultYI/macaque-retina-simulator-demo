@@ -1,0 +1,397 @@
+{
+  "original_local_sha256": "02ba7ab15007179f185848938316181c03b658f366d31adf02f5891eabd99d7f",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "AII_AC",
+    "parameter_hash": "4d1545e4f1ac05450e96cc4c58a1e90f272b580bc0d9add47e2e38461611635f",
+    "records": [
+      {
+        "parameter_id": "C",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "bb10e5dbf468ac0b725632625139719c2623cd20f5b66dad60dd83f27e6936c3"
+          },
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter C",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "gL",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "18ac071f5d480628ddb92f3f6eaa759d0cc4c1de5a3b3a599bb3092b5e8c3814"
+          },
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gL",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "EL",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "e9498069312a74a1a791eb5ab89645caa318fb79c1a798d6a722e1e54e2fb867"
+          },
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter EL",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "V0",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "095582ff1799e60da78bc5b80e6a5ccb50a6cd325dadbaff926294afacb9c367"
+          },
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter V0",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "release_half",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "9652c9b02f8d0c1b81177b08c033a8804d6c668888a9c3c243f053392d227dfe"
+          },
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter release_half",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "release_slope",
+        "value": {
+          "values": {
+            "array_key": "a000005",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "b5b04ecbfeda99ce8d3d501916c542a73354fbf5c4e1cb0482c9fb64a040a350"
+          },
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter release_slope",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "tau_release",
+        "value": {
+          "values": {
+            "array_key": "a000006",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "946df8e8ce9e881e3811f6a027842a80324246db39becdc19b44b1406ecc10a9"
+          },
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau_release",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "EE",
+        "value": {
+          "values": {
+            "array_key": "a000007",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "202115097d1bee389d4d4d81db00117252be97d5691af316941f3843ef7a05f5"
+          },
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter EE",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "rmax",
+        "value": {
+          "values": {
+            "array_key": "a000008",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "a0caec00428e1a6996449779f62999f2b06364e90fec95e10f2bb01e102d9b9e"
+          },
+          "unit": "events/s",
+          "meaning": "release_attempt_rate",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter rmax",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "Npool",
+        "value": {
+          "values": {
+            "array_key": "a000009",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "9da5a544ed48d71c31168601f8b4c6a89bbc5e379b6d1080173135d11ab2ae42"
+          },
+          "unit": "dimensionless",
+          "meaning": "release_pool_size",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter Npool",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "U",
+        "value": {
+          "values": {
+            "array_key": "a000010",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "4f2b0242acc1f1dbaef2a136ff25e44e3394bff0367d64cfac7a6e250f9615d1"
+          },
+          "unit": "dimensionless",
+          "meaning": "release_probability",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter U",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "tau_recovery",
+        "value": {
+          "values": {
+            "array_key": "a000011",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "c86056df7e567fa7a0409607579aeec497d76354b731b2c618e98343169cb43d"
+          },
+          "unit": "s",
+          "meaning": "release_recovery_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau_recovery",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "r_half",
+        "value": {
+          "values": {
+            "array_key": "a000012",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "b4a0590b079a78b300066149d2390d583e1e8c9965c089c8ac4f9aaf4f038a8a"
+          },
+          "unit": "V",
+          "meaning": "release_half_voltage",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter r_half",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "r_slope",
+        "value": {
+          "values": {
+            "array_key": "a000013",
+            "shape": [
+              116
+            ],
+            "dtype": "float64",
+            "sha256": "b5a16e663cb7d0a57f59670c745eb3d93968375c5d580a476770d6caff4b5f51"
+          },
+          "unit": "V",
+          "meaning": "release_voltage_slope",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter r_slope",
+        "supported_domain": {
+          "effective_profile": "effective_AII_AC",
+          "cells": 116,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "cell_kind": "AII"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\AII_AC_actual_values.npz",
+      "sha256": "579b4c20e03c56114fce35e65f75219cd93ad9ada4f24e1e7f16eed90cad9454"
+    },
+    "physiological_validation": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "original_local_sha256": "a670545512004f009c9a030a1e9b43ad00d0e7d33e8e850590c5eaa508e1116b",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "region": "central",
+    "bounds_RF_mm": [
+      -0.01,
+      0.01,
+      -0.01,
+      0.01
+    ],
+    "global_graph": {
+      "path": "data/atlas/human_disk3mm_functional_hc_v1/circuit/manifest.json",
+      "sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557"
+    },
+    "background_preparation": "NOT_PERFORMED",
+    "steady_state_claim": false,
+    "physiological_validation": false,
+    "neural_windows": 0,
+    "default_adopted": false,
+    "selected_global_nodes": 894425,
+    "empty_output_samples": [
+      "small_bistratified_S_ON"
+    ],
+    "unsupported_rows": [],
+    "status": "BLOCKED",
+    "error": "IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed",
+    "wall_seconds": 52.062999999994645
+  }
+}

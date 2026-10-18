@@ -5,7 +5,7 @@ separate. Neither field changes arbors, conductance gains or dynamics.
 """
 from types import MappingProxyType
 import numpy as np
-from scipy.interpolate import PchipInterpolator
+from scipy.interpolate import PchipInterpolator,PPoly
 from .atlas_sources import AtlasSourceBundle,MERIDIANS
 from .contracts import Quantity,ContractError,canonical_hash
 
@@ -53,6 +53,23 @@ class ApprovedPackerRodDensity:
         if np.any(result<0) or not np.all(np.isfinite(result)):raise ContractError('Approved rod field became invalid')
         return result
 
+    def disk_mass(self,radius):
+        """Exact angular integral and polynomial radial integral of this field."""
+        radius=float(radius)
+        if not np.isfinite(radius) or radius<=0:raise ContractError('Positive disk radius required')
+        total=0.
+        for m,rows in self.rows.items():
+            first=rows[0]['eccentricity_mm'];rho=rows[0]['density_per_mm2']
+            if radius>rows[-1]['eccentricity_mm']:raise ContractError('Rod disk exceeds source domain')
+            total+=rho*min(radius,first)**4/(4*first**2)
+            if radius>first:
+                c=self.curves[m].c;x=self.curves[m].x[:-1]
+                # Multiply each local cubic in (r-x) by r=(r-x)+x.
+                weighted=np.vstack((c[0],c[1]+x*c[0],c[2]+x*c[1],c[3]+x*c[2],x*c[3]))
+                total+=float(PPoly(weighted,self.curves[m].x,extrapolate=False).integrate(first,radius))
+        # Each cardinal contributes pi/2 across its two adjacent quadrants.
+        return float(np.pi/2*total)
+
 
 class ApprovedParasolRFDensity:
     def __init__(self,polarity):
@@ -76,3 +93,10 @@ class ApprovedParasolRFDensity:
         r=np.linalg.norm(xy,axis=1)
         if np.any(r>3):raise ContractError('Parasol approved radial application is limited to0..3mm')
         return .04*(580000*np.exp(-4.2*r)+56000*np.exp(-.56*r))
+
+    def disk_mass(self,radius):
+        from scipy.integrate import quad
+        radius=float(radius)
+        if not 0<radius<=3:raise ContractError('Parasol disk must remain inside approved0..3mm')
+        value,error=quad(lambda r:r*float(self(np.array([[r,0.]]))[0]),0,radius,epsabs=1e-9,epsrel=1e-12)
+        return float(2*np.pi*value)

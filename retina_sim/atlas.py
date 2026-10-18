@@ -87,6 +87,16 @@ class AtlasROI:
     def coordinate_frame(self):
         return COORDINATE_ROLES[self.coordinate_role][1]
 
+    def owner_mask(self,points):
+        return _inside(np.asarray(points),self.owner_bounds_mm)
+
+    def query_mask(self,points):
+        return _inside(np.asarray(points),self.query_bounds_mm)
+
+    def maximum_owner_radius(self):
+        x0,x1,y0,y1=self.owner_bounds_mm
+        return max(np.hypot(x,y) for x in (x0,x1) for y in (y0,y1))
+
 
 @dataclass(frozen=True)
 class CanonicalCellTable:
@@ -145,8 +155,8 @@ class CanonicalCellTable:
         if not isinstance(roi, AtlasROI) or roi.reference_id != self.reference_id:
             raise ContractError("Atlas query must use the same global reference")
         points = self.coordinate(roi.coordinate_role).values
-        indices = np.flatnonzero(_inside(points, roi.query_bounds_mm))
-        owner = _inside(points[indices], roi.owner_bounds_mm)
+        indices = np.flatnonzero(roi.query_mask(points))
+        owner = roi.owner_mask(points[indices])
         if biological_absence_source_id is not None:
             _text(biological_absence_source_id, "biological_absence_source_id")
             if np.any(owner):

@@ -1,0 +1,153 @@
+{
+  "original_local_sha256": "c36fbd8e379487f2e90745ef962bdc340ca53598a97d82fcb5bb4c6f57cb19c2",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "local_crossover_AC",
+    "parameter_hash": "553ed1a3cf9ef4fc0c21b445d8da12ac32163d9e1d596ad21dc6cba1c517ec3b",
+    "records": [
+      {
+        "parameter_id": "kernel",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "449c5d24e50ea3d8d6b1a34ab55f325d1fefe14759dd40342c82faef2fbaaceb"
+          },
+          "unit": "dimensionless",
+          "meaning": "causal_residual_kernel",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter kernel",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "sample_interval",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "cb529eddce2ef8826d77d57b8acb0f1b648ed6a4b1b5358696939aab6ee2b17c"
+          },
+          "unit": "s",
+          "meaning": "history_sampling_interval",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter sample_interval",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "bias",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "cc2514de6eb890171e71f2d232d503b6ff8d80ce212796f2804bef8c87b798ef"
+          },
+          "unit": "dimensionless",
+          "meaning": "activation_bias",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter bias",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "baseline",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "ac4d2351c68f5945099f46e5cec593fb41edd4d06757dc16150a9dd9d2a9502c"
+          },
+          "unit": "dimensionless",
+          "meaning": "input_baseline",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter baseline",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "initial_history",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              3,
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "301efe9642b0328c0b3b5cf0efc4b71ad0ea550e1433583f59c392fa9d7d3bbb"
+          },
+          "unit": "dimensionless",
+          "meaning": "causal_input_history",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter initial_history",
+        "supported_domain": {
+          "effective_profile": "effective_local_crossover_AC",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "polarity_representation": "stored_signed"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\local_crossover_AC_actual_values.npz",
+      "sha256": "1e39b6f096e63deafb50000a75cbb5cdb7abd586134199c444b04b2a78727512"
+    },
+    "physiological_validation": false
+  }
+}

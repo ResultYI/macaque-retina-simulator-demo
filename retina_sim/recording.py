@@ -40,22 +40,49 @@ class TimestampedDelay:
         if self.prehistory_stop_seconds is None:
             if not self.history_times:raise ContractError('Explicit delay prehistory boundary required')
             self.prehistory_stop_seconds=float(self.history_times[0])
+        # Immutable numerical rows can be shared by functional state forks.
+        # JSON still encodes tuples as the original arrays; timestamps/values
+        # and the public checkpoint schema are unchanged.
+        self.history_values=[tuple(row) for row in self.history_values]
     def append(self,t,q):
         q.require(self.prehistory.unit,self.prehistory.meaning,self.prehistory.values.shape)
         if self.history_times and t<=self.history_times[-1]: raise ContractError('Delay history timestamps must increase')
-        self.history_times.append(float(t));self.history_values.append(q.values.tolist())
+        self.history_times.append(float(t));self.history_values.append(tuple(q.values.tolist()))
         while len(self.history_times)>2 and self.history_times[1]<t-self.delay_seconds:
             self.history_times.pop(0);self.history_values.pop(0)
     def at(self,t):
         target=t-self.delay_seconds
         if target<=self.prehistory_stop_seconds:return self.prehistory
         if not self.history_times or target<self.history_times[0]:raise ContractError('Delay history was pruned for this readout; no substituted background')
-        times=np.array(self.history_times); values=np.array(self.history_values)
+        times=np.array(self.history_times)
         if target>times[-1]: raise ContractError('Delay requires current timestamp, no future extrapolation')
-        if self.interpolation=='zero_order_hold': a=values[min(np.searchsorted(times,target,side='right')-1,len(times)-1)]
-        else: a=np.array([np.interp(target,times,values[:,k]) for k in range(values.shape[1])])
+        index=min(np.searchsorted(times,target,side='right')-1,len(times)-1)
+        left=np.asarray(self.history_values[index])
+        if self.interpolation=='zero_order_hold' or target==times[index]:a=left
+        else:
+            right=np.asarray(self.history_values[index+1])
+            # Match np.interp's slope-then-offset order, one common timestamp
+            # bracket for all cells. Do not materialize the whole history or
+            # call a scalar interpolator once per HC.
+            with np.errstate(over='ignore',invalid='ignore'):
+                slope=(right-left)/(times[index+1]-times[index])
+                a=slope*(target-times[index])+left
+                missing=np.isnan(a)
+                if np.any(missing):
+                    a[missing]=slope[missing]*(target-times[index+1])+right[missing]
+                    missing=np.isnan(a)&(left==right);a[missing]=left[missing]
         return Quantity(a,self.prehistory.unit,self.prehistory.meaning,self.prehistory.evidence_tag)
     def payload(self):
         return {'delay_seconds':self.delay_seconds,'history_times':self.history_times,'history_values':self.history_values,'prehistory':{'values':self.prehistory.values.tolist(),'unit':self.prehistory.unit,'meaning':self.prehistory.meaning,'evidence_tag':self.prehistory.evidence_tag},'interpolation':self.interpolation,'prehistory_stop_seconds':self.prehistory_stop_seconds}
     @classmethod
     def from_payload(cls,d): return cls(d['delay_seconds'],list(d['history_times']),list(d['history_values']),Quantity(**d['prehistory']),d['interpolation'],d['prehistory_stop_seconds'])
+
+
+def fork_timestamped_delay_payloads(payloads):
+    """Copy mutable containers, sharing only immutable numerical history rows."""
+    result={}
+    for key,value in payloads.items():
+        result[key]=dict(value,history_times=list(value['history_times']),
+            history_values=[tuple(row) for row in value['history_values']],
+            prehistory=dict(value['prehistory'],values=tuple(value['prehistory']['values'])))
+    return result

@@ -1,0 +1,67 @@
+{
+  "original_local_sha256": "b80d1fbde059ac485803f077864373c587057a854d2bb09744b30b683f0650d6",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "isetbio_official_human_borrowed_master_v1",
+    "isetbio_commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35",
+    "geometry_route": "official_human_borrowed_approximation_v1",
+    "population": "cones",
+    "density_species": "Homo sapiens",
+    "human_density_used": true,
+    "position_role": "rf_input_inner_segment_project_transfer",
+    "coordinate_transform": {
+      "negate_raw_coordinates": true,
+      "microns_to_mm": 0.001,
+      "resampling": false,
+      "spatial_warp": false
+    },
+    "official_asset": {
+      "collection": "cone_lattices",
+      "path": "right/nominal-fov-58deg.mat",
+      "eye": "right eye",
+      "nominal_FOV_degrees": 58,
+      "actual_MAT_FOV_degrees": 58.5,
+      "sha256": "54eb0a9ef90511ca72782a194a7c6f17d5404e05794f7e4872c808d138f45728",
+      "bytes": 18559140,
+      "source_count": 2806093,
+      "deposit": "https://purl.stanford.edu/vm447vf0975",
+      "stored_precision": "float32"
+    },
+    "density_origin": "official default human Curcio/Watson lattice, not re-fitted or reprojected to Packer density",
+    "complete_query_bounds_mm": [
+      -3.52,
+      3.52,
+      -3.52,
+      3.52
+    ],
+    "count": 705259,
+    "payload": {
+      "path": "data/atlas/isetbio_human_borrowed_cones_disk3mm_v1/positions.npz",
+      "sha256": "38d27d22f20373bdd76d392718be12c0ccbd48689784b49d277df83dd5e33404"
+    },
+    "axes": "+x nasal/+y superior project RF frame; official loader negation and unit conversion only; cross-species planar registration is an approximation",
+    "apertures": "existing0.79 times median of six actual neighbor spacings; rebuilt on complete imported support",
+    "LMS": "No types supplied in official position asset; retain existing macaque-effective absolute S macro quotas/Packer scores and named L:M1:1 assignment on actual candidates",
+    "claims": {
+      "measured_individual_mosaic": false,
+      "physiological_validation": false,
+      "whole_macaque_geometry": false,
+      "resampling": false,
+      "density_scale_or_warp": false,
+      "full_network_ready": false
+    },
+    "diagnostics": {
+      "owner_cones_RF_disk3mm": 505162,
+      "minimum_NN_um": 1.7429197552341313,
+      "NN_quantiles_um": [
+        1.7429197552341313,
+        2.6417476570379916,
+        8.49349039465579,
+        11.5819000076783,
+        13.008817353255873
+      ],
+      "all_active_aperture_neighbors_inside_complete_support": true,
+      "source_positions_exact_after_official_transform": true
+    }
+  }
+}

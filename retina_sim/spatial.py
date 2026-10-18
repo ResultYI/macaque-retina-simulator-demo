@@ -57,6 +57,7 @@ class InputChannel:
         if not np.isfinite(self.start_seconds+self.stop_seconds) or self.stop_seconds<=self.start_seconds or not callable(self.evaluator) or self.interpolation not in ('analytic','linear','zero_order_hold') or not self.unit or not self.meaning or not self.evidence_tag: raise ContractError('Explicit input channel contract required')
         if tuple(sorted(set(self.breakpoints_seconds)))!=self.breakpoints_seconds or any(t<=self.start_seconds or t>=self.stop_seconds for t in self.breakpoints_seconds): raise ContractError('Channel breakpoints must be sorted inside interval')
     def at(self,t):
+        if not np.isfinite(t): raise ContractError('Input time must be finite')
         if t<self.start_seconds-1e-12 or t>self.stop_seconds+1e-12: raise ContractError('Input evaluated outside interval')
         q=self.evaluator(t);q.require(self.unit,self.meaning)
         if q.evidence_tag!=self.evidence_tag: raise ContractError('Input evidence mismatch')

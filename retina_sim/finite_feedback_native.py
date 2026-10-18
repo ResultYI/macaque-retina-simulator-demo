@@ -19,7 +19,8 @@ from .vh2005 import NativeConeH1,PROFILE,SOURCE,SOURCE_VALUES
 
 KEY='VanHateren2005FiniteContactZeroFeedbackApproximation'
 POLICY='finite_geometry_zero_contact_execution_v1'
-SOURCE_SHA256='cfc4ce4f9eb1015755cd790b180faaec83d2a9a7b8da083f3a471a00d36a4900'
+# Reviewed 2026-10-15: per-evaluation context only; source math/constructor unchanged.
+SOURCE_SHA256='d4f867c75e3c9cdb44c0073caad2de61b2bf383883a59d6e9c5c34b4dfddfa4a'
 
 def graph_hash(cone_ids,hc_ids,A,B):
     def csr(m):

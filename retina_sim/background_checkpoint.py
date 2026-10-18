@@ -61,7 +61,14 @@ class BackgroundCheckpointStore:
             'criteria_hash':canonical_hash({'policy':criteria,'unit_scales':NUMERICAL_UNIT_SCALES}),
             'initial_monitor_reference_hash':canonical_hash(reference_state.ordered_state_arrays),
             'monitor_code_sha256':hashlib.sha256((Path(root)/'retina_sim/background.py').read_bytes()).hexdigest()}
+        if getattr(c,'input_geometry_binding_required',False):
+            from .geometry_identity import compiled_geometry_identity
+            self.binding['typed_geometry_identity']=compiled_geometry_identity(c)
         self.binding_hash=canonical_hash(self.binding)
+    def _require_current_geometry(self):
+        if 'typed_geometry_identity' in self.binding:
+            from .geometry_identity import require_geometry_identity
+            require_geometry_identity(self.binding['typed_geometry_identity'],self.runner.compiled)
     def coverage(self):
         monitor=_WindowMonitor(self.runner,self.reference,self.policy)
         return {'state_blocks':len(self.runner.model.state_specs),'covered_blocks':len(monitor.rows),
@@ -69,6 +76,7 @@ class BackgroundCheckpointStore:
             'missing':monitor.missing,'states':[r['spec'].state_name for r in monitor.rows],
             'timing_requirements':timing_requirements(self.runner,self.policy)}
     def save(self,path,state,report=None,*,origin_seconds=0.,safety=None):
+        self._require_current_geometry()
         if any(state.input_position.get(k)!=v for k,v in self.expected_context.items()):
             raise ContractError('Only the actual declared uniform-background phase can be cached')
         checkpoint=json.loads(self.runner.checkpoint(state));payload=checkpoint['payload']
@@ -79,6 +87,7 @@ class BackgroundCheckpointStore:
         value['report_hash']=canonical_hash(report)
         atomic_json(path,value);return value
     def load(self,path,*,require_converged=False):
+        self._require_current_geometry()
         value=json.loads(Path(path).read_bytes())
         if value.get('schema')!='retina-uniform-background-checkpoint-1' or value.get('binding')!=self.binding or value.get('binding_hash')!=self.binding_hash:
             raise ContractError('Background checkpoint actual graph/weights/parameters/background/solver/schema identity mismatch; no fallback')
@@ -110,9 +119,11 @@ class BackgroundCheckpointStore:
 
 
 def prepare_with_checkpoint(root,runner,reference,light,policy,destination,*,resume_path=None,
-                            guard=None,on_progress=None,on_boundary=None):
+                            guard=None,on_progress=None,on_boundary=None,checkpoint_interval_seconds=45.):
     """Same monitor for GUI/CLI; resumption conservatively starts a new 3-window streak."""
     from .background import constant_background_channels,prepare_background
+    if not np.isfinite(checkpoint_interval_seconds) or checkpoint_interval_seconds<=0:
+        raise ContractError('Positive execution checkpoint interval required')
     store=BackgroundCheckpointStore(root,runner,reference,light,policy);coverage=store.coverage()
     if coverage['missing'] or coverage['covered_blocks']!=coverage['state_blocks']:
         raise ContractError('Incomplete registered background state coverage: '+str(coverage['missing']))
@@ -134,7 +145,7 @@ def prepare_with_checkpoint(root,runner,reference,light,policy,destination,*,res
         nonlocal last_save
         if not guard.check():return False
         if on_boundary is not None and on_boundary() is False:return False
-        if time.perf_counter()-last_save>=45.:
+        if time.perf_counter()-last_save>=checkpoint_interval_seconds:
             store.save(destination,current,origin_seconds=origin,safety=guard.last);last_save=time.perf_counter()
             if on_progress:on_progress(current,{'phase':'background','wall_seconds':last_save-wall_start,'last_window':last_window,'memory':guard.last})
         return True

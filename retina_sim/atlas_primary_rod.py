@@ -4,7 +4,7 @@ import hashlib,json
 import numpy as np
 from scipy import sparse
 from scipy.spatial import cKDTree
-from .atlas_runtime import q,_population,_link,bind_runtime_profile
+from .atlas_runtime import q,_population,_link,bind_runtime_profile,_population_owner_mask
 from .contracts import RunMode,ContractError
 from .assembly import ComponentSpec,ExternalInput,GapJunction,RetinaBuilder
 from .mechanism_contracts import EvidenceValue
@@ -16,7 +16,9 @@ from .spatial_profiles import bounded_matrix,finite_support_coverage
 from examples.full_target_network import register_profile,PROJECT_SOURCE
 
 
-def attach_primary_rod(root,compiled,channels,audit,record,light):
+def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset=None):
+    from .circuit_geometry import csr_record,plain
+    recipe={'pools':{},'contact_populations':{}}
     registry=audit['registry'];pops=dict(compiled.populations);specs=list(compiled.spec.components);links=list(compiled.spec.links);gaps=[]
     sid='MCLAUGHLIN2021_glycine_anchors'
     if sid not in registry.sources:
@@ -24,7 +26,7 @@ def attach_primary_rod(root,compiled,channels,audit,record,light):
             'https://pmc.ncbi.nlm.nih.gov/articles/PMC7920536/','data_table',None,'sources/mclaughlin2021_verified_anchors.json',
             'Existing event peak/reversal quotation; no whole circuit calibration',registry.runtime_profile.source_identity(sid),None,
             'Existing source quotation','identity_verified','Primary quotation verification pending; peripheral slice transfer stays project approximation','2026-10-12',{}))
-    builder=RetinaBuilder(registry,max_compile_bytes=536870912)
+    builder=RetinaBuilder(registry,max_compile_bytes=getattr(spatial_asset,'max_compile_bytes',536870912))
     bind=lambda name,n,derived=None:bind_runtime_profile(registry,name,n,derived)
     # Restore the original physical BC terminal; retain all original coefficients.
     for i,spec in enumerate(specs):
@@ -63,8 +65,19 @@ def attach_primary_rod(root,compiled,channels,audit,record,light):
             'source_keys':keys,'coordinates':{'soma':{'values':points.tolist(),'unit':'mm','meaning':'anatomical_position','frame':'anatomical_retina'},
                 'ipl_preterminal':{'values':points.tolist(),'unit':'mm','meaning':'terminal_position','frame':'IPL'},
                 'ipl_post_arbor':{'values':points.tolist(),'unit':'mm','meaning':'dendritic_position','frame':'IPL'}}}
-        pop=_population(rec,kind,pid,'Macaque_effective_project_profile');pops[cid]=pop;return pop
-    W,rows=bounded_matrix(xy,rbxy,40,support_mm=.04);coo=W.tocoo();count=W.nnz
+        if spatial_asset is not None:rec=spatial_asset.contact_record(cid)
+        recipe['contact_populations'][cid]=rec
+        anchor=rec.get('physical_contact_anchor');opl_anchor=None
+        if anchor is not None:
+            value=q(anchor['values'],anchor['unit'],anchor['meaning'],anchor['frame'])
+            value.require('mm','contact_position',(len(rec['global_cell_ids']),2))
+            if value.coordinate_frame not in ('OPL','IPL'):raise ContractError('Explicit frozen contact frame required')
+            if value.coordinate_frame=='OPL':opl_anchor=value.values
+        pop=_population(rec,kind,pid,'Macaque_effective_project_profile',opl_post=opl_anchor);pops[cid]=pop;return pop
+    if spatial_asset is None:W,rows=bounded_matrix(xy,rbxy,40,support_mm=.04)
+    else:W,rows,_=spatial_asset.primary_pool('rod_RBC',mem.cells.cell_id,rbc.cells.cell_id)
+    recipe['pools']['rod_RBC']={'matrix':csr_record(W),'rows':rows,'pre_ids':list(mem.cells.cell_id),'post_ids':list(rbc.cells.cell_id)}
+    coo=W.tocoo();count=W.nnz
     if count==0 or np.any(np.asarray(W.sum(1)).ravel()==0):raise ContractError('ROD_RBC_FINITE_SUPPORT_EMPTY: no driver inserted')
     release0=initial_release(registry.mechanism_profiles['effective_rod_membrane']);gain=2e-9*coo.data
     bind('effective_individual_TRPM1',count,{'gain':gain,'drive0':release0[coo.col]})
@@ -84,12 +97,22 @@ def attach_primary_rod(root,compiled,channels,audit,record,light):
     def point(pop):return pop.terminal_positions.values
     chemical_audits={}
     def chemical(cid,pre,post,receptor):
-        source,target=pops[pre],pops[post];W,rows=bounded_matrix(point(source),point(target),3,support_mm=.04);c=W.tocoo();nn=W.nnz
+        if post not in pops and getattr(spatial_asset,'allow_absent_contact_targets',False):
+            recipe.setdefault('absent_dependency_targets',[]).append({'component':cid,'target':post,'reason':'outside exact selected global dependency view'})
+            return
+        source,target=pops[pre],pops[post]
+        if spatial_asset is None:W,rows=bounded_matrix(point(source),point(target),3,support_mm=.04);overlap=None
+        else:W,rows,overlap=spatial_asset.primary_pool(cid,source.cells.cell_id,target.cells.cell_id)
+        c=W.tocoo();nn=W.nnz
         bounds=record['population_revision']['masters']['AII_AC' if pre=='AII_AC' else 'rod_BC']['recipe']['canonical_bounds_mm']
         coverage=finite_support_coverage(point(target),.04,[bounds])
         if not np.all(coverage):raise ContractError(cid+': presynaptic fixed master does not cover actual target support')
         if nn==0:raise ContractError(cid+': complete but empty actual chemical graph; not substituting unapproved driver')
-        distance=np.linalg.norm(point(source)[c.col]-point(target)[c.row],axis=1);overlap=np.exp(-(distance/.03)**2)
+        if overlap is None:
+            distance=np.linalg.norm(point(source)[c.col]-point(target)[c.row],axis=1);overlap=np.exp(-(distance/.03)**2)
+        overlap=np.asarray(overlap)
+        recipe['pools'][cid]={'matrix':csr_record(W),'rows':rows,'pre_ids':list(source.cells.cell_id),
+            'post_ids':list(target.cells.cell_id),'overlap':overlap.tolist()}
         rates=initial_event_rate(registry.mechanism_profiles[source.cells.parameter_profile_id[0]])[c.col]
         pid='effective_'+cid;derived={'ncontact':overlap,'event_rate0':rates}
         if receptor=='inhibitory':
@@ -117,10 +140,14 @@ def attach_primary_rod(root,compiled,channels,audit,record,light):
         evidence=EvidenceValue(cid,q(g,'S','gap_junction_conductance'),'project_approximation',PROJECT_SOURCE,
             'Unchanged reciprocal physical terminal gap and overlap law',{'support_mm':.04,'radius_mm':.03},'Uncalibrated project conductance; no HC gap enabled')
         gaps.append(GapJunction(left,tuple(a.cells.cell_id[i] for i in pairs[:,0]),right,tuple(b.cells.cell_id[i] for i in pairs[:,1]),evidence))
-    gap('AII_AC','AII_AC',[(i,i+1) for i in range(an-1)],.2e-9,'AII_AII_homologous')
-    tree=cKDTree(point(aii))
-    for name in ('midget_BC_ON','diffuse_BC_ON','S_ON_BC'):
-        gap('AII_AC',name,[(int(tree.query(p)[1]),i) for i,p in enumerate(point(pops[name]))],.15e-9,'AII_'+name+'_bidirectional')
+    if spatial_asset is None:
+        gap('AII_AC','AII_AC',[(i,i+1) for i in range(an-1)],.2e-9,'AII_AII_homologous')
+        tree=cKDTree(point(aii))
+        for name in ('midget_BC_ON','diffuse_BC_ON','S_ON_BC'):
+            if name not in pops:continue
+            gap('AII_AC',name,[(int(tree.query(p)[1]),i) for i,p in enumerate(point(pops[name]))],.15e-9,'AII_'+name+'_bidirectional')
+    else:gaps=spatial_asset.gaps()
+    recipe['gaps']=plain(gaps)
     # Restore terminal-based initial references for downstream unchanged kernels/RGCs.
     for spec in specs:
         if spec.mechanism=='ResidualAC':
@@ -147,17 +174,25 @@ def attach_primary_rod(root,compiled,channels,audit,record,light):
         e,i=totals[name,'excitatory'],totals[name,'inhibitory']
         bind(component.parameter_profile_id,len(pops[name].cells.cell_id),{'V0':(d['gL']['value']*d['EL']['value']+e*d['EE']['value']+i*d['EI']['value'])/(d['gL']['value']+e+i)})
     required=tuple(json.loads((root/'configurations/full_target.json').read_bytes())['required_mechanisms'])
+    if audit['atlas_runtime'].get('empty_owner_outputs'):
+        required=tuple(layer for layer in required if layer not in record['inner_tables'] or layer in pops)
+    if getattr(spatial_asset,'allow_absent_contact_targets',False):
+        absent={row['component'] for row in recipe.get('absent_dependency_targets',())}
+        required=tuple(layer for layer in required if layer not in absent)
     spec=replace(compiled.spec,populations=tuple(pops.values()),components=tuple(specs),links=tuple(links),gap_junctions=tuple(gaps),
         external_inputs=compiled.spec.external_inputs+(ExternalInput('rod_light','rod','light'),),required_mechanisms=required)
     result=builder.build(spec,RunMode.REFERENCE)
+    result.canonical_spatial_recipe=recipe
     audit.update(spec=spec,resource_estimate=builder.estimate(spec),population_records={k:p.record() for k,p in pops.items()},chemical_synapses=chemical_audits)
     audit['atlas_runtime'].update(full_target_readiness='ASSEMBLED_PENDING_SHORT_RUN',full_20_layer_network_claim=False,
         physical_BC_terminal=True,rod_RBC_AII_bound=True,unsupported_paths={},rod_RBC_degree_rows=rows,
         chemical_contacts=chemical_audits,
         connection_capacity_deficits={cid:[dict(row,post_cell_id=pops[post].cells.cell_id[i]) for i,row in enumerate(chemical_audits[cid]['degree_rows']) if row['missing_degree']>0]
-            for cid,post in [('RBC_AII_AMPA','AII_AC'),('AII_FMB_glycine','midget_BC_OFF'),('AII_DB1_glycine','diffuse_BC_OFF')]},
+            for cid,post in [('RBC_AII_AMPA','AII_AC'),('AII_FMB_glycine','midget_BC_OFF'),('AII_DB1_glycine','diffuse_BC_OFF')] if cid in chemical_audits},
         executed_population_counts={k:len(p.cells.cell_id) for k,p in pops.items()})
-    audit['population_owner_mask'].update({k:[bool(.34<=v[0]<.36 and -.01<=v[1]<.01) for v in (p.cells.rf_position or p.anatomical_positions).values]
+    audit['population_owner_mask'].update({k:_population_owner_mask(p,record['atlas']['owner_domain'])
         for k,p in pops.items() if k not in audit['population_owner_mask']})
     audit['regional_support']={'scope':'complete local effective typed circuit; HC/global domains remain unresolved','unsupported_paths':{}}
+    if audit['atlas_runtime'].get('empty_owner_outputs'):
+        audit['atlas_runtime']['full_target_readiness']='ASSEMBLED_NONEMPTY_OWNER_TYPES_PENDING_RUN'
     return result,channels,audit

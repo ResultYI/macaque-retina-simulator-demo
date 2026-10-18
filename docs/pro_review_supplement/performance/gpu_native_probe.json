@@ -1,0 +1,46 @@
+{
+  "original_local_sha256": "4d21498e8bd1eea8a120c3e9076766724007c7431a405e378e0e5e30b44cbd99",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_native_cuda_execution_probe_v1",
+    "device": "NVIDIA GeForce RTX 4070 Ti SUPER",
+    "torch_version": "2.14.0+cu130",
+    "dtype": "float64",
+    "physiological_validation": false,
+    "source_checkpoint_sha256": "35e6466103f9184265de7ecafc8b99fa48665ee19df919eb148cc72ec80054be",
+    "actual_cones": 530929,
+    "actual_HC": 344287,
+    "state_scalars": 4936006,
+    "array_exact": false,
+    "within_explicit_derivative_comparison_tolerance": true,
+    "comparison_rtol": 2e-11,
+    "comparison_atol": 2e-09,
+    "maximum_absolute_difference": 4.796163466380676e-11,
+    "maximum_relative_scaled_difference": 3.375077994860476e-11,
+    "gpu_resident_seconds": [
+      0.0016783000028226525,
+      0.0019788000208791345,
+      0.0016718000115361065,
+      0.001661299989791587,
+      0.001663400005782023,
+      0.0016546999977435917,
+      0.0016545999969821423,
+      0.0016663999995216727,
+      0.0016592000029049814,
+      0.001656699983868748
+    ],
+    "gpu_resident_median_seconds": 0.001662349997786805,
+    "with_roundtrip_seconds": [
+      0.00918890000320971,
+      0.007598600001074374,
+      0.0055312000040430576
+    ],
+    "with_roundtrip_median_seconds": 0.007598600001074374,
+    "peak_gpu_bytes": 399896576,
+    "limitations": [
+      "CSR CUDA summation and elementary operations may round differently",
+      "Derivative comparison only; complete solver, history and clocks unvalidated",
+      "No production backend, checkpoint conversion or default change"
+    ]
+  }
+}

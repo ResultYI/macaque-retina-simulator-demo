@@ -1,0 +1,152 @@
+{
+  "original_local_sha256": "38a05128f272f1c4576c383045c708137006d66db5c654101d6c6f739a6b7220",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "individual_rod_RBC_contacts",
+    "parameter_hash": "37e4ea909b125355091c8be333bb1ea25aa3a64ccd8152c6de504f0cb86c314c",
+    "records": [
+      {
+        "parameter_id": "K",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              4600
+            ],
+            "dtype": "float64",
+            "sha256": "2f1987283140601a35c7dbcba1e260df5a1391e1e26f1a9dbb61a80d7da36d21"
+          },
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter K",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 4600,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "hill",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [
+              4600
+            ],
+            "dtype": "float64",
+            "sha256": "047129ec8f011850b4bf1984e6691cbffb19abf84e8c950ebcb5e866d50914a9"
+          },
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter hill",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 4600,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "tau",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              4600
+            ],
+            "dtype": "float64",
+            "sha256": "814a327727f443288b2e801e57ba49144699022d33418d7eab01798914ec9091"
+          },
+          "unit": "s",
+          "meaning": "receptor_time_constant",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter tau",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 4600,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "gain",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              4600
+            ],
+            "dtype": "float64",
+            "sha256": "c32207e56c06f6ed061b7b334efd3722830fd64e232adc3912acec907fbf9719"
+          },
+          "unit": "S",
+          "meaning": "TRPM1_maximum_contact_conductance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gain",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 4600,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "drive0",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              4600
+            ],
+            "dtype": "float64",
+            "sha256": "1ca8b243066677c84ea4a70a31d15a7f6e9d85e4594b658f3fa7ccffefbad769"
+          },
+          "unit": "dimensionless",
+          "meaning": "initial_release_drive",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter drive0",
+        "supported_domain": {
+          "effective_profile": "effective_individual_TRPM1",
+          "cells": 4600,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {},
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\individual_rod_RBC_contacts_actual_values.npz",
+      "sha256": "800d5a4978651f995282d3415777111884ce9ef48745a234bc1c790e75e40e54"
+    },
+    "physiological_validation": false
+  }
+}

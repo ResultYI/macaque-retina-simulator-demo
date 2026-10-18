@@ -56,7 +56,7 @@ class EffectiveInnerLayout:
 def build_effective_inner(cones, *, configuration, cone_subtypes=None,
                           temporal_equivalent_mm=None, temporal_equivalence_source_id=None,
                           diffuse_seed_cone_ids=None, include_widefield_ac=False,
-                          max_effective_cells=8192):
+                          max_effective_cells=8192,midget_rf_rule='parent_seed_legacy'):
     """Build midget/S ancestry and independent local AC effective sites.
 
     Temporal equivalence must be supplied by a named source/adapter; RF radius
@@ -66,6 +66,8 @@ def build_effective_inner(cones, *, configuration, cone_subtypes=None,
     """
     if not isinstance(cones, CanonicalCellTable):
         raise ContractError("Inner adapter requires supplied canonical cone anatomy")
+    if midget_rf_rule not in ('parent_seed_legacy','connected_cone_centroid_isetbio_v1'):
+        raise ContractError('Unknown midget functional RF rule')
     rf = cones.coordinate("rf").values
     pedicle = cones.coordinate("opl_pedicle").values
     count = len(cones.global_cell_ids)
@@ -90,6 +92,7 @@ def build_effective_inner(cones, *, configuration, cone_subtypes=None,
             raise ContractError("Temporal equivalence requires a named source/project adapter")
     tables, parents, contacts, blockers = {}, {}, {}, []
     source_version = cones.source_version + "|" + ADAPTER + "|" + digest
+    if midget_rf_rule!='parent_seed_legacy':source_version+='|'+midget_rf_rule
     unknown_points = pedicle[labels == "UNKNOWN"]
     unknown_tree = cKDTree(unknown_points) if len(unknown_points) else None
 
@@ -254,6 +257,14 @@ def build_effective_inner(cones, *, configuration, cone_subtypes=None,
                     statuses[j] = "BLOCKED_MIDGET_OPL_ABOVE_10MM"
             put_contact(bc_name, rgc_name, matrix, "IPL", bc.coordinate("ipl_preterminal"),
                         rgc.coordinate("ipl_post_arbor"), statuses, rows)
+            if prefix=='midget' and midget_rf_rule=='connected_cone_centroid_isetbio_v1':
+                from .isetbio_geometry import connected_cone_rf_centers
+                effective=contacts[bc_name+'->'+rgc_name]['matrix']@contacts[cones.population+'->'+bc_name]['matrix']
+                centers=connected_cone_rf_centers(cones.coordinate('rf'),effective)
+                rgc=CanonicalCellTable(rgc.atlas_id,rgc.atlas_version,rgc.source_version,rgc.population,rgc.source_keys,
+                    dict(rgc.coordinates,rf=centers),rgc.reference_id)
+                tables[rgc_name]=rgc
+                for j,row in enumerate(rows):row.update(RF_center_rule=midget_rf_rule,RF_seed_mm=rf[indices[j]].tolist(),RF_center_is_soma=False)
 
     if count:
         lo, hi = pedicle.min(0) - .04, pedicle.max(0) + .04
@@ -314,6 +325,7 @@ def build_effective_inner(cones, *, configuration, cone_subtypes=None,
         "evidence_class": EVIDENCE, "coordinate_rule": "supplied OPL pedicle co-location as effective IPL point; not measured morphology",
         "soma": "ABSENT; old McGregor soma/split/inverse is not applied to supplied new pedicles",
         "temporal_equivalence_source_id": temporal_equivalence_source_id,
+        "midget_RF_rule":midget_rf_rule,"midget_RF_is_soma":False,
         "Wool_scope": "source fit .25..10 temporal-equivalent mm; central private-line and minimum1 are project conventions",
         "unknown_cone_ids": [cell for cell, label in zip(cones.global_cell_ids, labels) if label == "UNKNOWN"],
         "diffuse_sampling_seed_cone_ids": [] if diffuse_seed_cone_ids is None else list(seed_ids),
@@ -324,5 +336,8 @@ def build_effective_inner(cones, *, configuration, cone_subtypes=None,
         "subtypes": labels.tolist(), "HC_gap": "NOT_IMPLEMENTED_HERE", "dynamics": "NOT_RUN_OR_CHANGED",
         "boundary": "finite supplied candidates; support completeness and recurrent exterior closure not established",
         "global_coverage_claim": False}
+    if midget_rf_rule=='connected_cone_centroid_isetbio_v1':
+        from .isetbio_geometry import MIDGET_CENTROID_SOURCE
+        metadata['midget_RF_geometry_source']=MIDGET_CENTROID_SOURCE
     return EffectiveInnerLayout(MappingProxyType(tables), MappingProxyType(parents),
                                 MappingProxyType(contacts), tuple(blockers), metadata)

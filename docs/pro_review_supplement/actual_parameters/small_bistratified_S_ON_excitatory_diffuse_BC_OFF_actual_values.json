@@ -1,0 +1,47 @@
+{
+  "original_local_sha256": "8fc4180ebeb5a863e31ef51201e156269323866ff88e9a00601347e77bd67025",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+    "parameter_hash": "38f4e53c1c05fe27c0afd43e2991cad4b715795e477da22fe244664b9ea9d561",
+    "records": [
+      {
+        "parameter_id": "gain",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              21
+            ],
+            "dtype": "float64",
+            "sha256": "6f84a555b4b201b584882bfcce52e9bb9b9c445353df545f73f48eb1af46586d"
+          },
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gain",
+        "supported_domain": {
+          "effective_profile": "effective_small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+          "cells": 21,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "excitatory",
+      "target_population_profile_id": "effective_small_bistratified_S_ON"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\small_bistratified_S_ON_excitatory_diffuse_BC_OFF_actual_values.npz",
+      "sha256": "eb00c1754e4ffd717269a1c345d42efbf60d790bac48c48a2e374cf608be429d"
+    },
+    "physiological_validation": false
+  }
+}

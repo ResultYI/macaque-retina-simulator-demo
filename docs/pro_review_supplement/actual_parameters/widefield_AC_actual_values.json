@@ -1,0 +1,153 @@
+{
+  "original_local_sha256": "9bb0c74f7556197e61ee0e15347db6d85f7c7f75b18d7f693f6152ce00cef508",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "widefield_AC",
+    "parameter_hash": "77fe9e4626085afe240255f121991dd218a8d4aae619e3dfc3a39bfe29ae5901",
+    "records": [
+      {
+        "parameter_id": "kernel",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "449c5d24e50ea3d8d6b1a34ab55f325d1fefe14759dd40342c82faef2fbaaceb"
+          },
+          "unit": "dimensionless",
+          "meaning": "causal_residual_kernel",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter kernel",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "sample_interval",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "442cb5d2723e9e0205280af57dfdb20a64224c24997a17d62fa0f4493475b3b5"
+          },
+          "unit": "s",
+          "meaning": "history_sampling_interval",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter sample_interval",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "bias",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              59
+            ],
+            "dtype": "float64",
+            "sha256": "74cf6ba1c059e331b2c2a8228281cb5927ffc2182370ef4afcd6af3a0676d1fa"
+          },
+          "unit": "dimensionless",
+          "meaning": "activation_bias",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter bias",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "baseline",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              59
+            ],
+            "dtype": "float64",
+            "sha256": "2861da83b657513c144aa9e9abde38cdc6d2b1eda4bea97969747e8d43db857c"
+          },
+          "unit": "dimensionless",
+          "meaning": "input_baseline",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter baseline",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "initial_history",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              3,
+              59
+            ],
+            "dtype": "float64",
+            "sha256": "12c2a7c3c67ca82ef4f5ac701b5ec4891bac3a5b354cfbb0694a54eada5f09bc"
+          },
+          "unit": "dimensionless",
+          "meaning": "causal_input_history",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter initial_history",
+        "supported_domain": {
+          "effective_profile": "effective_widefield_AC",
+          "cells": 59,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "polarity_representation": "stored_signed"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\widefield_AC_actual_values.npz",
+      "sha256": "e2781f6d77004af6ab10daa5f6c7e7acfbda1ae5695f9acb011711fb418e0f2e"
+    },
+    "physiological_validation": false
+  }
+}

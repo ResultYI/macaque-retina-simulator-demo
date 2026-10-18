@@ -1,0 +1,496 @@
+{
+  "original_local_sha256": "7948a486758af7ab11c42b2b648d71a5eeb585aff6cc51e07b1bdbf599093fa6",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "midget_RGC_ON",
+    "parameter_hash": "ed8c966d88f4c71157cb5c932c400acecab654b566ce1d7272249b9236408aae",
+    "records": [
+      {
+        "parameter_id": "C",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "147c2c669e1c3529b22fc063a61bfe478ab6786259b25a015ce502f8ff6a9a9e"
+          },
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter C",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "gL",
+        "value": {
+          "values": {
+            "array_key": "a000001",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "584010b00bcbb9ddcd9a834b06aec17c458e0f4905313c729690966e279f3937"
+          },
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gL",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "EL",
+        "value": {
+          "values": {
+            "array_key": "a000002",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "a5c05792058791b793e5502e5fdef6ecd5e5dff447e8b88938fb1f9b62e13697"
+          },
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter EL",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "EE",
+        "value": {
+          "values": {
+            "array_key": "a000003",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "97d364e2d3d35f030a038c41bbadc42d0c15fa8d79ba569987e19fddb2e80f9a"
+          },
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter EE",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "EI",
+        "value": {
+          "values": {
+            "array_key": "a000004",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "c1c2902e50f8a6ed90afd13cded6de0b73d221d1a97724c8a0bdcab7eb0eef95"
+          },
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter EI",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "V0",
+        "value": {
+          "values": {
+            "array_key": "a000005",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "0f9de55f645e7daba74972f6220f8c8176d14f71976cc33523adf8eb91c30d48"
+          },
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter V0",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "alpha",
+        "value": {
+          "values": {
+            "array_key": "a000006",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "0cc8ff22635485bb23a73384e440f707da3ec79c83e6dceab77dcbb4f4c4fbb1"
+          },
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter alpha",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "mu",
+        "value": {
+          "values": {
+            "array_key": "a000007",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "43e3afd03a1663443f5511019d3ba0d75972eb602af0e6c0c1c2aa0150ea1b14"
+          },
+          "unit": "V",
+          "meaning": "spike_voltage_offset",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter mu",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "beta",
+        "value": {
+          "values": {
+            "array_key": "a000008",
+            "shape": [
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "2926978f1dcbc75db284b175d5d7008e094c5288a37cd7bb6740560aa371952a"
+          },
+          "unit": "V",
+          "meaning": "spike_voltage_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter beta",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "spike_history_kernel",
+        "value": {
+          "values": {
+            "array_key": "a000009",
+            "shape": [
+              3
+            ],
+            "dtype": "float64",
+            "sha256": "34ae5c534d99bee6eaadb71506f92cad130e40fdbed664ab5ecbdbfabfd2ea27"
+          },
+          "unit": "V",
+          "meaning": "strict_past_spike_history_kernel",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter spike_history_kernel",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "initial_spike_history",
+        "value": {
+          "values": {
+            "array_key": "a000010",
+            "shape": [
+              3,
+              152
+            ],
+            "dtype": "float64",
+            "sha256": "301efe9642b0328c0b3b5cf0efc4b71ad0ea550e1433583f59c392fa9d7d3bbb"
+          },
+          "unit": "dimensionless",
+          "meaning": "spike_count_history",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter initial_spike_history",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      },
+      {
+        "parameter_id": "spike_interval",
+        "value": {
+          "values": {
+            "array_key": "a000011",
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "cb529eddce2ef8826d77d57b8acb0f1b648ed6a4b1b5358696939aab6ee2b17c"
+          },
+          "unit": "s",
+          "meaning": "spike_sampling_interval",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter spike_interval",
+        "supported_domain": {
+          "effective_profile": "effective_midget_RGC_ON",
+          "cells": 152,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "rng_seed": 20261110,
+      "parent_bc_ids": [
+        "atlas:ba0f0321bee7d27d1cf42c81ab769b8106402d02c137783fe294499c54c1d027",
+        "atlas:e4694b4731a2227c5c27df375733f0ed277907c9d45a159c49c91fcec133bfd0",
+        "atlas:b863e7d427211837761163a56836d2c0426e821b0f5e336acc1ad8bac6c52835",
+        "atlas:187f7debf98bd3ced67bb2310ccdf387e3b9c724daf69b9b7d1bc5494b1ad748",
+        "atlas:6111c175f2a5ecbdd43f3f6c0734238d4f6c743aab6967617aa3937994a648e6",
+        "atlas:54ccf5eb3d8aa396b2bfba7e3043b218ef1ede798a5d75c728012aa25e94971d",
+        "atlas:ec2587631306c34b1bdbc9b7703e1d894dc59afbd497b3ae386d0499a7b1536f",
+        "atlas:89d98d815f5b22020331f833ff24fc2cee82137c3fa16c35cf1bbc5ed3d2ef29",
+        "atlas:4e4e10ac330d1b7411f464ca276ee31b465a4cc08d8a90d5c01ad35ba94fab2a",
+        "atlas:67afd4fb14b5868f57d24d76c27790363ae1a6f80912a645217b9853f2704e94",
+        "atlas:e863d31e6f18ed6dc96a673cae45817b48742c6f1211c856087eb2c7a0c91d90",
+        "atlas:10c4489541cfedd921171e129941660d7e4e35abfcfe63fab08e77dc413cff5d",
+        "atlas:6a7f9f98c8b59340a911d8fccd3a9c9ae1f05e78126b6d9f5b7f6c912a6d6559",
+        "atlas:bc9748989dc301c9f5c3b101c1e6b2cc63494234605e99bc640c50db8549701a",
+        "atlas:2a311e5fafff522323586907fa6bebbd971f092b4235142ec70f861c1afcfb49",
+        "atlas:3910b0d63b12a698e4b7a37bad903ef6eaec9d6f0bf152fcbf7fc9fae73c9b36",
+        "atlas:12bfbe61c4a43cc4c0448a85334c5bf3b2052f59f11be1a84243eb0bcef1056e",
+        "atlas:471f3d38d1f0e127df1e15dbc6a55177b1bb15db065627f1eefba1c32d502b32",
+        "atlas:85340f84c936c0d243b5d411c3c1eb05fa0547435de7b2c727bcc2ba4bc90c37",
+        "atlas:38bba4e2e83f3cc53ca612eee2e16f69dbbb8717246365a64b37f565059b50ba",
+        "atlas:a651d94a49c149fd2ff36fe8a25d422b6f005785c40770b1eac7fb0a0bc76a0b",
+        "atlas:c6be2aa4cfca8c827a36fc975c1bd15ff38083f84b22ab63a95ff0b08a84ae97",
+        "atlas:8f4a0fda0b5b0504bf0d6227f864e40748124469a9e11b5bc5d8578320dc9f38",
+        "atlas:13ca6bc969165f1b232ac14ee1012becd2e27dcfe9993eee11174f833fe6aac2",
+        "atlas:b4215c989c557e91321e544429c653d3049d2483ed3d04db50eba7da089da8ad",
+        "atlas:059a5cf5ffdcc23b09a948ab6bf252a8ba0aa91e9ba6c93b7fa9771befcdf100",
+        "atlas:88900cab1d650200fbfeeeb83f1ec94ed1f8f55790f1867e5e53506e400815d7",
+        "atlas:dd071a4731d0504d5435289419b65510933134183ef707d126bcd33ac7aea5dc",
+        "atlas:4acc76943be009754659d9cc7f1e38e803a10dfa8f32090833a6b9bf8408db77",
+        "atlas:ee7db19250e8bc33537f478e36e145ba2d795188a240846d29df043f3a43f386",
+        "atlas:94b49491879e12e5b9c8bf7b539865c73a573128abb31482fa7aeb5311d979a6",
+        "atlas:dac6a68b7d3951f1aa8336888504b54de7dc943fa42b05009686a2a9e5a37138",
+        "atlas:fe6ac7a80fc6f1f3a7d1f249a2a2f7d339e473bb27c83844ac16eebf88518f26",
+        "atlas:5ae9e0a5b56475cf489ca3ea8760dc38a88d521f84db69eaed0cf6543596bc14",
+        "atlas:fbe88844f7fce91f5ac32e5ed738c3b55754136f86f9913bd2fb175ad66c8ecd",
+        "atlas:b33aa4e42c3295f65df6577378003997c6fc6ebee826dea8fdf5311020f4b00c",
+        "atlas:6f4e89d5cb60151e1b2cadbcdc77ceecac7a3c1d3bcfac6943235cb303b86f42",
+        "atlas:c31863c143f57f2c8b757e5fe36db4cbbec04a42c1103f5aa883f0f1f8a30b62",
+        "atlas:24d3ac3e42cff10f893e77fc4feacad530387f0ebefe791a155bb6a3c77ea1e7",
+        "atlas:63d29437ac9c2cb1d0b62ac1ae26df596ccabe76f70a11ca0ed65c73e29ab5e2",
+        "atlas:66e8653b5b6404c7621f9f59d60c1bd24b62d94e63aa25a212d884ce93576809",
+        "atlas:4cfa392f4e817fd228e5b22fb595e8d8d306502addfdfae9ff91e536c44fc358",
+        "atlas:b9930ae4ec84b38a7230430762eed28cc265fe3bfddd551021a99c00e005d3f3",
+        "atlas:a2bc3f1b5976466a8ae29c53d3d4808b45454120d043738c2b828221b7f84c5b",
+        "atlas:7a3f4622c868f9a87a4de4d5e1888b13c98bfaa157de24cf8cc59b4e607ad113",
+        "atlas:55f077e36e12c249b659ea366bb4d25a9edf3836dc874b821739862886aa22b0",
+        "atlas:b7f42b89e6e616ef7ca2c772a0f2cfef97a78e5b097b969f4df8a54b392b28f9",
+        "atlas:da2a2675748f0edc1b15b2a6b511955aaa38a316981e431f7a7f9a7722e05b23",
+        "atlas:2ae9038ea95586aa728ec82eb96c79979809c8388f35f98f380b354f193a10aa",
+        "atlas:002b65c0f40c1b99dafab9f7d3b337b722b024ff41a77e90214714856743dccd",
+        "atlas:e7f5a6b1252ab458c477b533f741c5f9616c14973a10f8242aa138b1c2bc7ed7",
+        "atlas:86777b9183aff298530e481aa16d18bddf08b2c4817b20fa0bf41507a05aee85",
+        "atlas:13b2431ad6f1132561f7c896e5db16c5d7c8c86e389a88643acd76efb26adf75",
+        "atlas:84eb69f93bfc0e85419999ff665ceb2b072426e1f249750d9b4911f6a1d449f8",
+        "atlas:7ee0914364150ae9b61e41fc0cb5a970c363820684da9683f13d86cef8564b2f",
+        "atlas:a24a98a60727d246514ee84b527256c5e5fd4cc0fe95d64011101a114e49146d",
+        "atlas:16ad2d6a8dc51687127596931b69ddc37317c796451def7922a975a02a3ade14",
+        "atlas:248cec8ab3c247556236b7c9bb115e55461278e1e8f031ad0ad874af531af6e8",
+        "atlas:c479a05dcd3f664b81cb1baa84fb03cf6834c3f6523c7d5de0eae7c4d035e6f5",
+        "atlas:0d644c8962236cc8f9f72259cedfb90f2efe1bb79111c31a9b0a588496a5dc22",
+        "atlas:7a28232763f0c09e131e1ac4e0c54aac2e0d4cef97641a1b50285af185a4473b",
+        "atlas:7462a3cdd7533091e6f58a289c44adf6fb65156da175134e447eb40bdc487334",
+        "atlas:6eea1abaf7a0a35feca7bb213925cc4228093d06426d1148e8506a00d22615be",
+        "atlas:3bcc7b70ef8337cff5f359c5b1ee3ce89810b8841553d2e324afeed21e014a25",
+        "atlas:4cd8d66b44626fe28f26fa43f50613c641d3a890d6bada01adc7d832e6efa4ae",
+        "atlas:5f4cdf6f39a38802ebd41c960a8c4183a0873ce9e921492861171f499410da01",
+        "atlas:e49124f5146ca71322cd5ba3f19a00518b5d95ce82d28912afe6641c4debf8df",
+        "atlas:ef24553e33f399184a4fa297f145342b1f9dc3b3fef44a34130b5327b7562dde",
+        "atlas:870cdfa721a65e80d8112dfa7e301d0b695972c5425da4a5d2b6aa37baf72431",
+        "atlas:1dea48abe8a9009f465085cde4c115d98d07a5cf4f3743bb8cc778e571c69879",
+        "atlas:5a02421e740d04a4694683b10651f7f806f8e230ca939320a07d12b1b45e55c2",
+        "atlas:4b3464b3cd890511ead7413c1c703014767958d82577e3633227bbba286a9307",
+        "atlas:212e03ed948581718c243f1b2d025b9c850e1bd8e92284ec8eeb455daa7aebb6",
+        "atlas:ba6b4a3e7b83e224a51e4e0224e301474eef33d09801b55f2aee9d846dd5bb24",
+        "atlas:a892cf0b77c12c753d257b75ff5f6ffdb17823b8fe5824796e8a8fc7a3154b3e",
+        "atlas:e53452d936342f84c37ebad63ee3428a24526d8fa5117e70e65c543a28bb25c6",
+        "atlas:2c0c54caa3ec50b7cab1291875461a8b4a01f9f8bd561c6db3e9e827322914c0",
+        "atlas:edd6bf9976075df69c120f11eb892687c94f588e7d11d78e5a4f82e2d7a05560",
+        "atlas:074af16751514cb751288c705642202f0d1f4df132607c4c51b299812bb89508",
+        "atlas:fb85a72a9651da0da1a0f73585aa7729037ff522fde0c7eb8b83d53206c1a477",
+        "atlas:9229af9e1ed13b1009c22a1f6bc02a2b01a26e8139db72a15c9cef47ad83873b",
+        "atlas:10bf86eb1839595e0cb90986d674b9061e481fbd7340505396186bb130daabff",
+        "atlas:570c5d018355aad430f06b74280b05e99df5f5cdb92e40813b3e46aa186d8239",
+        "atlas:50b0041ac57270f18340a05a4a589a7f815be3cacb70ac98fce5454838b29a8a",
+        "atlas:7ff460af14c3ce353b923caf6100ffd08bca9a4b0853957c5ab8cddd68cc8ac0",
+        "atlas:0ea2f9579a73915a7440f972516cb19e73dd42503589a6cf0fbe218d92ba433d",
+        "atlas:8866608f5c0a8de167a88295713e9d38df081e8c34689677c459c6ecb4193fc5",
+        "atlas:149da77b68a676adfd9951142be82ce274805a920ad18bc579989d1f33a5578d",
+        "atlas:a9561adee2ecae8dd73382902ac565c6084979e4be39c725c853135447433daa",
+        "atlas:8716a160a88437c07e2e9e896f8cadc9f8d3d6fa6b18d06a005c45751ac3938c",
+        "atlas:7da85112e69c603b456ebc107e057d4f0c312bc85fbf51a067e6e915eedae726",
+        "atlas:ac0ef40fec143adb862280095ddbfce8309692c9687008aaa79cf66eae533c14",
+        "atlas:966859ef5570e188bdce9627d482efeeee7e9d03d906493b5b93838f5449d256",
+        "atlas:5aa26341cf2217d87d71f359d13f7ad94b5e019b871a5a3bc7afecb441969412",
+        "atlas:4c17f12fae310d9bec7ef7be69ce17ed3a5f52ccad2b3fca831a6592e1a89880",
+        "atlas:526598eee8623c8dd8578e96c70f29ccb08e0082cea9b598bbf580ed0e28a922",
+        "atlas:21d4c3bd0effee93bb0eabe2ce905eaab1045794b3efc499760193579a34129a",
+        "atlas:e1bedf70782684542ce95ac5b8cf26c6f06e8979199cb42695fc269d58723775",
+        "atlas:61b1105e554e8c1154e0b5401a2ccb43240c163f25f5619129fae565ccd45319",
+        "atlas:7060a27abbd4fb84df99d41e5e741bc7f74e43120b0cbdc7208108fbcbda3c64",
+        "atlas:26055a19922bc6fa49b72a62b8a45128d6522043808346ca85583ebacfb1ea95",
+        "atlas:40120a5ca90e30e50a7ac79c98cb3cb0787eb341dbde6bbf1e5d8d412ee8e7ce",
+        "atlas:9a02a4cfe2881f2ee221b30ff238ad942d62f62c889d069263deb250761026c5",
+        "atlas:23104e472693bfd23fb717a2338d65a5badf2a6867b0bef8fd7c94381411284a",
+        "atlas:22e71e4e59b9ce7c5950883160c2a093b2718dfe8681d32203e80eae930f19ed",
+        "atlas:c7ded12bc79ac64330f3ba02d8367e9d0ee8c46e5bccf315364f8083756facdb",
+        "atlas:a2639e600b8fe9d83fc8cf52ec8b3d856b292fa08b59864ce6f39bf99142e741",
+        "atlas:f64c2547aaca0d09194d40ce62adc058a5cdb894f38d37a7ba0c2882c101b816",
+        "atlas:d5ec4909927bc562db890b9c0e83fb9bd92783d189d18792c36978ead6977b65",
+        "atlas:75d3bba554a7a7853b65039bab7939d3210a4408f30f8c9080d057cacba73fa6",
+        "atlas:4f2cc10064dc358c75e3f57f168b45846581c31e4262337249f9b2e07f2997f5",
+        "atlas:fff57a190bf4bbc56b266753a002bf1cbca268774d872f2d3b36e453263a4a48",
+        "atlas:7cfab7b50990d05077f6fc8a2fac06e68ee28cb54e93dac60ebc30f2a8525f30",
+        "atlas:3499496d8ea9f692ec8eeba657b40842a9c855b0f0ef0ccc216ac1723ed2c9d1",
+        "atlas:1dd28222c9c8db6a8d2fe96aed0880a1edf13678dd97e776ac6f3308eade0f01",
+        "atlas:69dfc97ea0bbe9b671592f4af21785f8ccf2fb3695d9664baf206e1c71b574e1",
+        "atlas:41cf25dfb8514428af127cf7730c8f70f67403aead6cd594ef249c96a0823124",
+        "atlas:7a472a70b3f052fd69c40bb7c53e949842eacd78e80a6f798c5be35b7e82a8c9",
+        "atlas:80f01dd7166779f3c6f4a5e4c5b4f42f839abeb7bb6bc11739d20bade736df84",
+        "atlas:e56ea76bc737fc91840b059d285bf1c418974518a8c5ffb86f8da54bfd01c9f6",
+        "atlas:ba03f06ba8732c9aaee62de5ec2522ee537b9454a583e64a033750223562e9ba",
+        "atlas:74c2175511756f0116ce11850ec5dbac4c83874e335072362baece727db9db59",
+        "atlas:1ced09272fb462af64b39e35a71652a9c03593836e89c8c09443c5e5f9f33a04",
+        "atlas:79e0387d9dbf91e66064d7c02f9782027c9790af536add9963fee73fcfc147f9",
+        "atlas:363d565574bb935471233a03d7d0838afb0a6f7897e75c607d95a54bb90db2e9",
+        "atlas:42e6861f5ad975d4d03b34f8d6f08869e1697568803b0a100b365f5f3bfbdb03",
+        "atlas:94761268e577c7d5d9f6de874e48d7e9a79649af0ff5463febb85130fe0f8b37",
+        "atlas:14b24cc350a6d2e74690faf4db525f176e9eff40a1e29fcbc602d102d1f1eb83",
+        "atlas:22828960799f88b47cf92dc28bf93adfcc9edac8f25cd2cd43e1c8cc695c8ebe",
+        "atlas:30b6d32d3ef7d6bb885997cb35c0e31bb9ac7100b316ceb028644484185cedbb",
+        "atlas:f93d218b05c56d5a4c058e6f1cb1e58764cd0c1bbadd14a13d43392007c19e86",
+        "atlas:e0138adb83556f7b52df721e4f7487afe17905e8ef1616c5e6daffa18900ddf1",
+        "atlas:10301a9d10d90e6ceb42f33fe883a648d496baac30af4cf91d266147016d6ef0",
+        "atlas:d80476c47aa6bf1e898fa41e732b6542f3b8e3dafa523efad76347f8533dabae",
+        "atlas:f52ed8c553057ea96a0cb3c0b426ebc43aa07e82d0fd35c21ad9e8750d68d405",
+        "atlas:6ddf7f02d21e21c249cedaef3787937ec2fc735a3f49e5d78c2a3fd13c9eaf20",
+        "atlas:f3898d238389f0b35189f626db41aa22abdf899c85da24ad1eb7210cd9ca88c9",
+        "atlas:43013d12df3f55fb5c03e12df952ddfe05b906dde284ebda706e8bac0b7ae462",
+        "atlas:5bd80aacd293db13d79312cdb2e3534d9de4602b5c15babff0b8809112dba808",
+        "atlas:a868bec47554dfcdf9750e273d783acf7c15179f3b32a897a5b75afbe6625b33",
+        "atlas:f5d92167442b959e55b4b85035e5e984264586b1205a4455c9c5ad1186ca8ab8",
+        "atlas:dcd48cdc3b225ce5c36efaf2313f7b5e8a5c84b9bd573909760b68c4e243abeb",
+        "atlas:8df6dab4cab7d4343f89d65bd7b0897e1e0d039d40e9ebc8e1518983245648d1",
+        "atlas:143ba7d214e9de16dc8f7c2a645520dfd039128c16dbebab94d0fe1b07c8463f",
+        "atlas:be10e4fdfb67c815da86742a9a5b2bf0e1bccf0d2b1d3d23273455042047d7cf",
+        "atlas:75beb3b748806e9fb4d9c166f9937a3610067db88aeabbf10309338c8ffbe33c",
+        "atlas:fedccf8b0e806ae8f1634047f37b18d6d502b7b71aadce17ad0e35591679eb0e",
+        "atlas:982d96f6e37a16a8c4f831e28e2b1bde4e2ff128fbfce81a3b1f351d97978961",
+        "atlas:894c5ef383640fec7a8c5c0decafd0fb9abc118f26267a1c937c079965ac3ae8",
+        "atlas:691b84554fa4f4b4197cefc0e1fc1855b60af7c6dacb3e0897a0410c9edc4f0d",
+        "atlas:f0b77df3f135e3c50d837e88b575e9bc855bd8e01af23bcb25c3f289a306500c",
+        "atlas:e3e1bab25add3e0d9dd05ec584fcf3eb634b181ea714e6d8d436f6c4559160fc"
+      ]
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\midget_RGC_ON_actual_values.npz",
+      "sha256": "84a3a7cf90bbb0d122e5dd096e5fb12222501dddbb7d81dfc9f093b98f8ce5bc"
+    },
+    "physiological_validation": false
+  }
+}

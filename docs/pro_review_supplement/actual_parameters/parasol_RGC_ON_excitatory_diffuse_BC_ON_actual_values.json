@@ -1,0 +1,47 @@
+{
+  "original_local_sha256": "a7a333b53a4d3c5b94c1bd090c5e8095ffc8d37692e4d6b8578edfcd54caa098",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "actual_component_parameter_arrays_v1",
+    "component_id": "parasol_RGC_ON_excitatory_diffuse_BC_ON",
+    "parameter_hash": "8529fac2c2efacd1591111586a6a9c5a008dd263d1253941b6366d1fa8c67d23",
+    "records": [
+      {
+        "parameter_id": "gain",
+        "value": {
+          "values": {
+            "array_key": "a000000",
+            "shape": [
+              11
+            ],
+            "dtype": "float64",
+            "sha256": "75517f71c9366ceb061a7b56006585a8afc94f2a6c1e5ae0fd893fba746b0ace"
+          },
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence_tag": "synthetic_fixture",
+          "coordinate_frame": null
+        },
+        "evidence_class": "project_approximation",
+        "source_id": "PRIMARY_PATHWAY_project_profile",
+        "locator": "Effective reduced circuit profile; not measured macaque coefficients; parameter gain",
+        "supported_domain": {
+          "effective_profile": "effective_parasol_RGC_ON_excitatory_diffuse_BC_ON",
+          "cells": 11,
+          "domain": "Explicit synthetic stimulus or supplied calibrated input; no macaque validity claimed",
+          "provenance_tag": "PROJECT_EFFECTIVE_TEMP"
+        },
+        "uncertainty": "Uncalibrated/retractable"
+      }
+    ],
+    "binding_options": {
+      "receptor": "excitatory",
+      "target_population_profile_id": "effective_parasol_RGC_ON"
+    },
+    "array_file": {
+      "path": "<PROJECT_ROOT>\\reports\\human_disk3mm_floor_transition_v7\\transition\\global_definition\\parasol_RGC_ON_excitatory_diffuse_BC_ON_actual_values.npz",
+      "sha256": "6cd4b5c1864ad0378a2849a8d3837f4f868658d6bc35658652ef8431b5c92492"
+    },
+    "physiological_validation": false
+  }
+}

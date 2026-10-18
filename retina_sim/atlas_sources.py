@@ -125,6 +125,36 @@ own evidence. Rods have no bridge and no automatic hard absence mask.
         self.central = (PackerDensityField(frozen_packer_table(root), central_policy='central_constant_cap',
                         angular_policy='log_NT_cosine') if central_policy != 'missing' else None)
 
+    def array_values(self, points):
+        """Batch the same radial/log and cardinal/linear rules, without row provenance.
+
+        This is for large fixed-asset construction. No new density, extrapolation
+        or angular symmetry is introduced; detailed queries still use sample().
+        """
+        xy=np.asarray(points,dtype=float)
+        if xy.ndim!=2 or xy.shape[1]!=2 or not np.all(np.isfinite(xy)):
+            raise ContractError('Density array requires finite Nx2 mm coordinates')
+        radius=np.linalg.norm(xy,axis=1)
+        angle=np.mod(np.arctan2(xy[:,1],xy[:,0]),2*np.pi)/(np.pi/2)
+        sector=np.floor(angle).astype(int)%4;fraction=angle-np.floor(angle)
+        result=np.zeros(len(xy));missing=np.zeros(len(xy),bool);central_limit=np.zeros(len(xy))
+        for side in (0,1):
+            weight=1-fraction if side==0 else fraction
+            for k,name in enumerate(MERIDIANS):
+                mask=((sector+side)%4==k)&((fraction>1e-12) if side else True)
+                if not np.any(mask):continue
+                rows=self.rows[name];x=np.array([row['eccentricity_mm'] for row in rows])
+                y=np.log([row['density_per_mm2'] for row in rows])
+                rr=radius[mask];missing[mask]|=(rr<x[0])|(rr>x[-1])
+                central_limit[mask]=np.maximum(central_limit[mask],x[0])
+                result[mask]+=weight[mask]*np.interp(rr,x,y)
+        central=missing&(radius<central_limit)
+        if np.any(missing&~central) or (np.any(central) and self.central is None):
+            raise ContractError('Packer density array outside original radial support; no extrapolation')
+        result=np.exp(result)
+        if np.any(central):result[central]=self.central(xy[central])
+        return result
+
     def sample(self, positions, *, allow_missing=False):
         if not isinstance(positions, Quantity):
             raise ContractError('Density query requires typed coordinates')

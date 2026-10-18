@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "iset_lcd_apple_mw_v1",
+  "approval": "User-approved mixed-reference profile; machine paths must be set locally",
+  "scope": "approved_mixed_reference",
+  "matlab_executable": "C:/Program Files/MATLAB/R2026b/bin/matlab.exe",
+  "isetcam_root": "C:/path/to/isetcam",
+  "isetbio_root": "C:/path/to/isetbio",
+  "isetcam_commit": "17146a9f0470cc89b58d583851f680187268506d",
+  "isetbio_commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35",
+  "display": "LCD-Apple",
+  "optics": "human mw",
+  "pupil_diameter_mm": 3.0,
+  "microns_per_degree": 223.0,
+  "reference_retinal_illuminance_td": 100.0,
+  "reference_linear_value": 0.5,
+  "aperture_diameter_to_spacing": 0.79,
+  "aperture_shape": "Pillbox",
+  "optical_density_LMS": [
+    0.5,
+    0.5,
+    0.4
+  ],
+  "peak_efficiency_LMS": [
+    0.6666666666666666,
+    0.6666666666666666,
+    0.6666666666666666
+  ],
+  "macular_density": 0.35,
+  "lens_density": 1.0,
+  "ecc_varying_macular": true,
+  "standard_OS_attenuation": true,
+  "scene_sampling_um": 1.0,
+  "optical_crop_halo": "existing RunConfig halo_mm, explicit finite computational support",
+  "maximum_scene_samples_per_axis": 1024,
+  "maximum_export_wall_seconds": 300.0,
+  "meaning": "Supplied frozen cone positions with explicitly declared species route, human MW optics/pigment filters and geometry-estimated apertures; mixed-reference equivalent native drive, not full macaque physiological calibration",
+  "rod_input": "existing independent RGB rod pathway; no common ISET capture claim"
+}

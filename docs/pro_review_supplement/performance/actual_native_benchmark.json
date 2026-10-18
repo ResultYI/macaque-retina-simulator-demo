@@ -1,0 +1,38 @@
+{
+  "original_local_sha256": "1427eea4608c3f3b62c4527d28a8bb413dd3e599e66c04f13a89eed72262d36e",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "original_flat": {
+      "seconds": [
+        0.08495849999599159,
+        0.09368299998459406,
+        0.08487329998752102
+      ],
+      "median_seconds": 0.08495849999599159,
+      "scratch_bytes": 259426896
+    },
+    "fused_native_rows": {
+      "seconds": [
+        0.02762589999474585,
+        0.026624899997841567,
+        0.02687919998425059
+      ],
+      "median_seconds": 0.02687919998425059,
+      "scratch_bytes": 109969736
+    },
+    "array_exact": true,
+    "maximum_absolute_difference": 0.0,
+    "schema": "actual_native_execution_benchmark_v1",
+    "numba_version": "0.67.0",
+    "threads": 8,
+    "actual_cones": 530929,
+    "actual_HC": 344287,
+    "actual_state_scalars": 4936006,
+    "source_checkpoint_sha256": "35e6466103f9184265de7ecafc8b99fa48665ee19df919eb148cc72ec80054be",
+    "checkpoint_payload_verified": true,
+    "native_matrix_parameter_archive_sha256": "317af925465dc602d8bf55155aa73a98fb43f2bbb3e6484c6a3d24c470b81de9",
+    "execution_only": true,
+    "physiological_validation": false,
+    "speed_ratio": 3.1607525538621526
+  }
+}

@@ -9,7 +9,7 @@
 
 导入图像或视频，设置时间段与有效分辨率后运行。支持暂停/继续、停止并保留已完成窗口，查看所有已配置层的真实细胞坐标与所选细胞记录，保存/载入配置、载入平台及已有核心结果、导出图/CSV/完整结果目录。详见 [统一说明](docs/core_design.md#本地可视化平台)。
 
-默认为 64 cone / 96 rod 的显式有效分辨率、2 ms 工程适应与 6 ms 记录，覆盖现有 20 机制层 / 39 组件；不是全解剖密度，也不代表生理标定完成。RGB 输入采用明确工程显示假设，固定眼位为默认。DeepGaze / SC 探索继续暂停。
+实际默认由 `configurations/retina_platform_v1.json` 选择；细胞来自所选冻结图的真实依赖视图，不再用 64 cone / 96 rod 代表来源密度。来源借用、功能性连接、工程近似和实际背景适应状态分别记录在 [统一说明](docs/core_design.md)。旧 2 ms 预运行与低分辨率 fixture 保留为工程预览，不构成稳态或生理标定。固定眼位为默认，DeepGaze / SC 探索继续暂停。
 
 示例媒体位于 `examples/platform_media`，明确标记为 synthetic。界面与核心端到端验收及实际截图：[`reports/platform_acceptance/20261011T022329305607Z`](reports/platform_acceptance/20261011T022329305607Z/acceptance.json)。
 <!-- /local-platform-entry -->
@@ -18,7 +18,7 @@
 
 <!-- current-all-target-entry -->
 
-当前全层主线入口：`tools/run_full_target.py`。同一份[架构与交付说明](docs/core_design.md)及[当前状态](reports/core_architecture_status.json)记录实际 rod/RBC/AII 路径、逐参数证据、此前41项检查、本次8项受影响检查和全层 synthetic 运行；无参数默认2 ms＋6 ms工程入口实际24.85 s完成，原长时选项保留；生理标定与独立动物验证仍单独报告。旧 fixture 入口仅保留为历史工程检查。
+历史全层工程入口 `tools/run_full_target.py` 及其 synthetic 运行记录继续保留。当前可视化主线使用上面的 GUI 和单一主配置；最新来源范围、实际运行结果与尚未验证部分以[统一说明](docs/core_design.md)为准。
 
 
 

@@ -1,0 +1,744 @@
+{
+  "original_local_sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557",
+  "copy_kind": "sanitized compact JSON derivative",
+  "content": {
+    "schema": "frozen_global_disk_circuit_v1",
+    "owner_disk_radius_mm": 3.0,
+    "reference_id": "composite_macaque_nasal_positive_superior_positive_planar_v1",
+    "tables": {
+      "midget_BC_ON": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/midget_BC_ON/manifest.json",
+          "sha256": "d0e8b570bd49faf090910eb8c924dec7773e5e85f98cad7aad37fe5a6c63cf67"
+        },
+        "count": 477065
+      },
+      "midget_BC_OFF": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/midget_BC_OFF/manifest.json",
+          "sha256": "57def7b0a8ec9f68ad1307e6efa83635421ecf51fd0b1c9d3f1983dd5f877f2d"
+        },
+        "count": 477065
+      },
+      "S_ON_BC": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/S_ON_BC/manifest.json",
+          "sha256": "54073cc27457655c0c34fadda04d84a7f2fe8cea4d8823e948f74de17043aecd"
+        },
+        "count": 55540
+      },
+      "diffuse_BC_ON": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/diffuse_BC_ON/manifest.json",
+          "sha256": "15d2116c6fee313a4c8323a74aa1157e6fb615093c8303bb17e3c4fcda427bdf"
+        },
+        "count": 133793
+      },
+      "diffuse_BC_OFF": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/diffuse_BC_OFF/manifest.json",
+          "sha256": "ddba89e8a409b4a18efec5e8d8a14ae1b92e2e3c871089735f3ac916ff3a2ad5"
+        },
+        "count": 133793
+      },
+      "midget_RGC_ON": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_ON/manifest.json",
+          "sha256": "844dae5e9e67c28dd4fc2d18d0621b150c89e04451763c7c5e3b03c2479d7e0f"
+        },
+        "count": 452890
+      },
+      "midget_RGC_OFF": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_OFF/manifest.json",
+          "sha256": "9953c1c99fceca942337bb037167ecc98b169dcea45c9861de56bd44afac7e41"
+        },
+        "count": 452890
+      },
+      "parasol_RGC_ON": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_ON/manifest.json",
+          "sha256": "9b70fffb0134407484a7ad56e8f5ab69e1b0f18ceca19939c590a1039c83af14"
+        },
+        "count": 30726
+      },
+      "parasol_RGC_OFF": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_OFF/manifest.json",
+          "sha256": "bcdf6eda11d4dcc65f8e155987fd86df2a3ed92a4e2609c2cf438eb9bcdf1961"
+        },
+        "count": 30726
+      },
+      "small_bistratified_S_ON": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/small_bistratified_S_ON/manifest.json",
+          "sha256": "444922e5fdaa9fc0edc5d631d828003f0973e9c8074326087c7e6841198bdcd0"
+        },
+        "count": 52278
+      },
+      "local_feedforward_AC": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/local_feedforward_AC/manifest.json",
+          "sha256": "1cb12e07375b73190622d74ef6ed801d252940b3e5e7e26ec60c3f5e440ea8fd"
+        },
+        "count": 594057
+      },
+      "local_crossover_AC": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/local_crossover_AC/manifest.json",
+          "sha256": "9e5840157ac037b47a5f32dfa5c485cb915357af43805184a5afdf6b14657ef2"
+        },
+        "count": 594057
+      },
+      "widefield_AC": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/widefield_AC/manifest.json",
+          "sha256": "1546685a63cf1efaa32f7bc05d365dc2419738dd598b30f3a4eb71a3d04e18b6"
+        },
+        "count": 173733
+      },
+      "cones": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json",
+          "sha256": "9c6c0e94eb0d69478c658d2a48c7bae22d603866abf6f5402eb924b46952db00"
+        },
+        "count": 545658
+      },
+      "HC": {
+        "kind": "typed",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_typed_tables_v1/HC/manifest.json",
+          "sha256": "c3f2d8f84919871f208a84bf4bc3987d65becf04e529bc0ef9af92d8f3194527"
+        },
+        "count": 344910
+      },
+      "rods": {
+        "kind": "disk_population",
+        "binding": {
+          "path": "data/atlas/disk3mm_populations_v2/rods/manifest.json",
+          "sha256": "bd9091a6a1f5cc2f17f024aabf678777d3afeebec3f6c156898723e8d64a3270",
+          "count": 3348854,
+          "radius_mm": 3.25552
+        },
+        "count": 3348854
+      },
+      "rod_BC": {
+        "kind": "disk_population",
+        "binding": {
+          "path": "data/atlas/disk3mm_populations_v2/rod_BC/manifest.json",
+          "sha256": "78848a81b625d0c13629354e56c35b15ea7c7760ebd59f9ac71f91070c62c66c",
+          "count": 180838,
+          "radius_mm": 3.21552
+        },
+        "count": 180838
+      },
+      "AII_AC": {
+        "kind": "disk_population",
+        "binding": {
+          "path": "data/atlas/disk3mm_populations_v2/AII_AC/manifest.json",
+          "sha256": "68e6075b8a9f57768a0bbf57718e6eb58acb2fc533e67784576d7f080255d97a",
+          "count": 158398,
+          "radius_mm": 3.17552
+        },
+        "count": 158398
+      }
+    },
+    "routes": [
+      {
+        "pre": "cones",
+        "post": "midget_BC_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/cones_to_midget_BC_ON/manifest.json",
+          "sha256": "9aaa3c4d2079e5186e36097ec7bab3444950e1e3d8c8c192b42aa5595b72c82f"
+        },
+        "route_id": "cones->midget_BC_ON"
+      },
+      {
+        "pre": "cones",
+        "post": "midget_BC_OFF",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/cones_to_midget_BC_OFF/manifest.json",
+          "sha256": "6bfeb37ea0386b4c6ff98f8a1b4cd7f69b39a2fb89aa0ae50282df4719d69422"
+        },
+        "route_id": "cones->midget_BC_OFF"
+      },
+      {
+        "pre": "cones",
+        "post": "S_ON_BC",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/cones_to_S_ON_BC/manifest.json",
+          "sha256": "b723faa68b86afcdab442cb5180a2a3f4910e37c280579479df6f143825a1c6d"
+        },
+        "route_id": "cones->S_ON_BC"
+      },
+      {
+        "pre": "cones",
+        "post": "diffuse_BC_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/cones_to_diffuse_BC_ON/manifest.json",
+          "sha256": "2a46c45fcbc016e58f94f746bc80d77a85a585f3a124da6ca97ce3b5e7831548"
+        },
+        "route_id": "cones->diffuse_BC_ON"
+      },
+      {
+        "pre": "cones",
+        "post": "diffuse_BC_OFF",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/cones_to_diffuse_BC_OFF/manifest.json",
+          "sha256": "de64aeacbaa1e0a5a9fee727628c37c12038db5232c81c8a517a00a91d9b2421"
+        },
+        "route_id": "cones->diffuse_BC_OFF"
+      },
+      {
+        "pre": "midget_BC_ON",
+        "post": "midget_RGC_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/routes/midget_BC_ON_to_midget_RGC_ON/manifest.json",
+          "sha256": "dc6876ed2aa2802e4e5d972fbb3b7ef2a5c484c3646a12222151ea2a4944fa7f"
+        },
+        "route_id": "midget_BC_ON->midget_RGC_ON"
+      },
+      {
+        "pre": "midget_BC_OFF",
+        "post": "midget_RGC_OFF",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/routes/midget_BC_OFF_to_midget_RGC_OFF/manifest.json",
+          "sha256": "10138ff458e394f9bb59306e4696454b38a75b8c14f84bf21c75908f6634d099"
+        },
+        "route_id": "midget_BC_OFF->midget_RGC_OFF"
+      },
+      {
+        "pre": "diffuse_BC_ON",
+        "post": "local_feedforward_AC",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/diffuse_BC_ON_to_local_feedforward_AC/manifest.json",
+          "sha256": "189c5b94ebc6880f748a8add9111c170be8fd870a1d1554659160d9fb33fd870"
+        },
+        "route_id": "diffuse_BC_ON->local_feedforward_AC"
+      },
+      {
+        "pre": "diffuse_BC_OFF",
+        "post": "local_crossover_AC",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/diffuse_BC_OFF_to_local_crossover_AC/manifest.json",
+          "sha256": "87452afb039d058383bfc3df9ac20101e75ffc6ed0d028b303cce07111138a95"
+        },
+        "route_id": "diffuse_BC_OFF->local_crossover_AC"
+      },
+      {
+        "pre": "diffuse_BC_ON",
+        "post": "widefield_AC",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/diffuse_BC_ON_to_widefield_AC/manifest.json",
+          "sha256": "b7765628598e99e74a5c70867cc2cc6431c943f32ec5cc54bd9ea3c2103e1d38"
+        },
+        "route_id": "diffuse_BC_ON->widefield_AC"
+      },
+      {
+        "pre": "S_ON_BC",
+        "post": "small_bistratified_S_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/S_ON_BC_to_small_bistratified_S_ON/manifest.json",
+          "sha256": "08d0fd0eed47d798d79a594b8eb8d9cafe78051e18e5488f4d70221e44749c66"
+        },
+        "route_id": "S_ON_BC->small_bistratified_S_ON"
+      },
+      {
+        "pre": "local_crossover_AC",
+        "post": "midget_RGC_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/inhibitory_routes/midget_RGC_ON/manifest.json",
+          "sha256": "99d2862ecbe13f13e9d64aac0de8a5430104ff2550d9417c07b27f963ab59247"
+        },
+        "route_id": "local_crossover_AC->midget_RGC_ON"
+      },
+      {
+        "pre": "local_feedforward_AC",
+        "post": "midget_RGC_OFF",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_midget_floor_v1/inhibitory_routes/midget_RGC_OFF/manifest.json",
+          "sha256": "5d8d018713c4ee092714ddc5d1125935ed4ba2c519ad6b221e533baad452d8c4"
+        },
+        "route_id": "local_feedforward_AC->midget_RGC_OFF"
+      },
+      {
+        "pre": "local_feedforward_AC",
+        "post": "small_bistratified_S_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/local_feedforward_AC_to_small_bistratified_S_ON/manifest.json",
+          "sha256": "09c817fd413c80a37630d56242158f0c32def5f15b8f44175585c52c1bb88988"
+        },
+        "route_id": "local_feedforward_AC->small_bistratified_S_ON"
+      },
+      {
+        "pre": "diffuse_BC_OFF",
+        "post": "small_bistratified_S_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/diffuse_BC_OFF_to_small_bistratified_S_ON/manifest.json",
+          "sha256": "b0ac79dfe374520cedfbdf280d73660993d863cde49e2a7213ccc4447092897a"
+        },
+        "route_id": "diffuse_BC_OFF->small_bistratified_S_ON"
+      },
+      {
+        "pre": "widefield_AC",
+        "post": "parasol_RGC_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/widefield_AC_to_parasol_RGC_ON/manifest.json",
+          "sha256": "473f5d9e5d388ccbb0cda03775f29313c032ad502857c1715986a7e1cd5dbdce"
+        },
+        "route_id": "widefield_AC->parasol_RGC_ON"
+      },
+      {
+        "pre": "diffuse_BC_ON",
+        "post": "parasol_RGC_ON",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/diffuse_BC_ON_to_parasol_RGC_ON/manifest.json",
+          "sha256": "d3d7310a432c2bb673ce2de4be80b45a35b8afce457fa0b9b5a96edb95edcda4"
+        },
+        "route_id": "diffuse_BC_ON->parasol_RGC_ON"
+      },
+      {
+        "pre": "widefield_AC",
+        "post": "parasol_RGC_OFF",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/widefield_AC_to_parasol_RGC_OFF/manifest.json",
+          "sha256": "05f2328db008944050c4cac942f3041852fd13a4ef0c0aae93c7d88db2b11b87"
+        },
+        "route_id": "widefield_AC->parasol_RGC_OFF"
+      },
+      {
+        "pre": "diffuse_BC_OFF",
+        "post": "parasol_RGC_OFF",
+        "kind": "inner_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_inner_v1/routes/diffuse_BC_OFF_to_parasol_RGC_OFF/manifest.json",
+          "sha256": "c7d700b1a610d1d127d180cbdf8a586bf562161674804c042a77f14ae7c333bf"
+        },
+        "route_id": "diffuse_BC_OFF->parasol_RGC_OFF"
+      },
+      {
+        "pre": "rods",
+        "post": "rod_BC",
+        "kind": "primary_chemical",
+        "binding": {
+          "path": "data/atlas/disk3mm_global_routes_v2/rod_RBC/manifest.json",
+          "sha256": "421064d37dcb2f0091976715b4e09b726dbb2008d265d2662d49e0861b69b04e"
+        },
+        "route_id": "rod_RBC"
+      },
+      {
+        "pre": "rod_BC",
+        "post": "AII_AC",
+        "kind": "primary_chemical",
+        "binding": {
+          "path": "data/atlas/disk3mm_global_routes_v2/RBC_AII_AMPA/manifest.json",
+          "sha256": "e04a424b816ea8f863d6dd1561d2c5321d43470ad985366afd8a8b2d83cbc558"
+        },
+        "route_id": "RBC_AII_AMPA"
+      },
+      {
+        "pre": "AII_AC",
+        "post": "midget_BC_OFF",
+        "kind": "primary_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_midget_BC_OFF_glycine/manifest.json",
+          "sha256": "f25480ea5cb6ff5f3722d701d5ec53a08d055c9f9302e40c9afe745f6a4341db"
+        },
+        "route_id": "AII_midget_BC_OFF_glycine"
+      },
+      {
+        "pre": "AII_AC",
+        "post": "diffuse_BC_OFF",
+        "kind": "primary_chemical",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_diffuse_BC_OFF_glycine/manifest.json",
+          "sha256": "90b14d52010e0b526d693ada73442472c874d60b075ae9f8e912125de930e465"
+        },
+        "route_id": "AII_diffuse_BC_OFF_glycine"
+      },
+      {
+        "pre": "cones",
+        "post": "HC",
+        "kind": "native",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_functional_hc_v1/native_A/manifest.json",
+          "sha256": "002e266dc6856b01a8df5ecce66b3fc9af04f900818bea29a94acee79fa6e81f"
+        },
+        "route_id": "native_cone_to_HC_A"
+      },
+      {
+        "pre": "HC",
+        "post": "cones",
+        "kind": "native",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_functional_hc_v1/native_B/manifest.json",
+          "sha256": "a67c1bb72bbae00ec77a7ad34ac2c7ab212f30a35d93acbc9af7af66baffaf07"
+        },
+        "route_id": "native_HC_to_cone_B"
+      },
+      {
+        "pre": "AII_AC",
+        "post": "AII_AC",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/disk3mm_global_routes_v1/AII_AII_bidirectional_gap/manifest.json",
+          "sha256": "437567ecc9177e6ba33e2b2ec549dfaa90eccc56950e4d4276decd1166b8ba9e"
+        },
+        "route_id": "AII_AII_bidirectional_gap"
+      },
+      {
+        "pre": "AII_AC",
+        "post": "midget_BC_ON",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_midget_BC_ON_bidirectional_gap/manifest.json",
+          "sha256": "7b45d3872dbd42ca8a385158cc0b8ca87e17fe897b251d0e8e97b6d97014dad4"
+        },
+        "route_id": "AII_midget_BC_ON_bidirectional_gap"
+      },
+      {
+        "pre": "midget_BC_ON",
+        "post": "AII_AC",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_midget_BC_ON_bidirectional_gap_reverse/manifest.json",
+          "sha256": "7660dc35b342f0a424185f89d5a36ce067b1a5583b2f5cb20f5bfc8c9c01383d"
+        },
+        "route_id": "AII_midget_BC_ON_bidirectional_gap_reverse"
+      },
+      {
+        "pre": "AII_AC",
+        "post": "diffuse_BC_ON",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_diffuse_BC_ON_bidirectional_gap/manifest.json",
+          "sha256": "4bb9527580ba9ed2de00d624b257997092f38ef53a7ef1523859e734a52c5e99"
+        },
+        "route_id": "AII_diffuse_BC_ON_bidirectional_gap"
+      },
+      {
+        "pre": "diffuse_BC_ON",
+        "post": "AII_AC",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_diffuse_BC_ON_bidirectional_gap_reverse/manifest.json",
+          "sha256": "99e37a947d37bf036f8bd02e0b1e5668c4e363a28de066683dd0bb2215cec13d"
+        },
+        "route_id": "AII_diffuse_BC_ON_bidirectional_gap_reverse"
+      },
+      {
+        "pre": "AII_AC",
+        "post": "S_ON_BC",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_S_ON_BC_bidirectional_gap/manifest.json",
+          "sha256": "d9b180040db32c35e29e25a6f6f50ab149b93ac60d68b9957f76d49019ca600f"
+        },
+        "route_id": "AII_S_ON_BC_bidirectional_gap"
+      },
+      {
+        "pre": "S_ON_BC",
+        "post": "AII_AC",
+        "kind": "gap",
+        "binding": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_S_ON_BC_bidirectional_gap_reverse/manifest.json",
+          "sha256": "6e83b336067f6448110b47469f9acdcf9da13d9986c58324019fb1bd686f61a0"
+        },
+        "route_id": "AII_S_ON_BC_bidirectional_gap_reverse"
+      }
+    ],
+    "native_components": {
+      "path": "data/atlas/human_disk3mm_functional_hc_v1/native_component_labels.npy",
+      "sha256": "ac2445d03ee9762a06ae12bbe600605eccb9901226f0ef95f1db0a551d95687f",
+      "ordering": "all HC rows, then all cone rows",
+      "components": 10,
+      "largest_node_count": 890559
+    },
+    "electrical_components": {
+      "path": "data/atlas/human_disk3mm_midget_floor_v1/circuit/electrical_component_labels.npy",
+      "sha256": "012c90cec5365c4141735a6ad9419ce38947a5fe5e6bba226ef0acbd4c37784e",
+      "offsets": {
+        "AII_AC": 0,
+        "midget_BC_ON": 158398,
+        "diffuse_BC_ON": 635463,
+        "S_ON_BC": 769256
+      },
+      "counts": {
+        "AII_AC": 158398,
+        "midget_BC_ON": 477065,
+        "diffuse_BC_ON": 133793,
+        "S_ON_BC": 55540
+      },
+      "component_count": 168699
+    },
+    "source_profiles": {
+      "scope": "configurations/retina_disk3mm_scope_v1.json",
+      "cone_atlas": "retina_atlas_human_borrowed_disk3mm_v1",
+      "dynamics": "effective_dynamics_v1",
+      "input_plan": {
+        "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+        "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+      },
+      "HC_functional_operator": {
+        "path": "configurations/hc_functional_divergence_w2000_v1.json",
+        "sha256": "3d1d599fa438ca7f6ee06705a9679ecd2613a31cd69e23049958932c614605e0"
+      }
+    },
+    "contact_geometry": {
+      "individual_rod_RBC_contacts": {
+        "binding": {
+          "path": "data/atlas/disk3mm_contact_geometry_v1/individual_rod_RBC_contacts/manifest.json",
+          "sha256": "831cd66320729803e492c62b570176ea58cf4682e9f0b97b31fecfc30e392acf"
+        },
+        "route": {
+          "path": "data/atlas/disk3mm_global_routes_v2/rod_RBC/manifest.json",
+          "sha256": "421064d37dcb2f0091976715b4e09b726dbb2008d265d2662d49e0861b69b04e"
+        },
+        "pre": "rods",
+        "post": "rod_BC",
+        "pre_ID_prefix": "rod_membrane:",
+        "contact_ID_rule": "individual_rod_RBC_contacts:sha256(actual_global_pre_ID>actual_global_post_ID)[:32]"
+      },
+      "RBC_AII_AMPA": {
+        "binding": {
+          "path": "data/atlas/disk3mm_contact_geometry_v1/RBC_AII_AMPA/manifest.json",
+          "sha256": "4880af9352a6d5158dc8dadf96070920dd020b38152b052d4f2574290609ac54"
+        },
+        "route": {
+          "path": "data/atlas/disk3mm_global_routes_v2/RBC_AII_AMPA/manifest.json",
+          "sha256": "e04a424b816ea8f863d6dd1561d2c5321d43470ad985366afd8a8b2d83cbc558"
+        },
+        "pre": "rod_BC",
+        "post": "AII_AC",
+        "pre_ID_prefix": "",
+        "contact_ID_rule": "RBC_AII_AMPA:sha256(actual_global_pre_ID>actual_global_post_ID)[:32]"
+      },
+      "AII_FMB_glycine": {
+        "binding": {
+          "path": "data/atlas/human_disk3mm_contact_geometry_v1/AII_FMB_glycine/manifest.json",
+          "sha256": "07d479cbfd10f6d618ff4abe8db3644518bc3e9fed69371e341c5f8065a9aa71"
+        },
+        "route": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_midget_BC_OFF_glycine/manifest.json",
+          "sha256": "f25480ea5cb6ff5f3722d701d5ec53a08d055c9f9302e40c9afe745f6a4341db"
+        },
+        "pre": "AII_AC",
+        "post": "midget_BC_OFF",
+        "pre_ID_prefix": "",
+        "contact_ID_rule": "AII_FMB_glycine:sha256(actual_global_pre_ID>actual_global_post_ID)[:32]"
+      },
+      "AII_DB1_glycine": {
+        "binding": {
+          "path": "data/atlas/human_disk3mm_contact_geometry_v1/AII_DB1_glycine/manifest.json",
+          "sha256": "5c48d8d76a3279c8de037ae6824c4c4c548134266aa4042b5ac16b9b2635c173"
+        },
+        "route": {
+          "path": "data/atlas/human_disk3mm_routes_v1/AII_BC/AII_diffuse_BC_OFF_glycine/manifest.json",
+          "sha256": "90b14d52010e0b526d693ada73442472c874d60b075ae9f8e912125de930e465"
+        },
+        "pre": "AII_AC",
+        "post": "diffuse_BC_OFF",
+        "pre_ID_prefix": "",
+        "contact_ID_rule": "AII_DB1_glycine:sha256(actual_global_pre_ID>actual_global_post_ID)[:32]"
+      }
+    },
+    "output_populations": [
+      "midget_RGC_ON",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF",
+      "small_bistratified_S_ON"
+    ],
+    "native_owner_zero_feedback_cones": 0,
+    "blocked_midget_candidates": {
+      "midget_RGC_ON": {
+        "count": 0,
+        "parent_BC_rows": [],
+        "meaning": "unresolved/deficient candidate; not biological absence or a synthetic replacement"
+      },
+      "midget_RGC_OFF": {
+        "count": 0,
+        "parent_BC_rows": [],
+        "meaning": "unresolved/deficient candidate; not biological absence or a synthetic replacement"
+      }
+    },
+    "regenerate_on_ROI": false,
+    "crop_normalization": false,
+    "exterior_feedback": false,
+    "physiological_validation": false,
+    "status": "FUNCTIONAL_HC_AND_FLOOR_MIDGET_FROZEN_PENDING_REAL_ACCEPTANCE",
+    "default_adopted": false,
+    "input_exporter_identity_revision": {
+      "previous_plan": {
+        "path": "data/atlas/human_disk3mm_input_plan_v1/manifest.json",
+        "sha256": "22253cf3f6a4a356a07d0caa1bededa982e8f3702391631cc846630f9b36bddf"
+      },
+      "new_plan": {
+        "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+        "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+      },
+      "reason": "Exact emitted-spectrum identity with one fixed foveal gain; scene-size luminance rounding does not trigger tile refits",
+      "cone_positions_types_apertures_changed": false
+    },
+    "native_operator_representation": {
+      "representation": "effective_functional_association_not_anatomical_synapse",
+      "profile": {
+        "path": "configurations/hc_functional_divergence_w2000_v1.json",
+        "sha256": "3d1d599fa438ca7f6ee06705a9679ecd2613a31cd69e23049958932c614605e0"
+      },
+      "operator_audit": {
+        "subtypes": {
+          "H1": {
+            "eligible_cones": 488493,
+            "actual_associations": 2246562,
+            "continuous_mean_target_sum": 2246562.3703272715,
+            "integer_count_residual": -0.37032727152109146,
+            "mean_targets": {
+              "shape": [
+                488493
+              ],
+              "dtype": "float64",
+              "sha256": "6a708b43dcbf217bfff8ef867c3448acd1d8f2dcaac68d57588ae1ab47a0c174"
+            },
+            "integer_counts": {
+              "shape": [
+                488493
+              ],
+              "dtype": "int64",
+              "sha256": "84842a98167b5d38ceb11706a579b041095c05b7b89b361646ef1eb3ca03a49f"
+            },
+            "actual_support_mm": {
+              "shape": [
+                488493
+              ],
+              "dtype": "float64",
+              "sha256": "2a4d1064c2665f45328096c57357ab8b68c63e36eef6aba0417ccfef071424dc"
+            },
+            "support_um_quantiles": [
+              3.2112627867069614,
+              12.26543193048054,
+              19.872360728865818,
+              66.83355457639296
+            ],
+            "owner_ball_support_complete": true,
+            "halo_ball_support_uncertified_count": 9055
+          },
+          "H2": {
+            "eligible_cones": 545658,
+            "actual_associations": 1331377,
+            "continuous_mean_target_sum": 1331377.3667424037,
+            "integer_count_residual": -0.36674240371212363,
+            "mean_targets": {
+              "shape": [
+                545658
+              ],
+              "dtype": "float64",
+              "sha256": "36b9a531bacd5c17633894e576758da8496063dea62dc563d74707b48c58034d"
+            },
+            "integer_counts": {
+              "shape": [
+                545658
+              ],
+              "dtype": "int64",
+              "sha256": "5c92274f784d9cd49c376aa3684a0d9489a480b5f1733bf4f90661ee00e0f0ea"
+            },
+            "actual_support_mm": {
+              "shape": [
+                545658
+              ],
+              "dtype": "float64",
+              "sha256": "75cdcb558192d181b890fe225d0d391466b3d94740b99ab41a6de72ffea525b6"
+            },
+            "support_um_quantiles": [
+              1.3463205212620488,
+              16.464318818980885,
+              28.888432639990196,
+              89.0147698955383
+            ],
+            "owner_ball_support_complete": true,
+            "halo_ball_support_uncertified_count": 11128
+          }
+        },
+        "owner_complete": true,
+        "maximum_owner_functional_distance_mm": 0.08901476989553829,
+        "cone_count": 545658,
+        "HC_count": 344910,
+        "edges": 3577939,
+        "anatomical_contact_claim": false,
+        "biological_zero_innervation_claim": false,
+        "physiological_validation": false,
+        "per_cone_support": {
+          "path": "data/atlas/human_disk3mm_functional_hc_v1/functional_cone_support_mm.npy",
+          "sha256": "dbf7a336b7daaaf00fcde8c846958ad3a1e5a1c4ebe36598400bb0d2f3fe88f2",
+          "unit": "mm",
+          "meaning": "maximum actual selected typed-anchor distance, not measured dendrite radius"
+        }
+      },
+      "anatomical_reference": {
+        "raw_contacts": {
+          "path": "data/atlas/human_disk3mm_outer_connections_v1/raw_cone_HC/manifest.json",
+          "sha256": "c03a10cc20d1c6622584063d36705320e4ef2d4deaabbcb8a62f5783b66f1eda"
+        },
+        "native_A": {
+          "path": "data/atlas/human_disk3mm_outer_connections_v1/native_A/manifest.json",
+          "sha256": "8967918e6a579ab3ed67eb708a77e6b1f531d118e12b3c9dbb4793b1ff4fba54"
+        },
+        "native_B": {
+          "path": "data/atlas/human_disk3mm_outer_connections_v1/native_B/manifest.json",
+          "sha256": "dbcab3a0bad3bf18b53b7ca794c4947503e36f3705c767fe39f0bba3c349ca4d"
+        },
+        "edges": 3632590,
+        "native_component_labels": {
+          "path": "data/atlas/human_disk3mm_outer_connections_v1/native_component_labels.npy",
+          "sha256": "ae5c9769a80e0a362e12585a40e0f50f0c3e363beb792c5ca853f1584ceff92a",
+          "ordering": "all HC rows, then all cone rows",
+          "components": 11054,
+          "largest_node_count": 875216
+        },
+        "owner_zero_feedback_cones": 7770,
+        "empty_HC_rows": 29,
+        "zero_partner_cone_rows": {
+          "path": "data/atlas/human_disk3mm_outer_connections_v1/owner_cones_without_HC.npy",
+          "sha256": "a152229c9a2e5b5f29c082ecd2767812f8a606c4e7f97ad1027020f0381aef34"
+        },
+        "zero_partner_policy": "retained explicit unsupported native unit-DC rows; no invented feedback, gain or partner",
+        "status": "GLOBAL_CONTACTS_FROZEN_NATIVE_OWNER_GAPS_REQUIRE_SCIENTIFIC_DECISION",
+        "whole_exterior_recurrent_closure": "NOT_CERTIFIED; exact dependencies only inside one supplied finite global graph",
+        "physiological_validation": false,
+        "old_default_changed": false
+      }
+    }
+  }
+}

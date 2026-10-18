@@ -35,6 +35,7 @@ class LightContext:
     adapter_id: str = 'direct_declared_rates'
     reference_linear_value: float | None = None
     scene_fov_deg: float | None = None
+    native_background_values: tuple | None = None
 
     def __post_init__(self):
         for name in ('native_background_td', 'cone_background_rstar_s', 'rod_background_rstar_s'):
@@ -47,6 +48,11 @@ class LightContext:
             raise ContractError('Unknown adaptation policy')
         if self.input_domain not in ('independent_consumer_backgrounds','native_td','receptor_Rstar_per_s','relative_intensity'):
             raise ContractError('Unsupported tagged input domain; spectral irradiance needs a separate calibrated adapter')
+        if self.native_background_values is not None:
+            values=np.asarray(self.native_background_values,dtype=float)
+            if values.ndim!=1 or not len(values) or not np.all(np.isfinite(values)) or np.any(values<=0):
+                raise ContractError('Explicit finite positive per-cone reference background required')
+            object.__setattr__(self,'native_background_values',tuple(float(v) for v in values))
 
     @property
     def background_context_hash(self):return canonical_hash(asdict(self))

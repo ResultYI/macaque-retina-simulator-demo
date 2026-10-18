@@ -24,9 +24,9 @@ class HCMasterCoverageError(ContractError):
     """The fixed master does not support this query and finite pair context."""
 
 
-def _configuration(root, density):
+def _configuration(root, density, configuration_path=None):
     root = Path(root)
-    config = json.loads((root/CONFIG).read_bytes())
+    config = json.loads((root/(configuration_path or CONFIG)).read_bytes())
     if (config['schema_version'] != '1.0' or
             config['mosaic_rule'] != 'generate_joint_hc_fixed_canonical_master_then_crop'):
         raise ContractError('Explicit restored joint HC master contract required')
@@ -41,12 +41,15 @@ def _configuration(root, density):
 def materialize_hc_master(root, atlas_config, density):
     """One bounded geometry generation; exclusive asset write, no ODE run."""
     root = Path(root)
-    config, options = _configuration(root, density)
+    configuration_path=atlas_config.get('HC_master_configuration',CONFIG)
+    config, options = _configuration(root, density,configuration_path)
     path = root/config['asset_path']
     if path.exists() or config['expected_asset_sha256'] is not None:
         raise ContractError('Frozen joint HC master already registered; regeneration refused')
     bounds = tuple(config['canonical_bounds_mm'])
-    domain = RetinalDomain(bounds, bounds, lambda xy: np.ones(len(xy), bool),
+    disk=config.get('canonical_disk_radius_mm')
+    mask=(lambda xy:np.linalg.norm(xy,axis=1)<=disk) if disk is not None else (lambda xy:np.ones(len(xy),bool))
+    domain = RetinalDomain(bounds, bounds, mask,
         config['mask_source_id'], 'atlas_HC_fixed_central_master_v2')
     started = time.perf_counter()
     master = generate_joint_hc(density, domain, config['seed'], config['max_cells'], options=options)
@@ -62,15 +65,16 @@ def materialize_hc_master(root, atlas_config, density):
         source={'profile_id':density.profile_id,'profile_sha256':density.profile_hash,
             'density_source_asset_sha256':density.source_asset_hash,'backend_sha256':backend_sha,
             'generator_options':options,'seed':config['seed'],
+            'construction_integral_cache':config.get('construction_integral_cache'),
             'mosaic_rule':config['mosaic_rule'],'types':master.types.tolist()},
         provenance={'joint_generation':master.diagnostics,'generation_wall_seconds':seconds,
             'scope':config['scope'],'old_Poisson_identity_reused':False,
             'physiological_validation':False},
-        boundary={'canonical_bounds_mm':list(bounds),'mask_source_id':config['mask_source_id'],
+        boundary={'canonical_bounds_mm':list(bounds),'canonical_disk_radius_mm':disk,'mask_source_id':config['mask_source_id'],
             'pair_support_context_mm':density.max_interaction_support_mm(),
             'boundary_mode':'finite_open_boundary','recurrent_closure':'NOT_CERTIFIED'})
     config['expected_asset_sha256'] = sha
-    (root/CONFIG).write_text(json.dumps(config,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (root/configuration_path).write_text(json.dumps(config,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return {'asset_path':str(path),'sha256':sha,'cell_count':len(master.cell_ids),
         'types':master.diagnostics['total_H1_H2_counts'],'generation_wall_seconds':seconds,
         'namespace':namespace,'canonical_bounds_mm':list(bounds),'scope':config['scope']}
@@ -79,7 +83,7 @@ def materialize_hc_master(root, atlas_config, density):
 class FixedJointHCMaster:
     def __init__(self, root, atlas_config, density):
         self.root = Path(root)
-        self.config, options = _configuration(root, density)
+        self.config, options = _configuration(root, density,atlas_config.get('HC_master_configuration'))
         asset = load_atlas_asset(self.root/self.config['asset_path'],
             expected_sha256=self.config['expected_asset_sha256'])
         record = asset.metadata_record()
