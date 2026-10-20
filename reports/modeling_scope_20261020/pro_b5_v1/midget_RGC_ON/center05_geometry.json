@@ -1,0 +1,80 @@
+{
+  "component": "midget_RGC_ON",
+  "focus_cell_index": 7,
+  "focus_cell_id": "atlas:8b4a62dc2c128d1f1391732bbd38cb583a546cc7fbf3421b153f2e23ee9889be",
+  "focus_RF_mm": [
+    0.3495117980724141,
+    0.0013367821964879389
+  ],
+  "center_radius_mm": 0.015,
+  "ring_outer_radius_mm": 0.045,
+  "actual_direct_routes": {
+    "midget_BC_ON": {
+      "BC_ids": [
+        "atlas:703e83b4c74c7883192eba9819012b26f958d411ba1be0557f098c30fdfd6bfd"
+      ],
+      "cone_ids": [
+        "atlas:e8e9fdd0c9ca0876e76ac680a62a275de152cd6d841537e684fb950ee0c2af62"
+      ]
+    }
+  },
+  "mask_kind": "center",
+  "active_cone_ids": [
+    "atlas:2c0481f259ac557805ac236d7e638ddb0a597cea8e34aad3763a97a67bfb0f78",
+    "atlas:ce8d611903635bfe3a26e7b7799dcaea1e86428052ffad1dd06ad543a71f9ef6",
+    "atlas:be1c5cbcfa2449b4a2075d0d4a1f2725a9948de99239423e12d0d741474f2d3f",
+    "atlas:2b4a307a68757c9f94b83bce97aa6146d30bf60c0dc253be051ac2d7c25b7938",
+    "atlas:bef18ff25237bf6183c1c1c781270a8c3a2f3322c75eb3537d4968aa77efadb3",
+    "atlas:4d83946b54d460e0e36ff93ad38bbdcfbea9dfb508315a0c32e8f082818494d2",
+    "atlas:2e93f7fc2bc31d530e2826cbe5ef9d6cf96ebbc4edae3ddd08c19355dc1200bb",
+    "atlas:491240ce421fcee1b723a853c12588340ab92c8fc63529939e47cebe89aec597",
+    "atlas:35334610f41fae2110515e8e9f197514e9e05f5b971db891eb2b862c8326b1d3",
+    "atlas:fd3ad9dd9cc76912c02c7a4786be851ae1822258b313408750d43105dba4ce85",
+    "atlas:d2ac64db5b4167d80e2ec710424753c956b6f42f98b7c53f7ccf0b5690717109",
+    "atlas:c58682bd09a034d507ddfc2c4f83bb9f4e221875ec715d84394041bc91c05b21",
+    "atlas:2e815dfcbaa970b4ca98d776860b566ef77d06895e1aca4919c054204de98bce",
+    "atlas:fa8e5bf1f3efa432558b59f4dd3895c3e4e0e6fdaad06cc3cec42f829b2625d8",
+    "atlas:e8e9fdd0c9ca0876e76ac680a62a275de152cd6d841537e684fb950ee0c2af62",
+    "atlas:60079b0f664db50ebfa082eacc9f9acdac7afc845915588441b908fd5876c8f6",
+    "atlas:959aa77dc56b34d7a924dc8a4527cba450b248402b3fcd3340f3cd960271b8c0",
+    "atlas:00ea482b917fa5d24fabd5d6e63309434f40109f395db0052e5afd17893dde6e",
+    "atlas:e971e000d03c2c944f7cee26a3d89715687aa1d5da7b1813986779f6e22687e0",
+    "atlas:9ab5f6d6790de14dd9065d5bac7432c5b4eadb4b1ddcb6e069f8487b602efdd3",
+    "atlas:a59cc4eb421c6f1981e050ac7474d624ace97f47daf2cd1dfd745643900e8f27",
+    "atlas:7daf54657f9901cf25ca69c1d6e73258c40aaf7a71e3c8c7c2a268ab626c6fc1",
+    "atlas:7172e13652514c1127ec25bf64448a82306dce288679f03e30852f8ed8e2816a",
+    "atlas:fb944cd4e55bd67ee1b3ce06f6e179f0d8ee7b1456cd485014532a81928c5940",
+    "atlas:5a185b34c8cccc5d4db3dff866c0354995727766e2b50817e71135f9416bfb22",
+    "atlas:c15477768a5d54ba099b3477cd8ec9499ae385d7ed35bf4e196a6f4830f82458",
+    "atlas:fdb0b0aff10530335b3d112a7c7e69647a4639b8dc0f94c360c89fc0f55afee9",
+    "atlas:6a3efdabb2ef5172fe8ab62df961e95c1eadd95d782d28e4c16001bce77e78ca",
+    "atlas:8290b0b56bb211404903ba84138fccabb581f599401b049165c928386668fab9",
+    "atlas:e736525aa9bb4ad00c5deb1d446a9539671df17b4a7d76962075b82bacdfcc29",
+    "atlas:2e4105a991f2f3c19d7345aa12216409bda773776d9665c874b76d603e49a311",
+    "atlas:8a906fd176d6fd47bc90006bbb077cde1863bb458b2362491406f1ddf839d74e",
+    "atlas:fbd7dcd1377e36d32fdb8974243b712a5c3b218d6b8816383c6a0b6107e3538c",
+    "atlas:fd7ed34df4b10c4c6b2b6ec202573e882b72acbe334d168d80f99d90cdbefb8c",
+    "atlas:794dcb0dda868137418abbc94b625e0da341386816fec7e598af38ccfa086116",
+    "atlas:3bf8de1eb4f24c6ae263ac814c5b2e8258c29de2dbdd01d6c552aeff7d22e9f1",
+    "atlas:20ed19780199ba64739eadca3c029ac865e2d6ae878441e823b423b8dc87400e",
+    "atlas:92a5af2c1526c4824c6039d4c6da39f11a69222fbbb3d01881c9576ba2a9bfc1",
+    "atlas:0ec3ce69db5ded48f2d53e39b24f17b337ca94d2973fb88fe15ec48bf2c13414",
+    "atlas:b0d3e6eccadb140df5a0ac33aeb34e56327672770a78ee01e693f8b36b9d8cfd",
+    "atlas:69839d5ca924d10387c02b80ecea7981e565b71850c9120df440364669495da4",
+    "atlas:2c29b92e4b47d0e67be5b36434ddca67ef5e529ae3d4025dcc80d4649714376e",
+    "atlas:41080a8fbd18b7d17788a7319fbb1fee3214fe58647012f5bcb658968f0cfc92",
+    "atlas:1d07c402ff83d09d7cc4625cf7f3c63e5bbfe2ba7887c607870554ac3616828c"
+  ],
+  "fractions": [
+    0.0,
+    0.05,
+    0.0,
+    -0.05,
+    0.0
+  ],
+  "phase_seconds": 0.05,
+  "extended_gray_after_seconds": 0.25,
+  "calibrated_optical_contrast": false,
+  "rod_background_held": true,
+  "geometry_or_connections_changed": false
+}

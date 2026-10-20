@@ -1,0 +1,334 @@
+{
+  "status": "PASS_FIXED_DARK_REFERENCE_SHORT_REGRESSION",
+  "matlab_launches": 0,
+  "fit_performed": false,
+  "physiology_calibrated": false,
+  "new_neural_seconds": 0.71,
+  "backgrounds": {
+    "1.0": {
+      "anchor_A": {
+        "mean": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "current_pA": {
+        "mean": -35.359771501702305,
+        "minimum": -35.359771501702305,
+        "maximum": -35.359771501702305
+      },
+      "initial_voltage_mV": {
+        "mean": -41.87897849829769,
+        "minimum": -41.87897849829769,
+        "maximum": -41.87897849829769
+      },
+      "initial_release": {
+        "mean": 0.2810035234197549,
+        "minimum": 0.2810035234197548,
+        "maximum": 0.2810035234197548
+      },
+      "initial_TRPM1_gate": {
+        "mean": 0.3851784899488106,
+        "minimum": 0.38517848994881065,
+        "maximum": 0.38517848994881065
+      },
+      "maximum_rod_membrane_RHS": 0.0,
+      "source_group_unchanged": true,
+      "pA_to_A_applied_once": true,
+      "TRPM1_initial_state_uses_actual_release": true,
+      "frozen_geometry_verified": {
+        "boundary_policy_already_approved": true,
+        "contract": "exact dependencies inside supplied finite canonical circuit; exterior omitted by approved design",
+        "external_channel_cells": 2436,
+        "missing_required_owner_input_rows": 0,
+        "owner_closure_edges": 22929,
+        "owner_closure_nodes": 7500,
+        "asset": {
+          "path": "data/atlas/circuit_source_stop_shared_v1_20261016/circuit_geometry.json",
+          "sha256": "19aa42e13fd44d691847504fa7ad85b077bad22a8294ecd00a544e5883a92401"
+        },
+        "full_derived_tables": {
+          "S_ON_BC": 130,
+          "diffuse_BC_OFF": 629,
+          "diffuse_BC_ON": 629,
+          "local_crossover_AC": 2501,
+          "local_feedforward_AC": 2501,
+          "midget_BC_OFF": 2226,
+          "midget_BC_ON": 2226,
+          "midget_RGC_OFF": 2226,
+          "midget_RGC_ON": 2226,
+          "parasol_RGC_OFF": 73,
+          "parasol_RGC_ON": 72,
+          "small_bistratified_S_ON": 130,
+          "widefield_AC": 924
+        },
+        "authorized_parameter_label_alias": "rod fixed-dark-reference profile only"
+      },
+      "full_network_5ms_constant_input_pass": true
+    },
+    "20.0": {
+      "anchor_A": {
+        "mean": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "current_pA": {
+        "mean": -23.378547299571096,
+        "minimum": -23.378547299571096,
+        "maximum": -23.378547299571096
+      },
+      "initial_voltage_mV": {
+        "mean": -53.8602027004289,
+        "minimum": -53.8602027004289,
+        "maximum": -53.8602027004289
+      },
+      "initial_release": {
+        "mean": 0.0009769463952281241,
+        "minimum": 0.000976946395228124,
+        "maximum": 0.000976946395228124
+      },
+      "initial_TRPM1_gate": {
+        "mean": 0.9999999997668032,
+        "minimum": 0.999999999766803,
+        "maximum": 0.999999999766803
+      },
+      "maximum_rod_membrane_RHS": 6.462348535570529e-16,
+      "source_group_unchanged": true,
+      "pA_to_A_applied_once": true,
+      "TRPM1_initial_state_uses_actual_release": true,
+      "frozen_geometry_verified": {
+        "boundary_policy_already_approved": true,
+        "contract": "exact dependencies inside supplied finite canonical circuit; exterior omitted by approved design",
+        "external_channel_cells": 2436,
+        "missing_required_owner_input_rows": 0,
+        "owner_closure_edges": 22929,
+        "owner_closure_nodes": 7500,
+        "asset": {
+          "path": "data/atlas/circuit_source_stop_shared_v1_20261016/circuit_geometry.json",
+          "sha256": "19aa42e13fd44d691847504fa7ad85b077bad22a8294ecd00a544e5883a92401"
+        },
+        "full_derived_tables": {
+          "S_ON_BC": 130,
+          "diffuse_BC_OFF": 629,
+          "diffuse_BC_ON": 629,
+          "local_crossover_AC": 2501,
+          "local_feedforward_AC": 2501,
+          "midget_BC_OFF": 2226,
+          "midget_BC_ON": 2226,
+          "midget_RGC_OFF": 2226,
+          "midget_RGC_ON": 2226,
+          "parasol_RGC_OFF": 73,
+          "parasol_RGC_ON": 72,
+          "small_bistratified_S_ON": 130,
+          "widefield_AC": 924
+        },
+        "authorized_parameter_label_alias": "rod fixed-dark-reference profile only"
+      },
+      "full_network_5ms_constant_input_pass": true
+    },
+    "5.0": {
+      "anchor_A": {
+        "mean": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "current_pA": {
+        "mean": -30.651095648066423,
+        "minimum": -30.65109564806643,
+        "maximum": -30.65109564806643
+      },
+      "initial_voltage_mV": {
+        "mean": -46.58765435193357,
+        "minimum": -46.58765435193357,
+        "maximum": -46.58765435193357
+      },
+      "initial_release": {
+        "mean": 0.03578356159428881,
+        "minimum": 0.03578356159428881,
+        "maximum": 0.03578356159428881
+      },
+      "initial_TRPM1_gate": {
+        "mean": 0.9995804420324036,
+        "minimum": 0.9995804420324037,
+        "maximum": 0.9995804420324037
+      },
+      "maximum_rod_membrane_RHS": 1.2924697071141057e-15,
+      "source_group_unchanged": true,
+      "pA_to_A_applied_once": true,
+      "TRPM1_initial_state_uses_actual_release": true,
+      "frozen_geometry_verified": {
+        "boundary_policy_already_approved": true,
+        "contract": "exact dependencies inside supplied finite canonical circuit; exterior omitted by approved design",
+        "external_channel_cells": 2436,
+        "missing_required_owner_input_rows": 0,
+        "owner_closure_edges": 22929,
+        "owner_closure_nodes": 7500,
+        "asset": {
+          "path": "data/atlas/circuit_source_stop_shared_v1_20261016/circuit_geometry.json",
+          "sha256": "19aa42e13fd44d691847504fa7ad85b077bad22a8294ecd00a544e5883a92401"
+        },
+        "full_derived_tables": {
+          "S_ON_BC": 130,
+          "diffuse_BC_OFF": 629,
+          "diffuse_BC_ON": 629,
+          "local_crossover_AC": 2501,
+          "local_feedforward_AC": 2501,
+          "midget_BC_OFF": 2226,
+          "midget_BC_ON": 2226,
+          "midget_RGC_OFF": 2226,
+          "midget_RGC_ON": 2226,
+          "parasol_RGC_OFF": 73,
+          "parasol_RGC_ON": 72,
+          "small_bistratified_S_ON": 130,
+          "widefield_AC": 924
+        },
+        "authorized_parameter_label_alias": "rod fixed-dark-reference profile only"
+      }
+    }
+  },
+  "reference": "fixed dark anchor 0A; no per-background reanchor",
+  "fully_adapted": false,
+  "graph_or_active_channels_changed": false,
+  "rod_chain_directions": {
+    "rod.current": {
+      "mean_delta_last100ms": 0.15294736323538397,
+      "peak_signed_delta": 0.1887765909816672,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "rod_membrane.voltage": {
+      "mean_delta_last100ms": -0.00014836212829180968,
+      "peak_signed_delta": -0.0001865975189642231,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": -1,
+      "observed_expected_direction": true
+    },
+    "rod_membrane.release": {
+      "mean_delta_last100ms": -0.002440523735804177,
+      "peak_signed_delta": -0.0030690115761285194,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": -1,
+      "observed_expected_direction": true
+    },
+    "individual_rod_RBC_contacts.gate": {
+      "mean_delta_last100ms": 9.662004023781249e-05,
+      "peak_signed_delta": 0.0001232337987846499,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "rod_BC.voltage": {
+      "mean_delta_last100ms": 1.2300662437988763e-06,
+      "peak_signed_delta": 1.6118276644529195e-06,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "rod_BC.release": {
+      "mean_delta_last100ms": 5.940407665387354e-07,
+      "peak_signed_delta": 7.883721800938659e-07,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "AII_AC.voltage": {
+      "mean_delta_last100ms": 1.6604051319971435e-09,
+      "peak_signed_delta": 2.0547187646275035e-09,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "AII_AC.release": {
+      "mean_delta_last100ms": 7.567126816676514e-08,
+      "peak_signed_delta": 9.509557634739953e-08,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "RBC_AII_AMPA.conductance": {
+      "mean_delta_last100ms": 1.3757935321367827e-17,
+      "peak_signed_delta": 1.5676601691609125e-17,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "AII_FMB_glycine.conductance": {
+      "mean_delta_last100ms": 7.491620488695613e-18,
+      "peak_signed_delta": 8.774956541879504e-18,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "AII_DB1_glycine.conductance": {
+      "mean_delta_last100ms": 9.491973814671959e-18,
+      "peak_signed_delta": 1.1262487934161223e-17,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "midget_RGC_ON.voltage": {
+      "mean_delta_last100ms": 1.1397608359346945e-10,
+      "peak_signed_delta": 1.7299177904555647e-10,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": 1,
+      "observed_expected_direction": true
+    },
+    "midget_RGC_OFF.voltage": {
+      "mean_delta_last100ms": -3.4133092663194394e-10,
+      "peak_signed_delta": -5.152457056340436e-10,
+      "peak_time_after_flash_on_seconds": 0.25,
+      "expected_direction_sign": -1,
+      "observed_expected_direction": true
+    }
+  },
+  "all_expected_directions": true,
+  "response_scope": "300ms after100ms own wash; relative engineering direction only, no complete peak/recovery or amplitude sufficiency claim",
+  "assembly_hash": "5197e9d5b426f9bad22d197b2a8cec47d3a4e9818e6726d03d73e402f398f1c0",
+  "accepted_RGC_types": [
+    "parasol_RGC_ON"
+  ],
+  "cross_background_DC_retained": true,
+  "downstream_direction_regression_pass": true,
+  "wall_seconds": 503.10448840000026,
+  "maximum_RSS_bytes": 976265216,
+  "policy_sha256": "9a622c723feb50222fb0baa7ecb339db8472a670397a5fce14cb3d27c7ec5416",
+  "voltage_numerical_scale_diagnostic": {
+    "rod_membrane": {
+      "peak_mean_voltage_delta_V": 0.0001865975189642231,
+      "requested_atol_plus_rtol_scale_V": 4.758765435193357e-09,
+      "ratio": 39211.32938897235,
+      "gray_voltage_mV": -46.58765435193357,
+      "diagnostic_only_not_global_error_bound": true
+    },
+    "rod_BC": {
+      "peak_mean_voltage_delta_V": 1.6118276644529195e-06,
+      "requested_atol_plus_rtol_scale_V": 2.100559567137363e-09,
+      "ratio": 767.3325192341554,
+      "gray_voltage_mV": -20.005595671373626,
+      "diagnostic_only_not_global_error_bound": true
+    },
+    "AII_AC": {
+      "peak_mean_voltage_delta_V": 2.0547187646275035e-09,
+      "requested_atol_plus_rtol_scale_V": 5.7312783642328315e-09,
+      "ratio": 0.3585096786522148,
+      "gray_voltage_mV": -52.66632514964463,
+      "diagnostic_only_not_global_error_bound": true
+    },
+    "midget_RGC_ON": {
+      "peak_mean_voltage_delta_V": 1.7299177904555647e-10,
+      "requested_atol_plus_rtol_scale_V": 5.541126456805837e-09,
+      "ratio": 0.03121960496553565,
+      "gray_voltage_mV": -54.35192768734276,
+      "diagnostic_only_not_global_error_bound": true
+    },
+    "midget_RGC_OFF": {
+      "peak_mean_voltage_delta_V": 5.152457056340436e-10,
+      "requested_atol_plus_rtol_scale_V": 5.800445201052256e-09,
+      "ratio": 0.08882864810800611,
+      "gray_voltage_mV": -56.83260638827692,
+      "diagnostic_only_not_global_error_bound": true
+    }
+  },
+  "downstream_amplitude_status": "Directions agree in recorded differences; small AII/RGC voltage deltas are below the requested local tolerance scale, so this short run does not certify resolved neural output or physiological amplitude",
+  "claim": "Fixed reference, actual-background initial states, units and short numerical integration pass; downstream sign agreement alone is not an amplitude or sensitivity validation"
+}

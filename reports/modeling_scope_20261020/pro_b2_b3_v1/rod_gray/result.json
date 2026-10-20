@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETE_UNCHANGED_ROD_CHAIN_PROBE",
+  "branch": "gray",
+  "neural_seconds": 0.3,
+  "parameter_changes": false,
+  "production_default_changed": false,
+  "rod_reference_changed": false,
+  "matlab_launches": 0,
+  "physiology_calibrated": false,
+  "origin_seconds": 1.1,
+  "source_checkpoint_sha256": "5d06a5209bf823ac67d4d0efdcabd37434e1c78bb048acbbc5e6505d4fd75d8d",
+  "exact_own_checkpoint_restore": true,
+  "assembly_hash": "14ea7316e6e066ea164642974d03bbffadfd1b5c7b28f40b1d06ecfc3772657f",
+  "all_values_finite": true,
+  "wall_seconds": 134.18601130000025,
+  "maximum_RSS_bytes": 648634368
+}

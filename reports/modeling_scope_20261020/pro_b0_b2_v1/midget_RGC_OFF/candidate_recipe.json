@@ -1,0 +1,83 @@
+{
+  "schema_version": "rgc-source-reference-candidate-1.1",
+  "profile_id": "midget_RGC_OFF_latimer2019_cross_type_v1",
+  "component_id": "midget_RGC_OFF",
+  "default_enabled": false,
+  "fit_performed": false,
+  "physiological_calibration": false,
+  "base_main_configuration": {
+    "path": "configurations/retina_platform_v1.json",
+    "sha256": "a02224d6ce920daad22310e39577f45ec1562fb9146b4e201155dd3b8be9bd20"
+  },
+  "base_dynamics_candidate": {
+    "path": "configurations/bc_ac_contact_first_hypothesis_v1.json",
+    "sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce"
+  },
+  "source": {
+    "source_id": "LATIMER2019_CROSS_TYPE_midget_RGC_OFF",
+    "path": "data/source_data/latimer2019_figshare_v1/latimer2019_PMC6989090.xml",
+    "sha256": "09b5ce244f7abbdcc110046d0fc424f51c39055016e47c951098d49e2ec9bf9f",
+    "url": "https://doi.org/10.7554/eLife.47012",
+    "locator": "Equation12/28 and spike-rate-nonlinearity Methods: pooled dynamic-clamp data from two ON-parasol cells",
+    "author_python_commit": "7beb7e72b0678192f0bc98392a678cdff9601791"
+  },
+  "changes": {
+    "alpha": {
+      "value": 90.0,
+      "unit": "Hz",
+      "meaning": "spike_intensity_scale"
+    },
+    "mu": {
+      "value": -0.053,
+      "unit": "V",
+      "meaning": "spike_voltage_offset"
+    },
+    "beta": {
+      "value": 0.00167,
+      "unit": "V",
+      "meaning": "spike_voltage_scale"
+    }
+  },
+  "retained_parameters": [
+    "C",
+    "gL",
+    "EL",
+    "EE",
+    "EI",
+    "V0",
+    "spike_history_kernel",
+    "spike_interval",
+    "initial_spike_history"
+  ],
+  "applicability": {
+    "target": "midget_RGC_OFF experimental cross-type output-mapping transfer only",
+    "original_model": "EL=-60mV, normalized gL=200/s, EE=0mV, EI=-80mV, dt0.1ms; fitted author history not available",
+    "original_recording": "Two dynamic-clamp ON-parasol cells, Eexc0mV/Einhib-90mV; exact raw V-spike records unavailable",
+    "retained_project": "C60pF/gL2nS/EL-65mV/EE0/EI-80mV, original three-bin voltage history and dt1ms; V0 remains derived by existing initialization",
+    "evidence_class": "project_approximation",
+    "claim": "D-level cross-type borrowing from ON-parasol output fit; no target-type V-spike fit or default adoption"
+  },
+  "initialization_policy": "Fresh runner and fresh parameter-matched preparation for each variant; no cross-parameter checkpoint restoration",
+  "input_protocol": {
+    "kind": "independent_consumer_unit_fullfield_steps",
+    "fractions": [
+      0.0,
+      0.1,
+      0.0,
+      -0.1,
+      0.0
+    ],
+    "phase_seconds": 0.1,
+    "short_background_wash_in_seconds": 0.1,
+    "calibrated_visual_contrast": false,
+    "common_physical_scene_claim": false,
+    "ISET_video_capture_reused": false,
+    "adapted_steady_state_claim": false
+  },
+  "transfer_evidence": {
+    "source_parameter_support": "B: published ON-parasol output fit",
+    "target_transfer_support": "D: cross-type transfer in retained project membrane/bin/history conditions",
+    "target_type_voltage_spike_calibration": false,
+    "production_adoption": false
+  }
+}

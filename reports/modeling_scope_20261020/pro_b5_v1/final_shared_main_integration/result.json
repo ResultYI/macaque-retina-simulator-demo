@@ -1,0 +1,46 @@
+{
+  "status": "PASS_REUSED_IDENTICAL_SHARED_MAIN_INTEGRATION",
+  "components": 34,
+  "continuous_final_states_bitwise_equal": true,
+  "old_checkpoint_rejected": true,
+  "BC_AC_mechanisms_unchanged": true,
+  "links_and_gaps_unchanged": true,
+  "actual_assembly_identities_match_completed_check": true,
+  "new_neural_seconds": 0.0,
+  "matlab_launches": 0,
+  "reused_result_path": "reports\\modeling_scope_20261020\\pro_b5_v1\\on_parasol_fixed_dark_verified_integration\\result.json",
+  "reused_result_sha256": "08706af289a364c1f547a9804a43162f2cddbb682314696bfc4e98d340031de2",
+  "historical_assembly": "6798de1a7e1076a2923069aa72b4439d2db0b62319d530062bef05fe322ae087",
+  "shared_main_assembly": "5197e9d5b426f9bad22d197b2a8cec47d3a4e9818e6726d03d73e402f398f1c0",
+  "acceptance": [
+    {
+      "component_id": "parasol_RGC_ON",
+      "recipe_sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+      "acceptance": {
+        "path": "configurations/on_parasol_engineering_acceptance_v1.json",
+        "sha256": "86d34f4c812d3fcad079c4b80942ce27771c093ecc32062d289e757dec766dd8"
+      },
+      "values": {
+        "alpha": {
+          "value": 90.0,
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale"
+        },
+        "mu": {
+          "value": -0.053,
+          "unit": "V",
+          "meaning": "spike_voltage_offset"
+        },
+        "beta": {
+          "value": 0.00167,
+          "unit": "V",
+          "meaning": "spike_voltage_scale"
+        }
+      },
+      "engineering_default": true,
+      "physiological_calibration": false
+    }
+  ],
+  "physiological_calibration": false,
+  "fully_adapted": false
+}

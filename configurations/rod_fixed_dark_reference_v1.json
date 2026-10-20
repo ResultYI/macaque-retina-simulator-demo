@@ -1,0 +1,11 @@
+{
+  "schema_version": "fixed-rod-dark-reference-1.0",
+  "current_anchor_A": 0.0,
+  "dark_voltage_V": -0.04,
+  "physiological_calibration": false,
+  "fit_performed": false,
+  "reference_policy": "fixed_dark_current_reference; actual background initial V and release derived by retained equations",
+  "authorization": "User agreed 2026-10-20 to fixed rod dark reference and short regression",
+  "retained_parameters": "Chen primateRod group, C5pF/gL1nS/EL-77.23875mV; original release sigmoid and tau",
+  "scope": "Passive engineering rod membrane; no active channels added"
+}

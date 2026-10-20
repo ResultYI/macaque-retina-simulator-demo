@@ -1,0 +1,576 @@
+{
+  "schema": "pro-parameter-implementation-1.0",
+  "status": "COMPLETE_AUTHORIZED_IMPLEMENTATION_WITH_LOCAL_FIT_DATA_BLOCKERS",
+  "main_configuration": {
+    "path": "configurations/retina_platform_v1.json",
+    "sha256": "2b40c6bb708c72a8b5b46bc6e531ffa517b53c792c4b53c9c0ea4d7552ffe4ff",
+    "components": 34,
+    "accepted_RGC_types": [
+      "parasol_RGC_ON"
+    ],
+    "actual_RGC_parameters_SI": {
+      "midget_RGC_ON": {
+        "alpha": 150.0,
+        "mu": -0.07,
+        "beta": 0.005
+      },
+      "midget_RGC_OFF": {
+        "alpha": 150.0,
+        "mu": -0.07,
+        "beta": 0.005
+      },
+      "parasol_RGC_ON": {
+        "alpha": 90.0,
+        "mu": -0.053,
+        "beta": 0.00167
+      },
+      "parasol_RGC_OFF": {
+        "alpha": 150.0,
+        "mu": -0.07,
+        "beta": 0.005
+      },
+      "small_bistratified_S_ON": {
+        "alpha": 150.0,
+        "mu": -0.07,
+        "beta": 0.005
+      }
+    },
+    "acceptance_scope": "Scoped engineering defaults; physiological amplitude not calibrated; unchanged34-component BC/AC route"
+  },
+  "ON_parasol": {
+    "status": "PREVIOUSLY_APPLIED_VERIFIED_CURRENT_MAIN",
+    "alpha_Hz": 90.0,
+    "mu_V": -0.053,
+    "beta_V": 0.00167,
+    "functional_evidence_route": "Prior42-component explicit contact-first candidate, separately retained",
+    "main_integration": {
+      "status": "PASS_REUSED_IDENTICAL_SHARED_MAIN_INTEGRATION",
+      "components": 34,
+      "continuous_final_states_bitwise_equal": true,
+      "old_checkpoint_rejected": true,
+      "BC_AC_mechanisms_unchanged": true,
+      "links_and_gaps_unchanged": true,
+      "actual_assembly_identities_match_completed_check": true,
+      "new_neural_seconds": 0.0,
+      "matlab_launches": 0,
+      "reused_result_path": "reports\\modeling_scope_20261020\\pro_b5_v1\\on_parasol_fixed_dark_verified_integration\\result.json",
+      "reused_result_sha256": "08706af289a364c1f547a9804a43162f2cddbb682314696bfc4e98d340031de2",
+      "historical_assembly": "6798de1a7e1076a2923069aa72b4439d2db0b62319d530062bef05fe322ae087",
+      "shared_main_assembly": "5197e9d5b426f9bad22d197b2a8cec47d3a4e9818e6726d03d73e402f398f1c0",
+      "acceptance": [
+        {
+          "component_id": "parasol_RGC_ON",
+          "recipe_sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+          "acceptance": {
+            "path": "configurations/on_parasol_engineering_acceptance_v1.json",
+            "sha256": "86d34f4c812d3fcad079c4b80942ce27771c093ecc32062d289e757dec766dd8"
+          },
+          "values": {
+            "alpha": {
+              "value": 90.0,
+              "unit": "Hz",
+              "meaning": "spike_intensity_scale"
+            },
+            "mu": {
+              "value": -0.053,
+              "unit": "V",
+              "meaning": "spike_voltage_offset"
+            },
+            "beta": {
+              "value": 0.00167,
+              "unit": "V",
+              "meaning": "spike_voltage_scale"
+            }
+          },
+          "engineering_default": true,
+          "physiological_calibration": false
+        }
+      ],
+      "physiological_calibration": false,
+      "fully_adapted": false
+    }
+  },
+  "per_type_decisions": {
+    "midget_RGC_ON": {
+      "adopted": false,
+      "failed_checks": [
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_ON/result.json",
+        "sha256": "fc64b3a45673f56f54047475a7c1b5344f411c9515d645a8a463436b118b437f"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 29.93040594370913,
+      "passed_checks": {
+        "mapping": true,
+        "bright_dark": true,
+        "contrast_ordering": true,
+        "own_mapping_recovery": true,
+        "single_cell_spatial_or_spectral": false
+      },
+      "responses": {
+        "center05": {
+          "focus_cell_index": 7,
+          "focus_cell_id": "atlas:8b4a62dc2c128d1f1391732bbd38cb583a546cc7fbf3421b153f2e23ee9889be",
+          "bright_expected_delta_Hz": 0.011699253696537681,
+          "dark_expected_delta_Hz": -0.014051277429617742,
+          "peak_abs_cell_expected_delta_Hz": 0.12632811603901217,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.12632811603901217,
+          "peak_abs_cell_delta_V_mV": 0.009438386900040285
+        },
+        "center20": {
+          "focus_cell_index": 7,
+          "focus_cell_id": "atlas:8b4a62dc2c128d1f1391732bbd38cb583a546cc7fbf3421b153f2e23ee9889be",
+          "bright_expected_delta_Hz": 0.04599241654270245,
+          "dark_expected_delta_Hz": -0.0565757852777444,
+          "peak_abs_cell_expected_delta_Hz": 0.5259847265463193,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.0012016722467187435,
+          "peak_abs_cell_delta_V_mV": 0.03948363342162753
+        },
+        "ring20": {
+          "focus_cell_index": 7,
+          "focus_cell_id": "atlas:8b4a62dc2c128d1f1391732bbd38cb583a546cc7fbf3421b153f2e23ee9889be",
+          "bright_expected_delta_Hz": 0.0022818683945838103,
+          "dark_expected_delta_Hz": 0.004889204274946408,
+          "peak_abs_cell_expected_delta_Hz": 0.4071858034828608,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.4071858034828608,
+          "peak_abs_cell_delta_V_mV": 0.03022950243955491
+        }
+      },
+      "new_neural_seconds": 2.1,
+      "wall_seconds": 1278.0632488999981,
+      "fully_adapted": false,
+      "unmodified_sampler_bitwise_regression": true,
+      "reason_scope": "Selected cell,cone-domain masks and predefined50ms phase windows; unmet criteria do not establish absence of all surround/type physiology"
+    },
+    "midget_RGC_OFF": {
+      "adopted": false,
+      "failed_checks": [
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_OFF/result.json",
+        "sha256": "3c2c3586f4c78ed815ed03e66bc580c181f6b217a795adc955d63f86d305b122"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 8.340133628860373,
+      "passed_checks": {
+        "mapping": true,
+        "bright_dark": true,
+        "contrast_ordering": true,
+        "own_mapping_recovery": true,
+        "single_cell_spatial_or_spectral": false
+      },
+      "responses": {
+        "center05": {
+          "focus_cell_index": 7,
+          "focus_cell_id": "atlas:4d6ec28cf6ff9592385cdbfae79c8bc046d30abab2ea9f205716ea5a1d2a8462",
+          "bright_expected_delta_Hz": -0.003953594667128719,
+          "dark_expected_delta_Hz": 0.0043509526634723985,
+          "peak_abs_cell_expected_delta_Hz": 0.04623152800386876,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.04623152800386876,
+          "peak_abs_cell_delta_V_mV": 0.009737543145989236
+        },
+        "center20": {
+          "focus_cell_index": 7,
+          "focus_cell_id": "atlas:4d6ec28cf6ff9592385cdbfae79c8bc046d30abab2ea9f205716ea5a1d2a8462",
+          "bright_expected_delta_Hz": -0.01549443470875083,
+          "dark_expected_delta_Hz": 0.017726620197376804,
+          "peak_abs_cell_expected_delta_Hz": 0.1958972703111499,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.0004510422270573855,
+          "peak_abs_cell_delta_V_mV": 0.040933345432016266
+        },
+        "ring20": {
+          "focus_cell_index": 7,
+          "focus_cell_id": "atlas:4d6ec28cf6ff9592385cdbfae79c8bc046d30abab2ea9f205716ea5a1d2a8462",
+          "bright_expected_delta_Hz": -0.0007395396942154342,
+          "dark_expected_delta_Hz": -0.0019759183487843756,
+          "peak_abs_cell_expected_delta_Hz": 0.14221645957604245,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.14221645957604245,
+          "peak_abs_cell_delta_V_mV": 0.030244137887859568
+        }
+      },
+      "new_neural_seconds": 2.1,
+      "wall_seconds": 1281.2494253999976,
+      "fully_adapted": false,
+      "unmodified_sampler_bitwise_regression": true,
+      "reason_scope": "Selected cell,cone-domain masks and predefined50ms phase windows; unmet criteria do not establish absence of all surround/type physiology"
+    },
+    "parasol_RGC_OFF": {
+      "adopted": false,
+      "failed_checks": [
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/parasol_RGC_OFF/result.json",
+        "sha256": "e8ec349f04e273e9ea2138b84723606de59b78fea6588c156fd00d2ec3276a05"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 8.917981581812159,
+      "passed_checks": {
+        "mapping": true,
+        "bright_dark": true,
+        "contrast_ordering": true,
+        "own_mapping_recovery": true,
+        "single_cell_spatial_or_spectral": false
+      },
+      "responses": {
+        "center05": {
+          "focus_cell_index": 0,
+          "focus_cell_id": "atlas:b6f7a421a55c20811bcfa2e088e2babbf978c5aaddf262263c3e8847ddd30794",
+          "bright_expected_delta_Hz": -0.004399795214318587,
+          "dark_expected_delta_Hz": 0.0037018479340999734,
+          "peak_abs_cell_expected_delta_Hz": 0.01779724634929991,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.01779724634929991,
+          "peak_abs_cell_delta_V_mV": 0.003542754975223439
+        },
+        "center20": {
+          "focus_cell_index": 0,
+          "focus_cell_id": "atlas:b6f7a421a55c20811bcfa2e088e2babbf978c5aaddf262263c3e8847ddd30794",
+          "bright_expected_delta_Hz": -0.017231483338207346,
+          "dark_expected_delta_Hz": 0.015391884527839857,
+          "peak_abs_cell_expected_delta_Hz": 0.07421362052061298,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.00012811128294387686,
+          "peak_abs_cell_delta_V_mV": 0.014731652942759355
+        },
+        "ring20": {
+          "focus_cell_index": 0,
+          "focus_cell_id": "atlas:b6f7a421a55c20811bcfa2e088e2babbf978c5aaddf262263c3e8847ddd30794",
+          "bright_expected_delta_Hz": 0.000370921567477005,
+          "dark_expected_delta_Hz": 0.001691959834121235,
+          "peak_abs_cell_expected_delta_Hz": 0.005945869524211389,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.005945869524211389,
+          "peak_abs_cell_delta_V_mV": 0.0011835960467970752
+        }
+      },
+      "new_neural_seconds": 2.1,
+      "wall_seconds": 1279.1323249999987,
+      "fully_adapted": false,
+      "unmodified_sampler_bitwise_regression": true,
+      "reason_scope": "Selected cell,cone-domain masks and predefined50ms phase windows; unmet criteria do not establish absence of all surround/type physiology"
+    },
+    "small_bistratified_S_ON": {
+      "adopted": false,
+      "failed_checks": [
+        "bright_dark",
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/small_bistratified_S_ON/result.json",
+        "sha256": "dac16ddf8e3c43e51f7d3a94771f0e422ee4bd764b419498fc7dbccf4ac0fe47"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 152.95613462513072,
+      "passed_checks": {
+        "mapping": true,
+        "bright_dark": false,
+        "contrast_ordering": true,
+        "own_mapping_recovery": true,
+        "single_cell_spatial_or_spectral": false
+      },
+      "responses": {
+        "center05": {
+          "focus_cell_index": 2,
+          "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+          "bright_expected_delta_Hz": 0.031729178348447816,
+          "dark_expected_delta_Hz": 0.00502180003548915,
+          "peak_abs_cell_expected_delta_Hz": 0.22221265146762903,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.22221265146762903,
+          "peak_abs_cell_delta_V_mV": 0.013054409406833278
+        },
+        "center20": {
+          "focus_cell_index": 2,
+          "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+          "bright_expected_delta_Hz": 0.12330955802047072,
+          "dark_expected_delta_Hz": 0.005271155088580599,
+          "peak_abs_cell_expected_delta_Hz": 0.9371817702688077,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.0017243823295132188,
+          "peak_abs_cell_delta_V_mV": 0.055003960165257715
+        },
+        "ring20": {
+          "focus_cell_index": 2,
+          "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+          "bright_expected_delta_Hz": -0.0004024273877411133,
+          "dark_expected_delta_Hz": -0.0035681413413868766,
+          "peak_abs_cell_expected_delta_Hz": 0.21221806713782598,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.21221806713782598,
+          "peak_abs_cell_delta_V_mV": 0.012435841691540994
+        },
+        "LM20": {
+          "focus_cell_index": 2,
+          "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+          "bright_expected_delta_Hz": -0.11907104269115563,
+          "dark_expected_delta_Hz": -0.00495232923815081,
+          "peak_abs_cell_expected_delta_Hz": 0.8260341672958873,
+          "last100ms_max_abs_cell_expected_delta_Hz": 0.8260341672958873,
+          "peak_abs_cell_delta_V_mV": 0.048600551796978975
+        }
+      },
+      "new_neural_seconds": 2.35,
+      "wall_seconds": 1400.2044739999983,
+      "fully_adapted": false,
+      "unmodified_sampler_bitwise_regression": true,
+      "reason_scope": "Selected cell,cone-domain masks and predefined50ms phase windows; unmet criteria do not establish absence of all surround/type physiology"
+    }
+  },
+  "rod_reference": {
+    "status": "PASS_FIXED_DARK_REFERENCE_SHORT_REGRESSION",
+    "current_anchor_A": 0.0,
+    "policy_sha256": "9a622c723feb50222fb0baa7ecb339db8472a670397a5fce14cb3d27c7ec5416",
+    "backgrounds": {
+      "1.0": {
+        "anchor_A": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "current_pA": {
+          "mean": -35.359771501702305,
+          "minimum": -35.359771501702305,
+          "maximum": -35.359771501702305
+        },
+        "initial_voltage_mV": {
+          "mean": -41.87897849829769,
+          "minimum": -41.87897849829769,
+          "maximum": -41.87897849829769
+        },
+        "initial_release": {
+          "mean": 0.2810035234197549,
+          "minimum": 0.2810035234197548,
+          "maximum": 0.2810035234197548
+        },
+        "initial_TRPM1_gate": {
+          "mean": 0.3851784899488106,
+          "minimum": 0.38517848994881065,
+          "maximum": 0.38517848994881065
+        }
+      },
+      "20.0": {
+        "anchor_A": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "current_pA": {
+          "mean": -23.378547299571096,
+          "minimum": -23.378547299571096,
+          "maximum": -23.378547299571096
+        },
+        "initial_voltage_mV": {
+          "mean": -53.8602027004289,
+          "minimum": -53.8602027004289,
+          "maximum": -53.8602027004289
+        },
+        "initial_release": {
+          "mean": 0.0009769463952281241,
+          "minimum": 0.000976946395228124,
+          "maximum": 0.000976946395228124
+        },
+        "initial_TRPM1_gate": {
+          "mean": 0.9999999997668032,
+          "minimum": 0.999999999766803,
+          "maximum": 0.999999999766803
+        }
+      },
+      "5.0": {
+        "anchor_A": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "current_pA": {
+          "mean": -30.651095648066423,
+          "minimum": -30.65109564806643,
+          "maximum": -30.65109564806643
+        },
+        "initial_voltage_mV": {
+          "mean": -46.58765435193357,
+          "minimum": -46.58765435193357,
+          "maximum": -46.58765435193357
+        },
+        "initial_release": {
+          "mean": 0.03578356159428881,
+          "minimum": 0.03578356159428881,
+          "maximum": 0.03578356159428881
+        },
+        "initial_TRPM1_gate": {
+          "mean": 0.9995804420324036,
+          "minimum": 0.9995804420324037,
+          "maximum": 0.9995804420324037
+        }
+      }
+    },
+    "new_neural_seconds": 0.71,
+    "short_recorded_directions_agree": true,
+    "amplitude_limit": "Directions agree in recorded differences; small AII/RGC voltage deltas are below the requested local tolerance scale, so this short run does not certify resolved neural output or physiological amplitude",
+    "voltage_numerical_scale_diagnostic": {
+      "rod_membrane": {
+        "peak_mean_voltage_delta_V": 0.0001865975189642231,
+        "requested_atol_plus_rtol_scale_V": 4.758765435193357e-09,
+        "ratio": 39211.32938897235,
+        "gray_voltage_mV": -46.58765435193357,
+        "diagnostic_only_not_global_error_bound": true
+      },
+      "rod_BC": {
+        "peak_mean_voltage_delta_V": 1.6118276644529195e-06,
+        "requested_atol_plus_rtol_scale_V": 2.100559567137363e-09,
+        "ratio": 767.3325192341554,
+        "gray_voltage_mV": -20.005595671373626,
+        "diagnostic_only_not_global_error_bound": true
+      },
+      "AII_AC": {
+        "peak_mean_voltage_delta_V": 2.0547187646275035e-09,
+        "requested_atol_plus_rtol_scale_V": 5.7312783642328315e-09,
+        "ratio": 0.3585096786522148,
+        "gray_voltage_mV": -52.66632514964463,
+        "diagnostic_only_not_global_error_bound": true
+      },
+      "midget_RGC_ON": {
+        "peak_mean_voltage_delta_V": 1.7299177904555647e-10,
+        "requested_atol_plus_rtol_scale_V": 5.541126456805837e-09,
+        "ratio": 0.03121960496553565,
+        "gray_voltage_mV": -54.35192768734276,
+        "diagnostic_only_not_global_error_bound": true
+      },
+      "midget_RGC_OFF": {
+        "peak_mean_voltage_delta_V": 5.152457056340436e-10,
+        "requested_atol_plus_rtol_scale_V": 5.800445201052256e-09,
+        "ratio": 0.08882864810800611,
+        "gray_voltage_mV": -56.83260638827692,
+        "diagnostic_only_not_global_error_bound": true
+      }
+    },
+    "physiology_calibrated": false,
+    "active_channels_or_graph_changed": false
+  },
+  "B4": {
+    "status": "LOCAL_FIT_DATA_CONTRACT_BLOCKERS",
+    "decision_path": "reports/modeling_scope_20261020/pro_b5_v1/b4_data_decision.json",
+    "sha256": "1cbcad3c052aefff72011cb2117af178639b0122a1645dbb57834306533b4858",
+    "new_fits_performed": 0,
+    "blockers": [
+      "Rod negative-stimulus semantics,123060-point segmentation,clocks and prehistory/initialization",
+      "Dacey4B seconds,13.6mm annular-source to0.35mm ROI mapping and observation amplitude",
+      "Matched S/LM raw responses",
+      "Glycine event waveform/filter observation contract",
+      "New matched measured RGC voltage-spike data; old Cell6 rejected fit not reopened"
+    ]
+  },
+  "tests": {
+    "unique_passed": 33,
+    "failed": 0,
+    "evidence": [
+      {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/regressions.xml",
+        "sha256": "d002ad2a203eb55ac23fb5afd2bc3cd0fcde90b9858556ff88a063484dfb8dc0",
+        "passed": 30
+      },
+      {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/rod_guard_regressions.xml",
+        "sha256": "2d27210f5ebdec744af691a94bc7772aa2560036530a9475e2a1a0fb3e7d5fa6",
+        "passed": 3
+      }
+    ],
+    "syntax_checked": 10,
+    "final_integration": "Actual two assembly identities and every saved RGC parameter array match completed double5ms check; no repeated neural advance",
+    "scoped_git_diff_check_passed": true
+  },
+  "totals": {
+    "new_neural_seconds": 9.36,
+    "matlab_launches": 0,
+    "new_downloads": 0,
+    "new_fits": 0,
+    "training_runs": 0,
+    "git_mutations": 0,
+    "uploads": 0
+  },
+  "current_background": {
+    "full_preparation_under_new_parameters_completed": false,
+    "historical_background_retained": true,
+    "old_checkpoint_reuse_allowed": false
+  },
+  "code_files": [
+    {
+      "path": "retina_sim/atlas_population_network.py",
+      "sha256": "6b1339ab7cba01f41b500edda835acd884a2871698b6aef6533309d2edda7e1d"
+    },
+    {
+      "path": "retina_sim/atlas_primary_rod.py",
+      "sha256": "24977d0bbfab7208513f86163244aee7398470157aa607d9252c5914d1b991f0"
+    },
+    {
+      "path": "retina_sim/source_reference_candidate.py",
+      "sha256": "2c7d5cd3ef3604c61c6d2fe60fedbc71efec474b1f3daac1035c2fde4df5cb03"
+    },
+    {
+      "path": "retina_sim/rgc_defaults.py",
+      "sha256": "919a254d283d746ccaa6d2adabd7a6dc45d16c62d6689a7021dd0b4303d59e81"
+    },
+    {
+      "path": "tools/run_rgc_main_acceptance.py",
+      "sha256": "d9f940492671898ce406c881fba6c11b3bf487453f07773e0566050054b537c4"
+    },
+    {
+      "path": "tools/check_pro_rod_fixed_reference.py",
+      "sha256": "0701061d23aa8d3fee1f299bc8542ca6f4de15525c7a37e5ace43f8e1437a204"
+    },
+    {
+      "path": "tools/check_rgc_default_integration.py",
+      "sha256": "05413042799b4ec2c64a976a0fd274f22fe4976e467592b8c6971d37a6ad1564"
+    },
+    {
+      "path": "tools/adopt_pro_rgc_defaults.py",
+      "sha256": "6f36d9b65dd3d90f94a59272562f0a2974dc07024db24e46d1e89d5e3070658e"
+    },
+    {
+      "path": "tools/plot_pro_implementation.py",
+      "sha256": "b79300615fa43adc55636d74f4aa2d6db1c739851720d0c62704c07b6e8b9e44"
+    },
+    {
+      "path": "tests/test_rgc_defaults.py",
+      "sha256": "37e06c868520621ecf39207b7b3c492e0ef7883d1d6e4b4b3bb4d6ae07efc1ad"
+    }
+  ],
+  "documentation": {
+    "path": "docs/core_design.md",
+    "sha256": "dfa85126db813a87b773c9812e8c2ce9e3fb1217c8e58cd6f8ae19ea3f2fce8d"
+  },
+  "final_figure": {
+    "path": "reports/modeling_scope_20261020/pro_b5_v1/pro_parameter_implementation.png",
+    "scientific_plot_from_saved_arrays_only": true
+  },
+  "publication": {
+    "status": "NOT_UPLOADED_PARENT_COORDINATES_AFTER_FULL_BATCH",
+    "runtime_required_acceptance_evidence": [
+      {
+        "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/result.json",
+        "sha256": "70931dccfd5ac19fb62ece3a48dfd9b2c786066469054e0071875baac90a6a06"
+      },
+      {
+        "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/matched_control_result.json",
+        "sha256": "12f1e18dbc7bc8d442dfb4b66c51a1959a854e96ef0b42f9982427c294d846ac"
+      },
+      {
+        "path": "reports/modeling_scope_20261020/pro_b2_b3_v1/result.json",
+        "sha256": "f97c64f2251da90607341e74f9f21b1e046385c4bfd04f8bc9597ec49e09d5d9"
+      }
+    ],
+    "note": "Reports are generally ignored; these exact accepted evidence files must accompany the new default policy when parent publishes selected assets"
+  },
+  "resolved_execution_failure": {
+    "operation": "Rod short-check recording admission",
+    "reason": "16MiB below21.5MB estimated record size",
+    "neural_seconds_before_failure": 0.0,
+    "action": "Preserved startup failure; raised recording allowance to64MiB and resumed only pre-advance startup"
+  },
+  "permission_blockers": [],
+  "pending_actions": [],
+  "uncertain_operations": [],
+  "UI_changed_this_batch": false,
+  "physiological_calibration": false
+}

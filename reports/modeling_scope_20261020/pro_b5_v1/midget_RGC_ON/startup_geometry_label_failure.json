@@ -1,0 +1,14 @@
+{
+  "status": "STOPPED_EXACT_BLOCKER",
+  "component": "midget_RGC_ON",
+  "new_neural_seconds": 0.0,
+  "matlab_launches": 0,
+  "fit_performed": false,
+  "production_adoption": false,
+  "rod_reference_changed": false,
+  "main_route": "retained 34-component HistoryBipolarTerminal",
+  "branches": {},
+  "error_type": "ContractError",
+  "error": "CIRCUIT_GEOMETRY: Actual typed populations/contacts/weights/gaps differ from frozen canonical asset",
+  "wall_seconds": 13.053569899995637
+}

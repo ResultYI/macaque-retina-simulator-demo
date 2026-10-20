@@ -1,0 +1,69 @@
+{
+  "status": "APPLIED_INDIVIDUALLY_PASSED_ENGINEERING_DEFAULTS",
+  "main_path": "configurations/retina_platform_v1.json",
+  "main_before_sha256": "2755ba66e56bdb397a0f430010bd4456252e1742b4c65dc37d1d144f5329af4e",
+  "main_after_sha256": "2b40c6bb708c72a8b5b46bc6e531ffa517b53c792c4b53c9c0ea4d7552ffe4ff",
+  "accepted_RGC_types": [
+    "parasol_RGC_ON"
+  ],
+  "decisions": {
+    "midget_RGC_ON": {
+      "adopted": false,
+      "failed_checks": [
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_ON/result.json",
+        "sha256": "fc64b3a45673f56f54047475a7c1b5344f411c9515d645a8a463436b118b437f"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 29.93040594370913
+    },
+    "midget_RGC_OFF": {
+      "adopted": false,
+      "failed_checks": [
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_OFF/result.json",
+        "sha256": "3c2c3586f4c78ed815ed03e66bc580c181f6b217a795adc955d63f86d305b122"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 8.340133628860373
+    },
+    "parasol_RGC_OFF": {
+      "adopted": false,
+      "failed_checks": [
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/parasol_RGC_OFF/result.json",
+        "sha256": "e8ec349f04e273e9ea2138b84723606de59b78fea6588c156fd00d2ec3276a05"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 8.917981581812159
+    },
+    "small_bistratified_S_ON": {
+      "adopted": false,
+      "failed_checks": [
+        "bright_dark",
+        "single_cell_spatial_or_spectral"
+      ],
+      "blocked_checks": {},
+      "own_result": {
+        "path": "reports/modeling_scope_20261020/pro_b5_v1/small_bistratified_S_ON/result.json",
+        "sha256": "dac16ddf8e3c43e51f7d3a94771f0e422ee4bd764b419498fc7dbccf4ac0fe47"
+      },
+      "evidence_grade": "D cross-type output transfer; relative engineering function only",
+      "gray_expected_count_rate_Hz": 152.95613462513072
+    }
+  },
+  "physiological_calibration": false,
+  "fit_performed": false,
+  "matlab_launches": 0,
+  "upload_performed": false,
+  "unchanged_source_line_endings_preserved": true
+}

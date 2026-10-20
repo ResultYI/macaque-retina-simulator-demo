@@ -16,7 +16,7 @@ from .spatial_profiles import bounded_matrix,finite_support_coverage
 from examples.full_target_network import register_profile,PROJECT_SOURCE
 
 
-def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset=None):
+def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset=None,rod_reference_policy=None):
     from .circuit_geometry import csr_record,plain
     recipe={'pools':{},'contact_populations':{}}
     registry=audit['registry'];pops=dict(compiled.populations);specs=list(compiled.spec.components);links=list(compiled.spec.links);gaps=[]
@@ -51,10 +51,41 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
     current0=runtime.observe('current',0,tuple(v.values for v in runtime.initial()),{}).values*1e-12
     defs=registry.runtime_profile.data['profiles']['effective_rod_membrane'];gL=defs['gL']['value'];V0=defs['V0']['value'];EL=defs['EL']['value']
     bind('effective_rod_membrane',n,{'current_anchor':current0+gL*(V0-EL)})
-    mem=get_record('rods','effective_rod_membrane','rod','rod_membrane','rod_membrane:',opl_pre=xy)
-    specs.append(ComponentSpec('rod_membrane','ReceptorConductanceMembrane',{'cells':'rod_membrane'},'effective_rod_membrane',{'cell_kind':'rod_membrane'}))
+    membrane_pid='effective_rod_membrane'
+    if rod_reference_policy is not None:
+        from .mechanism_contracts import register_mechanism_profile
+        policy=rod_reference_policy
+        if (policy.get('schema_version')!='fixed-rod-dark-reference-1.0' or policy.get('current_anchor_A')!=0. or
+                policy.get('dark_voltage_V')!=-.04 or policy.get('physiological_calibration') is not False):
+            raise ContractError('Explicit approved fixed rod dark reference required')
+        dark_current=-runtime.native_model.p['k']*runtime.native_model.p['gdark']**runtime.native_model.p['n']*1e-12
+        expected=dark_current-gL*(EL-policy['dark_voltage_V'])
+        if abs(expected-policy['current_anchor_A'])>1e-24:raise ContractError('Fixed dark anchor differs from retained dark membrane group')
+        source_id='ROD_FIXED_DARK_REFERENCE_V1';binding=policy['binding']
+        registry.register_source(SourceRecord(source_id,'Approved fixed rod dark reference and actual-background initial voltage',
+            ('Project explicit passive reference; not animal voltage fit',),2026,'https://doi.org/10.7554/eLife.93795',
+            'data_table',None,binding['path'],'Pro E16; fixed dark V=-40mV with retained EL/gL and Chen dark current',binding['sha256'],None,
+            'Project engineering reference contract','identity_verified','Approved reference change, not rod membrane/release calibration','2026-10-20',{}))
+        old=registry.mechanism_profiles[membrane_pid];rows=[]
+        for r in old.records:
+            if r.parameter_id in ('current_anchor','V0'):
+                value=np.full(n,policy['current_anchor_A']) if r.parameter_id=='current_anchor' else EL-(current0-policy['current_anchor_A'])/gL
+                r=replace(r,value=replace(r.value,values=value),source_id=source_id,evidence_class='project_approximation',
+                    locator=binding['path']+'; '+r.parameter_id,uncertainty='Fixed engineering dark reference; V0 derived at actual background, not independently fitted')
+            rows.append(r)
+        membrane_pid='effective_rod_membrane_fixed_dark_reference_v1'
+        register_mechanism_profile(registry,replace(old,profile_id=membrane_pid,records=tuple(rows),
+            source_ids=tuple(sorted(set(old.source_ids+(source_id,)))),approval_reference='User approved fixed dark reference, 2026-10-20',
+            conditions=dict(old.conditions,rod_fixed_dark_reference=dict(binding=binding,actual_background_Rstar_s=light.rod_background_rstar_s,
+                current_anchor_A=policy['current_anchor_A'],dark_voltage_V=policy['dark_voltage_V'],initial_state_is_actual_background=True))))
+        audit['rod_reference']=dict(policy='fixed_dark',binding=binding,current_anchor_A=policy['current_anchor_A'],
+            actual_background_Rstar_s=light.rod_background_rstar_s,derived_initial_voltage_V=(EL-(current0-policy['current_anchor_A'])/gL).tolist(),
+            physiological_calibration=False,active_membrane_added=False)
+        audit['runtime_profile']=dict(audit['runtime_profile'],rod_reference=audit['rod_reference'])
+    mem=get_record('rods',membrane_pid,'rod','rod_membrane','rod_membrane:',opl_pre=xy)
+    specs.append(ComponentSpec('rod_membrane','ReceptorConductanceMembrane',{'cells':'rod_membrane'},membrane_pid,{'cell_kind':'rod_membrane'}))
     bind('rod_current_adapter',n);specs.append(ComponentSpec('rod_current_SI','ExplicitPhysicalUnitConversion',{'cells':'rod_membrane'},'rod_current_adapter',
-        {'source_unit':'pA','target_unit':'A','meaning':'absolute_outer_segment_current','target_population_profile_id':'effective_rod_membrane'}))
+        {'source_unit':'pA','target_unit':'A','meaning':'absolute_outer_segment_current','target_population_profile_id':membrane_pid}))
     links.extend((_link('rod','current','rod_current_SI','input',rod,mem,sparse.eye(n,format='csr'),'OPL'),
         _link('rod_current_SI','output','rod_membrane','current',mem,mem,sparse.eye(n,format='csr'),'OPL')))
     rbxy=np.asarray(record['rod_inner']['tables']['rod_BC']['coordinates']['rf']['values']);an=len(record['rod_inner']['tables']['AII_AC']['global_cell_ids'])
@@ -79,7 +110,7 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
     recipe['pools']['rod_RBC']={'matrix':csr_record(W),'rows':rows,'pre_ids':list(mem.cells.cell_id),'post_ids':list(rbc.cells.cell_id)}
     coo=W.tocoo();count=W.nnz
     if count==0 or np.any(np.asarray(W.sum(1)).ravel()==0):raise ContractError('ROD_RBC_FINITE_SUPPORT_EMPTY: no driver inserted')
-    release0=initial_release(registry.mechanism_profiles['effective_rod_membrane']);gain=2e-9*coo.data
+    release0=initial_release(registry.mechanism_profiles[membrane_pid]);gain=2e-9*coo.data
     bind('effective_individual_TRPM1',count,{'gain':gain,'drive0':release0[coo.col]})
     cp=contact_pop('individual_rod_RBC_contacts','BC',(xy[coo.col]+rbxy[coo.row])/2,'effective_individual_TRPM1',
         [mem.cells.cell_id[a]+'>'+rbc.cells.cell_id[b] for a,b in zip(coo.col,coo.row)])

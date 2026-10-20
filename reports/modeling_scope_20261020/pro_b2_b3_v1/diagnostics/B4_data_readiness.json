@@ -1,0 +1,258 @@
+{
+  "status": "LOCAL_DATA_INTAKE_COMPLETE_NO_ELIGIBLE_MATCHED_NEW_FIT",
+  "matlab_launches": 0,
+  "new_downloads": 0,
+  "fits_performed": 0,
+  "rod_records": [
+    {
+      "array_label": "PrimateRodResponses{1}",
+      "biological_cell_id_confirmed": false,
+      "fields": [
+        "AdaptingStepResponse",
+        "AdaptingStepStim"
+      ],
+      "samples": 123060,
+      "recording_dt_seconds": 0.001,
+      "nominal_recording_seconds": 123.06,
+      "all_finite": true,
+      "stimulus_unit": "R*/s",
+      "response_unit": "current / estimated absolute dark current; dimensionless",
+      "stimulus_range": [
+        -1080.6756037732557,
+        13711.14348865823
+      ],
+      "response_range": [
+        -1.0482702064631093,
+        -0.012511107121556016
+      ],
+      "negative_stimulus_samples": 7635,
+      "first_negative_sample_0based": 49800,
+      "last_negative_sample_0based": 120544,
+      "first_negative_index_seconds": 49.800000000000004,
+      "negative_value_treatment": "NONE: raw values retained",
+      "data_file_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "fit_performed": false
+    },
+    {
+      "array_label": "PrimateRodResponses{2}",
+      "biological_cell_id_confirmed": false,
+      "fields": [
+        "AdaptingStepResponse",
+        "AdaptingStepStim"
+      ],
+      "samples": 123060,
+      "recording_dt_seconds": 0.001,
+      "nominal_recording_seconds": 123.06,
+      "all_finite": true,
+      "stimulus_unit": "R*/s",
+      "response_unit": "current / estimated absolute dark current; dimensionless",
+      "stimulus_range": [
+        -1080.6756037732557,
+        13711.14348865823
+      ],
+      "response_range": [
+        -1.2157772262137494,
+        -0.00975587596211992
+      ],
+      "negative_stimulus_samples": 7155,
+      "first_negative_sample_0based": 49800,
+      "last_negative_sample_0based": 119942,
+      "first_negative_index_seconds": 49.800000000000004,
+      "negative_value_treatment": "NONE: raw values retained",
+      "data_file_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "fit_performed": false
+    },
+    {
+      "array_label": "PrimateRodResponses{3}",
+      "biological_cell_id_confirmed": false,
+      "fields": [
+        "AdaptingStepResponse",
+        "AdaptingStepStim"
+      ],
+      "samples": 123060,
+      "recording_dt_seconds": 0.001,
+      "nominal_recording_seconds": 123.06,
+      "all_finite": true,
+      "stimulus_unit": "R*/s",
+      "response_unit": "current / estimated absolute dark current; dimensionless",
+      "stimulus_range": [
+        -1080.6756037732557,
+        13711.14348865823
+      ],
+      "response_range": [
+        -1.050476993330084,
+        -0.024451429349659996
+      ],
+      "negative_stimulus_samples": 7155,
+      "first_negative_sample_0based": 49800,
+      "last_negative_sample_0based": 119942,
+      "first_negative_index_seconds": 49.800000000000004,
+      "negative_value_treatment": "NONE: raw values retained",
+      "data_file_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "fit_performed": false
+    },
+    {
+      "array_label": "PrimateRodResponses{4}",
+      "biological_cell_id_confirmed": false,
+      "fields": [
+        "AdaptingStepResponse",
+        "AdaptingStepStim"
+      ],
+      "samples": 123060,
+      "recording_dt_seconds": 0.001,
+      "nominal_recording_seconds": 123.06,
+      "all_finite": true,
+      "stimulus_unit": "R*/s",
+      "response_unit": "current / estimated absolute dark current; dimensionless",
+      "stimulus_range": [
+        -1080.6756037732557,
+        13711.14348865823
+      ],
+      "response_range": [
+        -1.0687442569887151,
+        -0.02721724022414572
+      ],
+      "negative_stimulus_samples": 7155,
+      "first_negative_sample_0based": 49800,
+      "last_negative_sample_0based": 119942,
+      "first_negative_index_seconds": 49.800000000000004,
+      "negative_value_treatment": "NONE: raw values retained",
+      "data_file_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "fit_performed": false
+    },
+    {
+      "array_label": "PrimateRodResponses{5}",
+      "biological_cell_id_confirmed": false,
+      "fields": [
+        "AdaptingStepResponse",
+        "AdaptingStepStim"
+      ],
+      "samples": 123060,
+      "recording_dt_seconds": 0.001,
+      "nominal_recording_seconds": 123.06,
+      "all_finite": true,
+      "stimulus_unit": "R*/s",
+      "response_unit": "current / estimated absolute dark current; dimensionless",
+      "stimulus_range": [
+        -1080.6756037732557,
+        13711.14348865823
+      ],
+      "response_range": [
+        -1.0843099539152152,
+        -0.007961330755923009
+      ],
+      "negative_stimulus_samples": 7155,
+      "first_negative_sample_0based": 49800,
+      "last_negative_sample_0based": 119942,
+      "first_negative_index_seconds": 49.800000000000004,
+      "negative_value_treatment": "NONE: raw values retained",
+      "data_file_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "fit_performed": false
+    },
+    {
+      "array_label": "PrimateRodResponses{6}",
+      "biological_cell_id_confirmed": false,
+      "fields": [
+        "AdaptingStepResponse",
+        "AdaptingStepStim"
+      ],
+      "samples": 123060,
+      "recording_dt_seconds": 0.001,
+      "nominal_recording_seconds": 123.06,
+      "all_finite": true,
+      "stimulus_unit": "R*/s",
+      "response_unit": "current / estimated absolute dark current; dimensionless",
+      "stimulus_range": [
+        -1080.6756037732557,
+        13711.14348865823
+      ],
+      "response_range": [
+        -1.1376245041992827,
+        -0.006787769584726404
+      ],
+      "negative_stimulus_samples": 7155,
+      "first_negative_sample_0based": 49800,
+      "last_negative_sample_0based": 119942,
+      "first_negative_index_seconds": 49.800000000000004,
+      "negative_value_treatment": "NONE: raw values retained",
+      "data_file_sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331",
+      "fit_performed": false
+    }
+  ],
+  "rod_blockers": [
+    "Input labelled total R*/s contains substantive negative values; no permitted rectification/background offset established",
+    "README gives 1ms rod recording; exact 0.1ms source-step replay/hold and alignment contract not supplied",
+    "Three stimulus families are concatenated under two generic fields; exact family boundaries, prehistory and independent group split not supplied"
+  ],
+  "rod_next_action": "Resolve negative-input semantics, family boundaries and clock/prehistory contract; then fixed-source replay before shared sigma/eta/KGC and per-record gamma candidates",
+  "dacey": {
+    "available": true,
+    "source_sha256": "e1f9d8069fb6d9ed5c4aa91139323a37200d56a32c0e1186f05b9b5fa24dea27",
+    "context": {
+      "annulus_inner_outer_um": [
+        150,
+        1200
+      ],
+      "reported_contrast": 1.0,
+      "estimated_mean_background_td": 1000,
+      "per_cell_species": null,
+      "absolute_voltage_offset_V": null,
+      "panel_AB_frequency_Hz": null,
+      "frequency_2_44_Hz_scope": "Caption explicitly C-E; not independently established for A/B",
+      "response_context": "annular_surround",
+      "voltage_representation": "delta_V_not_absolute_V",
+      "recording_location": {
+        "eccentricity_mm": 13.6,
+        "meridian": "nasal",
+        "locator": "Table 1, cell A91199-6; Results nasal-retina description",
+        "coordinate_scope": "Source-reported eccentricity; not converted to functional RF/pedicle coordinates"
+      },
+      "time_axis_status": "unconfirmed_phase_only",
+      "timing_conflicts": "Methods DLP 2/4/10 Hz; Fig4E main text 2 Hz differs from caption 2.44 Hz; none establishes A/B seconds",
+      "paper_genera": [
+        "Macaca",
+        "Papio"
+      ],
+      "per_cell_species_status": "unconfirmed",
+      "confirmed_macaque_claim": false,
+      "DLP_chromaticity": {
+        "system": "CIE 1931 xy",
+        "x": 0.304,
+        "y": 0.349,
+        "modulation": "isochromatic"
+      },
+      "original_recording_sampling_Hz": 10000,
+      "published_response": "cycle_averaged",
+      "averaging_cycles_typical": [
+        10,
+        20
+      ],
+      "digitized_points_are_independent_samples": false,
+      "independent_experimental_sample_count": null
+    },
+    "blockers": [
+      "Source eccentricity13.6mm and150-1200um annulus differs from current0.35mm small ROI",
+      "Panel4B seconds/frequency unconfirmed; phase digitization cannot identify tau",
+      "Effective cone drive from source annulus and absolute V not known; do not fit arbitrary amplitude scale"
+    ],
+    "next_action": "Use only permitted relative phase/polarity comparison until stimulus/clock/input-domain mapping is resolved"
+  },
+  "S_cone": {
+    "matched_binary_data_available": false,
+    "next_action": "Provide paired S and LM flash/filter records with retina/eccentricity/background/clock and holdout grouping"
+  },
+  "glycine": {
+    "matched_raw_events_available": false,
+    "next_action": "Provide waveform arrays, holding potentials, acquisition filter/sample rate and cell groups before rise/decay fitting"
+  },
+  "RGC": {
+    "new_matched_voltage_spike_available": false,
+    "next_action": "Use existing V-spike intake handoff; Cell_6 remains development, no reopened fit"
+  },
+  "workbook_rows_requested": [
+    "Rod fit/input task: any explicit negative-stimulus semantics, concatenated family sample boundaries, 1ms-to0.1ms replay and initial-history rules",
+    "Dacey Fig4B task/source: any verified panel-specific frequency, absolute/background-to-input mapping and region transfer rule",
+    "Any numeric acceptance row defining sufficient recovery and single-cell center/surround functional criterion"
+  ],
+  "workbook_import_retried": false
+}

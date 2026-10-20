@@ -1,0 +1,45 @@
+{
+  "status": "PASS_SHARED_MAIN_ON_PARASOL_ENGINEERING_DEFAULT_INTEGRATION",
+  "components": 34,
+  "continuous_final_states_bitwise_equal": true,
+  "other_four_RGC_outputs_bitwise_equal": true,
+  "old_checkpoint_rejected": true,
+  "BC_AC_mechanisms_unchanged": true,
+  "links_and_gaps_unchanged": true,
+  "matlab_launches": 0,
+  "new_neural_seconds": 0.01,
+  "historical_assembly": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+  "shared_main_assembly": "0cf7f42a20b770410fd569ce247ba1b5b1c6e532b6a8d6590fa43bf4c42bfbfe",
+  "acceptance": [
+    {
+      "component_id": "parasol_RGC_ON",
+      "recipe_sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+      "acceptance": {
+        "path": "configurations/on_parasol_engineering_acceptance_v1.json",
+        "sha256": "86d34f4c812d3fcad079c4b80942ce27771c093ecc32062d289e757dec766dd8"
+      },
+      "values": {
+        "alpha": {
+          "value": 90.0,
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale"
+        },
+        "mu": {
+          "value": -0.053,
+          "unit": "V",
+          "meaning": "spike_voltage_offset"
+        },
+        "beta": {
+          "value": 0.00167,
+          "unit": "V",
+          "meaning": "spike_voltage_scale"
+        }
+      },
+      "engineering_default": true,
+      "physiological_calibration": false
+    }
+  ],
+  "physiological_calibration": false,
+  "fully_adapted": false,
+  "scope": "5ms actual complete shared-main integration; earlier 42-component functional evidence remains separately scoped"
+}

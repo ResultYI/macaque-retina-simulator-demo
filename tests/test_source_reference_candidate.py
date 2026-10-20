@@ -7,6 +7,7 @@ from tests.test_calibration_modules import circuit
 from retina_sim.calibration_modules import merge_parameter_package
 from retina_sim.calibration_proposals import GROUPS
 from retina_sim.source_reference_candidate import read_source_candidate
+from retina_sim.source_reference_candidate import CROSS_TYPE_TARGETS,TRANSFER_EVIDENCE
 from retina_sim.contracts import ContractError,SolverConfig,canonical_hash
 from retina_sim.hybrid import HybridRunner
 
@@ -50,5 +51,32 @@ def test_source_route_rejects_scope_or_parameter_mutation(tmp_path,edit):
     p=ROOT/'tmp/source_candidate_test_mutation.json'
     try:
         p.write_text(json.dumps(d),encoding='utf-8')
+        with pytest.raises(ContractError):read_source_candidate(ROOT,p)
+    finally:p.unlink(missing_ok=True)
+
+
+@pytest.mark.parametrize('cid',CROSS_TYPE_TARGETS)
+def test_cross_type_candidate_keeps_all_other_profiles_and_requires_lower_evidence(circuit,cid):
+    old,_,audit=circuit;path=ROOT/'configurations'/(cid+'_literature_candidate_v1.json')
+    d,path=read_source_candidate(ROOT,path)
+    assert d['transfer_evidence']==TRANSFER_EVIDENCE
+    new=merge_parameter_package(old,audit['registry'],d,applicability=d['applicability'],
+        allowed_fields=['alpha','mu','beta'],proposal_path=path)
+    for key,c in old.components.items():
+        if key!=cid:
+            assert canonical_hash(c.parameters.records)==canonical_hash(new.components[key].parameters.records)
+            assert canonical_hash(c.parameters.profile)==canonical_hash(new.components[key].parameters.profile)
+    assert set(new.parameter_package_merge['changed_fields'])=={'alpha','mu','beta'}
+    runner=HybridRunner(old,compute_backend='python');cp=runner.checkpoint(runner.initialize())
+    with pytest.raises(ContractError):HybridRunner(new,compute_backend='python').restore(cp)
+
+
+@pytest.mark.parametrize('edit',[lambda d:d['transfer_evidence'].update(target_transfer_support='A: fitted'),
+    lambda d:d['source'].update(source_id='LATIMER2019_TRANSFERRED_OUTPUT_V1')])
+def test_cross_type_route_rejects_evidence_promotion_or_ambiguous_identity(edit):
+    d=json.loads((ROOT/'configurations/midget_RGC_ON_literature_candidate_v1.json').read_bytes());edit(d)
+    p=ROOT/'tmp/cross_type_mutation.json'
+    try:
+        p.write_text(json.dumps(d),encoding='utf8')
         with pytest.raises(ContractError):read_source_candidate(ROOT,p)
     finally:p.unlink(missing_ok=True)

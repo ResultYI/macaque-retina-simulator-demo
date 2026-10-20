@@ -1,0 +1,74 @@
+{
+  "status": "STOPPED_EXACT_BLOCKER",
+  "matlab_launches": 0,
+  "fit_performed": false,
+  "physiology_calibrated": false,
+  "new_neural_seconds": 0.0,
+  "backgrounds": {
+    "1.0": {
+      "anchor_A": {
+        "mean": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "current_pA": {
+        "mean": -35.359771501702305,
+        "minimum": -35.359771501702305,
+        "maximum": -35.359771501702305
+      },
+      "initial_voltage_mV": {
+        "mean": -41.87897849829769,
+        "minimum": -41.87897849829769,
+        "maximum": -41.87897849829769
+      },
+      "initial_release": {
+        "mean": 0.2810035234197549,
+        "minimum": 0.2810035234197548,
+        "maximum": 0.2810035234197548
+      },
+      "initial_TRPM1_gate": {
+        "mean": 0.3851784899488106,
+        "minimum": 0.38517848994881065,
+        "maximum": 0.38517848994881065
+      },
+      "maximum_rod_membrane_RHS": 0.0,
+      "source_group_unchanged": true,
+      "pA_to_A_applied_once": true,
+      "TRPM1_initial_state_uses_actual_release": true,
+      "frozen_geometry_verified": {
+        "boundary_policy_already_approved": true,
+        "contract": "exact dependencies inside supplied finite canonical circuit; exterior omitted by approved design",
+        "external_channel_cells": 2436,
+        "missing_required_owner_input_rows": 0,
+        "owner_closure_edges": 22929,
+        "owner_closure_nodes": 7500,
+        "asset": {
+          "path": "data/atlas/circuit_source_stop_shared_v1_20261016/circuit_geometry.json",
+          "sha256": "19aa42e13fd44d691847504fa7ad85b077bad22a8294ecd00a544e5883a92401"
+        },
+        "full_derived_tables": {
+          "S_ON_BC": 130,
+          "diffuse_BC_OFF": 629,
+          "diffuse_BC_ON": 629,
+          "local_crossover_AC": 2501,
+          "local_feedforward_AC": 2501,
+          "midget_BC_OFF": 2226,
+          "midget_BC_ON": 2226,
+          "midget_RGC_OFF": 2226,
+          "midget_RGC_ON": 2226,
+          "parasol_RGC_OFF": 73,
+          "parasol_RGC_ON": 72,
+          "small_bistratified_S_ON": 130,
+          "widefield_AC": 924
+        },
+        "authorized_parameter_label_alias": "rod fixed-dark-reference profile only"
+      }
+    }
+  },
+  "reference": "fixed dark anchor 0A; no per-background reanchor",
+  "fully_adapted": false,
+  "graph_or_active_channels_changed": false,
+  "error_type": "ContractError",
+  "error": "Recording requires at least 21514864 bytes; select cells/windows or stream, never thin anatomy",
+  "wall_seconds": 15.757470799995644
+}

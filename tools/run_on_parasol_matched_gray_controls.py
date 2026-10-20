@@ -7,6 +7,7 @@ import time
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+from retina_sim.rgc_defaults import historical_project_default,historical_reference_file
 from tools.run_on_parasol_candidate_network import (
     read_source_candidate,RunConfig,atlas_population_network,merge_parameter_package,
     HybridRunner,constant_background_channels,RecordingPlan,MemoryGuard,record_segment,expectation,save,sha)
@@ -31,10 +32,10 @@ def main():
             boundary();kwargs.setdefault('state_observer',boundary)
             return super().advance(*args,**kwargs)
     try:
-        cfg=RunConfig.project_default(ROOT)
+        cfg=historical_project_default(ROOT)
         recipe,path=read_source_candidate(ROOT,ROOT/'configurations/on_parasol_literature_candidate_v1.json')
         if sha(path)!=report['candidate_sha256']:raise ContractError('Candidate recipe differs from actual stimulus run')
-        original,_,audit=atlas_population_network(ROOT,duration=.6,light_context=cfg.light_context(),
+        original,_,audit=atlas_population_network(ROOT,apply_rgc_output_defaults=False,duration=.6,light_context=cfg.light_context(),
             execution_profile=cfg.execution_profile,configuration_path=cfg.circuit_configuration_path,
             owner_bounds_mm=cfg.owner_bounds(),halo_mm=cfg.halo_mm,max_spatial_cells=cfg.max_spatial_cells,
             seed=cfg.seed,dynamics_candidate_path=ROOT/recipe['base_dynamics_candidate']['path'])
@@ -96,7 +97,7 @@ def main():
             observed_rate_scope='One seed; expected rates integrate only future history conditional on each saved prepared history',
             physiology_calibrated=False,matched_background_subtraction=True)
         pins=json.loads((d/'protected_before.json').read_bytes())
-        for f,h in pins.items():assert sha(ROOT/f)==h,f
+        for f,h in pins.items():assert sha(historical_reference_file(ROOT,f,h))==h,f
         summary['protected_files_unchanged']=len(pins)
         save(d/'matched_control_result.json',summary)
         print(json.dumps(dict(stage=summary['status'],ON_parasol={name:all_responses[name]['parasol_RGC_ON'] for name in all_responses},

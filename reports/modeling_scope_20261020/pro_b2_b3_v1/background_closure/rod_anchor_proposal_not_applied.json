@@ -1,0 +1,83 @@
+{
+  "status": "REFERENCE_CONTRACT_DIFFERENCE_REQUIRES_DECISION",
+  "current_anchor_A": {
+    "mean": 6.587654351933564e-12,
+    "minimum": 6.587654351933565e-12,
+    "maximum": 6.587654351933565e-12
+  },
+  "proposed_fixed_dark_anchor_A": {
+    "mean": -6.462348535570529e-27,
+    "minimum": -6.462348535570529e-27,
+    "maximum": -6.462348535570529e-27
+  },
+  "dark_current_pA": -37.23875,
+  "actual_background_current_pA": {
+    "mean": -30.651095648066423,
+    "minimum": -30.65109564806643,
+    "maximum": -30.65109564806643
+  },
+  "current_no_gap_equilibrium_mV": {
+    "mean": -40.0,
+    "minimum": -40.0,
+    "maximum": -40.0
+  },
+  "proposed_fixed_dark_no_gap_equilibrium_mV": {
+    "mean": -46.58765435193357,
+    "minimum": -46.58765435193357,
+    "maximum": -46.58765435193357
+  },
+  "actual_release": {
+    "mean": 0.5,
+    "minimum": 0.5,
+    "maximum": 0.5
+  },
+  "proposed_passive_release_at_equilibrium": {
+    "mean": 0.03578356159428881,
+    "minimum": 0.03578356159428881,
+    "maximum": 0.03578356159428881
+  },
+  "current_implementation": "atlas_primary_rod.py binds current_anchor=current_eq(B)+gL*(V0-EL) at assembly",
+  "approved_change_performed": false,
+  "effect": "Changes rod DC/reference and all downstream TRPM1/RBC/AII workpoints; proposed numbers are algebra, not a new coupled run",
+  "proposed_parameter_overlay": {
+    "component_id": "rod_membrane",
+    "current_anchor": {
+      "value": 0.0,
+      "unit": "A",
+      "meaning": "absolute_outer_segment_current"
+    }
+  },
+  "retained_group": {
+    "C": {
+      "value": 5e-12,
+      "unit": "F"
+    },
+    "gL": {
+      "value": 1e-09,
+      "unit": "S"
+    },
+    "EL": {
+      "value": -0.07723875,
+      "unit": "V"
+    },
+    "release_half": {
+      "value": -0.04,
+      "unit": "V"
+    },
+    "release_slope": {
+      "value": 0.002,
+      "unit": "V"
+    },
+    "tau_release": {
+      "value": 0.002,
+      "unit": "s"
+    }
+  },
+  "initialization": "Derive rod membrane/release from actual-background photocurrent under the fixed dark reference; then recompute original joint RBC/AII/resource/chemical/gap preparation",
+  "validation_after_reference_decision": [
+    "dark and5R*/s algebra matches declared fixed reference",
+    "fresh coupled background under original convergence policy",
+    "one short rod-only flash and paired gray; preserve units and unmodified source groups"
+  ],
+  "applied": false
+}

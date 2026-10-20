@@ -1,0 +1,220 @@
+{
+  "status": "COMPLETE_OWN_TYPE_MAIN_ROUTE_ACCEPTANCE",
+  "component": "small_bistratified_S_ON",
+  "new_neural_seconds": 2.35,
+  "matlab_launches": 0,
+  "fit_performed": false,
+  "production_adoption": false,
+  "rod_reference_changed": false,
+  "main_route": "retained 34-component HistoryBipolarTerminal",
+  "branches": {
+    "center05": {
+      "neural_seconds": 0.24999999999999997,
+      "wall_seconds": 154.3396466999984,
+      "all_finite": true,
+      "own_checkpoint_exact": true
+    },
+    "center20": {
+      "neural_seconds": 0.75,
+      "wall_seconds": 453.4822256000043,
+      "all_finite": true,
+      "own_checkpoint_exact": true
+    },
+    "ring20": {
+      "neural_seconds": 0.24999999999999997,
+      "wall_seconds": 161.47546010000224,
+      "all_finite": true,
+      "own_checkpoint_exact": true
+    },
+    "LM20": {
+      "neural_seconds": 0.24999999999999997,
+      "wall_seconds": 157.44800080000277,
+      "all_finite": true,
+      "own_checkpoint_exact": true
+    },
+    "gray": {
+      "neural_seconds": 0.75,
+      "wall_seconds": 402.44180939999933,
+      "all_finite": true,
+      "own_checkpoint_exact": true
+    }
+  },
+  "assembly_hash": "f5f997ef588d86d08c87240f93c2ee2e45e88d1fb8db04c493ad2341848ba96b",
+  "base_main_assembly_hash": "5197e9d5b426f9bad22d197b2a8cec47d3a4e9818e6726d03d73e402f398f1c0",
+  "recipe_sha256": "16f86839dce81765b303bb57a21334ce041575a1c718fcd06e7124c8c1e50863",
+  "counts": {
+    "components": 34,
+    "cells": 20422
+  },
+  "changed_fields": [
+    "alpha",
+    "mu",
+    "beta"
+  ],
+  "passed_checks": {
+    "mapping": true,
+    "bright_dark": false,
+    "contrast_ordering": true,
+    "own_mapping_recovery": true,
+    "single_cell_spatial_or_spectral": false
+  },
+  "all_checks_passed": false,
+  "responses": {
+    "center05": {
+      "focus_cell_index": 2,
+      "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+      "bright_expected_delta_Hz": 0.031729178348447816,
+      "dark_expected_delta_Hz": 0.00502180003548915,
+      "peak_abs_cell_expected_delta_Hz": 0.22221265146762903,
+      "last100ms_max_abs_cell_expected_delta_Hz": 0.22221265146762903,
+      "peak_abs_cell_delta_V_mV": 0.013054409406833278
+    },
+    "center20": {
+      "focus_cell_index": 2,
+      "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+      "bright_expected_delta_Hz": 0.12330955802047072,
+      "dark_expected_delta_Hz": 0.005271155088580599,
+      "peak_abs_cell_expected_delta_Hz": 0.9371817702688077,
+      "last100ms_max_abs_cell_expected_delta_Hz": 0.0017243823295132188,
+      "peak_abs_cell_delta_V_mV": 0.055003960165257715
+    },
+    "ring20": {
+      "focus_cell_index": 2,
+      "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+      "bright_expected_delta_Hz": -0.0004024273877411133,
+      "dark_expected_delta_Hz": -0.0035681413413868766,
+      "peak_abs_cell_expected_delta_Hz": 0.21221806713782598,
+      "last100ms_max_abs_cell_expected_delta_Hz": 0.21221806713782598,
+      "peak_abs_cell_delta_V_mV": 0.012435841691540994
+    },
+    "LM20": {
+      "focus_cell_index": 2,
+      "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+      "bright_expected_delta_Hz": -0.11907104269115563,
+      "dark_expected_delta_Hz": -0.00495232923815081,
+      "peak_abs_cell_expected_delta_Hz": 0.8260341672958873,
+      "last100ms_max_abs_cell_expected_delta_Hz": 0.8260341672958873,
+      "peak_abs_cell_delta_V_mV": 0.048600551796978975
+    }
+  },
+  "gray_expected_count_rate_Hz": 152.95613462513072,
+  "unmodified_sampler_regression": {
+    "center05": {
+      "midget_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "midget_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      }
+    },
+    "center20": {
+      "midget_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "midget_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      }
+    },
+    "ring20": {
+      "midget_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "midget_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      }
+    },
+    "LM20": {
+      "midget_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "midget_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      }
+    },
+    "gray": {
+      "midget_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "midget_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_ON": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      },
+      "parasol_RGC_OFF": {
+        "all_native_bin_conditional_intensities_bitwise_equal": true,
+        "final_history_counts_RNG_bitwise_equal": true,
+        "scope": "Original unchanged sampler on actual whole-network V; regression, not functional replacement"
+      }
+    }
+  },
+  "blocked_checks": {},
+  "physiology_calibrated": false,
+  "fully_adapted": false,
+  "engineering_recovery_rule": "last100ms max cell residual <= max0.01Hz or5%peak; not physiological standard",
+  "wall_seconds": 1400.2044739999983,
+  "maximum_RSS_bytes": 1120059392,
+  "decision": "KEEP_CANDIDATE_FAILED_CHECKS"
+}

@@ -1,0 +1,103 @@
+{
+  "status": "COMPLETE_PER_TYPE_CANDIDATE_UNADOPTED",
+  "component": "midget_RGC_OFF",
+  "candidate_sha256": "4baf68c5299655ad59c5fba3a5981e52f04eab3726215ccf5a6d74cc5994d76d",
+  "production_default_changed": false,
+  "physiology_calibrated": false,
+  "matlab_launches": 0,
+  "prior_ON_parasol_results_reused": true,
+  "fully_adapted": false,
+  "neural_seconds": 1.1,
+  "preparation_seconds": 0.1,
+  "stimulus_seconds": 0.5,
+  "gray_control_seconds": 0.5,
+  "assembly_hash": "33c18c0a229ddf0310955119437d6155b1b7951575a68df785cf62238990233d",
+  "old_assembly_hash": "dc3b9c18f36a52c7c4ba9965a40f4c09627ddf6ba5f9d23c685f7fa5ec818a04",
+  "counts": {
+    "components": 42,
+    "populations": 23,
+    "cells": 20422,
+    "dynamic_scalars": 58155,
+    "links": 50,
+    "gaps": 4
+  },
+  "links_and_gaps_unchanged": true,
+  "merge": {
+    "status": "source_reference_transfer_unadopted",
+    "changed_component": "midget_RGC_OFF",
+    "changed_fields": [
+      "alpha",
+      "beta",
+      "mu"
+    ],
+    "new_profile_id": "midget_RGC_OFF_latimer2019_cross_type_v1",
+    "content_hash": "9058c5bfbd679b2780968f2b0903d1e0ec9fd483a3f98b0506c5351f2378bd8c",
+    "fitted": false,
+    "production_default": false,
+    "initialization_transferred": false,
+    "background_validated": false,
+    "invalidation": {
+      "background": true,
+      "checkpoint": true,
+      "adapted_state": true,
+      "affected_neural_components": [
+        "midget_RGC_OFF"
+      ]
+    }
+  },
+  "continuous_final_states_bitwise_equal": true,
+  "signal_equality": {
+    "midget_RGC_ON": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    },
+    "midget_RGC_OFF": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": false,
+      "spike_count": false,
+      "window_rate": false
+    },
+    "parasol_RGC_ON": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    },
+    "parasol_RGC_OFF": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    },
+    "small_bistratified_S_ON": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    }
+  },
+  "wash_in_wall_seconds": 39.82129719999648,
+  "stimulus_wall_seconds": 246.18158589999803,
+  "gray_control_wall_seconds": 248.55207060000248,
+  "gray_continuous_states_bitwise_equal": true,
+  "own_checkpoint_roundtrip_exact": true,
+  "protected_files_unchanged": 187,
+  "wall_seconds": 549.8378336000023,
+  "maximum_RSS_bytes": 735739904,
+  "output_mapping_pass": true,
+  "default_adoption": false,
+  "decision": "RETAIN_CANDIDATE_ENTER_B2",
+  "interpretation": "Short engineering functional comparison; no matched physiological amplitude criterion"
+}

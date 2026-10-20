@@ -1,0 +1,173 @@
+{
+  "schema_version": "fmb-figure-digitization-1.0",
+  "representation": "figure_digitization",
+  "raw_recording": false,
+  "source": {
+    "url": "https://www.cns.nyu.edu/~tony/vns/readings/dacey-etal-2000.pdf",
+    "path": "data/source_snapshots/fmb_calibration_20261019/dacey2000.pdf",
+    "sha256": "e1f9d8069fb6d9ed5c4aa91139323a37200d56a32c0e1186f05b9b5fa24dea27",
+    "pdf_page_1based": 7,
+    "printed_page": 1807,
+    "figure": "4B",
+    "cell": "A91199-6",
+    "target": "OFF midget bipolar",
+    "cell_location_locator": "Table 1, A91199-6: eccentricity 13.6 mm; nasal meridian as described in Results"
+  },
+  "render": {
+    "tool": "pdftoppm",
+    "arguments": [
+      "-f",
+      "7",
+      "-l",
+      "7",
+      "-singlefile",
+      "-scale-to",
+      "2800",
+      "-png"
+    ],
+    "width_px": 2164,
+    "height_px": 2800,
+    "pixel_origin": "top left, x rightward, y downward"
+  },
+  "extraction": {
+    "trace_roi_xyxy": [
+      1260,
+      235,
+      1680,
+      405
+    ],
+    "bar_roi_xyxy": [
+      1710,
+      210,
+      1730,
+      400
+    ],
+    "graphical_stimulus_roi_xyxy": [
+      1260,
+      440,
+      1680,
+      495
+    ],
+    "threshold": 140,
+    "sensitivity_thresholds": [
+      130,
+      140,
+      180
+    ],
+    "rejected_thresholds": "100-125 split the stroke into disconnected components; not interpolated or used",
+    "method": "Largest connected dark curve; per-column median, no smoothing or interpolation",
+    "voltage_bar": {
+      "value_V": 0.015,
+      "x_range_px": [
+        1719,
+        1720
+      ],
+      "y_endpoints_px": [
+        217,
+        390
+      ],
+      "height_px": 173.0,
+      "endpoint_span_error_bound_px": 2.0
+    },
+    "reference": {
+      "x_window_px": [
+        1440,
+        1475
+      ],
+      "y_median_px": 391.25,
+      "error_bound_px": 4.75,
+      "meaning": "chosen lower display plateau; absolute membrane potential unknown"
+    },
+    "graphical_transition_x_px": [
+      1364.0,
+      1466.5,
+      1569.0
+    ],
+    "cycle_same_edge_x_px": [
+      1364.0,
+      1569.0
+    ]
+  },
+  "uncertainty": {
+    "kind": "conservative digitization bounds, not source experimental variance/SEM/CI",
+    "line": "half observed stroke extent + 0.5 px quantization + threshold-median sensitivity",
+    "baseline": "maximum reference-window deviation + 2 px",
+    "voltage_scale": "15 mV divided by bar endpoint span; +/-2 px span",
+    "voltage_formula": "0.015*((line_error+baseline_error)/(bar_height-2)+abs(delta_y)*2/(bar_height*(bar_height-2)))",
+    "graphical_phase": "3/(cycle_width-2) cycles conservative pixel-edge bound",
+    "excluded": "Unknown author averaging/trace variability, biological variability and physical stimulus uncertainty"
+  },
+  "experimental_context": {
+    "annulus_inner_outer_um": [
+      150,
+      1200
+    ],
+    "reported_contrast": 1.0,
+    "estimated_mean_background_td": 1000,
+    "per_cell_species": null,
+    "absolute_voltage_offset_V": null,
+    "panel_AB_frequency_Hz": null,
+    "frequency_2_44_Hz_scope": "Caption explicitly C-E; not independently established for A/B",
+    "response_context": "annular_surround",
+    "voltage_representation": "delta_V_not_absolute_V",
+    "recording_location": {
+      "eccentricity_mm": 13.6,
+      "meridian": "nasal",
+      "locator": "Table 1, cell A91199-6; Results nasal-retina description",
+      "coordinate_scope": "Source-reported eccentricity; not converted to functional RF/pedicle coordinates"
+    },
+    "time_axis_status": "unconfirmed_phase_only",
+    "timing_conflicts": "Methods DLP 2/4/10 Hz; Fig4E main text 2 Hz differs from caption 2.44 Hz; none establishes A/B seconds",
+    "paper_genera": [
+      "Macaca",
+      "Papio"
+    ],
+    "per_cell_species_status": "unconfirmed",
+    "confirmed_macaque_claim": false,
+    "DLP_chromaticity": {
+      "system": "CIE 1931 xy",
+      "x": 0.304,
+      "y": 0.349,
+      "modulation": "isochromatic"
+    },
+    "original_recording_sampling_Hz": 10000,
+    "published_response": "cycle_averaged",
+    "averaging_cycles_typical": [
+      10,
+      20
+    ],
+    "digitized_points_are_independent_samples": false,
+    "independent_experimental_sample_count": null
+  },
+  "permitted_use": [
+    "annular surround relative voltage shape and polarity versus graphical cycle phase"
+  ],
+  "not_identified": [
+    "seconds/time constants",
+    "absolute resting voltage",
+    "calibrated light to effective input",
+    "C versus conductance scale",
+    "K versus effective drive scale",
+    "release mapping"
+  ],
+  "physical_stimulus_time_series_created": false,
+  "fit_enabled": false,
+  "files": {
+    "fig4B_phase_voltage.csv": "c27211d1b09236a5d76cfe904edb0c218ee85942d75d3e0fd3cfc7db7f967d7f",
+    "fig4B_phase_voltage.npz": "a51e890171e6fea428d77d45b6c0924a720bc13f9f32fe4d0071743d4dd41b08",
+    "source_page7.png": "1a937d7a0cbe56eda15b230ff8c15af162b3a7473b8801d18c36db379362267a",
+    "digitization_check.png": "859bd4b55cd47a4bbbc173556024f4f6adc02122f626af5ee1507b171c6e73ad"
+  },
+  "summary": {
+    "points": 206,
+    "voltage_digitization_error_max_mV": 1.16354832167123,
+    "relative_voltage_range_mV": [
+      -0.1950867052023121,
+      12.377167630057803
+    ],
+    "point_count_meaning": "206 digitized curve columns, not independent experimental samples; no experimental n inferred"
+  },
+  "prohibited_use": [
+    "isolated cone-to-BC direct calibration; surround circuitry and spatial light mapping are not isolated"
+  ]
+}

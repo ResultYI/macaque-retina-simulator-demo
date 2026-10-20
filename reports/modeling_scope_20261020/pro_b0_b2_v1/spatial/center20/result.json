@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETE_UNCALIBRATED_RECEPTOR_DOMAIN_PROBE",
+  "protocol": "center20",
+  "mapping_component": "parasol_RGC_ON",
+  "neural_seconds": 0.5,
+  "production_default_changed": false,
+  "physiology_calibrated": false,
+  "matlab_launches": 0,
+  "rod_background_held": true,
+  "fully_adapted": false,
+  "assembly_hash": "14ea7316e6e066ea164642974d03bbffadfd1b5c7b28f40b1d06ecfc3772657f",
+  "own_prepared_checkpoint_sha256": "8889bdd864fdae4759a8e0916e8493a33ee3578ee02b3acac42801572051c678",
+  "own_gray_reference": "reports\\modeling_scope_20261020\\on_parasol_candidate_network_v1\\candidate\\matched_gray",
+  "own_checkpoint_roundtrip_exact": true,
+  "first_gray_segment_matches_control": true,
+  "wall_seconds": 279.058781300002,
+  "maximum_RSS_bytes": 533659648,
+  "all_values_finite": true
+}

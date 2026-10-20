@@ -1,0 +1,22 @@
+{
+  "native_light": {
+    "declared_constant_background": true,
+    "includes_background": true,
+    "background_context_hash": "f32af4b2e4cf8b7e57e1f466f10bdf54190414a47756fed96e917d1fc2e96100",
+    "background_source": "iset_lcd_apple_mw_reference_v1",
+    "grid_step_seconds": 0.0001,
+    "value": 100.0,
+    "unit": "td",
+    "input_class": "uniform_declared_background"
+  },
+  "rod_light": {
+    "declared_constant_background": true,
+    "includes_background": true,
+    "background_context_hash": "f32af4b2e4cf8b7e57e1f466f10bdf54190414a47756fed96e917d1fc2e96100",
+    "background_source": "iset_lcd_apple_mw_reference_v1",
+    "grid_step_seconds": 0.0001,
+    "value": 5.0,
+    "unit": "R*/s",
+    "input_class": "uniform_declared_background"
+  }
+}

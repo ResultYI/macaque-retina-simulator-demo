@@ -1,0 +1,114 @@
+{
+  "component": "small_bistratified_S_ON",
+  "focus_cell_index": 2,
+  "focus_cell_id": "atlas:8a75313ccff9e24880bce12ec49ed5d08ec8946b5dbeabb4ce6e3e6190312461",
+  "focus_RF_mm": [
+    0.35706260916561566,
+    0.0012021685728782665
+  ],
+  "center_radius_mm": 0.024740617186813307,
+  "ring_outer_radius_mm": 0.054740617186813306,
+  "actual_direct_routes": {
+    "S_ON_BC": {
+      "BC_ids": [
+        "atlas:0a28dd8b90fad4eab987085602ee9698280d74658836a829ae3c85103ed02d73",
+        "atlas:3824eb1eb2e4320f2f35895ee30a7424498c518925fab2647f057d00f4cd8f9d",
+        "atlas:39be54d9ee7f03c715a11857d22cc9f07fd70b7e0e5e5ba9a8590fcb44327994",
+        "atlas:39f0b5a826395704fa86329de97b4288469683ec0b8b93dcd693af6b9c054e5f",
+        "atlas:5f51ebcad09bb82fe5af8c7e6939de2c80fdbc362e4d412fe1311ab62a13c60d",
+        "atlas:83615d304b8c2db7725a396830064e8457fabd2e43b7b86032cbe8d47206081b",
+        "atlas:b03a888aef7f3d5bf79a5f8e77775aa2442217621f14ca2e8ed27a1338ea8a80",
+        "atlas:f875d8a0eed5608e09741ef788c46b2dd85ef8b2ce662c0b2831f24816eeac59"
+      ],
+      "cone_ids": [
+        "atlas:2c29b92e4b47d0e67be5b36434ddca67ef5e529ae3d4025dcc80d4649714376e",
+        "atlas:2e815dfcbaa970b4ca98d776860b566ef77d06895e1aca4919c054204de98bce",
+        "atlas:6f3ddf8822ffbdf5edaedc037fe9e6469aa05109edddb49d2fb785e407d7beb3",
+        "atlas:8a906fd176d6fd47bc90006bbb077cde1863bb458b2362491406f1ddf839d74e",
+        "atlas:c58682bd09a034d507ddfc2c4f83bb9f4e221875ec715d84394041bc91c05b21",
+        "atlas:ddbb5d7d753208b60ab0510f8318be9134af11558190389315b9b8c62533b6ec",
+        "atlas:f7ef5fd72baaaf045a7a070899726ec56b83187b9e32617351d82936df3f05f0",
+        "atlas:fd3ad9dd9cc76912c02c7a4786be851ae1822258b313408750d43105dba4ce85"
+      ]
+    },
+    "diffuse_BC_OFF": {
+      "BC_ids": [
+        "atlas:1b9230d7f099550c7db10396dda60e9025ce15ad1921cb43e84f30b2baa1e86e",
+        "atlas:4fc267b19b7585fd0591d11185330e2e8b822a3366e00c47d4cb87e0b48b7b93",
+        "atlas:58574d063c19e0c1deca8891ed3a68b47070017f028068454ae49d474108ebf4",
+        "atlas:67b86b12ccd922e880c788e296e9e1c98e6315d9855dfdf6b717af811bf0a0ad",
+        "atlas:6bcfa591fa7a53eaf206c0ed4c5dc11fb518e5eec1e4a6540cf42491c2cdb8eb",
+        "atlas:87605fce35de25b6d9afb99cd88b7ff9a53669f6382e0509386747946182404f",
+        "atlas:ef753161b5dd3cc54e1c3f76490a985201031790d5c352f0d88ca8fe5d8c390c",
+        "atlas:f0a9e75e116ee39c4a137a5fb5d8fa4b48d1c72c9c21b909451d71abd3609737"
+      ],
+      "cone_ids": [
+        "atlas:0109ef74939e4a1bb38646371f220ee4330adc8ab7b0bc0a5ab8329ba680e0b3",
+        "atlas:0ec3ce69db5ded48f2d53e39b24f17b337ca94d2973fb88fe15ec48bf2c13414",
+        "atlas:1d07c402ff83d09d7cc4625cf7f3c63e5bbfe2ba7887c607870554ac3616828c",
+        "atlas:20ed19780199ba64739eadca3c029ac865e2d6ae878441e823b423b8dc87400e",
+        "atlas:2695efc21369c95127a1a11c74be0b25095a7913bcf27b1675aa2ce501aa45a3",
+        "atlas:2b4a307a68757c9f94b83bce97aa6146d30bf60c0dc253be051ac2d7c25b7938",
+        "atlas:2c0481f259ac557805ac236d7e638ddb0a597cea8e34aad3763a97a67bfb0f78",
+        "atlas:2e93f7fc2bc31d530e2826cbe5ef9d6cf96ebbc4edae3ddd08c19355dc1200bb",
+        "atlas:31c878028a09eecf2f4ca027a43df0a06e570b91c2da7b3eed007703e5309c6e",
+        "atlas:35334610f41fae2110515e8e9f197514e9e05f5b971db891eb2b862c8326b1d3",
+        "atlas:43554d2f149aafd5b4f951dabf32efe42ac250c3963f9872022741fb645a1988",
+        "atlas:44d259ff8cf45c2e606e1bf4a206274711454d976742378d68b748f06c3cc7b5",
+        "atlas:491240ce421fcee1b723a853c12588340ab92c8fc63529939e47cebe89aec597",
+        "atlas:4d83946b54d460e0e36ff93ad38bbdcfbea9dfb508315a0c32e8f082818494d2",
+        "atlas:5137da7ae885d1f34218fef42fe2e11dc591d999c2d08d4e5df65d5e9a831658",
+        "atlas:5a185b34c8cccc5d4db3dff866c0354995727766e2b50817e71135f9416bfb22",
+        "atlas:5b3bcee3234b7e13946140009b7d611a03cfd0e5e805e9d7542b6a82b448489a",
+        "atlas:69839d5ca924d10387c02b80ecea7981e565b71850c9120df440364669495da4",
+        "atlas:6a3efdabb2ef5172fe8ab62df961e95c1eadd95d782d28e4c16001bce77e78ca",
+        "atlas:7172e13652514c1127ec25bf64448a82306dce288679f03e30852f8ed8e2816a",
+        "atlas:794dcb0dda868137418abbc94b625e0da341386816fec7e598af38ccfa086116",
+        "atlas:7d0f10af5dacaf0e8836260a3c8b01550e14b9966ff5e077b3fac950f60b496d",
+        "atlas:7daf54657f9901cf25ca69c1d6e73258c40aaf7a71e3c8c7c2a268ab626c6fc1",
+        "atlas:966a5b9a9c75c48dc3516da57f324733544e11372297a24e319d4c8b47334f44",
+        "atlas:9b4388c54b3cc5e0955af4e234e7d31c5c0af2ebb1d914a7e4d1f1ba7cca4a74",
+        "atlas:a2c5e5e9768d4c33dbeb2e3b9773c53e1603d4c58aac33dcbab31fe2e86ff8c1",
+        "atlas:a59cc4eb421c6f1981e050ac7474d624ace97f47daf2cd1dfd745643900e8f27",
+        "atlas:aac181b76ede3f34419a332d71fb08c779c8572c2af242ff93a3d77815c3f987",
+        "atlas:b4835f684cb302db2e9c667386524cc706089806227d3def14eb227cf8eb4b65",
+        "atlas:be1c5cbcfa2449b4a2075d0d4a1f2725a9948de99239423e12d0d741474f2d3f",
+        "atlas:bef18ff25237bf6183c1c1c781270a8c3a2f3322c75eb3537d4968aa77efadb3",
+        "atlas:c15477768a5d54ba099b3477cd8ec9499ae385d7ed35bf4e196a6f4830f82458",
+        "atlas:ce8d611903635bfe3a26e7b7799dcaea1e86428052ffad1dd06ad543a71f9ef6",
+        "atlas:d1b0613f049e58d21d7f3068c76464f27a9b5f447c844044ca6c67d3328a6825",
+        "atlas:d3229363ca295896d7bcfcb24ce69649fa315dd0593b37c8f48ed5348c424ef8",
+        "atlas:e8e9fdd0c9ca0876e76ac680a62a275de152cd6d841537e684fb950ee0c2af62",
+        "atlas:ed16f012fa467d7e86869b74c09cab033561f54eea762572e3874b360d02e18a",
+        "atlas:f159b766449b1ad110743817e5c5888d15bd4170573f14d01f2039bb56d286a6",
+        "atlas:f2cea6df5789cfcc4cb207e970743f5e1841dc39b26cf0634984f2e3c05e153f",
+        "atlas:f97ae75128d3a94dd01c9f117f6f8589629fecace75eb6b840bb7ba6452cd467",
+        "atlas:fbd7dcd1377e36d32fdb8974243b712a5c3b218d6b8816383c6a0b6107e3538c",
+        "atlas:fdb0b0aff10530335b3d112a7c7e69647a4639b8dc0f94c360c89fc0f55afee9"
+      ]
+    }
+  },
+  "mask_kind": "S",
+  "active_cone_ids": [
+    "atlas:fd3ad9dd9cc76912c02c7a4786be851ae1822258b313408750d43105dba4ce85",
+    "atlas:c58682bd09a034d507ddfc2c4f83bb9f4e221875ec715d84394041bc91c05b21",
+    "atlas:2e815dfcbaa970b4ca98d776860b566ef77d06895e1aca4919c054204de98bce",
+    "atlas:f7ef5fd72baaaf045a7a070899726ec56b83187b9e32617351d82936df3f05f0",
+    "atlas:6f3ddf8822ffbdf5edaedc037fe9e6469aa05109edddb49d2fb785e407d7beb3",
+    "atlas:ddbb5d7d753208b60ab0510f8318be9134af11558190389315b9b8c62533b6ec",
+    "atlas:8a906fd176d6fd47bc90006bbb077cde1863bb458b2362491406f1ddf839d74e",
+    "atlas:2c29b92e4b47d0e67be5b36434ddca67ef5e529ae3d4025dcc80d4649714376e"
+  ],
+  "fractions": [
+    0.0,
+    0.2,
+    0.0,
+    -0.2,
+    0.0
+  ],
+  "phase_seconds": 0.05,
+  "extended_gray_after_seconds": 0.25,
+  "calibrated_optical_contrast": false,
+  "rod_background_held": true,
+  "geometry_or_connections_changed": false
+}

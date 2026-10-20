@@ -16,6 +16,7 @@ import time
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+from retina_sim.rgc_defaults import historical_project_default,historical_reference_file
 from retina_platform.config import RunConfig
 from retina_sim.atlas_population_network import atlas_population_network
 from retina_sim.source_reference_candidate import read_source_candidate
@@ -95,10 +96,10 @@ def main():
     frozen=json.loads((BASE/'standard_stimulus_rate_audit_v1/baseline_frozen_identity.json').read_bytes())
     pins={**frozen['files'],**frozen['fixed_parameters_and_equations']}
     pins.update(json.loads((BASE/'standard_stimulus_rate_audit_v1/scope_integrity.json').read_bytes())['source_sha256'])
-    for f,h in pins.items():assert sha(ROOT/f)==h,f
+    for f,h in pins.items():assert sha(historical_reference_file(ROOT,f,h))==h,f
     save(d/'protected_before.json',pins)
     recipe,path=read_source_candidate(ROOT,args.candidate);save(d/'candidate_recipe.json',recipe)
-    cfg=RunConfig.project_default(ROOT)
+    cfg=historical_project_default(ROOT)
     save(d/'main_configuration_reference.json',dict(path=recipe['base_main_configuration']['path'],
         sha256=recipe['base_main_configuration']['sha256'],run_defaults=cfg.to_dict(),
         experiment_overrides=dict(short_wash_in_seconds=.1,drive_seconds=.5,steady_state_claim=False,
@@ -117,7 +118,7 @@ def main():
             return super().advance(*args,**kwargs)
     try:
         tick=time.perf_counter()
-        original,_,audit=atlas_population_network(ROOT,duration=.6,light_context=cfg.light_context(),
+        original,_,audit=atlas_population_network(ROOT,apply_rgc_output_defaults=False,duration=.6,light_context=cfg.light_context(),
             execution_profile=cfg.execution_profile,configuration_path=cfg.circuit_configuration_path,
             owner_bounds_mm=cfg.owner_bounds(),halo_mm=cfg.halo_mm,max_spatial_cells=cfg.max_spatial_cells,
             seed=cfg.seed,dynamics_candidate_path=ROOT/recipe['base_dynamics_candidate']['path'])
@@ -201,7 +202,7 @@ def main():
             observed_rates='One seed and small population; not a physiological estimate',
             expected_rates='Exact history expectation on actually advanced spike-independent network voltage; first prepared bin count fixed',
             wall_seconds=time.perf_counter()-began)
-        for f,h in pins.items():assert sha(ROOT/f)==h,f
+        for f,h in pins.items():assert sha(historical_reference_file(ROOT,f,h))==h,f
         report['protected_files_unchanged']=len(pins)
         save(d/'result.json',report)
         shutil.copyfile(ROOT/'tmp/on_parasol_candidate_regression.xml',d/'candidate_regression.xml')

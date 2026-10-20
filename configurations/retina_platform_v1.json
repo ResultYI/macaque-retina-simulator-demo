@@ -14,7 +14,7 @@
     "rgb_adapter": "iset_lcd_apple_mw_v1",
     "circuit_configuration_path": "configurations/atlas_isetbio_source_stop_shared_v1.json"
   },
-  "active_run_status": "New source-stopped cone master bound through contacts, typed geometry, real ISET input and converged numerical background; 34 components/20 layers, 77 blocks; finite local .35mm scope, not full retina or physiological calibration",
+  "active_run_status": "Current frozen local34-component main; individually accepted engineering RGC output defaults and fixed-dark rod reference; short integration only, fresh full background preparation required; not physiological calibration",
   "atlas_target": {
     "atlas_profile_id": "retina_atlas_isetbio_source_stop_v1",
     "s_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
@@ -80,7 +80,7 @@
   },
   "background_preparation": {
     "authorization": "2026-10-16 user-authorized cone integration",
-    "status": "NUMERICAL_CONVERGENCE_PASS_STOCHASTIC_STATISTICS_INSUFFICIENT",
+    "status": "HISTORICAL_BACKGROUND_INVALIDATED_BY_PRO_B5_PARAMETER_IDENTITIES",
     "criteria": "unchanged bounded_uniform_background_v1",
     "run_directory": "reports/platform_runs/20261016T071417135148Z_0348ea84",
     "checkpoint": "reports/platform_runs/20261016T071417135148Z_0348ea84/background_checkpoint.json",
@@ -90,7 +90,10 @@
     "actual_wall_seconds": 538.8948166000046,
     "stochastic_status": "STATISTICS_INSUFFICIENT",
     "whole_network_steady_state_claim": false,
-    "geometry_identity": "8a7709e4b11a0c74e330d260527b44a4a8f3338add5473bfdd0f04a9d33e7a61"
+    "geometry_identity": "8a7709e4b11a0c74e330d260527b44a4a8f3338add5473bfdd0f04a9d33e7a61",
+    "historical_status_before_Pro_B5": "NUMERICAL_CONVERGENCE_PASS_STOCHASTIC_STATISTICS_INSUFFICIENT",
+    "current_default_checkpoint_reuse_allowed": false,
+    "reason": "RGC output mapping and rod reference changed; old accepted run retained as history, not relabelled as adapted current default"
   },
   "active_input_frontend": {
     "profile_id": "iset_lcd_apple_mw_v1",
@@ -183,5 +186,90 @@
     ],
     "internal_validation_from_output_match": false,
     "automatic_fitting_enabled": false
+  },
+  "rgc_output_defaults": {
+    "schema_version": "rgc-engineering-defaults-1.0",
+    "claim": "Scoped engineering output mappings; no physiological amplitude fit",
+    "historical_main_configuration": {
+      "path": "configurations/history/retina_platform_pre_rgc_20261020.json",
+      "sha256": "a02224d6ce920daad22310e39577f45ec1562fb9146b4e201155dd3b8be9bd20"
+    },
+    "accepted_types": {
+      "parasol_RGC_ON": {
+        "recipe_path": "configurations/on_parasol_literature_candidate_v1.json",
+        "recipe_sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+        "acceptance": {
+          "path": "configurations/on_parasol_engineering_acceptance_v1.json",
+          "sha256": "86d34f4c812d3fcad079c4b80942ce27771c093ecc32062d289e757dec766dd8"
+        }
+      }
+    }
+  },
+  "rod_reference": {
+    "path": "configurations/rod_fixed_dark_reference_v1.json",
+    "sha256": "9a622c723feb50222fb0baa7ecb339db8472a670397a5fce14cb3d27c7ec5416"
+  },
+  "pro_parameter_implementation": {
+    "acceptance": "Scoped engineering relative-function checks; physiological amplitude not fitted",
+    "decisions": {
+      "midget_RGC_ON": {
+        "adopted": false,
+        "failed_checks": [
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_ON/result.json",
+          "sha256": "fc64b3a45673f56f54047475a7c1b5344f411c9515d645a8a463436b118b437f"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 29.93040594370913
+      },
+      "midget_RGC_OFF": {
+        "adopted": false,
+        "failed_checks": [
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_OFF/result.json",
+          "sha256": "3c2c3586f4c78ed815ed03e66bc580c181f6b217a795adc955d63f86d305b122"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 8.340133628860373
+      },
+      "parasol_RGC_OFF": {
+        "adopted": false,
+        "failed_checks": [
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/parasol_RGC_OFF/result.json",
+          "sha256": "e8ec349f04e273e9ea2138b84723606de59b78fea6588c156fd00d2ec3276a05"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 8.917981581812159
+      },
+      "small_bistratified_S_ON": {
+        "adopted": false,
+        "failed_checks": [
+          "bright_dark",
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/small_bistratified_S_ON/result.json",
+          "sha256": "dac16ddf8e3c43e51f7d3a94771f0e422ee4bd764b419498fc7dbccf4ac0fe47"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 152.95613462513072
+      }
+    },
+    "rod_fixed_dark_regression": {
+      "path": "reports/modeling_scope_20261020/pro_b5_v1/rod_fixed_dark_regression/result.json",
+      "sha256": "6cb9f5b08fa10352827ed7c3da0fd5d3e6b4c6e291c09017a6822d4d10ab604d"
+    },
+    "current_full_background_preparation_completed": false
   }
 }

@@ -53,18 +53,31 @@ def load_population_record(root, *, owner_bounds_mm=None, halo_mm=.04,execution_
 
 def atlas_population_network(root,*,duration=.0012,light_context=None,owner_bounds_mm=(.34,.36,-.01,.01),
         halo_mm=.04,max_spatial_cells=60000,seed=20261010,execution_profile='atlas_population_revision_v1',configuration_path=None,_freeze_geometry_bootstrap=False,
-        dynamics_candidate_path=None):
+        dynamics_candidate_path=None,apply_rgc_output_defaults=True,apply_rod_reference_defaults=None):
     root=Path(root)
+    apply_rod_reference_defaults=apply_rgc_output_defaults if apply_rod_reference_defaults is None else apply_rod_reference_defaults
+    rod_reference=None
+    if apply_rod_reference_defaults:
+        policy=json.loads((root/'configurations/retina_platform_v1.json').read_bytes()).get('rod_reference')
+        if policy is not None:
+            policy_path=(root/policy['path']).resolve()
+            if not policy_path.is_relative_to(root.resolve()):raise ContractError('Rod reference policy must stay inside project')
+            raw=policy_path.read_bytes()
+            if hashlib.sha256(raw).hexdigest()!=policy['sha256']:raise ContractError('Rod fixed-reference policy identity differs')
+            rod_reference=dict(json.loads(raw),binding=policy)
     if dynamics_candidate_path is not None:
         candidate_path=Path(dynamics_candidate_path)
         dynamics_candidate_path=candidate_path if candidate_path.is_absolute() else root/candidate_path
     if execution_profile=='atlas_isetbio_geometry_v1':
         configuration=circuit_configuration(root,configuration_path)
         if configuration.get('storage_kind')=='global_disk_graph_v1':
+            if rod_reference is not None:
+                raise ContractError('Fixed-dark rod reference is implemented for the current frozen local main circuit; global-disk historical runs require explicit default opt-out')
             from .disk_runtime import disk_network
             result=disk_network(root,configuration,duration=duration,light_context=light_context or LightContext(),
                 owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed)
-            return _candidate_result(result,dynamics_candidate_path,light_context or LightContext())
+            from .rgc_defaults import apply_rgc_defaults
+            return apply_rgc_defaults(_candidate_result(result,dynamics_candidate_path,light_context or LightContext()),root,apply_rgc_output_defaults)
     record,binding=load_population_record(root,owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,execution_profile=execution_profile,configuration_path=configuration_path)
     spatial_asset=None
     if execution_profile=='atlas_isetbio_geometry_v1':
@@ -79,9 +92,34 @@ def atlas_population_network(root,*,duration=.0012,light_context=None,owner_boun
         halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed,connection_record=record,
         atlas_profile_id=configuration['atlas_profile'] if execution_profile=='atlas_isetbio_geometry_v1' else None,
         allow_empty_owner_outputs=execution_profile=='atlas_isetbio_geometry_v1',spatial_asset=spatial_asset)
-    compiled,channels,audit=attach_primary_rod(root,compiled,channels,audit,record,light,spatial_asset=spatial_asset)
+    compiled,channels,audit=attach_primary_rod(root,compiled,channels,audit,record,light,spatial_asset=spatial_asset,rod_reference_policy=rod_reference)
     if spatial_asset is not None:
-        audit['atlas_runtime']['frozen_typed_geometry']=spatial_asset.validate_compiled(compiled)
+        geometry_view=compiled
+        if rod_reference is not None:
+            # The frozen spatial record includes dynamics-profile labels. Only
+            # this approved label is projected back; every spatial byte stays
+            # subject to the original full snapshot comparison.
+            from copy import copy
+            from dataclasses import replace
+            membrane=compiled.populations['rod_membrane']
+            if set(membrane.cells.parameter_profile_id)!={'effective_rod_membrane_fixed_dark_reference_v1'}:
+                raise ContractError('Unexpected rod profile alias in frozen geometry')
+            geometry_view=copy(compiled);geometry_view.populations=dict(compiled.populations)
+            geometry_view.populations['rod_membrane']=replace(membrane,cells=replace(membrane.cells,
+                parameter_profile_id=tuple('effective_rod_membrane' for _ in membrane.cells.cell_id)))
+            projected=[]
+            for link in compiled.links:
+                table=link.specification.connections
+                if 'effective_rod_membrane_fixed_dark_reference_v1' in table.source_profile_id:
+                    if (link.specification.target_component not in ('rod_membrane','rod_current_SI') or
+                            set(table.source_profile_id)!={'effective_rod_membrane_fixed_dark_reference_v1'}):
+                        raise ContractError('Unexpected link parameter-label alias in frozen geometry')
+                    link=replace(link,specification=replace(link.specification,connections=replace(table,
+                        source_profile_id=tuple('effective_rod_membrane' for _ in table.source_profile_id))))
+                projected.append(link)
+            geometry_view.links=tuple(projected)
+        audit['atlas_runtime']['frozen_typed_geometry']=spatial_asset.validate_compiled(geometry_view)
+        if rod_reference is not None:audit['atlas_runtime']['frozen_typed_geometry']['authorized_parameter_label_alias']='rod fixed-dark-reference profile only'
         compiled.frozen_typed_geometry_binding=spatial_asset.binding
     nr=len(compiled.populations['rod'].cells.cell_id)
     channels['rod_light']=InputChannel(0,duration,lambda t:q(np.full(nr,light.rod_background_rstar_s),'R*/s','photoisomerization_rate'),
@@ -112,7 +150,8 @@ def atlas_population_network(root,*,duration=.0012,light_context=None,owner_boun
         audit['artifact_storage']={'source_json_sha256':binding['sha256'],'logical_record_hash':record.semantic_hash,
             'storage_manifest_hash':record.storage_manifest_hash,
             'io':dict(record.io),'scope':'lazy population/route block reads; selected current circuit still fully compiled and resident'}
-    return _candidate_result((compiled,channels,audit),dynamics_candidate_path,light)
+    from .rgc_defaults import apply_rgc_defaults
+    return apply_rgc_defaults(_candidate_result((compiled,channels,audit),dynamics_candidate_path,light),root,apply_rgc_output_defaults)
 
 
 def _candidate_result(result,path,light=None):

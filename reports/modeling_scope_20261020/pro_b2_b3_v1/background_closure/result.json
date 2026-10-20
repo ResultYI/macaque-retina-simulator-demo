@@ -1,0 +1,251 @@
+{
+  "status": "READ_ONLY_B3_ACCEPTED_BACKGROUND_CHECKS",
+  "neural_seconds": 0.0,
+  "matlab_launches": 0,
+  "checkpoint_sha256": "3968e3288cf5eee841d9d2c5c0d81ecea80b36159a6a27f1acb37ba261dd3c6d",
+  "assembly_hash": "dc3b9c18f36a52c7c4ba9965a40f4c09627ddf6ba5f9d23c685f7fa5ec818a04",
+  "exact_own_checkpoint_restore": true,
+  "model_time_seconds": 1.299999999999967,
+  "acceptance": "Sampled deterministic numerical fixed-point candidate only; model calibration and stochastic stationarity not established",
+  "physiological_validation": false,
+  "source_groups_unchanged": true,
+  "resources": {
+    "rod_BC": {
+      "actual_x": {
+        "mean": 0.8300404829952658,
+        "minimum": 0.8300404829952656,
+        "maximum": 0.8300404829952656
+      },
+      "equilibrium_x_at_actual_V": {
+        "mean": 0.8300404829952658,
+        "minimum": 0.8300404829952656,
+        "maximum": 0.8300404829952656
+      },
+      "maximum_actual_x_equilibrium_error": 0.0,
+      "actual_expected_event_rate_per_s": {
+        "mean": 33.99190340094689,
+        "minimum": 33.99190340094689,
+        "maximum": 33.99190340094689
+      },
+      "maximum_local_analytic_resource_rhs_abs": 2.220446049250313e-16,
+      "no_resource_one_or_release_half_initialization_assumed": true
+    },
+    "AII_AC": {
+      "actual_x": {
+        "mean": 0.9284495471013368,
+        "minimum": 0.9064867890617969,
+        "maximum": 0.9447345673528365
+      },
+      "equilibrium_x_at_actual_V": {
+        "mean": 0.9284496087186199,
+        "minimum": 0.9064868130773954,
+        "maximum": 0.9447346642735244
+      },
+      "maximum_actual_x_equilibrium_error": 9.692068791977704e-08,
+      "actual_expected_event_rate_per_s": {
+        "mean": 3.5775193319954943,
+        "minimum": 2.7632665028391936,
+        "maximum": 4.67565922225776
+      },
+      "maximum_local_analytic_resource_rhs_abs": 1.5543122344752192e-15,
+      "no_resource_one_or_release_half_initialization_assumed": true
+    }
+  },
+  "chemical": {
+    "RBC_AII_AMPA": {
+      "actual_event_rate_per_s": {
+        "mean": 33.99190340094689,
+        "minimum": 33.99190340094689,
+        "maximum": 33.99190340094689
+      },
+      "actual_conductance_nS": {
+        "mean": 0.01185640218634638,
+        "minimum": 0.0031170399363380803,
+        "maximum": 0.017541627153901167
+      },
+      "fixed_point_conductance_nS_at_actual_V_and_rate": {
+        "mean": 0.01185640218634638,
+        "minimum": 0.00311703993633808,
+        "maximum": 0.017541627153901167
+      },
+      "maximum_actual_conductance_fixed_point_error_nS": 6.462348535570529e-18,
+      "maximum_actual_a_fixed_point_error": 0.0,
+      "maximum_actual_b_fixed_point_error": 0.0,
+      "normalization": "per-event peak normalized; ncontact applied once after a/b gates",
+      "voltage_decay": "fixed source/engineering tau"
+    },
+    "AII_FMB_glycine": {
+      "actual_event_rate_per_s": {
+        "mean": 4.467423480900181,
+        "minimum": 4.038124755216412,
+        "maximum": 4.67565922225776
+      },
+      "actual_conductance_nS": {
+        "mean": 0.012631337531275516,
+        "minimum": 0.010433948289249803,
+        "maximum": 0.014616500431474982
+      },
+      "fixed_point_conductance_nS_at_actual_V_and_rate": {
+        "mean": 0.012631337545145454,
+        "minimum": 0.010433948305574836,
+        "maximum": 0.014616500444612832
+      },
+      "maximum_actual_conductance_fixed_point_error_nS": 1.8195319066505623e-11,
+      "maximum_actual_a_fixed_point_error": 1.3096457512212778e-14,
+      "maximum_actual_b_fixed_point_error": 1.8051282690834114e-11,
+      "normalization": "per-event peak normalized; ncontact applied once after a/b gates",
+      "voltage_decay": "held-V interpolation is a project approximation"
+    },
+    "AII_DB1_glycine": {
+      "actual_event_rate_per_s": {
+        "mean": 4.269978217648078,
+        "minimum": 3.656824224409883,
+        "maximum": 4.67565922225776
+      },
+      "actual_conductance_nS": {
+        "mean": 0.013068361550956389,
+        "minimum": 0.010367756887418778,
+        "maximum": 0.015686820998072677
+      },
+      "fixed_point_conductance_nS_at_actual_V_and_rate": {
+        "mean": 0.013068361573647805,
+        "minimum": 0.010367756914703277,
+        "maximum": 0.01568682101674317
+      },
+      "maximum_actual_conductance_fixed_point_error_nS": 2.9854710912601846e-11,
+      "maximum_actual_a_fixed_point_error": 2.989454387161694e-14,
+      "maximum_actual_b_fixed_point_error": 3.778978865942584e-11,
+      "normalization": "per-event peak normalized; ncontact applied once after a/b gates",
+      "voltage_decay": "held-V interpolation is a project approximation"
+    }
+  },
+  "gap": {
+    "shared_undirected_conductance": true,
+    "total_pair_current_A": 0.0,
+    "maximum_pair_antisymmetry_error_A": 0.0,
+    "voltage_times_current_power_W": -4.224084433207657e-14,
+    "negative_edge_dissipation_W": -4.224084433207663e-14,
+    "power_identity_error_W": 6.310887241768094e-29
+  },
+  "original_background_context": "Actual saved ISET per-cone td vector; independent retained rod 5R*/s",
+  "current_units": "pA converted once to A; event rates in events/s, never event/tick",
+  "rod_source_fixed_point_errors": {
+    "R": 0.0,
+    "P": 0.0,
+    "G": 0.0,
+    "C": 0.0,
+    "S": 7.016609515630989e-13
+  },
+  "rod_anchor_reference": {
+    "status": "REFERENCE_CONTRACT_DIFFERENCE_REQUIRES_DECISION",
+    "current_anchor_A": {
+      "mean": 6.587654351933564e-12,
+      "minimum": 6.587654351933565e-12,
+      "maximum": 6.587654351933565e-12
+    },
+    "proposed_fixed_dark_anchor_A": {
+      "mean": -6.462348535570529e-27,
+      "minimum": -6.462348535570529e-27,
+      "maximum": -6.462348535570529e-27
+    },
+    "dark_current_pA": -37.23875,
+    "actual_background_current_pA": {
+      "mean": -30.651095648066423,
+      "minimum": -30.65109564806643,
+      "maximum": -30.65109564806643
+    },
+    "current_no_gap_equilibrium_mV": {
+      "mean": -40.0,
+      "minimum": -40.0,
+      "maximum": -40.0
+    },
+    "proposed_fixed_dark_no_gap_equilibrium_mV": {
+      "mean": -46.58765435193357,
+      "minimum": -46.58765435193357,
+      "maximum": -46.58765435193357
+    },
+    "actual_release": {
+      "mean": 0.5,
+      "minimum": 0.5,
+      "maximum": 0.5
+    },
+    "proposed_passive_release_at_equilibrium": {
+      "mean": 0.03578356159428881,
+      "minimum": 0.03578356159428881,
+      "maximum": 0.03578356159428881
+    },
+    "current_implementation": "atlas_primary_rod.py binds current_anchor=current_eq(B)+gL*(V0-EL) at assembly",
+    "approved_change_performed": false,
+    "effect": "Changes rod DC/reference and all downstream TRPM1/RBC/AII workpoints; proposed numbers are algebra, not a new coupled run"
+  },
+  "actual_rhs_maxima": {
+    "rod_membrane": {
+      "V": {
+        "maximum_abs": 0.0,
+        "unit": "V/s"
+      },
+      "release": {
+        "maximum_abs": 0.0,
+        "unit": "dimensionless/s"
+      }
+    },
+    "rod_BC": {
+      "V": {
+        "maximum_abs": 2.0194839173657902e-16,
+        "unit": "V/s"
+      },
+      "release": {
+        "maximum_abs": 0.0,
+        "unit": "dimensionless/s"
+      },
+      "x": {
+        "maximum_abs": 2.220446049250313e-16,
+        "unit": "dimensionless/s"
+      }
+    },
+    "AII_AC": {
+      "V": {
+        "maximum_abs": 3.4714928539517934e-14,
+        "unit": "V/s"
+      },
+      "release": {
+        "maximum_abs": 1.3877787807814457e-13,
+        "unit": "dimensionless/s"
+      },
+      "x": {
+        "maximum_abs": 1.0259037966919848e-06,
+        "unit": "dimensionless/s"
+      }
+    },
+    "RBC_AII_AMPA": {
+      "a": {
+        "maximum_abs": 0.0,
+        "unit": "dimensionless/s"
+      },
+      "b": {
+        "maximum_abs": 0.0,
+        "unit": "dimensionless/s"
+      }
+    },
+    "AII_FMB_glycine": {
+      "a": {
+        "maximum_abs": 1.6370549360544828e-10,
+        "unit": "dimensionless/s"
+      },
+      "b": {
+        "maximum_abs": 6.153976883638279e-09,
+        "unit": "dimensionless/s"
+      }
+    },
+    "AII_DB1_glycine": {
+      "a": {
+        "maximum_abs": 2.7176882966273297e-10,
+        "unit": "dimensionless/s"
+      },
+      "b": {
+        "maximum_abs": 9.83188597203366e-09,
+        "unit": "dimensionless/s"
+      }
+    }
+  }
+}

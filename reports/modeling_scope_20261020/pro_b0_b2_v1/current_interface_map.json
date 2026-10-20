@@ -1,0 +1,7530 @@
+{
+  "assembly_hash": "dc3b9c18f36a52c7c4ba9965a40f4c09627ddf6ba5f9d23c685f7fa5ec818a04",
+  "links": [
+    {
+      "source": "midget_BC_ON__contact_occupancy_0.occupied",
+      "target": "midget_BC_ON.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "8fbd5537a75211c4940fca634747b69150d08605a13b121e52aea3a9c67f71f9"
+    },
+    {
+      "source": "midget_BC_OFF__contact_occupancy_0.occupied",
+      "target": "midget_BC_OFF.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "4cbd2e86b15a0d354a4f01405ad9305dc1e20bbe383cbfd709c64e3511c616a8"
+    },
+    {
+      "source": "diffuse_BC_ON__contact_occupancy_0.occupied",
+      "target": "diffuse_BC_ON.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "1d2a6095a019a8eb3cdfa12fa24caa93b8062c70bd414b7f7d059e9ba3fac3f2"
+    },
+    {
+      "source": "diffuse_BC_OFF__contact_occupancy_0.occupied",
+      "target": "diffuse_BC_OFF.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "d4aab20d4a0cd3bbda01430dd69d70a8a458a9b2a2357876c8f88ca505ff3d11"
+    },
+    {
+      "source": "S_ON_BC__contact_occupancy_0.occupied",
+      "target": "S_ON_BC.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "e51bb4eea3ca392e7265feb72df7861de62f17c470b1424c060d252aca3bb093"
+    },
+    {
+      "source": "local_feedforward_AC__contact_occupancy_0.occupied",
+      "target": "local_feedforward_AC.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "aeef4a898832eee6f478a06688dc472fed21beae7f7dcd01a57f769199d30746"
+    },
+    {
+      "source": "local_crossover_AC__contact_occupancy_0.occupied",
+      "target": "local_crossover_AC.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "1df7c5a92228a6c0d131595deb6f4b2a321ee07bfb3e748c179d864a65d824cd"
+    },
+    {
+      "source": "widefield_AC__contact_occupancy_0.occupied",
+      "target": "widefield_AC.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "b64584bfc3f22d3a57a4773319ffa0f807ec7ff3e37d9d492e1d4b544582ead8"
+    },
+    {
+      "source": "midget_BC_ON.activation",
+      "target": "midget_RGC_ON_excitatory_midget_BC_ON.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "a74ec669c43679c4ea73a7ff281ad3b947981dbea421b7f41ee4194454373dc4"
+    },
+    {
+      "source": "midget_RGC_ON_excitatory_midget_BC_ON.conductance",
+      "target": "midget_RGC_ON.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "ae644d03516d3854f9823e60b4ca17c30d974be973da7637745e0cd5960cc6c6"
+    },
+    {
+      "source": "local_crossover_AC.activation",
+      "target": "midget_RGC_ON_inhibitory_local_crossover_AC.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "7ddee502e985e21315886932af482de477945d6f81e82117b2a5a4115e17eecd"
+    },
+    {
+      "source": "midget_RGC_ON_inhibitory_local_crossover_AC.conductance",
+      "target": "midget_RGC_ON.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "0524ce1da239317a6a07e07b8e9d67f9340200c10229eaa9046bd36f175b37eb"
+    },
+    {
+      "source": "midget_BC_OFF.activation",
+      "target": "midget_RGC_OFF_excitatory_midget_BC_OFF.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "36ac72ba5b3a6ab3aaf8a18467a25f1af13c7b3840c25d5de681a1b86f79d80e"
+    },
+    {
+      "source": "midget_RGC_OFF_excitatory_midget_BC_OFF.conductance",
+      "target": "midget_RGC_OFF.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "6c02fc95739d85d48a7e2ca9eb4a36debe301934c58203044bdbeba4cf230955"
+    },
+    {
+      "source": "local_feedforward_AC.activation",
+      "target": "midget_RGC_OFF_inhibitory_local_feedforward_AC.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "e2d7fda1f35eaa796288d50ddff5ec386f917a1ef9df2f4afbb39a7ad32b8218"
+    },
+    {
+      "source": "midget_RGC_OFF_inhibitory_local_feedforward_AC.conductance",
+      "target": "midget_RGC_OFF.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "dde4f2dd895e9d3d1fd5e2a20a58a7a720d95f6cb4dd47da7527c2122b7ffa8b"
+    },
+    {
+      "source": "diffuse_BC_ON.activation",
+      "target": "parasol_RGC_ON_excitatory_diffuse_BC_ON.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "f36096fdb563760d3d2ebfdc36063c72e4816ca73f9fe784f222b2d61d5df670"
+    },
+    {
+      "source": "parasol_RGC_ON_excitatory_diffuse_BC_ON.conductance",
+      "target": "parasol_RGC_ON.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "712527c74bb1a385fda51c92d604bbd62c25118c891cde5c9c75fa5666a771c3"
+    },
+    {
+      "source": "widefield_AC.activation",
+      "target": "parasol_RGC_ON_inhibitory_widefield_AC.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "979ab3ce32383c2dd4286caa2a9eede1010bc79808e0268b174d211d257fad42"
+    },
+    {
+      "source": "parasol_RGC_ON_inhibitory_widefield_AC.conductance",
+      "target": "parasol_RGC_ON.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "2652fb3ec6fe72a1100d5689c9d49333b9484c088571356a26bd4a6a9792aed6"
+    },
+    {
+      "source": "diffuse_BC_OFF.activation",
+      "target": "parasol_RGC_OFF_excitatory_diffuse_BC_OFF.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "add2b6e32caf3bf22aa017fed35fc0822d04fafeb403f2fdf5052cf9d237f551"
+    },
+    {
+      "source": "parasol_RGC_OFF_excitatory_diffuse_BC_OFF.conductance",
+      "target": "parasol_RGC_OFF.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "1952a46f11968e3e58b4af03711a5b4c9b942bfaf74a5fb686c55e91e3315e88"
+    },
+    {
+      "source": "widefield_AC.activation",
+      "target": "parasol_RGC_OFF_inhibitory_widefield_AC.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "ab1b04775e05215bc5f9c6d0daef0ff7ba8ab91e9d735463c9c7a440ce565e03"
+    },
+    {
+      "source": "parasol_RGC_OFF_inhibitory_widefield_AC.conductance",
+      "target": "parasol_RGC_OFF.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "0844f8c2de65a0f88c1f6d1359c6e6ce5a011b282727f0a6f9a5d018c06275b0"
+    },
+    {
+      "source": "S_ON_BC.activation",
+      "target": "small_bistratified_S_ON_excitatory_S_ON_BC.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "609cf2c08fecff95c557522967c8796d722d500b7d9214bc78c97e3598525a0a"
+    },
+    {
+      "source": "small_bistratified_S_ON_excitatory_S_ON_BC.conductance",
+      "target": "small_bistratified_S_ON.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "7009cc954a0f5346802c3803c541f7a1b6f76221adacd30ceba866d89dd1ca20"
+    },
+    {
+      "source": "local_feedforward_AC.activation",
+      "target": "small_bistratified_S_ON_inhibitory_local_feedforward_AC.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "11bc3a7b68c147fbb6654111049c6f06e4f8d93a36a9773c8eff0e03f48ee855"
+    },
+    {
+      "source": "small_bistratified_S_ON_inhibitory_local_feedforward_AC.conductance",
+      "target": "small_bistratified_S_ON.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "844a4cfe897a959e14f225690c0f990b1b8b4f2faf61c785d72b1b0e34e478fa"
+    },
+    {
+      "source": "diffuse_BC_OFF.activation",
+      "target": "small_bistratified_S_ON_excitatory_diffuse_BC_OFF.activation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "533140012d1dc1dd872b708fd59828bc26cb8e1870320ee3871d10acd9007360"
+    },
+    {
+      "source": "small_bistratified_S_ON_excitatory_diffuse_BC_OFF.conductance",
+      "target": "small_bistratified_S_ON.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "045ff96c0f1553f44855b6592fd386a4781e32d40b58bcde57b50635f230bbe5"
+    },
+    {
+      "source": "rod.current",
+      "target": "rod_current_SI.input",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "ac1bf698bedeeec710b8fca85e9c2e2dad5b1883432978ed253e4e4bf7eb496d"
+    },
+    {
+      "source": "rod_current_SI.output",
+      "target": "rod_membrane.current",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "7924beeb7e6c098339d3283d3e01863be839df62e01b99050f9299ae80bafb7e"
+    },
+    {
+      "source": "rod_membrane.release",
+      "target": "individual_rod_RBC_contacts.release",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "a7a195d1368636bbac388e561cca54b26a107bda0c30cbfc04ef4a5559809530"
+    },
+    {
+      "source": "individual_rod_RBC_contacts.conductance",
+      "target": "rod_BC.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "9d7674fbea199618f1feee9c7fd73dc9a5bc77607e0a2ca4a26a7345b0f5df29"
+    },
+    {
+      "source": "rod_BC.event_rate",
+      "target": "RBC_AII_AMPA.event_rate",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "562073192fd82d4bcaa0238939b80d139e47851252fc3facdaf348a5f67f8f26"
+    },
+    {
+      "source": "RBC_AII_AMPA.conductance",
+      "target": "AII_AC.excitation",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "7e8ace7c3d7363f330d8dd2e838ed80bc63d65ec05a53a1d46f8780f59a70b6a"
+    },
+    {
+      "source": "AII_AC.event_rate",
+      "target": "AII_FMB_glycine.event_rate",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "f3a841852f87000ab8b4792880fcf3adbc3e317dd99c744c0332694374682d52"
+    },
+    {
+      "source": "AII_FMB_glycine.conductance",
+      "target": "midget_BC_OFF.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "8b28ee543ae4e62d87c758c36954347d87f421c888837923e82d8b2af7fb6deb"
+    },
+    {
+      "source": "midget_BC_OFF.voltage",
+      "target": "AII_FMB_glycine.postsynaptic_voltage",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "a8a0a12f082fcc0319bed92c5678951df4d1a41330a5969ef77d10def6c5505f"
+    },
+    {
+      "source": "AII_AC.event_rate",
+      "target": "AII_DB1_glycine.event_rate",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "dd4004fe89e4b0f57414210bd4e88878b5b299c77c03d4e04f08b6b970956f73"
+    },
+    {
+      "source": "AII_DB1_glycine.conductance",
+      "target": "diffuse_BC_OFF.inhibition",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "5a867aafcc7746a4d6b436816f1dba57ba3ab70ca2f281375d8be9fd0fa007a0"
+    },
+    {
+      "source": "diffuse_BC_OFF.voltage",
+      "target": "AII_DB1_glycine.postsynaptic_voltage",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "fa06dbe7b6d7ab8597271c16b5ef862b0bc04f1dccbe6e1d6e2c3284ea521d9f"
+    },
+    {
+      "source": "outer_native.release",
+      "target": "midget_BC_ON__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "b33f28d1ae34e2ebbe5536ac57620d6dee05a78aa97656cebf788362ff2fabec"
+    },
+    {
+      "source": "outer_native.release",
+      "target": "midget_BC_OFF__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "9b1d6bcda84c62f23b8e4d972b7f31a4275da25426ad7c7583633e3f4dafe0cd"
+    },
+    {
+      "source": "outer_native.release",
+      "target": "diffuse_BC_ON__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "a48af6143930afbec86dc78ac922a8cecabb8d6b3791ef9d6c402482dd689469"
+    },
+    {
+      "source": "outer_native.release",
+      "target": "diffuse_BC_OFF__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "984099a152b9fa5199cd269c1c619bca4c42172064072b4d364e002d61166edf"
+    },
+    {
+      "source": "outer_native.release",
+      "target": "S_ON_BC__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "29673ee40b2e1d201a7f18a52ee4bef2c4862fd3a90256d9e9bafcc444dd4279"
+    },
+    {
+      "source": "diffuse_BC_ON.activation",
+      "target": "local_feedforward_AC__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "3002c397b28f4a336b761d8b6e41d7dcbd362e4297a3d20f08377f32ddb4ced4"
+    },
+    {
+      "source": "diffuse_BC_OFF.activation",
+      "target": "local_crossover_AC__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "db3eaa9bb339376f8f391c8bb86cd6c0ffe9bd4d96ee4b08757536068bb9b937"
+    },
+    {
+      "source": "diffuse_BC_ON.activation",
+      "target": "widefield_AC__contact_occupancy_0.drive",
+      "fields": [
+        "source_component",
+        "source_port",
+        "target_component",
+        "target_port",
+        "connections",
+        "geometry_frame",
+        "delay_prehistory",
+        "delay_interpolation",
+        "delay_sampling_seconds",
+        "delay_evidence"
+      ],
+      "connections_hash": "1e74df53c977397be3658691a84c1d8f60ba73444a1f9a91bb5d1f4e11ecdbe0"
+    }
+  ],
+  "populations": {
+    "cones": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 1590,
+      "subtypes": [
+        "L",
+        "M",
+        "S"
+      ]
+    },
+    "HC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 1053,
+      "subtypes": [
+        "H1",
+        "H2"
+      ]
+    },
+    "midget_BC_ON": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 22,
+      "subtypes": [
+        "midget_BC_ON"
+      ]
+    },
+    "midget_BC_OFF": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 22,
+      "subtypes": [
+        "midget_BC_OFF"
+      ]
+    },
+    "diffuse_BC_ON": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 64,
+      "subtypes": [
+        "diffuse_BC_ON"
+      ]
+    },
+    "diffuse_BC_OFF": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 24,
+      "subtypes": [
+        "diffuse_BC_OFF"
+      ]
+    },
+    "S_ON_BC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 11,
+      "subtypes": [
+        "S_ON_BC"
+      ]
+    },
+    "local_feedforward_AC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 40,
+      "subtypes": [
+        "local_feedforward_AC"
+      ]
+    },
+    "local_crossover_AC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 30,
+      "subtypes": [
+        "local_crossover_AC"
+      ]
+    },
+    "widefield_AC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 16,
+      "subtypes": [
+        "widefield_AC"
+      ]
+    },
+    "midget_RGC_ON": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 22,
+      "subtypes": [
+        "midget_RGC_ON"
+      ]
+    },
+    "midget_RGC_OFF": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 22,
+      "subtypes": [
+        "midget_RGC_OFF"
+      ]
+    },
+    "parasol_RGC_ON": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 3,
+      "subtypes": [
+        "parasol_RGC_ON"
+      ]
+    },
+    "parasol_RGC_OFF": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 2,
+      "subtypes": [
+        "parasol_RGC_OFF"
+      ]
+    },
+    "small_bistratified_S_ON": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 3,
+      "subtypes": [
+        "small_bistratified_S_ON"
+      ]
+    },
+    "rod": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 4586,
+      "subtypes": [
+        "rod"
+      ]
+    },
+    "rod_membrane": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 4586,
+      "subtypes": [
+        "rod_membrane"
+      ]
+    },
+    "rod_BC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 165,
+      "subtypes": [
+        "rod_BC"
+      ]
+    },
+    "AII_AC": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 357,
+      "subtypes": [
+        "AII_AC"
+      ]
+    },
+    "individual_rod_RBC_contacts": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 6600,
+      "subtypes": [
+        "individual_rod_RBC_contacts"
+      ]
+    },
+    "RBC_AII_AMPA": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 1066,
+      "subtypes": [
+        "RBC_AII_AMPA"
+      ]
+    },
+    "AII_FMB_glycine": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 66,
+      "subtypes": [
+        "AII_FMB_glycine"
+      ]
+    },
+    "AII_DB1_glycine": {
+      "fields": [
+        "cell_id",
+        "cell_type",
+        "subtype",
+        "species_profile_id",
+        "hemiretina",
+        "meridian",
+        "soma_position",
+        "rf_position",
+        "position_unit",
+        "coordinate_frame",
+        "eccentricity",
+        "parameter_profile_id",
+        "evidence_tags"
+      ],
+      "n": 72,
+      "subtypes": [
+        "AII_DB1_glycine"
+      ]
+    }
+  },
+  "components": {
+    "outer_native": {
+      "mechanism": "VanHateren2005NativeConeH1",
+      "inputs": {
+        "light": {
+          "unit": "td",
+          "meaning": "native_retinal_illuminance",
+          "n": 1590
+        }
+      },
+      "outputs": {
+        "R": {
+          "unit": "td",
+          "meaning": "native_illuminance",
+          "n": 1590
+        },
+        "E": {
+          "unit": "td",
+          "meaning": "native_illuminance",
+          "n": 1590
+        },
+        "X": {
+          "unit": "vH_native_precursor",
+          "meaning": "native_precursor",
+          "n": 1590
+        },
+        "C": {
+          "unit": "vH_native_current",
+          "meaning": "native_os_current",
+          "n": 1590
+        },
+        "Vis": {
+          "unit": "vH_native_voltage",
+          "meaning": "native_relative_voltage",
+          "n": 1590
+        },
+        "g_i": {
+          "unit": "vH_native_conductance",
+          "meaning": "native_conductance",
+          "n": 1590
+        },
+        "Vbar": {
+          "unit": "vH_native_voltage",
+          "meaning": "native_relative_voltage",
+          "n": 1590
+        },
+        "z1": {
+          "unit": "vH_native_voltage",
+          "meaning": "effective_transmitter_drive",
+          "n": 1590
+        },
+        "z2": {
+          "unit": "vH_native_voltage",
+          "meaning": "effective_transmitter_drive",
+          "n": 1053
+        },
+        "Vh": {
+          "unit": "vH_native_voltage",
+          "meaning": "native_relative_voltage",
+          "n": 1053
+        },
+        "q": {
+          "unit": "dimensionless",
+          "meaning": "sigmoid_activation",
+          "n": 1590
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 1590
+        },
+        "Ios": {
+          "unit": "vH_native_current",
+          "meaning": "native_outer_segment_current",
+          "n": 1590
+        }
+      },
+      "parameters": {},
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_BC_ON": {
+      "mechanism": "ContactFirstConeBipolarReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 22
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 22
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05617370572717344,
+            -0.05607502046494852
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0125,
+            0.0125
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05613428637404419,
+            -0.05613428637404419
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "midget_BC_OFF": {
+      "mechanism": "ContactFirstConeBipolarReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 22
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 22
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 22
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 22
+        },
+        "glycine_conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05677216494689468,
+            -0.056705035865434614
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05675212132205997,
+            -0.05675212132205997
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.076,
+            -0.076
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "diffuse_BC_ON": {
+      "mechanism": "ContactFirstConeBipolarReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 64
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 64
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 64
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 64
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 64
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 64
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            64
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            64
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            64
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            64
+          ],
+          "range": [
+            -0.05617831708919989,
+            -0.05607831111690534
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            64
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.0125,
+            0.0125
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            64
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.4999999999999998,
+            0.5000000000000002
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            64
+          ],
+          "range": [
+            -0.05614027786911079,
+            -0.05614027786911079
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "diffuse_BC_OFF": {
+      "mechanism": "ContactFirstConeBipolarReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 24
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 24
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 24
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 24
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 24
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 24
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 24
+        },
+        "glycine_conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 24
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            24
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            24
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.05682959543701655,
+            -0.056739241302315356
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            24
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            24
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.4999999999999999,
+            0.5000000000000001
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.056799068731816886,
+            -0.056799068731816886
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.075,
+            -0.075
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "S_ON_BC": {
+      "mechanism": "ContactFirstConeBipolarReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 11
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 11
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 11
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 11
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 11
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 11
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            11
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            11
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            11
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            11
+          ],
+          "range": [
+            -0.05616601544650916,
+            -0.05607575047460184
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            11
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.0125,
+            0.0125
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            11
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            11
+          ],
+          "range": [
+            -0.05614251116163698,
+            -0.05614251116163698
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "local_feedforward_AC": {
+      "mechanism": "ContactFirstGenericAmacrineReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 40
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 40
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 40
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 40
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            40
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            40
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            40
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            40
+          ],
+          "range": [
+            -0.05500000000000001,
+            -0.05500000000000001
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            40
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            40
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "activation_half": {
+          "shape": [
+            40
+          ],
+          "range": [
+            -0.05599345145063269,
+            -0.05599345145063269
+          ],
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "activation_slope": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "local_crossover_AC": {
+      "mechanism": "ContactFirstGenericAmacrineReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 30
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 30
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 30
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 30
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            30
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            30
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            30
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            30
+          ],
+          "range": [
+            -0.05500000000000001,
+            -0.05500000000000001
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            30
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            30
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "activation_half": {
+          "shape": [
+            30
+          ],
+          "range": [
+            -0.05599345145063269,
+            -0.05599345145063269
+          ],
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "activation_slope": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "widefield_AC": {
+      "mechanism": "ContactFirstGenericAmacrineReceptorMembraneV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 16
+        }
+      },
+      "outputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 16
+        },
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 16
+        },
+        "receptor_gate": {
+          "unit": "dimensionless",
+          "meaning": "excitatory_synaptic_gate",
+          "n": 16
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            16
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            16
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            16
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            16
+          ],
+          "range": [
+            -0.05500000000000001,
+            -0.05500000000000001
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            16
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            16
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "activation_half": {
+          "shape": [
+            16
+          ],
+          "range": [
+            -0.05599345145063269,
+            -0.05599345145063269
+          ],
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "activation_slope": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "midget_RGC_ON_excitatory_midget_BC_ON": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_RGC_ON_inhibitory_local_crossover_AC": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            22
+          ],
+          "range": [
+            4e-10,
+            4e-10
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_RGC_ON": {
+      "mechanism": "HistoryConductanceRGC",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 22
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 22
+        },
+        "gE": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 22
+        },
+        "gI": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            22
+          ],
+          "range": [
+            6e-11,
+            6e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            2e-09,
+            2e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.065,
+            -0.065
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.08,
+            -0.08
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05428117819946821,
+            -0.05428117819946821
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "alpha": {
+          "shape": [
+            22
+          ],
+          "range": [
+            150.0,
+            150.0
+          ],
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale",
+          "evidence": "project_approximation"
+        },
+        "mu": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_offset",
+          "evidence": "project_approximation"
+        },
+        "beta": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_scale",
+          "evidence": "project_approximation"
+        },
+        "spike_history_kernel": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.012,
+            -0.004
+          ],
+          "unit": "V",
+          "meaning": "strict_past_spike_history_kernel",
+          "evidence": "project_approximation"
+        },
+        "initial_spike_history": {
+          "shape": [
+            3,
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "spike_count_history",
+          "evidence": "project_approximation"
+        },
+        "spike_interval": {
+          "shape": [],
+          "range": [
+            0.001,
+            0.001
+          ],
+          "unit": "s",
+          "meaning": "spike_sampling_interval",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_RGC_OFF_excitatory_midget_BC_OFF": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_RGC_OFF_inhibitory_local_feedforward_AC": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            22
+          ],
+          "range": [
+            4e-10,
+            4e-10
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_RGC_OFF": {
+      "mechanism": "HistoryConductanceRGC",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 22
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 22
+        },
+        "gE": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 22
+        },
+        "gI": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 22
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            22
+          ],
+          "range": [
+            6e-11,
+            6e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            2e-09,
+            2e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.065,
+            -0.065
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.08,
+            -0.08
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05428117819946821,
+            -0.05428117819946821
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "alpha": {
+          "shape": [
+            22
+          ],
+          "range": [
+            150.0,
+            150.0
+          ],
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale",
+          "evidence": "project_approximation"
+        },
+        "mu": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_offset",
+          "evidence": "project_approximation"
+        },
+        "beta": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_scale",
+          "evidence": "project_approximation"
+        },
+        "spike_history_kernel": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.012,
+            -0.004
+          ],
+          "unit": "V",
+          "meaning": "strict_past_spike_history_kernel",
+          "evidence": "project_approximation"
+        },
+        "initial_spike_history": {
+          "shape": [
+            3,
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "spike_count_history",
+          "evidence": "project_approximation"
+        },
+        "spike_interval": {
+          "shape": [],
+          "range": [
+            0.001,
+            0.001
+          ],
+          "unit": "s",
+          "meaning": "spike_sampling_interval",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "parasol_RGC_ON_excitatory_diffuse_BC_ON": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            3
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "parasol_RGC_ON_inhibitory_widefield_AC": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            3
+          ],
+          "range": [
+            4e-10,
+            4e-10
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "parasol_RGC_ON": {
+      "mechanism": "HistoryConductanceRGC",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 3
+        },
+        "gE": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        },
+        "gI": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            3
+          ],
+          "range": [
+            6e-11,
+            6e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            3
+          ],
+          "range": [
+            2e-09,
+            2e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.065,
+            -0.065
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            3
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.08,
+            -0.08
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.05428117819946821,
+            -0.05428117819946821
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "alpha": {
+          "shape": [
+            3
+          ],
+          "range": [
+            150.0,
+            150.0
+          ],
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale",
+          "evidence": "project_approximation"
+        },
+        "mu": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_offset",
+          "evidence": "project_approximation"
+        },
+        "beta": {
+          "shape": [
+            3
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_scale",
+          "evidence": "project_approximation"
+        },
+        "spike_history_kernel": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.012,
+            -0.004
+          ],
+          "unit": "V",
+          "meaning": "strict_past_spike_history_kernel",
+          "evidence": "project_approximation"
+        },
+        "initial_spike_history": {
+          "shape": [
+            3,
+            3
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "spike_count_history",
+          "evidence": "project_approximation"
+        },
+        "spike_interval": {
+          "shape": [],
+          "range": [
+            0.001,
+            0.001
+          ],
+          "unit": "s",
+          "meaning": "spike_sampling_interval",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "parasol_RGC_OFF_excitatory_diffuse_BC_OFF": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 2
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 2
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            2
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "parasol_RGC_OFF_inhibitory_widefield_AC": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 2
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 2
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            2
+          ],
+          "range": [
+            4e-10,
+            4e-10
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "parasol_RGC_OFF": {
+      "mechanism": "HistoryConductanceRGC",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 2
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 2
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 2
+        },
+        "gE": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 2
+        },
+        "gI": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 2
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            2
+          ],
+          "range": [
+            6e-11,
+            6e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            2
+          ],
+          "range": [
+            2e-09,
+            2e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            2
+          ],
+          "range": [
+            -0.065,
+            -0.065
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            2
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            2
+          ],
+          "range": [
+            -0.08,
+            -0.08
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            2
+          ],
+          "range": [
+            -0.05428117819946821,
+            -0.05428117819946821
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "alpha": {
+          "shape": [
+            2
+          ],
+          "range": [
+            150.0,
+            150.0
+          ],
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale",
+          "evidence": "project_approximation"
+        },
+        "mu": {
+          "shape": [
+            2
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_offset",
+          "evidence": "project_approximation"
+        },
+        "beta": {
+          "shape": [
+            2
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_scale",
+          "evidence": "project_approximation"
+        },
+        "spike_history_kernel": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.012,
+            -0.004
+          ],
+          "unit": "V",
+          "meaning": "strict_past_spike_history_kernel",
+          "evidence": "project_approximation"
+        },
+        "initial_spike_history": {
+          "shape": [
+            3,
+            2
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "spike_count_history",
+          "evidence": "project_approximation"
+        },
+        "spike_interval": {
+          "shape": [],
+          "range": [
+            0.001,
+            0.001
+          ],
+          "unit": "s",
+          "meaning": "spike_sampling_interval",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "small_bistratified_S_ON_excitatory_S_ON_BC": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            3
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "small_bistratified_S_ON_inhibitory_local_feedforward_AC": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            3
+          ],
+          "range": [
+            4e-10,
+            4e-10
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "small_bistratified_S_ON_excitatory_diffuse_BC_OFF": {
+      "mechanism": "SynapticConductance",
+      "inputs": {
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "gain": {
+          "shape": [
+            3
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "synaptic_conductance_scale",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "small_bistratified_S_ON": {
+      "mechanism": "HistoryConductanceRGC",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        },
+        "inhibition": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 3
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 3
+        },
+        "gE": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 3
+        },
+        "gI": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 3
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            3
+          ],
+          "range": [
+            6e-11,
+            6e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            3
+          ],
+          "range": [
+            2e-09,
+            2e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.065,
+            -0.065
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            3
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.08,
+            -0.08
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.045856981514583534,
+            -0.04585698151458353
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "alpha": {
+          "shape": [
+            3
+          ],
+          "range": [
+            150.0,
+            150.0
+          ],
+          "unit": "Hz",
+          "meaning": "spike_intensity_scale",
+          "evidence": "project_approximation"
+        },
+        "mu": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_offset",
+          "evidence": "project_approximation"
+        },
+        "beta": {
+          "shape": [
+            3
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "spike_voltage_scale",
+          "evidence": "project_approximation"
+        },
+        "spike_history_kernel": {
+          "shape": [
+            3
+          ],
+          "range": [
+            -0.012,
+            -0.004
+          ],
+          "unit": "V",
+          "meaning": "strict_past_spike_history_kernel",
+          "evidence": "project_approximation"
+        },
+        "initial_spike_history": {
+          "shape": [
+            3,
+            3
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "spike_count_history",
+          "evidence": "project_approximation"
+        },
+        "spike_interval": {
+          "shape": [],
+          "range": [
+            0.001,
+            0.001
+          ],
+          "unit": "s",
+          "meaning": "spike_sampling_interval",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "rod": {
+      "mechanism": "Chen2024PrimateRodCurrent",
+      "inputs": {
+        "light": {
+          "unit": "R*/s",
+          "meaning": "photoisomerization_rate",
+          "n": 4586
+        }
+      },
+      "outputs": {
+        "R": {
+          "unit": "s^-2",
+          "meaning": "effective_opsin_activity",
+          "n": 4586
+        },
+        "P": {
+          "unit": "s^-1",
+          "meaning": "effective_pde_activity",
+          "n": 4586
+        },
+        "G": {
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_scaled_cgmp",
+          "n": 4586
+        },
+        "C": {
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_scaled_calcium",
+          "n": 4586
+        },
+        "S": {
+          "unit": "Chen_scaled_concentration/s",
+          "meaning": "source_scaled_cgmp_synthesis",
+          "n": 4586
+        },
+        "current": {
+          "unit": "pA",
+          "meaning": "absolute_outer_segment_current",
+          "n": 4586
+        }
+      },
+      "parameters": {
+        "sigma": {
+          "shape": [],
+          "range": [
+            7.07,
+            7.07
+          ],
+          "unit": "s^-1",
+          "meaning": "source_coefficient_sigma",
+          "evidence": "published_fit"
+        },
+        "phi": {
+          "shape": [],
+          "range": [
+            7.07,
+            7.07
+          ],
+          "unit": "s^-1",
+          "meaning": "source_coefficient_phi",
+          "evidence": "published_fit"
+        },
+        "eta": {
+          "shape": [],
+          "range": [
+            2.53,
+            2.53
+          ],
+          "unit": "s^-2 (source effective normalization)",
+          "meaning": "source_coefficient_eta",
+          "evidence": "published_fit"
+        },
+        "gdark": {
+          "shape": [],
+          "range": [
+            15.5,
+            15.5
+          ],
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_coefficient_gdark",
+          "evidence": "published_fit"
+        },
+        "k": {
+          "shape": [],
+          "range": [
+            0.01,
+            0.01
+          ],
+          "unit": "pA/Chen_scaled_concentration^3",
+          "meaning": "source_coefficient_k",
+          "evidence": "published_fit"
+        },
+        "n": {
+          "shape": [],
+          "range": [
+            3.0,
+            3.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "source_coefficient_n",
+          "evidence": "published_fit"
+        },
+        "cdark": {
+          "shape": [],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_coefficient_cdark",
+          "evidence": "published_fit"
+        },
+        "beta": {
+          "shape": [],
+          "range": [
+            25.0,
+            25.0
+          ],
+          "unit": "s^-1",
+          "meaning": "source_coefficient_beta",
+          "evidence": "published_fit"
+        },
+        "m": {
+          "shape": [],
+          "range": [
+            4.0,
+            4.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "source_coefficient_m",
+          "evidence": "published_fit"
+        },
+        "kGC": {
+          "shape": [],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "Chen_scaled_concentration",
+          "meaning": "source_coefficient_kGC",
+          "evidence": "published_fit"
+        },
+        "gamma": {
+          "shape": [],
+          "range": [
+            4.2,
+            4.2
+          ],
+          "unit": "s^-2/R* (source effective normalization)",
+          "meaning": "source_coefficient_gamma",
+          "evidence": "published_fit"
+        },
+        "timeStep": {
+          "shape": [],
+          "range": [
+            0.0001,
+            0.0001
+          ],
+          "unit": "s",
+          "meaning": "source_coefficient_timeStep",
+          "evidence": "published_fit"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "rod_membrane": {
+      "mechanism": "ReceptorConductanceMembrane",
+      "inputs": {
+        "current": {
+          "unit": "A",
+          "meaning": "absolute_outer_segment_current",
+          "n": 4586
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 4586
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 4586
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 4586
+        },
+        "V": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 4586
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            5e-12,
+            5e-12
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            -0.07723875,
+            -0.07723875
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            -0.04,
+            -0.04
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            -0.04,
+            -0.04
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            0.002,
+            0.002
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            0.002,
+            0.002
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "current_anchor": {
+          "shape": [
+            4586
+          ],
+          "range": [
+            6.587654351933565e-12,
+            6.587654351933565e-12
+          ],
+          "unit": "A",
+          "meaning": "absolute_outer_segment_current",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "rod_current_SI": {
+      "mechanism": "ExplicitPhysicalUnitConversion",
+      "inputs": {
+        "input": {
+          "unit": "pA",
+          "meaning": "absolute_outer_segment_current",
+          "n": 4586
+        }
+      },
+      "outputs": {
+        "output": {
+          "unit": "A",
+          "meaning": "absolute_outer_segment_current",
+          "n": 4586
+        }
+      },
+      "parameters": {},
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "individual_rod_RBC_contacts": {
+      "mechanism": "RodContactTRPM1",
+      "inputs": {
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 6600
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 6600
+        },
+        "gate": {
+          "unit": "dimensionless",
+          "meaning": "receptor_gate",
+          "n": 6600
+        }
+      },
+      "parameters": {
+        "K": {
+          "shape": [
+            6600
+          ],
+          "range": [
+            0.25,
+            0.25
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            6600
+          ],
+          "range": [
+            4.0,
+            4.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau": {
+          "shape": [
+            6600
+          ],
+          "range": [
+            0.01,
+            0.01
+          ],
+          "unit": "s",
+          "meaning": "receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gain": {
+          "shape": [
+            6600
+          ],
+          "range": [
+            5.000000000000001e-11,
+            5.000000000000001e-11
+          ],
+          "unit": "S",
+          "meaning": "TRPM1_maximum_contact_conductance",
+          "evidence": "project_approximation"
+        },
+        "drive0": {
+          "shape": [
+            6600
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_release_drive",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "rod_BC": {
+      "mechanism": "ReceptorConductanceMembrane",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 165
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 165
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 165
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 165
+        },
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 165
+        },
+        "event_rate": {
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "n": 165
+        },
+        "V": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 165
+        },
+        "x": {
+          "unit": "dimensionless",
+          "meaning": "adaptation_gate",
+          "n": 165
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            165
+          ],
+          "range": [
+            2e-11,
+            2e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            165
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            165
+          ],
+          "range": [
+            -0.06,
+            -0.06
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            165
+          ],
+          "range": [
+            -0.053684210526315786,
+            -0.053684210526315786
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            165
+          ],
+          "range": [
+            -0.05,
+            -0.05
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            165
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            165
+          ],
+          "range": [
+            0.003,
+            0.003
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            165
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "rmax": {
+          "shape": [
+            165
+          ],
+          "range": [
+            100.0,
+            100.0
+          ],
+          "unit": "events/s",
+          "meaning": "release_attempt_rate",
+          "evidence": "project_approximation"
+        },
+        "Npool": {
+          "shape": [
+            165
+          ],
+          "range": [
+            20.0,
+            20.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "release_pool_size",
+          "evidence": "project_approximation"
+        },
+        "U": {
+          "shape": [
+            165
+          ],
+          "range": [
+            0.2,
+            0.2
+          ],
+          "unit": "dimensionless",
+          "meaning": "release_probability",
+          "evidence": "project_approximation"
+        },
+        "tau_recovery": {
+          "shape": [
+            165
+          ],
+          "range": [
+            0.1,
+            0.1
+          ],
+          "unit": "s",
+          "meaning": "release_recovery_time_constant",
+          "evidence": "project_approximation"
+        },
+        "r_half": {
+          "shape": [
+            165
+          ],
+          "range": [
+            -0.045,
+            -0.045
+          ],
+          "unit": "V",
+          "meaning": "release_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "r_slope": {
+          "shape": [
+            165
+          ],
+          "range": [
+            0.004,
+            0.004
+          ],
+          "unit": "V",
+          "meaning": "release_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "AII_AC": {
+      "mechanism": "ReceptorConductanceMembrane",
+      "inputs": {
+        "excitation": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 357
+        }
+      },
+      "outputs": {
+        "voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 357
+        },
+        "release": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 357
+        },
+        "gap_current": {
+          "unit": "A",
+          "meaning": "electrical_gap_current",
+          "n": 357
+        },
+        "activation": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 357
+        },
+        "event_rate": {
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "n": 357
+        },
+        "V": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 357
+        },
+        "x": {
+          "unit": "dimensionless",
+          "meaning": "adaptation_gate",
+          "n": 357
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            357
+          ],
+          "range": [
+            2e-11,
+            2e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            357
+          ],
+          "range": [
+            1e-09,
+            1e-09
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            357
+          ],
+          "range": [
+            -0.06,
+            -0.06
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            357
+          ],
+          "range": [
+            -0.055,
+            -0.055
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            357
+          ],
+          "range": [
+            -0.05,
+            -0.05
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            357
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            357
+          ],
+          "range": [
+            0.003,
+            0.003
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            357
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "rmax": {
+          "shape": [
+            357
+          ],
+          "range": [
+            100.0,
+            100.0
+          ],
+          "unit": "events/s",
+          "meaning": "release_attempt_rate",
+          "evidence": "project_approximation"
+        },
+        "Npool": {
+          "shape": [
+            357
+          ],
+          "range": [
+            5.0,
+            5.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "release_pool_size",
+          "evidence": "project_approximation"
+        },
+        "U": {
+          "shape": [
+            357
+          ],
+          "range": [
+            0.2,
+            0.2
+          ],
+          "unit": "dimensionless",
+          "meaning": "release_probability",
+          "evidence": "project_approximation"
+        },
+        "tau_recovery": {
+          "shape": [
+            357
+          ],
+          "range": [
+            0.1,
+            0.1
+          ],
+          "unit": "s",
+          "meaning": "release_recovery_time_constant",
+          "evidence": "project_approximation"
+        },
+        "r_half": {
+          "shape": [
+            357
+          ],
+          "range": [
+            -0.045,
+            -0.045
+          ],
+          "unit": "V",
+          "meaning": "release_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "r_slope": {
+          "shape": [
+            357
+          ],
+          "range": [
+            0.004,
+            0.004
+          ],
+          "unit": "V",
+          "meaning": "release_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "RBC_AII_AMPA": {
+      "mechanism": "DoubleExponentialChemicalSynapse",
+      "inputs": {
+        "event_rate": {
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "n": 1066
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "excitatory_conductance",
+          "n": 1066
+        }
+      },
+      "parameters": {
+        "tau_rise": {
+          "shape": [
+            1066
+          ],
+          "range": [
+            0.0002,
+            0.0002
+          ],
+          "unit": "s",
+          "meaning": "synaptic_rise_time_constant",
+          "evidence": "project_approximation"
+        },
+        "tau_decay": {
+          "shape": [
+            1066
+          ],
+          "range": [
+            0.002,
+            0.002
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        },
+        "g_peak": {
+          "shape": [
+            1066
+          ],
+          "range": [
+            2e-10,
+            2e-10
+          ],
+          "unit": "S",
+          "meaning": "single_event_peak_conductance",
+          "evidence": "project_approximation"
+        },
+        "ncontact": {
+          "shape": [
+            1066
+          ],
+          "range": [
+            0.1774989467128545,
+            0.9989029358106226
+          ],
+          "unit": "dimensionless",
+          "meaning": "effective_release_site_multiplier",
+          "evidence": "project_approximation"
+        },
+        "event_rate0": {
+          "shape": [
+            1066
+          ],
+          "range": [
+            33.99190340094689,
+            33.99190340094689
+          ],
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "AII_FMB_glycine": {
+      "mechanism": "DoubleExponentialChemicalSynapse",
+      "inputs": {
+        "event_rate": {
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "n": 66
+        },
+        "postsynaptic_voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 66
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 66
+        }
+      },
+      "parameters": {
+        "tau_rise": {
+          "shape": [
+            66
+          ],
+          "range": [
+            8e-05,
+            8e-05
+          ],
+          "unit": "s",
+          "meaning": "synaptic_rise_time_constant",
+          "evidence": "project_approximation"
+        },
+        "tau_decay": {
+          "shape": [
+            66
+          ],
+          "range": [
+            0.0030499999999999998,
+            0.0030499999999999998
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        },
+        "g_peak": {
+          "shape": [
+            66
+          ],
+          "range": [
+            9.7e-10,
+            9.7e-10
+          ],
+          "unit": "S",
+          "meaning": "single_event_peak_conductance",
+          "evidence": "project_approximation"
+        },
+        "ncontact": {
+          "shape": [
+            66
+          ],
+          "range": [
+            0.7766885352343602,
+            0.9958715260865487
+          ],
+          "unit": "dimensionless",
+          "meaning": "effective_release_site_multiplier",
+          "evidence": "project_approximation"
+        },
+        "event_rate0": {
+          "shape": [
+            66
+          ],
+          "range": [
+            6.58653316502729,
+            6.58653316502729
+          ],
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "evidence": "project_approximation"
+        },
+        "decay_minus100": {
+          "shape": [
+            66
+          ],
+          "range": [
+            0.0021,
+            0.0021
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        },
+        "decay_0": {
+          "shape": [
+            66
+          ],
+          "range": [
+            0.004,
+            0.004
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "AII_DB1_glycine": {
+      "mechanism": "DoubleExponentialChemicalSynapse",
+      "inputs": {
+        "event_rate": {
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "n": 72
+        },
+        "postsynaptic_voltage": {
+          "unit": "V",
+          "meaning": "physical_membrane_voltage",
+          "n": 72
+        }
+      },
+      "outputs": {
+        "conductance": {
+          "unit": "S",
+          "meaning": "inhibitory_conductance",
+          "n": 72
+        }
+      },
+      "parameters": {
+        "tau_rise": {
+          "shape": [
+            72
+          ],
+          "range": [
+            0.00011,
+            0.00011
+          ],
+          "unit": "s",
+          "meaning": "synaptic_rise_time_constant",
+          "evidence": "project_approximation"
+        },
+        "tau_decay": {
+          "shape": [
+            72
+          ],
+          "range": [
+            0.004,
+            0.004
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        },
+        "g_peak": {
+          "shape": [
+            72
+          ],
+          "range": [
+            8e-10,
+            8e-10
+          ],
+          "unit": "S",
+          "meaning": "single_event_peak_conductance",
+          "evidence": "project_approximation"
+        },
+        "ncontact": {
+          "shape": [
+            72
+          ],
+          "range": [
+            0.742022021240243,
+            0.9997841968968706
+          ],
+          "unit": "dimensionless",
+          "meaning": "effective_release_site_multiplier",
+          "evidence": "project_approximation"
+        },
+        "event_rate0": {
+          "shape": [
+            72
+          ],
+          "range": [
+            6.58653316502729,
+            6.58653316502729
+          ],
+          "unit": "events/s",
+          "meaning": "expected_release_event_rate",
+          "evidence": "project_approximation"
+        },
+        "decay_minus100": {
+          "shape": [
+            72
+          ],
+          "range": [
+            0.0027,
+            0.0027
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        },
+        "decay_0": {
+          "shape": [
+            72
+          ],
+          "range": [
+            0.0053,
+            0.0053
+          ],
+          "unit": "s",
+          "meaning": "synaptic_decay_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": null,
+      "model_coefficients_reanchored": null
+    },
+    "midget_BC_ON__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 1590
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 1590
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05617370572717344,
+            -0.05607502046494852
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0125,
+            0.0125
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05613428637404419,
+            -0.05613428637404419
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "midget_BC_OFF__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 1590
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 1590
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05677216494689468,
+            -0.056705035865434614
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            22
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.05675212132205997,
+            -0.05675212132205997
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            22
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            22
+          ],
+          "range": [
+            -0.076,
+            -0.076
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "diffuse_BC_ON__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 1590
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 1590
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            64
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            64
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            64
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            64
+          ],
+          "range": [
+            -0.05617831708919989,
+            -0.05607831111690534
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            64
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.0125,
+            0.0125
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            64
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.4999999999999998,
+            0.5000000000000002
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            64
+          ],
+          "range": [
+            -0.05614027786911079,
+            -0.05614027786911079
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            64
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "diffuse_BC_OFF__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 1590
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 1590
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            24
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            24
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.05682959543701655,
+            -0.056739241302315356
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            24
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            24
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.4999999999999999,
+            0.5000000000000001
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.056799068731816886,
+            -0.056799068731816886
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            24
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        },
+        "EI": {
+          "shape": [
+            24
+          ],
+          "range": [
+            -0.075,
+            -0.075
+          ],
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "S_ON_BC__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_drive",
+          "n": 1590
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 1590
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            11
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            11
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            11
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            11
+          ],
+          "range": [
+            -0.05616601544650916,
+            -0.05607575047460184
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.24081064306723898,
+            0.24081064306723898
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            11
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.0125,
+            0.0125
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            11
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "release_half": {
+          "shape": [
+            11
+          ],
+          "range": [
+            -0.05614251116163698,
+            -0.05614251116163698
+          ],
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "release_slope": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence": "project_approximation"
+        },
+        "tau_release": {
+          "shape": [
+            11
+          ],
+          "range": [
+            0.005,
+            0.005
+          ],
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "local_feedforward_AC__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 64
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 64
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            40
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            40
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            40
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            40
+          ],
+          "range": [
+            -0.05500000000000001,
+            -0.05500000000000001
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            40
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            40
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "activation_half": {
+          "shape": [
+            40
+          ],
+          "range": [
+            -0.05599345145063269,
+            -0.05599345145063269
+          ],
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "activation_slope": {
+          "shape": [
+            40
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "local_crossover_AC__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 24
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 24
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            30
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            30
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            30
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            30
+          ],
+          "range": [
+            -0.05500000000000001,
+            -0.05500000000000001
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            30
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            30
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "activation_half": {
+          "shape": [
+            30
+          ],
+          "range": [
+            -0.05599345145063269,
+            -0.05599345145063269
+          ],
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "activation_slope": {
+          "shape": [
+            30
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    },
+    "widefield_AC__contact_occupancy_0": {
+      "mechanism": "ContactFirstStaticOccupancyV2",
+      "inputs": {
+        "drive": {
+          "unit": "dimensionless",
+          "meaning": "effective_synaptic_activation",
+          "n": 64
+        }
+      },
+      "outputs": {
+        "occupied": {
+          "unit": "dimensionless",
+          "meaning": "weighted_receptor_occupancy",
+          "n": 64
+        }
+      },
+      "parameters": {
+        "C": {
+          "shape": [
+            16
+          ],
+          "range": [
+            1.2500000000000002e-11,
+            1.2500000000000002e-11
+          ],
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence": "project_approximation"
+        },
+        "gL": {
+          "shape": [
+            16
+          ],
+          "range": [
+            5e-10,
+            5e-10
+          ],
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence": "project_approximation"
+        },
+        "EL": {
+          "shape": [
+            16
+          ],
+          "range": [
+            -0.07,
+            -0.07
+          ],
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence": "project_approximation"
+        },
+        "V0": {
+          "shape": [
+            16
+          ],
+          "range": [
+            -0.05500000000000001,
+            -0.05500000000000001
+          ],
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence": "project_approximation"
+        },
+        "K": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence": "project_approximation"
+        },
+        "hill": {
+          "shape": [
+            16
+          ],
+          "range": [
+            1.0,
+            1.0
+          ],
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence": "project_approximation"
+        },
+        "tau_e": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.0025,
+            0.0025
+          ],
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence": "project_approximation"
+        },
+        "gE": {
+          "shape": [
+            16
+          ],
+          "range": [
+            2.7272727272727283e-10,
+            2.7272727272727283e-10
+          ],
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "EE": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.0,
+            0.0
+          ],
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence": "project_approximation"
+        },
+        "e0": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.5,
+            0.5
+          ],
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence": "project_approximation"
+        },
+        "activation_half": {
+          "shape": [
+            16
+          ],
+          "range": [
+            -0.05599345145063269,
+            -0.05599345145063269
+          ],
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence": "project_approximation"
+        },
+        "activation_slope": {
+          "shape": [
+            16
+          ],
+          "range": [
+            0.004551196133134186,
+            0.004551196133134186
+          ],
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence": "project_approximation"
+        }
+      },
+      "coefficient_reference": {
+        "schema_version": "bc-ac-fixed-coefficient-reference-1.0",
+        "parent_assembly_hash": "b9f83910530cc04a8a2f29ac1c2db11b6382ff0f633b998adb0c9a4c568994b4",
+        "recipe_sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce",
+        "reference_background_hash": "ecb1cfb611053ed9ebf4297a89e1c49b24a82e236e0d6e20fd6218303a496f26",
+        "coefficients": {
+          "midget_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05613428637404419
+          },
+          "midget_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05675212132205997
+          },
+          "diffuse_BC_ON": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614027786911079
+          },
+          "diffuse_BC_OFF": {
+            "K": 0.24081064306723898,
+            "release_half": -0.056799068731816886
+          },
+          "S_ON_BC": {
+            "K": 0.24081064306723898,
+            "release_half": -0.05614251116163698
+          },
+          "local_feedforward_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "local_crossover_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          },
+          "widefield_AC": {
+            "K": 0.5,
+            "activation_half": -0.05599345145063269
+          }
+        },
+        "claim": "Frozen effective reference coefficients; not animal measurements",
+        "content_hash": "3a1143131cdedbbb82351cf321781c8ee2bc287e727be01868274e541af309be"
+      },
+      "model_coefficients_reanchored": false
+    }
+  },
+  "vH_complete_retained_group": {
+    "tau_R": {
+      "value": 0.49,
+      "unit": "ms"
+    },
+    "tau_E": {
+      "value": 16.8,
+      "unit": "ms"
+    },
+    "c_beta": {
+      "value": 0.0028,
+      "unit": "ms^-1"
+    },
+    "k_beta": {
+      "value": 0.000163,
+      "unit": "ms^-1/td"
+    },
+    "n_X": {
+      "value": 1.0,
+      "unit": "dimensionless"
+    },
+    "n_C": {
+      "value": 4.0,
+      "unit": "dimensionless"
+    },
+    "tau_C": {
+      "value": 2.89,
+      "unit": "ms"
+    },
+    "a_C": {
+      "value": 0.0908,
+      "unit": "vH_native_current^-1"
+    },
+    "tau_m": {
+      "value": 4.0,
+      "unit": "ms"
+    },
+    "gamma": {
+      "value": 0.678,
+      "unit": "dimensionless"
+    },
+    "tau_is": {
+      "value": 56.9,
+      "unit": "ms"
+    },
+    "a_is": {
+      "value": 0.0709,
+      "unit": "vH_native_conductance/vH_native_voltage^gamma"
+    },
+    "g_t": {
+      "value": 151.1,
+      "unit": "vH_native_voltage"
+    },
+    "V_k": {
+      "value": -10.0,
+      "unit": "vH_native_voltage"
+    },
+    "V_n": {
+      "value": 3.0,
+      "unit": "vH_native_voltage"
+    },
+    "tau_1": {
+      "value": 4.0,
+      "unit": "ms"
+    },
+    "tau_2": {
+      "value": 4.0,
+      "unit": "ms"
+    },
+    "tau_h": {
+      "value": 20.0,
+      "unit": "ms"
+    },
+    "V_I": {
+      "value": 19.7,
+      "unit": "vH_native_voltage"
+    },
+    "mu": {
+      "value": 0.733,
+      "unit": "dimensionless"
+    },
+    "tau_a": {
+      "value": 250.0,
+      "unit": "ms"
+    },
+    "observation_delay": {
+      "value": 2.82,
+      "unit": "ms"
+    }
+  }
+}

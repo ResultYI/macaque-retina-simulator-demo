@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETE_UNCHANGED_MODEL_FOLLOWUP",
+  "branch": "cell_center",
+  "neural_seconds": 0.5,
+  "matlab_launches": 0,
+  "production_defaults_changed": false,
+  "parameter_changes": false,
+  "geometry_changes": false,
+  "physiology_calibrated": false,
+  "wall_seconds": 248.72802539999975,
+  "source_checkpoint": "reports\\modeling_scope_20261020\\on_parasol_candidate_network_v1\\candidate\\prepared_checkpoint.json",
+  "source_checkpoint_sha256": "8889bdd864fdae4759a8e0916e8493a33ee3578ee02b3acac42801572051c678",
+  "exact_own_checkpoint_restore": true,
+  "assembly_hash": "14ea7316e6e066ea164642974d03bbffadfd1b5c7b28f40b1d06ecfc3772657f",
+  "all_values_finite": true,
+  "maximum_RSS_bytes": 534683648
+}

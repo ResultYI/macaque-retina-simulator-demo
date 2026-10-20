@@ -1,0 +1,24 @@
+{
+  "source_kind": "parent-provided exact workbook-cell transcription",
+  "library_file_id": "libfile_5f3c8144dfdc819182b2ba9c2933f5e6",
+  "local_workbook_materialized": false,
+  "cells": {
+    "拟合任务!D3": "输入总R*/s，输出dark-current归一化总电流或实际pA；明确1ms观测",
+    "拟合任务!F3": "共享σ、η、KGC；逐cellγ，从7.07/2.53/.5/4.2开始",
+    "拟合任务!H3": "按完整cell+刺激族分组；repeat不跨train/val；独立数据状态登记",
+    "拟合任务!K7": "若contrast/半径/时序不足，不能做绝对幅度fit；其他模块继续",
+    "拟合任务!I12": "一轮短检查：通过相对功能/预定研究要求→采用工程默认；仅映射过但仍弱→B2；功能破坏→拒绝该类；无要求不宣称幅度充分",
+    "拟合任务!K12": "无配对V不阻塞工程默认，但明确未独立生理校准",
+    "实施与验收!F3": "连续状态/未改类型保持既有严格回归；数值可分辨只证明未灭活。幅度仍极弱归“仅映射过”；匹配生理或预定下游需求才支持充分性，无该靶只授相对功能工程默认",
+    "实施与验收!G3": "数值+功能通过→写主配置该类型；仅映射通过→保留候选进入B2；破坏功能→该类拒绝，其他通过者照常",
+    "方程与初值!C17": "初态满足实际RHS=0；baseline/anchor/reference是模型定义，必须先确定后求初态",
+    "方程与初值!E17": "同输入身份与跨背景比较默认固定baseline(B_ref)；只算实际状态。显式每run重基线须另标有效重置约定",
+    "参数总表!R76": "输入rate×dt只做一次；观测1ms不要求模型内部也为1ms"
+  },
+  "confirmed_unresolved": [
+    "negative rod input semantics and 123060 family boundaries",
+    "reset/prehistory/replay/alignment for actual MAT",
+    "Dacey Fig4B seconds and source ROI mapping",
+    "no numeric physiological amplitude or recovery acceptance threshold"
+  ]
+}

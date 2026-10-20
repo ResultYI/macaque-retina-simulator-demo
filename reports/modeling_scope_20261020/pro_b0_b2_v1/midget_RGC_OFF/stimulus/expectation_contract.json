@@ -1,0 +1,37 @@
+{
+  "midget_RGC_ON": {
+    "maximum_probability_mass_error": 1.7763568394002505e-15,
+    "native_bin_start_grid": true,
+    "spike_independent_voltage": true,
+    "stationary_history_claim": false,
+    "first_bin_conditioned_on_saved_draw": true
+  },
+  "midget_RGC_OFF": {
+    "maximum_probability_mass_error": 2.7755575615628914e-15,
+    "native_bin_start_grid": true,
+    "spike_independent_voltage": true,
+    "stationary_history_claim": false,
+    "first_bin_conditioned_on_saved_draw": true
+  },
+  "parasol_RGC_ON": {
+    "maximum_probability_mass_error": 1.3322676295501878e-15,
+    "native_bin_start_grid": true,
+    "spike_independent_voltage": true,
+    "stationary_history_claim": false,
+    "first_bin_conditioned_on_saved_draw": true
+  },
+  "parasol_RGC_OFF": {
+    "maximum_probability_mass_error": 1.1102230246251565e-15,
+    "native_bin_start_grid": true,
+    "spike_independent_voltage": true,
+    "stationary_history_claim": false,
+    "first_bin_conditioned_on_saved_draw": true
+  },
+  "small_bistratified_S_ON": {
+    "maximum_probability_mass_error": 1.5543122344752192e-15,
+    "native_bin_start_grid": true,
+    "spike_independent_voltage": true,
+    "stationary_history_claim": false,
+    "first_bin_conditioned_on_saved_draw": true
+  }
+}

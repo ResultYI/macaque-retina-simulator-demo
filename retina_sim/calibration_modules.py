@@ -332,7 +332,7 @@ def merge_parameter_package(parent, registry, package, *, applicability, allowed
     Fitted proposals additionally require an exact caller whitelist and persisted
     artifact. Neither path constitutes whole-system physiological acceptance.
     """
-    if package.get('schema_version')=='rgc-source-reference-candidate-1.0':
+    if package.get('schema_version') in ('rgc-source-reference-candidate-1.0','rgc-source-reference-candidate-1.1'):
         from .source_reference_candidate import merge_source_reference_candidate
         return merge_source_reference_candidate(parent,registry,package,applicability=applicability,
             allowed_fields=allowed_fields,proposal_path=proposal_path)

@@ -1,0 +1,198 @@
+{
+  "schema": "pro-b4-data-decision-1.0",
+  "status": "LOCAL_BLOCKERS_RETAINED_OTHER_PARAMETER_IMPLEMENTATION_CONTINUES",
+  "new_fits_performed": 0,
+  "matlab_launches": 0,
+  "new_downloads": 0,
+  "workbook_source": "Exact cell transcription provided by parent; local workbook not materialized; no invented extra workbook contract",
+  "evidence_files": [
+    {
+      "path": "reports/modeling_scope_20261020/pro_b5_v1/pro_workbook_extract.json",
+      "sha256": "1d7674c5d2fa411990c1a0b54cebfcf8ef49217b7658bb03704956690a1d4ed8"
+    },
+    {
+      "path": "data/source/chen2024_dryad_v3_325663/Figure2-SourceData1.mat",
+      "sha256": "6724e2edd8e8708456f32900a14efae88192a5ba597365046d0031eb543d1331"
+    },
+    {
+      "path": "data/source_data/dacey2000_fig4B_digitized_v1/provenance.json",
+      "sha256": "e588d0011cf36628ad3746e129c530e390e2b69d507b14b0e222dd288499cbc7"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_v_spike_intake_v1/result.json",
+      "sha256": "312bf6aca664043153e13aa78d9a9c19ca9287f6230381ab5a570b8dc1c48b6b"
+    }
+  ],
+  "rod": {
+    "status": "BLOCKED_REPLAY_CONTRACT",
+    "records": [
+      {
+        "record_index": 0,
+        "samples": 123060,
+        "stimulus_shape": [
+          123060
+        ],
+        "response_shape": [
+          123060
+        ],
+        "finite": true,
+        "negative_samples": 7635,
+        "first_negative_index": 49800,
+        "minimum": -1080.6756037732557,
+        "maximum": 13711.14348865823
+      },
+      {
+        "record_index": 1,
+        "samples": 123060,
+        "stimulus_shape": [
+          123060
+        ],
+        "response_shape": [
+          123060
+        ],
+        "finite": true,
+        "negative_samples": 7155,
+        "first_negative_index": 49800,
+        "minimum": -1080.6756037732557,
+        "maximum": 13711.14348865823
+      },
+      {
+        "record_index": 2,
+        "samples": 123060,
+        "stimulus_shape": [
+          123060
+        ],
+        "response_shape": [
+          123060
+        ],
+        "finite": true,
+        "negative_samples": 7155,
+        "first_negative_index": 49800,
+        "minimum": -1080.6756037732557,
+        "maximum": 13711.14348865823
+      },
+      {
+        "record_index": 3,
+        "samples": 123060,
+        "stimulus_shape": [
+          123060
+        ],
+        "response_shape": [
+          123060
+        ],
+        "finite": true,
+        "negative_samples": 7155,
+        "first_negative_index": 49800,
+        "minimum": -1080.6756037732557,
+        "maximum": 13711.14348865823
+      },
+      {
+        "record_index": 4,
+        "samples": 123060,
+        "stimulus_shape": [
+          123060
+        ],
+        "response_shape": [
+          123060
+        ],
+        "finite": true,
+        "negative_samples": 7155,
+        "first_negative_index": 49800,
+        "minimum": -1080.6756037732557,
+        "maximum": 13711.14348865823
+      },
+      {
+        "record_index": 5,
+        "samples": 123060,
+        "stimulus_shape": [
+          123060
+        ],
+        "response_shape": [
+          123060
+        ],
+        "finite": true,
+        "negative_samples": 7155,
+        "first_negative_index": 49800,
+        "minimum": -1080.6756037732557,
+        "maximum": 13711.14348865823
+      }
+    ],
+    "observation_sampling_seconds": 0.001,
+    "model_tick_seconds": 0.0001,
+    "unresolved": [
+      "Whether negative stimulus values are total rate or an offset representation",
+      "123060-point stimulus-family boundaries and reset/concatenation semantics",
+      "Stimulus to response clock/alignment and prehistory/initialization"
+    ],
+    "action": "No clipping, offset, invented segmentation, resampling, warmup or optimization"
+  },
+  "OFF_midget_BC": {
+    "status": "BLOCKED_OBSERVATION_AND_ROI_CONTRACT",
+    "cell": "A91199-6",
+    "experimental_context": {
+      "annulus_inner_outer_um": [
+        150,
+        1200
+      ],
+      "reported_contrast": 1.0,
+      "estimated_mean_background_td": 1000,
+      "per_cell_species": null,
+      "absolute_voltage_offset_V": null,
+      "panel_AB_frequency_Hz": null,
+      "frequency_2_44_Hz_scope": "Caption explicitly C-E; not independently established for A/B",
+      "response_context": "annular_surround",
+      "voltage_representation": "delta_V_not_absolute_V",
+      "recording_location": {
+        "eccentricity_mm": 13.6,
+        "meridian": "nasal",
+        "locator": "Table 1, cell A91199-6; Results nasal-retina description",
+        "coordinate_scope": "Source-reported eccentricity; not converted to functional RF/pedicle coordinates"
+      },
+      "time_axis_status": "unconfirmed_phase_only",
+      "timing_conflicts": "Methods DLP 2/4/10 Hz; Fig4E main text 2 Hz differs from caption 2.44 Hz; none establishes A/B seconds",
+      "paper_genera": [
+        "Macaca",
+        "Papio"
+      ],
+      "per_cell_species_status": "unconfirmed",
+      "confirmed_macaque_claim": false,
+      "DLP_chromaticity": {
+        "system": "CIE 1931 xy",
+        "x": 0.304,
+        "y": 0.349,
+        "modulation": "isochromatic"
+      },
+      "original_recording_sampling_Hz": 10000,
+      "published_response": "cycle_averaged",
+      "averaging_cycles_typical": [
+        10,
+        20
+      ],
+      "digitized_points_are_independent_samples": false,
+      "independent_experimental_sample_count": null
+    },
+    "unresolved": [
+      "Panel4B seconds/frequency remains unconfirmed; 2.44Hz caption scoped C-E",
+      "13.6mm nasal annular-surround source is not the fixed0.35mm main ROI",
+      "Absolute voltage and isolated light-to-BC amplitude are not supplied"
+    ],
+    "permitted_use": [
+      "annular surround relative voltage shape and polarity versus graphical cycle phase"
+    ],
+    "action": "Retain phase digitization; no arbitrary time stretch, gain or resting-voltage fit"
+  },
+  "S_LM": {
+    "status": "BLOCKED_PAIRED_RAW_INPUT",
+    "reason": "Matched Baudin S/LM input-response binaries and cell-specific observation conditions not available in retained intake; do not infer subtype calibration from transferred RGC mapping"
+  },
+  "glycine": {
+    "status": "BLOCKED_EVENT_OBSERVATION_CONTRACT",
+    "reason": "Quoted anchors remain; raw event waveform and recording/filter conditions insufficient for a new waveform fit"
+  },
+  "RGC_voltage_spike": {
+    "status": "BLOCKED_MATCHED_MEASURED_V",
+    "reason": "Retained Cell6 has current/spike fields, no measured voltage; prior rejected fit/inspected holdout not reopened",
+    "engineering_transfer_is_physiological_fit": false
+  },
+  "numerical_acceptance_scope": "Per-type relative-function checks can authorize engineering defaults under workbook I12/K12/F3/G3, without physiological amplitude sufficiency"
+}

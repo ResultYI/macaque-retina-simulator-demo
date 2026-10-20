@@ -1,0 +1,31 @@
+{
+  "schema_version": "rgc-engineering-acceptance-1.0",
+  "component_id": "parasol_RGC_ON",
+  "physiological_calibration": false,
+  "fit_performed": false,
+  "evidence_grade": "B source output fit; D transfer to project membrane/bin/history",
+  "scope": "Bounded engineering relative-function acceptance; current main retains its existing BC/AC route; no physiological amplitude calibration",
+  "passed_checks": {
+    "mapping": true,
+    "bright_dark": true,
+    "contrast_ordering": true,
+    "own_mapping_recovery": true,
+    "single_cell_spatial_or_spectral": true
+  },
+  "evidence_files": [
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/result.json",
+      "sha256": "70931dccfd5ac19fb62ece3a48dfd9b2c786066469054e0071875baac90a6a06"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/matched_control_result.json",
+      "sha256": "12f1e18dbc7bc8d442dfb4b66c51a1959a854e96ef0b42f9982427c294d846ac"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/pro_b2_b3_v1/result.json",
+      "sha256": "f97c64f2251da90607341e74f9f21b1e046385c4bfd04f8bc9597ec49e09d5d9"
+    }
+  ],
+  "main_route_integration_receipt": "reports/modeling_scope_20261020/pro_b5_v1/on_parasol_main_integration/result.json",
+  "authorization": "User instruction to implement Pro B5 passed types; 2026-10-20; no other type or upstream mechanism adoption"
+}

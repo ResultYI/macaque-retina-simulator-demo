@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "configuration_id": "macaque_retina_configuration_v1",
+  "user_configuration_policy": "One shared GUI/CLI/Run configuration; historical profiles retained for provenance, no user-facing strict/research switch",
+  "run_defaults": {
+    "execution_profile": "atlas_isetbio_geometry_v1",
+    "parameter_profile": "effective_dynamics_v1",
+    "background_initialization_mode": "bounded_convergence",
+    "background_require_converged": true,
+    "background_max_wall_seconds": 1800.0,
+    "background_memory_limit_mb": 4096.0,
+    "background_min_available_mb": 1024.0,
+    "background_checkpoint_path": "",
+    "rgb_adapter": "iset_lcd_apple_mw_v1",
+    "circuit_configuration_path": "configurations/atlas_isetbio_source_stop_shared_v1.json"
+  },
+  "active_run_status": "New source-stopped cone master bound through contacts, typed geometry, real ISET input and converged numerical background; 34 components/20 layers, 77 blocks; finite local .35mm scope, not full retina or physiological calibration",
+  "atlas_target": {
+    "atlas_profile_id": "retina_atlas_isetbio_source_stop_v1",
+    "s_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
+    "source_levels": "Verified quotation/digitization plus explicit project geometry, cross-species S partition and effective dynamics",
+    "gap_rate_ms_inverse": 0.0,
+    "internal_assembler": "atlas_isetbio_geometry_v1",
+    "internal_full_typed_callable": "retina_sim.atlas_population_network.atlas_population_network",
+    "parasol_RF_seed_source": {
+      "status": "APPROVED_BOUND",
+      "artifact": "data/atlas/circuit_source_stop_shared_v1_20261016/local_population_graph.json",
+      "origin": "Existing independent ON/OFF RF masters reused byte-identically; new cone-dependent IPL anchors/contacts rebuilt",
+      "legacy_rod_derived_geometry_default_adoption": false
+    },
+    "available_owner_typed_status": "All five canonical owner outputs present and executed; 34 components/20 required layers",
+    "complete_replacement_status": "LOCAL_EFFECTIVE_RUN_PASS_WITH_CAPACITY_DEFICIT",
+    "blockers": [
+      "RBC_AII_AMPA: 5 of357 AII have2/3 contacts within unchanged40um; actual finite capacity deficit retained",
+      "Whole centre-to-periphery network not generated; current fixed owner/halo only",
+      "Scientific calibration, stochastic stationarity and independent physiological validation not complete"
+    ],
+    "population_revision": {
+      "artifact": "data/atlas/circuit_source_stop_shared_v1_20261016/local_population_graph.json",
+      "sha256": "3adf3a38a18c34bdee35d627e54fa4558c7219a6511951ed20b93c74f3e29e0b",
+      "authorization": "2026-10-16 user-authorized cone integration",
+      "cone_master": {
+        "path": "data/atlas/isetbio_macaque_cones_source_stop_v1_20261016/manifest.json",
+        "sha256": "5ab2429aa920e9bd07f7a7d1a335edeffbbf8f263ddce731352809e7d6218a3a"
+      }
+    },
+    "production_assembler": "retina_sim.atlas_population_network.atlas_population_network",
+    "accepted_run": "reports/platform_runs/20261016T071417135148Z_0348ea84",
+    "active_sampling_rules": {
+      "cones": "frozen ISET numerical master, macaque density, original source p30 stop;121811 total,1590 active circuit cones",
+      "HC": "joint canonical master",
+      "rod": "new finite fixed master under unchanged approved density/sampler",
+      "rod_BC": "new finite fixed master under unchanged approved density/sampler",
+      "AII_AC": "new finite fixed master under unchanged approved density/sampler",
+      "parasol_RGC_ON": "original independent fixed master reused",
+      "parasol_RGC_OFF": "original independent fixed master reused",
+      "other_populations": "existing separate rules; not claimed as unified equal-mass sampling"
+    },
+    "active_RGC_coordinate_status": {
+      "populations": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF",
+        "small_bistratified_S_ON"
+      ],
+      "available_roles": [
+        "rf",
+        "ipl_post_arbor"
+      ],
+      "missing_roles": [
+        "soma"
+      ],
+      "scope": "current five RGC types in frozen local .35 artifact; separate coordinate roles do not imply implemented soma displacement"
+    },
+    "active_circuit_configuration": {
+      "path": "configurations/atlas_isetbio_source_stop_shared_v1.json",
+      "sha256": "6a97051210d2a02f5fa80152b5a39277e95940b3154b9d6c748656c57e1a06f8"
+    }
+  },
+  "background_preparation": {
+    "authorization": "2026-10-16 user-authorized cone integration",
+    "status": "NUMERICAL_CONVERGENCE_PASS_STOCHASTIC_STATISTICS_INSUFFICIENT",
+    "criteria": "unchanged bounded_uniform_background_v1",
+    "run_directory": "reports/platform_runs/20261016T071417135148Z_0348ea84",
+    "checkpoint": "reports/platform_runs/20261016T071417135148Z_0348ea84/background_checkpoint.json",
+    "coverage_blocks": 77,
+    "state_scalars": 58756,
+    "actual_simulated_seconds": 1.499999999999945,
+    "actual_wall_seconds": 538.8948166000046,
+    "stochastic_status": "STATISTICS_INSUFFICIENT",
+    "whole_network_steady_state_claim": false,
+    "geometry_identity": "8a7709e4b11a0c74e330d260527b44a4a8f3338add5473bfdd0f04a9d33e7a61"
+  },
+  "active_input_frontend": {
+    "profile_id": "iset_lcd_apple_mw_v1",
+    "approval": "Sentinel_683ebe79b2fc8191ae676df9144b2df7",
+    "scope": "approved mixed reference; human optics/filter conventions on frozen macaque layout",
+    "rod": "existing independent route",
+    "legacy_RGB_results": "read-only history; no runtime fallback",
+    "circuit_configuration_path": "configurations/atlas_isetbio_source_stop_shared_v1.json"
+  },
+  "legacy_population_target": {
+    "atlas_profile_id": "retina_atlas_Schein_bridge_research_v1",
+    "s_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
+    "source_levels": "Verified quotation/digitization plus explicit project geometry, cross-species S partition and effective dynamics",
+    "gap_rate_ms_inverse": 0.0,
+    "internal_assembler": "atlas_midget_research_v1",
+    "internal_full_typed_callable": "retina_sim.atlas_runtime.atlas_typed_candidate_network",
+    "parasol_RF_seed_source": {
+      "status": "APPROVED_BOUND",
+      "artifact": "data/atlas/population_revised_r035_v1.json",
+      "origin": "independent author RF model with approved project transfers; not rod-derived",
+      "legacy_rod_derived_geometry_default_adoption": false
+    },
+    "available_owner_typed_status": "34 components/20 required layers executed; five RGC owner outputs; no unimplemented layers",
+    "complete_replacement_status": "LOCAL_EFFECTIVE_RUN_PASS_WITH_CAPACITY_DEFICIT",
+    "blockers": [
+      "RBC_AII_AMPA: one of 310 AII has actual degree2/target3 within40um; finite capacity deficit retained, no radius/gain rescue",
+      "HC r.035 four-zero instance unresolved; outside this local .35 artifact",
+      "Whole RF0-3 master not generated; local fixed artifact only",
+      "Scientific calibration/independent physiological validation not complete"
+    ],
+    "population_revision": {
+      "approval": "Sentinel_28318027a0ec8191a8ead57b6439c9c1",
+      "artifact": "data/atlas/population_revised_r035_v1.json",
+      "sha256": "af456b72ce087c372c29f30a0c74198d2602d1bb3db32211eccc8691c534dd6b",
+      "sampler_restoration": "HC joint master; rod/RBC/AII/parasol separate equal-mass masters then crop; cone remains piecewise_constant_poisson_tiles_v1; no unified sampler replacement",
+      "population_package": "Packer quadratic central/non-log PCHIP/cos²; Vanni rounded RF D with approved half split"
+    },
+    "production_assembler": "retina_sim.atlas_population_network.atlas_population_network",
+    "accepted_run": "reports/population_revision_runs/20261012T104015129805Z_2f5499d9",
+    "population_revision_storage": {
+      "path": "data\\atlas\\graph_blocks_v1\\population_revised_r035_v1",
+      "source_json_sha256": "af456b72ce087c372c29f30a0c74198d2602d1bb3db32211eccc8691c534dd6b",
+      "logical_record_hash": "26dfe85b99ec3450756d6a9e56681d068ab61d90ce70d09468fb326b51c85a24",
+      "storage_manifest_hash": "9d53469cb5f0b958823fb782aa9c911593e4bba43a2bf85a7bae019031ff08de",
+      "files": 346,
+      "compressed_payload_bytes": 14718367,
+      "kind": "frozen_retina_graph_blocks_v1"
+    },
+    "active_sampling_rules": {
+      "cones": "piecewise_constant_poisson_tiles_v1",
+      "HC": "joint canonical master",
+      "rod": "population-specific equal-mass master",
+      "rod_BC": "population-specific equal-mass master",
+      "AII_AC": "population-specific equal-mass master",
+      "parasol_RGC_ON": "population-specific equal-mass master",
+      "parasol_RGC_OFF": "population-specific equal-mass master",
+      "other_populations": "existing separate rules; not claimed as unified equal-mass sampling"
+    },
+    "active_RGC_coordinate_status": {
+      "populations": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF",
+        "small_bistratified_S_ON"
+      ],
+      "available_roles": [
+        "rf",
+        "ipl_post_arbor"
+      ],
+      "missing_roles": [
+        "soma"
+      ],
+      "scope": "current five RGC types in frozen local .35 artifact; separate coordinate roles do not imply implemented soma displacement"
+    }
+  },
+  "modeling_scope": {
+    "path": "configurations/modeling_scope_v1.json",
+    "sha256": "b3bd69875cc370761ddcdf8d0907b2b9323b4c52e8716a301d69158728f24a16"
+  },
+  "evaluation_targets": {
+    "primary_quantitative": [
+      "midget_RGC_ON",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF"
+    ],
+    "supplementary": [
+      "small_bistratified_S_ON"
+    ],
+    "internal_validation_from_output_match": false,
+    "automatic_fitting_enabled": false
+  }
+}

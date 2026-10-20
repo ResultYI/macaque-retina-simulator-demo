@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETE_UNCALIBRATED_RECEPTOR_DOMAIN_PROBE",
+  "protocol": "S20",
+  "mapping_component": "small_bistratified_S_ON",
+  "neural_seconds": 0.5,
+  "production_default_changed": false,
+  "physiology_calibrated": false,
+  "matlab_launches": 0,
+  "rod_background_held": true,
+  "fully_adapted": false,
+  "assembly_hash": "4051adc95f4d7adf71a5a3f7814ccaaebeb33a879b661d7d09710a86b3d953f1",
+  "own_prepared_checkpoint_sha256": "205f80787aa147bfdbdb4872b07a0779fd681ce0f681c7eff3b3a1224e6a184e",
+  "own_gray_reference": "reports\\modeling_scope_20261020\\pro_b0_b2_v1\\small_bistratified_S_ON\\matched_gray",
+  "own_checkpoint_roundtrip_exact": true,
+  "first_gray_segment_matches_control": true,
+  "wall_seconds": 249.66655170000013,
+  "maximum_RSS_bytes": 534167552,
+  "all_values_finite": true
+}

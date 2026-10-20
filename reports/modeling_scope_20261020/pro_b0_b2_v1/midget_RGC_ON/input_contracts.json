@@ -1,0 +1,58 @@
+{
+  "native_light": {
+    "declared_constant_background": false,
+    "includes_background": true,
+    "background_context_hash": "f32af4b2e4cf8b7e57e1f466f10bdf54190414a47756fed96e917d1fc2e96100",
+    "background_source": "iset_lcd_apple_mw_reference_v1",
+    "grid_step_seconds": 0.0001,
+    "value": 100.0,
+    "unit": "td",
+    "input_class": "engineering_independent_consumer_fullfield_steps",
+    "fractions": [
+      0.0,
+      0.1,
+      0.0,
+      -0.1,
+      0.0
+    ],
+    "phase_edges_seconds": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "calibrated_visual_contrast": false,
+    "common_physical_scene_claim": false,
+    "source": "Existing typed input perturbation route; no ISET capture"
+  },
+  "rod_light": {
+    "declared_constant_background": false,
+    "includes_background": true,
+    "background_context_hash": "f32af4b2e4cf8b7e57e1f466f10bdf54190414a47756fed96e917d1fc2e96100",
+    "background_source": "iset_lcd_apple_mw_reference_v1",
+    "grid_step_seconds": 0.0001,
+    "value": 5.0,
+    "unit": "R*/s",
+    "input_class": "engineering_independent_consumer_fullfield_steps",
+    "fractions": [
+      0.0,
+      0.1,
+      0.0,
+      -0.1,
+      0.0
+    ],
+    "phase_edges_seconds": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "calibrated_visual_contrast": false,
+    "common_physical_scene_claim": false,
+    "source": "Existing typed input perturbation route; no ISET capture"
+  }
+}
