@@ -1,0 +1,132 @@
+{
+  "schema_version": "modeling-scope-1.0",
+  "scope_id": "effective_circuit_scope_v1",
+  "approval_scope": "2026-10-19 retained circuit and restricted evaluation; no core equation replacement or fitting authorized",
+  "equation_revision": "effective_dynamics_v1_existing_equations_20261019",
+  "core_equations_replaced": false,
+  "rgc_targets": {
+    "midget_RGC_ON": {
+      "evaluation_role": "primary_quantitative",
+      "phenotype_label": "functional_target_not_per_cell_morphology_verification"
+    },
+    "midget_RGC_OFF": {
+      "evaluation_role": "primary_quantitative",
+      "phenotype_label": "functional_target_not_per_cell_morphology_verification"
+    },
+    "parasol_RGC_ON": {
+      "evaluation_role": "primary_quantitative",
+      "phenotype_label": "functional_target_not_per_cell_morphology_verification"
+    },
+    "parasol_RGC_OFF": {
+      "evaluation_role": "primary_quantitative",
+      "phenotype_label": "functional_target_not_per_cell_morphology_verification"
+    },
+    "small_bistratified_S_ON": {
+      "evaluation_role": "supplementary",
+      "phenotype_label": "functional_target_not_per_cell_morphology_verification"
+    }
+  },
+  "generic_ac_units": {
+    "local_feedforward_AC": {
+      "identity": "generic_effective_functional_unit",
+      "driver": "diffuse_BC_ON",
+      "targets": [
+        "midget_RGC_OFF",
+        "small_bistratified_S_ON"
+      ],
+      "direction": "ON-driven residual inhibition; target-specific biological identity unresolved"
+    },
+    "local_crossover_AC": {
+      "identity": "generic_effective_functional_unit",
+      "driver": "diffuse_BC_OFF",
+      "targets": [
+        "midget_RGC_ON"
+      ],
+      "direction": "OFF_to_ON residual inhibition"
+    },
+    "widefield_AC": {
+      "identity": "generic_effective_functional_unit",
+      "driver": "diffuse_BC_ON",
+      "targets": [
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF"
+      ],
+      "direction": "ON-driven residual inhibition",
+      "surround_claim": "contribution unresolved; not the complete classical surround"
+    }
+  },
+  "AII_policy": "independent rod/RBC/AII and cone-ON reciprocal coupling plus OFF-BC glycine retained; no deletion by generic crossover name",
+  "parameter_policy": {
+    "fitting": "disabled",
+    "free_calibration_parameters": [],
+    "locked": "existing generic AC kernels, bias, sampling, history and all five RGC intrinsic coefficients and synaptic gains",
+    "derived_only": "upstream input baseline and conditional initial V0; not fit parameters",
+    "new_channels_or_release_resource_mechanisms": "require separate evidence and explicit revision",
+    "shared_RGC_coefficients": "retained project approximation; phenotype differences are not identified by these shared numbers"
+  },
+  "fixed_parameter_signatures": {
+    "effective_local_feedforward_AC": "c23f0cec99a54a7c8c613d5d6a9af791fecb15a1ce16ec7c31bc14cbbd10d0b3",
+    "effective_local_crossover_AC": "c23f0cec99a54a7c8c613d5d6a9af791fecb15a1ce16ec7c31bc14cbbd10d0b3",
+    "effective_widefield_AC": "e64d07533f404d3cd99698fc53a20e286bd098e05dac9ee80d33dea935f7fd5f",
+    "effective_midget_RGC_ON": "fdc2b20410283b1355baaffbbbdbe69eb6dce6d8ace11e6511fb06b8a414ddf2",
+    "effective_midget_RGC_OFF": "fdc2b20410283b1355baaffbbbdbe69eb6dce6d8ace11e6511fb06b8a414ddf2",
+    "effective_parasol_RGC_ON": "fdc2b20410283b1355baaffbbbdbe69eb6dce6d8ace11e6511fb06b8a414ddf2",
+    "effective_parasol_RGC_OFF": "fdc2b20410283b1355baaffbbbdbe69eb6dce6d8ace11e6511fb06b8a414ddf2",
+    "effective_small_bistratified_S_ON": "fdc2b20410283b1355baaffbbbdbe69eb6dce6d8ace11e6511fb06b8a414ddf2",
+    "effective_midget_RGC_ON_excitatory_midget_BC_ON": "d3a835f834dcdd1b9e079e9ef76f0d589fa84eb0cb3d770096684723fd5dc76f",
+    "effective_midget_RGC_ON_inhibitory_local_crossover_AC": "2b7f109b9c9892b4547ca2daafec4aff5797fb576d99855b056e78ca7fabc7b2",
+    "effective_midget_RGC_OFF_excitatory_midget_BC_OFF": "d3a835f834dcdd1b9e079e9ef76f0d589fa84eb0cb3d770096684723fd5dc76f",
+    "effective_midget_RGC_OFF_inhibitory_local_feedforward_AC": "2b7f109b9c9892b4547ca2daafec4aff5797fb576d99855b056e78ca7fabc7b2",
+    "effective_parasol_RGC_ON_excitatory_diffuse_BC_ON": "d3a835f834dcdd1b9e079e9ef76f0d589fa84eb0cb3d770096684723fd5dc76f",
+    "effective_parasol_RGC_ON_inhibitory_widefield_AC": "2b7f109b9c9892b4547ca2daafec4aff5797fb576d99855b056e78ca7fabc7b2",
+    "effective_parasol_RGC_OFF_excitatory_diffuse_BC_OFF": "d3a835f834dcdd1b9e079e9ef76f0d589fa84eb0cb3d770096684723fd5dc76f",
+    "effective_parasol_RGC_OFF_inhibitory_widefield_AC": "2b7f109b9c9892b4547ca2daafec4aff5797fb576d99855b056e78ca7fabc7b2",
+    "effective_small_bistratified_S_ON_excitatory_S_ON_BC": "d3a835f834dcdd1b9e079e9ef76f0d589fa84eb0cb3d770096684723fd5dc76f",
+    "effective_small_bistratified_S_ON_inhibitory_local_feedforward_AC": "2b7f109b9c9892b4547ca2daafec4aff5797fb576d99855b056e78ca7fabc7b2",
+    "effective_small_bistratified_S_ON_excitatory_diffuse_BC_OFF": "d3a835f834dcdd1b9e079e9ef76f0d589fa84eb0cb3d770096684723fd5dc76f"
+  },
+  "validation_policy": {
+    "output_match_implies_internal_validation": false,
+    "generic_AC_independent_validation": false,
+    "first_comparison": "fixed-parameter prediction only; no optimizer",
+    "data_readiness": "source declarations checked; complete raw stimulus/response contracts not yet parsed",
+    "required_dataset_contract": [
+      "recording_id and retinal region/eccentricity",
+      "functional cell label and uncertainty",
+      "raw stimulus array and coordinate transform/pixel scale",
+      "stimulus and spike timestamps plus synchronization and bin edges",
+      "intensity/contrast units, display spectrum or declared uncalibrated mapping",
+      "background/adaptation history and repetition/train-test separation"
+    ],
+    "primary_sources": [
+      {
+        "source_id": "WU2024",
+        "url": "https://www.nature.com/articles/s41467-024-52304-7",
+        "candidate_use": "four main RGC functional classes; grayscale peripheral recordings",
+        "local_adapter_status": "not_ready_contract_not_parsed"
+      },
+      {
+        "source_id": "LATIMER_ON_PARASOL",
+        "url": "https://figshare.com/articles/dataset/ON-Parasol_RGCs_for_the_conductance-based_encoding_model/9636854",
+        "candidate_use": "ON parasol spikes/EPSC/IPSC/stimulus",
+        "local_adapter_status": "not_ready_contract_not_parsed"
+      },
+      {
+        "source_id": "SCHOTTDORF_LEE2021",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8998785/",
+        "candidate_use": "MC/PC and supplementary S-ON functional labels; not per-cell morphology",
+        "local_adapter_status": "not_ready_contract_not_parsed"
+      }
+    ]
+  },
+  "interpretation_sources": [
+    {
+      "url": "https://www.nature.com/articles/s41598-018-34621-2",
+      "use": "AII cone-ON to OFF crossover anatomy does not identify every generic AC route"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24801624/",
+      "use": "parasol surround must not be attributed entirely to widefield inhibition"
+    }
+  ]
+}

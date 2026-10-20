@@ -1,0 +1,118 @@
+"""Narrow unadopted source transfer using the existing profile/rebuild machinery.
+
+This separate route is not a fitted proposal and does not expand fitting GROUPS.
+Only the explicitly named ON-parasol source mapping is accepted.
+"""
+from dataclasses import replace
+from pathlib import Path
+import copy
+import hashlib
+import json
+import numpy as np
+from .contracts import ContractError, Quantity, canonical_hash
+from .assembly import RetinaBuilder
+from .mechanism_contracts import register_mechanism_profile
+from .provenance import SourceRecord
+
+SCHEMA='rgc-source-reference-candidate-1.0'
+VALUES={'alpha':(90.,'Hz','spike_intensity_scale'),
+        'mu':(-.053,'V','spike_voltage_offset'),
+        'beta':(.00167,'V','spike_voltage_scale')}
+
+
+def read_source_candidate(root,path):
+    root=Path(root).resolve();path=Path(path)
+    if not path.is_absolute():path=root/path
+    path=path.resolve()
+    if not path.is_relative_to(root):raise ContractError('Source candidate must remain in project')
+    d=json.loads(path.read_bytes())
+    if (d.get('schema_version')!=SCHEMA or d.get('component_id')!='parasol_RGC_ON' or
+        d.get('default_enabled') is not False or d.get('fit_performed') is not False or
+        d.get('physiological_calibration') is not False or set(d.get('changes',{}))!=set(VALUES)):
+        raise ContractError('Only the unadopted ON-parasol source-transfer candidate is authorized')
+    for key,(value,unit,meaning) in VALUES.items():
+        if d['changes'][key]!={'value':value,'unit':unit,'meaning':meaning}:
+            raise ContractError('Source transfer must use the audited published value and units: '+key)
+    for row in [d['base_main_configuration'],d['base_dynamics_candidate'],d['source']]:
+        source=(root/row['path']).resolve()
+        if not source.is_relative_to(root) or hashlib.sha256(source.read_bytes()).hexdigest()!=row['sha256']:
+            raise ContractError('Source/main-configuration/candidate identity differs')
+    if d['source']['sha256']!='09b5ce244f7abbdcc110046d0fc424f51c39055016e47c951098d49e2ec9bf9f':
+        raise ContractError('Unexpected primary source for this transfer')
+    return d,path
+
+
+def merge_source_reference_candidate(parent,registry,package,*,applicability,allowed_fields,proposal_path):
+    from .calibration_modules import _plain,affected_closure
+    d,path=read_source_candidate(registry.root,proposal_path)
+    if (canonical_hash(d)!=canonical_hash(package) or applicability!=d['applicability'] or
+        allowed_fields is None or set(allowed_fields)!=set(VALUES) or len(allowed_fields)!=3):
+        raise ContractError('Persisted source candidate/applicability/exact field boundary differs')
+    cid=d['component_id'];old=parent.components[cid]
+    if old.mechanism!='HistoryConductanceRGC':raise ContractError('Original RGC factory required')
+    actual={r.parameter_id:r for r in old.parameters.records}
+    if set(actual)-set(VALUES)!=set(d['retained_parameters']):raise ContractError('Retained RGC parameter contract differs')
+    isolated=copy.copy(registry)
+    for attr in ('sources','profiles','mechanism_profiles'):
+        setattr(isolated,attr,dict(getattr(registry,attr)))
+    source=d['source'];sid=source['source_id']
+    if sid in isolated.sources:raise ContractError('Source-transfer identity already exists')
+    isolated.register_source(SourceRecord(sid,'Latimer2019 output coefficients transferred to project conditions',
+        ('K W Latimer','F Rieke','J W Pillow'),2019,source['url'],'paper',None,source['path'],source['locator'],
+        source['sha256'],None,'CC BY4.0 original article','identity_verified',
+        'Published fit in original two-cell domain; this transfer remains project_approximation, not measurement or refit',
+        '2026-10-20',{'source_recording':'Cafaro-Rieke2013 dynamic clamp; raw V-spike unavailable'}))
+    rows=[]
+    for r in old.parameters.records:
+        if r.parameter_id in VALUES:
+            value,unit,meaning=VALUES[r.parameter_id]
+            r.value.require(unit,meaning)
+            r=replace(r,value=Quantity(np.full(r.value.values.shape,value),unit,meaning,r.value.evidence_tag),
+                source_id=sid,evidence_class='project_approximation',locator=source['locator']+'; '+r.parameter_id,
+                supported_domain=copy.deepcopy(applicability),
+                uncertainty='Literature transfer across membrane/bin/history conditions; not empirically calibrated')
+        rows.append(r)
+    pid=d['profile_id']
+    profile=replace(old.parameters.profile,profile_id=pid,records=tuple(rows),
+        source_ids=tuple(sorted(set(old.parameters.source_ids+(sid,)))),
+        approval_reference='Authorized isolated ON-parasol source-transfer candidate, 2026-10-20',
+        conditions=dict(old.parameters.conditions,source_reference_candidate=dict(
+            candidate_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),applicability=copy.deepcopy(applicability),
+            fitted=False,production_default=False)))
+    register_mechanism_profile(isolated,profile)
+    runtime=getattr(isolated,'runtime_profile',None)
+    if runtime is not None and runtime.modeling_scope is not None:
+        runtime=copy.copy(runtime);scope=copy.copy(runtime.modeling_scope)
+        scope.base_scope_sha256=getattr(scope,'base_scope_sha256',scope.sha256)
+        scope.parameter_proposal_revisions=copy.deepcopy(getattr(scope,'parameter_proposal_revisions',{}))
+        scope.parameter_proposal_revisions[cid]=dict(base_profile_id=old.parameters.profile.profile_id,
+            new_profile_id=pid,content_hash=canonical_hash(d),changed_fields=sorted(VALUES),source_transfer=True)
+        scope.sha256=canonical_hash(dict(base_scope_sha256=scope.base_scope_sha256,revisions=scope.parameter_proposal_revisions))
+        runtime.modeling_scope=scope;isolated.runtime_profile=runtime
+    populations=[]
+    for p in parent.spec.populations:
+        ids=tuple(pid if value==old.parameters.profile.profile_id else value for value in p.cells.parameter_profile_id)
+        populations.append(replace(p,cells=replace(p.cells,parameter_profile_id=ids)) if ids!=p.cells.parameter_profile_id else p)
+    specs=[]
+    for s in parent.spec.components:
+        # Existing conductance adapters share the owner's cell table, while
+        # retaining their own coefficients and mechanism profile.
+        if s.options.get('target_population_profile_id')==old.parameters.profile.profile_id:
+            s=replace(s,options=dict(s.options,target_population_profile_id=pid))
+        if s.component_id==cid:s=replace(s,parameter_profile_id=pid)
+        specs.append(s)
+    result=RetinaBuilder(isolated).build(replace(parent.spec,populations=tuple(populations),components=tuple(specs)),parent.run_mode)
+    for key,c in parent.components.items():
+        revised=result.components[key]
+        if key!=cid and canonical_hash((_plain(c.parameters.records),_plain(c.parameters.profile)))!=canonical_hash((_plain(revised.parameters.records),_plain(revised.parameters.profile))):
+            raise ContractError('Source transfer changed unrelated coefficients: '+key)
+    for key in ('geometry_source_binding','input_geometry_binding_required','typed_view_domain',
+                'frozen_typed_geometry_binding','global_disk_circuit','global_disk_view','canonical_spatial_recipe','candidate_dynamics'):
+        if hasattr(parent,key):setattr(result,key,copy.deepcopy(getattr(parent,key)))
+    result.calibration_registry=isolated
+    result.parameter_package_merge=dict(status='source_reference_transfer_unadopted',changed_component=cid,
+        changed_fields=sorted(VALUES),new_profile_id=pid,content_hash=canonical_hash(d),
+        fitted=False,production_default=False,initialization_transferred=False,background_validated=False,
+        invalidation=dict(background=True,checkpoint=True,adapted_state=True,
+            affected_neural_components=affected_closure(parent.spec,{cid})))
+    return result

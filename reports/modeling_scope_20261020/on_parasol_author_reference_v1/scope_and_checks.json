@@ -1,0 +1,43 @@
+{
+  "schema": "on_parasol_reference_final_scope_1.0",
+  "reference_result_sha256": "40d2fac79b1cc3b6a7c65b0ed7e7c85aaa2b609344a8ee481f178d972e55ab87",
+  "regression": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "4",
+    "time": "0.145",
+    "timestamp": "2026-10-20T13:51:58.059996+09:00",
+    "hostname": "DESKTOP-N6N4HD1"
+  },
+  "plot_visually_inspected": true,
+  "plot_type": "Scientific comparison from saved arrays",
+  "project_initialization": "Independent leak-only assay sets V0=EL and empty history; not the whole-network background-derived V0",
+  "normalized_input_scope": "Synthetic g/C clamp; no author filters or physical author capacitance inferred",
+  "direct_author_JAX_or_MATLAB_executed": false,
+  "measured_data_used": false,
+  "empirical_fit_performed": false,
+  "production_default_changes": false,
+  "permission_denials": 0,
+  "pending_actions": [],
+  "uncertain_executions": [],
+  "library_figure_id": "libfile_4f1db31b593c8191ae2b5f77a0eddb5f",
+  "library_metadata_helper_exit_code": 0,
+  "file_sha256": {
+    "common_bin_start_comparison.csv": "7f6c78ff20b66b37db87eb3c8736f4b94e7e73c008d6d050ea79fbb16dba9c3a",
+    "library_figure_receipt.json": "2305b77831898e99956dc2feac5676ae1152ed697ceb24d556a6bbb98ddb589e",
+    "on_parasol_author_reference.png": "72c2ec393cf8a744cc7f37e502689da58ac1fa0810c2ab83780d2ea049a80517",
+    "on_parasol_author_reference.svg": "df0a3f8fcf77290ae2bf8056da535e0b545ce6a9a88dff58135da70a156095f1",
+    "reference_checks.xml": "dbb0f5029522137848b8ecbc50e0757056057704423aa52865c924a6f308ef12",
+    "reference_traces.npz": "0b9034539ce65c1e3790101eaf3ee1ac88c2f40b11ce690a52c51c1409e473d4",
+    "result.json": "40d2fac79b1cc3b6a7c65b0ed7e7c85aaa2b609344a8ee481f178d972e55ab87",
+    "voltage_versions.csv": "b47b5cac85dd0246d18d57c9ecaaef49624b9b66175ae71cad73e5061dd5b028",
+    "zero_history_mapping.csv": "199acf7aeec470e06ed3991f453f94212006e0bf8a7172984f061e006a3056bc"
+  },
+  "source_tools": {
+    "tools\\run_on_parasol_author_reference.py": "6d8d63e01eb5f1e763eee5b0a09aafbcf0d6951a0c382289e52f0569eb35f218",
+    "tools\\plot_on_parasol_author_reference.py": "599a914dbe3ac8cf319ae8c5719b9e678ad6f4b234c5f26f0126cf1a8a911eef",
+    "tests\\test_on_parasol_author_reference.py": "d001a519efa9b4728189dd3eaefeb1a4ff9467cc9540198ae019d3abb84ac65e"
+  }
+}

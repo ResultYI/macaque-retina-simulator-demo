@@ -1,0 +1,450 @@
+{
+  "status": "CONDITIONAL_SOURCE_UNIT_RGC_MODULE_ASSAY_NOT_BC_AC_VALIDATION",
+  "data_source": {
+    "article_id": 9636854,
+    "version": 1,
+    "file": "Cell_6.mat",
+    "fn": "060908Bc2",
+    "sha256": "59e1457bc27f7392a3c458902941a234c687b26a525b26d168bc8609aae40025"
+  },
+  "recording_mode": {
+    "spikes": "Cell-attached first",
+    "excitation_inhibition": "Subsequent separate voltage-clamp trials",
+    "pairing": "Exact equality of all71000 source stimulus values; not paired simultaneous trial noise",
+    "intrinsic_RGC_conductances_blocked_during_VC": true,
+    "measured_membrane_voltage_in_this_MAT": false,
+    "separate_two_cell_dynamic_clamp_experiment_in_paper_not_spliced_into_this_case": true
+  },
+  "assumptions": {
+    "raw_current_unit": "pA project interpretation; not declared inside MAT or Figshare metadata",
+    "raw_spike_time_unit": "Acquisition sample indices inferred from integer support, not seconds",
+    "source_sample_dt_seconds": 0.0001,
+    "source_sample_dt_basis": "Latimer2019 Methods: intracellular recordings and full-field experiment",
+    "index_origin": "MATLAB one-based project interpretation; unit/index provenance remains incomplete",
+    "current_to_conductance": "Mean VC current in A divided by -0.070V (E) or +0.070V (I), per Latimer2019 Methods",
+    "conversion_scope": "Approximate driving-force convention; no measured-V or dynamic-clamp trial claim",
+    "current_offsets": "No subtraction, gain fitting or clipping",
+    "input_interpolation": "ZOH each original100us sample",
+    "V_start": "Unchanged profile V0; first500ms excluded from scoring; observed prefix retained"
+  },
+  "limitations": [
+    "No in-file current-unit or spike-origin declaration; this remains a conditional interpretation",
+    "One inhibitory VC repeat for each complete stimulus in this cell; input noise is not same spike-trial noise",
+    "Fixed RC scale, reversal potentials and spike history are project approximations",
+    "Stimulus physical LED calibration/LMS capture absent; full-circuit input not ready",
+    "This does not validate BC/AC or all retinal cell classes"
+  ],
+  "partition": {
+    "selection": "Smallest source file before observing responses; common stimulus hashes sorted; first6 training,last2 held out",
+    "training_stimulus_sha256": [
+      "1ce2aae21e55cf737a78995278539239e136e6753a984febba42f8ee33496a6a",
+      "25259403060fcc17ea68934ffa3ca81e19ae460b30fddcec242b3267456caec4",
+      "25a5fe16202068931fd94993cfecf78739524f287efcfbf7e296e8cbaf0aa23b",
+      "28c4947a689dd0e683ddf71d705a9fc825b352b41ecdc7334b1ca231d06a445c",
+      "5f1e3b1f806cde21497f31682de05357faf59b06ebeba4212fb66ea8960ee0b5",
+      "abe37471fa4196776c89fac58736bc0c020ed8ee72fb1b19f6b7097f7b7f15ee"
+    ],
+    "heldout_stimulus_sha256": [
+      "b58ce51ed5acb36149a57770fb9251d9aeae573d9e9e284e0b8ffaed70fbdc9f",
+      "f8bf6b6be5ef2d9196eefc3857532e9ca905add7a3011551c7c4a8ed3a98b1ce"
+    ],
+    "test_trials_and_stimuli_not_used_in_optimization": true
+  },
+  "pairing": [
+    {
+      "stimulus_sha256": "1ce2aae21e55cf737a78995278539239e136e6753a984febba42f8ee33496a6a",
+      "exc_trial_indices_zero_based": [
+        8,
+        10,
+        25
+      ],
+      "inh_trial_indices_zero_based": [
+        1
+      ],
+      "spike_trial_indices_zero_based": [
+        3,
+        19,
+        28
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "25259403060fcc17ea68934ffa3ca81e19ae460b30fddcec242b3267456caec4",
+      "exc_trial_indices_zero_based": [
+        13,
+        14,
+        22
+      ],
+      "inh_trial_indices_zero_based": [
+        0
+      ],
+      "spike_trial_indices_zero_based": [
+        0,
+        18,
+        22
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "25a5fe16202068931fd94993cfecf78739524f287efcfbf7e296e8cbaf0aa23b",
+      "exc_trial_indices_zero_based": [
+        3,
+        9,
+        18
+      ],
+      "inh_trial_indices_zero_based": [
+        7
+      ],
+      "spike_trial_indices_zero_based": [
+        1,
+        11,
+        26
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "28c4947a689dd0e683ddf71d705a9fc825b352b41ecdc7334b1ca231d06a445c",
+      "exc_trial_indices_zero_based": [
+        1,
+        17,
+        23
+      ],
+      "inh_trial_indices_zero_based": [
+        6
+      ],
+      "spike_trial_indices_zero_based": [
+        4,
+        7,
+        25
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "5f1e3b1f806cde21497f31682de05357faf59b06ebeba4212fb66ea8960ee0b5",
+      "exc_trial_indices_zero_based": [
+        16,
+        26,
+        27
+      ],
+      "inh_trial_indices_zero_based": [
+        5
+      ],
+      "spike_trial_indices_zero_based": [
+        2,
+        12,
+        13
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "abe37471fa4196776c89fac58736bc0c020ed8ee72fb1b19f6b7097f7b7f15ee",
+      "exc_trial_indices_zero_based": [
+        19,
+        21,
+        29
+      ],
+      "inh_trial_indices_zero_based": [
+        2
+      ],
+      "spike_trial_indices_zero_based": [
+        6,
+        14,
+        21
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "b58ce51ed5acb36149a57770fb9251d9aeae573d9e9e284e0b8ffaed70fbdc9f",
+      "exc_trial_indices_zero_based": [
+        5,
+        15,
+        28
+      ],
+      "inh_trial_indices_zero_based": [
+        3
+      ],
+      "spike_trial_indices_zero_based": [
+        5,
+        16,
+        17
+      ],
+      "simultaneous_same_trial_claim": false
+    },
+    {
+      "stimulus_sha256": "f8bf6b6be5ef2d9196eefc3857532e9ca905add7a3011551c7c4a8ed3a98b1ce",
+      "exc_trial_indices_zero_based": [
+        4,
+        7,
+        24
+      ],
+      "inh_trial_indices_zero_based": [
+        4
+      ],
+      "spike_trial_indices_zero_based": [
+        10,
+        23,
+        27
+      ],
+      "simultaneous_same_trial_claim": false
+    }
+  ],
+  "all_source_stimulus_groups": {
+    "ExcStm": {
+      "ad746c2286b03fcfc33eb914365cdf10a8326dfdd686f227e416e02412673524": [
+        0,
+        2,
+        20
+      ],
+      "28c4947a689dd0e683ddf71d705a9fc825b352b41ecdc7334b1ca231d06a445c": [
+        1,
+        17,
+        23
+      ],
+      "25a5fe16202068931fd94993cfecf78739524f287efcfbf7e296e8cbaf0aa23b": [
+        3,
+        9,
+        18
+      ],
+      "f8bf6b6be5ef2d9196eefc3857532e9ca905add7a3011551c7c4a8ed3a98b1ce": [
+        4,
+        7,
+        24
+      ],
+      "b58ce51ed5acb36149a57770fb9251d9aeae573d9e9e284e0b8ffaed70fbdc9f": [
+        5,
+        15,
+        28
+      ],
+      "6caef8f5e7b25bf2500ef89d51271426965e40046c1d41958778c5301e92127d": [
+        6,
+        11,
+        12
+      ],
+      "1ce2aae21e55cf737a78995278539239e136e6753a984febba42f8ee33496a6a": [
+        8,
+        10,
+        25
+      ],
+      "25259403060fcc17ea68934ffa3ca81e19ae460b30fddcec242b3267456caec4": [
+        13,
+        14,
+        22
+      ],
+      "5f1e3b1f806cde21497f31682de05357faf59b06ebeba4212fb66ea8960ee0b5": [
+        16,
+        26,
+        27
+      ],
+      "abe37471fa4196776c89fac58736bc0c020ed8ee72fb1b19f6b7097f7b7f15ee": [
+        19,
+        21,
+        29
+      ]
+    },
+    "InhStm": {
+      "25259403060fcc17ea68934ffa3ca81e19ae460b30fddcec242b3267456caec4": [
+        0
+      ],
+      "1ce2aae21e55cf737a78995278539239e136e6753a984febba42f8ee33496a6a": [
+        1
+      ],
+      "abe37471fa4196776c89fac58736bc0c020ed8ee72fb1b19f6b7097f7b7f15ee": [
+        2
+      ],
+      "b58ce51ed5acb36149a57770fb9251d9aeae573d9e9e284e0b8ffaed70fbdc9f": [
+        3
+      ],
+      "f8bf6b6be5ef2d9196eefc3857532e9ca905add7a3011551c7c4a8ed3a98b1ce": [
+        4
+      ],
+      "5f1e3b1f806cde21497f31682de05357faf59b06ebeba4212fb66ea8960ee0b5": [
+        5
+      ],
+      "28c4947a689dd0e683ddf71d705a9fc825b352b41ecdc7334b1ca231d06a445c": [
+        6
+      ],
+      "25a5fe16202068931fd94993cfecf78739524f287efcfbf7e296e8cbaf0aa23b": [
+        7
+      ]
+    },
+    "SpikeStm": {
+      "25259403060fcc17ea68934ffa3ca81e19ae460b30fddcec242b3267456caec4": [
+        0,
+        18,
+        22
+      ],
+      "25a5fe16202068931fd94993cfecf78739524f287efcfbf7e296e8cbaf0aa23b": [
+        1,
+        11,
+        26
+      ],
+      "5f1e3b1f806cde21497f31682de05357faf59b06ebeba4212fb66ea8960ee0b5": [
+        2,
+        12,
+        13
+      ],
+      "1ce2aae21e55cf737a78995278539239e136e6753a984febba42f8ee33496a6a": [
+        3,
+        19,
+        28
+      ],
+      "28c4947a689dd0e683ddf71d705a9fc825b352b41ecdc7334b1ca231d06a445c": [
+        4,
+        7,
+        25
+      ],
+      "b58ce51ed5acb36149a57770fb9251d9aeae573d9e9e284e0b8ffaed70fbdc9f": [
+        5,
+        16,
+        17
+      ],
+      "abe37471fa4196776c89fac58736bc0c020ed8ee72fb1b19f6b7097f7b7f15ee": [
+        6,
+        14,
+        21
+      ],
+      "ad746c2286b03fcfc33eb914365cdf10a8326dfdd686f227e416e02412673524": [
+        8,
+        15,
+        20
+      ],
+      "6caef8f5e7b25bf2500ef89d51271426965e40046c1d41958778c5301e92127d": [
+        9,
+        24,
+        29
+      ],
+      "f8bf6b6be5ef2d9196eefc3857532e9ca905add7a3011551c7c4a8ed3a98b1ce": [
+        10,
+        23,
+        27
+      ]
+    }
+  },
+  "baseline_parameter_values": {
+    "C": {
+      "value": [
+        6e-11
+      ],
+      "unit": "F",
+      "meaning": "membrane_capacitance"
+    },
+    "gL": {
+      "value": [
+        2e-09
+      ],
+      "unit": "S",
+      "meaning": "leak_conductance"
+    },
+    "EL": {
+      "value": [
+        -0.065
+      ],
+      "unit": "V",
+      "meaning": "leak_reversal"
+    },
+    "EE": {
+      "value": [
+        0.0
+      ],
+      "unit": "V",
+      "meaning": "excitatory_reversal"
+    },
+    "EI": {
+      "value": [
+        -0.08
+      ],
+      "unit": "V",
+      "meaning": "inhibitory_reversal"
+    },
+    "V0": {
+      "value": [
+        -0.065
+      ],
+      "unit": "V",
+      "meaning": "initial_membrane_voltage"
+    },
+    "alpha": {
+      "value": [
+        150.0
+      ],
+      "unit": "Hz",
+      "meaning": "spike_intensity_scale"
+    },
+    "mu": {
+      "value": [
+        -0.07
+      ],
+      "unit": "V",
+      "meaning": "spike_voltage_offset"
+    },
+    "beta": {
+      "value": [
+        0.005
+      ],
+      "unit": "V",
+      "meaning": "spike_voltage_scale"
+    },
+    "spike_history_kernel": {
+      "value": [
+        -0.012,
+        -0.008,
+        -0.004
+      ],
+      "unit": "V",
+      "meaning": "strict_past_spike_history_kernel"
+    },
+    "initial_spike_history": {
+      "value": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "unit": "dimensionless",
+      "meaning": "spike_count_history"
+    },
+    "spike_interval": {
+      "value": 0.001,
+      "unit": "s",
+      "meaning": "spike_sampling_interval"
+    }
+  },
+  "base_profile_hash": "e9fa227a69a63e052aeb2262fbea68e5929d3ed218e684f8d547640adbcf6c0e",
+  "native_RGC_source_sha256": "32c469e6a1de2c75a28b1bf6c6d9fcac8c6942f0391386d60608b95688bac0e3",
+  "free_parameters": [
+    "alpha_Hz",
+    "mu_V"
+  ],
+  "fixed": [
+    "C",
+    "gL",
+    "EL",
+    "EE",
+    "EI",
+    "V0",
+    "beta",
+    "history kernel",
+    "spike interval",
+    "current scale"
+  ],
+  "search_bounds": {
+    "alpha_Hz": [
+      15.0,
+      600.0
+    ],
+    "mu_V": [
+      -0.09,
+      -0.04
+    ],
+    "kind": "project computational bounds, not animal confidence ranges"
+  },
+  "objective": "Original 1ms Bernoulli conditional NLL with observed strict-past history; baseline500ms+6s dynamic both scored",
+  "no_desired_firing_rate_target": true,
+  "source_unit_verified_calibration": false,
+  "production_default_changed": false
+}

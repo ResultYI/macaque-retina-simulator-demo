@@ -114,6 +114,10 @@ def somaratna_layer_component(spec,populations,sources,mode):
 
 def reference_component_registry():
     registry=ComponentRegistry()
+    from .bc_ac_contact_components import BC_KEY as contact_bc, AC_KEY as contact_ac, STATIC_KEY, membrane_component as contact_membrane, static_component
+    registry.register(contact_bc,contact_membrane)
+    registry.register(contact_ac,contact_membrane)
+    registry.register(STATIC_KEY,static_component)
     registry.register(CHEN_KEY,chen_component)
     registry.register(SF_KEY,somaratna_component)
     for layer in SF_STATES: registry.register('SomaratnaFreeman2025.'+layer,somaratna_layer_component)
@@ -123,6 +127,9 @@ def reference_component_registry():
     from .finite_feedback_native import KEY as finite_feedback_key,finite_feedback_component
     registry.register(finite_feedback_key,finite_feedback_component)
     for key in ('ResidualBC_ON','ResidualBC_OFF','ResidualAC'): registry.register(key,history_component)
+    from .bc_ac_receptor_components import BC_KEY, AC_KEY, cone_bc_component, generic_ac_component
+    registry.register(BC_KEY, cone_bc_component)
+    registry.register(AC_KEY, generic_ac_component)
     registry.register('SynapticConductance',conductance_component)
     registry.register('HistoryConductanceRGC',rgc_component)
     from .physical import cable_component,activation_component,hc_feedback_component,unit_conversion_component

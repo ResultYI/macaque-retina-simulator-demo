@@ -52,14 +52,19 @@ def load_population_record(root, *, owner_bounds_mm=None, halo_mm=.04,execution_
 
 
 def atlas_population_network(root,*,duration=.0012,light_context=None,owner_bounds_mm=(.34,.36,-.01,.01),
-        halo_mm=.04,max_spatial_cells=60000,seed=20261010,execution_profile='atlas_population_revision_v1',configuration_path=None,_freeze_geometry_bootstrap=False):
+        halo_mm=.04,max_spatial_cells=60000,seed=20261010,execution_profile='atlas_population_revision_v1',configuration_path=None,_freeze_geometry_bootstrap=False,
+        dynamics_candidate_path=None):
     root=Path(root)
+    if dynamics_candidate_path is not None:
+        candidate_path=Path(dynamics_candidate_path)
+        dynamics_candidate_path=candidate_path if candidate_path.is_absolute() else root/candidate_path
     if execution_profile=='atlas_isetbio_geometry_v1':
         configuration=circuit_configuration(root,configuration_path)
         if configuration.get('storage_kind')=='global_disk_graph_v1':
             from .disk_runtime import disk_network
-            return disk_network(root,configuration,duration=duration,light_context=light_context or LightContext(),
+            result=disk_network(root,configuration,duration=duration,light_context=light_context or LightContext(),
                 owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed)
+            return _candidate_result(result,dynamics_candidate_path,light_context or LightContext())
     record,binding=load_population_record(root,owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,execution_profile=execution_profile,configuration_path=configuration_path)
     spatial_asset=None
     if execution_profile=='atlas_isetbio_geometry_v1':
@@ -107,4 +112,26 @@ def atlas_population_network(root,*,duration=.0012,light_context=None,owner_boun
         audit['artifact_storage']={'source_json_sha256':binding['sha256'],'logical_record_hash':record.semantic_hash,
             'storage_manifest_hash':record.storage_manifest_hash,
             'io':dict(record.io),'scope':'lazy population/route block reads; selected current circuit still fully compiled and resident'}
+    return _candidate_result((compiled,channels,audit),dynamics_candidate_path,light)
+
+
+def _candidate_result(result,path,light=None):
+    if path is None:return result
+    from .bc_ac_candidate import migrate_bc_ac,CandidateProfile
+    compiled,channels,audit=result
+    candidate=CandidateProfile(path);background=None
+    if candidate.data.get('hypothesis_baseline'):
+        from .bc_ac_hypothesis import constant_background_channels
+        reference=constant_background_channels(compiled,light or LightContext(),stop=.0001)
+        background={k:v.at(0.) for k,v in reference.items()}
+    compiled,registry,report=migrate_bc_ac(compiled,audit['registry'],candidate,background_inputs=background)
+    from .assembly import RetinaBuilder
+    audit=dict(audit,registry=registry,spec=compiled.spec,candidate_dynamics=report,
+        resource_estimate=RetinaBuilder(registry).estimate(compiled.spec),
+        population_records={key:pop.record() for key,pop in compiled.populations.items()},
+        runtime_profile=dict(audit['runtime_profile'],candidate_dynamics=report,
+            claim='Retained base profile plus explicit BC/AC receptor candidate; no physiological calibration'))
+    audit['execution_profile']=dict(audit['execution_profile'],equation_route=report['equation_route'],
+        default_route_changed=False,physiological_calibration=False)
+    audit['resolved_execution_profile']=audit['execution_profile']
     return compiled,channels,audit

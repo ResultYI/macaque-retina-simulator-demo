@@ -1,0 +1,1610 @@
+{
+  "schema_version": "bc-ac-candidate-1.0",
+  "profile_id": "bc_ac_receptor_candidate_v1",
+  "equation_route": "bc_ac_receptor_candidate_v1",
+  "default_enabled": false,
+  "test_only": false,
+  "glutamate_concentration_claim": false,
+  "pooling_order": "frozen_connection_pool_then_single_effective_receptor_gate",
+  "approval": "Sentinel_27c9730906a08191998a122fcc59e601: equation structure approved, no numerical coefficient inference",
+  "status": "UNBOUND_CANDIDATE_NOT_PRODUCTION_DEFAULT",
+  "notes": [
+    "All scientific coefficients intentionally null; no old FIR voltage gain or sampling interval is converted into a receptor/membrane parameter",
+    "Frozen input weights pool before one effective receptor gate per cell; no per-contact molecular gating claim",
+    "BC release retains its existing first-order equation; AC uses instantaneous monotone effective voltage output with no new release resources"
+  ],
+  "families": {
+    "midget_BC_ON": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "midget_BC_OFF": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EI": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "diffuse_BC_ON": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "diffuse_BC_OFF": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EI": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "S_ON_BC": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "local_feedforward_AC": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "activation_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "activation_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "local_crossover_AC": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "activation_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "activation_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    },
+    "widefield_AC": {
+      "conditions": {},
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "V0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "K": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "S",
+          "meaning": "maximum_excitatory_conductance",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "e0": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_receptor_gate",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "activation_half": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        },
+        "activation_slope": {
+          "binding": "broadcast",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence_class": null,
+          "source_id": null,
+          "locator": null,
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ]
+          },
+          "uncertainty": "UNBOUND: no calibrated/source-bound coefficient supplied"
+        }
+      }
+    }
+  },
+  "aggregation_review": {
+    "status": "UNRESOLVED_SYNTHETIC_AGGREGATE_ONLY",
+    "production_parameter_binding": false,
+    "not_equivalent_to": "contact-first Wf(u)",
+    "pending_minimal_option": "fixed W and shared tau: tau*de_i/dt=sum_j W_ij*f(u_j)-e_i; no independent contact states added",
+    "approval_for_new_contact_states": false
+  }
+}

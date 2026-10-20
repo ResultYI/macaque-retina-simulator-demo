@@ -3947,5 +3947,9 @@
   },
   "external_parameter_profiles": [
     "Chen2024_primateRod_source"
-  ]
+  ],
+  "modeling_scope": {
+    "path": "configurations/modeling_scope_v1.json",
+    "sha256": "b3bd69875cc370761ddcdf8d0907b2b9323b4c52e8716a301d69158728f24a16"
+  }
 }

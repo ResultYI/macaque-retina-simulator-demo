@@ -1,0 +1,93 @@
+{
+  "schema": "latimer_measured_voltage_spike_readiness_1.0",
+  "status": "NO_MATCHED_PRIMARY_V_SPIKE_DATA_CALIBRATION_NOT_PERFORMED",
+  "useful_new_findings": {
+    "dynamic_clamp_Einh_mV": -90,
+    "CBEM_model_Einh_mV": -80,
+    "distinct_recording_cohorts": true,
+    "original_dynamic_clamp_seconds": 19,
+    "original_repeat_counts": [
+      18,
+      24
+    ],
+    "original_source": "Cafaro and Rieke2013, PMC3687519"
+  },
+  "local_file": {
+    "path": "D:\\macaque_retina_simulator\\data\\source_data\\latimer2019_figshare_v1\\Cell_6.mat",
+    "sha256": "59e1457bc27f7392a3c458902941a234c687b26a525b26d168bc8609aae40025",
+    "fields": [
+      "ExcCurrents",
+      "ExcStm",
+      "InhCurrents",
+      "InhStm",
+      "SpikeStm",
+      "SpikeTimes",
+      "fn"
+    ],
+    "contains_measured_voltage": false,
+    "contains_spikes": true,
+    "voltage_cannot_be_reconstructed_as_an_independent_measurement": true
+  },
+  "paper_attachments": [
+    {
+      "tag": "supplementary-material",
+      "href": ""
+    },
+    {
+      "tag": "media",
+      "href": "elife-47012-transrepform.docx"
+    }
+  ],
+  "figure3_raw_data_attachment_found": false,
+  "six_file_scope": "Six-file metadata inspected; only Cell6 bytes inspected. No claims about hidden fields in the five undownloaded files",
+  "previous_attempt": {
+    "path": "D:\\macaque_retina_simulator\\reports\\modeling_scope_20261020\\latimer_cell6_rgc_v1\\calibration_decision.json",
+    "sha256": "eff6c9b18aa210d74361fcb8601543b3d8b0ca15f1be65376c0e92a1afed227d",
+    "status": "CALIBRATION_PROPOSAL_REJECTED_NO_PRODUCTION_ADOPTION",
+    "old_parameter_group": [
+      "alpha",
+      "mu"
+    ],
+    "old_conditional_fit_is_not_current_whitelist_calibration": true,
+    "old_holdout_already_inspected": true,
+    "new_optimization_performed": false
+  },
+  "tested": [
+    "Cell6 identity and exact numeric schema",
+    "Primary XML dynamic-clamp cohort and conditions",
+    "Fig3 attachment inventory",
+    "Prior rejected-fit status and holdout use",
+    "Primary review model-versus-recording distinction",
+    "169 frozen video and 11 model/configuration identities",
+    "Prior standard-input and GUI source identities"
+  ],
+  "untested": [
+    "Real V-spike intake: missing raw voltage",
+    "mu or mu+beta fit: not run",
+    "Independent candidate validation: not run",
+    "Candidate short standard-stimulus control: no candidate"
+  ],
+  "blockers": [
+    "Raw time-aligned per-repeat membrane voltage and spikes for the two Fig3 cells are not located in inspected public assets",
+    "Exact cell-specific voltage reference/corrections, applied conductance scale and DC bias are not supplied",
+    "No independent untouched matched data are available for a new adaptive fit/test"
+  ],
+  "current_authorization": {
+    "permission_requests": 0,
+    "permission_denials": 0,
+    "pending_actions": [],
+    "uncertain_executions": [],
+    "retried_denied_operations": 0,
+    "authors_contacted": false
+  },
+  "access_limits": "eLife webpage challenge and inaccessible metadata/lab endpoints; public PMC text, Figshare description and GitHub source/metadata were readable. This does not establish that unpublished raw data do not exist",
+  "production_parameters_changed": false,
+  "production_defaults_changed": false,
+  "UI_changed": false,
+  "new_neural_seconds": 0,
+  "matlab_launches": 0,
+  "additional_datasets_downloaded": 0,
+  "source_review_sha256": "e268abdb0c4a283e79a0941e28f7977402385452be931bc6f372abee03d9d05c",
+  "intake_tool_sha256": "64b071fbb70b0b2b8e2493d0f6d29d07be3851a21166460252d5e800d9c7a38f",
+  "handoff_sha256": "81e8e4c5da81e108a3cb5a800f08243d5b7a389243b9971a0e2b0f2992c3eb1a"
+}

@@ -1,0 +1,51 @@
+component_id,parameter,unit,value,source_id,evidence_class,uncertainty
+midget_RGC_OFF,C,F,"[6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,EE,V,"[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,EI,V,"[-0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,EL,V,"[-0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,alpha,Hz,"[150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,beta,V,"[0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,dt,s,0.001,PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,gL,S,"[2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,history_kernel,V,"[-0.012, -0.008, -0.004]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_OFF,mu,V,"[-0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,C,F,"[6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11, 6e-11]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,EE,V,"[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,EI,V,"[-0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08, -0.08]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,EL,V,"[-0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065, -0.065]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,alpha,Hz,"[150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0, 150.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,beta,V,"[0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005, 0.005]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,dt,s,0.001,PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,gL,S,"[2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09, 2e-09]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,history_kernel,V,"[-0.012, -0.008, -0.004]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+midget_RGC_ON,mu,V,"[-0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,C,F,"[6e-11, 6e-11]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,EE,V,"[0.0, 0.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,EI,V,"[-0.08, -0.08]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,EL,V,"[-0.065, -0.065]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,alpha,Hz,"[150.0, 150.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,beta,V,"[0.005, 0.005]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,dt,s,0.001,PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,gL,S,"[2e-09, 2e-09]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,history_kernel,V,"[-0.012, -0.008, -0.004]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_OFF,mu,V,"[-0.07, -0.07]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,C,F,"[6e-11, 6e-11, 6e-11]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,EE,V,"[0.0, 0.0, 0.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,EI,V,"[-0.08, -0.08, -0.08]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,EL,V,"[-0.065, -0.065, -0.065]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,alpha,Hz,"[150.0, 150.0, 150.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,beta,V,"[0.005, 0.005, 0.005]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,dt,s,0.001,PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,gL,S,"[2e-09, 2e-09, 2e-09]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,history_kernel,V,"[-0.012, -0.008, -0.004]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+parasol_RGC_ON,mu,V,"[-0.07, -0.07, -0.07]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,C,F,"[6e-11, 6e-11, 6e-11]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,EE,V,"[0.0, 0.0, 0.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,EI,V,"[-0.08, -0.08, -0.08]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,EL,V,"[-0.065, -0.065, -0.065]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,alpha,Hz,"[150.0, 150.0, 150.0]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,beta,V,"[0.005, 0.005, 0.005]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,dt,s,0.001,PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,gL,S,"[2e-09, 2e-09, 2e-09]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,history_kernel,V,"[-0.012, -0.008, -0.004]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable
+small_bistratified_S_ON,mu,V,"[-0.07, -0.07, -0.07]",PRIMARY_PATHWAY_project_profile,project_approximation,Uncalibrated/retractable

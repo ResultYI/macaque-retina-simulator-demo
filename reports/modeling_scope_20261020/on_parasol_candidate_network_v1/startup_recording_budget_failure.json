@@ -1,0 +1,43 @@
+{
+  "schema": "on_parasol_source_candidate_full_network_v1",
+  "status": "STOPPED_EXACT_BLOCKER",
+  "variants": {},
+  "candidate_sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+  "production_default_changed": false,
+  "GUI_changed": false,
+  "fit_performed": false,
+  "input_protocol": {
+    "kind": "independent_consumer_unit_fullfield_steps",
+    "fractions": [
+      0.0,
+      0.1,
+      0.0,
+      -0.1,
+      0.0
+    ],
+    "phase_seconds": 0.1,
+    "short_background_wash_in_seconds": 0.1,
+    "calibrated_visual_contrast": false,
+    "common_physical_scene_claim": false,
+    "ISET_video_capture_reused": false,
+    "adapted_steady_state_claim": false
+  },
+  "matlab_launches": 0,
+  "permissions": {
+    "denied": 0,
+    "pending": [],
+    "uncertain": []
+  },
+  "assembly_wall_seconds": 12.265749599995615,
+  "counts": {
+    "components": 42,
+    "populations": 23,
+    "cells": 20422,
+    "dynamic_scalars": 58155,
+    "links": 50,
+    "gaps": 4
+  },
+  "error_type": "ContractError",
+  "error": "Recording requires at least 22676752 bytes; select cells/windows or stream, never thin anatomy",
+  "wall_seconds": 13.25466040000174
+}

@@ -76,6 +76,13 @@ class RuntimeProfile:
         if self.data.get('schema_version') != '1.0' or self.data.get('profile_id') != profile_id:
             raise ContractError('Unsupported runtime parameter profile identity/version')
         self.sha256 = hashlib.sha256(raw).hexdigest()
+        self.modeling_scope = None
+        if profile_id == 'effective_dynamics_v1' and 'modeling_scope' not in self.data:
+            raise ContractError('Effective dynamics requires the approved modeling scope')
+        if 'modeling_scope' in self.data:
+            from .modeling_scope import ModelingScope
+            self.modeling_scope = ModelingScope(self.path.parent.parent, self.data['modeling_scope'])
+            self.modeling_scope.validate_parameters(self.data['profiles'])
         for row in self.data.get('geometry_assets',{}).values():
             if hashlib.sha256((self.path.parent.parent/row['path']).read_bytes()).hexdigest()!=row['sha256']:
                 raise ContractError('Geometry asset differs from expected local content baseline '+row['path'])
@@ -118,7 +125,8 @@ class RuntimeProfile:
         return {'profile_id': self.data['profile_id'], 'schema_version': '1.0',
             'path': str(self.path), 'sha256': self.sha256, 'claim': self.data['claim'],
             'allowed_modes': self.data['allowed_modes'],'source_assets':self.data.get('source_assets',{}),
-            'geometry_assets':self.data.get('geometry_assets',{})}
+            'geometry_assets':self.data.get('geometry_assets',{}),
+            'modeling_scope':self.modeling_scope.manifest() if self.modeling_scope else None}
 
 def execution_profile(root,name):
     ids={'source_constrained_approximation':'macaque_constrained_native_v1','engineering_preview':'engineering_preview_v1'}

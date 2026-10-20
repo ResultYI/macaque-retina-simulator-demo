@@ -1,0 +1,25 @@
+{
+  "status": "SUPPLIED_REVIEW_MERGED_AND_STOPPED",
+  "before_review_delivery": "C:\\Users\\PC_User\\AppData\\Local\\Temp\\retina_latimer_delivery_20261020_v1.zip",
+  "before_review_delivery_sha256": "517fe1abb8240bd13124c5cdb4076c76919652e529e08bf0a9878fdef6c5a689",
+  "original_non_document_artifacts_byte_unchanged": true,
+  "documentation_original_prefix_preserved": true,
+  "documentation_original_prefix_sha256": "88b4568edb624d02f97bc3ee1e0180dd635c1b9984c5214b4ea35ddf194b394b",
+  "documentation_append_line": 1413,
+  "source_copy_sha256": {
+    "independent_latimer_trong_bioc.txt": "83b20f34ad46669f3e41f8ccdee86663885df50930558b1b4eed8d8440f000d2",
+    "independent_latimer_elife_v1.txt": "59052f9c97f7701cd2e041d1fc18f412c6e2f8d43f23ff5501b24fdbd31a9ada",
+    "latimer_independent_review_20261020_v1.xml": "5b5b18495ff341fbbf78b441b0d918cff60eb00c0cbc62ef21e7bcaa4b0a729e"
+  },
+  "supplied_review_sha256": "4539122c8b6b8bf606b723f19950b8b2c0c919b158a3062a2ea207324d258030",
+  "new_optimization_or_simulation_runs": 0,
+  "new_test_runs": 0,
+  "authors_contacted": false,
+  "emails_sent": false,
+  "species_changed": false,
+  "parameters_changed": false,
+  "physiology_calibration_completed": false,
+  "scientific_decision": "Conditional proposal remains rejected",
+  "recoverable_state_preserved": true,
+  "computation_stopped": true
+}

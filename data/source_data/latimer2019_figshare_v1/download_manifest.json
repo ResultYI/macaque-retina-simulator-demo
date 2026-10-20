@@ -1,0 +1,41 @@
+{
+  "article_id": 9636854,
+  "article_version": 1,
+  "selection": "Smallest file by declared bytes, before looking at observations",
+  "complete_bundle_downloaded": false,
+  "files": {
+    "Cell_6.mat": {
+      "requested_url": "https://ndownloader.figshare.com/files/17288414",
+      "resolved_url": "https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/17288414/Cell_6.mat",
+      "bytes": 17007338,
+      "content_type": "application/octet-stream",
+      "sha256": "59e1457bc27f7392a3c458902941a234c687b26a525b26d168bc8609aae40025",
+      "md5": "83be38d612d7e31bdf38b731cd2c3ebf",
+      "temporary_public_redirect_query_omitted": true
+    },
+    "latimer2019_PMC6989090.xml": {
+      "requested_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6989090/fullTextXML",
+      "resolved_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6989090/fullTextXML",
+      "bytes": 383158,
+      "content_type": "application/xml",
+      "sha256": "09b5ce244f7abbdcc110046d0fc424f51c39055016e47c951098d49e2ec9bf9f",
+      "md5": "0c9c50a059fec30b832c8a80156823ce"
+    },
+    "author_repository_commit.json": {
+      "requested_url": "https://api.github.com/repos/pillowlab/CBEM/commits/master",
+      "resolved_url": "https://api.github.com/repos/pillowlab/CBEM/commits/master",
+      "bytes": 4641,
+      "content_type": "application/json; charset=utf-8",
+      "sha256": "8ec26e8fcb410f082f9490476c23387d1d27053718ac53dfbb5cf971e3fb1073",
+      "md5": "bac7238b468fad0ea318f811fa43c731"
+    },
+    "author_data_directory.json": {
+      "requested_url": "https://api.github.com/repos/pillowlab/CBEM/contents/Data",
+      "resolved_url": "https://api.github.com/repos/pillowlab/CBEM/contents/Data",
+      "bytes": 1634,
+      "content_type": "application/json; charset=utf-8",
+      "sha256": "5a98d90a904ec35b997164234be67636f264052589e93582d00dd8be81c5e93b",
+      "md5": "adce1b156d73d2e059f668a5efc7e341"
+    }
+  }
+}

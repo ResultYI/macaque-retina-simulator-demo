@@ -1,0 +1,29 @@
+{
+  "status": "CALIBRATION_PROPOSAL_REJECTED_NO_PRODUCTION_ADOPTION",
+  "real_observation_stimulus_pairing_verified": true,
+  "current_units_and_index_origin_fully_verified": false,
+  "conditional_fit_completed": true,
+  "optimizer_converged": true,
+  "reasons": [
+    "Alpha reached its predeclared upper search bound; bounds are not expanded after seeing validation",
+    "Heldout constant-input baseline still overpredicted",
+    "Heldout mean-centered dynamic waveform error increased despite lower total error",
+    "Exported current-unit/index-origin metadata absent; pA/one-based interpretations remain assumptions"
+  ],
+  "heldout_joint_NLL_improvement": 1247.854472920164,
+  "heldout_bits_per_spike_gain": 0.8201701411540008,
+  "heldout_baseline_prediction_over_observation_ratio": 1.889720481221585,
+  "centered_dynamic_MSE_fraction_change": 0.10039757273972572,
+  "additional_fit_attempts_or_bound_expansions": 0,
+  "fit_is_not_BC_AC_validation": true,
+  "whole_network_validation": false,
+  "other_RGC_classes_tested": false,
+  "actual_effect_on_existing_network": "None; experimental module proposal remains unbound",
+  "conditional_equation_scope": "Only existing alpha/mu changed; deterministic V and all other native RGC parameters identical",
+  "nonidentifiable_anchors": "Absolute current/conductance and passive C/gL/reversal scales fixed; mu is only an effective offset conditional on these anchors",
+  "next_required_evidence": [
+    "Author export-unit and spike-index-origin specification",
+    "Voltage-clamp offset/driving-force provenance or original calibrated conductance files",
+    "A new independent validation set before adaptive parameter/model choices after this heldout result"
+  ]
+}

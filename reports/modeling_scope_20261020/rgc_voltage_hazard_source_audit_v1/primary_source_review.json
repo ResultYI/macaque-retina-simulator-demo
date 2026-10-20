@@ -1,0 +1,137 @@
+{
+  "schema": "rgc_primary_source_review_v1",
+  "review_scope": "Existing voltage/history to conditional intensity to binary counts only; no parameter adoption",
+  "paper": {
+    "citation": "Latimer, Rieke and Pillow (2019), eLife 8:e47012",
+    "url": "https://doi.org/10.7554/eLife.47012",
+    "local_xml": "data/source_data/latimer2019_figshare_v1/latimer2019_PMC6989090.xml",
+    "equations": {
+      "6": "dV/dt = -gl*(V-El)-ge*(V-Ee)-gi*(V-Ei); capacitance scale omitted",
+      "11": "Total effective voltage adds a fitted linear filter of past spikes to membrane voltage",
+      "12_and_28": "alpha*log(1+exp((total_voltage-mu)/beta)); division verified in MathML"
+    },
+    "reported_output_fit": {
+      "alpha_Hz": 90,
+      "mu_mV": -53,
+      "beta_mV": 1.67,
+      "scope": "Combined dynamic-clamp voltage/spike recordings from two ON-parasol RGCs; repeated-trial mean voltage",
+      "not_a_universal_five_class_parameter_set": true
+    },
+    "reported_membrane_conditions": {
+      "role": "Fixed CBEM model settings; these are not the dynamic-clamp recording reversal potentials",
+      "Ee_mV": 0,
+      "Ei_mV": -80,
+      "El_mV": -60,
+      "gl_capacitance_scaled_per_second": 200,
+      "physical_capacitance_not_identified": true,
+      "intracellular_bin_ms": 0.1,
+      "other_population_bin_ms": 0.083
+    },
+    "recording_dynamic_clamp_conditions": {
+      "primary_methods": "Dynamic clamp recordings; source Cafaro and Rieke 2013, DOI 10.1523/JNEUROSCI.4964-12.2013",
+      "recording_mode": "Current clamp with conductance-based current injection",
+      "cell_type": "Two ON-parasol RGCs",
+      "Ee_mV": 0,
+      "Ei_mV": -90,
+      "feedback_delay_us": 100,
+      "stimulus_seconds": 19,
+      "repeat_trials_per_cell": [18, 24],
+      "not_the_public_six_cell_current_spike_cohort": true,
+      "raw_voltage_spike_records_located": false,
+      "original_acquisition_context": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3687519/",
+        "conductance_scaling": "Common E/I amplitude factor adjusted per dynamic-clamp cell; exact Fig3 values not supplied",
+        "bias_current": "Optional constant injected current below 200pA to support spontaneous firing; exact Fig3 values not supplied",
+        "voltage_reference": "2013 paper reports -10mV liquid-junction correction; mapping to the two Fig3 exports is unresolved",
+        "scope_limit": "Acquisition-method cohort settings do not establish cell-specific correction, species, or injection values; no correction applied to project parameters"
+      }
+    }
+  },
+  "author_python": {
+    "repository": "pillowlab/CBEM",
+    "commit": "7beb7e72b0678192f0bc98392a678cdff9601791",
+    "commit_date": "2022-05-23",
+    "source_url": "https://raw.githubusercontent.com/pillowlab/CBEM/7beb7e72b0678192f0bc98392a678cdff9601791/pyCBEM/RGC_CBEM.py",
+    "utils_url": "https://raw.githubusercontent.com/pillowlab/CBEM/7beb7e72b0678192f0bc98392a678cdff9601791/pyCBEM/utils.py",
+    "identity": "Local bytes match git blob IDs in the frozen tree; this is a later author implementation, not a 2019 publication snapshot",
+    "output": "alpha=90, mu=-53 mV, beta=1.67 mV; membrane plus voltage-valued history before division by beta",
+    "sampling": "Binary probability 1-exp(-rate*binSize_ms/1000); truncated-Poisson likelihood",
+    "membrane_units": "getVoltage multiplies g_tot by binSize_ms/1000; g_l=200 is per second, not siemens",
+    "history": "Fitted spline-basis filter with support about 190 ms; no author basis/filter values copied into current three-bin kernel"
+  },
+  "publication_matlab_archive": {
+    "repository": "elifesciences-publications/CBEM",
+    "commit": "cfe41c4519fd56bd5aaaa81f156357ebae101d8f",
+    "commit_date": "2020-01-17",
+    "access": "Read through browser at pinned raw URLs; local raw download unavailable due restricted DNS; no MATLAB executed",
+    "setup_url": "https://raw.githubusercontent.com/elifesciences-publications/CBEM/cfe41c4519fd56bd5aaaa81f156357ebae101d8f/code/CBEMstructHandler/setupCBEMsimple.m",
+    "setup_expected_git_blob": "2f586546225e2d443c88d786f4a1effa0b953864",
+    "setup_final_nonlinearity": {
+      "formula": "c*log(1+exp(clip(a*V+b+sph,-80,80)))",
+      "c_Hz": 90,
+      "a_per_mV": 0.45,
+      "b": 23.85,
+      "equivalent_mu_mV": -53,
+      "equivalent_beta_mV": 2.2222222222222223,
+      "history_unit": "sph is dimensionless; equivalent voltage-valued history is sph/a mV",
+      "limit": "Final setup initialization differs from the paper beta and later Python code; it is not evidence for the current project kernel or a fitted animal value"
+    },
+    "simulate_url": "https://raw.githubusercontent.com/elifesciences-publications/CBEM/cfe41c4519fd56bd5aaaa81f156357ebae101d8f/code/simulateCBEM.m",
+    "simulate_expected_git_blob": "12e6271e45bba2f6fc327e49ad238606a2f6e121",
+    "sampling": "Binary binornd(1,1-exp(-dt*rate)); history uses only previous bins",
+    "example_url": "https://raw.githubusercontent.com/elifesciences-publications/CBEM/cfe41c4519fd56bd5aaaa81f156357ebae101d8f/exampleScript.m",
+    "time_units": "Example sets dt=1e-4 seconds; setup header calls it milliseconds, but stimulus basis, dynamics and example use seconds. No such header ambiguity is present in current SI quantities",
+    "fit_entry_url": "https://raw.githubusercontent.com/elifesciences-publications/CBEM/cfe41c4519fd56bd5aaaa81f156357ebae101d8f/code/doCBEMfit.m",
+    "membrane_limit": "Setup and fitting entry modify/add leak terms; copying a standalone setup value is not a reproduction of the paper membrane conditions"
+  },
+  "current_project": {
+    "mechanism_source": "retina_sim/inner.py:104-144",
+    "parameter_registry": "configurations/effective_dynamics_v1.json",
+    "source_id": "PRIMARY_PATHWAY_project_profile",
+    "source_verification_level": "identity_verified, not biological verification",
+    "evidence_class": "project_approximation",
+    "first_local_history": {
+      "commit": "1e4dec7",
+      "description": "Import macaque retina research project",
+      "fixture": "examples/full_target_network.py",
+      "interpretation": "Same output parameters and intensity formula already exist at the import. No earlier author-derived numeric provenance is established by local Git"
+    },
+    "classification": {
+      "borrowed_structure": "Conductance-driven graded membrane, linear past-spike term and softplus hazard are consistent with CBEM structure",
+      "project_coefficients": "All five families share C=60pF, gL=2nS, EL=-65mV, EE=0mV, EI=-80mV, alpha=150Hz, mu=-70mV, beta=5mV, [-12,-8,-4]mV history at 1ms bins. Coinciding reversal values do not change their declared project provenance",
+      "initial_voltage": "Derived from declared upstream/background conductance balance, not measured resting voltage",
+      "history": "Voltage impulse per binary past-bin count, not a Hz-valued firing-rate convolution; no extra dt multiplication",
+      "time_scale": "Leak-only C/gL=30ms versus paper normalized leak time 5ms; no capacitance-calibrated equivalence is claimed"
+    }
+  },
+  "diagnosis": "Current implementation matches its declared SI formula and author-style binary observation rule. High leak-only firing is a predictable consequence of uncalibrated parameter placement and short history, not an established arithmetic/unit bug. Physiological applicability remains unvalidated",
+  "correction_choices": [
+    {
+      "choice": "Retain current project fixture and label the limitation",
+      "status": "Executed by this audit; production unchanged",
+      "purpose": "Preserve reproducibility and avoid treating equation correctness as physiological calibration"
+    },
+    {
+      "choice": "Fit one approved output group against matched voltage/spike observations",
+      "status": "No fit performed",
+      "approved_groups": ["mu", "mu+beta"],
+      "required": "Explicit RGC class and recording conditions, physical voltage origin, time-aligned spikes, repeat-mean voltage convention, compatible history/binning, disjoint train/validation/test and independent checks of background conductance balance",
+      "limit": "No invented normal firing target; do not co-fit unconstrained upstream gains; one voltage point cannot identify the whole transfer function"
+    },
+    {
+      "choice": "Create an isolated paper or pinned-author reference candidate",
+      "status": "Requires explicit scientific scope confirmation before implementation",
+      "required": "Select paper versus 2020 MATLAB versus 2022 Python, including membrane normalization, voltage/history units, bin size, data conditions and phenotype",
+      "outside_current_whitelist": ["alpha", "EL or reversal changes", "history shape or support", "spike interval"],
+      "limit": "Do not transfer two ON-parasol output-fit values to all five classes or switch production defaults"
+    }
+  ],
+  "non_corrections": [
+    "A consistent absolute-to-relative voltage-origin conversion leaves all rates unchanged",
+    "A consistent V-to-mV conversion leaves all rates unchanged",
+    "Moving mu alone changes the scientific parameter; making mu more negative increases hazard at fixed V",
+    "Adding another dt factor to a per-spike voltage kernel changes the declared model",
+    "Changing the binary sampler to multi-event Poisson is not justified as a bug fix by the paper prose",
+    "Reducing dt while retaining three kernel samples changes the physical history support"
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "midget_RGC_OFF": {
+    "phases": {
+      "gray_before": {
+        "mean_voltage_delta_mV": 0.0,
+        "mean_expected_count_rate_delta_Hz": 0.0,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 270.09529540167205,
+        "one_seed_gray_count_rate_Hz": 273.1818181818182
+      },
+      "increment": {
+        "mean_voltage_delta_mV": -0.03134762995637909,
+        "mean_expected_count_rate_delta_Hz": -0.3913147968196891,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 270.4786984495986,
+        "one_seed_gray_count_rate_Hz": 264.09090909090907
+      },
+      "gray_middle": {
+        "mean_voltage_delta_mV": -0.025646890312921763,
+        "mean_expected_count_rate_delta_Hz": -0.31424947388811336,
+        "one_seed_observed_rate_delta_Hz": -0.4545454545454959,
+        "mean_expected_gray_count_rate_Hz": 270.4200706469018,
+        "one_seed_gray_count_rate_Hz": 266.8181818181818
+      },
+      "decrement": {
+        "mean_voltage_delta_mV": 0.013819564510737669,
+        "mean_expected_count_rate_delta_Hz": 0.17303208241960738,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 270.39991436532495,
+        "one_seed_gray_count_rate_Hz": 262.7272727272727
+      },
+      "gray_after": {
+        "mean_voltage_delta_mV": -0.010024344278798133,
+        "mean_expected_count_rate_delta_Hz": -0.12780992680505815,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 270.3931847330593,
+        "one_seed_gray_count_rate_Hz": 262.7272727272727
+      }
+    },
+    "peak_abs_voltage_delta_mV": 0.055881195830297097,
+    "peak_abs_expected_count_rate_delta_Hz": 0.691494538644375
+  },
+  "midget_RGC_ON": {
+    "phases": {
+      "gray_before": {
+        "mean_voltage_delta_mV": 0.0,
+        "mean_expected_count_rate_delta_Hz": 0.0,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.1712898887869,
+        "one_seed_gray_count_rate_Hz": 277.7272727272727
+      },
+      "increment": {
+        "mean_voltage_delta_mV": 0.02434170651150246,
+        "mean_expected_count_rate_delta_Hz": 0.30426071680529665,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.7264047444022,
+        "one_seed_gray_count_rate_Hz": 275.9090909090909
+      },
+      "gray_middle": {
+        "mean_voltage_delta_mV": 0.025467839692527753,
+        "mean_expected_count_rate_delta_Hz": 0.31240352034509844,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.73520971389684,
+        "one_seed_gray_count_rate_Hz": 273.6363636363636
+      },
+      "decrement": {
+        "mean_voltage_delta_mV": -0.011894827511020051,
+        "mean_expected_count_rate_delta_Hz": -0.14918718757115138,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.73846815457154,
+        "one_seed_gray_count_rate_Hz": 265.9090909090909
+      },
+      "gray_after": {
+        "mean_voltage_delta_mV": 0.0006412549385199886,
+        "mean_expected_count_rate_delta_Hz": 0.011287999106909606,
+        "one_seed_observed_rate_delta_Hz": 0.45454545454543904,
+        "mean_expected_gray_count_rate_Hz": 273.7395646132445,
+        "one_seed_gray_count_rate_Hz": 285.45454545454544
+      }
+    },
+    "peak_abs_voltage_delta_mV": 0.04921505664917574,
+    "peak_abs_expected_count_rate_delta_Hz": 0.6091151522554206
+  },
+  "parasol_RGC_OFF": {
+    "phases": {
+      "gray_before": {
+        "mean_voltage_delta_mV": 0.0,
+        "mean_expected_count_rate_delta_Hz": 0.0,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 268.9756381593013,
+        "one_seed_gray_count_rate_Hz": 235.0
+      },
+      "increment": {
+        "mean_voltage_delta_mV": -0.03102949102357998,
+        "mean_expected_count_rate_delta_Hz": -0.38734149512652266,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 271.0829405800383,
+        "one_seed_gray_count_rate_Hz": 280.0
+      },
+      "gray_middle": {
+        "mean_voltage_delta_mV": -0.02534141964596951,
+        "mean_expected_count_rate_delta_Hz": -0.31058674638014394,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 271.02056834495136,
+        "one_seed_gray_count_rate_Hz": 275.0
+      },
+      "decrement": {
+        "mean_voltage_delta_mV": 0.011161784000086501,
+        "mean_expected_count_rate_delta_Hz": 0.13992433932032042,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 270.99876602899934,
+        "one_seed_gray_count_rate_Hz": 245.0
+      },
+      "gray_after": {
+        "mean_voltage_delta_mV": -0.01479679849614203,
+        "mean_expected_count_rate_delta_Hz": -0.1868240460347738,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 270.9914628947124,
+        "one_seed_gray_count_rate_Hz": 290.0
+      }
+    },
+    "peak_abs_voltage_delta_mV": 0.05504223914674922,
+    "peak_abs_expected_count_rate_delta_Hz": 0.681141881611353
+  },
+  "parasol_RGC_ON": {
+    "phases": {
+      "gray_before": {
+        "mean_voltage_delta_mV": 0.0,
+        "mean_expected_count_rate_delta_Hz": 0.0,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.4953365234691,
+        "one_seed_gray_count_rate_Hz": 253.3333333333333
+      },
+      "increment": {
+        "mean_voltage_delta_mV": 0.020404354599102,
+        "mean_expected_count_rate_delta_Hz": 0.2549038726949734,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.15465508251344,
+        "one_seed_gray_count_rate_Hz": 253.3333333333333
+      },
+      "gray_middle": {
+        "mean_voltage_delta_mV": 0.01867279943533369,
+        "mean_expected_count_rate_delta_Hz": 0.2289052051718132,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.15473353454706,
+        "one_seed_gray_count_rate_Hz": 276.66666666666663
+      },
+      "decrement": {
+        "mean_voltage_delta_mV": -0.007844012686804198,
+        "mean_expected_count_rate_delta_Hz": -0.0984427646412009,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.1547342222088,
+        "one_seed_gray_count_rate_Hz": 276.66666666666663
+      },
+      "gray_after": {
+        "mean_voltage_delta_mV": 0.005871387060771467,
+        "mean_expected_count_rate_delta_Hz": 0.07528257013912386,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 273.1547342339663,
+        "one_seed_gray_count_rate_Hz": 306.66666666666663
+      }
+    },
+    "peak_abs_voltage_delta_mV": 0.03884806841575097,
+    "peak_abs_expected_count_rate_delta_Hz": 0.4808123818973134
+  },
+  "small_bistratified_S_ON": {
+    "phases": {
+      "gray_before": {
+        "mean_voltage_delta_mV": 0.0,
+        "mean_expected_count_rate_delta_Hz": 0.0,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 381.39284066233495,
+        "one_seed_gray_count_rate_Hz": 376.66666666666663
+      },
+      "increment": {
+        "mean_voltage_delta_mV": -0.007173344458391595,
+        "mean_expected_count_rate_delta_Hz": -0.08676038604073559,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 379.109885646418,
+        "one_seed_gray_count_rate_Hz": 369.99999999999994
+      },
+      "gray_middle": {
+        "mean_voltage_delta_mV": -0.0033134227752182562,
+        "mean_expected_count_rate_delta_Hz": -0.039371958562464136,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 379.0675362306552,
+        "one_seed_gray_count_rate_Hz": 409.99999999999994
+      },
+      "decrement": {
+        "mean_voltage_delta_mV": 0.0014700168179682578,
+        "mean_expected_count_rate_delta_Hz": 0.017829991849152595,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 379.05303893389646,
+        "one_seed_gray_count_rate_Hz": 373.33333333333326
+      },
+      "gray_after": {
+        "mean_voltage_delta_mV": -0.008192527940114163,
+        "mean_expected_count_rate_delta_Hz": -0.0990531107324902,
+        "one_seed_observed_rate_delta_Hz": 0.0,
+        "mean_expected_gray_count_rate_Hz": 379.0481793367119,
+        "one_seed_gray_count_rate_Hz": 399.99999999999994
+      }
+    },
+    "peak_abs_voltage_delta_mV": 0.012282123345914534,
+    "peak_abs_expected_count_rate_delta_Hz": 0.14762917117195684
+  }
+}

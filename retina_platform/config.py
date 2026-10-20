@@ -65,6 +65,20 @@ class RunConfig:
         import json
         policy=json.loads((Path(root)/'configurations/retina_platform_v1.json').read_bytes())
         if policy.get('schema_version')!='1.0':raise ValueError('Unknown shared platform configuration schema')
+        from retina_sim.modeling_scope import ModelingScope
+        scope=ModelingScope(root,policy['modeling_scope'])
+        targets=scope.data['rgc_targets']
+        expected={role:[name for name,row in targets.items() if row['evaluation_role']==role]
+                  for role in ('primary_quantitative','supplementary')}
+        if any(policy['evaluation_targets'][role]!=names for role,names in expected.items()):
+            raise ValueError('Shared evaluation targets differ from approved modeling scope')
+        if (policy['evaluation_targets']['internal_validation_from_output_match'] is not False or
+                policy['evaluation_targets']['automatic_fitting_enabled'] is not False):
+            raise ValueError('Internal validation and fitting are not implied by the scoped outputs')
+        parameter=json.loads((Path(root)/'configurations'/
+                              (policy['run_defaults']['parameter_profile']+'.json')).read_bytes())
+        if parameter.get('modeling_scope')!=policy['modeling_scope']:
+            raise ValueError('Shared configuration and runtime modeling scope differ')
         return cls.from_dict(policy['run_defaults'])
 
     @classmethod

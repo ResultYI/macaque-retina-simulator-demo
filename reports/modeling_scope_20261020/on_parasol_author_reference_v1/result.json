@@ -1,0 +1,222 @@
+{
+  "schema": "on_parasol_author_reference_1.0",
+  "status": "PARTIAL_AUTHOR_REFERENCE_REEXPRESSION_COMPLETED_NOT_EMPIRICAL_CALIBRATION",
+  "execution": {
+    "python": "C:\\Users\\PC_User\\anaconda3\\envs\\retipath_v1\\python.exe",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "source_backend": "NumPy float64 / SciPy lower-bidiagonal solve",
+    "jax_available": false,
+    "direct_JAX_author_entry_executed": false,
+    "matlab_executed": false,
+    "simulation_duration_seconds": 0.5,
+    "wall_seconds": 0.741701799997827
+  },
+  "author_2022": {
+    "commit": "7beb7e72b0678192f0bc98392a678cdff9601791",
+    "source_identity": {
+      "pyCBEM/RGC_CBEM.py": {
+        "git_blob_sha1": "095db325d9d1e9576e054060816ac545c1b4be7b",
+        "sha256": "10250883281b81dbf9e09ff33c00b11ca498835d4bf25efb1c900fd3a79022eb"
+      },
+      "pyCBEM/utils.py": {
+        "git_blob_sha1": "f5f6d4375d4adaf63a8fad47bdc5681c650aac11",
+        "sha256": "ff163691ef9b062af69282caf23cbe8866b2d40c7c4ea4403913b16ca84db84d"
+      }
+    },
+    "model": {
+      "El_mV": -60.0,
+      "Ee_mV": 0.0,
+      "Ei_mV": -80.0,
+      "gl_per_s": 200.0,
+      "alpha_Hz": 90.0,
+      "mu_mV": -53.0,
+      "beta_mV": 1.67,
+      "dt_s": 0.0001
+    },
+    "unavailable": "Fitted stimulus filters, fitted spike-history kernel and actual V-spike observations"
+  },
+  "matlab_2020": {
+    "commit": "cfe41c4519fd56bd5aaaa81f156357ebae101d8f",
+    "voltage_scope": "Published voltage algorithm reexpressed under paper membrane parameters; not the full setup+fitting entry",
+    "separate_init_nonlinearity": {
+      "c_Hz": 90.0,
+      "slope_per_mV": 0.45,
+      "mu_mV": -53.0,
+      "equivalent_beta_mV": 2.2222222222222223
+    },
+    "direct_author_matlab_executed": false
+  },
+  "project": {
+    "unchanged_profile": "effective_parasol_RGC_ON",
+    "C_F": 6e-11,
+    "gL_S": 2e-09,
+    "gL_over_C_per_s": 33.333333333333336,
+    "EL_mV": -65.0,
+    "EE_mV": 0.0,
+    "EI_mV": -80.0,
+    "alpha_Hz": 150.0,
+    "mu_mV": -70.0,
+    "beta_mV": 5.0,
+    "dt_s": 0.001,
+    "history_mV": [
+      -12.0,
+      -8.0,
+      -4.0
+    ],
+    "input_comparison": "Same normalized g/C inputs; project physical S inputs are C_project times g/C. Author capacitance not identified"
+  },
+  "input": {
+    "evidence_class": "engineering_reference",
+    "kind": "Synthetic conductance clamp, not a visual stimulus or author-fitted input",
+    "phases": [
+      [
+        "leak_only",
+        0.0,
+        0.0
+      ],
+      [
+        "E_step",
+        40.0,
+        0.0
+      ],
+      [
+        "E_plus_I",
+        40.0,
+        40.0
+      ],
+      [
+        "recovery",
+        0.0,
+        0.0
+      ],
+      [
+        "equal_E_I",
+        10.0,
+        10.0
+      ]
+    ],
+    "each_phase_s": 0.1,
+    "no_measured_data_used": true
+  },
+  "history_scope": "Author curves/dynamics have explicit zero history to isolate known source mapping; no fitted author history fabricated. Project original history shown separately by exact marginalization, initially empty",
+  "anchors": [
+    {
+      "V_mV": -65.0,
+      "author_zero_history_hazard_Hz": 0.06813953785515454,
+      "project_zero_history_hazard_Hz": 196.98925312773352,
+      "author_binary_rate_dt0p1ms_Hz": 0.06813930570585089,
+      "project_binary_rate_dt1ms_Hz": 178.80054140907745
+    },
+    {
+      "V_mV": -60.0,
+      "author_zero_history_hazard_Hz": 1.3507759528967818,
+      "project_zero_history_hazard_Hz": 319.0392016564461,
+      "author_binary_rate_dt0p1ms_Hz": 1.3506847272205968,
+      "project_binary_rate_dt1ms_Hz": 273.1529448607118
+    },
+    {
+      "V_mV": -53.0,
+      "author_zero_history_hazard_Hz": 62.383246250395075,
+      "project_zero_history_hazard_Hz": 514.92427056373,
+      "author_binary_rate_dt0p1ms_Hz": 62.189066774451426,
+      "project_binary_rate_dt1ms_Hz": 402.45415528520056
+    },
+    {
+      "V_mV": -40.0,
+      "author_zero_history_hazard_Hz": 700.6362493639681,
+      "project_zero_history_hazard_Hz": 900.3713527706597,
+      "author_binary_rate_dt0p1ms_Hz": 676.6550170435321,
+      "project_binary_rate_dt1ms_Hz": 593.5812929989179
+    }
+  ],
+  "phase_comparison": [
+    {
+      "phase": "leak_only",
+      "gE_over_C_per_s": 0.0,
+      "gI_over_C_per_s": 0.0,
+      "paper_mean_zero_history_hazard_Hz": 1.3507759528967822,
+      "paper_expected_binary_count_Hz": 1.3506847272205973,
+      "project_mean_zero_history_hazard_Hz": 196.9892531277335,
+      "project_original_history_expected_count_Hz": 135.9535790823956
+    },
+    {
+      "phase": "E_step",
+      "gE_over_C_per_s": 40.0,
+      "gI_over_C_per_s": 0.0,
+      "paper_mean_zero_history_hazard_Hz": 162.4690308144085,
+      "paper_expected_binary_count_Hz": 161.09012324148176,
+      "project_mean_zero_history_hazard_Hz": 1064.7932373060385,
+      "project_original_history_expected_count_Hz": 496.2347275276258
+    },
+    {
+      "phase": "E_plus_I",
+      "gE_over_C_per_s": 40.0,
+      "gI_over_C_per_s": 40.0,
+      "paper_mean_zero_history_hazard_Hz": 38.172850871248954,
+      "paper_expected_binary_count_Hz": 38.08744413503983,
+      "project_mean_zero_history_hazard_Hz": 730.5443473576789,
+      "project_original_history_expected_count_Hz": 367.9378507559223
+    },
+    {
+      "phase": "recovery",
+      "gE_over_C_per_s": 0.0,
+      "gI_over_C_per_s": 0.0,
+      "paper_mean_zero_history_hazard_Hz": 2.0706786427924517,
+      "paper_expected_binary_count_Hz": 2.069958506931942,
+      "project_mean_zero_history_hazard_Hz": 329.4793351884491,
+      "project_original_history_expected_count_Hz": 196.0678874703735
+    },
+    {
+      "phase": "equal_E_I",
+      "gE_over_C_per_s": 10.0,
+      "gI_over_C_per_s": 10.0,
+      "paper_mean_zero_history_hazard_Hz": 3.802312899175804,
+      "paper_expected_binary_count_Hz": 3.801580355883638,
+      "project_mean_zero_history_hazard_Hz": 393.56643865425684,
+      "project_original_history_expected_count_Hz": 227.44277101885191
+    }
+  ],
+  "source_voltage_discrepancy": {
+    "python_literal_first_leak_voltage_mV": -61.18807960159469,
+    "equation_and_matlab_first_leak_voltage_mV": -60.0,
+    "first_bin_difference_mV": -1.188079601594687,
+    "maximum_absolute_version_difference_mV": 1.188079601594687,
+    "after_first_50ms_maximum_difference_mV": 0.42398806744171225,
+    "source_initial_term": "C[0] += V0, rather than decay[0]*V0 in the ZOH equation",
+    "source_lower_diagonal": "At row j>0, previous interval decay[j-1], while the ZOH equation uses decay[j]",
+    "interpretation": "Difference of the pinned NumPy-reexpressed source equations; not a directly executed JAX runtime finding",
+    "production_fix_applied": false
+  },
+  "checks": {
+    "matlab_vs_equation_max_abs_mV": 1.4210854715202004e-13,
+    "source_blob_identity": true,
+    "source_expression_indexing": true,
+    "literal_python_matrix_vs_independent_recurrence": true,
+    "project_SI_derivative_vs_normalized_coefficients": true,
+    "all_outputs_finite": true,
+    "protected_files_unchanged": 187
+  },
+  "not_executed": [
+    "Author JAX notebook and optimizer",
+    "Author synthetic MAT example fit: file not cached and JAX absent",
+    "Fit or recovery of animal V-spike nonlinearity",
+    "Fitted author stimulus-to-conductance filters and history",
+    "Rejected Cell6 fit",
+    "Production parameter adoption or full-network calibration"
+  ],
+  "permissions": {
+    "requested": 0,
+    "denied": 0,
+    "pending": [],
+    "uncertain": []
+  },
+  "production_parameters_changed": false,
+  "production_defaults_changed": false,
+  "GUI_changed": false,
+  "fit_performed": false,
+  "training_performed": false,
+  "new_network_simulation_seconds": 0,
+  "source_review_sha256": "e268abdb0c4a283e79a0941e28f7977402385452be931bc6f372abee03d9d05c",
+  "tool_sha256": "6d8d63e01eb5f1e763eee5b0a09aafbcf0d6951a0c382289e52f0569eb35f218"
+}

@@ -1,0 +1,181 @@
+{
+  "schema": "rgc_voltage_hazard_source_audit_v1",
+  "scope": "Read-only source and exact algebra",
+  "diagnosis": "No proven implementation/unit error; uncalibrated project output and membrane parameters",
+  "zero_synaptic_conductance_is_not_dark_stimulus": true,
+  "cases": {
+    "midget_RGC_OFF": {
+      "zero_history_hazard_Hz": 196.98925312773352,
+      "zero_history_count_rate_Hz": 178.80054140907745,
+      "mean_conditional_hazard_Hz": 147.6692478671046,
+      "stationary_count_rate_Hz": 135.38217292416522,
+      "stationary_residual": 5.551115123125783e-17,
+      "voltage_unit_and_origin_invariance": true,
+      "parameters": {
+        "C": 6e-11,
+        "EE": 0.0,
+        "EI": -0.08,
+        "EL": -0.065,
+        "alpha": 150.0,
+        "beta": 0.005,
+        "dt": 0.001,
+        "gL": 2e-09,
+        "history_kernel": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "mu": -0.07
+      },
+      "leak_only_time_constant_seconds": 0.03
+    },
+    "midget_RGC_ON": {
+      "zero_history_hazard_Hz": 196.98925312773352,
+      "zero_history_count_rate_Hz": 178.80054140907745,
+      "mean_conditional_hazard_Hz": 147.6692478671046,
+      "stationary_count_rate_Hz": 135.38217292416522,
+      "stationary_residual": 5.551115123125783e-17,
+      "voltage_unit_and_origin_invariance": true,
+      "parameters": {
+        "C": 6e-11,
+        "EE": 0.0,
+        "EI": -0.08,
+        "EL": -0.065,
+        "alpha": 150.0,
+        "beta": 0.005,
+        "dt": 0.001,
+        "gL": 2e-09,
+        "history_kernel": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "mu": -0.07
+      },
+      "leak_only_time_constant_seconds": 0.03
+    },
+    "parasol_RGC_OFF": {
+      "zero_history_hazard_Hz": 196.98925312773352,
+      "zero_history_count_rate_Hz": 178.80054140907745,
+      "mean_conditional_hazard_Hz": 147.6692478671046,
+      "stationary_count_rate_Hz": 135.38217292416522,
+      "stationary_residual": 5.551115123125783e-17,
+      "voltage_unit_and_origin_invariance": true,
+      "parameters": {
+        "C": 6e-11,
+        "EE": 0.0,
+        "EI": -0.08,
+        "EL": -0.065,
+        "alpha": 150.0,
+        "beta": 0.005,
+        "dt": 0.001,
+        "gL": 2e-09,
+        "history_kernel": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "mu": -0.07
+      },
+      "leak_only_time_constant_seconds": 0.03
+    },
+    "parasol_RGC_ON": {
+      "zero_history_hazard_Hz": 196.98925312773352,
+      "zero_history_count_rate_Hz": 178.80054140907745,
+      "mean_conditional_hazard_Hz": 147.6692478671046,
+      "stationary_count_rate_Hz": 135.38217292416522,
+      "stationary_residual": 5.551115123125783e-17,
+      "voltage_unit_and_origin_invariance": true,
+      "parameters": {
+        "C": 6e-11,
+        "EE": 0.0,
+        "EI": -0.08,
+        "EL": -0.065,
+        "alpha": 150.0,
+        "beta": 0.005,
+        "dt": 0.001,
+        "gL": 2e-09,
+        "history_kernel": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "mu": -0.07
+      },
+      "leak_only_time_constant_seconds": 0.03
+    },
+    "small_bistratified_S_ON": {
+      "zero_history_hazard_Hz": 196.98925312773352,
+      "zero_history_count_rate_Hz": 178.80054140907745,
+      "mean_conditional_hazard_Hz": 147.6692478671046,
+      "stationary_count_rate_Hz": 135.38217292416522,
+      "stationary_residual": 5.551115123125783e-17,
+      "voltage_unit_and_origin_invariance": true,
+      "parameters": {
+        "C": 6e-11,
+        "EE": 0.0,
+        "EI": -0.08,
+        "EL": -0.065,
+        "alpha": 150.0,
+        "beta": 0.005,
+        "dt": 0.001,
+        "gL": 2e-09,
+        "history_kernel": [
+          -0.012,
+          -0.008,
+          -0.004
+        ],
+        "mu": -0.07
+      },
+      "leak_only_time_constant_seconds": 0.03
+    }
+  },
+  "source_identity": {
+    "project_source_sha256": "6a6ed28b0abf28d230054cadcf79c2d801ef81a9f127e7b461edcc3a54547cc3",
+    "project_verification_level": "identity_verified",
+    "identity_check_is_not_physiological_validation": true,
+    "paper_sha256": "09b5ce244f7abbdcc110046d0fc424f51c39055016e47c951098d49e2ec9bf9f",
+    "paper_equations": {
+      "(12)": {
+        "xml_id": "equ10",
+        "voltage_argument_divided_by_beta": true
+      },
+      "(28)": {
+        "xml_id": "equ26",
+        "voltage_argument_divided_by_beta": true
+      }
+    },
+    "author_python": {
+      "author_pyCBEM__RGC_CBEM.py": {
+        "sha256": "10250883281b81dbf9e09ff33c00b11ca498835d4bf25efb1c900fd3a79022eb",
+        "git_blob_sha1": "095db325d9d1e9576e054060816ac545c1b4be7b",
+        "identity_matches_frozen_tree": true
+      },
+      "author_pyCBEM__utils.py": {
+        "sha256": "ff163691ef9b062af69282caf23cbe8866b2d40c7c4ea4403913b16ca84db84d",
+        "git_blob_sha1": "f5f6d4375d4adaf63a8fad47bdc5681c650aac11",
+        "identity_matches_frozen_tree": true
+      }
+    }
+  },
+  "parameter_snapshot_sha256": "7db41883d6fc6436b33f14fa29b5ac3698e699a0e6c075f38f4b5fc61990ba70",
+  "protected_baseline_checks": {
+    "files": 169,
+    "fixed_parameters_and_equations": 11
+  },
+  "production_parameter_changes": false,
+  "production_config_changes": false,
+  "new_neural_seconds": 0,
+  "monte_carlo_trials": 0,
+  "fitted_parameters": 0,
+  "matlab_launches": 0,
+  "checks": [
+    "production intensity equals independent softplus algebra",
+    "exact eight-state stationary distribution and normalization",
+    "SI/mV and leak-relative voltage-origin invariance",
+    "all five saved RGC parameter groups equal declared project records",
+    "frozen paper MathML division by beta",
+    "author Python git-blob identity",
+    "frozen video and parameter hashes"
+  ]
+}

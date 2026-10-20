@@ -1,0 +1,616 @@
+{
+  "schema": "on_parasol_source_candidate_full_network_v1",
+  "status": "COMPLETE_UNADOPTED_LITERATURE_TRANSFER_SHORT_NETWORK_TEST",
+  "variants": {
+    "old": {
+      "assembly_hash": "dc3b9c18f36a52c7c4ba9965a40f4c09627ddf6ba5f9d23c685f7fa5ec818a04",
+      "wash_in_wall_seconds": 39.659163700001955,
+      "stimulus_wall_seconds": 232.92722539999522,
+      "neural_seconds": 0.6,
+      "fully_adapted": false,
+      "fresh_parameter_matched_state": true,
+      "prior_checkpoint_restored": false,
+      "all_outputs_finite": true
+    },
+    "candidate": {
+      "assembly_hash": "14ea7316e6e066ea164642974d03bbffadfd1b5c7b28f40b1d06ecfc3772657f",
+      "wash_in_wall_seconds": 39.84477579999657,
+      "stimulus_wall_seconds": 234.96862210000108,
+      "neural_seconds": 0.6,
+      "fully_adapted": false,
+      "fresh_parameter_matched_state": true,
+      "prior_checkpoint_restored": false,
+      "all_outputs_finite": true
+    }
+  },
+  "candidate_sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+  "production_default_changed": false,
+  "GUI_changed": false,
+  "fit_performed": false,
+  "input_protocol": {
+    "kind": "independent_consumer_unit_fullfield_steps",
+    "fractions": [
+      0.0,
+      0.1,
+      0.0,
+      -0.1,
+      0.0
+    ],
+    "phase_seconds": 0.1,
+    "short_background_wash_in_seconds": 0.1,
+    "calibrated_visual_contrast": false,
+    "common_physical_scene_claim": false,
+    "ISET_video_capture_reused": false,
+    "adapted_steady_state_claim": false
+  },
+  "matlab_launches": 0,
+  "permissions": {
+    "denied": 0,
+    "pending": [],
+    "uncertain": []
+  },
+  "assembly_wall_seconds": 12.176196199994592,
+  "counts": {
+    "components": 42,
+    "populations": 23,
+    "cells": 20422,
+    "dynamic_scalars": 58155,
+    "links": 50,
+    "gaps": 4
+  },
+  "new_neural_seconds": 1.2,
+  "continuous_final_states_bitwise_equal": true,
+  "signal_equality": {
+    "midget_RGC_OFF": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    },
+    "midget_RGC_ON": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    },
+    "parasol_RGC_OFF": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    },
+    "parasol_RGC_ON": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": false,
+      "spike_count": false,
+      "window_rate": false
+    },
+    "small_bistratified_S_ON": {
+      "voltage": true,
+      "gE": true,
+      "gI": true,
+      "conditional_rate": true,
+      "spike_count": true,
+      "window_rate": true
+    }
+  },
+  "other_four_RGC_outputs_bitwise_equal": true,
+  "source_transfer_not_empirical_calibration": true,
+  "phase_comparison": [
+    {
+      "variant": "old",
+      "component": "midget_RGC_OFF",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.75210043802304,
+      "mean_conditional_hazard_Hz": 323.98264350926496,
+      "expected_binary_count_rate_Hz": 270.09529540167205,
+      "one_seed_observed_rate_Hz": 273.1818181818182,
+      "voltage_phase_drift_mV": 0.024978669321564395
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_OFF",
+      "phase": "increment",
+      "mean_voltage_mV": -53.786232792678426,
+      "mean_conditional_hazard_Hz": 328.6167438477553,
+      "expected_binary_count_rate_Hz": 270.08738365277884,
+      "one_seed_observed_rate_Hz": 264.09090909090907,
+      "voltage_phase_drift_mV": -0.06320679810892395
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_OFF",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.78529340434808,
+      "mean_conditional_hazard_Hz": 326.16876825114014,
+      "expected_binary_count_rate_Hz": 270.1058211730137,
+      "one_seed_observed_rate_Hz": 266.3636363636363,
+      "voltage_phase_drift_mV": 0.04790957183761642
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_OFF",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.74746480033968,
+      "mean_conditional_hazard_Hz": 330.1319847820871,
+      "expected_binary_count_rate_Hz": 270.5729464477446,
+      "one_seed_observed_rate_Hz": 262.7272727272727,
+      "voltage_phase_drift_mV": 0.032372020856380905
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_OFF",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.77185555245476,
+      "mean_conditional_hazard_Hz": 330.6832951807291,
+      "expected_binary_count_rate_Hz": 270.2653748062542,
+      "one_seed_observed_rate_Hz": 262.7272727272727,
+      "voltage_phase_drift_mV": -0.061649876724835205
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_ON",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.494887170863144,
+      "mean_conditional_hazard_Hz": 326.1007742222685,
+      "expected_binary_count_rate_Hz": 273.1712898887869,
+      "one_seed_observed_rate_Hz": 277.7272727272727,
+      "voltage_phase_drift_mV": 0.01041448215539699
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_ON",
+      "phase": "increment",
+      "mean_voltage_mV": -53.46814625118561,
+      "mean_conditional_hazard_Hz": 328.977966690672,
+      "expected_binary_count_rate_Hz": 274.03066546120755,
+      "one_seed_observed_rate_Hz": 275.9090909090909,
+      "voltage_phase_drift_mV": 0.04998387371874915
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_ON",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.46630577995167,
+      "mean_conditional_hazard_Hz": 332.0401704633301,
+      "expected_binary_count_rate_Hz": 274.04761323424196,
+      "one_seed_observed_rate_Hz": 273.6363636363636,
+      "voltage_phase_drift_mV": -0.045064236709115975
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_ON",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.50340373983083,
+      "mean_conditional_hazard_Hz": 334.4482156100988,
+      "expected_binary_count_rate_Hz": 273.5892809670004,
+      "one_seed_observed_rate_Hz": 265.9090909090909,
+      "voltage_phase_drift_mV": -0.0321602683645766
+    },
+    {
+      "variant": "old",
+      "component": "midget_RGC_ON",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.49077857573642,
+      "mean_conditional_hazard_Hz": 323.1692845085474,
+      "expected_binary_count_rate_Hz": 273.7508526123514,
+      "one_seed_observed_rate_Hz": 285.9090909090909,
+      "voltage_phase_drift_mV": 0.054591218092960025
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_OFF",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.706221712156704,
+      "mean_conditional_hazard_Hz": 347.43459343926713,
+      "expected_binary_count_rate_Hz": 268.9756381593013,
+      "one_seed_observed_rate_Hz": 235.0,
+      "voltage_phase_drift_mV": 0.037351067837056856
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_OFF",
+      "phase": "increment",
+      "mean_voltage_mV": -53.737082564605885,
+      "mean_conditional_hazard_Hz": 321.6951664768801,
+      "expected_binary_count_rate_Hz": 270.6955990849118,
+      "one_seed_observed_rate_Hz": 280.0,
+      "voltage_phase_drift_mV": -0.06263423702827786
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_OFF",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.736458522911484,
+      "mean_conditional_hazard_Hz": 324.8793690083401,
+      "expected_binary_count_rate_Hz": 270.70998159857123,
+      "one_seed_observed_rate_Hz": 275.0,
+      "voltage_phase_drift_mV": 0.045961268499747354
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_OFF",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.70172682043814,
+      "mean_conditional_hazard_Hz": 338.1966080071319,
+      "expected_binary_count_rate_Hz": 271.13869036831966,
+      "one_seed_observed_rate_Hz": 245.0,
+      "voltage_phase_drift_mV": 0.028650627717570487
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_OFF",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.728278820145995,
+      "mean_conditional_hazard_Hz": 316.578645664469,
+      "expected_binary_count_rate_Hz": 270.80463884867766,
+      "one_seed_observed_rate_Hz": 290.0,
+      "voltage_phase_drift_mV": -0.06088515411108511
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_ON",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.5405043393516,
+      "mean_conditional_hazard_Hz": 339.0718275210743,
+      "expected_binary_count_rate_Hz": 273.4953365234691,
+      "one_seed_observed_rate_Hz": 253.3333333333333,
+      "voltage_phase_drift_mV": 0.010004240654700828
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_ON",
+      "phase": "increment",
+      "mean_voltage_mV": -53.518277456104165,
+      "mean_conditional_hazard_Hz": 344.61011881210675,
+      "expected_binary_count_rate_Hz": 273.4095589552084,
+      "one_seed_observed_rate_Hz": 253.3333333333333,
+      "voltage_phase_drift_mV": 0.03888253101455343
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_ON",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.52000249266071,
+      "mean_conditional_hazard_Hz": 327.3871738551386,
+      "expected_binary_count_rate_Hz": 273.383638739719,
+      "one_seed_observed_rate_Hz": 276.66666666666663,
+      "voltage_phase_drift_mV": -0.035612116873029454
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_ON",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.54651924801635,
+      "mean_conditional_hazard_Hz": 326.1021893888834,
+      "expected_binary_count_rate_Hz": 273.0562914575676,
+      "one_seed_observed_rate_Hz": 276.66666666666663,
+      "voltage_phase_drift_mV": -0.022440935524915367
+    },
+    {
+      "variant": "old",
+      "component": "parasol_RGC_ON",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.53280384729867,
+      "mean_conditional_hazard_Hz": 309.72970026071107,
+      "expected_binary_count_rate_Hz": 273.23001680410533,
+      "one_seed_observed_rate_Hz": 306.66666666666663,
+      "voltage_phase_drift_mV": 0.04257547296861406
+    },
+    {
+      "variant": "old",
+      "component": "small_bistratified_S_ON",
+      "phase": "gray_before",
+      "mean_voltage_mV": -44.89207465024284,
+      "mean_conditional_hazard_Hz": 499.871437644547,
+      "expected_binary_count_rate_Hz": 381.39284066233495,
+      "one_seed_observed_rate_Hz": 376.66666666666663,
+      "voltage_phase_drift_mV": 0.021973383412035124
+    },
+    {
+      "variant": "old",
+      "component": "small_bistratified_S_ON",
+      "phase": "increment",
+      "mean_voltage_mV": -44.90120826268408,
+      "mean_conditional_hazard_Hz": 497.07750335204173,
+      "expected_binary_count_rate_Hz": 379.02312526037724,
+      "one_seed_observed_rate_Hz": 369.99999999999994,
+      "voltage_phase_drift_mV": -0.015268760531927938
+    },
+    {
+      "variant": "old",
+      "component": "small_bistratified_S_ON",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -44.90089059703912,
+      "mean_conditional_hazard_Hz": 470.7718230660514,
+      "expected_binary_count_rate_Hz": 379.0281642720927,
+      "one_seed_observed_rate_Hz": 409.99999999999994,
+      "voltage_phase_drift_mV": 0.005511331886827915
+    },
+    {
+      "variant": "old",
+      "component": "small_bistratified_S_ON",
+      "phase": "decrement",
+      "mean_voltage_mV": -44.897320248726736,
+      "mean_conditional_hazard_Hz": 492.6730102548632,
+      "expected_binary_count_rate_Hz": 379.0708689257456,
+      "one_seed_observed_rate_Hz": 373.33333333333326,
+      "voltage_phase_drift_mV": 0.0022859466956015595
+    },
+    {
+      "variant": "old",
+      "component": "small_bistratified_S_ON",
+      "phase": "gray_after",
+      "mean_voltage_mV": -44.90738943158506,
+      "mean_conditional_hazard_Hz": 477.7543872494862,
+      "expected_binary_count_rate_Hz": 378.9491262259794,
+      "one_seed_observed_rate_Hz": 399.99999999999994,
+      "voltage_phase_drift_mV": -0.010639490569665696
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_OFF",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.75210043802304,
+      "mean_conditional_hazard_Hz": 323.98264350926496,
+      "expected_binary_count_rate_Hz": 270.09529540167205,
+      "one_seed_observed_rate_Hz": 273.1818181818182,
+      "voltage_phase_drift_mV": 0.024978669321564395
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_OFF",
+      "phase": "increment",
+      "mean_voltage_mV": -53.786232792678426,
+      "mean_conditional_hazard_Hz": 328.6167438477553,
+      "expected_binary_count_rate_Hz": 270.08738365277884,
+      "one_seed_observed_rate_Hz": 264.09090909090907,
+      "voltage_phase_drift_mV": -0.06320679810892395
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_OFF",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.78529340434808,
+      "mean_conditional_hazard_Hz": 326.16876825114014,
+      "expected_binary_count_rate_Hz": 270.1058211730137,
+      "one_seed_observed_rate_Hz": 266.3636363636363,
+      "voltage_phase_drift_mV": 0.04790957183761642
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_OFF",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.74746480033968,
+      "mean_conditional_hazard_Hz": 330.1319847820871,
+      "expected_binary_count_rate_Hz": 270.5729464477446,
+      "one_seed_observed_rate_Hz": 262.7272727272727,
+      "voltage_phase_drift_mV": 0.032372020856380905
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_OFF",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.77185555245476,
+      "mean_conditional_hazard_Hz": 330.6832951807291,
+      "expected_binary_count_rate_Hz": 270.2653748062542,
+      "one_seed_observed_rate_Hz": 262.7272727272727,
+      "voltage_phase_drift_mV": -0.061649876724835205
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_ON",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.494887170863144,
+      "mean_conditional_hazard_Hz": 326.1007742222685,
+      "expected_binary_count_rate_Hz": 273.1712898887869,
+      "one_seed_observed_rate_Hz": 277.7272727272727,
+      "voltage_phase_drift_mV": 0.01041448215539699
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_ON",
+      "phase": "increment",
+      "mean_voltage_mV": -53.46814625118561,
+      "mean_conditional_hazard_Hz": 328.977966690672,
+      "expected_binary_count_rate_Hz": 274.03066546120755,
+      "one_seed_observed_rate_Hz": 275.9090909090909,
+      "voltage_phase_drift_mV": 0.04998387371874915
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_ON",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.46630577995167,
+      "mean_conditional_hazard_Hz": 332.0401704633301,
+      "expected_binary_count_rate_Hz": 274.04761323424196,
+      "one_seed_observed_rate_Hz": 273.6363636363636,
+      "voltage_phase_drift_mV": -0.045064236709115975
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_ON",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.50340373983083,
+      "mean_conditional_hazard_Hz": 334.4482156100988,
+      "expected_binary_count_rate_Hz": 273.5892809670004,
+      "one_seed_observed_rate_Hz": 265.9090909090909,
+      "voltage_phase_drift_mV": -0.0321602683645766
+    },
+    {
+      "variant": "candidate",
+      "component": "midget_RGC_ON",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.49077857573642,
+      "mean_conditional_hazard_Hz": 323.1692845085474,
+      "expected_binary_count_rate_Hz": 273.7508526123514,
+      "one_seed_observed_rate_Hz": 285.9090909090909,
+      "voltage_phase_drift_mV": 0.054591218092960025
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_OFF",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.706221712156704,
+      "mean_conditional_hazard_Hz": 347.43459343926713,
+      "expected_binary_count_rate_Hz": 268.9756381593013,
+      "one_seed_observed_rate_Hz": 235.0,
+      "voltage_phase_drift_mV": 0.037351067837056856
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_OFF",
+      "phase": "increment",
+      "mean_voltage_mV": -53.737082564605885,
+      "mean_conditional_hazard_Hz": 321.6951664768801,
+      "expected_binary_count_rate_Hz": 270.6955990849118,
+      "one_seed_observed_rate_Hz": 280.0,
+      "voltage_phase_drift_mV": -0.06263423702827786
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_OFF",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.736458522911484,
+      "mean_conditional_hazard_Hz": 324.8793690083401,
+      "expected_binary_count_rate_Hz": 270.70998159857123,
+      "one_seed_observed_rate_Hz": 275.0,
+      "voltage_phase_drift_mV": 0.045961268499747354
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_OFF",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.70172682043814,
+      "mean_conditional_hazard_Hz": 338.1966080071319,
+      "expected_binary_count_rate_Hz": 271.13869036831966,
+      "one_seed_observed_rate_Hz": 245.0,
+      "voltage_phase_drift_mV": 0.028650627717570487
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_OFF",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.728278820145995,
+      "mean_conditional_hazard_Hz": 316.578645664469,
+      "expected_binary_count_rate_Hz": 270.80463884867766,
+      "one_seed_observed_rate_Hz": 290.0,
+      "voltage_phase_drift_mV": -0.06088515411108511
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_ON",
+      "phase": "gray_before",
+      "mean_voltage_mV": -53.5405043393516,
+      "mean_conditional_hazard_Hz": 47.11508646420387,
+      "expected_binary_count_rate_Hz": 41.72729056860987,
+      "one_seed_observed_rate_Hz": 13.333333333333332,
+      "voltage_phase_drift_mV": 0.010004240654700828
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_ON",
+      "phase": "increment",
+      "mean_voltage_mV": -53.518277456104165,
+      "mean_conditional_hazard_Hz": 41.91878652514816,
+      "expected_binary_count_rate_Hz": 42.421211165969595,
+      "one_seed_observed_rate_Hz": 56.66666666666666,
+      "voltage_phase_drift_mV": 0.03888253101455343
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_ON",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -53.52000249266071,
+      "mean_conditional_hazard_Hz": 41.38196846553466,
+      "expected_binary_count_rate_Hz": 42.389262651747764,
+      "one_seed_observed_rate_Hz": 53.33333333333333,
+      "voltage_phase_drift_mV": -0.035612116873029454
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_ON",
+      "phase": "decrement",
+      "mean_voltage_mV": -53.54651924801635,
+      "mean_conditional_hazard_Hz": 43.84761924096463,
+      "expected_binary_count_rate_Hz": 41.94631282029313,
+      "one_seed_observed_rate_Hz": 36.666666666666664,
+      "voltage_phase_drift_mV": -0.022440935524915367
+    },
+    {
+      "variant": "candidate",
+      "component": "parasol_RGC_ON",
+      "phase": "gray_after",
+      "mean_voltage_mV": -53.53280384729867,
+      "mean_conditional_hazard_Hz": 40.100109552570615,
+      "expected_binary_count_rate_Hz": 42.17816556299334,
+      "one_seed_observed_rate_Hz": 63.33333333333332,
+      "voltage_phase_drift_mV": 0.04257547296861406
+    },
+    {
+      "variant": "candidate",
+      "component": "small_bistratified_S_ON",
+      "phase": "gray_before",
+      "mean_voltage_mV": -44.89207465024284,
+      "mean_conditional_hazard_Hz": 499.871437644547,
+      "expected_binary_count_rate_Hz": 381.39284066233495,
+      "one_seed_observed_rate_Hz": 376.66666666666663,
+      "voltage_phase_drift_mV": 0.021973383412035124
+    },
+    {
+      "variant": "candidate",
+      "component": "small_bistratified_S_ON",
+      "phase": "increment",
+      "mean_voltage_mV": -44.90120826268408,
+      "mean_conditional_hazard_Hz": 497.07750335204173,
+      "expected_binary_count_rate_Hz": 379.02312526037724,
+      "one_seed_observed_rate_Hz": 369.99999999999994,
+      "voltage_phase_drift_mV": -0.015268760531927938
+    },
+    {
+      "variant": "candidate",
+      "component": "small_bistratified_S_ON",
+      "phase": "gray_middle",
+      "mean_voltage_mV": -44.90089059703912,
+      "mean_conditional_hazard_Hz": 470.7718230660514,
+      "expected_binary_count_rate_Hz": 379.0281642720927,
+      "one_seed_observed_rate_Hz": 409.99999999999994,
+      "voltage_phase_drift_mV": 0.005511331886827915
+    },
+    {
+      "variant": "candidate",
+      "component": "small_bistratified_S_ON",
+      "phase": "decrement",
+      "mean_voltage_mV": -44.897320248726736,
+      "mean_conditional_hazard_Hz": 492.6730102548632,
+      "expected_binary_count_rate_Hz": 379.0708689257456,
+      "one_seed_observed_rate_Hz": 373.33333333333326,
+      "voltage_phase_drift_mV": 0.0022859466956015595
+    },
+    {
+      "variant": "candidate",
+      "component": "small_bistratified_S_ON",
+      "phase": "gray_after",
+      "mean_voltage_mV": -44.90738943158506,
+      "mean_conditional_hazard_Hz": 477.7543872494862,
+      "expected_binary_count_rate_Hz": 378.9491262259794,
+      "one_seed_observed_rate_Hz": 399.99999999999994,
+      "voltage_phase_drift_mV": -0.010639490569665696
+    }
+  ],
+  "prepared_checkpoint_mixed": false,
+  "fully_adapted": false,
+  "real_ISET_standard_video_test": "NOT_RUN: no compatible capture; denied MATLAB operation not retried",
+  "observed_rates": "One seed and small population; not a physiological estimate",
+  "expected_rates": "Exact history expectation on actually advanced spike-independent network voltage; first prepared bin count fixed",
+  "wall_seconds": 561.5615445000003,
+  "protected_files_unchanged": 187
+}

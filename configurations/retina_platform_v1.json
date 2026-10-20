@@ -166,5 +166,22 @@
       ],
       "scope": "current five RGC types in frozen local .35 artifact; separate coordinate roles do not imply implemented soma displacement"
     }
+  },
+  "modeling_scope": {
+    "path": "configurations/modeling_scope_v1.json",
+    "sha256": "b3bd69875cc370761ddcdf8d0907b2b9323b4c52e8716a301d69158728f24a16"
+  },
+  "evaluation_targets": {
+    "primary_quantitative": [
+      "midget_RGC_ON",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF"
+    ],
+    "supplementary": [
+      "small_bistratified_S_ON"
+    ],
+    "internal_validation_from_output_match": false,
+    "automatic_fitting_enabled": false
   }
 }

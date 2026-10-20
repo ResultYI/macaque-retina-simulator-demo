@@ -1,0 +1,7 @@
+file,declared_bytes,declared_md5,inspected_local_bytes,description,measured_voltage_field_in_local_file
+Cell_6.mat,17007338,83be38d612d7e31bdf38b731cd2c3ebf,True,"Public metadata advertises currents, stimuli and spikes; no paired voltage advertised",False
+Cell_5.mat,17913282,9f0d6246c4ad142783b1a3717c04d06a,False,"Public metadata advertises currents, stimuli and spikes; no paired voltage advertised",NOT_DOWNLOADED_NOT_INSPECTED
+Cell_4.mat,28801619,24af8893cb7b56610b82c76b6b1233b5,False,"Public metadata advertises currents, stimuli and spikes; no paired voltage advertised",NOT_DOWNLOADED_NOT_INSPECTED
+Cell_3.mat,21943897,29521ac719cba9f67aacdf341bfcd2d5,False,"Public metadata advertises currents, stimuli and spikes; no paired voltage advertised",NOT_DOWNLOADED_NOT_INSPECTED
+Cell_2.mat,28221485,438fecd92511c1a49e24a6c860ccc129,False,"Public metadata advertises currents, stimuli and spikes; no paired voltage advertised",NOT_DOWNLOADED_NOT_INSPECTED
+Cell_1.mat,37952837,3c2af364a253ccdda0a517b74a52a5f9,False,"Public metadata advertises currents, stimuli and spikes; no paired voltage advertised",NOT_DOWNLOADED_NOT_INSPECTED

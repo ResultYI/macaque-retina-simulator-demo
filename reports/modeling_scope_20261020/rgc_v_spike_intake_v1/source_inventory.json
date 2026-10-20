@@ -1,0 +1,75 @@
+{
+  "schema": "latimer_v_spike_source_inventory_1.0",
+  "scope": "Bounded primary-source follow-up; no claim that unavailable or unpublished data do not exist",
+  "sources": [
+    {
+      "name": "Latimer2019 full-text Methods, Figure3 and attachments",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6989090/",
+      "local": "data/source_data/latimer2019_figshare_v1/latimer2019_PMC6989090.xml",
+      "checked": "Dynamic clamp recordings, output-nonlinearity Methods, Figure3 XML children, data-availability links and supplementary-media inventory",
+      "finding": "Two ON-parasol cells, 19s, 18/24 repeats; dynamic-clamp Eexc0mV/Einhib-90mV, 100us feedback. Figure3 provides a graphic, no attached raw V-spike file. Main listed supplementary file is the transparent-reporting DOCX",
+      "limit": "Fixed CBEM model Einhib-80mV is distinct from the recording dynamic-clamp condition"
+    },
+    {
+      "name": "Figshare9636854 v1 public six-cell data",
+      "url": "https://figshare.com/articles/dataset/ON-Parasol_RGCs_for_the_conductance-based_encoding_model/9636854",
+      "local": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+      "checked": "Live public description, frozen six-file metadata and exact local Cell6 arrays",
+      "finding": "Description supplies six ON-parasol cells from Trong-Rieke2008, spike times, excitatory/inhibitory current trials and full-field stimuli. Cell6 has exactly ExcCurrents/ExcStm/InhCurrents/InhStm/SpikeStm/SpikeTimes/fn, with no voltage",
+      "limit": "Only Cell6 bytes inspected; other five files not downloaded or asserted field-identical. No paired dynamic-clamp voltage is advertised by the public description"
+    },
+    {
+      "name": "Cafaro and Rieke2013 original acquisition paper",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3687519/",
+      "doi": "10.1523/JNEUROSCI.4964-12.2013",
+      "checked": "Dynamic-clamp and recording Methods, data/link inventory",
+      "finding": "Current-clamp recordings, Eexc0/Einhib-90mV and100us feedback; common conductance scaling and optional bias current are experimental controls. Reported voltages have junction correction; peripheral cohort includes multiple macaque species",
+      "limit": "No downloadable raw voltage-spike deposit identified on inspected article. Exact Fig3 cell IDs, correction mapping, common scale and DC current values remain absent; no corrections or baseline targets transferred"
+    },
+    {
+      "name": "Author CBEM code and data directory",
+      "url": "https://github.com/pillowlab/CBEM",
+      "local_tree": "data/source_data/latimer2019_figshare_v1/author_repository_tree.json",
+      "commit": "7beb7e72b0678192f0bc98392a678cdff9601791",
+      "checked": "Current README and frozen repository tree/Data metadata; cached Python source blob identity",
+      "finding": "Data has example.mat and example_spatiotemporal.mat; README explicitly identifies the MATLAB example as simulated. Later Python uses90Hz/-53mV/1.67mV with voltage-valued history and binary sampling",
+      "limit": "Simulated code examples cannot provide independent animal V-spike evidence"
+    },
+    {
+      "name": "Publication CBEM code archive",
+      "url": "https://github.com/elifesciences-publications/CBEM/tree/cfe41c4519fd56bd5aaaa81f156357ebae101d8f",
+      "commit": "cfe41c4519fd56bd5aaaa81f156357ebae101d8f",
+      "checked": "Previously reviewed setup/simulation/fitting entries and frozen file tree; not redundantly re-fetched",
+      "finding": "Initialization c90, slope0.45/mV, b53*slope corresponds to beta2.222mV and dimensionless sph; this is distinct from paper/later Python beta1.67mV. Fitting entries modify leak terms",
+      "limit": "A versioned initialization is not a universal fitted parameter set or raw V-spike observation"
+    },
+    {
+      "name": "Rieke-Lab public repository index",
+      "url": "https://github.com/orgs/Rieke-Lab/repositories?type=all",
+      "checked": "All15 repository names/descriptions in public index",
+      "finding": "Index shows acquisition/protocol/calibration packages; no matching Cafaro2013 or LatimerFig3 raw-data deposit identified by this index",
+      "limit": "Metadata screening only; individual repository contents not exhaustively searched"
+    },
+    {
+      "name": "Prior conditional Cell6 fit and independent review",
+      "local": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/review_closure.json",
+      "checked": "Existing calibration_decision, review_closure and exact source schema",
+      "finding": "Prior alpha+mu conditional attempt was rejected; alpha hit a declared bound, baseline remained high, and centered dynamic error worsened. Current-unit/time-origin gaps remained and heldout outcomes have been inspected",
+      "limit": "This is not an unused independent V-spike dataset, and alpha+mu is outside the current mu/mu+beta whitelist. No re-fit or bound expansion performed"
+    }
+  ],
+  "access_checks": [
+    {"url": "https://elifesciences.org/articles/47012", "outcome": "Client JavaScript challenge; used cached primary PMC XML instead"},
+    {"url": "https://api.elifesciences.org/articles/47012/versions/1", "outcome": "Browser tool reported inaccessible; no approval escalation"},
+    {"url": "https://api.figshare.com/v2/articles/9636854", "outcome": "Browser tool reported inaccessible; readable live public dataset page and cached metadata used"},
+    {"url": "https://www.jneurosci.org/content/33/15/6310", "outcome": "Browser tool error; original article readable in PMC"},
+    {"url": "https://rieke-lab.physiol.washington.edu/", "outcome": "Browser tool inaccessible; no source content inferred"},
+    {"url": "http://rieke-server.physiol.washington.edu/", "outcome": "Official GitHub profile link inaccessible; no source content inferred"}
+  ],
+  "permission_denials_this_followup": 0,
+  "denied_permission_operation_retries": 0,
+  "raw_data_download_attempts_this_followup": 0,
+  "authors_contacted": false,
+  "new_independent_matched_voltage_spike_records_found": 0,
+  "completion_claim": "Data-source follow-up and minimal handoff completed; physiological calibration not completed"
+}

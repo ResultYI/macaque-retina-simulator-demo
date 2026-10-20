@@ -1,0 +1,3106 @@
+{
+  "schema_version": "bc-ac-candidate-2.0",
+  "profile_id": "bc_ac_contact_first_hypothesis_v1",
+  "equation_route": "bc_ac_contact_first_candidate_v2",
+  "default_enabled": false,
+  "test_only": false,
+  "glutamate_concentration_claim": false,
+  "pooling_order": "fixed_W_after_per_input_Hill_then_shared_tau_aggregate_gate",
+  "approval": "User agreement 2026-10-19: justified borrowing, explicit effective assumptions and constrained fits permitted; no new mechanisms, cell merging or default switch",
+  "status": "BOUND_EFFECTIVE_HYPOTHESIS_NOT_PHYSIOLOGICALLY_CALIBRATED",
+  "notes": [
+    "Each presynaptic effective input passes Hill nonlinearity before the original W. No added biological cells, contacts or per-contact dynamic states.",
+    "Only fixed nonnegative W, fixed shared contact tau per target cell and common postsynaptic driving force admit this reduction.",
+    "e0 is an explicit weighted aggregate in [0,row_sum(W)], not necessarily a unit gate. Whole-cell maximal excitatory conductance is gE * row_sum(W).",
+    "ON uses row_sum(W)-Wf(u). No normalization, no reuse of old checkpoint as adapted state. All 103 numerical coefficients remain unbound."
+  ],
+  "families": {
+    "midget_BC_ON": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "midget_BC_ON",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0125,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "release_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.release_half",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.release_slope",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived from an explicitly assumed 20mV voltage interval between 10% and 90% effective output",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": 0.005,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_ON.parameters.tau_release",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Effective first-order release time set to one fifth of the illustrative leak time; not Ca kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        }
+      }
+    },
+    "midget_BC_OFF": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "midget_BC_OFF",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0025,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "release_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.release_half",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.release_slope",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived from an explicitly assumed 20mV voltage interval between 10% and 90% effective output",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": 0.005,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.tau_release",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Effective first-order release time set to one fifth of the illustrative leak time; not Ca kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EI": {
+          "binding": "broadcast",
+          "value": -0.076,
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.midget_BC_OFF.parameters.EI",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "sources/mclaughlin2021_verified_anchors.json"
+          ],
+          "rationale": "FMB -76mV slice reversal anchor borrowed with explicit region/chloride transfer uncertainty; not a local in-vivo measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        }
+      }
+    },
+    "diffuse_BC_ON": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "diffuse_BC_ON",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0125,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "release_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.release_half",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.release_slope",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived from an explicitly assumed 20mV voltage interval between 10% and 90% effective output",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": 0.005,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_ON.parameters.tau_release",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Effective first-order release time set to one fifth of the illustrative leak time; not Ca kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        }
+      }
+    },
+    "diffuse_BC_OFF": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "diffuse_BC_OFF",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0025,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "release_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.release_half",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.release_slope",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived from an explicitly assumed 20mV voltage interval between 10% and 90% effective output",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": 0.005,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.tau_release",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Effective first-order release time set to one fifth of the illustrative leak time; not Ca kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EI": {
+          "binding": "broadcast",
+          "value": -0.075,
+          "unit": "V",
+          "meaning": "inhibitory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.diffuse_BC_OFF.parameters.EI",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Independent diffuse OFF effective chloride reversal reference; not DB1 kinetics or a mixed-type measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        }
+      }
+    },
+    "S_ON_BC": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "S_ON_BC",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0125,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "release_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "activation_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.release_half",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "release_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "activation_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.release_slope",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived from an explicitly assumed 20mV voltage interval between 10% and 90% effective output",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_release": {
+          "binding": "broadcast",
+          "value": 0.005,
+          "unit": "s",
+          "meaning": "release_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.S_ON_BC.parameters.tau_release",
+          "supported_domain": {
+            "cell_types": [
+              "BC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Effective first-order release time set to one fifth of the illustrative leak time; not Ca kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        }
+      }
+    },
+    "local_feedforward_AC": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "local_feedforward_AC",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0025,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "activation_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.activation_half",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "activation_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_feedforward_AC.parameters.activation_slope",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Same mathematical width criterion, independently recorded per generic AC; not release physiology",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        }
+      }
+    },
+    "local_crossover_AC": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "local_crossover_AC",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0025,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "activation_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.activation_half",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "activation_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.local_crossover_AC.parameters.activation_slope",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Same mathematical width criterion, independently recorded per generic AC; not release physiology",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        }
+      }
+    },
+    "widefield_AC": {
+      "conditions": {
+        "kind": "explicit_effective_hypothesis",
+        "cell_family": "widefield_AC",
+        "species_claim": "No measured macaque coefficient claim; applied to project-labelled population",
+        "region": "Declared model ROI only; no source recording-domain equivalence inferred",
+        "temperature": "No quantitative temperature scaling established",
+        "independent_family_parameters": true,
+        "calibration_status": "not_fitted",
+        "whole_cell_gE": "gE * actual row_sum(W)",
+        "input_scale": "context-derived effective units, not concentration"
+      },
+      "parameters": {
+        "C": {
+          "binding": "broadcast",
+          "value": 1.2500000000000002e-11,
+          "unit": "F",
+          "meaning": "membrane_capacitance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.C",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM example C scaled by 0.05 with its leak; derived from an explicit absolute-scale assumption, not animal capacitance",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gL": {
+          "binding": "broadcast",
+          "value": 5e-10,
+          "unit": "S",
+          "meaning": "leak_conductance",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.gL",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "COREM 1/Rm scaled by the same 0.05; 2GOhm leak reference does not itself impose the old 1GOhm FMB ceiling",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EL": {
+          "binding": "broadcast",
+          "value": -0.07,
+          "unit": "V",
+          "meaning": "leak_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.EL",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "borrowed",
+          "reference_sources": [
+            "https://github.com/pablomc88/COREM/wiki/Single-compartment-model"
+          ],
+          "rationale": "Borrowed illustrative COREM leak reversal; transfer is not a macaque membrane measurement",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "V0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "initial_membrane_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.V0",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "conditional_membrane_balance_at_declared_background_then_feedback_solve"
+        },
+        "K": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "receptor_half_drive",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.K",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "median_positive_raw_presynaptic_background"
+        },
+        "hill": {
+          "binding": "broadcast",
+          "value": 1.0,
+          "unit": "dimensionless",
+          "meaning": "receptor_hill_exponent",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.hill",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Minimal noncooperative Hill case n=1; no dose-response cooperativity is inferred",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "tau_e": {
+          "binding": "broadcast",
+          "value": 0.0025,
+          "unit": "s",
+          "meaning": "excitatory_receptor_time_constant",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.tau_e",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Design separation only: ON half leak time, OFF/AC one tenth leak time; neither is measured subtype kinetics",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "gE": {
+          "binding": "broadcast",
+          "value": 2.7272727272727283e-10,
+          "unit": "S",
+          "meaning": "conductance_per_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.gE",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived balance: nominal weighted gate 0.5 moves an isolated passive membrane from -70mV toward -55mV; actual W/inhibition/gaps are retained",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        },
+        "EE": {
+          "binding": "broadcast",
+          "value": 0.0,
+          "unit": "V",
+          "meaning": "excitatory_reversal",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.EE",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "effective_assumption",
+          "reference_sources": [],
+          "rationale": "Effective excitatory reversal reference 0V, unverified for these recording conditions",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          }
+        },
+        "e0": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "dimensionless",
+          "meaning": "initial_weighted_receptor_gate",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.e0",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": null
+          },
+          "derivation": "weighted_Hill_occupancy_at_declared_background_ON_uses_row_sum_minus_occupancy"
+        },
+        "activation_half": {
+          "binding": "derived_background",
+          "value": null,
+          "unit": "V",
+          "meaning": "effective_output_half_voltage",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.activation_half",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Derived using the exact declared background and frozen prior interface; not fitted to experimental data",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": null,
+            "suggested_voltage_shift_V": [
+              -0.005,
+              0.005
+            ]
+          },
+          "derivation": "background_V_median_minus_slope_logit_retained_output_reference"
+        },
+        "activation_slope": {
+          "binding": "broadcast",
+          "value": 0.004551196133134186,
+          "unit": "V",
+          "meaning": "effective_output_voltage_slope",
+          "evidence_class": "project_approximation",
+          "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+          "locator": "families.widefield_AC.parameters.activation_slope",
+          "supported_domain": {
+            "cell_types": [
+              "AC"
+            ],
+            "application": "unvalidated effective candidate on declared ROI"
+          },
+          "uncertainty": "Hypothesis, no experimental confidence interval; see sensitivity and rationale",
+          "classification": "derived",
+          "reference_sources": [],
+          "rationale": "Same mathematical width criterion, independently recorded per generic AC; not release physiology",
+          "sensitivity": {
+            "kind": "engineering sensitivity domain, not a confidence interval",
+            "action": "vary this family independently; retain all feedback and inspect every RGC route",
+            "suggested_fractional_factor": [
+              0.5,
+              2.0
+            ],
+            "suggested_voltage_shift_V": null
+          }
+        }
+      }
+    }
+  },
+  "aggregation_contract": {
+    "fixed_weights": true,
+    "nonnegative_weights": true,
+    "fixed_tau": true,
+    "shared_contact_tau_per_cell": true,
+    "shared_postsynaptic_driving_force": true,
+    "initialization": "explicit_weighted_aggregate",
+    "on_target": "row_sum_W_minus_W_occupied",
+    "independent_contact_states": false
+  },
+  "aggregation_status": "APPROVED_STRUCTURE_UNBOUND_SOURCE_PARAMETERS",
+  "hypothesis_baseline": true,
+  "hypothesis_source": {
+    "source_id": "BC_AC_EXPLICIT_HYPOTHESIS_V1",
+    "reference_url": "https://github.com/pablomc88/COREM/wiki/Single-compartment-model",
+    "scope": "Project hypothesis table; COREM author example is illustrative, not macaque BC measurement",
+    "compatible_author_membrane_example": {
+      "C_F": 2.5e-10,
+      "Rm_Ohm": 100000000.0,
+      "EL_V": -0.07
+    },
+    "absolute_scale_factor": 0.05,
+    "scale_rationale": "Scale C and leak together, preserving the author-example 25ms leak time scale; choose 2GOhm leak resistance so it does not itself exclude the FMB 1.42GOhm cohort center. Not a fitted C or leak measurement."
+  },
+  "background_spec": {
+    "native_background_td": 100.0,
+    "cone_background_rstar_s": 1000.0,
+    "rod_background_rstar_s": 5.0,
+    "background_source": "explicit_hypothesis_independent_consumer_backgrounds",
+    "common_physical_scene_claim": false
+  },
+  "fitting_policy": {
+    "fit_performed": false,
+    "eligible_first_parameters": [
+      "midget_BC_OFF.tau_e",
+      "diffuse_BC_OFF.tau_e"
+    ],
+    "max_first_free_parameters": 2,
+    "requires_matched_input_time_observation": true,
+    "fixed_absolute_scale": true,
+    "fixed_input_scale_reference": true,
+    "compensatory_other_layer_retuning": false
+  },
+  "cell_family_sharing": {
+    "parameter_aliases": [],
+    "all_eight_families_independent": true,
+    "equal_initial_priors_do_not_create_parameter_ties": true
+  },
+  "initialization_policy": "Background-derived conditional V0/e0 seeds plus full deterministic upstream-feedback initial-state solve; no transferred or stochastic adapted-state claim"
+}

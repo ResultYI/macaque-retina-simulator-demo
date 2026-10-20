@@ -6,7 +6,7 @@ original public restore remains the fallback for custom/unreviewed runners.
 from pathlib import Path
 import copy,hashlib,inspect,json,textwrap
 from .contracts import ContractError,canonical_hash
-from .engine import restore_payload,validate_state
+from .engine import restore_payload,validate_state,_state_schema_hash
 from .hybrid import HybridRunner,RetinaState
 
 RESTORE_SHA256='931e806a91848c42cd2f36b56f736a1281137003c0aa78508a0475d1339c800f'
@@ -38,7 +38,7 @@ def restore_retina_payload(runner,checkpoint,*,expected_input_context=None,mode=
         raise ContractError('Checkpoint payload/assembly identity mismatch')
     if expected_input_context is not None and any(d['input_position'].get(k)!=v for k,v in expected_input_context.items()):
         raise ContractError('Checkpoint input/background context mismatch')
-    expected={'state_spec_hash':canonical_hash(runner.model.state_specs),'graph_hash':runner.model.graph.graph_hash,
+    expected={'state_spec_hash':_state_schema_hash(runner.model),'graph_hash':runner.model.graph.graph_hash,
         'parameter_hash':runner.model.parameters.parameter_hash,'model_hash':runner.model.model_hash,
         'model_id':runner.model.model_id,'model_version':runner.model.version}
     dynamic=restore_payload(d['dynamic'],expected)

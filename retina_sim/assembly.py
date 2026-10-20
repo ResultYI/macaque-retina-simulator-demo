@@ -235,7 +235,11 @@ class RetinaBuilder:
                     if a.shape[1]!=b.shape[0]:raise AssemblyError(['Native A/B cone dimension mismatch'])
                     jacobian_edge_bound=int(np.dot(np.diff(a.indptr).astype(np.int64),np.diff(b.indptr).astype(np.int64)))+a.shape[0]
                     scratch+=64*jacobian_edge_bound
-            elif c.mechanism in ('ResidualBC_ON','ResidualBC_OFF','ResidualAC','HistoryConductanceRGC'):
+            elif c.mechanism=='ContactFirstStaticOccupancyV2': pass  # algebra only, no new cells/states
+            elif c.mechanism in ('CandidateConeBipolarReceptorMembrane','CandidateGenericAmacrineReceptorMembrane',
+                                 'ContactFirstConeBipolarReceptorMembraneV2','ContactFirstGenericAmacrineReceptorMembraneV2'):
+                states+=(3 if c.mechanism in ('CandidateConeBipolarReceptorMembrane','ContactFirstConeBipolarReceptorMembraneV2') else 2)*sizes.get('cells',0)
+            elif c.mechanism in ('ResidualBC_ON','ResidualBC_OFF','ResidualAC','HistoryConductanceRGC','HistoryConductanceRGCCurrentClampBoundary'):
                 profiles=getattr(self.sources,'mechanism_profiles',{})
                 if c.parameter_profile_id in profiles:
                     p=profiles[c.parameter_profile_id]
@@ -271,6 +275,12 @@ class RetinaBuilder:
 
     def compile(self,spec,mode=RunMode.REFERENCE):
         mode=RunMode(mode); issues=[]
+        runtime_profile=getattr(self.sources,'runtime_profile',None)
+        scope=getattr(runtime_profile,'modeling_scope',None)
+        if scope is not None:
+            scope.validate_parameters(runtime_profile.data['profiles'])
+            scope.validate_bound_parameters(self.sources.mechanism_profiles,runtime_profile.data['profiles'])
+            spec=scope.annotate(spec)
         from .mechanism_contracts import validate_mechanism_evidence
         for profile in getattr(self.sources,'mechanism_profiles',{}).values():
             validate_mechanism_evidence(self.sources,profile)
@@ -412,4 +422,6 @@ class RetinaBuilder:
         from .delays import clock_contract
         clock=clock_contract(components,compiled,spec.clock_policy)
         identity=canonical_hash({'model_id':spec.model_id,'components':{k:c.identity for k,c in components.items()},'populations':[p.record() for p in populations.values()],'links':spec.links,'external':spec.external_inputs,'order':order,'closure':spec.algebraic_closure,'gap_junctions':spec.gap_junctions,'clock':clock,'mode':mode,'required':spec.required_mechanisms,'scope':spec.scope,'compiler_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
-        return CompiledRetina(spec,components,populations,tuple(compiled),tuple(order),identity,mode,clock)
+        result=CompiledRetina(spec,components,populations,tuple(compiled),tuple(order),identity,mode,clock)
+        if scope is not None:result.modeling_scope=scope.manifest(spec)
+        return result

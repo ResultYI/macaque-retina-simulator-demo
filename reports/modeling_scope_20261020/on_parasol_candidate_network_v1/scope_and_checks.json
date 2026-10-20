@@ -1,0 +1,89 @@
+{
+  "schema": "on_parasol_candidate_final_scope_v1",
+  "status": "COMPLETE_ENGINEERING_NETWORK_COMPARISON_NOT_PHYSIOLOGICAL_CALIBRATION",
+  "changed_component_profiles": [
+    "parasol_RGC_ON"
+  ],
+  "changed_parameters": [
+    "alpha",
+    "mu",
+    "beta"
+  ],
+  "unchanged_fitting_whitelist": true,
+  "main_configuration_unchanged": true,
+  "GUI_source_unchanged": true,
+  "protected_files_unchanged": 187,
+  "stimulus_other_four_outputs_bitwise_equal": true,
+  "gray_other_four_outputs_bitwise_equal": true,
+  "checked_gray_signals": 24,
+  "all_continuous_states_bitwise_equal_between_parameter_variants": true,
+  "input_contracts_identical_between_variants": true,
+  "own_parameter_checkpoint_controls_roundtrip_exact": true,
+  "compatible_checkpoints_only": true,
+  "experimental_neural_seconds": 2.2,
+  "stimulus_experiment_wall_seconds": 561.5615445000003,
+  "matched_control_wall_seconds": 459.3942087000032,
+  "combined_successful_wall_seconds": 1020.9557532000035,
+  "original_startup_no_advance_recording_budget_failure": "Recording requires at least 22676752 bytes; select cells/windows or stream, never thin anatomy",
+  "recorded_startup_neural_advance_seconds": 0.0,
+  "recording_budget_bytes": 67108864,
+  "initial_test_issues_resolved": [
+    "Updated owner profile reference in conductance adapters",
+    "Pytest temporary directory set inside authorized Temp root"
+  ],
+  "regression": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "11",
+    "time": "32.710",
+    "timestamp": "2026-10-20T14:27:01.179414+09:00",
+    "hostname": "DESKTOP-N6N4HD1"
+  },
+  "physiological_calibration": false,
+  "quantitative_fit_performed": false,
+  "main_population_scope": "Same source-stopped local owner/halo graph; no density or connection thinning",
+  "domain_limit": "Published ON-parasol output fit from peripheral dynamic-clamp records transferred to the existing central ROI and project membrane/history/dt; no condition equivalence claimed",
+  "baseline_rate_definition": "0.5s gray-control mean per cell, future-history expectation conditional on parameter-matched prepared history; also records actual one-seed rates",
+  "amplitude_definition": "Stimulus minus paired gray at the same absolute time; phase means exclude final endpoint; peak is max abs of population mean delta",
+  "observed_ON_parasol_phase_count_response_resolved": false,
+  "simulation_scope": "Every coupled component advanced; offline expectation only supplements actual recorded membrane voltage and actual one-seed spikes",
+  "unexecuted": [
+    "Real ISET standard-video capture/replay: no compatible input capture, previously denied MATLAB capture not retried",
+    "Empirical V-spike fitting and independent physiological validation",
+    "Production adoption or changes to the other four RGC families"
+  ],
+  "current_approval_denials": 0,
+  "pending_actions": [],
+  "uncertain_executions": [],
+  "matlab_launches": 0,
+  "library_figure_id": "libfile_20c1af5fc3b481919c7a2660ef93b569",
+  "library_local_metadata_saved": true,
+  "source_file_sha256": {
+    "configurations/on_parasol_literature_candidate_v1.json": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860",
+    "retina_sim/source_reference_candidate.py": "65e45c6f86dab5648f2781c6f4f0607a2cfeb20d9ea9b73a92e5bf31061db124",
+    "retina_sim/calibration_modules.py": "3ceb8dc00a3302af3b983c542bbd7b58d09d2e61244455a78476a8fc540c8c9a",
+    "tests/test_source_reference_candidate.py": "d84707d9b94280e1a3a5c9f6633f2c76c1f3be386327df03d2821cf1b530cd29",
+    "tools/run_on_parasol_candidate_network.py": "a56a5db795ec22ab6167ed333b8978d6acfd8e23a371e56e1008480966d41d48",
+    "tools/run_on_parasol_matched_gray_controls.py": "c250abab418f41ece4c8b54b1073955e0b27684d70983a6d4985de1df04b63be",
+    "tools/plot_on_parasol_candidate_network.py": "9c1b865e4eb32e702a642b6325e15c4b3ab7e7968bffef277f776b2834110c8a"
+  },
+  "deliverable_sha256": {
+    "actual_RGC_parameter_snapshots.json": "acba94a374e24cbe8e054857c3c857d0dc422808c9030dcb750722eba2089cd7",
+    "assembly_comparison.json": "bc6822b4ad28da5da5e4d39e6fef08e2abb9b5242fff9d8a899ab6894c971549",
+    "candidate_recipe.json": "31339db262398225f34ab8143aadc54b858445e47ef6569c03b7996ac2d530fe",
+    "candidate_regression.xml": "553b149287e40ebb213769d90dd8678fcff9f53f9ea5fb0fc0b519c79197748c",
+    "five_RGC_phase_comparison.csv": "cf6f3e6f4f866769e4fce38de1ec95053bcf7c0766525046fc360b6593ebcc18",
+    "library_figure_receipt.json": "78cc0bc335a8b5114ddf77b820f77f1d3c417af7b9ff5824d76d0e92f1efb46e",
+    "main_configuration_reference.json": "64b5e88f6b43a681f3affd4f5cfeeff2ac742f2206e4aded18acf676e77b70ff",
+    "matched_control_result.json": "12f1e18dbc7bc8d442dfb4b66c51a1959a854e96ef0b42f9982427c294d846ac",
+    "on_parasol_candidate_network.png": "3543e62d3785b122b389213c1b4b7ccbc3fbb791626d8351366a9fc6e6712eca",
+    "on_parasol_candidate_network.svg": "187d05eb657637a0c8741407ee7217257c2f0e5a2a9e714b2689b83481378b72",
+    "ON_parasol_summary.csv": "57e965da93fd405f062cbc0d4939438f1e630f37faa5e0c851d7ef72eba0c05e",
+    "ON_parasol_summary.json": "a4a26a305013cc3ca148c78f23e9a31f0c95574cf7ccc7a6c1a5464f2f2a83c5",
+    "protected_before.json": "04556e022b5c79d94908d93a2f953a93a944232284f12adfa84d686f164a46b9",
+    "result.json": "70931dccfd5ac19fb62ece3a48dfd9b2c786066469054e0071875baac90a6a06",
+    "startup_recording_budget_failure.json": "2a6fc8f8689c6e41047dffe2badd33293dc12865713d7ee6e53dbd2dc01c2616"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "standard_stimuli_and_rate_scope_audit_v1",
+  "baseline_unchanged_files": 169,
+  "fixed_model_parameter_config_files_unchanged": 11,
+  "all_old_optical_source_hashes_unchanged": true,
+  "generated_media": 6,
+  "decoded_frames_bitwise_checked": 370,
+  "stimulus_regression_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "3",
+    "time": "0.246",
+    "timestamp": "2026-10-20T12:56:03.044489+09:00",
+    "hostname": "DESKTOP-N6N4HD1"
+  },
+  "new_neural_simulation_seconds": 0.01,
+  "new_background_seconds": 0.0,
+  "matlab_launches": 0,
+  "parameter_changes": false,
+  "production_config_changes": false,
+  "source_sha256": {
+    "retina_platform/standard_stimuli.py": "00020eaa4dedea143bf17fb7c6a279147b790495aeabe8d3edb479858f0d9e3b",
+    "retina_platform/media.py": "eef6555f830a926f7ec65d17fc65a3ad8c6bdd1bafe573af97da7e5fcec73834",
+    "retina_platform/app.py": "e3a938db007f77d7250cf7dc40d1517ca1a5f7fc67781c33e9ee80299ab32fc8",
+    "tools/prepare_standard_stimuli.py": "d35fd121af6a25564f1c71c9256d29ccbe6d82c1ab6e5a47fdc57dd98a13624a",
+    "tools/diagnose_saved_rgc_operating_point.py": "e2270f75b725862daa6908e4aa02854df829349155a328c90ca778b0b8bd26f6",
+    "tools/plot_standard_stimulus_audit.py": "d2dda5696ee6161876f97440f317c6568ac79bd48cf26451fd7e4d6099151963",
+    "tests/test_standard_stimuli.py": "7c06e80d32f587f378b1bedb3248b0a62440253b35a1f12ce6a35b587b69760c"
+  },
+  "new_profile_sha256": "0adc9f36023f69bb27c5258c6b1f3d8af5cb627814323515aaabbc2cb1eee631",
+  "normal_rate_target_invented": false,
+  "quantitative_fit_performed": false,
+  "inputs_are_engineering_standards_not_dataset_reproductions": true
+}

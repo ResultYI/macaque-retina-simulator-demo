@@ -1,0 +1,1099 @@
+{
+  "schema": "rgc_oct20_repository_publication_v1",
+  "base_commit": "74fbef1b42c57536825065dfdc7161971dd33d4d",
+  "branch": "review/physiology-wip-20261017T2356Z",
+  "repository": "https://github.com/ResultYI/macaque-retina-simulator-demo",
+  "files": [
+    {
+      "path": "configurations/bc_ac_contact_first_candidate_v2.json",
+      "bytes": 47850,
+      "sha256": "a03d28855e48131c297e5562e30b88f5a812f19e1f51844ac90940f78bc1bb8f"
+    },
+    {
+      "path": "configurations/bc_ac_contact_first_hypothesis_v1.json",
+      "bytes": 137598,
+      "sha256": "c07671ccc885dbad9d69f59163ea4407ce55c45a3a5252d6cf9bd9cfda3706ce"
+    },
+    {
+      "path": "configurations/bc_ac_receptor_candidate_v1.json",
+      "bytes": 49048,
+      "sha256": "c3828f4a3b8d4116fa4f317bf0d457819fb1a451e4d588981cd77aa11b26c928"
+    },
+    {
+      "path": "configurations/effective_dynamics_v1.json",
+      "bytes": 163525,
+      "sha256": "e9fa227a69a63e052aeb2262fbea68e5929d3ed218e684f8d547640adbcf6c0e"
+    },
+    {
+      "path": "configurations/modeling_scope_v1.json",
+      "bytes": 7193,
+      "sha256": "b3bd69875cc370761ddcdf8d0907b2b9323b4c52e8716a301d69158728f24a16"
+    },
+    {
+      "path": "configurations/on_parasol_literature_candidate_v1.json",
+      "bytes": 2667,
+      "sha256": "cfda9d6e2530cf8a1bb604ea2d71b06799d67f4e1d025295a8ed2034f08aa860"
+    },
+    {
+      "path": "configurations/retina_platform_v1.json",
+      "bytes": 9966,
+      "sha256": "a02224d6ce920daad22310e39577f45ec1562fb9146b4e201155dd3b8be9bd20"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/Cell_6.mat",
+      "bytes": 17007338,
+      "sha256": "59e1457bc27f7392a3c458902941a234c687b26a525b26d168bc8609aae40025"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/LICENSE.CBEM-MIT.txt",
+      "bytes": 1085,
+      "sha256": "2f3bafdbfde6f0229a38a009d4008b79672e5087347424ce573857d5af2fed3d"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+      "bytes": 4971,
+      "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/author_data_directory.json",
+      "bytes": 1634,
+      "sha256": "5a98d90a904ec35b997164234be67636f264052589e93582d00dd8be81c5e93b"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/author_pyCBEM__RGC_CBEM.py",
+      "bytes": 22429,
+      "sha256": "10250883281b81dbf9e09ff33c00b11ca498835d4bf25efb1c900fd3a79022eb"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/author_pyCBEM__utils.py",
+      "bytes": 9283,
+      "sha256": "ff163691ef9b062af69282caf23cbe8866b2d40c7c4ea4403913b16ca84db84d"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/author_repository_commit.json",
+      "bytes": 4641,
+      "sha256": "8ec26e8fcb410f082f9490476c23387d1d27053718ac53dfbb5cf971e3fb1073"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/author_repository_tree.json",
+      "bytes": 10826,
+      "sha256": "777737fbdbf2678219e704348f14324c2bfb53ffa687979850a7462335c3e909"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/download_manifest.json",
+      "bytes": 1969,
+      "sha256": "58e17361f7db4d3613f76923624392b1489b4e827ac36c64123bba93cbdb9d6b"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/latimer2019_PMC6989090.xml",
+      "bytes": 383158,
+      "sha256": "09b5ce244f7abbdcc110046d0fc424f51c39055016e47c951098d49e2ec9bf9f"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/publication_repo_commit.json",
+      "bytes": 5297,
+      "sha256": "2c868d87b66cf8d92a8d491b2bb352e6896ba9de9ff82fcfbf9006f416de893e"
+    },
+    {
+      "path": "data/source_data/latimer2019_figshare_v1/publication_repo_tree.json",
+      "bytes": 8342,
+      "sha256": "fa3abc7105087a3dd89a6837df55e53b9752ec00efb21485fd5f33a9f41bb2bc"
+    },
+    {
+      "path": "docs/core_design.md",
+      "bytes": 388321,
+      "sha256": "e0dc5fd1025d64ca9bf29941b3ced7c5e1b6856f5716eac4b90f0a563e1c8eb7"
+    },
+    {
+      "path": "docs/rgc_oct20_repository_index.md",
+      "bytes": 4083,
+      "sha256": "c1c5cf96c90ac4837dea99d9e69d54a3d12220bfc981c4cc2bbea643b6393a05"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/calibration_decision.json",
+      "bytes": 1746,
+      "sha256": "eff6c9b18aa210d74361fcb8601543b3d8b0ca15f1be65376c0e92a1afed227d"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/contract.json",
+      "bytes": 12224,
+      "sha256": "b9f230a0f157efaf45effec67206b4ea6d5857b1dccbca9376eb78f42aee297e"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/fit_result.json",
+      "bytes": 4207,
+      "sha256": "7a90c95b2cc79d7b54aa8d14f70cc727f777fdc40aea35dfadcf37078f133ceb"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/fixed_result.json",
+      "bytes": 3308,
+      "sha256": "0204a951d764423122cebcc0eabea637f707eaf9cc192cc34111bc24667dbe18"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/review_closure.json",
+      "bytes": 9156,
+      "sha256": "520ece36d1de32d409902eaa7a2f4bd8f15e85d3dae87e47b8d4a57823c0f7a2"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/latimer_cell6_rgc_v1/review_closure_verification.json",
+      "bytes": 1370,
+      "sha256": "9cc7bf415f888f5cc35be2ebc7e208992c42da645eac91b9607dc77df2ce25d6"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/common_bin_start_comparison.csv",
+      "bytes": 76645,
+      "sha256": "7f6c78ff20b66b37db87eb3c8736f4b94e7e73c008d6d050ea79fbb16dba9c3a"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/on_parasol_author_reference.png",
+      "bytes": 477579,
+      "sha256": "72c2ec393cf8a744cc7f37e502689da58ac1fa0810c2ab83780d2ea049a80517"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/on_parasol_author_reference.svg",
+      "bytes": 255293,
+      "sha256": "df0a3f8fcf77290ae2bf8056da535e0b545ce6a9a88dff58135da70a156095f1"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/reference_checks.xml",
+      "bytes": 822,
+      "sha256": "dbb0f5029522137848b8ecbc50e0757056057704423aa52865c924a6f308ef12"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/reference_traces.npz",
+      "bytes": 218724,
+      "sha256": "0b9034539ce65c1e3790101eaf3ee1ac88c2f40b11ce690a52c51c1409e473d4"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/result.json",
+      "bytes": 8031,
+      "sha256": "40d2fac79b1cc3b6a7c65b0ed7e7c85aaa2b609344a8ee481f178d972e55ab87"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/scope_and_checks.json",
+      "bytes": 2407,
+      "sha256": "1aabd794a288b9a8773da2a6900a452c0f94102996eb3fdc145a8328a953e246"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/voltage_versions.csv",
+      "bytes": 900135,
+      "sha256": "b47b5cac85dd0246d18d57c9ecaaef49624b9b66175ae71cad73e5061dd5b028"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/zero_history_mapping.csv",
+      "bytes": 167481,
+      "sha256": "199acf7aeec470e06ed3991f453f94212006e0bf8a7172984f061e006a3056bc"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/ON_parasol_summary.csv",
+      "bytes": 586,
+      "sha256": "57e965da93fd405f062cbc0d4939438f1e630f37faa5e0c851d7ef72eba0c05e"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/ON_parasol_summary.json",
+      "bytes": 1015,
+      "sha256": "a4a26a305013cc3ca148c78f23e9a31f0c95574cf7ccc7a6c1a5464f2f2a83c5"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/actual_RGC_parameter_snapshots.json",
+      "bytes": 16627,
+      "sha256": "acba94a374e24cbe8e054857c3c857d0dc422808c9030dcb750722eba2089cd7"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/assembly_comparison.json",
+      "bytes": 9901,
+      "sha256": "bc6822b4ad28da5da5e4d39e6fef08e2abb9b5242fff9d8a899ab6894c971549"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/exact_expected_count_rates.npz",
+      "bytes": 164953,
+      "sha256": "c19d2b7ea75449f6069be1ed74136bc3106f48a42b48824168b3bfc9f6e28ac4"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/final_checkpoint.json",
+      "bytes": 1826125,
+      "sha256": "6b19e2ffcbdff311f99d426f8f5bd4468e791934959b20793690b3ad7f41759d"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/initialization.json",
+      "bytes": 6243,
+      "sha256": "3bcbadd51c9fd0792e7404d9b3e3800e209e99e732bade650aa09efd83eeb9ec"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/input_contracts.json",
+      "bytes": 1536,
+      "sha256": "fc3434753d5a92a5d26809c6e58fdf2c8453f4da3ab4794423af0f60631de10f"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/exact_expected_count_rates.npz",
+      "bytes": 145292,
+      "sha256": "fe5a37e7ff97414ab9584b433be3125a87169b01c87bff66013b16be849c23ef"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/final_checkpoint.json",
+      "bytes": 1636797,
+      "sha256": "59c6708bbb70a554d2f3c17b1945e87247ffba6e6ca12ab540bebc72b191ccd2"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/matched_response_deltas.npz",
+      "bytes": 294140,
+      "sha256": "8e0ca0863337d5c7e86f38c591b47d2770201e23afa8dbdc8ec6d833e3b84e04"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/response_summary.json",
+      "bytes": 8894,
+      "sha256": "1c322a41d3cf11bc24143f14858ac46e53593f8a5da4448894de9e26ebaca252"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/segment.json",
+      "bytes": 1796226,
+      "sha256": "81566a551cfe6aedf3d0d07ad08475a50049607cea01ddfd9afdae1c198d11f2"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/traces.npz",
+      "bytes": 543675,
+      "sha256": "bdbfc913a339fd607c9e68599f8987bee9fbd2afecdd25863da78c47b2c92fe7"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/prepared_checkpoint.json",
+      "bytes": 1636587,
+      "sha256": "8889bdd864fdae4759a8e0916e8493a33ee3578ee02b3acac42801572051c678"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/root_checkpoint.json",
+      "bytes": 1046907,
+      "sha256": "b16a39c1d0f53302635dd4fb31f1efec2773c92a1416fb28cf18146b43aef4dc"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/segment.json",
+      "bytes": 1796257,
+      "sha256": "91863ae7bc19116aba41f81a742c8fa4ce8fa4a7bbd0125673e5a8ccb72f2f19"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/traces.npz",
+      "bytes": 648503,
+      "sha256": "bf7ef4d2fee39f263e02fa3d3a1db8e2b1b5d8b88b6ec96925c43348c6219b24"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/segment.json",
+      "bytes": 367828,
+      "sha256": "e55fec30f586c248fb11abde0dcdcd4705ec3c8b5a0a03165a3e19bcdacad6b2"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/traces.npz",
+      "bytes": 147765,
+      "sha256": "597465bb21c81c8566114244766e6804b17c84d2081bb59b9cb864704fca91e3"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate_recipe.json",
+      "bytes": 2892,
+      "sha256": "31339db262398225f34ab8143aadc54b858445e47ef6569c03b7996ac2d530fe"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate_regression.xml",
+      "bytes": 1891,
+      "sha256": "553b149287e40ebb213769d90dd8678fcff9f53f9ea5fb0fc0b519c79197748c"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/five_RGC_phase_comparison.csv",
+      "bytes": 6575,
+      "sha256": "cf6f3e6f4f866769e4fce38de1ec95053bcf7c0766525046fc360b6593ebcc18"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/main_configuration_reference.json",
+      "bytes": 2290,
+      "sha256": "64b5e88f6b43a681f3affd4f5cfeeff2ac742f2206e4aded18acf676e77b70ff"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/matched_control_result.json",
+      "bytes": 20998,
+      "sha256": "12f1e18dbc7bc8d442dfb4b66c51a1959a854e96ef0b42f9982427c294d846ac"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/exact_expected_count_rates.npz",
+      "bytes": 164149,
+      "sha256": "ec650371e5e0852f1ff7f1fe73cf8cdc2598b903bf483963e42a3d4521a63201"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/final_checkpoint.json",
+      "bytes": 1826126,
+      "sha256": "57b055d2fd5b855d3d957b885262182412f30d04710db7629defe5f266d9edd4"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/initialization.json",
+      "bytes": 6243,
+      "sha256": "56617a21ca26a38fe5a9b74a5d53e64e62b09e5c502fe9c7e4881d249da2b8ea"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/input_contracts.json",
+      "bytes": 1536,
+      "sha256": "fc3434753d5a92a5d26809c6e58fdf2c8453f4da3ab4794423af0f60631de10f"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/exact_expected_count_rates.npz",
+      "bytes": 144639,
+      "sha256": "426c33f030df72d12a3b0565701df2dd7f03d1ac0ab927ede60152a5ae7d76f8"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/final_checkpoint.json",
+      "bytes": 1636796,
+      "sha256": "644c4e8694c9f21cdfcced401d0a7cc3675395f7f82bfb9c656d871cfabfd84b"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/matched_response_deltas.npz",
+      "bytes": 293710,
+      "sha256": "776de61e03682f97f663381b9bbd0c9e6e2ae1ce47b960c16c3e9d8127f33b82"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/response_summary.json",
+      "bytes": 8894,
+      "sha256": "4a69f03d2cd39beea30b76d932aa107b0709a822e969e561559e12e01f0b8932"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/segment.json",
+      "bytes": 1885692,
+      "sha256": "b6ff96ed875f0da286c4e55e7bd3301e7b3dfcc036f7a0d16953e48dde96ed84"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/traces.npz",
+      "bytes": 544039,
+      "sha256": "536d0a8951cce6b325a8ee9e39e46e5113abe4afacbd4da0b1a99ca3b1ceceac"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/prepared_checkpoint.json",
+      "bytes": 1636694,
+      "sha256": "5762472b0e0908e0be4aa6d017ef9e53ab43a1a8c0dc14e4007d6ac66a83bc37"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/root_checkpoint.json",
+      "bytes": 1046906,
+      "sha256": "fe778b0129000b217a6de853864950b78ca670df047d136d40030fbca25cfacb"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/segment.json",
+      "bytes": 1885728,
+      "sha256": "96efb44322b3a49d8dee2266881a11c40c5e34af297dd41d84d4ac83dc00d9ea"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/traces.npz",
+      "bytes": 648541,
+      "sha256": "c53f67da2dfac822486e7e3774a3a9b9901b18fbbb8e775f2d2e515b1259d2ad"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/segment.json",
+      "bytes": 388058,
+      "sha256": "baeaa90c73622c930dea0bd29e1e36d8c36c4fedfd13f30e9ad30b8f9adfd40e"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/traces.npz",
+      "bytes": 147756,
+      "sha256": "6bfee1010acde21fa6d07315b2ff4affd4f6ea2f1c83ad6f881f8e4dd495acb7"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/on_parasol_candidate_network.png",
+      "bytes": 526647,
+      "sha256": "3543e62d3785b122b389213c1b4b7ccbc3fbb791626d8351366a9fc6e6712eca"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/on_parasol_candidate_network.svg",
+      "bytes": 240620,
+      "sha256": "187d05eb657637a0c8741407ee7217257c2f0e5a2a9e714b2689b83481378b72"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/protected_before.json",
+      "bytes": 28735,
+      "sha256": "04556e022b5c79d94908d93a2f953a93a944232284f12adfa84d686f164a46b9"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/result.json",
+      "bytes": 22593,
+      "sha256": "70931dccfd5ac19fb62ece3a48dfd9b2c786066469054e0071875baac90a6a06"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/scope_and_checks.json",
+      "bytes": 5582,
+      "sha256": "3edc7a5be4d40f7e81ea555865e705140af1d6cf0f1157d6dc0cf6677505ff55"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/startup_recording_budget_failure.json",
+      "bytes": 1213,
+      "sha256": "2a6fc8f8689c6e41047dffe2badd33293dc12865713d7ee6e53dbd2dc01c2616"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_v_spike_intake_v1/minimum_primary_data_handoff.json",
+      "bytes": 3632,
+      "sha256": "81e8e4c5da81e108a3cb5a800f08243d5b7a389243b9971a0e2b0f2992c3eb1a"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_v_spike_intake_v1/public_file_inventory.csv",
+      "bytes": 1143,
+      "sha256": "fe543e44ec04358e3e8d6b8c518db65545500814bef4767485b44cee15e4544b"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_v_spike_intake_v1/result.json",
+      "bytes": 3763,
+      "sha256": "312bf6aca664043153e13aa78d9a9c19ca9287f6230381ab5a570b8dc1c48b6b"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_v_spike_intake_v1/source_inventory.json",
+      "bytes": 6168,
+      "sha256": "3272085e087f3facd2f75e899880f47380526a92ce107cac787cb6b78c9530b5"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_voltage_hazard_source_audit_v1/eight_state_stationary.csv",
+      "bytes": 862,
+      "sha256": "5589beaf8c03eb395bfc01b9c858a7dd67d201886ada26be9a1d870823f885a0"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_voltage_hazard_source_audit_v1/parameter_provenance.csv",
+      "bytes": 8392,
+      "sha256": "e8c717af6d6a79b03635971a9321d929d35dbe54cfa532c2ac1b3d9c63a7e2bd"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_voltage_hazard_source_audit_v1/primary_source_review.json",
+      "bytes": 9468,
+      "sha256": "e268abdb0c4a283e79a0941e28f7977402385452be931bc6f372abee03d9d05c"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/rgc_voltage_hazard_source_audit_v1/result.json",
+      "bytes": 5887,
+      "sha256": "191aa2786f6e2006a5c930e620b7f440572f10eec0962816eb0145703d2ee26e"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/standard_stimulus_rate_audit_v1/baseline_frozen_identity.json",
+      "bytes": 43742,
+      "sha256": "217bfcc20247788dabb45efa932ca830602f55ce857ecd198e978cd411d9a2f0"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/standard_stimulus_rate_audit_v1/rate_audit/actual_RGC_parameter_snapshot.json",
+      "bytes": 8792,
+      "sha256": "7db41883d6fc6436b33f14fa29b5ac3698e699a0e6c075f38f4b5fc61990ba70"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/standard_stimulus_rate_audit_v1/scope_integrity.json",
+      "bytes": 1732,
+      "sha256": "d6dbe114bdb0f332bf8c4935db329de507680a82b5dad088bb57b43fa5389da5"
+    },
+    {
+      "path": "retina_platform/config.py",
+      "bytes": 22319,
+      "sha256": "6f42453f4605da0ae3044adcd44a4a19432e2c5cbbfe2b565da19a7a9e22a4f7"
+    },
+    {
+      "path": "retina_sim/assembly.py",
+      "bytes": 31722,
+      "sha256": "00312e9146bf6d6a3dcf2745cb96353b1b52ee593376f6d7555b00d991dc9362"
+    },
+    {
+      "path": "retina_sim/atlas_population_network.py",
+      "bytes": 10525,
+      "sha256": "c58b26cc846a1c37f2cffea3234ad018af31afc77de787626e0e333562c33ac2"
+    },
+    {
+      "path": "retina_sim/background_seed.py",
+      "bytes": 13487,
+      "sha256": "90b1ee82011435db1f121d456f01d2c9832d1c5abfb29620b38769ac133e459d"
+    },
+    {
+      "path": "retina_sim/bc_ac_candidate.py",
+      "bytes": 18263,
+      "sha256": "ff2b575b22deda46b73c7181eea3b6101efb5c207c10cb1cd8773aa8d233f696"
+    },
+    {
+      "path": "retina_sim/bc_ac_contact_components.py",
+      "bytes": 7841,
+      "sha256": "b95b46435364a744f662c2b62cfccf9c027f2876c87157767790185c0aff7a93"
+    },
+    {
+      "path": "retina_sim/bc_ac_contact_migration.py",
+      "bytes": 5871,
+      "sha256": "e990247cfc3c4b179693706d047eeb4f501ae2941f4048a3bc37c97f1c4f0e85"
+    },
+    {
+      "path": "retina_sim/bc_ac_hypothesis.py",
+      "bytes": 26208,
+      "sha256": "532061301c538b66f60e80c9fe608cbc0f5c8e2f433786d49348daa957fce456"
+    },
+    {
+      "path": "retina_sim/bc_ac_receptor_components.py",
+      "bytes": 7543,
+      "sha256": "b9d7b4bb05d7669f7535332ed916f1d5fb27eb7c7b1f01626f944261bd0deee4"
+    },
+    {
+      "path": "retina_sim/calibration_current_clamp.py",
+      "bytes": 2015,
+      "sha256": "4edd25c7d04240f0405d77836b1d0f75b6b54c75c88ff7ba01bfe16c77a3fbdc"
+    },
+    {
+      "path": "retina_sim/calibration_modules.py",
+      "bytes": 25219,
+      "sha256": "3ceb8dc00a3302af3b983c542bbd7b58d09d2e61244455a78476a8fc540c8c9a"
+    },
+    {
+      "path": "retina_sim/calibration_proposals.py",
+      "bytes": 16156,
+      "sha256": "1f8c17ecbafb98675ded39f14a00e152ba256602156d7ed2ab99ebcf961ec0f1"
+    },
+    {
+      "path": "retina_sim/checkpoint_loading.py",
+      "bytes": 3638,
+      "sha256": "32b91113024fc5f72c108f5b29abf17673de4a513c61828232eea55b9764546c"
+    },
+    {
+      "path": "retina_sim/components.py",
+      "bytes": 11680,
+      "sha256": "9b5a5a86d9f53c20ee8a3b8e7bf3c4fa32648d3aca858d24b4e12ac5475dd9ef"
+    },
+    {
+      "path": "retina_sim/contact_first_receptor.py",
+      "bytes": 3497,
+      "sha256": "0c1b231780082916d3671da1bf29b86fbb610a3aea1a09a9fb19af6e6f4000f7"
+    },
+    {
+      "path": "retina_sim/latimer2019.py",
+      "bytes": 8627,
+      "sha256": "8a53ca8f60aa7bd0d56fbe501f9e2160dbacc7d6afc3d66c300d627be95732c1"
+    },
+    {
+      "path": "retina_sim/modeling_scope.py",
+      "bytes": 12495,
+      "sha256": "e6140eb449f7e486e7a0fd8c8ed0809969400261ca3667b24a2492d22aa2449c"
+    },
+    {
+      "path": "retina_sim/runtime_profiles.py",
+      "bytes": 8400,
+      "sha256": "1a7a5ca505f0189a9a79dc296b494981d15f5fc84debf2333c2b3276523ee5cf"
+    },
+    {
+      "path": "retina_sim/source_reference_candidate.py",
+      "bytes": 7942,
+      "sha256": "65e45c6f86dab5648f2781c6f4f0607a2cfeb20d9ea9b73a92e5bf31061db124"
+    },
+    {
+      "path": "tests/test_bc_ac_candidate.py",
+      "bytes": 19596,
+      "sha256": "f0e34f8e1dbd1fad8bbec6fbb0139df1cf05d0c486d5dd8aa29d7e58789469c6"
+    },
+    {
+      "path": "tests/test_calibration_modules.py",
+      "bytes": 17013,
+      "sha256": "09a4b8cf184732287d480ebe6d81101f87c1bb7b2838f5113feea9f10b130498"
+    },
+    {
+      "path": "tests/test_calibration_proposals.py",
+      "bytes": 9563,
+      "sha256": "21a535babed994fbcf143a8cd921833f70aa8beb3ca70b1b6a19699c7f4c480b"
+    },
+    {
+      "path": "tests/test_on_parasol_author_reference.py",
+      "bytes": 1932,
+      "sha256": "d001a519efa9b4728189dd3eaefeb1a4ff9467cc9540198ae019d3abb84ac65e"
+    },
+    {
+      "path": "tests/test_source_reference_candidate.py",
+      "bytes": 2841,
+      "sha256": "d84707d9b94280e1a3a5c9f6633f2c76c1f3be386327df03d2821cf1b530cd29"
+    },
+    {
+      "path": "tools/audit_rgc_voltage_hazard_sources.py",
+      "bytes": 8869,
+      "sha256": "7043d32bc059a775dcea1f3cd7ef6c6968a26d0dfa3ad068f9f594c3e4d8b9fc"
+    },
+    {
+      "path": "tools/diagnose_bc_ac_hypothesis_baseline.py",
+      "bytes": 19132,
+      "sha256": "bea275e057d0cdaffe469d33a977ff59c1f90b1109f1a2bddf8681f3afea3941"
+    },
+    {
+      "path": "tools/fetch_latimer_minimum.py",
+      "bytes": 2491,
+      "sha256": "5cab8e3c57a940cdad269927c8f20ba9773685396ba7c176ecbb6aa305317a3d"
+    },
+    {
+      "path": "tools/inspect_latimer_v_spike_intake.py",
+      "bytes": 10757,
+      "sha256": "64b071fbb70b0b2b8e2493d0f6d29d07be3851a21166460252d5e800d9c7a38f"
+    },
+    {
+      "path": "tools/plot_on_parasol_author_reference.py",
+      "bytes": 5118,
+      "sha256": "599a914dbe3ac8cf319ae8c5719b9e678ad6f4b234c5f26f0126cf1a8a911eef"
+    },
+    {
+      "path": "tools/plot_on_parasol_candidate_network.py",
+      "bytes": 6312,
+      "sha256": "9c1b865e4eb32e702a642b6325e15c4b3ab7e7968bffef277f776b2834110c8a"
+    },
+    {
+      "path": "tools/run_bc_ac_hypothesis_pulses.py",
+      "bytes": 16215,
+      "sha256": "2a77f6b38c6135d66d91601bfd181df878c1208df3caae63565099381f5cd6a0"
+    },
+    {
+      "path": "tools/run_calibration_module.py",
+      "bytes": 9981,
+      "sha256": "1683844ae314a14279307cbce94be2972e184c91acfb05a2ac053db990e3a6f3"
+    },
+    {
+      "path": "tools/run_on_parasol_author_reference.py",
+      "bytes": 13541,
+      "sha256": "6d8d63e01eb5f1e763eee5b0a09aafbcf0d6951a0c382289e52f0569eb35f218"
+    },
+    {
+      "path": "tools/run_on_parasol_candidate_network.py",
+      "bytes": 14612,
+      "sha256": "a56a5db795ec22ab6167ed333b8978d6acfd8e23a371e56e1008480966d41d48"
+    },
+    {
+      "path": "tools/run_on_parasol_matched_gray_controls.py",
+      "bytes": 8096,
+      "sha256": "c250abab418f41ece4c8b54b1073955e0b27684d70983a6d4985de1df04b63be"
+    },
+    {
+      "path": "tools/verify_published_rgc_results.py",
+      "bytes": 4768,
+      "sha256": "741ef81e49b327f0001eea6f9d80a953faef9144eed5780bde742dfa0cf455ff"
+    }
+  ],
+  "manifest_self": "This manifest is additionally committed; it is excluded from its own recursive hashes",
+  "external_assets": [
+    {
+      "path": "data/atlas/circuit_source_stop_shared_v1_20261016/local_population_graph.json",
+      "bytes": 51011316,
+      "sha256": "3adf3a38a18c34bdee35d627e54fa4558c7219a6511951ed20b93c74f3e29e0b",
+      "identity_kind": "existing_configuration_frozen_hash",
+      "included": false,
+      "reason": "Existing generated atlas assets stay local under repository publishing convention"
+    },
+    {
+      "path": "data/atlas/circuit_source_stop_shared_v1_20261016/circuit_geometry.json",
+      "bytes": 3849684,
+      "sha256": "19aa42e13fd44d691847504fa7ad85b077bad22a8294ecd00a544e5883a92401",
+      "identity_kind": "existing_configuration_frozen_hash",
+      "included": false,
+      "reason": "Existing generated atlas assets stay local under repository publishing convention"
+    },
+    {
+      "path": "data/atlas/circuit_source_stop_shared_v1_20261016/population_catalog.json",
+      "bytes": 15958,
+      "sha256": "9463a754484e771e5350c952333132c49f53a6ca21c4c8305890a6ddcefe5183",
+      "identity_kind": "existing_configuration_frozen_hash",
+      "included": false,
+      "reason": "Existing generated atlas assets stay local under repository publishing convention"
+    }
+  ],
+  "excluded_duplicate_report_files": [
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_author_reference_v1/library_figure_receipt.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/library_figure_receipt.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_000.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_001.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_002.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_003.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_004.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_005.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_006.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_007.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_008.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_009.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_010.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_011.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_012.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_013.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_014.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_015.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_016.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_017.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_018.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/chunk_019.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/matched_gray/state_latest.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_000.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_001.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_002.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_003.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_004.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_005.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_006.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_007.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_008.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_009.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_010.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_011.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_012.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_013.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_014.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_015.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_016.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_017.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_018.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/chunk_019.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/stimulus/state_latest.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/chunk_000.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/chunk_001.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/chunk_002.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/chunk_003.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/candidate/wash_in/state_latest.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_000.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_001.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_002.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_003.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_004.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_005.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_006.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_007.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_008.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_009.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_010.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_011.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_012.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_013.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_014.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_015.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_016.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_017.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_018.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/chunk_019.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/matched_gray/state_latest.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_000.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_001.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_002.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_003.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_004.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_005.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_006.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_007.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_008.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_009.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_010.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_011.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_012.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_013.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_014.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_015.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_016.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_017.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_018.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/chunk_019.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/stimulus/state_latest.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/chunk_000.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/chunk_001.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/chunk_002.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/chunk_003.npz",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/old/wash_in/state_latest.json",
+      "reason": "Duplicate window/latest-state or private Library retention receipt"
+    }
+  ],
+  "excluded_groups": [
+    "tmp",
+    "output",
+    "GPU/device and unrelated performance experiments",
+    "personal media and credentials",
+    "ISET caches and machine-specific optical setup",
+    "vendor_pinned and historical video input/state bundles"
+  ],
+  "primary_data_license": "Cell6 Figshare9636854.v1 CC BY4.0; article XML retains own license; author code includes original MIT notice",
+  "research_parameter_changes_during_publication": false,
+  "production_default_changed_during_publication": false,
+  "precommit_checks": {
+    "source_and_saved_result_verifier": "PUBLISHED_EVIDENCE_VERIFIED",
+    "parsed_python_files": 38,
+    "known_secret_format_matches": 0,
+    "original_regression_receipts_passed": 15,
+    "whitespace_check": "git -c core.whitespace=cr-at-eol diff --check; existing * -text byte identity retained",
+    "neural_reruns_during_publication": 0,
+    "parameter_changes_during_publication": 0,
+    "isolated_selected_snapshot_verification": "PASS without local atlas/private historical assets",
+    "staged_project_whitespace": "PASS with cr-at-eol; exact upstream source and generated SVG bytes preserved separately",
+    "unchanged_frozen_whitespace_diagnostics": {
+      "data/source_data/latimer2019_figshare_v1/author_pyCBEM__RGC_CBEM.py": 26,
+      "data/source_data/latimer2019_figshare_v1/author_pyCBEM__utils.py": 14,
+      "reports/modeling_scope_20261020/on_parasol_author_reference_v1/on_parasol_author_reference.svg": 2357,
+      "reports/modeling_scope_20261020/on_parasol_candidate_network_v1/on_parasol_candidate_network.svg": 2893
+    }
+  }
+}

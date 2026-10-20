@@ -1,0 +1,169 @@
+{
+  "fresh_runner": true,
+  "prior_checkpoint_restored": false,
+  "seed": {
+    "schema_version": "background_seed_v1",
+    "status": "UNADAPTED_SEED",
+    "assembly_hash": "dc3b9c18f36a52c7c4ba9965a40f4c09627ddf6ba5f9d23c685f7fa5ec818a04",
+    "model_hash": "45dbcec2c3783e8fbb2961be028167c383a920a305a4efc98aad66ebb53aade3",
+    "state_spec_hash": "ce49ee89b95848464a9c6f5604546ed7a737844ce78ace26ff3a50c2c48ab5ef",
+    "components": [
+      {
+        "component": "outer_native",
+        "method": "existing_native_equilibrium_actual_vector",
+        "changed_states": [],
+        "input_channel": "native_light",
+        "input_unit": "td",
+        "input_values_sha256": "b582a2d734a38851754469249fa94f33919dd8838efbcae83bd059b6a278c5f5",
+        "input_range": [
+          100.0,
+          100.0
+        ],
+        "local_solver_audit": null
+      },
+      {
+        "component": "rod",
+        "method": "existing_Chen_primateRod_constant_rate_fixed_point",
+        "changed_states": [],
+        "input_channel": "rod_light",
+        "input_unit": "R*/s",
+        "input_values_sha256": "6e384db6284038bfa30480a9b76fdebf9a6cf6542ea45bf2259b98c934a9eb7d",
+        "input_range": [
+          5.0,
+          5.0
+        ],
+        "local_solver_audit": null
+      }
+    ],
+    "unchanged_components": [
+      "midget_BC_ON",
+      "midget_BC_OFF",
+      "diffuse_BC_ON",
+      "diffuse_BC_OFF",
+      "S_ON_BC",
+      "local_feedforward_AC",
+      "local_crossover_AC",
+      "widefield_AC",
+      "midget_RGC_ON_excitatory_midget_BC_ON",
+      "midget_RGC_ON_inhibitory_local_crossover_AC",
+      "midget_RGC_ON",
+      "midget_RGC_OFF_excitatory_midget_BC_OFF",
+      "midget_RGC_OFF_inhibitory_local_feedforward_AC",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON_excitatory_diffuse_BC_ON",
+      "parasol_RGC_ON_inhibitory_widefield_AC",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF_excitatory_diffuse_BC_OFF",
+      "parasol_RGC_OFF_inhibitory_widefield_AC",
+      "parasol_RGC_OFF",
+      "small_bistratified_S_ON_excitatory_S_ON_BC",
+      "small_bistratified_S_ON_inhibitory_local_feedforward_AC",
+      "small_bistratified_S_ON_excitatory_diffuse_BC_OFF",
+      "small_bistratified_S_ON",
+      "rod_membrane",
+      "rod_current_SI",
+      "individual_rod_RBC_contacts",
+      "rod_BC",
+      "AII_AC",
+      "RBC_AII_AMPA",
+      "AII_FMB_glycine",
+      "AII_DB1_glycine",
+      "midget_BC_ON__contact_occupancy_0",
+      "midget_BC_OFF__contact_occupancy_0",
+      "diffuse_BC_ON__contact_occupancy_0",
+      "diffuse_BC_OFF__contact_occupancy_0",
+      "S_ON_BC__contact_occupancy_0",
+      "local_feedforward_AC__contact_occupancy_0",
+      "local_crossover_AC__contact_occupancy_0",
+      "widefield_AC__contact_occupancy_0"
+    ],
+    "reference_calibration_and_output_anchors_changed": false,
+    "runtime_identity_changed": false,
+    "histories_delays_events_rng_reset": false,
+    "actual_input_requirement": "same explicitly constant runtime channels; no nominal-vector fallback",
+    "input_cell_order_contract": "compiled external port cell_ids, in the same order consumed by runtime",
+    "constant_input_witness": "declared constant contract plus start/middle/end-left equality",
+    "monitor_reference": "independent unchanged original initial state",
+    "retained_minimum_seconds": 1.25,
+    "whole_network_steady_state_claim": false,
+    "seed_alone_wash_in_completed": false,
+    "physiological_validation": "NOT_RUN",
+    "adaptation_cache_enabled": false
+  },
+  "RGC_balance": {
+    "status": "DETERMINISTIC_RGC_VOLTAGE_BALANCED_NOT_SPIKE_STATIONARITY",
+    "components": {
+      "midget_RGC_ON": {
+        "old_V_range_V": [
+          -0.05428117819946821,
+          -0.05428117819946821
+        ],
+        "balanced_V_range_V": [
+          -0.05432439664835986,
+          -0.05421633022466892
+        ],
+        "mean_voltage_change_V": -1.4997333339852112e-07,
+        "maximum_membrane_derivative_V_per_s": 3.6350710512584224e-16,
+        "cached_conditional_rate_recomputed_without_sampling": true
+      },
+      "midget_RGC_OFF": {
+        "old_V_range_V": [
+          -0.05428117819946821,
+          -0.05428117819946821
+        ],
+        "balanced_V_range_V": [
+          -0.05430314506202838,
+          -0.05422964499362653
+        ],
+        "mean_voltage_change_V": 1.6826892176867194e-06,
+        "maximum_membrane_derivative_V_per_s": 2.961909745469826e-16,
+        "cached_conditional_rate_recomputed_without_sampling": true
+      },
+      "parasol_RGC_ON": {
+        "old_V_range_V": [
+          -0.05428117819946821,
+          -0.05428117819946821
+        ],
+        "balanced_V_range_V": [
+          -0.05427513094175069,
+          -0.05426239785811623
+        ],
+        "mean_voltage_change_V": 1.3584796791569579e-05,
+        "maximum_membrane_derivative_V_per_s": 2.288748439681229e-16,
+        "cached_conditional_rate_recomputed_without_sampling": true
+      },
+      "parasol_RGC_OFF": {
+        "old_V_range_V": [
+          -0.05428117819946821,
+          -0.05428117819946821
+        ],
+        "balanced_V_range_V": [
+          -0.054279532650704905,
+          -0.05427831271718968
+        ],
+        "mean_voltage_change_V": 2.255515520920709e-06,
+        "maximum_membrane_derivative_V_per_s": 4.0389678347315804e-17,
+        "cached_conditional_rate_recomputed_without_sampling": true
+      },
+      "small_bistratified_S_ON": {
+        "old_V_range_V": [
+          -0.045856981514583534,
+          -0.04585698151458353
+        ],
+        "balanced_V_range_V": [
+          -0.045853436066279396,
+          -0.045844686136224964
+        ],
+        "mean_voltage_change_V": 8.244159124067932e-06,
+        "maximum_membrane_derivative_V_per_s": 3.500438790100703e-16,
+        "cached_conditional_rate_recomputed_without_sampling": true
+      }
+    },
+    "history_RNG_events_and_clock_preserved": true,
+    "parameters_changed": false,
+    "spike_stationarity_verified": false,
+    "maximum_membrane_derivative_V_per_s": 3.6350710512584224e-16
+  },
+  "fully_adapted": false,
+  "short_wash_in_seconds": 0.1
+}

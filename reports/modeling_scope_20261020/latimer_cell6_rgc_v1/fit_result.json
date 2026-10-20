@@ -1,0 +1,111 @@
+{
+  "status": "TWO_PARAMETER_CONDITIONAL_RGC_FIT_COMPLETE_NOT_VERIFIED_PHYSIOLOGICAL_CALIBRATION",
+  "train_parameters_only": true,
+  "optimizer_success": true,
+  "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "evaluations": 15,
+  "iterations": 11,
+  "alpha_Hz": 600.0,
+  "mu_V": -0.05491789478665696,
+  "baseline_alpha_Hz": 150.0,
+  "baseline_mu_V": -0.07,
+  "training": {
+    "constant_prefix_500_1000ms": {
+      "nll": 1490.315630556808,
+      "bins": 9000,
+      "events": 302,
+      "observed_rate_Hz": 33.55555555555555,
+      "predicted_conditional_occupancy_rate_Hz": 82.46019858156693,
+      "mean_conditional_hazard_Hz": 86.53003767340272,
+      "predicted_free_history_event_rate_Hz": 74.07490910430904,
+      "recorded_current_derived_voltage_mean_mV": -63.95802217853744
+    },
+    "noise_1000_7000ms": {
+      "nll": 19999.28874863656,
+      "bins": 108000,
+      "events": 6117,
+      "observed_rate_Hz": 56.63888888888889,
+      "predicted_conditional_occupancy_rate_Hz": 52.47649035924082,
+      "mean_conditional_hazard_Hz": 55.845809988021095,
+      "predicted_free_history_event_rate_Hz": 55.00536406800241,
+      "recorded_current_derived_voltage_mean_mV": -67.14872110998624,
+      "PSTH_20ms_MSE_Hz_squared": 2408.6396738044355,
+      "PSTH_20ms_Pearson": 0.6990804875796681,
+      "PSTH_mean_level_squared_Hz_squared": 2.668403340452201,
+      "PSTH_centered_residual_MSE_Hz_squared": 2405.971270463983
+    },
+    "joint": {
+      "nll": 21489.60437919337,
+      "bins": 117000,
+      "events": 6419,
+      "observed_rate_Hz": 54.863247863247864,
+      "predicted_conditional_occupancy_rate_Hz": 54.7829294532659,
+      "mean_conditional_hazard_Hz": 58.2061351945889,
+      "predicted_free_history_event_rate_Hz": 56.4722521477183,
+      "recorded_current_derived_voltage_mean_mV": -66.90328273064402
+    }
+  },
+  "heldout": {
+    "constant_prefix_500_1000ms": {
+      "nll": 477.0132151854424,
+      "bins": 3000,
+      "events": 103,
+      "observed_rate_Hz": 34.333333333333336,
+      "predicted_conditional_occupancy_rate_Hz": 70.02162180725892,
+      "mean_conditional_hazard_Hz": 72.80225528708752,
+      "predicted_free_history_event_rate_Hz": 64.88040318860776,
+      "recorded_current_derived_voltage_mean_mV": -64.77478110604763
+    },
+    "noise_1000_7000ms": {
+      "nll": 6759.785084519739,
+      "bins": 36000,
+      "events": 2092,
+      "observed_rate_Hz": 58.111111111111114,
+      "predicted_conditional_occupancy_rate_Hz": 45.455372813426436,
+      "mean_conditional_hazard_Hz": 47.626734799777324,
+      "predicted_free_history_event_rate_Hz": 49.506072419774,
+      "recorded_current_derived_voltage_mean_mV": -67.69835970544456,
+      "PSTH_20ms_MSE_Hz_squared": 2391.1134319291846,
+      "PSTH_20ms_Pearson": 0.7355364673038317,
+      "PSTH_mean_level_squared_Hz_squared": 74.046690879409,
+      "PSTH_centered_residual_MSE_Hz_squared": 2317.066741049776
+    },
+    "joint": {
+      "nll": 7236.798299705182,
+      "bins": 39000,
+      "events": 2195,
+      "observed_rate_Hz": 56.282051282051285,
+      "predicted_conditional_occupancy_rate_Hz": 47.34508427449047,
+      "mean_conditional_hazard_Hz": 49.563313298801184,
+      "predicted_free_history_event_rate_Hz": 50.688713248145824,
+      "recorded_current_derived_voltage_mean_mV": -67.47346904395249
+    }
+  },
+  "identifiability": {
+    "fisher_matrix_scaled_coordinates": [
+      [
+        6394.187196640322,
+        -5830.748519105974
+      ],
+      [
+        -5830.748519105974,
+        5354.072976302317
+      ]
+    ],
+    "fisher_eigenvalues": [
+      20.234999361042355,
+      11728.025173581596
+    ],
+    "scaled_condition_number": 579.5910819824932,
+    "local_rank_threshold_ratio": 1e-06,
+    "locally_full_rank": true,
+    "search_bound_hit": true,
+    "absolute_membrane_and_input_scales_fixed": true
+  },
+  "source_unit_verified": false,
+  "production_adopted": false,
+  "BC_AC_validated": false,
+  "other_RGC_classes_validated": false,
+  "core_membrane_or_intensity_or_sampling_equations_changed": false,
+  "wall_seconds": 0.7519850000026054
+}

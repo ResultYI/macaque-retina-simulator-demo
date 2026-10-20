@@ -1,0 +1,79 @@
+{
+  "status": "FIXED_RETAINED_RGC_ON_REAL_CROSS_MODE_DATA_CONDITIONAL_BASELINE_COMPLETE",
+  "training": {
+    "constant_prefix_500_1000ms": {
+      "nll": 2294.097601864055,
+      "bins": 9000,
+      "events": 302,
+      "observed_rate_Hz": 33.55555555555555,
+      "predicted_conditional_occupancy_rate_Hz": 186.43982283489473,
+      "mean_conditional_hazard_Hz": 207.67923314415748,
+      "predicted_free_history_event_rate_Hz": 147.42781177461444,
+      "recorded_current_derived_voltage_mean_mV": -63.95802217853744
+    },
+    "noise_1000_7000ms": {
+      "nll": 23805.97437237419,
+      "bins": 108000,
+      "events": 6117,
+      "observed_rate_Hz": 56.63888888888889,
+      "predicted_conditional_occupancy_rate_Hz": 128.93120419758012,
+      "mean_conditional_hazard_Hz": 141.32033084361296,
+      "predicted_free_history_event_rate_Hz": 114.97916076584342,
+      "recorded_current_derived_voltage_mean_mV": -67.14872110998624,
+      "PSTH_20ms_MSE_Hz_squared": 5739.16853669589,
+      "PSTH_20ms_Pearson": 0.7015001646550856,
+      "PSTH_mean_level_squared_Hz_squared": 3403.58732267697,
+      "PSTH_centered_residual_MSE_Hz_squared": 2335.58121401892
+    },
+    "joint": {
+      "nll": 26100.071974238243,
+      "bins": 117000,
+      "events": 6419,
+      "observed_rate_Hz": 54.863247863247864,
+      "predicted_conditional_occupancy_rate_Hz": 133.35494409275816,
+      "mean_conditional_hazard_Hz": 146.4248617898087,
+      "predicted_free_history_event_rate_Hz": 117.47521084344119,
+      "recorded_current_derived_voltage_mean_mV": -66.90328273064402
+    }
+  },
+  "heldout": {
+    "constant_prefix_500_1000ms": {
+      "nll": 722.2471391466875,
+      "bins": 3000,
+      "events": 103,
+      "observed_rate_Hz": 34.333333333333336,
+      "predicted_conditional_occupancy_rate_Hz": 171.67241523801155,
+      "mean_conditional_hazard_Hz": 189.2750208728185,
+      "predicted_free_history_event_rate_Hz": 137.99736511351935,
+      "recorded_current_derived_voltage_mean_mV": -64.77478110604763
+    },
+    "noise_1000_7000ms": {
+      "nll": 7762.405633478658,
+      "bins": 36000,
+      "events": 2092,
+      "observed_rate_Hz": 58.111111111111114,
+      "predicted_conditional_occupancy_rate_Hz": 119.89416331965185,
+      "mean_conditional_hazard_Hz": 130.3141367423336,
+      "predicted_free_history_event_rate_Hz": 108.98544284409894,
+      "recorded_current_derived_voltage_mean_mV": -67.69835970544456,
+      "PSTH_20ms_MSE_Hz_squared": 4693.860889949266,
+      "PSTH_20ms_Pearson": 0.7390521809037172,
+      "PSTH_mean_level_squared_Hz_squared": 2588.19762927809,
+      "PSTH_centered_residual_MSE_Hz_squared": 2105.6632606711737
+    },
+    "joint": {
+      "nll": 8484.652772625346,
+      "bins": 39000,
+      "events": 2195,
+      "observed_rate_Hz": 56.282051282051285,
+      "predicted_conditional_occupancy_rate_Hz": 123.8771057749103,
+      "mean_conditional_hazard_Hz": 134.84958936775553,
+      "predicted_free_history_event_rate_Hz": 111.2171291725159,
+      "recorded_current_derived_voltage_mean_mV": -67.47346904395249
+    }
+  },
+  "wall_seconds": 0.9127941999977338,
+  "params_changed": false,
+  "current_unit_interpretation_verified": false,
+  "observation_and_prediction_scales_not_fitted": true
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "variant": "old",
+    "background_expected_rate_Hz": 273.222838719341,
+    "background_one_seed_observed_rate_Hz": 273.3333333333333,
+    "background_mean_V_mV": -53.53904238236798,
+    "bright_mean_delta_Hz": 0.2549038726949734,
+    "dark_mean_delta_Hz": -0.0984427646412009,
+    "bright_mean_delta_mV": 0.020404354599102,
+    "dark_mean_delta_mV": -0.007844012686804198,
+    "peak_abs_rate_delta_Hz": 0.4808123818973134,
+    "peak_abs_voltage_delta_mV": 0.03884806841575097
+  },
+  {
+    "variant": "candidate",
+    "background_expected_rate_Hz": 42.00773432333925,
+    "background_one_seed_observed_rate_Hz": 44.66666666666666,
+    "background_mean_V_mV": -53.53904238236798,
+    "bright_mean_delta_Hz": 0.3434471024643713,
+    "dark_mean_delta_Hz": -0.13155981628295435,
+    "bright_mean_delta_mV": 0.020404354599102,
+    "dark_mean_delta_mV": -0.007844012686804198,
+    "peak_abs_rate_delta_Hz": 0.6514643376889827,
+    "peak_abs_voltage_delta_mV": 0.03884806841575097
+  }
+]
