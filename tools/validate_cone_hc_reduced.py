@@ -18,9 +18,12 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from retina_sim.cone_hc_observation_queue import (
+    queue_contract, upgrade_split_reference, queue_time_evidence, compare_queue_times,
+)
 REPORT = ROOT / 'reports/cone_hc_reduced_implementation_20261024_v1'
 ORIGINAL = ROOT / 'reports/first_useful_split_capture_20261023_v1'
-SCHEMA = 'cone-hc-reduced-real-short-protocol-1'
+SCHEMA = 'cone-hc-reduced-real-short-protocol-2'
 GIB = 1024**3
 
 
@@ -97,6 +100,7 @@ def build_protocol(run_dir=ORIGINAL):
         'frozen_budget': ROOT/'configurations/numerical_equivalence/resident_native_fp64_v1.json'}
     native = manifest['native_cursor']['solver']
     protocol = dict(schema=SCHEMA, classification='B', default_backend_change=False,
+        observation_queue=queue_contract(),
         production_fit_eligible=False, optical_or_background_forward=False,
         source_run_directory=run_dir.relative_to(ROOT).as_posix(),
         checkpoint_directory=(chunk/'checkpoint').relative_to(ROOT).as_posix(),
@@ -137,7 +141,8 @@ def build_protocol(run_dir=ORIGINAL):
         performance_scope='one same-window full neural advance; no fit/optics/cold preparation included',
         user_authorization='2026-10-24 direct human authorization: implement, bounded real GPU A/B, commit and normal push; production remains stopped',
         original_history_preserved=True)
-    sources = sorted((ROOT/'retina_sim').glob('cone_hc_reduced_*.py'))+[Path(__file__)]
+    sources = sorted((ROOT/'retina_sim').glob('cone_hc_reduced_*.py'))+[
+        ROOT/'retina_sim/cone_hc_observation_queue.py',Path(__file__)]
     protocol['implementation_sha256'] = {p.relative_to(ROOT).as_posix():digest(p) for p in sources}
     stop_file = run_dir/'REQUEST_STOP'
     protocol['production_stop'] = dict(path=stop_file.relative_to(ROOT).as_posix(),sha256=digest(stop_file))
@@ -150,6 +155,8 @@ def validate_protocol(protocol):
     digest_value = item.pop('protocol_sha256', None)
     if item.get('schema') != SCHEMA or digest_value != canonical(item):
         raise ValueError('Validation protocol mutated or unsealed')
+    if item.get('observation_queue') != queue_contract():
+        raise ValueError('Observation queue contract differs')
     if (item['start_seconds'],item['stop_seconds']) != (6.4,6.5):
         raise ValueError('Only the frozen100ms actual-movie interval is authorized here')
     if item['native_candidate']['base_step'] != .0001 or item['inner'] != dict(
@@ -372,7 +379,10 @@ def prepare_actual_context(directory,output,protocol,guard,authorization):
     state=load_complete(split,ROOT/protocol['checkpoint_directory'],expected_manifest_hash=protocol['checkpoint_manifest_hash'])
     if state.time_seconds!=protocol['start_seconds'] or state.grid_origin_seconds!=0.:
         raise ContractError('Authentic source start/calendar differs')
+    legacy_model_hash = split.model.model_hash
+    split,state = upgrade_split_reference(split,state)
     save=dict(cold_preparation_seconds=time.perf_counter()-begun,source_graph=saved_graph,
+        legacy_model_hash=legacy_model_hash,observation_queue=queue_contract(),
         reference_model_hash=split.model.model_hash,restored_checkpoint_manifest_hash=protocol['checkpoint_manifest_hash'],
         actual_input_proof=proof,old_production_files_written=False,old_background_integrated=False)
     write_json(output/'prepared_reference.json',save)
@@ -705,6 +715,10 @@ def run_worker(output):
                     advance_wall += time.perf_counter()-advance_start
                 wall = time.perf_counter()-tick
             finally:
+                write_json(output/(arm+'_queue_times.json'),dict(
+                    queue_time_evidence(state.delay_states,time_seconds=state.time_seconds),
+                    state_scope='last_successfully_returned_state' if failure is not None else 'completed_arm',
+                    arm_completed=failure is None))
                 write_json(output/(arm+'_actual_draws.json'),draws[arm])
                 write_json(output/(arm+'_actual_events.json'),actual_events[arm])
                 if online_gates:
@@ -776,13 +790,16 @@ def run_worker(output):
         write_json(output/'bridge_gates.json',bridge_checks)
         write_json(output/'delay_gates.json',delay_checks)
         write_json(output/'draw_gates.json',draw_verdicts)
+        queue_comparison = compare_queue_times(
+            queue_time_evidence(source.delay_states,time_seconds=source.time_seconds),
+            queue_time_evidence(candidate.delay_states,time_seconds=candidate.time_seconds))
+        write_json(output/'delay_queue_comparison.json',queue_comparison)
         exact_aux = dict(component_ticks=source.component_tick_indices==candidate.component_tick_indices,
             sample_index=source.sample_index==candidate.sample_index,
             rng_history=all(canonical_hash({k:v for k,v in source.spike_states[cid].items()
                 if k in ('rng_state','history','last_bin_counts')})==canonical_hash({k:v for k,v in candidate.spike_states[cid].items()
                 if k in ('rng_state','history','last_bin_counts')}) for cid in source.spike_states),
-            delay_times=all(source.delay_states[cid].history_times==candidate.delay_states[cid].history_times
-                            for cid in source.delay_states),
+            delay_times=queue_comparison['status']=='PASS',
             consumed_event_identities=sorted((e['component'],e['cell_index']) for e in actual_events['reference'])==
                 sorted((e['component'],e['cell_index']) for e in actual_events['candidate']),
             pending_event_identities=all([e['cell_index'] for e in source.spike_states[cid]['pending_events']]==

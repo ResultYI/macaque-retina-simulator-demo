@@ -17,6 +17,7 @@ from .contracts import ContractError, canonical_hash
 from .cone_hc_reduced_native import ReducedNative, ReducedNativeState, METHOD
 from .cone_hc_reduced_bridge import BridgeSelection, PinnedSegmentBridge
 from .cone_hc_split_runner import native_input_at, next_native_input_bound
+from .cone_hc_observation_queue import is_queue_node, queue_contract
 
 
 CONSUMERS = ('inner', 'monitor', 'recording', 'observation')
@@ -192,6 +193,7 @@ class ReducedConeHCRunner:
         obj.bridge = PinnedSegmentBridge(obj.selection, obj.torch, obj.native.device)
         obj.evaluator = ReducedEvaluator(obj, incoming)
         obj.identity = canonical_hash(dict(method=METHOD, native=obj.native.identity,
+            observation_queue=queue_contract(),
             retained_model=retained.model.model_hash, graph=obj.graph_guard,
             selected_ids=obj.selection.sha256, inner_plan=obj.partition.plan_hash,
             implementation={n:hashlib.sha256(Path(__file__).with_name(n).read_bytes()).hexdigest()
@@ -237,6 +239,7 @@ class ReducedConeHCRunner:
             old_state.sample_index,deepcopy(old_state.spike_states),
             {k:v.fork() for k,v in old_state.delay_states.items()},deepcopy(old_state.input_position),
             dict(old_state.component_tick_indices))
+        state.input_position['observation_queue'] = queue_contract()
         state.validate(self)
         return state
 
@@ -433,9 +436,10 @@ class ReducedConeHCRunner:
                     state.generation += 1
                     flush_events(target)
                     for t,point in sorted(rows.items()):
-                        queue = t in times or t==outer_target
+                        queue = is_queue_node(t,times,outer_target)
                         # Original event-grid requests are recorded after that event.
-                        consume(t,point,queue=queue,do_record=abs(t-next_grid)>1e-10)
+                        defer_record = original_boundary and t==target and abs(t-next_grid)<=1e-10
+                        consume(t,point,queue=queue,do_record=not defer_record)
                     acknowledge()
                 final_tick = min(state.grid_origin_seconds+state.component_tick_indices[cid]*p
                                  for cid,p in self.periods.items())

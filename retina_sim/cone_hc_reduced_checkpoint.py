@@ -12,9 +12,10 @@ from .cone_hc_split_checkpoint import file_sha, _flush_bytes
 from .cone_hc_reduced_native import AnalyticREAnchor, ReducedNativeState, QuadraticNativeSegment
 from .cone_hc_reduced_runner import ReducedPoint, ReducedState, ReducedCursor, CONSUMERS
 from .resident_delay import ResidentTimestampedDelay
+from .cone_hc_observation_queue import queue_contract
 
 
-SCHEMA = 'cone-hc-reduced-complete-binary-checkpoint-1'
+SCHEMA = 'cone-hc-reduced-complete-binary-checkpoint-2'
 
 
 def _native_payload(state):
@@ -80,6 +81,7 @@ def save_complete(runner,state,directory):
             return value
         encoded = encode(payload)
         manifest = dict(schema=SCHEMA,identity=runner.identity,input_binding=runner.binding_hash,
+            observation_queue=queue_contract(),
             native_source=runner.native.source_version,selected_ids=runner.selection.sha256,
             time_seconds=state.time_seconds,classification='B',fit_eligible=False,
             files=files,payload=encoded)
@@ -101,6 +103,7 @@ def load_complete(runner,directory,*,expected_manifest_hash):
     raw = json.loads((directory/'manifest.json').read_bytes())
     digest = raw.pop('manifest_hash',None)
     if (raw.get('schema')!=SCHEMA or digest!=expected_manifest_hash or canonical_hash(raw)!=digest
+            or raw.get('observation_queue')!=queue_contract()
             or raw.get('identity')!=runner.identity or raw.get('input_binding')!=runner.binding_hash
             or raw.get('native_source')!=runner.native.source_version
             or raw.get('selected_ids')!=runner.selection.sha256 or raw.get('fit_eligible') is not False):

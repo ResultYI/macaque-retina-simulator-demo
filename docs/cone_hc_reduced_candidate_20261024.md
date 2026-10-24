@@ -114,12 +114,26 @@ checkpoint 在 6.400031 s 保存并恢复一个尚未消费完成的 native 区�
 
 不追加实验、不改步长、参数、种子、输入或冻结误差预算。数值速度收益、科学验收、生理有效性、大资产传输和笔记本可运行性分别报告；本候选尚不能作为原后端的科学等价替代。
 
+## 延迟队列修复（2026-10-24，独立于上述 r4 失败记录）
+
+`cone_hc_observation_queue.py` 定义显式队列合同 `cone-hc-explicit-observation-queue-1`：只在精确请求时间及原外层区间终点入队。外层终点包含原观察网格、事件和真实输入边界；额外 native/CPU 求解器接受节点不因靠近网格而入队。两个相邻 ULP 若分别属于真实请求或输入边界，仍保留为两个节点；同一边界的左右侧观察不重复入队。原 2.82 ms 延迟、线性插值、剪枝及即时反馈均未修改。
+
+旧 `cone_hc_split_runner.py` 保持原字节，使合法生产 checkpoint 仍先通过原严格加载。A/B 入口随后调用显式 `upgrade_split_reference`，产生包含新队列合同和旧模型来源的新模型身份；继承历史逐项保留，不删去旧近网格节点。旧状态不能直接作为新身份使用。新参考仅用于此验证入口，生产默认没有替换。
+
+新验证协议为 `cone-hc-reduced-real-short-protocol-2`，新 reduced checkpoint 为 `cone-hc-reduced-complete-binary-checkpoint-2`，封存并检查队列合同。旧 v1 reduced checkpoint 不伪装兼容；历史 r4 报告和 checkpoint 保留。每臂新增 `*_queue_times.json`（完整秒值与 float.hex）；完成比较时新增 `delay_queue_comparison.json`（两臂完整列表、数量、首个不同节点和缺失项）。异常退出时标明文件只代表最后成功返回的状态，不声称取得异常发生瞬间的内部状态。
+
+相邻 ULP 回归另发现并修复候选请求漏记：只有实际将执行事件的外层终点才延后读出，其旁边的真实请求不再被 `1e-10` 邻近判定吞掉。未改变事件触发顺序、native 积分、参数、误差预算或随机数。
+
+本次共 51 项针对性 CPU 检查通过（含必要复测；没有复跑 GPU A/B）。新检查覆盖相邻 ULP、真实历史的 38 ULP 额外节点、输入边界左右侧、显式模型身份迁移、完整时间戳失败证据，以及 3 ms 合成调度下 checkpoint 恢复后穿越输入边界、队列/延迟读出与不间断执行一致。实际 codec 使用 Torch CPU tensor；合成 native packet 不代表 GPU 或科学数值验收。初次测试有临时目录缺失的 setup error，随后 ULP 读出回归暴露上述代码错误，原日志均保留于 `reports/cone_hc_queue_repair_20261024_v1/`。
+
+`w/z2/q/release` 的 r4 超预算仍是未解决的科学失败，候选保持非默认、不可拟合；本次没有声称修复后的真实全链队列已通过。
+
 ## 复核与笔记本运行命令
 
 以下命令在项目根执行，`python` 必须指向使用者明确选择的 Python 3.11 环境。不要调用旧生产入口，也不要删除生产 `REQUEST_STOP`。
 
 ```powershell
-python -X utf8 -B -m pytest tests/test_cone_hc_reduced_native.py tests/test_cone_hc_reduced_bridge.py tests/test_cone_hc_reduced_interfaces.py -q -p no:cacheprovider
+python -X utf8 -B -m pytest tests/test_cone_hc_reduced_native.py tests/test_cone_hc_reduced_bridge.py tests/test_cone_hc_reduced_interfaces.py tests/test_cone_hc_observation_queue.py -q -p no:cacheprovider
 python -X utf8 -B tools/validate_cone_hc_reduced.py --prepare-only --output reports/laptop_reduced_preflight
 # 只有本机实际硬件、完整外部资产和 DLL 环境满足条件时才执行：
 python -X utf8 -B tools/validate_cone_hc_reduced.py --execute --output reports/laptop_reduced_preflight
