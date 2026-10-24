@@ -1,0 +1,53 @@
+{
+  "schema": "cone-hc-split-fp64-candidate-1",
+  "classification": "B_same_equations_new_partitioned_numerics",
+  "status": "PENDING_USER_APPROVAL_OF_NUMERICAL_INPUT_AND_VALIDATION_CONTRACT",
+  "execution_enabled": false,
+  "default_backend_change": false,
+  "official_cache_source_change": false,
+  "dtype": "float64",
+  "native": {
+    "method": "DOP853",
+    "rtol": 1e-6,
+    "atol": 1e-9,
+    "max_step": 0.0005,
+    "controller": "persistent_native_block_RMS",
+    "restart_only_at": "actual_native_input_breakpoint_or_explicit_input_phase_change"
+  },
+  "inner": {
+    "method": "DOP853",
+    "rtol": 1e-6,
+    "atol": 1e-9,
+    "max_step": 0.0001,
+    "controller": "independent_inner_block_RMS_including_original_held_slots",
+    "rod_author_step_seconds": 0.0001,
+    "BC_RGC_period_seconds": 0.001,
+    "held_slot_exclusion": "NOT_IMPLEMENTED_OR_APPROVED"
+  },
+  "coupling": {
+    "graph_guard": "no_inner_to_native_no_native_cross_gap_release_only_outward",
+    "query": "accepted_native_dense_state_only_no_extrapolation",
+    "release": "original_nonlinear_expression_from_dense_V_Vbar_and_HC_state",
+    "compact_projection": "gather_state_coefficients_then_original_order_selected_B_SpMV",
+    "release_endpoint_linear_interpolation": false
+  },
+  "observation": {
+    "common_grid_seconds": 0.0001,
+    "native_readout_delay_seconds": 0.00282,
+    "monitor": "complete_original_evaluator_on_common_grid_events_input_sides_and_both_blocks_accepted_endpoints",
+    "delay_queue": "original_common_grid_requested_dense_sample_and_interval_stop_knots_owned_Vh_never_native_lookahead_or_extra_block_endpoints"
+  },
+  "acceptance": {
+    "approved_contract_sha256": null,
+    "approved_input_policy_sha256": null,
+    "approval_reference": null,
+    "approved_runtime_budget": null,
+    "existing_resident_budget_not_relaxed": true,
+    "proposed_B_total_state_budget": "min(1e-9+1e-6*S0,0.01*(a_unit+1e-4*S0))",
+    "proposed_budget_enabled": false,
+    "note": "The Pro proposal can be up to 100 times the old budget. It is NOT an approved threshold or an implemented comparator."
+  },
+  "validation": "NOT_RUN",
+  "performance": "NOT_MEASURED",
+  "physiological_validation": "NOT_RUN"
+}

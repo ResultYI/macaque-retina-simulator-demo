@@ -208,7 +208,8 @@ class DiskSpatialAsset:
             'exterior_recurrent_closure':'NOT_CERTIFIED','physiological_validation':False}
 
 
-def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,halo_mm,max_spatial_cells,seed):
+def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,halo_mm,max_spatial_cells,seed,
+                 rod_reference_policy=None):
     """The same mechanism factories/time ownership on a frozen global view."""
     from .atlas_runtime import atlas_midget_network,q
     from .atlas_primary_rod import attach_primary_rod
@@ -222,7 +223,10 @@ def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,hal
     if configuration.get('atlas_profile')!=atlas_profile:
         raise ContractError('Selected circuit cone atlas differs from frozen graph; no species-route fallback')
     policy=configuration.get('empty_chemical_input_policy','reject_empty_chemical_input_v1')
-    view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'],empty_chemical_input_policy=policy)
+    owner_options=({'owner_global_rows':configuration['owner_global_rows']}
+                   if 'owner_global_rows' in configuration else {})
+    view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'],
+        empty_chemical_input_policy=policy,**owner_options)
     if max(len(rows) for rows in view['selected_rows'].values())>max_spatial_cells:
         raise ContractError('Exact global view exceeds requested per-population budget; no thinning or crop normalization')
     guard=MemoryGuard(min_available_bytes=configuration['budgets']['minimum_available_bytes'])
@@ -232,22 +236,27 @@ def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,hal
     compiled,channels,audit=atlas_midget_network(root,duration=duration,light_context=light_context,owner_bounds_mm=owner_bounds_mm,
         halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed,connection_record=record,atlas_profile_id=atlas_profile,
         allow_empty_owner_outputs=True,spatial_asset=spatial,_atlas_context=context,max_compile_bytes=spatial.max_compile_bytes)
-    compiled,channels,audit=attach_primary_rod(Path(root),compiled,channels,audit,record,light_context,spatial_asset=spatial)
+    compiled,channels,audit=attach_primary_rod(Path(root),compiled,channels,audit,record,light_context,
+        spatial_asset=spatial,rod_reference_policy=rod_reference_policy)
     proof=spatial.validate_compiled(compiled);roi=DiskAtlasROI(tuple(owner_bounds_mm),tuple(owner_bounds_mm),circuit.record['reference_id'])
     for name,pop in compiled.populations.items():
         rf=pop.receptive_field_positions
         audit['population_owner_mask'][name]=([False]*len(pop.cells.cell_id) if rf is None else roi.owner_mask(rf.values).tolist())
     compiled.global_disk_circuit=circuit;compiled.global_disk_view=view;compiled.global_spatial_asset=spatial
+    compiled.compile_resource_budget_bytes=spatial.max_compile_bytes
     compiled.frozen_typed_geometry_binding=spatial.binding
     compiled.input_geometry_binding_required=True
     compiled.geometry_source_binding={'execution_profile':'atlas_isetbio_geometry_v1','storage_kind':'global_disk_graph_v1',
         'global_graph':circuit.binding,'exact_view':spatial.binding,'input_plan':configuration['input_plan']}
+    if owner_options:
+        compiled.geometry_source_binding['owner_global_rows']=configuration['owner_global_rows']
     radius=circuit.table('rods').radius
     compiled.typed_view_domain={'reference_id':circuit.record['reference_id'],'owner_domain_mm':tuple(owner_bounds_mm),
         'query_domain_mm':(-radius,radius,-radius,radius),'empty_owner_outputs':tuple(view['empty_output_samples']),'owner_disk_radius_mm':3.}
     audit['atlas_runtime'].update(frozen_typed_geometry=proof,graph_binding=circuit.binding,
         compiled_geometry_identity=compiled_geometry_identity(compiled),global_geometry_radius_mm=3.,
         geometry_or_edge_resampled=False,full_20_layer_network_claim=False)
+    if owner_options:audit['atlas_runtime']['owner_output_global_rows']=configuration['owner_global_rows']
     audit['execution_profile']=dict(audit['execution_profile'],profile_id='atlas_isetbio_geometry_v1',storage_kind='global_disk_graph_v1',
         scope='Exact finite dependency view of the approved global3mm disk; effective dynamics and declared unresolved source gaps retained',
         execution_mode='frozen_global_disk_dependency_view',physiological_calibration=False)

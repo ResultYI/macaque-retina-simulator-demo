@@ -1,0 +1,61 @@
+{
+  "schema": "resident_native_source_pins_v2",
+  "scope": "Reviewed corrected-reference source; prospective binding only, no runtime acceptance",
+  "sources": {
+    "gpu_dop853.py": "94d03925a324074338ff24a17e4d0e8f7cc3bf6aec88daf6527ea23d722b5f7e",
+    "gpu_hybrid.py": "690891b0fc2be5c5e0ef06b2c7cf19a158e602593fe4dfe1d1a62a7fa0c484ae",
+    "gpu_compact.py": "ef0dd65664888d1babe3dde8e8df046e1fcb81ccad23226b370396f08588b01b",
+    "gpu_native.py": "16a7081587c5a1b7a77410d9374c8547141062e6e5b8d43ec65df336e4c774da",
+    "hybrid.py": "774672e99657657a372e67cf221d226f2a241e34b277d415a19710cd6397aa19",
+    "network.py": "c06c8ef85b1e5c6689fd2cc21ea09e173c4694f6b50ec3b7491d5ab6e92fa0be",
+    "background.py": "776a83f1c62488efa609f0b0a482cf0c48f0bd58f9106b310b67cdc24b9440cf",
+    "background_advance.py": "243d898f1535da425eba0f1b45eae89232efa66fc956991d26bc870a5a78ab5d",
+    "recording.py": "d27508a6c8904704d4916f18d04ef6d356d1b3707fac3fbdda9f3f0ecfe4bd75",
+    "contracts.py": "696df746073967763d360988b676b7f97d1faff1a3ddef88660cc083e840187e",
+    "compiled_kernel.py": "e7e9554ab7ba6824c8c3e10e69f76e36061966a41982321f87472143503e25e5",
+    "native_rows.py": "d5c91bff00cd9fd3f8779029b2191263ef464169d918a061544c7a8750a1c923",
+    "vh2005.py": "60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858",
+    "inner.py": "32c469e6a1de2c75a28b1bf6c6d9fcac8c6942f0391386d60608b95688bac0e3",
+    "rod_pathway.py": "5601dd757e22177fb02ebd72a4305ea145f8ddd05aa130822fe43f95b27c862c",
+    "bc_gain_control.py": "db45db6c6f107b1655ab6c26bcd96643ae0afec3d40fdbd9434de30755888e01"
+  },
+  "status": "PATCH_WRITTEN_STATIC_ONLY_REGRESSION_PENDING",
+  "supersedes": {
+    "file": "resident_native_source_pins_v1.json",
+    "sha256": "65d4662c1f180f7816d8b0a7d4e8db5e8a3abb609f11b9a0ab2c584c6d466c8c",
+    "policy": "Preserve v1 and old receipts as historical defective-reference evidence; no migration or reuse as corrected-reference acceptance"
+  },
+  "reviewed_changes": {
+    "network.py": {
+      "before_sha256": "ec78055d011a65b0305a5dbdd9f5a6d755dce5d986bd102b5e3c6f3d110317b9",
+      "after_sha256": "c06c8ef85b1e5c6689fd2cc21ea09e173c4694f6b50ec3b7491d5ab6e92fa0be"
+    },
+    "hybrid.py": {
+      "before_sha256": "e9a589e57b5909e155c753fbf8a551a7944382206b9ad151cfaa6eb8ee303b72",
+      "after_sha256": "774672e99657657a372e67cf221d226f2a241e34b277d415a19710cd6397aa19"
+    },
+    "gpu_hybrid.py": {
+      "before_sha256": "f4447c356b540e630b43d9a1d3eb33a4e74c950581cdb40f21f4838dee19c82d",
+      "after_sha256": "690891b0fc2be5c5e0ef06b2c7cf19a158e602593fe4dfe1d1a62a7fa0c484ae"
+    }
+  },
+  "input_time_semantics": {
+    "frame_selection": "absolute 150Hz calendar; exact boundary and right side use new frame, preceding float uses old frame; no positive epsilon",
+    "integration_rhs": "At interval end request left_limit=True from NetworkStimulus; shift only actual ZOH channels, retain linear/analytic endpoint and propagate delay_left_limit",
+    "sampling_and_monitor": "Existing default right-side callback/event order unchanged; no event, RNG, observation or solver-policy change",
+    "ordinary_recording": "Existing HybridRunner.advance terminal recording policy retained separately; not an integration RHS policy"
+  },
+  "input_provider_sources": {
+    "tools/regional_movie_runtime.py": "255b024dca75087b3dcc5275f29a797ddfea1ce47dd07b5e40b412400cc451cc"
+  },
+  "repair_evidence": {
+    "reports/code_integrity_audit_20261022_v1/repair_report.md": "e54d5c6e0b2fef31cf94caab7d83ee94dbdaa74bdf80c72a36861711e909c812",
+    "reports/code_integrity_audit_20261022_v1/repair_static_checks.json": "ba10384900c3f76d6e249c64e9d0bd9b5b53f09f44802b7b557395f0ea019457"
+  },
+  "numerical_contract": {
+    "file": "resident_native_fp64_v1.json",
+    "sha256": "3cfab9768a856c13354ab38cc65b506da60661fe3e3b0f05e46c647c08981a77",
+    "error_budget_changed": false
+  },
+  "boundary_replay": "Excluded from resident QA; repair does not authorize old cache migration"
+}

@@ -1,0 +1,26 @@
+function scene = make_gray_reference_scene(referenceScene, multiplier, policySha, approvedPolicySha)
+% Input-only adapter. NOT RUN/qualified by this preparation delivery.
+% referenceScene MUST be the existing uniform global neutral reference AFTER
+% its one fixed radiance gain, BEFORE ISET optics. Caller binds that scene and
+% the actual human approval in the frontend receipt. Never rescale it from this
+% frame/ROI. multiplier comes from the approved Python LinearGrayScene on the
+% same ISET scene grid; it is NOT an encoded RGB image or cone drive.
+assert(ischar(policySha) && ischar(approvedPolicySha) && ...
+    ~isempty(regexp(policySha,'^[0-9a-f]{64}$','once')) && strcmp(policySha,approvedPolicySha), ...
+    'VRGray:Approval','Exact externally approved policy hash required');
+assert(isnumeric(multiplier) && ismatrix(multiplier) && all(isfinite(multiplier(:))) && ...
+    all(multiplier(:)>=0) && all(multiplier(:)<=2), ...
+    'VRGray:Multiplier','Finite fixed-reference multiplier in [0,2] required');
+referencePhotons=double(sceneGet(referenceScene,'photons'));
+assert(ndims(referencePhotons)==3 && isequal(size(multiplier), ...
+    [size(referencePhotons,1),size(referencePhotons,2)]), ...
+    'VRGray:SceneGrid','Same existing reference scene support/wavelength grid required');
+spectra=reshape(referencePhotons,[],size(referencePhotons,3));
+assert(all(isfinite(spectra(:))) && all(spectra(:)>=0) && any(spectra(1,:)>0) && ...
+    all(all(spectra==spectra(1,:))), ...
+    'VRGray:Reference','One uniform nonzero frozen neutral reference spectrum required');
+photons=reshape(double(multiplier(:))*spectra(1,:),size(referencePhotons));
+scene=sceneSet(referenceScene,'photons',photons);
+% Caller now uses unchanged oiCompute/cMosaic capture and the SAME fixed LMS
+% bridge. No gamma, new gain, luminance normalization, photocurrent or noise.
+end

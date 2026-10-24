@@ -1,0 +1,9 @@
+# Optional explicit Cone-HC reduced candidate, Windows / Python 3.11.
+# Observed development versions; this file is not an upgrade instruction.
+# Requires an NVIDIA CUDA-capable GPU and its compatible installed driver.
+# Resolve the exact existing CUDA Torch build from an approved wheel source;
+# this file does not select a package index, install a driver, or install MATLAB.
+-r requirements.txt
+numba==0.67.0
+llvmlite==0.49.0
+torch==2.14.0+cu130

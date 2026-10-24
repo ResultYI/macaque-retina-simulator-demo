@@ -236,9 +236,16 @@ class RetinaBuilder:
                     jacobian_edge_bound=int(np.dot(np.diff(a.indptr).astype(np.int64),np.diff(b.indptr).astype(np.int64)))+a.shape[0]
                     scratch+=64*jacobian_edge_bound
             elif c.mechanism=='ContactFirstStaticOccupancyV2': pass  # algebra only, no new cells/states
+            elif c.mechanism=='HistoryBipolarTerminal':
+                p=getattr(self.sources,'mechanism_profiles',{}).get(c.parameter_profile_id)
+                length=sum(np.asarray(r.value.values).size for r in p.records if r.parameter_id=='kernel') if p else 0
+                history+=sizes.get('cells',0)*length
+                enabled=c.options.get('bc_output_gain_control',{}).get('enabled',False)
+                states+=sizes.get('cells',0)*(length+3+int(enabled))
             elif c.mechanism in ('CandidateConeBipolarReceptorMembrane','CandidateGenericAmacrineReceptorMembrane',
                                  'ContactFirstConeBipolarReceptorMembraneV2','ContactFirstGenericAmacrineReceptorMembraneV2'):
                 states+=(3 if c.mechanism in ('CandidateConeBipolarReceptorMembrane','ContactFirstConeBipolarReceptorMembraneV2') else 2)*sizes.get('cells',0)
+            elif c.mechanism=='EffectiveInhibitoryAC': states+=sizes.get('cells',0)
             elif c.mechanism in ('ResidualBC_ON','ResidualBC_OFF','ResidualAC','HistoryConductanceRGC','HistoryConductanceRGCCurrentClampBoundary'):
                 profiles=getattr(self.sources,'mechanism_profiles',{})
                 if c.parameter_profile_id in profiles:
@@ -250,7 +257,7 @@ class RetinaBuilder:
         for component in spec.components:
             if component.mechanism in ('VanHateren2005NativeConeH1','VanHateren2005FiniteContactZeroFeedbackApproximation') and 'observation_interval_seconds' in component.options:delay_steps.append(component.options['observation_interval_seconds'])
             profile=getattr(self.sources,'mechanism_profiles',{}).get(component.parameter_profile_id)
-            if profile is not None:delay_steps.extend(float(r.value.values) for r in profile.records if r.parameter_id in ('sample_interval','spike_interval'))
+            if profile is not None and component.mechanism!='EffectiveInhibitoryAC':delay_steps.extend(float(r.value.values) for r in profile.records if r.parameter_id in ('sample_interval','spike_interval'))
         delay_steps.extend(float(d) for link in spec.links for d in link.connections.delay_seconds if d is not None and d>0)
         delay_bytes=0
         for link in spec.links:

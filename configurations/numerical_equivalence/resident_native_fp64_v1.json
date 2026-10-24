@@ -1,0 +1,61 @@
+{
+  "contract_id": "resident_native_fp64_error_equivalence_v1",
+  "status": "FROZEN_BEFORE_FIRST_RUNTIME_EVALUATION_UNVALIDATED",
+  "scope": "Current full-graph resident-native execution: unchanged compact CPU inner, device-resident joint state and DOP853 workspace, native monitor/evaluator and native observation-delay queue, CPU discrete patches and complete checkpoint export. Independent numerical QA only; not physiology, fitting, solver changes or background qualification.",
+  "approval_scope": "The architecture and prospective numerical gate are approved for low-load implementation. This document is not a runtime-test authorization, numerical-pass claim, performance result or production-backend approval.",
+  "dtype": "float64",
+  "solver_required": {
+    "method": "DOP853",
+    "rtol": 1e-6,
+    "atol": 1e-9,
+    "max_step": 0.0001,
+    "input_interpolation": "Unchanged original input contract for each bound channel; bind the complete actual interpolation/breakpoint/left-right-limit identity before execution. No substitution of the old small-fixture analytic contract."
+  },
+  "scenario_required": {
+    "components": 24,
+    "native_cones": 545658,
+    "native_HC": 344901,
+    "state_scalars": 5096368,
+    "RGC_outputs": 8,
+    "output_scope": "Current unchanged owner cohort and full dependency closure, retaining the 8.31 degree output range. This cohort does not establish coverage of every research RGC class.",
+    "reference_backend": "cuda_compact_native_joint_dop853_float64_v2",
+    "binding_before_execution": "Freeze source/graph/owner/order/weights/parameters/solver/channel/reference-state/checkpoint-layout and complete aux hashes; attach this contract hash. Unknown or mismatched identity stops evaluation. Do not weaken old checkpoint backend-identity rejection to import the QA state."
+  },
+  "state_budget_fraction": 0.01,
+  "roundoff_epsilon_multiplier": 8192,
+  "scale_definition": "S_i=max(abs(frozen reference QA initial state_i), existing unit_registry.scale_floor); never rescale from subsequent drift or candidate values",
+  "state_allowance": "B_i=0.01*min(solver.atol+solver.rtol*S_i, unit_registry.atol+BackgroundPolicy.relative_tolerance*S_i)",
+  "RHS_allowance": "abs_tol_i=min(8192*eps*S_i/solver.max_step,B_i/solver.max_step); rel_tol=8192*eps; total=min(abs_tol_i+rel_tol*max(abs(f_ref),abs(f_candidate)),B_i/solver.max_step)",
+  "roundoff_scope_limit": "8192eps remains the previously allocated engineering screen, not a certified rounding bound for large native reductions or a global-error guarantee. No increase is permitted after observing results. An unsupported arithmetic/monitor quantity or an unproved budget propagation is inconclusive and blocks adoption; it does not inherit a new arbitrary allowance.",
+  "solver_execution": "Preserve each original interval boundary and controller restart, both initial-step RHS evaluations, original coefficients and expression order, full-state RMS dimension including held states, acceptance/rejection and dense polynomial/endpoint choice. Keep original reductions in the initial resident implementation. Accepted/rejected schedules must match in the first QA gate; otherwise stop even if the final state happens to be close.",
+  "outputs": {
+    "V_gE_gI_release_native_readouts": "Same typed B formula with scale frozen from the reference initial output; require an existing registered unit/floor and preserve every declared port validation",
+    "conditional_rate_Hz": "alpha/beta * B_voltage + 8192eps*max(abs(reference_rate),1Hz); strict-past history must match exactly",
+    "Bernoulli_probability": "dt*alpha/beta*B_voltage + 8192eps; unchanged original probability expression",
+    "event_time": "For identical uniform u and unchanged history, use the original event-time formula and the interval from lambda_ref +/- declared rate allowance. Same cell/order/bin; no shifts/resampling. An actual event with nonpositive lower rate is inconclusive, not accepted.",
+    "delay_values": "Use the original port's typed output allowance, preserving timestamp brackets, prehistory, interpolation arithmetic order, prune rule and retained rows. No sampled or reduced queue substitutes for the full numerical payload."
+  },
+  "monitor": {
+    "coverage": "Every original state/port/domain/gap/history/discrete-one-step-defect check at every original callback, with unchanged numerical thresholds, observation count, complete-window criterion and qualification duration",
+    "storage": "Preserve per-cell lo/hi/max_abs_rhs/defect and immutable reference den; compute original normalized per-cell criteria before reducing. Preserve state/criterion traversal and first-argmax tie rules.",
+    "exact_fields": "Report schema, observation stamps/count/coverage, failure labels, history/gap decisions and pass/fail must match exactly",
+    "numeric_fields": "Save both full raw reports and per-cell statistic differences. Excursion bounds follow corresponding lo/hi state budgets; RHS norm bounds follow width*RHS_allowance/den. Discrete-defect bounds use the separately required direct transition-output witness below. Other derived-statistic bounds require explicit pre-evaluation typed propagation; missing propagation is inconclusive, never a guessed global norm tolerance. Near-threshold intervals that cannot guarantee the same original decision stop evaluation.",
+    "discrete_transition_witness": "At every original monitor point, evaluate each original pure one-step transition in both arms from their respective same-time pre-transition state and original input/sampling context, without committing it or consuming RNG. Preserve both transition outputs as independent QA observables and require abs(transition_candidate_i-transition_reference_i)<=B_transition_i with B_transition_i=B_i, using the same original state unit, frozen initial S_i and unchanged state budget formula. The current-state comparison must independently satisfy abs(state_candidate_i-state_reference_i)<=B_state_i=B_i. Missing either witness is inconclusive and blocks adoption; do not estimate nonlinear propagation instead.",
+    "discrete_defect_allowance": "For defect_i=abs(transition_i-state_i)/period, the direct witnessed bound is (B_transition_i+B_state_i)/period. The corresponding original normalized monitor bound is width*(B_transition_i+B_state_i)/(period*den_i); per-cell temporal maxima preserve this bound. Keep original positive period, frozen den_i, exact callback alignment and expression order. Preserve numeric witnesses and do not turn the bound into a new background pass/fail threshold.",
+    "dominant": "Retain both dominant state/cell/criterion witnesses. Near-equal maxima may select different cells only when original first-argmax semantics and already-declared numeric bounds explain the difference; otherwise stop.",
+    "failure_timing": "No delayed checks across original failure barriers; merging device predicates within one logical stage cannot postpone rejection to frame/window/batch completion"
+  },
+  "discrete_aux": "Grid origin, component_tick_indices, sample_index, counts/history, PCG64 state, draw order/count, delay timestamps, pending-event cell/order/bin identity and input phase exact. Record u, both probabilities, declared allowance and margin. A changed event decision or uniform inside the uncertainty interval stops the run without extra draws or resampling.",
+  "event_order": "Common pre-transition sampling snapshot -> compute all due BC/rod transitions -> commit state -> increment due component tick indices -> original RGC sample_spikes updates aux/RNG -> increment sample_index. Rod author interval-start input and old-state update order unchanged.",
+  "resident_ownership": "Only explicit current-generation inner patches may modify resident state. No stale event/monitor evidence across state/input/left-right-limit/sampling/due-set/history/delay/parameter/graph generations. No aliasing of returned samples/final snapshots with reusable RK workspaces. Functional advance must not mutate its supplied reference state.",
+  "checkpoint": "Explicit runtime export materializes complete same-generation state, native observation queue, input position, clocks/history/PCG64/pending events and runtime identity. The background reference binding, monitor report and qualification metadata remain the responsibility of the existing outer BackgroundCheckpointStore envelope; plain RetinaState export alone does not contain or establish that qualification. Full checkpoint publication requires the outer-store integration and all existing strict loading/hash/qualification checks. Until that integration is implemented and verified, do not claim full qualified checkpoint support. Storage residency does not confer background qualification.",
+  "invalid_inputs": "No tolerance for NaN/Inf, negative native domain/light, invalid channel/layout/unit identity or missing state; preserve original rejection and failure timing, with no clipping",
+  "QA_initial_state": "Identical complete real-graph diagnostic initial state and aux in both arms. Preserve reference scales and all original initial values; do not move RGC V to mu or alter physiology/parameters to manufacture a performance event. A short diagnostic window remains NOT_FIT_ELIGIBLE.",
+  "QA_scenario": "One prospectively bound 8-10ms representative scenario with a short background portion and time-varying input spanning at least one actual 150fps frame boundary, original 100us rod and 1ms BC/RGC clocks, left/right limits, all original observations and at least one actual dense request. Freeze exact inputs/timestamps before execution. No long warmup or fitting. Report missing spike coverage explicitly; old 52-spike small-fixture evidence is not a real-graph pass.",
+  "validation_status": "No runtime evaluation, CUDA initialization, JIT, simulation, benchmark or numerical QA has been performed for this contract. Static source/JSON validation cannot satisfy it.",
+  "execution_hold": "During the user's gaming restriction, all simulations, benchmarks, graph assembly, large-array loading, CUDA/JIT and heavy checks remain prohibited. Runtime work requires the user's later explicit authorization; never schedule an automatic timed start or move it to another computer.",
+  "stopping": "Any numeric/aux/domain/coverage/qualification/failure-timing gate failure, unsupported budget propagation, changed accept/reject schedule or uncertain event/threshold decision stops adoption. Keep failure evidence; no post-result threshold adjustment, hidden numerical changes or automatic retry matrix.",
+  "performance_gate": "Only after authorized correctness validation: compare complete identical-observer/input/event/output E2E, separate cold costs and extra QA readback. At least 20 percent lower hot wall time is the prospective engineering-value gate, not a prediction. A slower candidate stops; at most one additional paired run if noise or the threshold is unclear. Existing memory/STOP guards remain. Future proposed run budget: 15 minutes total including one assembly and at most 3 minutes in testing, subject to explicit authorization.",
+  "excluded": "GPU-inner/fused-inner continuation, controller persistence across event intervals, changed integration algorithm/precision/tolerances/norm dimension, relaxed monitoring/background qualification, graph/cell/feedback/range approximation, default-backend switch or automatic production deployment",
+  "relationship_to_old_contract": "Independent new full-graph resident-native scope. compact_device_fp64_v2.json and its hashes/results remain unchanged and are not automatically applicable. This contract preserves its existing allocation fractions rather than claiming that the old small-graph validation proved the new scope."
+}

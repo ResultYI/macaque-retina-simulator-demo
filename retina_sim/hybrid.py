@@ -33,7 +33,10 @@ class RetinaState:
     input_position: dict = field(default_factory=dict)
     link_delay_states: dict = field(default_factory=dict)
     component_tick_indices: dict = field(default_factory=dict)
-    def __getattr__(self,key): return getattr(self.dynamic,key)
+    def __getattr__(self,key):
+        # copy/deepcopy probes special methods before reconstructed fields exist.
+        dynamic=object.__getattribute__(self,'dynamic')
+        return getattr(dynamic,key)
 
 class HybridRunner:
     def __init__(self,compiled,*,compute_backend='auto'):
@@ -108,8 +111,7 @@ class HybridRunner:
     def _integrate(self,state,stimulus,stop,config,samples):
         start=state.time_seconds; y=self._flat(state)
         def rhs(t,a):
-            tin=min(t,np.nextafter(stop,start)) if stimulus.interpolation=='zero_order_hold' else t
-            return self.model.rhs_flat(t,a,replace(stimulus.at(tin),delay_left_limit=bool(t>=stop)),self.model.parameters,self.model.graph)
+            return self.model.rhs_flat(t,a,stimulus.at(t,left_limit=bool(t>=stop)),self.model.parameters,self.model.graph)
         requested=np.array(sorted(set(float(x) for x in samples if start<x<=stop)))
         if config.method=='RK2':
             targets=sorted(set(requested.tolist()+[float(stop)])); rows={}; current=start
@@ -123,21 +125,40 @@ class HybridRunner:
         targets=np.array(sorted(set(requested.tolist()+[float(stop)])))
         if len(y):
             from time import perf_counter
+            from .solver_lifetime import collection_epoch,release_solver_cycles
             endpoint_only=not np.any(requested<stop)
-            tick=perf_counter()
-            solution=solve_ivp(rhs,(start,stop),y,method=config.method,rtol=config.rtol,atol=config.atol,max_step=config.max_step,t_eval=None if endpoint_only else targets,dense_output=False)
-            metrics=self.integration_metrics;metrics['solver_calls']+=1
-            for key in ('nfev','njev','nlu'):metrics[key]+=getattr(solution,key,0)
-            metrics['integration_wall_seconds']+=perf_counter()-tick
-            metrics['minimum_interval_seconds']=min(metrics['minimum_interval_seconds'] or (stop-start),stop-start)
-            metrics['maximum_nfev_per_interval']=max(metrics['maximum_nfev_per_interval'],solution.nfev)
-            if not solution.success: raise ContractError('Joint integration failed: '+solution.message)
-            # A successful terminal event is not arrival at the requested stop.
-            # Never label an earlier accepted state with a later timestamp.
-            if solution.status!=0 or not len(solution.t) or solution.t[-1]!=stop:
-                raise ContractError('Joint integration did not reach the requested endpoint')
-            rows={float(stop):solution.y[:,-1]} if endpoint_only else {float(t):a for t,a in zip(solution.t,solution.y.T)}
-            self._replace(state,solution.y[:,-1],stop)
+            epoch=collection_epoch() if config.method=='DOP853' else None
+            metrics=self.integration_metrics;copy_seconds=0.;solution=None
+            try:
+                tick=perf_counter()
+                solution=solve_ivp(rhs,(start,stop),y,method=config.method,rtol=config.rtol,atol=config.atol,max_step=config.max_step,t_eval=None if endpoint_only else targets,dense_output=False)
+                metrics['solver_calls']+=1
+                for key in ('nfev','njev','nlu'):metrics[key]+=getattr(solution,key,0)
+                metrics['integration_wall_seconds']+=perf_counter()-tick
+                metrics['minimum_interval_seconds']=min(metrics['minimum_interval_seconds'] or (stop-start),stop-start)
+                metrics['maximum_nfev_per_interval']=max(metrics['maximum_nfev_per_interval'],solution.nfev)
+                if not solution.success: raise ContractError('Joint integration failed: '+solution.message)
+                # A successful terminal event is not arrival at the requested stop.
+                # Never label an earlier accepted state with a later timestamp.
+                if solution.status!=0 or not len(solution.t) or solution.t[-1]!=stop:
+                    raise ContractError('Joint integration did not reach the requested endpoint')
+                tick=perf_counter()
+                final=solution.y[:,-1].copy()  # Do not retain all accepted-step columns through a final-state view.
+                copy_seconds=perf_counter()-tick
+                rows={float(stop):final} if endpoint_only else {float(t):a for t,a in zip(solution.t,solution.y.T)}
+                self._replace(state,final,stop)
+            finally:
+                solution=None
+                metrics['solver_result_copy_wall_seconds']=metrics.get('solver_result_copy_wall_seconds',0.)+copy_seconds
+                metrics['integration_wall_seconds']+=copy_seconds
+                if epoch is not None:
+                    cleanup=release_solver_cycles(epoch)
+                    for label in ('wall_seconds','CPU_seconds','collected_objects'):
+                        key='solver_lifetime_gc_'+label
+                        metrics[key]=metrics.get(key,0)+cleanup[label]
+                    key='solver_lifetime_gc_generation_'+str(cleanup['generation'])+'_calls'
+                    metrics[key]=metrics.get(key,0)+1
+                    metrics['integration_wall_seconds']+=cleanup['wall_seconds']
         else:
             rows={float(t):y for t in targets}; self._replace(state,y,stop)
         return rows

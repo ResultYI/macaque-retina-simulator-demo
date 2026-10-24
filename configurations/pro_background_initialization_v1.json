@@ -1,0 +1,11 @@
+{
+  "schema_version": "retained-background-initialization-1.0",
+  "algorithm": "retained_physical_terminal_algebraic_closure",
+  "scope": "Current retained 34-component main circuit; all actual typed background inputs",
+  "parameter_fit_performed": false,
+  "parameters_or_references_changed": false,
+  "existing_preparation_criteria_required": true,
+  "stochastic_stationarity_claim": false,
+  "physiological_calibration": false,
+  "basis": "Pro E01-E16: derive states after references are fixed; sparse reciprocal voltage solve and event/resource equilibrium"
+}

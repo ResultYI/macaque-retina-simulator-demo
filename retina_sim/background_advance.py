@@ -16,8 +16,8 @@ from .network import NetworkStimulus
 from .recording import RecordingPlan,TimestampedDelay,fork_timestamped_delay_payloads
 
 LEGACY_ADVANCE_SHA256='64194d0ce68ecfdfd1eab43fde372ce257e600f469ed8ee3f66d8e526013708e'
-PURE_FACTORY_SOURCES={'vh2005.py': 'd4f867c75e3c9cdb44c0073caad2de61b2bf383883a59d6e9c5c34b4dfddfa4a', 'inner.py': '32c469e6a1de2c75a28b1bf6c6d9fcac8c6942f0391386d60608b95688bac0e3', 'rod_pathway.py': 'a271e5501ba9c56e15d76dc21a634bea5124d46b087d29171f7526a897314e45', 'physical.py': '6bd9ae8413388086ce28f7b55489944964b283dc66bea8ec5159f9d4838c0813'}
-PURE_MECHANISMS=frozenset(['Chen2024PrimateRodCurrent', 'DoubleExponentialChemicalSynapse', 'ExplicitPhysicalUnitConversion', 'HistoryBipolarTerminal', 'HistoryConductanceRGC', 'ReceptorConductanceMembrane', 'ResidualAC', 'ResidualBC_OFF', 'ResidualBC_ON', 'RodContactTRPM1', 'SynapticConductance', 'VanHateren2005NativeConeH1'])
+PURE_FACTORY_SOURCES={'vh2005.py': '60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858', 'inner.py': '32c469e6a1de2c75a28b1bf6c6d9fcac8c6942f0391386d60608b95688bac0e3', 'rod_pathway.py': '5601dd757e22177fb02ebd72a4305ea145f8ddd05aa130822fe43f95b27c862c', 'bc_gain_control.py': 'db45db6c6f107b1655ab6c26bcd96643ae0afec3d40fdbd9434de30755888e01', 'physical.py': '6bd9ae8413388086ce28f7b55489944964b283dc66bea8ec5159f9d4838c0813', 'ac_inhibition.py': '1e170f21f1617eb953116905d2fefdfdeaa9dd3b697e630eab08cf9d20301873'}
+PURE_MECHANISMS=frozenset(['Chen2024PrimateRodCurrent', 'DoubleExponentialChemicalSynapse', 'ExplicitPhysicalUnitConversion', 'HistoryBipolarTerminal', 'HistoryConductanceRGC', 'ReceptorConductanceMembrane', 'ResidualAC', 'ResidualBC_OFF', 'ResidualBC_ON', 'RodContactTRPM1', 'SynapticConductance', 'VanHateren2005NativeConeH1', 'EffectiveInhibitoryAC'])
 
 
 class _EmptyRecordingPlan:
@@ -67,6 +67,33 @@ def choose_background_runner(runner):
         return selected,selected.procedure_identity
     except ContractError as exc:
         return runner,{'procedure':'legacy_trace_background_v1','reason':str(exc),
+            'neural_model_solver_graph_criteria_changed':False}
+
+
+class StateOnlyObservedRunner(StateOnlyBackgroundRunner):
+    """Explicit empty-trace transport for an observed time-varying stimulus.
+
+    The existing state-only event loop has no constant-input assumption: it
+    constructs the original NetworkStimulus, keeps its breakpoints and calls
+    the original runner's integrator, sampling and mandatory observer. This
+    separate identity permits only empty traces, not omitted observation points
+    or a background-convergence claim for a movie response.
+    """
+    def __init__(self,runner):
+        super().__init__(runner)
+        self.procedure_identity=dict(self.procedure_identity,
+            procedure='state_only_observed_timevarying_v1',
+            observer_scope='Mandatory caller state observer at every unchanged event, dense and endpoint observation; no background-convergence claim',
+            input_scope='Original NetworkStimulus validation, analytic/ZOH values, breakpoints and left limits retained')
+
+
+def choose_observed_runner(runner):
+    """Use the same reviewed empty-record event loop or conservatively fall back."""
+    try:
+        selected=StateOnlyObservedRunner(runner)
+        return selected,selected.procedure_identity
+    except ContractError as exc:
+        return runner,{'procedure':'legacy_trace_observed_v1','reason':str(exc),
             'neural_model_solver_graph_criteria_changed':False}
 
 

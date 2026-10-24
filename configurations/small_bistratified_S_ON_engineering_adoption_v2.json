@@ -1,0 +1,72 @@
+{
+  "schema_version": "rgc-engineering-adoption-2.0",
+  "component_id": "small_bistratified_S_ON",
+  "decision": "adopt_source_limited_engineering_default",
+  "evidence_class": "project_approximation",
+  "evidence_grade": "D cross-type engineering transfer",
+  "physiological_calibration": false,
+  "fit_performed": false,
+  "changed_parameters": [
+    "alpha",
+    "mu",
+    "beta"
+  ],
+  "values": {
+    "alpha": {
+      "value": 90.0,
+      "unit": "Hz",
+      "meaning": "spike_intensity_scale"
+    },
+    "mu": {
+      "value": -0.053,
+      "unit": "V",
+      "meaning": "spike_voltage_offset"
+    },
+    "beta": {
+      "value": 0.00167,
+      "unit": "V",
+      "meaning": "spike_voltage_scale"
+    }
+  },
+  "historical_failures_preserved": true,
+  "general_image_video_validation_completed": false,
+  "target_type_voltage_spike_calibration": false,
+  "authorization": "2026-10-20: user-authorized implementation after the four final ChatGPT high-reasoning recommendations, relayed by source thread01a15790-7593-75c9-97b0-156a350e10e1; adopt90Hz/-53mV/1.67mV separately as D cross-type engineering defaults without repeat approval",
+  "scope": "Independent closed-background S/LM/ring relative responses and explicit split-excitation bookkeeping; no subtype-specific amplitude fit or inherited-sequence recovery claim.",
+  "limitations": [
+    "Published coefficient source is ON-parasol, not an independent fit of this target type.",
+    "Project membrane, three-bin history and1ms binary sampler remain unchanged.",
+    "Sequential history residuals are not required to vanish within50ms.",
+    "Fresh parameter-matched current-configuration background preparation is required.",
+    "Current continuous integration and general natural-video/physiological validation are separate states."
+  ],
+  "historical_test_result": {
+    "path": "reports/modeling_scope_20261020/pro_b5_v1/small_bistratified_S_ON/result.json",
+    "sha256": "dac16ddf8e3c43e51f7d3a94771f0e422ee4bd764b419498fc7dbccf4ac0fe47"
+  },
+  "evidence_files": [
+    {
+      "path": "reports/modeling_scope_20261020/pro_b5_v1/small_bistratified_S_ON/result.json",
+      "sha256": "dac16ddf8e3c43e51f7d3a94771f0e422ee4bd764b419498fc7dbccf4ac0fe47"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/pro_full_v2/isolated_pulses_v2/result.json",
+      "sha256": "df777938617005fe3273208a9666138e914ebcd70ef1f25c83d5d3c7522c290e"
+    },
+    {
+      "path": "reports/modeling_scope_20261020/pro_full_v2/SB_sequence_recording/result.json",
+      "sha256": "fe2f0195c88cd7260208e6917d5cab18f0fc5cb4ee3f9e0b1cf726fa292e636b"
+    }
+  ],
+  "rollback": {
+    "main_configuration": {
+      "path": "configurations/history/retina_platform_pre_consulted_rgc_20261020.json",
+      "sha256": "e3a10eeb0d02ac6128a1b860c3d01bc1aaf4f9a850c19508855224ff46f35cb4"
+    },
+    "previous_values": {
+      "alpha_Hz": 150.0,
+      "mu_V": -0.07,
+      "beta_V": 0.005
+    }
+  }
+}

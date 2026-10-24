@@ -5,13 +5,14 @@ import ctypes,hashlib,json,os,time
 import numpy as np
 from .contracts import ContractError,canonical_hash
 from .background import NUMERICAL_UNIT_SCALES,_WindowMonitor,timing_requirements
+from .atomic_io import replace_with_retry
 
 
 def atomic_json(path,value):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     temporary=path.with_name(path.name+'.writing')
     temporary.write_text(json.dumps(value,sort_keys=True,allow_nan=False,separators=(',',':'))+'\n',encoding='utf8')
-    os.replace(temporary,path)
+    replace_with_retry(temporary,path)
 
 
 def checkpoint_hash_diagnostics(value, file_sha256, *, complete_hash=None, auxiliary_hash=None):

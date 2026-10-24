@@ -277,6 +277,47 @@ def _retained_history_projector(model,selected):
     return histories,projected,project
 
 
+def _effective_inhibitory_ac_projector(model,selected):
+    """Eliminate continuous AC h at its actual conditional input target.
+
+    BC release/adaptation and membrane states remain part of the surrounding
+    root problem. No sampled history is constructed for the continuous AC.
+    """
+    components={cid:model.compiled.components[cid] for cid in sorted(selected)
+                if model.compiled.components[cid].mechanism=='EffectiveInhibitoryAC'}
+    projected=set()
+    for cid,c in components.items():
+        if (c.time_contract.kind!='continuous' or len(c.state_specs)!=1 or
+                c.state_specs[0].state_name!='h' or c.state_specs[0].unit!='dimensionless' or
+                c.state_specs[0].meaning!='effective_inhibitory_activity'):
+            raise ContractError('Effective AC background requires its single continuous inhibitory state')
+        sl=model._local_slices[cid][0];projected.add((sl.start,sl.stop))
+    projected_outputs={(cid,name) for cid in components for name in ('activation','inhibition_state')}
+    input_links={}
+    for link in model.compiled.spec.links:
+        input_links.setdefault((link.target_component,link.target_port),[]).append((link.source_component,link.source_port))
+    def depends(output,seen):
+        if output in projected_outputs:return True
+        if output in seen:raise ContractError('Effective AC conditional input has an unresolved algebraic cycle')
+        cid,port=output;c=model.compiled.components[cid]
+        return any(depends(src,seen|{output}) for name in c.output_dependencies[port]
+                   for src in input_links.get((cid,name),()))
+    for cid in components:
+        if any(depends(src,set()) for src in input_links.get((cid,'drive'),())):
+            raise ContractError('Effective AC drive directly depends on projected inhibition; explicit algebraic closure required')
+    def project(y,bundle):
+        if not components:return y
+        incoming,_=model.evaluate(0.,y,bundle)
+        for cid,c in components.items():
+            target=np.asarray(c.native_model.target(incoming[cid]['drive'].values),dtype=float)
+            if (target.shape!=c.state_specs[0].shape or np.any(~np.isfinite(target)) or
+                    np.any((target<0)|(target>1))):
+                raise ContractError('Effective AC conditional background target outside its finite unit interval')
+            y[model._local_slices[cid][0]]=target
+        return y
+    return components,projected,project
+
+
 def prepare_feedback_initial_state(compiled,channels,*,max_unknown_scalars=1024,max_nfev=35,max_wall_seconds=60.,retained_reference=False):
     """Solve deterministic upstream feedback; retain all links/gaps and equations.
 
@@ -298,7 +339,7 @@ def prepare_feedback_initial_state(compiled,channels,*,max_unknown_scalars=1024,
         if not np.array_equal(c.at(0.).values,c.at(np.nextafter(c.stop_seconds,0.)).values):
             raise ContractError('Background changed within its declared interval')
     y=np.concatenate([v for v in state.ordered_state_arrays]);fixed=_outer_background(model,y,inputs)
-    keys=('HistoryBipolarTerminal','ResidualAC') if retained_reference else (BC_KEY,AC_KEY)
+    keys=(('HistoryBipolarTerminal','ResidualAC') if retained_reference else (BC_KEY,AC_KEY))+('EffectiveInhibitoryAC',)
     selected={cid for cid,c in compiled.components.items() if c.mechanism in keys}
     edges=[(l.source_component,l.target_component) for l in compiled.spec.links]
     edges += [(a,b) for g in compiled.spec.gap_junctions for a,b in ((g.left_component,g.right_component),(g.right_component,g.left_component))]
@@ -306,10 +347,16 @@ def prepare_feedback_initial_state(compiled,channels,*,max_unknown_scalars=1024,
         ancestors=selected|{a for a,b in edges if b in selected}
         if ancestors==selected:break
         selected=ancestors
-    bundle=InputBundle(inputs);histories={};projected=set();project=lambda y,bundle:y
+    bundle=InputBundle(inputs);histories={};projected=set();history_project=lambda y,bundle:y
     if retained_reference:
-        histories,projected,project=_retained_history_projector(model,selected)
-        y=project(y,bundle)
+        histories,projected,history_project=_retained_history_projector(model,selected)
+    effective_acs,ac_projected,ac_project=_effective_inhibitory_ac_projector(model,selected)
+    projected|=ac_projected
+    def project(y,bundle):
+        # The second history projection also handles an AC state feeding a BC
+        # sampled drive; direct algebraic h-to-h dependencies are rejected above.
+        return history_project(ac_project(history_project(y,bundle),bundle),bundle)
+    y=project(y,bundle)
     solved=[cid for cid in selected if cid not in fixed and compiled.components[cid].state_specs and
             compiled.components[cid].time_contract.kind in ('continuous','causal_history') and
             not hasattr(compiled.components[cid].native_model,'sample_spikes') and
@@ -325,6 +372,8 @@ def prepare_feedback_initial_state(compiled,channels,*,max_unknown_scalars=1024,
             lower.extend(([-.15] if spec.unit=='V' else [0.])*spec.shape[0])
             hi=np.full(spec.shape[0],.10 if spec.unit=='V' else np.inf)
             if spec.meaning in ('effective_release_activation','adaptation_gate'):hi[:]=1.
+            if spec.meaning=='release_adaptation_activity':
+                hi[:]=compiled.components[cid].native_model.bc_output_gain_control.scale
             if spec.meaning=='excitatory_synaptic_gate' and compiled.components[cid].mechanism in (BC_KEY,AC_KEY):
                 cs=next(s for s in compiled.spec.components if s.component_id==cid)
                 hi=np.asarray(cs.options['candidate_dynamics']['row_sum_W'])
@@ -360,6 +409,10 @@ def prepare_feedback_initial_state(compiled,channels,*,max_unknown_scalars=1024,
         raise ContractError(f'Feedback initial-state solve not converged: scaled residual {norm:.6g}/s, nfev={answer.nfev}')
     y[indices]=answer.x*scales
     y=project(y,bundle)
+    full_rhs=model.rhs_flat_reference(0.,y,bundle,model.parameters,model.graph)
+    ac_errors={cid:float(np.max(abs(full_rhs[model._local_slices[cid][0]]))) for cid in effective_acs}
+    if max(ac_errors.values(),default=0.)>1e-5:
+        raise ContractError('Effective AC conditional background did not close its original continuous RHS')
     sampled_errors={}
     if histories:
         incoming,out=model.evaluate(0.,y,bundle,sampling=True,sampled_components=set(histories))
@@ -378,6 +431,7 @@ def prepare_feedback_initial_state(compiled,channels,*,max_unknown_scalars=1024,
         initial_scaled_residual_per_s=float(np.max(np.abs(initial))),final_scaled_residual_per_s=norm,
         rhs_evaluations=calls,solve_wall_seconds=perf_counter()-started,
         retained_reference=retained_reference,constant_FIR_history_projection_components=sorted(histories),
+        conditional_effective_AC_projection_components=sorted(effective_acs),effective_AC_RHS_max_abs_per_s=ac_errors,
         original_sample_transition_errors=sampled_errors,RGC_voltage_balance=rgc_balance,
         all_links_retained=True,all_gap_contacts_retained=True,parameter_fit_performed=False,
         RGC_history_and_spike_stationarity_verified=False,physiology_calibrated=False)

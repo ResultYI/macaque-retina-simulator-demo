@@ -1,0 +1,351 @@
+{
+  "schema_version": "vr-continuous-pilot-execution-1.0",
+  "status": "NOT_READY_INPUT_POLICY_FRONTEND_BACKGROUND_AND_CACHE_PENDING",
+  "intake_root": "tools/vr_teacher_handoff_v1/intake_drive_20261023_v1",
+  "received_binding_sha256": "5354bb2d437c3bd313df35165698efda6158f54cfac8f018490cfa50a03782e4",
+  "cells": [
+    {
+      "teacher_column": 0,
+      "teacher_class": "ON_midget",
+      "vr_unit_id": 0,
+      "student_component": "midget_RGC_ON",
+      "student_type_group": "midget_RGC_ON",
+      "student_global_row": 102603,
+      "student_cell_id": "atlas:8a7398d95147d57a56894b7427e85ccd7649be3c95544d5ef79ba9a1bb922fdf",
+      "rf_mm": [
+        1.0180458984375,
+        0.00011114566028118134
+      ],
+      "rf_deg": [
+        4.5652282441143495,
+        0.0004984110326510374
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.01681039619850256,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_ON/manifest.json",
+        "sha256": "844dae5e9e67c28dd4fc2d18d0621b150c89e04451763c7c5e3b03c2479d7e0f"
+      },
+      "rf_payload_sha256_verified": "4a01741b6535b5eee03b19304235c1bc52bb04067415949fa772e059796be669",
+      "source_key_payload_expected_sha256": "e9c84659068fb529047289819e2cca89fd08b3b7ac6d995840a15e9e7db0b48c",
+      "selected_source_key": "atlas:fbe88844f7fce91f5ac32e5ed738c3b55754136f86f9913bd2fb175ad66c8ecd",
+      "selected_source_key_sha256": "5cf4737cbbc259237f70b2efe037585971c0808d74be56246588200f5072356f",
+      "source_key_full_array_read_or_hashed": false
+    },
+    {
+      "teacher_column": 1,
+      "teacher_class": "OFF_midget",
+      "vr_unit_id": 1,
+      "student_component": "midget_RGC_OFF",
+      "student_type_group": "midget_RGC_OFF",
+      "student_global_row": 102603,
+      "student_cell_id": "atlas:dfd07737c3afd1dd2853d06479677b2b8beac1c733037249e3e6765007b73c91",
+      "rf_mm": [
+        1.0180458984375,
+        0.00011114566028118134
+      ],
+      "rf_deg": [
+        4.5652282441143495,
+        0.0004984110326510374
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.01681039619850256,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_OFF/manifest.json",
+        "sha256": "9953c1c99fceca942337bb037167ecc98b169dcea45c9861de56bd44afac7e41"
+      },
+      "rf_payload_sha256_verified": "4a01741b6535b5eee03b19304235c1bc52bb04067415949fa772e059796be669",
+      "source_key_payload_expected_sha256": "c474cbbebec92e32eadfe7ba9b79ec88012d797b85a1489cfc8e94ea307517d2",
+      "selected_source_key": "atlas:1d5e418de14cafec3abc985c22656314428330d1778d9c0b89b1b7ac2ed908a6",
+      "selected_source_key_sha256": "77dadf3a5b242e32e66efc00b22a36f533c65b8937e8658ca111ca4e2e62f7b2",
+      "source_key_full_array_read_or_hashed": false
+    },
+    {
+      "teacher_column": 2,
+      "teacher_class": "ON_parasol",
+      "vr_unit_id": 2,
+      "student_component": "parasol_RGC_ON",
+      "student_type_group": "parasol_RGC_ON",
+      "student_global_row": 25300,
+      "student_cell_id": "atlas:249dc356a2136cdf25e7c300b9172ca257fc473d85272dc074148f5bb317512e",
+      "rf_mm": [
+        1.01984111925535,
+        -0.0056306662799211465
+      ],
+      "rf_deg": [
+        4.573278561683184,
+        -0.025249624573637428
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.026723642975480473,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_ON/manifest.json",
+        "sha256": "9b70fffb0134407484a7ad56e8f5ab69e1b0f18ceca19939c590a1039c83af14"
+      },
+      "rf_payload_sha256_verified": "e3db909b91e93a16f846a2a61fcc1f07e8122a2e5dc62d1e46724404985c7701",
+      "source_key_payload_expected_sha256": "052de01f769eb8407c6e42c5ed7f06f2663a3090dd7daa0940bc29e8410b7eca",
+      "selected_source_key": "fixed_population_master:fixed_global_disk:parasol_RGC_ON:95dec362b3a652388c033248aba9e6d3f7647f9ab145380ac6435dcbd79e6472:cone:000025300",
+      "selected_source_key_sha256": "d6e222a16cbef46ef9aa47119cb8eb34e8a7e8bb78fdac787f56aa29de4a0040",
+      "source_key_full_array_read_or_hashed": false
+    },
+    {
+      "teacher_column": 3,
+      "teacher_class": "OFF_parasol",
+      "vr_unit_id": 3,
+      "student_component": "parasol_RGC_OFF",
+      "student_type_group": "parasol_RGC_OFF",
+      "student_global_row": 25300,
+      "student_cell_id": "atlas:fc132497a54c7362ecb0c7cf0f1fb7a1e9013b11dad95e90eb32b819fab7755e",
+      "rf_mm": [
+        1.0204359693408416,
+        -0.0017940095342145839
+      ],
+      "rf_deg": [
+        4.575946050855792,
+        -0.008044885803652842
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.010087112382564028,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_OFF/manifest.json",
+        "sha256": "bcdf6eda11d4dcc65f8e155987fd86df2a3ed92a4e2609c2cf438eb9bcdf1961"
+      },
+      "rf_payload_sha256_verified": "9dd2399dabdc359bed0b052e1c6295efe37d95dcc709ac5bb55ac05208d4dd43",
+      "source_key_payload_expected_sha256": "8b50f178115cd2d34337d268126d48bb224b9afe7548d99203fe8d0cfde713c5",
+      "selected_source_key": "fixed_population_master:fixed_global_disk:parasol_RGC_OFF:a52c6154aa794e79b90e130815cbe16aa7fac53923bcef1bc6e7dc0949955207:cone:000025300",
+      "selected_source_key_sha256": "85536d9916c615649ac7ff3ee868c4c61adf875a5a82107e5a1b24f29a7708d6",
+      "source_key_full_array_read_or_hashed": false
+    }
+  ],
+  "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+  "source_capture_configuration": {
+    "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/capture_preparation_v2/capture_configuration.json",
+    "sha256": "152e2375616ce7a4bd9a95d5face182038f7a78a7379504d0039983017525f8f"
+  },
+  "parameters": [
+    {
+      "parameter_id": "rgc_excitation_gain",
+      "kind": "rgc_excitation_gain",
+      "groups": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF"
+      ],
+      "initial": 1.0,
+      "bounds": [
+        0.5,
+        2.0
+      ],
+      "sharing": "one_common_multiplier_across_four_explicit_type_groups",
+      "bounds_kind": "approved_engineering_domain",
+      "bounds_source": "tools/teacher_replay_search_v1/rgc_input_gains.template.json: existing user-approved [.5,2] engineering domain"
+    },
+    {
+      "parameter_id": "rgc_inhibition_gain",
+      "kind": "rgc_inhibition_gain",
+      "groups": [
+        "midget_RGC_ON",
+        "midget_RGC_OFF",
+        "parasol_RGC_ON",
+        "parasol_RGC_OFF"
+      ],
+      "initial": 1.0,
+      "bounds": [
+        0.5,
+        2.0
+      ],
+      "sharing": "one_common_multiplier_across_four_explicit_type_groups",
+      "bounds_kind": "approved_engineering_domain",
+      "bounds_source": "tools/teacher_replay_search_v1/rgc_input_gains.template.json: existing user-approved [.5,2] engineering domain"
+    }
+  ],
+  "frozen": [
+    "Cone",
+    "HC",
+    "BC",
+    "rod",
+    "rod_BC",
+    "AII",
+    "AC",
+    "source_graph_edges_weights",
+    "RGC_mu_beta_alpha_C_gL_reversals",
+    "RGC_history_kernel_dt_rng_policy",
+    "RF_positions",
+    "gray8_bytes",
+    "photometric_policy",
+    "lag",
+    "output_scale",
+    "splits",
+    "solver_tolerances_clock"
+  ],
+  "loss": {
+    "kind": "uniform_mean_squared_rate_error_Hz2",
+    "selection_role": "train",
+    "teacher_bin_seconds": 0.006666666666666667,
+    "rate_from_counts": "counts*150",
+    "student_prediction": "exact original first-event timestamp law integrated on original teacher edges",
+    "new_bin_width_or_fitted_lag": false
+  },
+  "splits": {
+    "train": [
+      0,
+      35
+    ],
+    "validation": [
+      40,
+      50
+    ],
+    "preliminary_test": [
+      55,
+      60
+    ],
+    "no_loss_state_continuation_gaps": [
+      [
+        35,
+        40
+      ],
+      [
+        50,
+        55
+      ]
+    ],
+    "final_holdout": [
+      480,
+      600
+    ],
+    "final_holdout_used": false
+  },
+  "input": {
+    "source": "saved_gray8_only",
+    "index_sha256": "453e1458e66a35c9384209b0be5a062e94d4bd3c37c13b0987eaccd5af5ba9c5",
+    "raw_source_frames": [
+      0,
+      9751
+    ],
+    "active_frames": [
+      750,
+      9750
+    ],
+    "guard_frames": [
+      9750,
+      9751
+    ],
+    "raw_to_effective_offset_seconds": 5,
+    "shape": [
+      256,
+      256
+    ],
+    "pixels_per_degree": 55.652173913043484,
+    "target_rf_deg": [
+      4.582031249999999,
+      0.0
+    ],
+    "native_light_conversion": {
+      "status": "PENDING_EXACT_HUMAN_POLICY_APPROVAL_AND_NATIVE_FRONTEND_RECEIPT",
+      "policy_id": null,
+      "policy_sha256": null,
+      "policy_proposal": {
+        "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/capture_preparation_v2/input_policy.proposed.json",
+        "sha256": "81ab05b9bacd94ef1abc44a8ade08e22f23603594af50eb4f1dd9030d8735060"
+      },
+      "approval_receipt": null,
+      "frontend_receipt": null,
+      "reason": "Proposed gray8 linear/spectral/rod/exterior mapping is not approved or implemented as a real source capture"
+    },
+    "no_reset_between_splits": true,
+    "no_synthesized_background_history": true
+  },
+  "qualified_background": {
+    "status": "NONE_QUALIFIED_FOR_THIS_INPUT_AND_GRAPH",
+    "path": null,
+    "evidence": [
+      {
+        "path": "reports/real_boundary_local_calibration_20261021_v1/checkpoint_identity.json",
+        "report": null,
+        "qualification": "NOT_QUALIFIED"
+      },
+      {
+        "path": "reports/resident_runtime_validation_20261022_v1/hot_r1/checkpoint_provenance.json",
+        "fit_eligible": false
+      },
+      {
+        "path": "reports/teacher_interface_20261021_v1/prepared_continuation.json",
+        "scope": "synthetic_continuation_QA_only"
+      }
+    ],
+    "required": "BackgroundCheckpointStore.load(require_converged=True), unchanged original policy/full state coverage/history/clock/RNG"
+  },
+  "source_cache": {
+    "path": null,
+    "expected_identity_hash": null,
+    "expected_content_hash": null,
+    "input_raw_zero_absolute_seconds": null,
+    "mode": "rgc_only",
+    "schema_version": "ac-rgc-boundary-replay-1.2",
+    "required_coverage_seconds": [
+      0,
+      65.00666666666666
+    ],
+    "producer": "BoundaryRecorder.from_prepared_background(...mode=rgc_only), one same-input full upstream capture",
+    "fixed_inputs": [
+      "original_pooled_gE_S",
+      "original_pooled_gI_S"
+    ],
+    "feedback_evidence": {
+      "declared_global_RGC_outgoing_routes": [],
+      "compiled_layout_guard_required": true
+    },
+    "invalidates_on": [
+      "all upstream parameters/graph/geometry/light/gray8 conditions/background",
+      "source runtime/schema/solver/grid/mesh/interpolation",
+      "history/RNG/phase/source_records",
+      "any retina_sim Python implementation hash change"
+    ],
+    "downstream_candidate_reuse": "Only current approved type-shared RGC E/I multipliers; prediction/checkpoint identities include candidate and numerical cache content"
+  },
+  "budget": {
+    "max_evaluations": 7,
+    "training_evaluations_at_most": 5,
+    "validation_evaluations_at_most": 2,
+    "max_wall_seconds": 600,
+    "max_evaluation_seconds": 60,
+    "automatic_retries": 0,
+    "source_capture_or_background_included": false,
+    "source_capture_budget_seconds": null,
+    "search_started": false,
+    "basis": "Minimal 7-call subset within existing template ceilings 120 calls/600s/60s; no new parameter freedom"
+  },
+  "cost": {
+    "measured_real_RGC_only_evaluation_seconds": null,
+    "estimate_status": "NOT_MEASURED_NO_QUALIFIED_SAME_INPUT_CACHE",
+    "per_evaluation_workload": "Original RGC voltage only over 5s recorded background + 60s movie, exact 3-tap history expectation over about65000 native 1ms bins; no Cone/HC/BC/AC advance per candidate",
+    "cold_source_capture_cost": "UNKNOWN; one full upstream capture required, resident holding-segment speed not extrapolated as movie prediction",
+    "next_cost_measurement": "Parent may schedule one bounded existing-cache candidate call; 60s is a hard cap, not a completion estimate"
+  },
+  "provisional_use": {
+    "allowed": "Explicit conditional engineering distillation/diagnostics only after source prerequisites, no biological acceptance or default adoption",
+    "teacher_boundary": "UNVERIFIED_FOR_4P59_CONTINUOUS_HISTORY",
+    "real_color_spikes_are_gray_truth": false,
+    "cell_morphology_correspondence": false
+  },
+  "reference_backend": "unchanged compact/reference source; downstream original BoundaryReplay python; resident candidate only by explicit future choice",
+  "execution_now": "PREPARATION_ONLY_NO_BACKGROUND_FORWARD_GPU_CACHE_OR_FIT",
+  "fit_eligible": false,
+  "derived_from_preparation_contract": {
+    "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/pilot_contract.json",
+    "sha256": "2d112d8c282bb0a877391dec3afb12cc5d7acf033817a55c358d9070a018fcf9"
+  }
+}

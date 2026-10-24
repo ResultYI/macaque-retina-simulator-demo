@@ -6,7 +6,6 @@ the source release vector crosses that computational boundary without changing
 cells, edges or weights. Histories, events, recording and the original numerical
 background monitor retain the existing CPU implementation.
 """
-from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace as NS
 import hashlib,inspect,time
@@ -109,8 +108,7 @@ class CudaHybridRunner(HybridRunner):
         import torch
         start=state.time_seconds;y=self._flat(state)
         def rhs(t,values):
-            tin=min(t,np.nextafter(stop,start)) if stimulus.interpolation=='zero_order_hold' else t
-            return self.partition(t,values,replace(stimulus.at(tin),delay_left_limit=bool(t>=stop)))
+            return self.partition(t,values,stimulus.at(t,left_limit=bool(t>=stop)))
         requested=np.array(sorted(set(float(x) for x in samples if start<x<=stop)))
         endpoint_only=not np.any(requested<stop)
         targets=None if endpoint_only else np.array(sorted(set(requested.tolist()+[float(stop)])))

@@ -1,0 +1,38 @@
+{
+  "schema_version": "bc-release-gain-control-1.0",
+  "profile_id": "souihel_cessac_release_domain_engineering_v1",
+  "driver": "unadapted_terminal_release",
+  "equation": "tau_a*dA/dt=scale*r-A; r_eff=r/(1+A^6)",
+  "activity_unit": "dimensionless",
+  "release_unit": "dimensionless",
+  "gain_exponent": 6,
+  "gain_at_zero": 1,
+  "tau_a": {
+    "value": 0.1,
+    "unit": "s",
+    "classification": "borrowed_model_time_constant",
+    "evidence_class": "project_approximation",
+    "locator": "Souihel & Cessac 2021, Eq6-9 PDF pp7-8, Table1 PDF p43",
+    "uncertainty": "Literature starting value, not a macaque BC measurement or fitted value"
+  },
+  "scale": {
+    "value": 0.75,
+    "unit": "dimensionless",
+    "classification": "engineering_assumption",
+    "evidence_class": "project_approximation",
+    "rationale": "r is a normalized sigmoid release in [0,1], so A_ss<=.75 and gain>=1/(1+.75^6)=.8489119. Choosing .75 below 5^(-1/6) keeps the constant-input r_eff(r) monotone; it cannot invert the steady ON/OFF ordering. Chosen before testing, without data fitting.",
+    "uncertainty": "Uncalibrated conservative engineering strength; not converted from author h_B"
+  },
+  "source": {
+    "doi": "10.1186/s13408-020-00101-z",
+    "url": "https://link.springer.com/article/10.1186/s13408-020-00101-z",
+    "locator": "Eq6-9 and Table1",
+    "author_h_B": {"value": 0.00611, "unit": "mV^-1 ms^-1", "used_directly": false},
+    "shape_transfer": "The exponent6 and100ms are borrowed model choices, not universal physiological laws",
+    "zero_point_choice": "Eq9 prints G(A<=0)=0, whereas Fig3/Eq10 use G(0)=1. This implementation uses continuous G(0)=1 on the nonnegative domain."
+  },
+  "initialization": "A0=scale*r0 is a conditional seed only; solve/prepare the actual coupled background before claiming convergence",
+  "calibrated": false,
+  "fit_performed": false,
+  "approval_reference": "Sentinel_23818c9f2acc8191975e918824a3ce27"
+}

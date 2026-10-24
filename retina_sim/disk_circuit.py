@@ -13,6 +13,19 @@ from .disk_geometry import DiskAtlasROI
 SCHEMA='frozen_global_disk_circuit_v1'
 OUTPUTS=('midget_RGC_ON','midget_RGC_OFF','parasol_RGC_ON','parasol_RGC_OFF','small_bistratified_S_ON')
 
+
+def explicit_owner_indices(indices, positions, roi):
+    """Validate already existing output rows; never synthesize or move cells."""
+    raw=np.asarray(indices)
+    if raw.ndim!=1 or (raw.size and raw.dtype.kind not in 'iu'):
+        raise ContractError('Explicit owner rows must be a one-dimensional integer list')
+    rows=raw.astype(np.int64)
+    if len(np.unique(rows))!=len(rows) or np.any(rows<0) or np.any(rows>=len(positions)):
+        raise ContractError('Explicit owner rows duplicate or exceed the fixed population')
+    if len(rows) and not np.all(roi.owner_mask(positions[rows])):
+        raise ContractError('Explicit owner cell lies outside the declared recording ROI')
+    return np.sort(rows)
+
 def freeze_disk_circuit(root,report,directory,*,atlas_profile='retina_atlas_disk3mm_v1',
                         configuration_path='configurations/atlas_disk3mm_v1.json'):
     root=Path(root).resolve();report=root/report;directory=root/directory;directory.mkdir(exist_ok=True,parents=True)
@@ -127,18 +140,23 @@ class GlobalDiskCircuit:
             rows=np.flatnonzero(keep[offsets[name]:offsets[name]+counts[name]])
             target=selected.setdefault(name,set());before=len(target);target.update(map(int,rows));changed|=len(target)>before
         return changed
-    def owner_view(self,bounds,*,outputs=OUTPUTS,max_nodes=2000000,empty_chemical_input_policy='reject_empty_chemical_input_v1'):
+    def owner_view(self,bounds,*,outputs=OUTPUTS,max_nodes=2000000,empty_chemical_input_policy='reject_empty_chemical_input_v1',owner_global_rows=None):
         from .finite_input_support import EMPTY_SUM_POLICY,REJECT_EMPTY_POLICY
         if empty_chemical_input_policy not in (EMPTY_SUM_POLICY,REJECT_EMPTY_POLICY):
             raise ContractError('Unknown frozen empty chemical input policy')
         roi=DiskAtlasROI(tuple(bounds),tuple(bounds),self.record['reference_id'],owner_radius_mm=3.,query_radius_mm=3.)
+        if owner_global_rows is not None and (not isinstance(owner_global_rows,dict) or set(owner_global_rows)-set(outputs)):
+            raise ContractError('Explicit owner selection must name only requested output populations')
         selected={};owner={};seen={};empty=[];blocked_owner=[]
         for name in outputs:
             if name not in self.record['output_populations']:raise ContractError('Unknown output population')
-            indices=self.table(name).query_indices(roi,owner=True);owner[name]=indices;selected[name]=set(map(int,indices))
+            table=self.table(name)
+            indices=(table.query_indices(roi,owner=True) if owner_global_rows is None else
+                     explicit_owner_indices(owner_global_rows.get(name,[]),table.coordinates['rf'],roi))
+            owner[name]=indices;selected[name]=set(map(int,indices))
             if not len(indices):empty.append(name)
             blocked=self.record.get('blocked_midget_candidates',{}).get(name,{}).get('parent_BC_rows',[])
-            if blocked:
+            if blocked and owner_global_rows is None:
                 pre_name=name.replace('RGC','BC');pre=self.table(pre_name);candidate=np.asarray(blocked,dtype=np.int64)
                 rows=candidate[roi.owner_mask(pre.coordinates['rf'][candidate])]
                 blocked_owner.extend({'route':'unresolved_'+name,'post_global_parent_BC_row':int(index),
@@ -176,6 +194,8 @@ class GlobalDiskCircuit:
             'selected_rows':selected,'owner_output_rows':owner,'empty_output_samples':tuple(empty),'unsupported_rows':unsupported,
             'runtime_ready':not unsupported,'geometry_regenerated':False,'weights_renormalized':False,
             'empty_chemical_input_policy':empty_chemical_input_policy,'declared_empty_chemical_sums':empty_chemical,
+            'owner_selection_mode':'all_actual_cells_in_rectangle' if owner_global_rows is None else 'explicit_existing_global_rows',
+            'requested_owner_global_rows':None if owner_global_rows is None else {name:rows.tolist() for name,rows in owner.items()},
             'global_node_count':sum(map(len,selected.values())),'physical_calibration':False}
     def table_record(self,name,indices):
         table=self.table(name);canonical=table.rows(indices)

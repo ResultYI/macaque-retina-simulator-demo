@@ -205,6 +205,8 @@ class RunConfig:
                       'background_max_sim_seconds','background_max_wall_seconds','background_memory_limit_mb','background_min_available_mb','background_checkpoint_interval_seconds'):
             if getattr(self, name) <= 0:
                 raise ValueError(name + ' 必须大于 0')
+        from retina_sim.spatial_scope import enforce_owner_scope
+        enforce_owner_scope(Path(__file__).resolve().parents[1], self.owner_bounds())
         if self.start_seconds < 0 or self.warmup_seconds < 0:
             raise ValueError('开始时间与适应时间不能为负')
         for name in ('duration_seconds', 'warmup_seconds', 'window_seconds', 'sample_seconds','background_max_sim_seconds'):

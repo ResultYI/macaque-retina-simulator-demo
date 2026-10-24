@@ -85,7 +85,7 @@ def membrane_entries(n,kind,*,subtype=None):
         for key in ('tau_i','gI','i0'):entries.pop(key,None)
     return entries
 
-def full_target_network(root,*,effective_cones=128,effective_rods=384,seed=20261010,duration=.12,gaze=None,adaptation_seconds=0.,ablations=(),secondary_gap_scale=0.,bounds_mm=(.004,7.2,-.04,.04),cone_density_scale=None,rod_density_scale=None,light_context=None,runtime_profile=None,execution_profile='engineering_preview',cone_route=None,owner_bounds_mm=None,halo_mm=.04,max_spatial_cells=8192,hc_geometry_profile='source_patch_v1',hc_geometry_path='',hc_h1_radius_mm=None,hc_h2_radius_mm=None,hc_arbor_profile='explicit_footprints',ipl_geometry_profile='legacy_point_ipl_v1',requested_owner_outputs=(),parasol_rf_seeds=None):
+def full_target_network(root,*,effective_cones=128,effective_rods=384,seed=20261010,duration=.12,gaze=None,adaptation_seconds=0.,ablations=(),secondary_gap_scale=0.,bounds_mm=(.004,7.2,-.04,.04),cone_density_scale=None,rod_density_scale=None,light_context=None,runtime_profile=None,execution_profile='engineering_preview',cone_route=None,owner_bounds_mm=None,halo_mm=.04,max_spatial_cells=8192,hc_geometry_profile='source_patch_v1',hc_geometry_path='',hc_h1_radius_mm=None,hc_h2_radius_mm=None,hc_arbor_profile='explicit_footprints',ipl_geometry_profile='legacy_point_ipl_v1',requested_owner_outputs=(),parasol_rf_seeds=None,bc_output_gain_control_enabled=None,ac_inhibition_enabled=None):
     root=Path(root);registry=load_core_registry(root)
     light_context=light_context or LightContext()
     selected_profile=read_execution_profile(root,execution_profile)
@@ -872,4 +872,7 @@ def full_target_network(root,*,effective_cones=128,effective_rods=384,seed=20261
             generated_active_count=spatial_audit['HC_geometry']['runtime_view']['generated_active_count'],
             geometry_only_count=len(spatial_audit['HC_geometry']['runtime_view']['geometry_only_cell_ids']))
     audit['author_chemistry_initialization']='Declared LightContext background equilibria; inner states are declared finite-prerun states, not full-network steady state'
-    return compiled,channels,audit
+    from retina_sim.bc_gain_control import apply_bc_gain_control
+    result=apply_bc_gain_control((compiled,channels,audit),root,bc_output_gain_control_enabled)
+    from retina_sim.ac_inhibition import apply_ac_inhibition
+    return apply_ac_inhibition(result,root,ac_inhibition_enabled)

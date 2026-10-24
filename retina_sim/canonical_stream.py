@@ -9,16 +9,32 @@ import hashlib,json
 import numpy as np
 
 _OPTIONS={'sort_keys':True,'allow_nan':False,'separators':(',',':')}
-_PRIMITIVES=(type(None),bool,int,float,str)
+# These exact NumPy scalar classes are native JSON float/str subclasses. Block
+# encoding emits the identical scalar tokens and comma separators, avoiding a
+# Python encoder call for every element of immutable observation-history rows.
+_PRIMITIVES=(type(None),bool,int,float,str,np.float64,np.str_)
 
 def _array_data(array):
     if array.ndim==0:
         yield json.dumps(array.tolist(),**_OPTIONS);return
     yield '['
     if array.ndim==1:
+        previous_bytes=previous_json=None
+        numeric=type(array) in (np.ndarray,np.memmap) and array.dtype.kind in 'biuf'
         for start in range(0,len(array),8192):
             if start:yield ','
-            yield json.dumps(array[start:start+8192].tolist(),**_OPTIONS)[1:-1]
+            block=array[start:start+8192]
+            if numeric:
+                # Read every current byte. The immutable byte snapshot also
+                # supplies the encoded values, so no mutable-array identity or
+                # hidden old contents can satisfy a later block's comparison.
+                raw=block.tobytes(order='C')
+                if raw!=previous_bytes:
+                    previous_json=json.dumps(np.frombuffer(raw,dtype=array.dtype).tolist(),**_OPTIONS)[1:-1]
+                    previous_bytes=raw
+                yield previous_json
+            else:
+                yield json.dumps(block.tolist(),**_OPTIONS)[1:-1]
     else:
         for index,row in enumerate(array):
             if index:yield ','

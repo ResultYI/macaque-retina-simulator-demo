@@ -1,0 +1,32 @@
+{
+  "schema_version": "natural-movie-region-scope-1.0",
+  "scope_id": "natural_movie_owner_to_8p31deg_v1",
+  "authorization": "User explicit maximum8.31degrees and eccentricity-matched functional fitting,2026-10-21",
+  "maximum_owner_eccentricity_deg": 8.31,
+  "project_mm_per_degree": 0.223,
+  "maximum_owner_radius_mm": 1.8531300000000002,
+  "conversion_evidence": "Inherited project mm/degree approximation; not independently measured retinal magnification",
+  "coordinate_role": "rf",
+  "coordinate_frame": "functional_visual_field",
+  "owner_shape": "disk",
+  "crop_recurrent_dependencies": false,
+  "retained_dependency_asset_radius_mm": 3.0,
+  "dependencies_outside_owner_limit": "Retain the exact existing finite graph dependencies; not additional output or validated coverage",
+  "historical_assets_deleted_or_overwritten": false,
+  "data_completeness": {
+    "available_raw_cells": 15,
+    "available_raw_maximum_eccentricity_deg": 8.31,
+    "README_listed_cells": 25,
+    "README_listed_records": 43,
+    "README_maximum_eccentricity_deg": 13.0,
+    "public_archive_contains_all_README_records": false,
+    "unreleased_author_records": "README describes approximately200records available by request; complete maximum unknown",
+    "chosen_scope": "8.31degrees is now an explicit user choice, not an inferred whole-dataset maximum",
+    "source_archive_sha256": "3096eafe97ead9c589096e454bf3f11e9bc07124e1ecb30255da194452af3fb3"
+  },
+  "central_parameter_policy": "Keep existing literature/source parameter configuration. No automatic natural-movie multiplier broadcast or interpolated transition.",
+  "learned_parameter_application": "Explicitly selected experimental cell cohorts only after accepted fit; no current learned parameters",
+  "source_geometry_route": "official_human_borrowed_approximation_v1",
+  "geometry_configuration": "configurations/atlas_human_borrowed_disk3mm_functional_hc_empty_sum_v2.json",
+  "evidence_limit": "Mixed-source/effective geometry, source-fitted RF placement and conditional display; not pure macaque anatomy or full-domain physiological validation"
+}

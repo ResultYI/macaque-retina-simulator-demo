@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "atlas_isetbio_geometry_v1",
+  "storage_kind": "global_disk_graph_v1",
+  "atlas_profile": "retina_atlas_human_borrowed_disk3mm_v1",
+  "global_graph": {
+    "path": "data/atlas/human_disk3mm_functional_hc_v1/circuit/manifest.json",
+    "sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557"
+  },
+  "input_plan": {
+    "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+    "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+  },
+  "parameter_profile": "effective_dynamics_v1",
+  "owner_disk_radius_mm": 3.0,
+  "halo_mm": 0.04,
+  "budgets": {
+    "max_dependency_nodes": 2000000,
+    "max_compile_bytes": 4294967296,
+    "minimum_available_bytes": 8589934592
+  },
+  "status": "NOT_READY_INPUT_POLICY_AND_ORIGINAL_BACKGROUND_PENDING",
+  "default_adopted": false,
+  "migration": {
+    "status": "CANDIDATE_NOT_DEFAULT",
+    "canonical_target_outputs": [
+      "midget_RGC_ON",
+      "midget_RGC_OFF",
+      "parasol_RGC_ON",
+      "parasol_RGC_OFF",
+      "small_bistratified_S_ON"
+    ],
+    "current_empty_owner_outputs": [],
+    "ready_for_single_default_switch": false,
+    "global_native_owner_zero_feedback_cones": 0,
+    "retained_anatomical_owner_no_feedback_cones": 7770
+  },
+  "native_operator_representation": {
+    "representation": "effective_functional_association_not_anatomical_synapse",
+    "profile": {
+      "path": "configurations/hc_functional_divergence_w2000_v1.json",
+      "sha256": "3d1d599fa438ca7f6ee06705a9679ecd2613a31cd69e23049958932c614605e0"
+    },
+    "operator_audit": {
+      "subtypes": {
+        "H1": {
+          "eligible_cones": 488493,
+          "actual_associations": 2246562,
+          "continuous_mean_target_sum": 2246562.3703272715,
+          "integer_count_residual": -0.37032727152109146,
+          "mean_targets": {
+            "shape": [
+              488493
+            ],
+            "dtype": "float64",
+            "sha256": "6a708b43dcbf217bfff8ef867c3448acd1d8f2dcaac68d57588ae1ab47a0c174"
+          },
+          "integer_counts": {
+            "shape": [
+              488493
+            ],
+            "dtype": "int64",
+            "sha256": "84842a98167b5d38ceb11706a579b041095c05b7b89b361646ef1eb3ca03a49f"
+          },
+          "actual_support_mm": {
+            "shape": [
+              488493
+            ],
+            "dtype": "float64",
+            "sha256": "2a4d1064c2665f45328096c57357ab8b68c63e36eef6aba0417ccfef071424dc"
+          },
+          "support_um_quantiles": [
+            3.2112627867069614,
+            12.26543193048054,
+            19.872360728865818,
+            66.83355457639296
+          ],
+          "owner_ball_support_complete": true,
+          "halo_ball_support_uncertified_count": 9055
+        },
+        "H2": {
+          "eligible_cones": 545658,
+          "actual_associations": 1331377,
+          "continuous_mean_target_sum": 1331377.3667424037,
+          "integer_count_residual": -0.36674240371212363,
+          "mean_targets": {
+            "shape": [
+              545658
+            ],
+            "dtype": "float64",
+            "sha256": "36b9a531bacd5c17633894e576758da8496063dea62dc563d74707b48c58034d"
+          },
+          "integer_counts": {
+            "shape": [
+              545658
+            ],
+            "dtype": "int64",
+            "sha256": "5c92274f784d9cd49c376aa3684a0d9489a480b5f1733bf4f90661ee00e0f0ea"
+          },
+          "actual_support_mm": {
+            "shape": [
+              545658
+            ],
+            "dtype": "float64",
+            "sha256": "75cdcb558192d181b890fe225d0d391466b3d94740b99ab41a6de72ffea525b6"
+          },
+          "support_um_quantiles": [
+            1.3463205212620488,
+            16.464318818980885,
+            28.888432639990196,
+            89.0147698955383
+          ],
+          "owner_ball_support_complete": true,
+          "halo_ball_support_uncertified_count": 11128
+        }
+      },
+      "owner_complete": true,
+      "maximum_owner_functional_distance_mm": 0.08901476989553829,
+      "cone_count": 545658,
+      "HC_count": 344910,
+      "edges": 3577939,
+      "anatomical_contact_claim": false,
+      "biological_zero_innervation_claim": false,
+      "physiological_validation": false,
+      "per_cone_support": {
+        "path": "data/atlas/human_disk3mm_functional_hc_v1/functional_cone_support_mm.npy",
+        "sha256": "dbf7a336b7daaaf00fcde8c846958ad3a1e5a1c4ebe36598400bb0d2f3fe88f2",
+        "unit": "mm",
+        "meaning": "maximum actual selected typed-anchor distance, not measured dendrite radius"
+      }
+    },
+    "anatomical_reference": {
+      "raw_contacts": {
+        "path": "data/atlas/human_disk3mm_outer_connections_v1/raw_cone_HC/manifest.json",
+        "sha256": "c03a10cc20d1c6622584063d36705320e4ef2d4deaabbcb8a62f5783b66f1eda"
+      },
+      "native_A": {
+        "path": "data/atlas/human_disk3mm_outer_connections_v1/native_A/manifest.json",
+        "sha256": "8967918e6a579ab3ed67eb708a77e6b1f531d118e12b3c9dbb4793b1ff4fba54"
+      },
+      "native_B": {
+        "path": "data/atlas/human_disk3mm_outer_connections_v1/native_B/manifest.json",
+        "sha256": "dbcab3a0bad3bf18b53b7ca794c4947503e36f3705c767fe39f0bba3c349ca4d"
+      },
+      "edges": 3632590,
+      "native_component_labels": {
+        "path": "data/atlas/human_disk3mm_outer_connections_v1/native_component_labels.npy",
+        "sha256": "ae5c9769a80e0a362e12585a40e0f50f0c3e363beb792c5ca853f1584ceff92a",
+        "ordering": "all HC rows, then all cone rows",
+        "components": 11054,
+        "largest_node_count": 875216
+      },
+      "owner_zero_feedback_cones": 7770,
+      "empty_HC_rows": 29,
+      "zero_partner_cone_rows": {
+        "path": "data/atlas/human_disk3mm_outer_connections_v1/owner_cones_without_HC.npy",
+        "sha256": "a152229c9a2e5b5f29c082ecd2767812f8a606c4e7f97ad1027020f0381aef34"
+      },
+      "zero_partner_policy": "retained explicit unsupported native unit-DC rows; no invented feedback, gain or partner",
+      "status": "GLOBAL_CONTACTS_FROZEN_NATIVE_OWNER_GAPS_REQUIRE_SCIENTIFIC_DECISION",
+      "whole_exterior_recurrent_closure": "NOT_CERTIFIED; exact dependencies only inside one supplied finite global graph",
+      "physiological_validation": false,
+      "old_default_changed": false
+    }
+  },
+  "empty_chemical_input_policy": "frozen_empty_chemical_sum_project_v1",
+  "empty_chemical_input_scope": {
+    "meaning": "An exactly empty frozen RBC/AII chemical row sums to 0 S; retain every selected AII and existing gap; no substituted driver, contact or clamp",
+    "evidence_class": "project_approximation",
+    "isolated_AII": "Retained passive membrane and declared initial/effective parameters; no spontaneous drive invented",
+    "physiological_calibration": false,
+    "default_adopted": false
+  },
+  "profile_description": "Original finite graph, eight existing owner outputs retained plus four explicit fixed VR functional comparison cells; no default adoption",
+  "owner_global_rows": {
+    "midget_RGC_ON": [
+      43078,
+      48948,
+      97738,
+      102603,
+      124807
+    ],
+    "parasol_RGC_OFF": [
+      24427,
+      25300,
+      25963,
+      27429
+    ],
+    "parasol_RGC_ON": [
+      23909,
+      25300
+    ],
+    "midget_RGC_OFF": [
+      102603
+    ]
+  },
+  "owner_bounds_mm": [
+    0.7745428842773437,
+    1.8504579215495511,
+    -0.011517968727111815,
+    0.012505356646050363
+  ],
+  "maximum_owner_eccentricity_deg": 8.31,
+  "maximum_owner_radius_mm": 1.8531300000000002,
+  "source_selection_binding": {
+    "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/student_cell_binding.json",
+    "sha256": "31f6c44b8e84cbf43150c3b7de9c989599020b22db69e0ca2216c8e691fe6d31"
+  },
+  "previous_full_disk_configuration": {
+    "path": "configurations/atlas_human_borrowed_disk3mm_functional_hc_empty_sum_v2.json",
+    "sha256": "6df1c501f10da78ea140bd3906060cb6ca374ec351cdc9547c3dd7208a337df5"
+  },
+  "crop_recurrent_dependencies": false,
+  "central_parameters_changed": false,
+  "shared_background": "One exact union graph/background; eight retained owner outputs plus four fixed VR functional comparison cells. No current input-specific qualification.",
+  "learned_multiplier_scope": "None adopted; isolated type-shared teacher pilot only",
+  "fit_eligible": false,
+  "input_policy_proposal": {
+    "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/capture_preparation_v2/input_policy.proposed.json",
+    "sha256": "81ab05b9bacd94ef1abc44a8ade08e22f23603594af50eb4f1dd9030d8735060"
+  },
+  "input_policy_adopted": false,
+  "preparation_only": true
+}

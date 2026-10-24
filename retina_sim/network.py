@@ -34,7 +34,15 @@ class NetworkStimulus:
             breaks.update(t for t in segment.breakpoints_seconds if self.start_seconds<t<stop)
             self.input_contract[name]=segment.input_contract
         self.breakpoints_seconds=tuple(sorted(breaks))
-    def at(self,t): return InputBundle({name:segment.at(min(t,np.nextafter(segment.stop_seconds,segment.start_seconds)) if segment.interpolation=='zero_order_hold' else t) for name,segment in self.channels.items()},self.delay_buffers)
+    def at(self,t,*,left_limit=False):
+        channels={}
+        for name,segment in self.channels.items():
+            query=t
+            if segment.interpolation=='zero_order_hold':
+                if left_limit and t>segment.start_seconds:query=np.nextafter(t,-np.inf)
+                query=min(query,np.nextafter(segment.stop_seconds,segment.start_seconds))
+            channels[name]=segment.at(query)
+        return InputBundle(channels,self.delay_buffers,delay_left_limit=left_limit)
 
 class JointNetwork:
     version='architecture-1.0'
@@ -60,7 +68,7 @@ class JointNetwork:
             key=(link.specification.target_component,link.specification.target_port)
             self._incoming.setdefault(key,[]).append(link)
         self._context_providers={cid:c.native_model.evaluation_context for cid,c in compiled.components.items() if hasattr(c.native_model,'evaluation_context')}
-        self.model_hash=canonical_hash({'assembly':compiled.assembly_hash,'runtime_sha256':{name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ('network.py','hybrid.py','compiled_kernel.py','background.py','recording.py','mechanism_contracts.py','delays.py','plugins.py','rod_pathway.py','ipl_geometry.py','spatial_profiles.py','hc_arbor.py','hc_geometry.py','hc_contact_diagnostics.py','finite_feedback_native.py')}})
+        self.model_hash=canonical_hash({'assembly':compiled.assembly_hash,'runtime_sha256':{name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() for name in ('network.py','hybrid.py','compiled_kernel.py','background.py','recording.py','mechanism_contracts.py','delays.py','plugins.py','rod_pathway.py','ipl_geometry.py','spatial_profiles.py','hc_arbor.py','hc_geometry.py','hc_contact_diagnostics.py','finite_feedback_native.py','ac_inhibition.py')}})
         self._gap_plans=[]
         for g in compiled.spec.gap_junctions:
             li={x:i for i,x in enumerate(compiled.components[g.left_component].outputs['voltage'].cell_ids)};ri={x:i for i,x in enumerate(compiled.components[g.right_component].outputs['voltage'].cell_ids)}
@@ -90,10 +98,14 @@ class JointNetwork:
                 if q.evidence_tag!=c.evidence_tag: raise ContractError('Component initial evidence mismatch')
                 result.append(Quantity(q.values,q.unit,q.meaning,self.evidence_tag))
         return tuple(result)
-    def evaluate(self,t,y,bundle,sampling=False,sampled_components=None,*,_local=None):
+    def evaluate(self,t,y,bundle,sampling=False,sampled_components=None,*,_local=None,_contexts=None):
         inputs={cid:{} for cid in self.compiled.components}; outputs={}
         local={cid:self.local_blocks(cid,y) for cid in self.compiled.components} if _local is None else _local
-        contexts={cid:provider(local[cid]) for cid,provider in self._context_providers.items()}
+        if _contexts is None:
+            contexts={cid:provider(local[cid]) for cid,provider in self._context_providers.items()}
+        else:
+            if set(_contexts)!=set(self._context_providers):raise ContractError('Evaluation context provider set differs')
+            contexts=_contexts
         gathered={}
         for external in self.compiled.spec.external_inputs:
             q=bundle.channels[external.channel]; c=self.compiled.components[external.target_component]

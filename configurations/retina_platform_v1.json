@@ -14,7 +14,7 @@
     "rgb_adapter": "iset_lcd_apple_mw_v1",
     "circuit_configuration_path": "configurations/atlas_isetbio_source_stop_shared_v1.json"
   },
-  "active_run_status": "Current frozen local34-component main; individually accepted engineering RGC output defaults and fixed-dark rod reference; short integration only, fresh full background preparation required; not physiological calibration",
+  "active_run_status": "Current frozen local34-component main; all five engineering RGC output defaults selected; four are explicitD cross-type transfers. Fresh current-configuration preparation/integration receipt is separate from general video or physiological validation.",
   "atlas_target": {
     "atlas_profile_id": "retina_atlas_isetbio_source_stop_v1",
     "s_partition_profile": "deMonasterio1985_mulatta_effective_S_v1",
@@ -80,7 +80,7 @@
   },
   "background_preparation": {
     "authorization": "2026-10-16 user-authorized cone integration",
-    "status": "HISTORICAL_BACKGROUND_INVALIDATED_BY_PRO_B5_PARAMETER_IDENTITIES",
+    "status": "HISTORICAL_CHECKPOINT_NOT_REUSABLE_WITH_CONSULTED_RGC_DEFAULTS",
     "criteria": "unchanged bounded_uniform_background_v1",
     "run_directory": "reports/platform_runs/20261016T071417135148Z_0348ea84",
     "checkpoint": "reports/platform_runs/20261016T071417135148Z_0348ea84/background_checkpoint.json",
@@ -93,7 +93,7 @@
     "geometry_identity": "8a7709e4b11a0c74e330d260527b44a4a8f3338add5473bfdd0f04a9d33e7a61",
     "historical_status_before_Pro_B5": "NUMERICAL_CONVERGENCE_PASS_STOCHASTIC_STATISTICS_INSUFFICIENT",
     "current_default_checkpoint_reuse_allowed": false,
-    "reason": "RGC output mapping and rod reference changed; old accepted run retained as history, not relabelled as adapted current default"
+    "reason": "Four output profiles changed; only fresh preparation under the current main configuration may be used"
   },
   "active_input_frontend": {
     "profile_id": "iset_lcd_apple_mw_v1",
@@ -189,7 +189,7 @@
   },
   "rgc_output_defaults": {
     "schema_version": "rgc-engineering-defaults-1.0",
-    "claim": "Scoped engineering output mappings; no physiological amplitude fit",
+    "claim": "Individually sourced engineering output mappings; fourD cross-type transfers, no subtype-specific physiological fit",
     "historical_main_configuration": {
       "path": "configurations/history/retina_platform_pre_rgc_20261020.json",
       "sha256": "a02224d6ce920daad22310e39577f45ec1562fb9146b4e201155dd3b8be9bd20"
@@ -202,7 +202,43 @@
           "path": "configurations/on_parasol_engineering_acceptance_v1.json",
           "sha256": "86d34f4c812d3fcad079c4b80942ce27771c093ecc32062d289e757dec766dd8"
         }
+      },
+      "midget_RGC_ON": {
+        "recipe_path": "configurations/midget_RGC_ON_literature_candidate_v1.json",
+        "recipe_sha256": "d7a4662c0be1f6ef9ff9ce979aac62d807a269e2a4a8f8950c45719ae71c5a76",
+        "acceptance": {
+          "path": "configurations/midget_RGC_ON_engineering_adoption_v2.json",
+          "sha256": "9e4da18cfce495ec4bc37dedeb78eed7a744e26ac435439497779c788b655443"
+        }
+      },
+      "midget_RGC_OFF": {
+        "recipe_path": "configurations/midget_RGC_OFF_literature_candidate_v1.json",
+        "recipe_sha256": "4baf68c5299655ad59c5fba3a5981e52f04eab3726215ccf5a6d74cc5994d76d",
+        "acceptance": {
+          "path": "configurations/midget_RGC_OFF_engineering_adoption_v2.json",
+          "sha256": "5359a1e95c75585d0da2af7fcab8d027e6da7c3c4d334ae2d4a3d280cb799ccc"
+        }
+      },
+      "parasol_RGC_OFF": {
+        "recipe_path": "configurations/parasol_RGC_OFF_literature_candidate_v1.json",
+        "recipe_sha256": "f58f0f2025cda96df365436b7c74e7158bc9e166a6f483a390848b58f412a7ef",
+        "acceptance": {
+          "path": "configurations/parasol_RGC_OFF_engineering_adoption_v2.json",
+          "sha256": "1d1c6ddac8570f8fbc1d50e8dac2aff8b661d6982a91551f34fadf201162194f"
+        }
+      },
+      "small_bistratified_S_ON": {
+        "recipe_path": "configurations/small_bistratified_S_ON_literature_candidate_v1.json",
+        "recipe_sha256": "16f86839dce81765b303bb57a21334ce041575a1c718fcd06e7124c8c1e50863",
+        "acceptance": {
+          "path": "configurations/small_bistratified_S_ON_engineering_adoption_v2.json",
+          "sha256": "972edac6a2de5ebf8aef52e93c9120aeb7f5a6cd799494bb99cb5408b2722f12"
+        }
       }
+    },
+    "rollback_configuration": {
+      "path": "configurations/history/retina_platform_pre_consulted_rgc_20261020.json",
+      "sha256": "e3a10eeb0d02ac6128a1b860c3d01bc1aaf4f9a850c19508855224ff46f35cb4"
     }
   },
   "rod_reference": {
@@ -210,8 +246,96 @@
     "sha256": "9a622c723feb50222fb0baa7ecb339db8472a670397a5fce14cb3d27c7ec5416"
   },
   "pro_parameter_implementation": {
-    "acceptance": "Scoped engineering relative-function checks; physiological amplitude not fitted",
+    "acceptance": "Authorized source-limited engineering adoption; historical protocol results and new integration states remain separate",
     "decisions": {
+      "midget_RGC_ON": {
+        "adopted": true,
+        "failed_checks": [
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_ON/result.json",
+          "sha256": "fc64b3a45673f56f54047475a7c1b5344f411c9515d645a8a463436b118b437f"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 29.93040594370913,
+        "adoption_record": {
+          "path": "configurations/midget_RGC_ON_engineering_adoption_v2.json",
+          "sha256": "9e4da18cfce495ec4bc37dedeb78eed7a744e26ac435439497779c788b655443"
+        },
+        "adoption_scope": "Frozen approved primary-HC footprint only; new90 mapping replayed on the complete saved native-bin V from cold history, without reusing150-mapping spike histories. The old original-annulus failure remains; this is not an original-annulus causal test.",
+        "old_failed_checks_preserved": true,
+        "adoption_is_old_test_pass": false
+      },
+      "midget_RGC_OFF": {
+        "adopted": true,
+        "failed_checks": [
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/midget_RGC_OFF/result.json",
+          "sha256": "3c2c3586f4c78ed815ed03e66bc580c181f6b217a795adc955d63f86d305b122"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 8.340133628860373,
+        "adoption_record": {
+          "path": "configurations/midget_RGC_OFF_engineering_adoption_v2.json",
+          "sha256": "5359a1e95c75585d0da2af7fcab8d027e6da7c3c4d334ae2d4a3d280cb799ccc"
+        },
+        "adoption_scope": "Frozen approved primary-HC footprint only; new90 mapping replayed on the complete saved native-bin V from cold history, without reusing150-mapping spike histories. The old original-annulus failure remains; this is not an original-annulus causal test.",
+        "old_failed_checks_preserved": true,
+        "adoption_is_old_test_pass": false
+      },
+      "parasol_RGC_OFF": {
+        "adopted": true,
+        "failed_checks": [
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/parasol_RGC_OFF/result.json",
+          "sha256": "e8ec349f04e273e9ea2138b84723606de59b78fea6588c156fd00d2ec3276a05"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 8.917981581812159,
+        "adoption_record": {
+          "path": "configurations/parasol_RGC_OFF_engineering_adoption_v2.json",
+          "sha256": "1d1c6ddac8570f8fbc1d50e8dac2aff8b661d6982a91551f34fadf201162194f"
+        },
+        "adoption_scope": "Original ring protocol with matched bright history and new standard/tight numerical contrast. The new1e-5Hz engineering precision budget does not retroactively pass the old all-gray metric or validate natural videos.",
+        "old_failed_checks_preserved": true,
+        "adoption_is_old_test_pass": false
+      },
+      "small_bistratified_S_ON": {
+        "adopted": true,
+        "failed_checks": [
+          "bright_dark",
+          "single_cell_spatial_or_spectral"
+        ],
+        "blocked_checks": {},
+        "own_result": {
+          "path": "reports/modeling_scope_20261020/pro_b5_v1/small_bistratified_S_ON/result.json",
+          "sha256": "dac16ddf8e3c43e51f7d3a94771f0e422ee4bd764b419498fc7dbccf4ac0fe47"
+        },
+        "evidence_grade": "D cross-type output transfer; relative engineering function only",
+        "gray_expected_count_rate_Hz": 152.95613462513072,
+        "adoption_record": {
+          "path": "configurations/small_bistratified_S_ON_engineering_adoption_v2.json",
+          "sha256": "972edac6a2de5ebf8aef52e93c9120aeb7f5a6cd799494bb99cb5408b2722f12"
+        },
+        "adoption_scope": "Independent closed-background S/LM/ring relative responses and explicit split-excitation bookkeeping; no subtype-specific amplitude fit or inherited-sequence recovery claim.",
+        "old_failed_checks_preserved": true,
+        "adoption_is_old_test_pass": false
+      }
+    },
+    "rod_fixed_dark_regression": {
+      "path": "reports/modeling_scope_20261020/pro_b5_v1/rod_fixed_dark_regression/result.json",
+      "sha256": "6cb9f5b08fa10352827ed7c3da0fd5d3e6b4c6e291c09017a6822d4d10ab604d"
+    },
+    "full_plan_status": "ALL309_ENGINEERING_DISPOSITIONS_AND_DEFAULTS_IMPLEMENTED_INTEGRATION_RECORDED_SEPARATELY",
+    "historical_pre_adoption_decisions": {
       "midget_RGC_ON": {
         "adopted": false,
         "failed_checks": [
@@ -266,10 +390,40 @@
         "gray_expected_count_rate_Hz": 152.95613462513072
       }
     },
-    "rod_fixed_dark_regression": {
-      "path": "reports/modeling_scope_20261020/pro_b5_v1/rod_fixed_dark_regression/result.json",
-      "sha256": "6cb9f5b08fa10352827ed7c3da0fd5d3e6b4c6e291c09017a6822d4d10ab604d"
+    "historical_pre_adoption_full_background_preparation_completed": false,
+    "current_configuration_integration": {
+      "path": "reports/modeling_scope_20261020/pro_full_v2/adopted_main_integration/result.json",
+      "status_source": "Read the current-configuration run receipt; this static parameter configuration does not relabel old runs"
+    }
+  },
+  "deterministic_background_initialization": {
+    "path": "configurations/pro_background_initialization_v1.json",
+    "sha256": "2e8c6cf710f5ef05d030ec134dda2b5c64c642ed9cc3a54f5e57011c590f10cc"
+  },
+  "bc_output_gain_control": {
+    "schema_version": "bc-output-gain-control-policy-1.0",
+    "enabled": true,
+    "profile": {
+      "path": "configurations/bc_output_gain_control_v1.json",
+      "sha256": "337865f5a609149d6c5cd098e082a07ce7d924daba29a618574feb405532568f"
     },
-    "current_full_background_preparation_completed": false
+    "scope": "HistoryBipolarTerminal output only; unadapted release drives A; all existing links retained",
+    "calibrated": false,
+    "automatic_fitting_enabled": false,
+    "rollback": "Set enabled=false, or use bc_output_gain_control_enabled=False on atlas_population_network; reinitialize background. No checkpoint migration.",
+    "authorization": "Sentinel_23818c9f2acc8191975e918824a3ce27"
+  },
+  "generic_ac_inhibition": {
+    "schema_version": "generic-ac-inhibition-policy-1.0",
+    "enabled": true,
+    "profile": {
+      "path": "configurations/generic_ac_inhibition_v1.json",
+      "sha256": "365eeeb50e16f79c261896d7594bf28b2d5c6ea60baad1da535fbd76bd277706"
+    },
+    "scope": "Replace only generic ResidualAC FIR/history+static output with continuous effective inhibition; specialized AII unchanged",
+    "calibrated": false,
+    "automatic_fitting_enabled": false,
+    "authorization": "Sentinel_220db12e72948191badc17cac53ea8ec",
+    "rollback": "Fresh build with enabled=false or ac_inhibition_enabled=False; reinitialize background; no checkpoint migration"
   }
 }

@@ -6,6 +6,8 @@ from .contracts import ContractError,Quantity,canonical_hash
 STATE_UNITS={'native_illuminance':'td','native_precursor':'vH_native_precursor','native_os_current':'vH_native_current','native_relative_voltage':'vH_native_voltage','native_conductance':'vH_native_conductance','effective_transmitter_drive':'vH_native_voltage','receptor_gate':'dimensionless','effective_release_activation':'dimensionless','adaptation_gate':'dimensionless','excitatory_synaptic_gate':'dimensionless','inhibitory_synaptic_gate':'dimensionless','physical_membrane_voltage':'V','physical_voltage_deviation':'V'}
 STATE_UNITS.update({'causal_synaptic_drive_history':'dimensionless','effective_synaptic_activation':'dimensionless'})
 STATE_UNITS['effective_HC_activation']='dimensionless'
+STATE_UNITS['release_adaptation_activity']='dimensionless'
+STATE_UNITS['effective_inhibitory_activity']='dimensionless'
 STATE_UNITS.update({'source_scaled_cgmp':'Chen_scaled_concentration','source_scaled_calcium':'Chen_scaled_concentration','source_scaled_cgmp_synthesis':'Chen_scaled_concentration/s'})
 
 @dataclass(frozen=True)

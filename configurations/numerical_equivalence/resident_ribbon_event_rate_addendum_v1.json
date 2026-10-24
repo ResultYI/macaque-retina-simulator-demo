@@ -1,0 +1,24 @@
+{
+  "addendum_id": "resident_ribbon_event_rate_derived_bound_v1",
+  "base_contract_sha256": "3cfab9768a856c13354ab38cc65b506da60661fe3e3b0f05e46c647c08981a77",
+  "scope": "Only ReceptorConductanceMembrane rod_BC_ON/AII event_rate: events/s, expected_release_event_rate; no full-graph acceptance",
+  "source_sha256": {
+    "rod_pathway.py": "5601dd757e22177fb02ebd72a4305ea145f8ddd05aa130822fe43f95b27c862c"
+  },
+  "equation": "K*sigmoid((V-r_half)/r_slope)*x; K=Npool*U*rmax",
+  "prerequisites": [
+    "Unchanged per-cell parameter identity and ordered cell identity",
+    "finite V/x/rates; Npool,rmax,r_slope>0; 0<U<=1",
+    "Original adaptation_gate bounds -1e-10 <= x <= binary64(1+1e-10)",
+    "Exact binary64-value rational state differences <= original frozen B_V/B_x"
+  ],
+  "absolute_allowance": "K*(B_x+binary64(1+1e-10)*min(1,B_V/(4*r_slope)))",
+  "absolute_allowance_units": "events/s",
+  "extra_roundoff_allowance": 0,
+  "relative_tolerance": null,
+  "near_zero": "Absolute comparison only, no denominator floor; zero allowance requires equality",
+  "arithmetic": "Exact Fraction representations of finite binary64 parameters, budgets, states and outputs; no upward-rounded floating allowance",
+  "limit": "Real source-formula propagation is not a forward-error certificate for expit. Actual FP64 differences must satisfy the strict bound without extra allowance; failure stops, no retuning.",
+  "state_budgets_changed": false,
+  "solver_or_physiology_changed": false
+}

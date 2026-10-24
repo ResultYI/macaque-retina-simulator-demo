@@ -1,0 +1,31 @@
+{
+  "schema_version": "generic-ac-effective-inhibition-1.0",
+  "profile_id": "generic_ac_fixed_reference_continuous_inhibition_v1",
+  "calibrated": false,
+  "replacement": "legacy_AC_FIR_and_static_softplus",
+  "mapping": "fixed_reference_value_and_DC_slope",
+  "equations": {
+    "c": "Original nonnegative W times BC effective release; dimensionless activation, no extra row normalization",
+    "h_target": "sigmoid(input_slope*(c-reference_input))",
+    "state": "tau_A*dh/dt=h_target-h; dimensionless h in [0,1]",
+    "activation": "output_scale*h; original conductance adapter gain and reversal potentials unchanged",
+    "fixed_reference": "K=sum(legacy_kernel); reference_input=legacy_baseline; a_ref=softplus(legacy_bias)",
+    "output_scale": "2*a_ref",
+    "input_slope": "2*K*sigmoid(legacy_bias)/a_ref",
+    "initialization": "h0=.5 is only the fixed-reference seed; solve actual coupled background using actual BC effective release"
+  },
+  "type_time_constants": {
+    "local_feedforward_AC": {"value": 0.01, "unit": "s", "evidence": "project_approximation_not_fitted"},
+    "local_crossover_AC": {"value": 0.01, "unit": "s", "evidence": "project_approximation_not_fitted"},
+    "widefield_AC": {"value": 0.01, "unit": "s", "evidence": "project_approximation_not_fitted"},
+    "generic": {"value": 0.01, "unit": "s", "evidence": "software_fixture_or_unclassified_generic_engineering_start"}
+  },
+  "tau_rationale": "A single10ms engineering starting time gives a finite observable buildup/recovery, without inventing subtype kinetic differences. No compatible generic AC measurement is bound. It is neither the old sampling interval nor the paper's200ms value. No response fitting chose this value.",
+  "limitations": [
+    "Only the fixed constant-reference value and first DC derivative match the old curve; global bounded range and curvature differ",
+    "The old negative-tail FIR transient is intentionally replaced, not preserved or applied twice",
+    "Generic AC effective activity is not membrane voltage and is not specialized AII physiology",
+    "No real-data prediction improvement or whole-retina physiological calibration has been established"
+  ],
+  "authorization": "Sentinel_220db12e72948191badc17cac53ea8ec"
+}

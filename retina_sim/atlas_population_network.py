@@ -31,7 +31,11 @@ def load_population_record(root, *, owner_bounds_mm=None, halo_mm=.04,execution_
             from .disk_circuit import GlobalDiskCircuit
             from .disk_runtime import runtime_record
             circuit=GlobalDiskCircuit(root,configuration['global_graph'])
-            view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'])
+            owner_options=({'owner_global_rows':configuration['owner_global_rows']}
+                           if 'owner_global_rows' in configuration else {})
+            view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'],
+                empty_chemical_input_policy=configuration.get('empty_chemical_input_policy','reject_empty_chemical_input_v1'),
+                **owner_options)
             record,_=runtime_record(root,circuit,view)
             return record,{'artifact':configuration['global_graph']['path'],'sha256':configuration['global_graph']['sha256'],
                 'kind':'global_disk_exact_dependency_view','view_sha256':record.semantic_hash}
@@ -53,8 +57,11 @@ def load_population_record(root, *, owner_bounds_mm=None, halo_mm=.04,execution_
 
 def atlas_population_network(root,*,duration=.0012,light_context=None,owner_bounds_mm=(.34,.36,-.01,.01),
         halo_mm=.04,max_spatial_cells=60000,seed=20261010,execution_profile='atlas_population_revision_v1',configuration_path=None,_freeze_geometry_bootstrap=False,
-        dynamics_candidate_path=None,apply_rgc_output_defaults=True,apply_rod_reference_defaults=None):
+        dynamics_candidate_path=None,apply_rgc_output_defaults=True,apply_rod_reference_defaults=None,
+        bc_output_gain_control_enabled=None,ac_inhibition_enabled=None):
     root=Path(root)
+    from .spatial_scope import enforce_owner_scope
+    scope_receipt=enforce_owner_scope(root,owner_bounds_mm)
     apply_rod_reference_defaults=apply_rgc_output_defaults if apply_rod_reference_defaults is None else apply_rod_reference_defaults
     rod_reference=None
     if apply_rod_reference_defaults:
@@ -71,13 +78,14 @@ def atlas_population_network(root,*,duration=.0012,light_context=None,owner_boun
     if execution_profile=='atlas_isetbio_geometry_v1':
         configuration=circuit_configuration(root,configuration_path)
         if configuration.get('storage_kind')=='global_disk_graph_v1':
-            if rod_reference is not None:
-                raise ContractError('Fixed-dark rod reference is implemented for the current frozen local main circuit; global-disk historical runs require explicit default opt-out')
             from .disk_runtime import disk_network
             result=disk_network(root,configuration,duration=duration,light_context=light_context or LightContext(),
-                owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed)
+                owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed,
+                rod_reference_policy=rod_reference)
             from .rgc_defaults import apply_rgc_defaults
-            return apply_rgc_defaults(_candidate_result(result,dynamics_candidate_path,light_context or LightContext()),root,apply_rgc_output_defaults)
+            result=apply_rgc_defaults(_candidate_result(result,dynamics_candidate_path,light_context or LightContext()),root,apply_rgc_output_defaults)
+            result[2]['spatial_scope']=scope_receipt
+            return _retained_initializer(result,root,apply_rgc_output_defaults,dynamics_candidate_path,bc_output_gain_control_enabled,ac_inhibition_enabled)
     record,binding=load_population_record(root,owner_bounds_mm=owner_bounds_mm,halo_mm=halo_mm,execution_profile=execution_profile,configuration_path=configuration_path)
     spatial_asset=None
     if execution_profile=='atlas_isetbio_geometry_v1':
@@ -151,7 +159,31 @@ def atlas_population_network(root,*,duration=.0012,light_context=None,owner_boun
             'storage_manifest_hash':record.storage_manifest_hash,
             'io':dict(record.io),'scope':'lazy population/route block reads; selected current circuit still fully compiled and resident'}
     from .rgc_defaults import apply_rgc_defaults
-    return apply_rgc_defaults(_candidate_result((compiled,channels,audit),dynamics_candidate_path,light),root,apply_rgc_output_defaults)
+    result=apply_rgc_defaults(_candidate_result((compiled,channels,audit),dynamics_candidate_path,light),root,apply_rgc_output_defaults)
+    result[2]['spatial_scope']=scope_receipt
+    return _retained_initializer(result,root,apply_rgc_output_defaults,dynamics_candidate_path,bc_output_gain_control_enabled,ac_inhibition_enabled)
+
+
+def _retained_initializer(result,root,apply_rgc_output_defaults,dynamics_candidate_path,bc_output_gain_control_enabled=None,ac_inhibition_enabled=None):
+    """The same state-only initializer and acceptance criteria on either geometry."""
+    root=Path(root)
+    from .bc_gain_control import apply_bc_gain_control
+    result=apply_bc_gain_control(result,root,bc_output_gain_control_enabled)
+    from .ac_inhibition import apply_ac_inhibition
+    result=apply_ac_inhibition(result,root,ac_inhibition_enabled)
+    if apply_rgc_output_defaults and dynamics_candidate_path is None:
+        policy=json.loads((root/'configurations/retina_platform_v1.json').read_bytes()).get('deterministic_background_initialization')
+        if policy is not None:
+            path=(root/policy['path']).resolve()
+            if not path.is_relative_to(root.resolve()) or hashlib.sha256(path.read_bytes()).hexdigest()!=policy['sha256']:
+                raise ContractError('Deterministic background initialization policy identity differs')
+            definition=json.loads(path.read_bytes())
+            if (definition.get('schema_version')!='retained-background-initialization-1.0' or
+                    definition.get('parameters_or_references_changed') is not False or
+                    definition.get('existing_preparation_criteria_required') is not True):
+                raise ContractError('State-only retained background initialization contract required')
+            result[0].retained_background_initializer=dict(binding=policy,definition=definition)
+    return result
 
 
 def _candidate_result(result,path,light=None):

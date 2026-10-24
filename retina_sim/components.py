@@ -127,6 +127,8 @@ def reference_component_registry():
     from .finite_feedback_native import KEY as finite_feedback_key,finite_feedback_component
     registry.register(finite_feedback_key,finite_feedback_component)
     for key in ('ResidualBC_ON','ResidualBC_OFF','ResidualAC'): registry.register(key,history_component)
+    from .ac_inhibition import KEY as effective_ac_key,effective_ac_component
+    registry.register(effective_ac_key,effective_ac_component)
     from .bc_ac_receptor_components import BC_KEY, AC_KEY, cone_bc_component, generic_ac_component
     registry.register(BC_KEY, cone_bc_component)
     registry.register(AC_KEY, generic_ac_component)

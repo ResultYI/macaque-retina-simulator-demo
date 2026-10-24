@@ -69,6 +69,12 @@ class NativeConeH1:
         if np.all(Vis==Vis[0]) and np.all(aI==aI[0]):
             scalar=brentq(lambda h:h-p['g_t']/aI[0]*expit((Vis[0]-h-p['V_k'])/p['V_n']),0,float(upper.max()),xtol=1e-12)
             h=np.full(self.nh,scalar)
+        elif self.nh==1:
+            # SciPy's sparse trust-region solver has a degenerate 1D branch.
+            # Solve the same scalar feedback equation with its physical bracket.
+            scalar=brentq(lambda h:h-float((self.A@drive(np.array([h])))[0]),
+                0.,float(upper[0]),xtol=1e-12)
+            h=np.array([scalar])
         else:
             def jacobian(h):
                 q=expit((Vis-self.B@h-p['V_k'])/p['V_n']);scale=p['g_t']/aI*q*(1-q)/p['V_n']

@@ -11,11 +11,15 @@ import numpy as np
 from .contracts import ContractError,canonical_hash
 
 IMPLEMENTATIONS={
-    'vh2005.py':'d4f867c75e3c9cdb44c0073caad2de61b2bf383883a59d6e9c5c34b4dfddfa4a',
+    # Reviewed 2026-10-21: retained native branches plus optional BC release-
+    # driven A, effective output and unchanged V/r lowering; continuous generic AC h. RGC retained.
+    'vh2005.py':'60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858',
     'inner.py':'32c469e6a1de2c75a28b1bf6c6d9fcac8c6942f0391386d60608b95688bac0e3',
-    'rod_pathway.py':'a271e5501ba9c56e15d76dc21a634bea5124d46b087d29171f7526a897314e45',
+    'rod_pathway.py':'5601dd757e22177fb02ebd72a4305ea145f8ddd05aa130822fe43f95b27c862c',
+    'bc_gain_control.py':'db45db6c6f107b1655ab6c26bcd96643ae0afec3d40fdbd9434de30755888e01',
+    'ac_inhibition.py':'1e170f21f1617eb953116905d2fefdfdeaa9dd3b697e630eab08cf9d20301873',
     'physical.py':'6bd9ae8413388086ce28f7b55489944964b283dc66bea8ec5159f9d4838c0813'}
-SUPPORTED={'VanHateren2005NativeConeH1','HistoryBipolarTerminal','ResidualAC',
+SUPPORTED={'VanHateren2005NativeConeH1','HistoryBipolarTerminal','ResidualAC','EffectiveInhibitoryAC',
     'ResidualBC_ON','ResidualBC_OFF','SynapticConductance','HistoryConductanceRGC',
     'Chen2024PrimateRodCurrent','ReceptorConductanceMembrane','ExplicitPhysicalUnitConversion',
     'RodContactTRPM1','DoubleExponentialChemicalSynapse'}
@@ -125,7 +129,7 @@ class Plan:
     def __init__(self,network):
         self.network=network;self.compiled=network.compiled;self.program=[];self.values=[]
         self.weights=[];self.indices=[];self.pointers=[];self.outputs={};self.inputs={};self.native={}
-        self.states={};self.external=[]
+        self.states={};self.external=[];self.bc_output_expressions={}
         for cid,slices in network._local_slices.items():
             self.states[cid]=[Ref(self,s.start,s.stop-s.start) for s in slices]
         self.nstate=sum(s.shape[0] for s in network.state_specs);self.values=[0.]*self.nstate
@@ -205,12 +209,34 @@ class Plan:
             if port in ('q','release','Ios'):return self.native_signals(cid)[{'Ios':0,'q':2,'release':3}[port]]
             return s[[x.state_name for x in c.state_specs].index(port)]
         if m=='HistoryBipolarTerminal':
-            if port=='activation':return s[-1]
+            count=c.native_model.history_state_count;rel=s[count+1];control=c.native_model.bc_output_gain_control
+            if port=='unadapted_release':return rel
+            if port=='adaptation_activity':return s[count+2] if control.enabled else self.zero(rel.n)
+            if port in ('activation','effective_release','output_gain'):
+                # Share expression refs inside this plan, never gain values across
+                # RHS calls: all instructions still read the current y each time.
+                if cid not in self.bc_output_expressions:
+                    if control.enabled:
+                        self.check(s[count+2]+1e-10,NONNEG);self.check(control.scale+1e-10-s[count+2],NONNEG)
+                    gain=1/(1+s[count+2]**6) if control.enabled else self.ref(np.ones(rel.n))
+                    self.bc_output_expressions[cid]={'gain':gain}
+                shared=self.bc_output_expressions[cid]
+                if port=='output_gain':return shared['gain']
+                if 'effective_release' not in shared:
+                    shared['effective_release']=rel*shared['gain'] if control.enabled else rel
+                return shared['effective_release']
             if port=='generator_activation':return s[o['count']-1]
-            if port=='voltage':return s[-2]
+            if port=='voltage':return s[count]
             if port=='glycine_conductance':return self.gather(cid,'inhibition')
             return self.ref(np.zeros(len(c.outputs[port].cell_ids)))
         if m in ('ResidualAC','ResidualBC_ON','ResidualBC_OFF'):return s[-1]
+        if m=='EffectiveInhibitoryAC':
+            h=s[0];self.check(h+1e-10,NONNEG);self.check(1+1e-10-h,NONNEG)
+            if port=='activation':return self.ref(c.native_model.output_scale)*h
+            if port=='target_inhibition':
+                drive=self.gather(cid,'drive');self.check(drive,NONNEG)
+                return self.unary(SIGMOID,self.ref(c.native_model.input_slope)*(drive-self.ref(c.native_model.reference_input)))
+            return h
         if m=='SynapticConductance':
             a=self.gather(cid,'activation');self.check(a,NONNEG);return self.ref(o['gain'])*a
         if m=='HistoryConductanceRGC':return self.gather(cid,'excitation' if port=='gE' else 'inhibition') if port in ('gE','gI') else s[0]
@@ -254,11 +280,16 @@ class Plan:
             rows=((L-R)/p['tau_R'],(R-E)/p['tau_E'],alpha-beta*X,(I-C)/p['tau_C'],(I/gi-V)/p['tau_m'],(p['a_is']*V**p['gamma']-gi)/p['tau_is'],(V-Vbar)/p['tau_a'],(p['g_t']*r-z1)/p['tau_1'],(self.csr(c.native_model.A,z1)-z2)/(p['tau_2']*pooled),(z2-h)/(p['tau_h']*pooled))
             return [1000*v for v in rows]
         if m in ('ResidualAC','ResidualBC_ON','ResidualBC_OFF','Chen2024PrimateRodCurrent'):return [None]*len(s)
+        if m=='EffectiveInhibitoryAC':
+            return [(self.outputs[(cid,'target_inhibition')]-s[0])/c.native_model.tau_A_seconds]
         if m=='HistoryBipolarTerminal':
-            a=lambda k:self.ref(d[k]);V,rel=s[-2:];target=a('Vref')+a('gain')*(s[d['count']-1]-a('aref'))
+            a=lambda k:self.ref(d[k]);count=d['count'];V,rel=s[count:count+2];target=a('Vref')+a('gain')*(s[count-1]-a('aref'))
             current=a('gL')*(target-V)+gaps[cid]
             if d['polarity']=='OFF':current=current+self.gather(cid,'inhibition')*(a('EI')-V)
-            return [None]*d['count']+[current/a('C'),(self.unary(SIGMOID,(V-a('half'))/a('slope'))-rel)/a('tau')]
+            rows=[None]*count+[current/a('C'),(self.unary(SIGMOID,(V-a('half'))/a('slope'))-rel)/a('tau')]
+            control=c.native_model.bc_output_gain_control
+            if control.enabled:rows.append((control.scale*rel-s[count+2])/control.tau_a_seconds)
+            return rows
         if m=='HistoryConductanceRGC':
             p=c.native_model;V=s[0];e=self.gather(cid,'excitation');i=self.gather(cid,'inhibition')
             self.check(e,NONNEG);self.check(i,NONNEG)

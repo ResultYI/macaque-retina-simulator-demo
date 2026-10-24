@@ -1,0 +1,161 @@
+{
+  "schema_version": "vr-useful-chunked-capture-preparation-1.0",
+  "status": "NOT_READY",
+  "fit_eligible": false,
+  "execution_authorization": "Preparation only in this subthread; parent coordinates any future source run after exact input decision",
+  "references": {
+    "input_policy": {
+      "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/capture_preparation_v2/input_policy.proposed.json",
+      "sha256": "81ab05b9bacd94ef1abc44a8ade08e22f23603594af50eb4f1dd9030d8735060"
+    },
+    "capture_configuration": {
+      "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/capture_preparation_v2/capture_configuration.json",
+      "sha256": "152e2375616ce7a4bd9a95d5face182038f7a78a7379504d0039983017525f8f"
+    },
+    "pilot_contract": {
+      "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/capture_preparation_v2/pilot_contract.json",
+      "sha256": "188c8738a9dde476894ad15127b88080ba487ad4e15dd06ac68da0e399b698b6"
+    },
+    "cells": {
+      "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/student_cell_binding.json",
+      "sha256": "31f6c44b8e84cbf43150c3b7de9c989599020b22db69e0ca2216c8e691fe6d31"
+    },
+    "received_assets": {
+      "path": "tools/vr_teacher_handoff_v1/intake_drive_20261023_v1/received_asset_binding.json",
+      "sha256": "5354bb2d437c3bd313df35165698efda6158f54cfac8f018490cfa50a03782e4"
+    }
+  },
+  "retained_eight_owner_rows": {
+    "midget_RGC_ON": [
+      43078,
+      48948,
+      97738,
+      124807
+    ],
+    "parasol_RGC_OFF": [
+      24427,
+      25963,
+      27429
+    ],
+    "parasol_RGC_ON": [
+      23909
+    ]
+  },
+  "clock": {
+    "input_hz": 150,
+    "raw_source_frames": [
+      0,
+      9751
+    ],
+    "recorded_background_frames": [
+      0,
+      750
+    ],
+    "active_frames": [
+      750,
+      9750
+    ],
+    "guard_frames": [
+      9750,
+      9751
+    ],
+    "raw_active_seconds": [
+      5,
+      65
+    ],
+    "effective_active_seconds": [
+      0,
+      60
+    ],
+    "raw_to_effective_offset_seconds": 5,
+    "guard_contributes_target_or_loss": false,
+    "reset_at_split": false
+  },
+  "splits": {
+    "train": [
+      0,
+      35
+    ],
+    "validation": [
+      40,
+      50
+    ],
+    "preliminary_test": [
+      55,
+      60
+    ],
+    "no_loss_state_continuation_gaps": [
+      [
+        35,
+        40
+      ],
+      [
+        50,
+        55
+      ]
+    ],
+    "final_holdout": [
+      480,
+      600
+    ],
+    "final_holdout_used": false
+  },
+  "cache_contract": {
+    "schema_version": "ac-rgc-boundary-replay-1.2",
+    "mode": "rgc_only",
+    "required_raw_coverage_seconds": [
+      0,
+      65.00666666666666
+    ],
+    "required_outputs": [
+      "time",
+      "original pooled gE_S",
+      "original pooled gI_S",
+      "their original exact derivatives",
+      "original downstream state/history/last draw phase and PCG64 state",
+      "qualified prepared-origin receipt",
+      "independent identity/content hashes",
+      "source native-bin-start voltage/count baseline observations for the four comparison cells"
+    ],
+    "native_bindings_required": [
+      "runtime_identity and implementation identity",
+      "actual compiled graph/parameters/geometry",
+      "original policy-qualified full background state and exact absolute raw-zero origin",
+      "solver/calendar/mesh/history/RNG",
+      "independent numerical cache content hash",
+      "compiled boundary layout guard with no downstream feedback/delay/electrical crossing"
+    ],
+    "source_identity_seed": "handoff.source_identity_seed; still fit_eligible=false and not a native qualification replacement",
+    "invalidates_on": "Any upstream/input/graph/geometry/background/solver/history/RNG/runtime change; any retina_sim implementation hash change",
+    "candidate_reuse": "only the two existing tied RGC E/I gains [0.5,2]; no upstream fit"
+  },
+  "useful_chunk_protocol": {
+    "separate_long_engineering_test": false,
+    "producer": "original full source + existing BoundaryRecorder.from_prepared_background, after its original qualification gate",
+    "per_chunk_required": [
+      "continue same absolute state/history/RNG; no split resets",
+      "atomic complete-state checkpoint and cache-part manifest; incomplete part never marked complete",
+      "bounded monitoring owned by main producer: elapsed time, host/GPU memory, monotonic times and finite values",
+      "baseline source/replay comparison integrated into useful chunks under existing acceptance tolerances; approximate interpolation is not declared exact"
+    ],
+    "hard_limits": "parent must supply actual wall/memory/chunk/storage limits; no limit is granted by this preparation",
+    "chunk_duration_seconds": null,
+    "source_wall_budget_seconds": null,
+    "qualification_fail_action": "stop before movie capture; preserve unqualified checkpoint with fit_eligible=false",
+    "interruption_policy": "preserve only completed verified chunks; resume only identical full identity",
+    "fit_eligible_transition": "native qualification + same-input frontend binding + complete usable cache checks only; never inferred from elapsed duration or finite state"
+  },
+  "blockers": [
+    "EXACT_INPUT_POLICY_NOT_APPROVED",
+    "NATIVE_LINEAR_SPECTRAL_FRONTEND_RECEIPT_ABSENT",
+    "CURRENT_INPUT_AND_8_PLUS_4_GRAPH_BACKGROUND_NOT_QUALIFIED",
+    "SAME_INPUT_SCHEMA12_CACHE_NOT_GENERATED"
+  ],
+  "readiness_scope": "metadata preparation, not graph assembly, input materialization, qualified background, usable cache or fit",
+  "main_entrypoints": {
+    "preflight_module": "tools.vr_teacher_handoff_v1.fit_integration_v1.capture_preparation_v2.handoff",
+    "gray8_reader": "tools.vr_teacher_handoff_v1.fit_integration_v1.pilot.Gray8Chunks",
+    "one_candidate_after_native_prerequisites": "tools.vr_teacher_handoff_v1.fit_integration_v1.pilot.evaluate_candidate"
+  },
+  "teacher_scope": "COMPLETE_PILOT_PROVISIONAL, continuous boundary unverified; only conditional engineering use"
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "vr-fixed-native-cell-binding-1.0",
+  "selection": "Deterministic nearest existing frozen RF, no relocation/regeneration, tie lowest global row",
+  "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+  "target_deg": [
+    4.582031249999999,
+    0.0
+  ],
+  "project_mm_per_degree": 0.223,
+  "cells": [
+    {
+      "teacher_column": 0,
+      "teacher_class": "ON_midget",
+      "vr_unit_id": 0,
+      "student_component": "midget_RGC_ON",
+      "student_type_group": "midget_RGC_ON",
+      "student_global_row": 102603,
+      "student_cell_id": "atlas:8a7398d95147d57a56894b7427e85ccd7649be3c95544d5ef79ba9a1bb922fdf",
+      "rf_mm": [
+        1.0180458984375,
+        0.00011114566028118134
+      ],
+      "rf_deg": [
+        4.5652282441143495,
+        0.0004984110326510374
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.01681039619850256,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_ON/manifest.json",
+        "sha256": "844dae5e9e67c28dd4fc2d18d0621b150c89e04451763c7c5e3b03c2479d7e0f"
+      },
+      "rf_payload_sha256_verified": "4a01741b6535b5eee03b19304235c1bc52bb04067415949fa772e059796be669",
+      "source_key_payload_expected_sha256": "e9c84659068fb529047289819e2cca89fd08b3b7ac6d995840a15e9e7db0b48c",
+      "selected_source_key": "atlas:fbe88844f7fce91f5ac32e5ed738c3b55754136f86f9913bd2fb175ad66c8ecd",
+      "selected_source_key_sha256": "5cf4737cbbc259237f70b2efe037585971c0808d74be56246588200f5072356f",
+      "source_key_full_array_read_or_hashed": false
+    },
+    {
+      "teacher_column": 1,
+      "teacher_class": "OFF_midget",
+      "vr_unit_id": 1,
+      "student_component": "midget_RGC_OFF",
+      "student_type_group": "midget_RGC_OFF",
+      "student_global_row": 102603,
+      "student_cell_id": "atlas:dfd07737c3afd1dd2853d06479677b2b8beac1c733037249e3e6765007b73c91",
+      "rf_mm": [
+        1.0180458984375,
+        0.00011114566028118134
+      ],
+      "rf_deg": [
+        4.5652282441143495,
+        0.0004984110326510374
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.01681039619850256,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_OFF/manifest.json",
+        "sha256": "9953c1c99fceca942337bb037167ecc98b169dcea45c9861de56bd44afac7e41"
+      },
+      "rf_payload_sha256_verified": "4a01741b6535b5eee03b19304235c1bc52bb04067415949fa772e059796be669",
+      "source_key_payload_expected_sha256": "c474cbbebec92e32eadfe7ba9b79ec88012d797b85a1489cfc8e94ea307517d2",
+      "selected_source_key": "atlas:1d5e418de14cafec3abc985c22656314428330d1778d9c0b89b1b7ac2ed908a6",
+      "selected_source_key_sha256": "77dadf3a5b242e32e66efc00b22a36f533c65b8937e8658ca111ca4e2e62f7b2",
+      "source_key_full_array_read_or_hashed": false
+    },
+    {
+      "teacher_column": 2,
+      "teacher_class": "ON_parasol",
+      "vr_unit_id": 2,
+      "student_component": "parasol_RGC_ON",
+      "student_type_group": "parasol_RGC_ON",
+      "student_global_row": 25300,
+      "student_cell_id": "atlas:249dc356a2136cdf25e7c300b9172ca257fc473d85272dc074148f5bb317512e",
+      "rf_mm": [
+        1.01984111925535,
+        -0.0056306662799211465
+      ],
+      "rf_deg": [
+        4.573278561683184,
+        -0.025249624573637428
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.026723642975480473,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_ON/manifest.json",
+        "sha256": "9b70fffb0134407484a7ad56e8f5ab69e1b0f18ceca19939c590a1039c83af14"
+      },
+      "rf_payload_sha256_verified": "e3db909b91e93a16f846a2a61fcc1f07e8122a2e5dc62d1e46724404985c7701",
+      "source_key_payload_expected_sha256": "052de01f769eb8407c6e42c5ed7f06f2663a3090dd7daa0940bc29e8410b7eca",
+      "selected_source_key": "fixed_population_master:fixed_global_disk:parasol_RGC_ON:95dec362b3a652388c033248aba9e6d3f7647f9ab145380ac6435dcbd79e6472:cone:000025300",
+      "selected_source_key_sha256": "d6e222a16cbef46ef9aa47119cb8eb34e8a7e8bb78fdac787f56aa29de4a0040",
+      "source_key_full_array_read_or_hashed": false
+    },
+    {
+      "teacher_column": 3,
+      "teacher_class": "OFF_parasol",
+      "vr_unit_id": 3,
+      "student_component": "parasol_RGC_OFF",
+      "student_type_group": "parasol_RGC_OFF",
+      "student_global_row": 25300,
+      "student_cell_id": "atlas:fc132497a54c7362ecb0c7cf0f1fb7a1e9013b11dad95e90eb32b819fab7755e",
+      "rf_mm": [
+        1.0204359693408416,
+        -0.0017940095342145839
+      ],
+      "rf_deg": [
+        4.575946050855792,
+        -0.008044885803652842
+      ],
+      "teacher_rf_deg": [
+        4.582031249999999,
+        0.0
+      ],
+      "distance_deg": 0.010087112382564028,
+      "table_binding": {
+        "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_OFF/manifest.json",
+        "sha256": "bcdf6eda11d4dcc65f8e155987fd86df2a3ed92a4e2609c2cf438eb9bcdf1961"
+      },
+      "rf_payload_sha256_verified": "9dd2399dabdc359bed0b052e1c6295efe37d95dcc709ac5bb55ac05208d4dd43",
+      "source_key_payload_expected_sha256": "8b50f178115cd2d34337d268126d48bb224b9afe7548d99203fe8d0cfde713c5",
+      "selected_source_key": "fixed_population_master:fixed_global_disk:parasol_RGC_OFF:a52c6154aa794e79b90e130815cbe16aa7fac53923bcef1bc6e7dc0949955207:cone:000025300",
+      "selected_source_key_sha256": "85536d9916c615649ac7ff3ee868c4c61adf875a5a82107e5a1b24f29a7708d6",
+      "source_key_full_array_read_or_hashed": false
+    }
+  ],
+  "global_graph_binding": {
+    "path": "data/atlas/human_disk3mm_functional_hc_v1/circuit/manifest.json",
+    "sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557"
+  },
+  "declared_RGC_outgoing_routes": [],
+  "original_source_cohort_owner_rows": {
+    "midget_RGC_ON": [
+      43078,
+      48948,
+      97738,
+      124807
+    ],
+    "parasol_RGC_OFF": [
+      24427,
+      25963,
+      27429
+    ],
+    "parasol_RGC_ON": [
+      23909
+    ]
+  },
+  "reference_ID_crosscheck_passed": true,
+  "graph_assembled": false,
+  "native_extraction_feedback_and_gap_guard_still_required": true
+}

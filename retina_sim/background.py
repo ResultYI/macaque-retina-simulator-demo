@@ -99,6 +99,16 @@ def timing_requirements(runner, policy):
     taus=[];unknown=[];delays=[];memory=[]
     for cid,c in runner.compiled.components.items():
         known=[]
+        control=getattr(c.native_model,'bc_output_gain_control',None)
+        if control is not None and control.enabled:
+            known.append(control.tau_a_seconds)
+            taus.append({'component':cid,'parameter':'BC_release_adaptation_tau_a','seconds':control.tau_a_seconds})
+        if c.mechanism=='EffectiveInhibitoryAC':
+            seconds=float(c.native_model.tau_A_seconds)
+            if not np.isfinite(seconds) or seconds<=0:
+                raise ContractError('Effective AC requires a positive explicit continuous time constant')
+            known.append(seconds)
+            taus.append({'component':cid,'parameter':'effective_AC_tau_A_seconds','seconds':seconds})
         for record in c.parameters.records:
             value=record.value
             unit=getattr(value,'unit',getattr(record,'unit',None))
@@ -174,7 +184,9 @@ class _WindowMonitor:
         rhs=model.rhs_flat(t,y,bundle,model.parameters,model.graph)
         if np.any(~np.isfinite(rhs)):raise ContractError('Nonfinite original background RHS')
         # Pure native one-step transitions detect a held/history state with zero RHS.
-        inputs,outputs=model.evaluate(t,y,bundle,sampling=True)
+        context_reuse=getattr(self.runner,'background_monitor_context_reuse',None)
+        inputs,outputs=(model.evaluate(t,y,bundle,sampling=True) if context_reuse is None
+                        else context_reuse.evaluate(t,y,bundle,sampling=True))
         gap=[q.values for (cid,port),q in outputs.items() if port=='gap_current']
         if gap:
             total=sum(float(np.sum(a)) for a in gap);magnitude=sum(float(np.sum(np.abs(a))) for a in gap)
@@ -192,12 +204,15 @@ class _WindowMonitor:
             row['hi']=a.copy() if row['hi'] is None else np.maximum(row['hi'],a)
             row['rhs']=np.maximum(row['rhs'],np.abs(rhs[row['slice']]))
             # Only explicitly named unit-interval states are given a gate domain.
-            if spec.unit=='dimensionless' and spec.meaning in ('excitatory_receptor_gate','inhibitory_receptor_gate','excitatory_synaptic_gate','release_probability','sodium_activation_gate','potassium_activation_gate','synaptic_resource_fraction','effective_release_activation','adaptation_gate'):
+            if spec.unit=='dimensionless' and spec.meaning in ('excitatory_receptor_gate','inhibitory_receptor_gate','excitatory_synaptic_gate','release_probability','sodium_activation_gate','potassium_activation_gate','synaptic_resource_fraction','effective_release_activation','effective_inhibitory_activity','adaptation_gate'):
                 if np.any((a < -1e-10)|(a > 1+1e-10)):self.domain_failures.append(spec.state_name)
             if spec.meaning in ('native_illuminance','native_precursor','native_os_current','native_conductance',
                 'effective_opsin_activity','effective_pde_activity','cgmp_concentration','outer_segment_calcium',
-                'cgmp_synthesis_cache','source_scaled_cgmp','source_scaled_calcium','source_scaled_cgmp_synthesis','receptor_gate'):
+                'cgmp_synthesis_cache','source_scaled_cgmp','source_scaled_calcium','source_scaled_cgmp_synthesis','receptor_gate','release_adaptation_activity'):
                 if np.any(a < -1e-10):self.domain_failures.append(spec.state_name+':negative_domain')
+            if spec.meaning=='release_adaptation_activity':
+                control=self.runner.compiled.components[spec.state_name.split('.',1)[0]].native_model.bc_output_gain_control
+                if np.any(a>control.scale+1e-10):self.domain_failures.append(spec.state_name+':above_scale')
             cid=spec.state_name.split('.',1)[0]
             if cid in transitions:
                 c=self.runner.compiled.components[cid];local_slice=slice(row['slice'].start-model.slices[cid].start,row['slice'].stop-model.slices[cid].start)
@@ -267,12 +282,22 @@ def prepare_background(runner,state,channels,policy=None,*,unit_scales=None,expl
     if any(ch.input_contract.get('declared_constant_background') is not True for ch in channels.values()):
         raise ContractError('Preparation requires explicitly constant background channels')
     if runner.discrete is not None:raise ContractError('Background monitor currently requires a compiled JointNetwork; isolated author kernel uses its own source initialization')
+    wall=perf_counter()
+    deterministic_initialization=None
+    if (getattr(runner.compiled,'retained_background_initializer',None) is not None and
+            state.time_seconds==state.grid_origin_seconds and state.sample_index==0):
+        from .retained_background import close_retained_background
+        # Freeze the existing monitor denominator before replacing any state.
+        # The original timing, residual and stochastic criteria still apply.
+        if reference_state is None:reference_state=state
+        state,deterministic_initialization=close_retained_background(runner,state,channels)
+        deterministic_initialization['policy']=runner.compiled.retained_background_initializer
     requirements=timing_requirements(runner,policy)
     monitor=_WindowMonitor(runner,reference_state or state,policy,unit_scales,explicit_scales,absolute_fraction)
     segment_start=state.time_seconds
     start=segment_start if preparation_origin_seconds is None else float(preparation_origin_seconds)
     if start>segment_start:raise ContractError('Preparation origin cannot follow restored state time')
-    wall=perf_counter();windows=[];stable=0;observations=0;reason='max_sim_seconds';status='NOT_REACHED'
+    windows=[];stable=0;observations=0;reason='max_sim_seconds';status='NOT_REACHED'
     end=start+policy.max_sim_seconds
     while state.time_seconds<end-1e-12:
         left=state.time_seconds;right=min(left+policy.window_seconds,end);monitor.reset();window_observations=0
@@ -338,6 +363,7 @@ def prepare_background(runner,state,channels,policy=None,*,unit_scales=None,expl
                                      'claim':'No universal statistical acceptance tolerance or noise-free spike criterion supplied'},
             'maximum_scope':'all observed accepted event endpoints and declared numerical monitoring grid; sub-grid extrema not certified',
             'adaptation_cache_enabled':False,'physiological_validation':'NOT_RUN',
+            'deterministic_initialization':deterministic_initialization,
             'claim':'Sampled deterministic numerical fixed-point candidate only; model calibration and stochastic stationarity not established'}
     state.input_position.update(stimulus_origin_seconds=state.time_seconds,
         background_initialization_status=status,background_preparation_policy_hash=canonical_hash(asdict(policy)),

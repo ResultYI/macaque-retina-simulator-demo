@@ -85,26 +85,35 @@ def merge_source_reference_candidate(parent,registry,package,*,applicability,all
          'Published fit in original ON-parasol two-cell domain; target transfer remains project_approximation, not measurement or refit'),
         '2026-10-20',{'source_recording':'Cafaro-Rieke2013 dynamic clamp; raw V-spike unavailable'}))
     rows=[]
+    explicit_D_adoption=(_engineering_acceptance or {}).get('adoption_schema')=='rgc-engineering-adoption-2.0'
+    runtime_applicability=copy.deepcopy(applicability)
+    if explicit_D_adoption:
+        runtime_applicability.update(original_candidate_claim=applicability['claim'],
+            claim='Adopted D cross-type engineering output default; no target-type voltage-spike fit or general image/video validation',
+            production_adoption=True,adoption_scope=_engineering_acceptance['scope'])
     for r in old.parameters.records:
         if r.parameter_id in VALUES:
             value,unit,meaning=VALUES[r.parameter_id]
             r.value.require(unit,meaning)
             r=replace(r,value=Quantity(np.full(r.value.values.shape,value),unit,meaning,r.value.evidence_tag),
                 source_id=sid,evidence_class='project_approximation',locator=source['locator']+'; '+r.parameter_id,
-                supported_domain=copy.deepcopy(applicability),
+                supported_domain=copy.deepcopy(runtime_applicability),
                 uncertainty='Literature transfer across membrane/bin/history conditions; not empirically calibrated')
         rows.append(r)
     adopted=_engineering_acceptance is not None
     pid=d['profile_id']+('_engineering_default' if adopted else '')
     profile=replace(old.parameters.profile,profile_id=pid,records=tuple(rows),
         source_ids=tuple(sorted(set(old.parameters.source_ids+(sid,)))),
-        approval_reference=('Pro B5 accepted scoped engineering output default, 2026-10-20' if adopted else
+        approval_reference=(_engineering_acceptance['authorization'] if explicit_D_adoption else
+                            'Pro B5 accepted scoped engineering output default, 2026-10-20' if adopted else
                             'Authorized isolated ON-parasol source-transfer candidate, 2026-10-20' if legacy else
                             'Authorized isolated '+cid+' source-transfer candidate, 2026-10-20'),
         conditions=dict(old.parameters.conditions,source_reference_candidate=dict(
-            candidate_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),applicability=copy.deepcopy(applicability),
+            candidate_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),applicability=copy.deepcopy(runtime_applicability),
             fitted=False,production_default=adopted,
-            **({} if legacy else dict(transfer_evidence=copy.deepcopy(d['transfer_evidence']))),
+            **({} if legacy else dict(
+                transfer_evidence=(dict(d['transfer_evidence'],production_adoption=True) if explicit_D_adoption else copy.deepcopy(d['transfer_evidence'])),
+                **(dict(original_candidate_transfer_evidence=copy.deepcopy(d['transfer_evidence'])) if explicit_D_adoption else {}))),
             **(dict(engineering_acceptance=copy.deepcopy(_engineering_acceptance)) if adopted else {}))))
     register_mechanism_profile(isolated,profile)
     runtime=getattr(isolated,'runtime_profile',None)
@@ -128,15 +137,21 @@ def merge_source_reference_candidate(parent,registry,package,*,applicability,all
             s=replace(s,options=dict(s.options,target_population_profile_id=pid))
         if s.component_id==cid:s=replace(s,parameter_profile_id=pid)
         specs.append(s)
-    result=RetinaBuilder(isolated).build(replace(parent.spec,populations=tuple(populations),components=tuple(specs)),parent.run_mode)
+    compile_budget=getattr(parent,'compile_resource_budget_bytes',None)
+    builder=RetinaBuilder(isolated,**({} if compile_budget is None else {'max_compile_bytes':compile_budget}))
+    result=builder.build(replace(parent.spec,populations=tuple(populations),components=tuple(specs)),parent.run_mode)
     for key,c in parent.components.items():
         revised=result.components[key]
         if key!=cid and canonical_hash((_plain(c.parameters.records),_plain(c.parameters.profile)))!=canonical_hash((_plain(revised.parameters.records),_plain(revised.parameters.profile))):
             raise ContractError('Source transfer changed unrelated coefficients: '+key)
     for key in ('geometry_source_binding','input_geometry_binding_required','typed_view_domain',
-                'frozen_typed_geometry_binding','global_disk_circuit','global_disk_view','canonical_spatial_recipe','candidate_dynamics',
-                'accepted_rgc_output_defaults'):
+                'frozen_typed_geometry_binding','global_disk_view','canonical_spatial_recipe','candidate_dynamics',
+                'accepted_rgc_output_defaults','compile_resource_budget_bytes'):
         if hasattr(parent,key):setattr(result,key,copy.deepcopy(getattr(parent,key)))
+    # Immutable source geometry/readers are shared. Deep-copying their lazy
+    # full-disk memmaps would materialize unrelated arrays on each RGC adoption.
+    for key in ('global_disk_circuit','global_spatial_asset'):
+        if hasattr(parent,key):setattr(result,key,getattr(parent,key))
     result.calibration_registry=isolated
     result.parameter_package_merge=dict(status='source_reference_engineering_default' if adopted else 'source_reference_transfer_unadopted',changed_component=cid,
         changed_fields=sorted(VALUES),new_profile_id=pid,content_hash=canonical_hash(d),

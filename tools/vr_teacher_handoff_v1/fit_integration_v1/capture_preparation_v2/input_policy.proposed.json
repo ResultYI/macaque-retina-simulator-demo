@@ -1,0 +1,124 @@
+{
+  "schema_version": "vr-gray8-native-input-policy-proposal-1.0",
+  "policy_id": "vr_gray8_linear_neutral_existing_global_reference_outside19_v1",
+  "approval_status": "PENDING_USER_APPROVAL",
+  "adopted": false,
+  "fit_eligible": false,
+  "one_decision": "Accept this complete, exact engineering mapping for conditional VR distillation; no physiological calibration claim",
+  "approval_cannot_be_inferred_from": [
+    "agreement to chunked execution",
+    "agreement to prepare interfaces",
+    "prior approval of the ISET display profile"
+  ],
+  "provenance": {
+    "approved_display_profile": {
+      "path": "configurations/iset_lcd_apple_mw_v1.json",
+      "sha256": "a971b718fc013e643b7af4a2b924478f3a8771fe812d186cc0f67cc5abd2c651"
+    },
+    "approved_global_input_plan": {
+      "path": "data/atlas/human_disk3mm_input_plan_v2/manifest.json",
+      "sha256": "72841730b957634b39c963d29f0111b64cc1d2068f25e703a9700bc99f90f80f"
+    },
+    "existing_reference_scope": "approved human-MW/LCD/official-human-borrowed-cone mixed reference",
+    "fully_reusable_without_new_mapping_decision": false,
+    "missing_teacher_definition": "Only stimulus_contract SHA is supplied; gray8-to-radiance and teacher exterior constant are not independently established"
+  },
+  "gray8": {
+    "source": "stored gray8, never Y_norm",
+    "input_unit": "uint8 code 0..255",
+    "relative_intensity_formula": "u = float64(g)/255",
+    "relative_unit": "dimensionless linear intensity",
+    "semantics": "NEW_EXPLICIT_ENGINEERING_ASSUMPTION; not a recovered teacher/display calibration",
+    "gamma_on_gray8": "none; no sRGB or CRT decode and no second display gamma",
+    "normalization": "no frame/cell mean, max, variance, contrast, or fitted scaling; original codes unchanged"
+  },
+  "spectrum": {
+    "formula": "S(lambda,g) = ((g/255)/0.5) * S_ref(lambda)",
+    "S_unit": "same spectral-radiance unit as the frozen ISET scene reference",
+    "reference_definition": "Existing global foveal neutral reference, measured LCD-Apple gamma/SPD applied to the EXISTING reference RGB only, one existing fixed radiance gain",
+    "reference_linear_value": 0.5,
+    "reference_retinal_illuminance_td": 100.0,
+    "scale_status": "EXPLICIT_PROPOSAL_TO_REUSE_EXISTING_REFERENCE; 100 is NOT adopted as actual VR/background illumination",
+    "new_per_tile_gain_or_reference_aperture": false,
+    "numeric_reference": "Actual global fixed gain, reference spectrum and LMS q_ref must be bound by the existing producer; no invented replacement values",
+    "display_path_warning": "Existing digital-RGB exporters do not directly accept this linear spectral signal; use a declared input-only adapter, never feed u as encoded RGB"
+  },
+  "native_cones": {
+    "reuse": "unchanged MW optics, existing fixed global apertures/blur, pigment/lens/macular rules and ISETBio expected capture",
+    "capture_unit": "expected R*/window",
+    "rate_formula": "q_i = expected_count_i / window_duration_s",
+    "native_formula": "I_i = q_i / alpha_type_i; alpha_LMS = q_ref_LMS / 100",
+    "native_port_unit": "td",
+    "native_semantics": "existing fixed-LMS reference-equivalent drive, not a new absolute macaque td calibration",
+    "native_phototransduction": "unchanged consumer; no upstream photocurrent or added photon noise",
+    "background": "Capture the proposed exterior/reference scene and real recorded background using the SAME fixed coefficients; do not normalize them back to 100"
+  },
+  "rod": {
+    "route": "existing independent engineering rod input; not common ISET cone/rod capture",
+    "formula": "r_rod = (5 R*/s) * (u/0.5)",
+    "reference_linear_value": 0.5,
+    "proposed_reference_rate_Rstar_per_s": 5.0,
+    "scale_status": "EXPLICIT_PART_OF_PENDING_POLICY; no default 5 may be silently substituted",
+    "outside_rate_Rstar_per_s": 0.7450980392156863,
+    "fixed_rod_dark_membrane_reference": {
+      "path": "configurations/rod_fixed_dark_reference_v1.json",
+      "sha256": "9a622c723feb50222fb0baa7ecb339db8472a670397a5fce14cb3d27c7ec5416"
+    },
+    "membrane_or_release_parameters_changed": false,
+    "meaning": "The dark membrane-reference approval does not establish the scene light rate; this is a separate explicit scene-mapping assumption"
+  },
+  "outside": {
+    "proposed_gray8_code": 19,
+    "relative_intensity": 0.07450980392156863,
+    "reference_fraction": 0.14901960784313725,
+    "uniform_scene_photopic_reference_td_before_cell_capture": 14.901960784313726,
+    "meaning": "fixed engineering exterior value, NOT established teacher exterior; NOT a universal native per-cone background vector",
+    "basis": {
+      "read_scope": "previous bounded first recorded background frame only",
+      "frame_pixels": 65536,
+      "code_19_pixels": 63184,
+      "code_18_pixels": 2352,
+      "later_background_frames_checked_for_uniformity": false
+    },
+    "recorded_background_rule": "Read all original frames [0,750) unchanged, retaining their 18/19 or other actual pixels; never replace the recorded 5s by uniform 19",
+    "pre_recorded_preparation": "Original student background qualification at this chosen input before raw t=0; not asserted to reconstruct unknown teacher prehistory"
+  },
+  "spatial_registration": {
+    "scope": "explicit project engineering canvas registration, not anatomical direction",
+    "pixels_per_degree": 55.652173913043484,
+    "project_mm_per_degree": 0.223,
+    "patch_center_xy": [
+      127.5,
+      127.5
+    ],
+    "teacher_rf_deg": [
+      4.582031249999999,
+      0.0
+    ],
+    "pixel_formula": [
+      "column=127.5+ppd*(project_RF_x_mm/0.223-teacher_RF_x_deg)",
+      "row=127.5+ppd*(project_RF_y_mm/0.223-teacher_RF_y_deg)"
+    ],
+    "sampling": "existing order-1 project spatial sampling; no row-sign flip, half-pixel shift, RF relocation or crop renormalization without a new identity",
+    "basis": "Existing tools/regional_movie_runtime.py signed RF-to-array mapping; source canvas placement from received task contract",
+    "ISET_consumer_requirement": "Frontend receipt must preserve this declared array/functional-coordinate registration including existing internal ISET row conventions"
+  },
+  "teacher_match": {
+    "same_saved_gray8_bytes_and_150Hz_timeline": true,
+    "same_physical_spectrum_or_retinal_flux_established": false,
+    "same_native_upstream_mechanisms": false,
+    "teacher_boundary": "UNVERIFIED_FOR_4P59_CONTINUOUS_HISTORY",
+    "allowed_conclusion": "conditional engineering distillation under the selected fixed frontend only",
+    "not_established": [
+      "macaque absolute light calibration",
+      "same individual biological cells",
+      "physiological correctness of internal layers",
+      "original color spikes as grayscale truth"
+    ],
+    "teacher_regeneration_required_for_this_student_mapping_alone": false,
+    "regenerate_or_rebind_both_if": [
+      "teacher gray8/prehistory/exterior/geometry/VR parameters change",
+      "claim changes to physically matched teacher/student input without source evidence"
+    ]
+  }
+}

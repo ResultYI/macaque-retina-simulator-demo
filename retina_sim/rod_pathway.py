@@ -166,6 +166,8 @@ def history_terminal_component(spec,populations,sources,mode):
     currents enter V/C, never an arbitrary native generator variable.
     """
     from .inner import CausalHistory
+    from .bc_gain_control import BipolarOutputGainControl
+    control=BipolarOutputGainControl.from_options(spec.options)
     p,pop,tag=_profile(spec,populations,sources,mode);n=len(pop.cells.cell_id);ids=pop.cells.cell_id
     polarity=spec.options.get('polarity')
     if polarity not in ('ON','OFF'):raise ContractError('Explicit BC polarity required')
@@ -177,27 +179,51 @@ def history_terminal_component(spec,populations,sources,mode):
     V0=a('V0','V','initial_membrane_voltage');half=a('release_half','V','activation_half_voltage');slope=a('release_slope','V','activation_voltage_slope',True);tau=a('tau_release','s','release_time_constant',True)
     specs=hist.state_specs+(MechanismStateSpec('V',ids,(n,),'V','physical_membrane_voltage','Explicit physical terminal reference with native-to-voltage gain'),MechanismStateSpec('terminal_release',ids,(n,),'dimensionless','effective_release_activation','Monotone initial terminal activation'))
     count=len(hist.state_specs);inputs={'drive':PortSpec('drive','dimensionless','effective_synaptic_drive',ids,tag)}
+    if control.enabled:
+        specs+=(MechanismStateSpec('A',ids,(n,),'dimensionless','release_adaptation_activity',
+            'Conditional A0=scale*r0 seed; actual coupled background must be solved/prepared'),)
     if polarity=='OFF':
         EI=a('EI','V','inhibitory_reversal');inputs['inhibition']=PortSpec('inhibition','S','inhibitory_conductance',ids,tag)
     outputs={'activation':PortSpec('activation','dimensionless','effective_synaptic_activation',ids,tag),'generator_activation':PortSpec('generator_activation','dimensionless','effective_synaptic_activation',ids,tag),'voltage':PortSpec('voltage','V','physical_membrane_voltage',ids,tag),'gap_current':PortSpec('gap_current','A','electrical_gap_current',ids,tag)}
+    outputs.update(unadapted_release=PortSpec('unadapted_release','dimensionless','effective_release_activation',ids,tag),
+        adaptation_activity=PortSpec('adaptation_activity','dimensionless','release_adaptation_activity',ids,tag),
+        output_gain=PortSpec('output_gain','dimensionless','release_output_gain',ids,tag),
+        effective_release=PortSpec('effective_release','dimensionless','effective_release_activation',ids,tag))
     if polarity=='OFF':outputs['glycine_conductance']=PortSpec('glycine_conductance','S','inhibitory_conductance',ids,tag)
-    def initial():return hist.initial()+(Quantity(V0,'V','physical_membrane_voltage',tag),Quantity(expit((V0-half)/slope),'dimensionless','effective_release_activation',tag))
+    def initial():
+        rel=expit((V0-half)/slope)
+        values=hist.initial()+(Quantity(V0,'V','physical_membrane_voltage',tag),Quantity(rel,'dimensionless','effective_release_activation',tag))
+        if control.enabled:values+=(Quantity(control.scale*rel,'dimensionless','release_adaptation_activity',tag),)
+        return values
     def transition(b,i,o):
         history=hist.candidate(b[:count],i);activation=hist.activation(history,i)
         return tuple(history)+(activation,)+tuple(b[count:])
     def derivative(t,b,i):
-        V,rel=b[count:];target=Vref+gain*(b[count-1]-aref)
+        V,rel=b[count:count+2];target=Vref+gain*(b[count-1]-aref)
         current=gL*(target-V)+i.get('__gap_current__',Quantity(np.zeros(n),'A','electrical_gap_current',tag)).values
         if polarity=='OFF':current+=i['inhibition'].values*(EI-V)
         rows=[np.zeros(s.shape) for s in hist.state_specs]+[current/C,(expit((V-half)/slope)-rel)/tau]
+        if control.enabled:rows.append((control.scale*rel-b[count+2])/control.tau_a_seconds)
         return tuple(Quantity(v,s.unit+'/s',s.meaning+'_derivative',tag) for v,s in zip(rows,specs))
     def observe(port,t,b,i):
-        if port=='activation':return Quantity(b[-1],'dimensionless','effective_synaptic_activation',tag)
+        if port in ('activation','effective_release','output_gain','adaptation_activity','unadapted_release'):
+            rel=b[count+1]
+            A=b[count+2] if control.enabled else np.zeros(n)
+            if port=='adaptation_activity':return Quantity(A,'dimensionless','release_adaptation_activity',tag)
+            if port=='unadapted_release':return Quantity(rel,'dimensionless','effective_release_activation',tag)
+            g=control.gain(A)
+            if port=='output_gain':return Quantity(g,'dimensionless','release_output_gain',tag)
+            meaning='effective_synaptic_activation' if port=='activation' else 'effective_release_activation'
+            return Quantity(rel*g if control.enabled else rel,'dimensionless',meaning,tag)
         if port=='generator_activation':return hist.observe('activation',t,b[:count],i)
-        if port=='voltage':return Quantity(b[-2],'V','physical_membrane_voltage',tag)
+        if port=='voltage':return Quantity(b[count],'V','physical_membrane_voltage',tag)
         if port=='glycine_conductance':return i['inhibition']
         return Quantity(np.zeros(n),'A','electrical_gap_current',tag)
-    native=SimpleNamespace(transition=transition,membrane_capacitance=C,gap_state_index=count,model_hash=canonical_hash({'profile':p.parameter_hash,'implementation':implementation_hash(),'polarity':polarity}),approximations=[{'id':'explicit_native_to_terminal_voltage','why':'Original causal BC kernel retained. A declared voltage gain/reference supplies the continuous terminal compartment; it is not measured macaque voltage conversion.'}])
+    native=SimpleNamespace(transition=transition,membrane_capacitance=C,gap_state_index=count,
+        history_state_count=count,release_state_index=count+1,bc_output_gain_control=control,
+        model_hash=canonical_hash({'profile':p.parameter_hash,'implementation':implementation_hash(),'polarity':polarity,
+            'bc_output_gain_control':control.identity}),approximations=[{'id':'explicit_native_to_terminal_voltage','why':'Original causal BC kernel retained. A declared voltage gain/reference supplies the continuous terminal compartment; it is not measured macaque voltage conversion.'}]+
+        ([{'id':'release_domain_output_gain_control_v1','why':'Borrowed100ms and sixth-power shape; engineering scale.75; raw r drives A, G(0)=1. Not calibrated macaque BC physiology.'}] if control.enabled else []))
     deps={name:(('drive',) if name=='generator_activation' else ('inhibition',) if name=='glycine_conductance' else ()) for name in outputs}
     return RuntimeComponent(spec.component_id,spec.mechanism,p,native,inputs,outputs,specs,initial,derivative,observe,deps,TimeContract('causal_history',hist.dt,'Frozen causal BC history at own ticks; physical terminal continuously integrates chemical and reciprocal electrical currents'),('BC_'+polarity,spec.required_layer),(pop,),tag,p.source_ids,implementation_hash())
 
@@ -276,5 +302,19 @@ def chemical_component(spec,populations,sources,mode):
         value=contacts*peak*(b[1]-b[0])/z if enabled else np.zeros(n)
         if np.any(value<-1e-18):raise ContractError('Negative chemical conductance; no physiological clipping')
         return Quantity(value,'S',meaning,tag)
-    native=SimpleNamespace(model_hash=canonical_hash({'normalization':Z,'profile':p.parameter_hash,'implementation':implementation_hash()}),unit_event_peak=lambda t:contacts*peak*(np.exp(-np.asarray(t)/decay)-np.exp(-np.asarray(t)/rise))/Z)
+    def unit_event_peak(t,*,postsynaptic_voltage=None):
+        """One event at nominal kinetics, or explicitly at a holding voltage.
+
+        Runtime glycine decay depends on postsynaptic voltage. Diagnostics
+        supplied with that voltage use the same decay and normalization.
+        Omitting voltage retains the historical nominal-kernel API.
+        """
+        tau,z=decay,Z
+        if postsynaptic_voltage is not None:
+            if not voltage_decay:raise ContractError('Holding voltage is only defined for voltage-dependent chemical decay')
+            inputs['postsynaptic_voltage'].validate(postsynaptic_voltage)
+            tau,z=kinetics({'postsynaptic_voltage':postsynaptic_voltage})
+        t=np.asarray(t)
+        return contacts*peak*(np.exp(-t/tau)-np.exp(-t/rise))/z
+    native=SimpleNamespace(model_hash=canonical_hash({'normalization':Z,'profile':p.parameter_hash,'implementation':implementation_hash()}),unit_event_peak=unit_event_peak)
     return RuntimeComponent(spec.component_id,spec.mechanism,p,native,inputs,{'conductance':PortSpec('conductance','S',meaning,ids,tag)},specs,initial,derivative,observe,{'conductance':(('postsynaptic_voltage',) if voltage_decay else ())},TimeContract('continuous'),('chemical_'+receptor+'_conductance',),(pop,),tag,p.source_ids,implementation_hash())

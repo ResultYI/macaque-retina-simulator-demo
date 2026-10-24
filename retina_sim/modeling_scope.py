@@ -10,6 +10,7 @@ from .contracts import ContractError, canonical_hash
 class ModelingScope:
     def __init__(self, root, binding):
         root = Path(root).resolve()
+        self.root = root
         path = (root / binding['path']).resolve()
         if not path.is_relative_to(root):
             raise ContractError('Modeling scope must stay inside project')
@@ -71,14 +72,30 @@ class ModelingScope:
             if isolated and (not boundary or not boundary.get('parent_assembly_hash') or
                     set(boundary['ports']) != {e.target_port for e in spec.external_inputs}):
                 raise ContractError('Isolated module boundary provenance/ports missing')
-            if c.mechanism == 'ResidualAC' or cid in acs:
+            if c.mechanism in ('ResidualAC', 'EffectiveInhibitoryAC') or cid in acs:
                 candidate=c.options.get('candidate_dynamics',{})
                 candidate_ac=((c.mechanism,candidate.get('route')) in (
                     ('CandidateGenericAmacrineReceptorMembrane','bc_ac_receptor_candidate_v1'),
                     ('ContactFirstGenericAmacrineReceptorMembraneV2','bc_ac_contact_first_candidate_v2')) and
                     candidate.get('parameter_profile_id')==c.parameter_profile_id and
                     candidate.get('glutamate_concentration_claim') is False and candidate.get('profile_sha256'))
-                if cid not in acs or (c.mechanism != 'ResidualAC' and not candidate_ac):
+                continuous_ac = c.mechanism == 'EffectiveInhibitoryAC'
+                if continuous_ac:
+                    # The approved replacement retains the same named driver,
+                    # profile and output routes. Its frozen profile identity is
+                    # checked here as well as by the component factory.
+                    from .ac_inhibition import selected_control, SCHEMA
+                    approved = selected_control(self.root, True)
+                    control = c.options.get('generic_ac_inhibition', {})
+                    type_group = control.get('type_group')
+                    base = approved['type_time_constants'].get(type_group, {})
+                    tau = control.get('tau_A_seconds')
+                    if (control.get('schema_version') != SCHEMA or control.get('enabled') is not True or
+                            control.get('profile_sha256') != approved['profile_sha256'] or not base or
+                            isinstance(tau, bool) or not isinstance(tau, (int, float)) or not np.isfinite(tau) or
+                            not .5 <= tau / base['value'] <= 2.):
+                        raise ContractError('Approved continuous generic AC identity/time domain differs: ' + cid)
+                if cid not in acs or (c.mechanism != 'ResidualAC' and not candidate_ac and not continuous_ac):
                     raise ContractError('Unapproved generic AC identity/mechanism: ' + cid)
                 if not candidate_ac and c.parameter_profile_id != 'effective_' + cid:
                     raise ContractError('Generic AC parameter profile changed: ' + cid)
@@ -99,6 +116,7 @@ class ModelingScope:
                 annotation[cid] = dict(acs[cid], biological_subtype_identified=False,
                     validation_status='not_independently_validated', fit_enabled=False)
                 if candidate_ac:annotation[cid]['candidate_equations']=candidate
+                if continuous_ac:annotation[cid]['continuous_effective_inhibition']=dict(control)
             if c.mechanism == 'HistoryConductanceRGC' or cid in targets:
                 current_boundary = (isolated and boundary.get('mode') == 'current_clamp' and
                                     c.mechanism == 'HistoryConductanceRGCCurrentClampBoundary')
