@@ -33,6 +33,8 @@ def load_population_record(root, *, owner_bounds_mm=None, halo_mm=.04,execution_
             circuit=GlobalDiskCircuit(root,configuration['global_graph'])
             owner_options=({'owner_global_rows':configuration['owner_global_rows']}
                            if 'owner_global_rows' in configuration else {})
+            if 'output_owner_radius_mm' in configuration:
+                owner_options['owner_radius_mm']=configuration['output_owner_radius_mm']
             view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'],
                 empty_chemical_input_policy=configuration.get('empty_chemical_input_policy','reject_empty_chemical_input_v1'),
                 **owner_options)
@@ -61,7 +63,11 @@ def atlas_population_network(root,*,duration=.0012,light_context=None,owner_boun
         bc_output_gain_control_enabled=None,ac_inhibition_enabled=None):
     root=Path(root)
     from .spatial_scope import enforce_owner_scope
-    scope_receipt=enforce_owner_scope(root,owner_bounds_mm)
+    configuration=(circuit_configuration(root,configuration_path)
+                   if execution_profile=='atlas_isetbio_geometry_v1' else {})
+    output_radius=(configuration.get('output_owner_radius_mm')
+                   if configuration.get('storage_kind')=='global_disk_graph_v1' else None)
+    scope_receipt=enforce_owner_scope(root,owner_bounds_mm,owner_radius_mm=output_radius)
     apply_rod_reference_defaults=apply_rgc_output_defaults if apply_rod_reference_defaults is None else apply_rod_reference_defaults
     rod_reference=None
     if apply_rod_reference_defaults:

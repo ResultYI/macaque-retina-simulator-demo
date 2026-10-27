@@ -136,8 +136,9 @@ class ConeHCSplitContract(ResidentNativeContract):
         policies = a.get('approved_input_policy_sha256_by_phase', {})
         digest = lambda v: isinstance(v, str) and re.fullmatch('[0-9a-f]{64}', v)
         start, wall = a.get('round_started_unix', 0.), a.get('max_wall_seconds', 0.)
-        from .useful_runtime_budget import goal_only_authorization
+        from .useful_runtime_budget import goal_only_authorization, FOVEAL_MODE
         goal_only=goal_only_authorization(a)
+        rss_limit=a['max_rss_bytes'] if goal_only and a.get('time_limit_mode')==FOVEAL_MODE else 12*1024**3
         if (a.get('scope') != USEFUL_SCOPE or a.get('input_policy_approved') is not True
                 or a.get('target_graph_approved') is not True
                 or a.get('default_backend_change') is not False
@@ -148,8 +149,8 @@ class ConeHCSplitContract(ResidentNativeContract):
                 or any(not digest(v) for v in policies.values())
                 or (not goal_only and (not 0 < wall <= 3600
                     or not start <= time.time() < min(a.get('expires_unix', 0.), start+wall)))
-                or any(not 0 < a.get(k, 0) <= 12*1024**3
-                       for k in ('max_rss_bytes', 'max_vram_bytes'))):
+                or not 0 < a.get('max_rss_bytes', 0) <= rss_limit
+                or not 0 < a.get('max_vram_bytes', 0) <= 12*1024**3):
             raise ContractError('Useful split execution requires approved actual input/graph and a live <=1h permit')
         obj.runtime_authorization = a
         obj._runtime_started_unix = float(start)

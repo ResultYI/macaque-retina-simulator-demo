@@ -1,0 +1,16 @@
+{
+  "schema": "retina-private-source-provenance-1",
+  "public_base_commit": "1e4dec7ce8ba9cec801f122ba91ae33a9c141a46",
+  "local_commit": "625aa33d04c1d16d0019bfada374d488ea386c24",
+  "local_tree": "35d8c766006cb4343ae2404a30453d795f0f5dab",
+  "github_published": false,
+  "source_files_originally_exported": 1041,
+  "export": "Local git archive, exact tracked bytes; no .git or dirty workspace",
+  "changes_after_export": [
+    "Drive LAPTOP_HANDOFF/CODEX_START_PROMPT/LAPTOP_START_HERE",
+    "Drive delivery flags in assets_manifest",
+    "receive helper and provenance metadata"
+  ],
+  "scientific_python_modified_after_export": false,
+  "private_asset_archive_reused": true
+}

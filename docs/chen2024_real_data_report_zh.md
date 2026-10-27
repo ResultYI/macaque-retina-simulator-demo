@@ -6,7 +6,7 @@ MAT/README 的官方字节身份已核验、结构已读，全部六个 primate 
 
 ## 真实资产
 
-原 ZIP 保留且未改动：`<USER_HOME>\Downloads\doi_10_5061_dryad_q2bvq83vg__v20241101.zip`。ZIP 大小 41492089 bytes，SHA256 `c7e39748f11cf2903167968b610f360844ce4a91254d14823b8953572a878de6`。仅含 Figure2-SourceData1.mat、README.md 两个普通文件。导入工具拒绝绝对路径、盘符、..、反斜线、重复成员及 symlink；不执行包内代码，只在新项目 data/source/ 下写入核过哈希的目标文件。
+原 ZIP 保留且未改动：`C:\Users\PC_User\Downloads\doi_10_5061_dryad_q2bvq83vg__v20241101.zip`。ZIP 大小 41492089 bytes，SHA256 `c7e39748f11cf2903167968b610f360844ce4a91254d14823b8953572a878de6`。仅含 Figure2-SourceData1.mat、README.md 两个普通文件。导入工具拒绝绝对路径、盘符、..、反斜线、重复成员及 symlink；不执行包内代码，只在新项目 data/source/ 下写入核过哈希的目标文件。
 
 | 原文件 | 实际字节数 | 实际 SHA256（与官方完全一致） |
 |---|---:|---|
@@ -76,52 +76,52 @@ PNG 与 PDF：reports/chen2024_real_data/all_cells_source_audit.png / .pdf。选
 实际命令与退出码（结构化完整记录另见 reports/chen2024_real_data/execution_record.json）：
 
 ```text
-python -B D:\macaque_retina_simulator\tools\ingest_chen2024_archive.py <USER_HOME>\Downloads\doi_10_5061_dryad_q2bvq83vg__v20241101.zip
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\ingest_chen2024_archive.py C:\Users\PC_User\Downloads\doi_10_5061_dryad_q2bvq83vg__v20241101.zip
 ```
 退出码 0；证据 `reports/chen2024_archive_inventory.json`。
 
 ```text
-python -B D:\macaque_retina_simulator\tools\inventory_chen_data.py
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\inventory_chen_data.py
 ```
 退出码 0；证据 `reports/chen2024_data_inventory.json`。
 
 ```text
-python -B D:\macaque_retina_simulator\tools\register_chen2024_real_sources.py
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\register_chen2024_real_sources.py
 ```
 退出码 0；证据 `sources/registry.json`。
 
 ```text
-<USER_HOME>\anaconda3\envs\bpsnn\python.exe -B D:\macaque_retina_simulator\tools\plot_chen2024_real_data.py
+C:\Users\PC_User\anaconda3\envs\bpsnn\python.exe -B D:\macaque_retina_simulator\tools\plot_chen2024_real_data.py
 ```
 退出码 0；证据 `reports/chen2024_real_data/all_cells_source_audit.png`。
 
 ```text
-python -B D:\macaque_retina_simulator\tools\run_checks.py
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\run_checks.py
 ```
 退出码 0；证据 `reports/20261010T121617896210Z/verification.json`。
 
 ```text
-python -B D:\macaque_retina_simulator\tools\coverage_report.py
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\coverage_report.py
 ```
 退出码 0；证据 `reports/chen2024_real_data/coverage_refresh.log`。
 
 ```text
-python -B D:\macaque_retina_simulator\tools\extract_packer_cone_density.py --verify
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B D:\macaque_retina_simulator\tools\extract_packer_cone_density.py --verify
 ```
 退出码 0；日志 `reports/20261010T121617896210Z/check_0.log`。
 
 ```text
-python -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_a.py -q
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_a.py -q
 ```
 退出码 0；日志 `reports/20261010T121617896210Z/check_1.log`。
 
 ```text
-python -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_b.py -q
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_b.py -q
 ```
 退出码 0；日志 `reports/20261010T121617896210Z/check_2.log`。
 
 ```text
-python -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_c.py -q
+C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe -B -m pytest -p no:cacheprovider D:\macaque_retina_simulator\tests\test_stage_c.py -q
 ```
 退出码 0；日志 `reports/20261010T121617896210Z/check_3.log`。
 

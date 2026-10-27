@@ -1,0 +1,23 @@
+{
+  "schema": "ac-vs-prospective-engineering-acceptance-1",
+  "config": "configurations/ac_vs_functional_v1.json",
+  "halos": {
+    "030": "reports/ac_vs_redesign_v1/static_halo_030",
+    "060": "reports/ac_vs_redesign_v1/static_halo_060"
+  },
+  "start_seconds": 4.993,
+  "duration_seconds": 0.0031,
+  "checkpoint_offset_seconds": 0.0005,
+  "record_step_seconds": 0.0001,
+  "input": "source-bound frame748 to749 transition, unchanged absolute times; new model IVP, no old background/livecache",
+  "numerical_budget": "unchanged frozen_budget formula .01*min(1e-9+1e-6*scale, original_den); V floor0.01V and s floor1; dense derivative defect allowance budget/0.0001s",
+  "base_max_step_seconds": 0.0001,
+  "half_max_step_seconds": 0.00005,
+  "solver_rtol": 1e-6,
+  "solver_atol": 1e-9,
+  "spatial_budget": {"voltage_V": 1e-5, "conductance_S": 1e-11, "expected_rate_Hz": 0.1, "general_atol": 1e-8, "general_rtol": 0.001},
+  "isolated_step": {"release_fraction": [0.1,0.9,0.1], "switch_seconds": [0.05,0.15], "stop_seconds": 0.25, "max_step_seconds": 0.0001, "initial_V_V": -0.05, "initial_s": 0.0},
+  "background": {"mode": "sparse linear AII ONBC gap solve plus bracketed per-cell OFFBC glycine solve at source constant background", "max_scalar_iterations_per_cell": 64, "sampled_history": "draw from exact stationary conditional law using owned PCG64; no claim of finite-record spike stationarity", "no_warmup_extension": true},
+  "resources": {"single_worker_wall_seconds": 900, "process_RSS_limit_bytes": 17179869184, "available_RAM_floor_bytes": 4294967296, "worker_ownership": "exclusive workspace AC worker lease with pid/create_time; check STOP every phase and accepted slice", "reason": "legacy complete workers measured29..49s; direct new CPU RHS and full receipts allowed substantial headroom; no project-total or55s role cap"},
+  "qualification": {"default_adopted": false, "fit_eligible": false, "physiological_calibration": false}
+}

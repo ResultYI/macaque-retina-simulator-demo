@@ -16,6 +16,15 @@ from .spatial_profiles import bounded_matrix,finite_support_coverage
 from examples.full_target_network import register_profile,PROJECT_SOURCE
 
 
+def _contact_population_record(cid, spatial_asset, points, keys):
+    if spatial_asset is not None:
+        return spatial_asset.contact_record(cid)
+    return {'population':cid,'global_cell_ids':[cid+':'+hashlib.sha256(k.encode()).hexdigest()[:32] for k in keys],
+        'source_keys':keys,'coordinates':{'soma':{'values':points.tolist(),'unit':'mm','meaning':'anatomical_position','frame':'anatomical_retina'},
+            'ipl_preterminal':{'values':points.tolist(),'unit':'mm','meaning':'terminal_position','frame':'IPL'},
+            'ipl_post_arbor':{'values':points.tolist(),'unit':'mm','meaning':'dendritic_position','frame':'IPL'}}}
+
+
 def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset=None,rod_reference_policy=None):
     from .circuit_geometry import csr_record,plain
     recipe={'pools':{},'contact_populations':{}}
@@ -92,11 +101,7 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
     rbc=get_record('rod_BC','effective_rod_BC','BC',opl_post=rbxy)
     aii=get_record('AII_AC','effective_AII_AC','AC');bind('effective_AII_AC',an)
     def contact_pop(cid,kind,points,pid,keys):
-        rec={'population':cid,'global_cell_ids':[cid+':'+hashlib.sha256(k.encode()).hexdigest()[:32] for k in keys],
-            'source_keys':keys,'coordinates':{'soma':{'values':points.tolist(),'unit':'mm','meaning':'anatomical_position','frame':'anatomical_retina'},
-                'ipl_preterminal':{'values':points.tolist(),'unit':'mm','meaning':'terminal_position','frame':'IPL'},
-                'ipl_post_arbor':{'values':points.tolist(),'unit':'mm','meaning':'dendritic_position','frame':'IPL'}}}
-        if spatial_asset is not None:rec=spatial_asset.contact_record(cid)
+        rec=_contact_population_record(cid,spatial_asset,points,keys)
         recipe['contact_populations'][cid]=rec
         anchor=rec.get('physical_contact_anchor');opl_anchor=None
         if anchor is not None:
@@ -112,8 +117,8 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
     if count==0 or np.any(np.asarray(W.sum(1)).ravel()==0):raise ContractError('ROD_RBC_FINITE_SUPPORT_EMPTY: no driver inserted')
     release0=initial_release(registry.mechanism_profiles[membrane_pid]);gain=2e-9*coo.data
     bind('effective_individual_TRPM1',count,{'gain':gain,'drive0':release0[coo.col]})
-    cp=contact_pop('individual_rod_RBC_contacts','BC',(xy[coo.col]+rbxy[coo.row])/2,'effective_individual_TRPM1',
-        [mem.cells.cell_id[a]+'>'+rbc.cells.cell_id[b] for a,b in zip(coo.col,coo.row)])
+    cp=contact_pop('individual_rod_RBC_contacts','BC',None if spatial_asset is not None else (xy[coo.col]+rbxy[coo.row])/2,'effective_individual_TRPM1',
+        None if spatial_asset is not None else [mem.cells.cell_id[a]+'>'+rbc.cells.cell_id[b] for a,b in zip(coo.col,coo.row)])
     cp=replace(cp,dendritic_positions=q((xy[coo.col]+rbxy[coo.row])/2,'mm','dendritic_position','OPL'));pops[cp.population_id]=cp
     specs.append(ComponentSpec(cp.population_id,'RodContactTRPM1',{'cells':cp.population_id},'effective_individual_TRPM1'))
     take=sparse.csr_matrix((np.ones(count),(np.arange(count),coo.col)),shape=(count,n));pool=sparse.csr_matrix((np.ones(count),(coo.row,np.arange(count))),shape=(len(rbxy),count))
@@ -160,8 +165,8 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
             data=registry.runtime_profile.data['profiles'][pid];lo=data['decay_minus100']['value'];hi=data['decay_0']['value']
             targetV=registry.mechanism_profiles[target.cells.parameter_profile_id[0]].quantity('V0','V','initial_membrane_voltage').values[c.row]
             derived['tau_decay']=lo+(hi-lo)*np.clip((targetV+.1)/.1,0,1)
-        bind(pid,nn,derived);pop=contact_pop(cid,'AC',(point(source)[c.col]+point(target)[c.row])/2,pid,
-            [source.cells.cell_id[a]+'>'+target.cells.cell_id[b] for a,b in zip(c.col,c.row)])
+        bind(pid,nn,derived);pop=contact_pop(cid,'AC',None if spatial_asset is not None else (point(source)[c.col]+point(target)[c.row])/2,pid,
+            None if spatial_asset is not None else [source.cells.cell_id[a]+'>'+target.cells.cell_id[b] for a,b in zip(c.col,c.row)])
         specs.append(ComponentSpec(cid,'DoubleExponentialChemicalSynapse',{'cells':cid},pid,{'receptor':receptor,'voltage_dependent_decay':receptor=='inhibitory','enabled':True}))
         take=sparse.csr_matrix((np.ones(nn),(np.arange(nn),c.col)),shape=(nn,len(source.cells.cell_id)));pool=sparse.csr_matrix((np.ones(nn),(c.row,np.arange(nn))),shape=(len(target.cells.cell_id),nn))
         links.extend((_link(pre,'event_rate',cid,'event_rate',source,pop,take,'IPL'),
@@ -225,7 +230,7 @@ def attach_primary_rod(root,compiled,channels,audit,record,light,*,spatial_asset
         external_inputs=compiled.spec.external_inputs+(ExternalInput('rod_light','rod','light'),),required_mechanisms=required)
     result=builder.build(spec,RunMode.REFERENCE)
     result.canonical_spatial_recipe=recipe
-    audit.update(spec=spec,resource_estimate=builder.estimate(spec),population_records={k:p.record() for k,p in pops.items()},chemical_synapses=chemical_audits)
+    audit.update(spec=spec,resource_estimate=builder.estimate(spec),population_records={k:p.record(compact=getattr(spatial_asset,'compact_metadata',False)) for k,p in pops.items()},chemical_synapses=chemical_audits)
     audit['atlas_runtime'].update(full_target_readiness='ASSEMBLED_PENDING_SHORT_RUN',full_20_layer_network_claim=False,
         physical_BC_terminal=True,rod_RBC_AII_bound=True,unsupported_paths={},rod_RBC_degree_rows=rows,
         chemical_contacts=chemical_audits,

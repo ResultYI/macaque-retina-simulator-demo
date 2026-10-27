@@ -1,0 +1,35 @@
+{
+  "schema": "retipath-spatial-mesh-policy-2",
+  "base_deg": 0.4,
+  "fixed_origin_deg": [
+    0.0,
+    0.0
+  ],
+  "epsilon_avg": 0.05,
+  "epsilon_scope": "Spatial linear-average design criterion from authorized v0.2; not neural acceptance, not original time integration budget",
+  "background_bands": [
+    {
+      "outer_deg": 6.0,
+      "minimum_level": 2
+    },
+    {
+      "outer_deg": 8.31,
+      "minimum_level": 1
+    },
+    {
+      "outer_deg": 14.35,
+      "minimum_level": 0
+    }
+  ],
+  "population_background_bands": {},
+  "background_rule": "Independent typed quadtrees; same conservative initial bands for all types. No coarser HC/widefield exception without footprint evidence.",
+  "background_precision": "Actual per-group covariance-derived admissible bandwidth; no inherited independent fine-cell RF",
+  "balance": "2:1 between all edge/corner adjacent nonempty leaves within a population",
+  "reverse_static_fraction": 0.99,
+  "reverse_fraction_scope": "Refinement marks only. All source edges retained in aggregation.",
+  "rf_rule": "Registered center radius/2 plus actual-member covariance criterion; no fixed minimum width",
+  "private_line": "Selected original cell and original private ancestors are singletons; background retains compatible parent spectral classes",
+  "execution": "Mesh frozen before advancement; viewport and recording selections do not remesh",
+  "support": "All original selected dependency rows and 32 routes retained. 0–6 is RGC output scope, not upstream crop.",
+  "parameter_classes": "No cross-population, polarity, spectral, parent or eligible-drive merge; derived runtime bindings block execution"
+}

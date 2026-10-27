@@ -47,7 +47,8 @@ def upgrade_split_reference(runner, state):
         # Old diagnostic instance hooks must not bypass the corrected policy.
         other.__dict__.pop('_update_observation_delays', None)
         other.model, other.partition = copy(runner.model), copy(runner.partition)
-        other.partition.work = runner.partition.work.copy()
+        from .compiled_kernel import fork_partition
+        other.partition = fork_partition(runner.partition)
         other.partition.statistics = dict(runner.partition.statistics)
         other.partition._light_cpu = other.partition._light_gpu = None
         other.workspace = other.native_workspace = None

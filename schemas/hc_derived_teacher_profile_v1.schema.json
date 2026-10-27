@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Independent derived homogeneous HC source teacher profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "profile_id", "branch", "source_profile_id", "source_parameter_hash", "source_model_hash", "source_implementation_sha256", "tau_h_ms", "parent_candidate_hash", "protocol_sha256", "source_parameter_qualified"],
+  "properties": {
+    "schema": {"const": "hc-derived-teacher-profile-1"},
+    "profile_id": {"const": "VH2005_derived_HC_teacher_tau_h_v1"},
+    "branch": {"const": "homogeneous_native_source_model_teacher"},
+    "source_profile_id": {"const": "VH2005_Fig6A7_native_source"},
+    "source_parameter_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_model_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_implementation_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "tau_h_ms": {"type": "number", "minimum": 10, "maximum": 40},
+    "parent_candidate_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "protocol_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_parameter_qualified": {"const": false}
+  }
+}

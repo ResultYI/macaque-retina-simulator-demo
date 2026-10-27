@@ -1,5 +1,6 @@
 """Atomic binary reduced checkpoints, deliberately incompatible with old states."""
 from dataclasses import asdict
+from contextlib import ExitStack
 from pathlib import Path
 import json
 import os
@@ -15,7 +16,7 @@ from .resident_delay import ResidentTimestampedDelay
 from .cone_hc_observation_queue import queue_contract
 
 
-SCHEMA = 'cone-hc-reduced-complete-binary-checkpoint-2'
+SCHEMA = 'cone-hc-reduced-complete-binary-checkpoint-3'
 
 
 def _native_payload(state):
@@ -40,7 +41,7 @@ def _payload(runner,state):
                 for s in c.segments],packets=[p.payload() for p in c.packets]),
         solver=asdict(state.solver_config),grid_origin_seconds=state.grid_origin_seconds,
         sample_index=state.sample_index,spike_states=state.spike_states,
-        delay_states={k:v.payload() for k,v in state.delay_states.items()},
+        delay_states={k:v.payload(arrays=True) for k,v in state.delay_states.items()},
         input_position=state.input_position,component_tick_indices=state.component_tick_indices,
         link_delay_states=state.link_delay_states,generation=state.generation)
 
@@ -50,12 +51,15 @@ def save_complete(runner,state,directory):
     if target.exists() or not target.parent.is_dir():
         raise ContractError('Reduced checkpoint target must be absent with an existing parent')
     staging = target.with_name(target.name+'.writing-'+uuid.uuid4().hex)
-    files = {}
+    files, saved_arrays = {}, {}
     with runner._lock,runner.torch.no_grad():
         runner._check_runtime()
         payload = _payload(runner,state)  # Waits and privately copies every pending D2H packet.
         staging.mkdir()
         def encode(value):
+            key=id(value)
+            if isinstance(value,np.ndarray) or hasattr(value,'detach'):
+                if key in saved_arrays:return {'array_file':saved_arrays[key]}
             if hasattr(value,'detach'):
                 value = value.detach().cpu().numpy()
             if isinstance(value,np.ndarray):
@@ -71,6 +75,7 @@ def save_complete(runner,state,directory):
                     os.fsync(stream.fileno())
                 files[name] = dict(sha256=file_sha(path),bytes=path.stat().st_size,
                                   dtype=value.dtype.str,shape=list(value.shape))
+                saved_arrays[key]=name
                 return {'array_file':name}
             if isinstance(value,np.generic):
                 return value.item()
@@ -96,6 +101,11 @@ def save_complete(runner,state,directory):
 
 
 def load_complete(runner,directory,*,expected_manifest_hash):
+    with ExitStack() as mappings:
+        return _load_complete(runner,directory,expected_manifest_hash,mappings)
+
+
+def _load_complete(runner,directory,expected_manifest_hash,mappings):
     runner._check_runtime()
     directory = Path(directory).resolve()
     if '.writing-' in directory.name:
@@ -114,15 +124,17 @@ def load_complete(runner,directory,*,expected_manifest_hash):
         if (Path(name).name!=name or path.resolve().parent!=directory or not path.is_file()
                 or path.stat().st_size!=item['bytes'] or file_sha(path)!=item['sha256']):
             raise ContractError('Reduced checkpoint array receipt differs')
-        a = np.load(path,allow_pickle=False)
-        if a.dtype.str!=item['dtype'] or list(a.shape)!=item['shape'] or not np.isfinite(a).all():
+        a = np.load(path,allow_pickle=False,mmap_mode='r')
+        mappings.callback(a._mmap.close)
+        if (a.dtype.kind not in 'fiub' or a.dtype.str!=item['dtype'] or list(a.shape)!=item['shape']
+                or not all(np.isfinite(a.flat[start:start+131072]).all() for start in range(0,a.size,131072))):
             raise ContractError('Reduced checkpoint array layout/domain differs')
         arrays[name] = a
     def decode(v):
         if isinstance(v,dict) and set(v)=={'array_file'}:
             if v['array_file'] not in arrays:
                 raise ContractError('Unverified checkpoint array reference')
-            return arrays[v['array_file']].copy()
+            return arrays[v['array_file']]
         if isinstance(v,dict):
             return {k:decode(x) for k,x in v.items()}
         if isinstance(v,list):
@@ -132,7 +144,12 @@ def load_complete(runner,directory,*,expected_manifest_hash):
     def gpu(a):
         if not isinstance(a,np.ndarray) or a.dtype!=np.float64:
             raise ContractError('Reduced native checkpoint must be FP64')
-        return runner.torch.as_tensor(a,dtype=runner.torch.float64,device=runner.native.device).clone()
+        return runner.torch.tensor(np.asarray(a),dtype=runner.torch.float64,device=runner.native.device)
+    def owned(v):
+        if isinstance(v,np.ndarray):return np.array(v,copy=True)
+        if isinstance(v,dict):return {k:owned(x) for k,x in v.items()}
+        if isinstance(v,list):return [owned(x) for x in v]
+        return v
     def anchor(a):
         return AnalyticREAnchor(a['time_seconds'],gpu(a['R']),gpu(a['E']),gpu(a['light']),
                                 a['input_stop_seconds'],a['input_epoch'])
@@ -161,10 +178,10 @@ def load_complete(runner,directory,*,expected_manifest_hash):
             cursor.packets.append(packet)
             previous = segment.stop
         state = ReducedState(point,cursor,runner.identity,runner.binding_hash,SolverConfig(**p['solver']),
-            p['grid_origin_seconds'],p['sample_index'],p['spike_states'],
+            p['grid_origin_seconds'],p['sample_index'],owned(p['spike_states']),
             {k:ResidentTimestampedDelay.from_payload(v,runner.torch,runner.native.device)
-             for k,v in p['delay_states'].items()},p['input_position'],p['component_tick_indices'],
-            p['link_delay_states'],p['generation'])
+             for k,v in p['delay_states'].items()},owned(p['input_position']),p['component_tick_indices'],
+            owned(p['link_delay_states']),p['generation'])
         state.validate(runner)
         runner.native._validate(state.point.native.y,state.point.native.anchor,state.time_seconds)
         if state.time_seconds!=raw['time_seconds']:

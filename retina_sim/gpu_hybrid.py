@@ -12,13 +12,13 @@ import hashlib,inspect,time
 import numpy as np
 from .contracts import ContractError,canonical_hash
 from .hybrid import HybridRunner
-from .compiled_kernel import Plan,dispatcher
+from .compiled_kernel import Plan,dispatcher,WorkspaceOwner
 from .gpu_native import CudaNative
 from .gpu_dop853 import integrate
 
 
-class NativeInnerPartition:
-    def __init__(self,network):
+class NativeInnerPartition(WorkspaceOwner):
+    def __init__(self,network,*,build_plan=True):
         import torch
         self.network=network;self.torch=torch;c=network.compiled
         ids=[cid for cid,value in c.components.items() if value.mechanism=='VanHateren2005NativeConeH1']
@@ -37,6 +37,8 @@ class NativeInnerPartition:
         if len(external)!=1 or external[0].target_port!='light':raise ContractError('Explicit native-light channel required')
         self.native_external=external[0];self.native_port=component.inputs['light']
         self.native=CudaNative(component.native_model);self.offset=network.slices[cid].stop
+        self.fn,_,_=dispatcher()
+        if not build_plan:return
         components={key:value for key,value in c.components.items() if key!=cid}
         spec=NS(external_inputs=tuple(e for e in c.spec.external_inputs if e.target_component!=cid))
         order=tuple(block for block in c.output_order if block.nodes[0][0]!=cid)
@@ -49,10 +51,10 @@ class NativeInnerPartition:
         release=plan.allocate(self.native.nc);plan.outputs[(cid,'release')]=release
         plan.nexternal+=self.native.nc
         self.derivatives=plan.build();self.external=plan.external;self.inner_size=plan.nstate
-        self.work=np.asarray(plan.values,dtype=np.float64);self.program=np.asarray(plan.program,dtype=np.int64).reshape(-1,7)
+        self._scratch=plan.workspace();self.program=np.asarray(plan.program,dtype=np.int64).reshape(-1,7)
         self.weights=np.asarray(plan.weights,dtype=np.float64);self.indices=np.asarray(plan.indices,dtype=np.int64)
-        self.pointers=np.asarray(plan.pointers,dtype=np.int64);self.fn,_,_=dispatcher()
-        self.plan_hash=canonical_hash({'program':self.program,'constants':self.work,'weights':self.weights,
+        self.pointers=np.asarray(plan.pointers,dtype=np.int64)
+        self.plan_hash=canonical_hash({'program':self.program,'constants':self._scratch,'weights':self.weights,
             'indices':self.indices,'pointers':self.pointers,'derivatives':self.derivatives,
             'native_component':cid,'native_offset':self.offset})
 
@@ -76,6 +78,7 @@ class NativeInnerPartition:
 
 class CudaHybridRunner(HybridRunner):
     """Named execution alternative; old backend checkpoints intentionally reject."""
+    _partition_factory=NativeInnerPartition
     def __init__(self,compiled,*,compute_backend='numba'):
         if compute_backend!='numba':raise ContractError('CUDA execution requires the reviewed Numba inner lowering')
         import torch,scipy
@@ -88,7 +91,7 @@ class CudaHybridRunner(HybridRunner):
         if self.discrete:raise ContractError('CUDA route supports this continuous native system only')
         from scipy.integrate._ivp import rk,common
         torch.backends.cuda.matmul.allow_tf32=False
-        self.partition=NativeInnerPartition(self.model)
+        self.partition=self._partition_factory(self.model)
         identity={'backend':'cuda_native_joint_dop853_float64_v1','torch_version':torch.__version__,
             'cuda_version':torch.version.cuda,'device':torch.cuda.get_device_name(),
             'device_capability':torch.cuda.get_device_capability(),'torch_cpu_threads':torch.get_num_threads(),

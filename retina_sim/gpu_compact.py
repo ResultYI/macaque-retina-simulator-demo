@@ -11,8 +11,8 @@ import hashlib
 import numpy as np
 from scipy import sparse
 from .contracts import ContractError,canonical_hash
-from .compiled_kernel import Plan
-from .gpu_hybrid import CudaHybridRunner
+from .compiled_kernel import Plan,WorkspaceOwner
+from .gpu_hybrid import CudaHybridRunner,NativeInnerPartition
 
 BACKEND='cuda_compact_native_joint_dop853_float64_v2'
 
@@ -42,8 +42,9 @@ def compact_release_layout(network,cid,native_count):
     return used,incoming,consumers
 
 
-class CompactNativeInnerPartition:
-    def __init__(self,network,reference):
+class CompactNativeInnerPartition(WorkspaceOwner):
+    def __init__(self,network,reference=None):
+        if reference is None:reference=NativeInnerPartition(network,build_plan=False)
         self.network=network;self.torch=reference.torch;self.native=reference.native
         self.cid=cid=reference.cid;self.offset=reference.offset
         self.native_external=reference.native_external;self.native_port=reference.native_port
@@ -59,10 +60,10 @@ class CompactNativeInnerPartition:
             state_specs=network.state_specs[len(c.components[cid].state_specs):],_incoming=incoming,_gap_plans=network._gap_plans)
         plan=Plan(proxy);release=plan.allocate(len(used));plan.outputs[(cid,'release')]=release;plan.nexternal+=len(used)
         self.derivatives=plan.build();self.external=plan.external;self.inner_size=plan.nstate
-        self.work=np.asarray(plan.values,dtype=np.float64);self.program=np.asarray(plan.program,dtype=np.int64).reshape(-1,7)
+        self._scratch=plan.workspace();self.program=np.asarray(plan.program,dtype=np.int64).reshape(-1,7)
         self.weights=np.asarray(plan.weights,dtype=np.float64);self.indices=np.asarray(plan.indices,dtype=np.int64)
         self.pointers=np.asarray(plan.pointers,dtype=np.int64);self.fn=reference.fn
-        self.plan_hash=canonical_hash({'program':self.program,'constants':self.work,'weights':self.weights,
+        self.plan_hash=canonical_hash({'program':self.program,'constants':self._scratch,'weights':self.weights,
             'indices':self.indices,'pointers':self.pointers,'derivatives':self.derivatives,'native_release_global_rows':used})
         self.layout={'native_release_cells':self.native.nc,'transferred_release_cells':len(used),
             'legacy_release_bytes_per_RHS':self.native.nc*8,'compact_release_bytes_per_RHS':len(used)*8,
@@ -106,14 +107,25 @@ class CompactNativeInnerPartition:
 
 class CompactCudaHybridRunner(CudaHybridRunner):
     """Separate explicit implementation identity; no old checkpoint migration."""
-    def __init__(self,compiled,*,compute_backend='numba'):
+    _partition_factory=CompactNativeInnerPartition
+    def __init__(self,compiled,*,compute_backend='numba',reuse_inner_scratch=False):
         super().__init__(compiled,compute_backend=compute_backend)
-        reference=self.partition;reference_hash=self.model.model_hash
-        self.partition=CompactNativeInnerPartition(self.model,reference)
+        reference_hash=self.model.model_hash
+        storage='direct_compact_plan_private_lazy_scratch_v1'
+        if reuse_inner_scratch:
+            from .compact_scratch import reuse_inner_scratch as compact_scratch
+            part=self.partition
+            input_size=part.inner_size+sum(len(p.cell_ids) for _,p in part.external)+len(part.used)
+            part._scratch,part.program,part.derivatives,storage=compact_scratch(
+                part._scratch,part.program,part.derivatives,input_size)
+            part.plan_hash=canonical_hash({'program':part.program,'constants':part._scratch,
+                'weights':part.weights,'indices':part.indices,'pointers':part.pointers,
+                'derivatives':part.derivatives,'native_release_global_rows':part.used})
         identity=dict(self.model.compute_metadata['integration_backend'],backend=BACKEND,
             compact_implementation_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             compact_plan_hash=self.partition.plan_hash,compact_release_layout=self.partition.layout,
             light_buffer_policy='Bitwise value-coherent single buffer; original per-call port validation and original time/left-limit evaluation',
-            original_joint_integrator_event_history_criteria=True)
-        self.model.model_hash=canonical_hash({'reference_cuda_execution':reference_hash,'compact_execution':identity})
+            original_joint_integrator_event_history_criteria=True,
+            storage=storage)
+        self.model.model_hash=canonical_hash({'cuda_execution':reference_hash,'compact_execution':identity})
         self.model.compute_metadata=dict(self.model.compute_metadata,integration_backend=identity)

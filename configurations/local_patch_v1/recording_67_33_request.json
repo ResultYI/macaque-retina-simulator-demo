@@ -1,0 +1,45 @@
+{
+  "schema": "local-retinal-patch-request-1",
+  "eccentricity_deg": 4.73,
+  "azimuth_deg": 0.0,
+  "target_rgc_type": "parasol_RGC_OFF",
+  "target_rgc_id": null,
+  "patch_geometry": {
+    "shape": "disk",
+    "core_radius_deg": 0.1,
+    "support_radius_deg": 0.3
+  },
+  "seed": 20261010,
+  "input_identity": {
+    "path": "reports/group_time_candidate_20261025_v1/preparation_r1/construction_seed/manifest.json",
+    "sha256": "8c78343c040460853f4151ffdf24509dba529414408d55ae6e6db48ca7df3499"
+  },
+  "observation_targets": [
+    "cones",
+    "HC",
+    "rods",
+    "rod_BC",
+    "AII_AC",
+    "midget_BC_ON",
+    "midget_BC_OFF",
+    "S_ON_BC",
+    "diffuse_BC_ON",
+    "diffuse_BC_OFF",
+    "local_feedforward_AC",
+    "local_crossover_AC",
+    "widefield_AC",
+    "midget_RGC_ON",
+    "midget_RGC_OFF",
+    "parasol_RGC_ON",
+    "parasol_RGC_OFF",
+    "small_bistratified_S_ON"
+  ],
+  "boundary_policy": "exact_dependency_closure_required_v1",
+  "solver_backend": "scipy_cpu_v1",
+  "source_artifact": {
+    "path": "reports/spatial_group_graph_v02_20261025_v1/artifact_r2/manifest.json",
+    "sha256": "d786408da9a38cb09e84fc2cf17bb2224c8a7f2a43b0682d566a46ff01698fce"
+  },
+  "position_provenance": "REPRESENTATIVE_ENGINEERING_AZIMUTH_0_DEG; functional RF eccentricity from recording metadata, no 2-D cell registration. Radii are unqualified inspection requests, not physiological support estimates.",
+  "target_provenance": "Recording metadata 67#33 / MC off / Lss01159.txt,Lss01160.txt, registry configurations/spatial_experiment_targets_v02.json sha256=8c64a01791f1aa29a34a9847817487fed96fb67abcc7c23b9f90d5903a76868a. PROVISIONAL model type parasol_RGC_OFF; original electrophysiology payload and qualified mapping unavailable. Input binding is frozen representative-group engineering rates only, not per-cell optical capture or natural-movie prediction."
+}

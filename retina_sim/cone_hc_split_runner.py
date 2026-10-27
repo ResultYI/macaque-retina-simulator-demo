@@ -96,8 +96,8 @@ class ConeHCSplitRunner(ResidentNativeRunner):
         # not to a fresh split instance (notably a cross-permit restore runner).
         obj.__dict__.pop('_integrate', None)
         obj.__dict__.pop('_update_observation_delays', None)
-        obj.model, obj.partition = copy(retained.model), copy(retained.partition)
-        obj.partition.work = retained.partition.work.copy()
+        from .compiled_kernel import fork_partition
+        obj.model, obj.partition = copy(retained.model), fork_partition(retained.partition)
         obj.partition.statistics = dict.fromkeys(retained.partition.statistics, 0)
         obj.partition._light_cpu = obj.partition._light_gpu = None
         obj.contract, obj._binding, obj._lock = contract, None, RLock()
@@ -236,11 +236,13 @@ class ConeHCSplitRunner(ResidentNativeRunner):
     def _integrate(self, state, stimulus, stop, config, samples):
         """Inner interval keeps its old event limit; native never uses that bound."""
         from scipy.integrate import DOP853
+        from .solver_lifetime import collection_epoch, release_solver_cycles
         start = state.time_seconds
         tick = time.perf_counter()
         cursor = self._accept_native_until(state, stimulus, stop)
         inner = state.y[self.partition.offset:].detach().cpu().numpy().copy()
         rhs = lambda t, y: self._inner_rhs(cursor, stimulus, stop, t, y)
+        epoch = collection_epoch()
         solver = DOP853(rhs, start, inner, stop, rtol=config.rtol, atol=config.atol, max_step=config.max_step)
         requested = {float(t) for t in samples if start < t <= stop}
         requested.update(s.stop for s in cursor.segments if start < s.stop <= stop)
@@ -271,6 +273,10 @@ class ConeHCSplitRunner(ResidentNativeRunner):
         metrics['accepted_steps'] += accepts
         metrics['minimum_interval_seconds'] = min(metrics['minimum_interval_seconds'] or stop-start, stop-start)
         metrics['maximum_nfev_per_interval'] = max(metrics['maximum_nfev_per_interval'], solver.nfev)
+        del solver, dense
+        cleanup = release_solver_cycles(epoch)
+        metrics['solver_lifetime_gc_wall_seconds'] = metrics.get('solver_lifetime_gc_wall_seconds', 0.)+cleanup['wall_seconds']
+        metrics['integration_wall_seconds'] += cleanup['wall_seconds']
         return rows
 
     def _update_observation_delays(self, state, t, y):

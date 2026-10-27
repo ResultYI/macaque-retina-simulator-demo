@@ -20,6 +20,8 @@ def require(ok,message):
     if not ok:raise ContractError('CIRCUIT_GEOMETRY: '+message)
 
 def plain(value):
+    from .canonical_stream import CanonicalSequence
+    if isinstance(value,CanonicalSequence):return [plain(v) for v in value.factory()]
     if isinstance(value,np.ndarray):return value.tolist()
     if isinstance(value,np.generic):return value.item()
     if hasattr(value,'__dataclass_fields__'):return {k:plain(getattr(value,k)) for k in value.__dataclass_fields__}

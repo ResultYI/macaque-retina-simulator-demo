@@ -14,13 +14,44 @@ class DiskRuntimeRecord(dict):
         self.population_counts={'cones':len(value['cones']['global_cell_ids']),**{
             'inner_tables/'+name:len(table['global_cell_ids']) for name,table in value['inner_tables'].items()}}
 
-def _quantity(values,meaning,frame):return {'values':np.asarray(values).tolist(),'unit':'mm','meaning':meaning,
-    'frame':frame,'evidence_tag':'existing_effective_coordinate_rule_project_approximation'}
+def _quantity(values,meaning,frame,*,compact=False):
+    values=np.asarray(values)
+    if compact:values.setflags(write=False)
+    return {'values':values if compact else values.tolist(),'unit':'mm','meaning':meaning,
+        'frame':frame,'evidence_tag':'existing_effective_coordinate_rule_project_approximation'}
 
-def runtime_record(root,circuit,view):
+
+def compact_contact_metadata(record, audit):
+    """Retire expanded construction dictionaries after the graph is compiled.
+
+    Keep both public record views and their canonical contents. No numerical
+    ConnectionTable, matrix, parameter or state is accessed or changed here.
+    """
+    from .compact_population_record import CompactContactEdges
+    bindings=audit['connectivity_support']['runtime_binding_edges']
+    counts={}
+    for name,contact in record['inner_contacts'].items():
+        original=contact['edges']
+        compact=(original if isinstance(original,CompactContactEdges) else
+                 CompactContactEdges.from_records(contact['pre_ids'],contact['post_ids'],original))
+        if name in bindings:
+            selected=bindings[name]
+            same=selected is original or (not isinstance(selected,CompactContactEdges) and
+                len(selected)==len(original) and all(a is b for a,b in zip(selected,original)))
+            bindings[name]=(selected if isinstance(selected,CompactContactEdges) else compact if same else CompactContactEdges.from_records(
+                contact['pre_ids'],contact['post_ids'],selected))
+        contact['edges']=compact
+        counts[name]=len(compact)
+    audit['construction_metadata_storage']={'schema':'compact-contact-metadata-1',
+        'edge_records':sum(counts.values()),'routes':counts,
+        'expanded_dictionaries_retained':False,'numerical_operators_changed':False}
+
+def runtime_record(root,circuit,view,*,compact=False):
     from .source_atlas import SourceDensityAtlas
     from .atlas_s_partition import EffectiveMulattaSPartition
-    root=Path(root).resolve();selected=view['selected_rows'];records={name:circuit.table_record(name,rows) for name,rows in selected.items()}
+    root=Path(root).resolve();selected=view['selected_rows']
+    def table_record(name,rows):return circuit.table_record(name,rows,compact=compact)
+    records={name:table_record(name,rows) for name,rows in selected.items()}
     if not view['runtime_ready']:
         raise ContractError('DISK_VIEW_SOURCE_OR_GEOMETRY_UNSUPPORTED: '+str(view['unsupported_rows'][:5]))
     for name in ('cones','HC','rods','rod_BC','AII_AC'):
@@ -38,14 +69,16 @@ def runtime_record(root,circuit,view):
         if name not in records:
             # Empty owner populations retain a full source binding, without a
             # synthetic empty-coordinate substitute for actual source anatomy.
-            records[name]=circuit.table_record(name,np.empty(0,dtype=np.int64))
+            records[name]=table_record(name,np.empty(0,dtype=np.int64))
     for name,descriptor in circuit.record['tables'].items():
         if descriptor['kind']!='typed' or name in ('cones','HC'):continue
         table=records.get(name)
-        if table is None:table=circuit.table_record(name,np.empty(0,dtype=np.int64))
+        if table is None:table=table_record(name,np.empty(0,dtype=np.int64))
         if name=='widefield_AC':
             xy=np.asarray(table['coordinates']['ipl_preterminal']['values']).reshape(-1,2)
-            table=dict(table,global_eccentricity={'values':np.linalg.norm(xy,axis=1).tolist(),'unit':'mm','frame':'anatomical_retina',
+            eccentricity=np.linalg.norm(xy,axis=1)
+            if compact:eccentricity.setflags(write=False)
+            table=type(table)(table,global_eccentricity={'values':eccentricity if compact else eccentricity.tolist(),'unit':'mm','frame':'anatomical_retina',
                 'meaning':'global_eccentricity','registration':'existing registered physical IPL point chart; no RF or soma fabricated'})
         inner[name]=table
         parents[name]=list(table['source_keys']) if name.startswith('midget') or name=='S_ON_BC' or name=='small_bistratified_S_ON' else []
@@ -59,9 +92,13 @@ def runtime_record(root,circuit,view):
         pre_points=pre_record['coordinates']['opl_pedicle'] if pre=='cones' else pre_record['coordinates']['ipl_preterminal']
         frame='OPL' if pre=='cones' else 'IPL'
         post_values=(post_record['coordinates']['ipl_preterminal'] if frame=='OPL' else post_record['coordinates']['ipl_post_arbor'])['values']
+        from .compact_population_record import CompactContactEdges
+        edges=(CompactContactEdges(pre_ids,post_ids,edge.row,edge.col,edge.data) if compact else
+               [{'pre_id':pre_ids[i],'post_id':post_ids[j],'weight':float(weight),'unit':'dimensionless'}
+                for j,i,weight in zip(edge.row,edge.col,edge.data)])
         contacts[pre+'->'+post]={'pre_ids':pre_ids,'post_ids':post_ids,'frame':frame,'row_status':statuses,'rows':rows,
-            'edges':[{'pre_id':pre_ids[i],'post_id':post_ids[j],'weight':float(weight),'unit':'dimensionless'} for j,i,weight in zip(edge.row,edge.col,edge.data)],
-            'pre_positions':pre_points,'post_positions':_quantity(post_values,'dendritic_position',frame),
+            'edges':edges,
+            'pre_positions':pre_points,'post_positions':_quantity(post_values,'dendritic_position',frame,compact=compact),
             'evidence_class':'project_approximation','boundary_mode':'frozen_global_finite_circuit','query_support_complete':'exact finite graph dependencies; no exterior closure claim'}
     masters={name:circuit.table(name).record for name in ('rods','rod_BC','AII_AC')}
     # Native support is the original global cone query, independent of owner box.
@@ -69,12 +106,12 @@ def runtime_record(root,circuit,view):
     global_ids=tuple(gid for name,table in records.items() if name not in OUTPUTS or name in selected for gid in table['global_cell_ids'])
     value={'atlas':{'atlas_id':atlas.config['atlas_id'],'atlas_version':atlas.config['atlas_version'],'reference_id':atlas.config['reference_id'],
             'profile_sha256':atlas.profile_hash,'mosaic_namespace':atlas.mosaic_namespace,'owner_domain':list(bounds),'query_support':query,
-            'cone_master':dict(atlas.config['cone_master']),'global_graph':circuit.binding,'owner_disk_radius_mm':3.,'density_scale':1.,
+            'cone_master':dict(atlas.config['cone_master']),'global_graph':circuit.binding,'owner_disk_radius_mm':view['owner_disk_radius_mm'],'density_scale':1.,
             'boundary_mode':'one_finite_global_canonical_network','recurrent_exterior_closure':'NOT_CERTIFIED'},
         'cones':records['cones'],'cone_subtypes':[x.decode('ascii') for x in cone.extras['subtype'][selected['cones']]],
         'cone_type_provenance':{'profile_id':s.config['profile_id'],'profile_sha256':s.profile_sha256},
         'HC':{'table':records['HC'],'types':[x.decode('ascii') for x in hc.extras['subtype'][selected['HC']]],
-            'OPL_anchor':_quantity(hc.coordinates['soma'][selected['HC']],'arbor_anchor_position','OPL'),
+            'OPL_anchor':_quantity(hc.coordinates['soma'][selected['HC']],'arbor_anchor_position','OPL',compact=compact),
             'metadata':{'file_sha256':hconfig['expected_asset_sha256'],'global_table':hc.binding,'source_evidence':'approved effective geometry; no calibrated HC kinetics claim'}},
         'HC_candidate_edges':(), 'inner_tables':inner,'inner_parents':parents,'inner_contacts':contacts,
         'inner_metadata':{'global_graph':circuit.binding,'rule':'unchanged typed effective sites and weights frozen globally','soma':'ABSENT outside separately supplied source views'},
@@ -85,19 +122,22 @@ def runtime_record(root,circuit,view):
             'execution_profile_id':'atlas_disk3mm_dependency_v1','scope':'Exact finite dependency view of one approved global3mm geometry; existing effective dynamics, missing source rows retained'},
         'summary':{'S_partition_profile':s.config['profile_id'],'HC_query_status':'supported','zero_owner_candidate_rows':0,
             'scope':'selected exact dependencies of one global disk; unsupported rows checked before assembly'},
-        'dependency_query':{'requested_RF_query_mm':query,'expanded_RF_query_mm':query,'owner_disk_radius_mm':3.,
+        'dependency_query':{'requested_RF_query_mm':query,'expanded_RF_query_mm':query,'owner_disk_radius_mm':view['owner_disk_radius_mm'],
             'global_dependency_view':True,'geometry_regenerated':False,'weights_renormalized':False,'recurrent_exterior_closure':'NOT_CERTIFIED'},
         'required_global_dependency_ids':global_ids,'isetbio_geometry':{'master':dict(atlas.config['cone_master']),'atlas_profile':atlas_profile,
             'global_graph':circuit.binding,'physiology_parameters_changed':False}}
-    identity=canonical_hash({'graph':circuit.binding,'owner':bounds,'selected_rows':{name:array_identity(rows) for name,rows in selected.items()}})
+    identity_record={'graph':circuit.binding,'owner':bounds,'selected_rows':{name:array_identity(rows) for name,rows in selected.items()}}
+    if view['owner_disk_radius_mm']!=3.:identity_record['output_owner_radius_mm']=view['owner_disk_radius_mm']
+    identity=canonical_hash(identity_record)
     context=SimpleNamespace(atlas=atlas,hc_master=SimpleNamespace(config=hconfig),s_partition=s)
     return DiskRuntimeRecord(value,identity),context
 
 class DiskSpatialAsset:
     allow_absent_contact_targets=True
-    def __init__(self,circuit,view,record,*,max_compile_bytes,empty_chemical_input_policy='reject_empty_chemical_input_v1'):
+    def __init__(self,circuit,view,record,*,max_compile_bytes,empty_chemical_input_policy='reject_empty_chemical_input_v1',compact_metadata=False):
         self.circuit=circuit;self.view=view;self.source=record;self.max_compile_bytes=max_compile_bytes
         self.empty_chemical_input_policy=empty_chemical_input_policy
+        self.compact_metadata=compact_metadata
         self.binding={'global_graph':circuit.binding,'view_sha256':record.semantic_hash};self._pools={}
         self._ids={name:tuple(table['global_cell_ids']) for name,table in dict(record['inner_tables'],cones=record['cones'],HC=record['HC']['table'],**record['rod_inner']['tables']).items()}
     def _descriptor(self,name):
@@ -152,12 +192,14 @@ class DiskSpatialAsset:
         pre=tuple(d['pre_ID_prefix']+gid for gid in self._ids[d['pre']]);post=self._ids[d['post']]
         keys=[pre[i]+'>'+post[j] for j,i in zip(coo.row,coo.col)];xy=geometry.positions[entries]
         frame=geometry.record['recipe']['coordinate_frame']
-        coordinates=({'ipl_preterminal':_quantity(xy,'terminal_position','IPL'),
-            'ipl_post_arbor':_quantity(xy,'dendritic_position','IPL')} if frame=='IPL' else {})
+        coordinates=({'ipl_preterminal':_quantity(xy,'terminal_position','IPL',compact=self.compact_metadata),
+            'ipl_post_arbor':_quantity(xy,'dendritic_position','IPL',compact=self.compact_metadata)} if frame=='IPL' else {})
+        eccentricity=np.linalg.norm(xy,axis=1)
+        if self.compact_metadata:eccentricity.setflags(write=False)
         return {'population':cid,'global_cell_ids':[cid+':'+hashlib.sha256(key.encode()).hexdigest()[:32] for key in keys],
             'source_keys':keys,'coordinates':coordinates,
-            'physical_contact_anchor':_quantity(xy,'contact_position',frame),
-            'global_eccentricity':{'values':np.linalg.norm(xy,axis=1).tolist(),'unit':'mm','frame':'anatomical_retina',
+            'physical_contact_anchor':_quantity(xy,'contact_position',frame,compact=self.compact_metadata),
+            'global_eccentricity':{'values':eccentricity if self.compact_metadata else eccentricity.tolist(),'unit':'mm','frame':'anatomical_retina',
                 'meaning':'global_eccentricity','registration':'registered physical contact chart; no neuronal soma or RF assigned'},
             'frozen_contact_geometry':d['binding']}
     def gaps(self):
@@ -211,6 +253,9 @@ class DiskSpatialAsset:
 def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,halo_mm,max_spatial_cells,seed,
                  rod_reference_policy=None):
     """The same mechanism factories/time ownership on a frozen global view."""
+    if (configuration.get('source_graph_scope')=='all_original_outputs_in_foveal_disk_v1'
+            and configuration.get('execution_enabled') is not True):
+        raise ContractError('Foveal candidate is preparation-only; wait for explicit user start and a sealed run configuration')
     from .atlas_runtime import atlas_midget_network,q
     from .atlas_primary_rod import attach_primary_rod
     from .geometry_identity import compiled_geometry_identity
@@ -225,20 +270,24 @@ def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,hal
     policy=configuration.get('empty_chemical_input_policy','reject_empty_chemical_input_v1')
     owner_options=({'owner_global_rows':configuration['owner_global_rows']}
                    if 'owner_global_rows' in configuration else {})
+    if 'output_owner_radius_mm' in configuration:
+        owner_options['owner_radius_mm']=configuration['output_owner_radius_mm']
     view=circuit.owner_view(owner_bounds_mm,max_nodes=configuration['budgets']['max_dependency_nodes'],
         empty_chemical_input_policy=policy,**owner_options)
     if max(len(rows) for rows in view['selected_rows'].values())>max_spatial_cells:
         raise ContractError('Exact global view exceeds requested per-population budget; no thinning or crop normalization')
     guard=MemoryGuard(min_available_bytes=configuration['budgets']['minimum_available_bytes'])
     if not guard.check():raise ContractError('Insufficient available RAM for the unchanged global dependency view')
-    record,context=runtime_record(root,circuit,view)
-    spatial=DiskSpatialAsset(circuit,view,record,max_compile_bytes=configuration['budgets']['max_compile_bytes'],empty_chemical_input_policy=policy)
+    compact=configuration.get('source_graph_scope')=='all_original_outputs_in_foveal_disk_v1'
+    record,context=runtime_record(root,circuit,view,compact=compact)
+    spatial=DiskSpatialAsset(circuit,view,record,max_compile_bytes=configuration['budgets']['max_compile_bytes'],empty_chemical_input_policy=policy,compact_metadata=compact)
     compiled,channels,audit=atlas_midget_network(root,duration=duration,light_context=light_context,owner_bounds_mm=owner_bounds_mm,
         halo_mm=halo_mm,max_spatial_cells=max_spatial_cells,seed=seed,connection_record=record,atlas_profile_id=atlas_profile,
         allow_empty_owner_outputs=True,spatial_asset=spatial,_atlas_context=context,max_compile_bytes=spatial.max_compile_bytes)
     compiled,channels,audit=attach_primary_rod(Path(root),compiled,channels,audit,record,light_context,
         spatial_asset=spatial,rod_reference_policy=rod_reference_policy)
-    proof=spatial.validate_compiled(compiled);roi=DiskAtlasROI(tuple(owner_bounds_mm),tuple(owner_bounds_mm),circuit.record['reference_id'])
+    proof=spatial.validate_compiled(compiled);roi=DiskAtlasROI(tuple(owner_bounds_mm),tuple(owner_bounds_mm),circuit.record['reference_id'],owner_radius_mm=view['owner_disk_radius_mm'])
+    if compact:compact_contact_metadata(record,audit)
     for name,pop in compiled.populations.items():
         rf=pop.receptive_field_positions
         audit['population_owner_mask'][name]=([False]*len(pop.cells.cell_id) if rf is None else roi.owner_mask(rf.values).tolist())
@@ -248,15 +297,17 @@ def disk_network(root,configuration,*,duration,light_context,owner_bounds_mm,hal
     compiled.input_geometry_binding_required=True
     compiled.geometry_source_binding={'execution_profile':'atlas_isetbio_geometry_v1','storage_kind':'global_disk_graph_v1',
         'global_graph':circuit.binding,'exact_view':spatial.binding,'input_plan':configuration['input_plan']}
-    if owner_options:
+    if 'owner_global_rows' in configuration:
         compiled.geometry_source_binding['owner_global_rows']=configuration['owner_global_rows']
+    if 'output_owner_radius_mm' in configuration:
+        compiled.geometry_source_binding['output_owner_radius_mm']=configuration['output_owner_radius_mm']
     radius=circuit.table('rods').radius
     compiled.typed_view_domain={'reference_id':circuit.record['reference_id'],'owner_domain_mm':tuple(owner_bounds_mm),
-        'query_domain_mm':(-radius,radius,-radius,radius),'empty_owner_outputs':tuple(view['empty_output_samples']),'owner_disk_radius_mm':3.}
+        'query_domain_mm':(-radius,radius,-radius,radius),'empty_owner_outputs':tuple(view['empty_output_samples']),'owner_disk_radius_mm':view['owner_disk_radius_mm']}
     audit['atlas_runtime'].update(frozen_typed_geometry=proof,graph_binding=circuit.binding,
         compiled_geometry_identity=compiled_geometry_identity(compiled),global_geometry_radius_mm=3.,
         geometry_or_edge_resampled=False,full_20_layer_network_claim=False)
-    if owner_options:audit['atlas_runtime']['owner_output_global_rows']=configuration['owner_global_rows']
+    if 'owner_global_rows' in configuration:audit['atlas_runtime']['owner_output_global_rows']=configuration['owner_global_rows']
     audit['execution_profile']=dict(audit['execution_profile'],profile_id='atlas_isetbio_geometry_v1',storage_kind='global_disk_graph_v1',
         scope='Exact finite dependency view of the approved global3mm disk; effective dynamics and declared unresolved source gaps retained',
         execution_mode='frozen_global_disk_dependency_view',physiological_calibration=False)

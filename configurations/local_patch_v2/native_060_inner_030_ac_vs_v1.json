@@ -1,0 +1,13 @@
+{
+  "schema": "ac-vs-explicit-native-support-selection-1",
+  "name": "native_060_inner_030_ac_vs_v1",
+  "base_patch_config": "configurations/local_patch_v2/halo_030.json",
+  "native_populations": ["cones", "HC"],
+  "inner_selection": {"path": "reports/ac_vs_redesign_v1/functional_static_halo_030_v1/selection.npz", "sha256": "7e1e7418cc94fb6f24bee7d704a6a7e9ec293f1adbde72f7a3c86a58d7778ed3"},
+  "native_selection": {"path": "reports/ac_vs_redesign_v1/functional_static_halo_060_v1/selection.npz", "sha256": "111c01313803c37d285f51a4395e706b75e67b295b3100be9a671e8851af69d8"},
+  "core_and_contacts": "exact original0.3 selections; no inner population expansion",
+  "model_config": "configurations/ac_vs_functional_v1.json",
+  "weights_renormalized": false,
+  "default_adopted": false,
+  "whole_retina_background_qualified": false
+}

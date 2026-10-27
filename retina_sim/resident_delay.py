@@ -45,14 +45,14 @@ class ResidentTimestampedDelay:
         self.unit = prehistory['unit']
         self.meaning = prehistory['meaning']
         self.evidence_tag = prehistory['evidence_tag']
-        self._prehistory = torch.as_tensor(
-            prehistory['values'], dtype=torch.float64, device=self.device).clone()
+        self._prehistory = torch.tensor(
+            prehistory['values'], dtype=torch.float64, device=self.device)
         self.shape = tuple(self._prehistory.shape)
         if len(self.shape) != 1 or not self.unit or not self.meaning or not self.evidence_tag:
             raise ContractError('Observation delay requires one-dimensional declared Quantity metadata')
         if not torch.isfinite(self._prehistory).all().item():
             raise ContractError('Nonfinite array')
-        self._values = [torch.as_tensor(row, dtype=torch.float64, device=self.device).clone()
+        self._values = [torch.tensor(row, dtype=torch.float64, device=self.device)
                         for row in payload['history_values']]
         if len(self.history_times) != len(self._values) or any(tuple(row.shape) != self.shape for row in self._values):
             raise ContractError('Observation delay history layout differs')
@@ -139,14 +139,14 @@ class ResidentTimestampedDelay:
                 failures.append('queue_not_constant_within_tolerance')
         return failures
 
-    def payload(self):
+    def payload(self,*,arrays=False):
         """Explicit complete export; never used for ordinary resident stepping."""
         return {
             'delay_seconds': self.delay_seconds,
             'history_times': list(self.history_times),
-            'history_values': [row.cpu().numpy().tolist() for row in self._values],
+            'history_values': list(self._values) if arrays else [row.cpu().numpy().tolist() for row in self._values],
             'prehistory': {
-                'values': self._prehistory.cpu().numpy().tolist(),
+                'values': self._prehistory if arrays else self._prehistory.cpu().numpy().tolist(),
                 'unit': self.unit,
                 'meaning': self.meaning,
                 'evidence_tag': self.evidence_tag,

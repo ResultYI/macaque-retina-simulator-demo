@@ -53,6 +53,7 @@ class Dop853Workspace:
         self.at = torch.as_tensor(host_atol.copy(), dtype=torch.float64, device=self.device)
         self.K = torch.empty((16, self.n), dtype=torch.float64, device=self.device)
         self.F = None
+        self.rhs_buffers = None
         self._constant_versions = tuple(
             (value.data_ptr(), value._version)
             for value in (self.A, self.B, self.E3, self.E5, self.AE, self.DD, self.at)
@@ -101,7 +102,7 @@ class Dop853Workspace:
 
 
 def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
-                     t_eval=None, workspace=None):
+                     t_eval=None, workspace=None, dense_output=False, fun_into=None):
     """Run one original DOP853 interval and return owned device snapshots.
 
     Returns ``t`` (small host timestamp array), ``samples`` (a tuple of device
@@ -110,6 +111,11 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
     preserve the original runner rule: persist that sample, rather than silently
     replacing it with ``final``.  All samples and final are mutually independent
     and survive future workspace reuse.  No full state is downloaded here.
+
+    ``dense_output`` additionally retains an owned ``y_old`` and seven-row ``F``
+    for every accepted step, including steps with no requested samples.
+    ``fun_into(t, y, out)`` optionally writes each derivative into solver-owned
+    storage and returns ``out``; this does not change the RHS schedule.
     """
     import numpy as np
     import torch
@@ -144,10 +150,13 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
         rejected_attempts = 0
         dense_polynomials = 0
 
-        def rhs(at, state):
+        def rhs(at, state, output=None):
             nonlocal nfev
             nfev += 1
-            result = fun(float(at), state)
+            result = (fun(float(at), state) if fun_into is None else
+                      fun_into(float(at), state, output))
+            if fun_into is not None and result is not output:
+                raise ContractError('CUDA in-place RHS must return its supplied output')
             if (result.shape != state.shape or result.dtype != torch.float64
                     or result.device != state.device):
                 raise ContractError('CUDA RHS execution layout differs')
@@ -159,17 +168,24 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
         A, B, E3, E5 = work.A, work.B, work.E3, work.E5
         AE, DD, at, K = work.AE, work.DD, work.at, work.K
         # Deliberately repeat both original initial-step RHS calls per interval.
-        f = rhs(t, y)
+        if fun_into is not None:
+            if work.rhs_buffers is None:
+                work.rhs_buffers = (torch.empty_like(y), torch.empty_like(y))
+            f_buffer, next_f_buffer = work.rhs_buffers
+        else:
+            f_buffer = next_f_buffer = None
+        f = rhs(t, y, f_buffer)
         scale = at + y.abs() * rtol
         d0 = rms(y / scale)
         d1 = rms(f / scale)
         h0 = 1e-6 if d0 < 1e-5 or d1 < 1e-5 else .01 * d0 / d1
         h0 = min(h0, t_bound - t0)
-        f1 = rhs(t0 + h0, y + h0 * f)
+        f1 = rhs(t0 + h0, y + h0 * f, next_f_buffer)
         d2 = rms((f1 - f) / scale) / h0
         h1 = max(1e-6, h0 * 1e-3) if d1 <= 1e-15 and d2 <= 1e-15 else (.01 / max(d1, d2)) ** (1 / 8)
         h_abs = min(100 * h0, h1, t_bound - t0, max_step)
         output = []
+        dense_segments = []
         position = 0
         while position < len(sample_times) and sample_times[position] == t:
             output.append(y.clone())
@@ -188,9 +204,12 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
                 K[0].copy_(f)
                 for stage in range(1, 12):
                     delta = torch.mv(K[:stage].T, A[stage, :stage]) * h
-                    K[stage].copy_(rhs(t + DOP853.C[stage] * h, y + delta))
+                    stage_rhs = rhs(t + DOP853.C[stage] * h, y + delta,
+                                    K[stage] if fun_into is not None else None)
+                    if fun_into is None:
+                        K[stage].copy_(stage_rhs)
                 y_new = y + h * torch.mv(K[:12].T, B)
-                f_new = rhs(t_new, y_new)
+                f_new = rhs(t_new, y_new, next_f_buffer)
                 K[12].copy_(f_new)
                 scale = at + torch.maximum(y.abs(), y_new.abs()) * rtol
                 err5 = torch.mv(K[:13].T, E5) / scale
@@ -211,18 +230,24 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
                 rejected_attempts += 1
             steps += 1
             end = np.searchsorted(sample_times, t_new, side='right')
-            if position < end:
+            if dense_output or position < end:
                 # Dense output is also built for requested accepted endpoints,
                 # exactly as in the original transport and installed SciPy.
                 for stage in range(13, 16):
                     delta = torch.mv(K[:stage].T, AE[stage - 13, :stage]) * h
-                    K[stage].copy_(rhs(t + DOP853.C_EXTRA[stage - 13] * h, y + delta))
+                    stage_rhs = rhs(t + DOP853.C_EXTRA[stage - 13] * h, y + delta,
+                                    K[stage] if fun_into is not None else None)
+                    if fun_into is None:
+                        K[stage].copy_(stage_rhs)
                 delta = y_new - y
                 F = work.dense_storage()
                 F[0].copy_(delta)
                 F[1].copy_(h * K[0] - delta)
                 F[2].copy_(2 * delta - h * (f_new + K[0]))
                 F[3:].copy_(h * torch.mm(DD, K))
+                if dense_output:
+                    dense_segments.append(dict(t_old=t, t=t_new,
+                                               y_old=y.clone(), F=F.clone()))
                 for sampled in sample_times[position:end]:
                     x = (sampled - t) / h
                     value = torch.zeros_like(y)
@@ -236,6 +261,8 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
             t = t_new
             y = y_new
             f = f_new
+            if fun_into is not None:
+                f_buffer, next_f_buffer = next_f_buffer, f_buffer
         if position != len(sample_times):
             raise ContractError('Unreturned requested DOP853 observation')
         if not torch.isfinite(y).all().item():
@@ -245,4 +272,6 @@ def integrate_device(fun, t0, y0, t_bound, *, rtol, atol, max_step,
             'nfev': nfev, 'steps': steps, 'attempts': attempts,
             'rejected_attempts': rejected_attempts,
             'dense_polynomials': dense_polynomials,
+            'dense_segments': tuple(dense_segments),
+            'solver_scalar_D2H': 4 + 2 * attempts,
         }

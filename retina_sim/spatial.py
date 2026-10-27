@@ -34,11 +34,16 @@ class Population:
                 if frame is None and q.coordinate_frame not in ('OPL','IPL'): raise ContractError('Explicit OPL/IPL dendritic coordinate frame required')
         object.__setattr__(self,'_population_hash',canonical_hash({name:getattr(self,name) for name in ('population_id','cells','regions','anatomical_positions','receptive_field_positions','pedicle_positions','terminal_positions','dendritic_positions')}))
 
-    def record(self,selected_cell_ids=None):
+    def record(self,selected_cell_ids=None,*,compact=False):
         indices=np.arange(len(self.cells.cell_id)) if selected_cell_ids is None else np.array([i for i,x in enumerate(self.cells.cell_id) if x in selected_cell_ids],dtype=int)
-        def selected(values):return [values[i] for i in indices]
+        def selected(values):
+            if compact:return tuple(values) if selected_cell_ids is None else tuple(values[i] for i in indices)
+            return [values[i] for i in indices]
         def qrecord(q):
-            return None if q is None else {'values':q.values[indices].tolist(),'unit':q.unit,'meaning':q.meaning,'frame':q.coordinate_frame,'evidence_tag':q.evidence_tag}
+            if q is None:return None
+            values=q.values if selected_cell_ids is None else q.values[indices]
+            if compact:values.setflags(write=False)
+            return {'values':values if compact else values.tolist(),'unit':q.unit,'meaning':q.meaning,'frame':q.coordinate_frame,'evidence_tag':q.evidence_tag}
         c=self.cells
         return {'population_id':self.population_id,'total_cell_count':len(c.cell_id),'population_hash':self._population_hash,'cell_ids':selected(c.cell_id),'cell_types':selected(c.cell_type),'subtypes':selected(c.subtype),'regions':selected(self.regions),'species_profile_ids':selected(c.species_profile_id),'parameter_profile_ids':selected(c.parameter_profile_id),'evidence_tags':selected(c.evidence_tags),'hemiretina':selected(c.hemiretina),'meridian':selected(c.meridian),'eccentricity':qrecord(c.eccentricity),'table_soma':qrecord(c.soma_position),'table_rf':qrecord(c.rf_position),'anatomical_positions':qrecord(self.anatomical_positions),'receptive_field_positions':qrecord(self.receptive_field_positions),'pedicle_positions':qrecord(self.pedicle_positions),'terminal_positions':qrecord(self.terminal_positions),'dendritic_positions':qrecord(self.dendritic_positions),'displacement_mapping':'not inferred'}
 

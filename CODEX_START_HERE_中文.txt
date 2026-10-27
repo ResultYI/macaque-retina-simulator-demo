@@ -6,8 +6,8 @@
 最终平台应能导入视频、查看逐层响应、导出结果，外接可替换的 SC-like 或其他任务读出；扫视应用可以叠加、导出轨迹。本地 Tkinter 可视化平台已接入现有真实核心，支持图像/视频、持续状态运行、逐层细胞视图和结果导出；实际支持与验收见 README 和 docs/core_design.md。SC-like 眼动闭环目前尚未实施，不能列为已完成。阶段性低分辨率、局部区域或有限通路配置必须如实命名，不能冒充完整目标。
 
 二、本地目录、环境与阅读入口
-用户选定的正式目录是 D:\macaque_retina_simulator，此前目录为 D:\trail\macaque_retina_simulator。迁移已获确认并完成：原项目同盘移动到正式目录，探索成果已归档，原项目文件经过清单、大小与 SHA-256 核验；路径修正和历史路径映射记录在 migration_map.json。此前主项目目录已不存在，探索原暂存目录 <USER_HOME>\Documents\Codex\2026-10-10\task-2\deepgaze_exploration 保留未改。新会话请核实当前实际状态。若正式目录不存在或内容不全，先报告，不自行创建空项目、重新迁移、覆盖或删除旧目录。
-复用 Python：python。不要擅自重建环境或升级 torch、numpy 等核心依赖。
+用户选定的正式目录是 D:\macaque_retina_simulator，此前目录为 D:\trail\macaque_retina_simulator。迁移已获确认并完成：原项目同盘移动到正式目录，探索成果已归档，原项目文件经过清单、大小与 SHA-256 核验；路径修正和历史路径映射记录在 migration_map.json。此前主项目目录已不存在，探索原暂存目录 C:\Users\PC_User\Documents\Codex\2026-10-10\task-2\deepgaze_exploration 保留未改。新会话请核实当前实际状态。若正式目录不存在或内容不全，先报告，不自行创建空项目、重新迁移、覆盖或删除旧目录。
+复用 Python：C:\Users\PC_User\anaconda3\envs\retipath_v1\python.exe。不要擅自重建环境或升级 torch、numpy 等核心依赖。
 先读实际适用的 AGENTS.md、README、运行/测试说明，检查当前目录与 git 状态；若不是 git 仓库则如实说明，不自动初始化。核心入口为 docs/core_design.md（统一中文说明）、configurations/full_target.json、reports/core_architecture_status.json、sources/registry.json、sources/core_registry.json 和 sources/spatial。再按需要追踪对应实现与现有结果。文件不存在就报告“未找到”，不要编造内容或路径。
 
 三、最近记录的实现状态

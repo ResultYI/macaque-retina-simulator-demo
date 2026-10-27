@@ -5,10 +5,12 @@ delay publication, observations, PCG64 draws and checkpoint API stay in Python.
 No fastmath, parallel reduction, persistent signal cache or parameter defaults.
 """
 from dataclasses import dataclass
+from array import array
 from pathlib import Path
 import hashlib,time,threading,os
 import numpy as np
 from .contracts import ContractError,canonical_hash
+from .canonical_stream import CanonicalArray
 
 IMPLEMENTATIONS={
     # Reviewed 2026-10-21: retained native branches plus optional BC release-
@@ -31,9 +33,16 @@ class UnsupportedKernel(ContractError):pass
 
 def _execute(y,x,work,program,weights,indices,pointers,derivatives):
     """Numba target: deterministic instruction/CSR order, fresh result buffer."""
-    work[:len(y)]=y;work[len(y):len(y)+len(x)]=x
-    for k in range(len(y)+len(x)):
-        if not np.isfinite(work[k]):raise ValueError('Nonfinite compiled state/input')
+    # Validate while copying, in the original state-then-input order. Every
+    # address is overwritten on the next call, including after a failed check.
+    for k in range(len(y)):
+        value=y[k]
+        if not np.isfinite(value):raise ValueError('Nonfinite compiled state/input')
+        work[k]=value
+    for k in range(len(x)):
+        value=x[k]
+        if not np.isfinite(value):raise ValueError('Nonfinite compiled state/input')
+        work[len(y)+k]=value
     for k in range(len(program)):
         code,dest,n,a,an,b,bn=program[k]
         if code==NATIVE_SIGNALS:
@@ -124,29 +133,97 @@ def closure(fn):
         except ValueError:pass  # Unused branches of the verified factory.
     return result
 
+
+class ScratchWorkspace(CanonicalArray):
+    """Immutable initial constants plus a private, lazily allocated RHS buffer."""
+    dtype=np.dtype(np.float64)
+
+    def __init__(self,size,constants):
+        self.shape=(size,);self.constants=tuple(constants);self._values=None
+        for _,block in self.constants:block.setflags(write=False)
+
+    @property
+    def nbytes(self):return self.shape[0]*self.dtype.itemsize
+
+    def blocks(self):
+        index=0
+        for start in range(0,self.shape[0],8192):
+            stop=min(start+8192,self.shape[0]);block=np.zeros(stop-start,dtype=self.dtype)
+            while index<len(self.constants):
+                offset,values=self.constants[index];end=offset+len(values)
+                if offset>=stop:break
+                if end>start:
+                    left,right=max(start,offset),min(stop,end)
+                    block[left-start:right-start]=values[left-offset:right-offset]
+                if end>stop:break
+                index+=1
+            yield block
+
+    @property
+    def array(self):
+        if self._values is None:
+            values=np.zeros(self.shape,dtype=self.dtype)
+            for offset,block in self.constants:values[offset:offset+len(block)]=block
+            self._values=values
+        return self._values
+
+    def fork(self):
+        # Every nonconstant address is written by the original instruction
+        # stream before being read. Scratch is not a persisted neural state.
+        return type(self)(self.shape[0],self.constants)
+
+
+class WorkspaceOwner:
+    @property
+    def work(self):return self._scratch.array
+
+
+def fork_partition(partition):
+    from copy import copy
+    result=copy(partition)
+    if hasattr(partition,'_scratch'):
+        result._scratch=partition._scratch.fork()
+    else:
+        result.work=partition.work.copy()
+    return result
+
 class Plan:
     native_fusion_minimum_cells=32768
     def __init__(self,network):
-        self.network=network;self.compiled=network.compiled;self.program=[];self.values=[]
-        self.weights=[];self.indices=[];self.pointers=[];self.outputs={};self.inputs={};self.native={}
+        self.network=network;self.compiled=network.compiled;self.program=[]
+        # Keep millions of constants/indices in their final numeric types.
+        self.weights=array('d');self.indices=array('q');self.pointers=array('q');self.outputs={};self.inputs={};self.native={}
         self.states={};self.external=[];self.bc_output_expressions={}
         for cid,slices in network._local_slices.items():
             self.states[cid]=[Ref(self,s.start,s.stop-s.start) for s in slices]
-        self.nstate=sum(s.shape[0] for s in network.state_specs);self.values=[0.]*self.nstate
+        self.nstate=sum(s.shape[0] for s in network.state_specs)
+        self._nvalues=self.nstate;self._values=None;self._constants=[];self._workspace=None
         for e in self.compiled.spec.external_inputs:
             port=self.compiled.components[e.target_component].inputs[e.target_port]
             r=self.allocate(len(port.cell_ids));self.inputs[(e.target_component,e.target_port)]=r;self.external.append((e,port))
-        self.nexternal=len(self.values)-self.nstate
+        self.nexternal=self._nvalues-self.nstate
+    @property
+    def values(self):
+        if self._values is None:
+            self._values=self.workspace().array
+        return self._values
+    def workspace(self):
+        if self._workspace is None:
+            self._workspace=ScratchWorkspace(self._nvalues,self._constants)
+            self._constants=[]
+        return self._workspace
     def fused_native(self,cid):
         return self.states[cid][0].n>=self.native_fusion_minimum_cells
     def native_instruction(self,opcode,n,layout,parameters):
         a=self.ref(layout);b=self.ref(parameters)
         self.program.append((opcode,0,n,a.offset,a.n,b.offset,b.n))
     def allocate(self,n):
-        r=Ref(self,len(self.values),n);self.values.extend([0.]*n);return r
+        if self._workspace is not None:raise UnsupportedKernel('Plan already materialized')
+        r=Ref(self,self._nvalues,n);self._nvalues+=n;return r
     def ref(self,x):
         if isinstance(x,Ref):return x
-        a=np.asarray(x,dtype=np.float64).ravel();r=self.allocate(len(a));self.values[r.offset:r.offset+r.n]=a.tolist();return r
+        a=np.asarray(x,dtype=np.float64).ravel();r=self.allocate(len(a))
+        self._constants.append((r.offset,a.copy()));return r
     def binary(self,op,a,b):
         a=self.ref(a);b=self.ref(b);n=max(a.n,b.n)
         if a.n not in (1,n) or b.n not in (1,n):raise UnsupportedKernel('Nonbroadcast compiled expression')
@@ -158,14 +235,16 @@ class Plan:
         r=self.allocate(n);self.program.append((ZERO,r.offset,n,0,0,0,0));return r
     def csr(self,m,a,*,parallel_rows=False):
         m=m.tocsr();r=self.allocate(m.shape[0]);ip=len(self.pointers);dp=len(self.weights)
-        self.pointers.extend(m.indptr.tolist());self.weights.extend(m.data.tolist());self.indices.extend(m.indices.tolist())
+        self.pointers.frombytes(np.asarray(m.indptr,dtype=np.int64).tobytes())
+        self.weights.frombytes(np.asarray(m.data,dtype=np.float64).tobytes())
+        self.indices.frombytes(np.asarray(m.indices,dtype=np.int64).tobytes())
         self.program.append((ROW_CSR if parallel_rows else CSR,r.offset,r.n,a.offset,a.n,ip,dp));return r
     def take(self,a,index):
-        r=self.allocate(len(index));ip=len(self.indices);self.indices.extend(index.tolist())
+        r=self.allocate(len(index));ip=len(self.indices);self.indices.frombytes(np.asarray(index,dtype=np.int64).tobytes())
         # weights and column indices share offsets for CSR, so keep both aligned.
-        self.weights.extend([0.]*len(index));self.program.append((TAKE,r.offset,r.n,a.offset,a.n,ip,0));return r
+        self.weights.extend(array('d',[0.])*len(index));self.program.append((TAKE,r.offset,r.n,a.offset,a.n,ip,0));return r
     def scatter(self,target,a,index):
-        ip=len(self.indices);self.indices.extend(index.tolist());self.weights.extend([0.]*len(index))
+        ip=len(self.indices);self.indices.frombytes(np.asarray(index,dtype=np.int64).tobytes());self.weights.extend(array('d',[0.])*len(index))
         self.program.append((SCATTER,target.offset,len(index),a.offset,a.n,ip,0))
     def gather(self,cid,name):
         key=(cid,name)
@@ -335,7 +414,7 @@ class Plan:
             for state,row in zip(self.states[cid],rows):result.append((state.offset,-1 if row is None else row.offset,state.n))
         return np.array(result,dtype=np.int64).reshape(-1,3)
 
-class CompiledRHS:
+class CompiledRHS(WorkspaceOwner):
     def __init__(self,network):
         tick=time.perf_counter();c=network.compiled
         if any(b.cyclic for b in c.output_order):raise UnsupportedKernel('Algebraic closure retains Python reference')
@@ -346,8 +425,8 @@ class CompiledRHS:
             if hashlib.sha256(Path(__file__).with_name(filename).read_bytes()).hexdigest()!=expected:
                 raise UnsupportedKernel('Lowering must be reviewed against changed implementation: '+filename)
         plan=Plan(network);self.derivatives=plan.build();self.external=plan.external
-        self.work=np.array(plan.values,dtype=np.float64);self.program=np.array(plan.program,dtype=np.int64).reshape(-1,7)
-        self.weights=np.array(plan.weights,dtype=np.float64);self.indices=np.array(plan.indices,dtype=np.int64);self.pointers=np.array(plan.pointers,dtype=np.int64)
+        self._scratch=plan.workspace();self.program=np.array(plan.program,dtype=np.int64).reshape(-1,7)
+        self.weights=np.asarray(plan.weights,dtype=np.float64);self.indices=np.asarray(plan.indices,dtype=np.int64);self.pointers=np.asarray(plan.pointers,dtype=np.int64)
         self.nstate=plan.nstate;self.lock=threading.Lock();self.network=network
         plan_seconds=time.perf_counter()-tick
         self.fn,compile_seconds,version=dispatcher()
@@ -356,8 +435,8 @@ class CompiledRHS:
         self.metadata={'backend':'numba_flat_rhs_v1','numba_version':version,'fastmath':False,'parallel':False,'boundscheck':True,
             'parent_dispatcher_cache':'disabled; fresh cross-kernel linking per process',
             'plan_seconds':plan_seconds,'compile_or_cache_load_seconds':compile_seconds,'instruction_count':len(self.program),
-            'scratch_bytes':self.work.nbytes,'state_scalars':plan.nstate,'external_scalars':plan.nexternal,
-            'plan_hash':canonical_hash({'program':self.program,'constants':self.work,'weights':self.weights,'indices':self.indices,'pointers':self.pointers,'derivatives':self.derivatives}),
+            'scratch_bytes':self._scratch.nbytes,'state_scalars':plan.nstate,'external_scalars':plan.nexternal,
+            'plan_hash':canonical_hash({'program':self.program,'constants':self._scratch,'weights':self.weights,'indices':self.indices,'pointers':self.pointers,'derivatives':self.derivatives}),
             'scope':'Continuous RHS only; unchanged SciPy/event/history/observation/RNG/checkpoint machinery'}
         if self.native_fused:
             helper_sha=hashlib.sha256(Path(__file__).with_name('native_rows.py').read_bytes()).hexdigest()

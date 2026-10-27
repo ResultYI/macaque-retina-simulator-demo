@@ -98,6 +98,11 @@ def _population(record,kind,profile,species,subtypes=None,opl_pre=None,opl_post=
 
 
 def _matrix(edges,pre,post):
+    from .compact_population_record import CompactContactEdges
+    if isinstance(edges,CompactContactEdges):
+        rows=edges.remap(pre.cells.cell_id,post.cells.cell_id)
+        return sparse.csr_matrix((rows.weights,(rows.rows,rows.columns)),
+            shape=(len(rows.post_ids),len(rows.pre_ids))),rows
     a={g:i for i,g in enumerate(pre.cells.cell_id)};b={g:i for i,g in enumerate(post.cells.cell_id)}
     rows=[e for e in edges if e['pre_id'] in a and e['post_id'] in b]
     return sparse.csr_matrix(([e['weight'] for e in rows],([b[e['post_id']] for e in rows],
@@ -105,6 +110,8 @@ def _matrix(edges,pre,post):
 
 def _contact_edges(contact,pre,post):
     edges=contact['edges']
+    from .compact_population_record import CompactContactEdges
+    if isinstance(edges,CompactContactEdges):return edges.remap(pre.cells.cell_id,post.cells.cell_id)
     return edges.select(pre.cells.cell_id,post.cells.cell_id) if hasattr(edges,'select') else edges
 
 def _owner_ids(table,bounds):
@@ -332,7 +339,7 @@ def atlas_midget_network(root,*,duration=.0012,light_context=None,owner_bounds_m
         'connectivity_support':{'atlas_graph':record['dependency_query'],'runtime_binding_edges':binding_edges,'finite_graph_exterior_closure':'NOT_CERTIFIED'},
         'population_owner_mask':masks,'resource_estimate':builder.estimate(spec),'rod_inner_geometry':materialize(record['rod_inner']),
         'IPL_geometry':{'source':record['inner_metadata'],'requested_owner_counts':{k:len(v) for k,v in required.items()},'runtime_ancestor_view':True},
-        'population_records':{k:p.record() for k,p in pops.items()},'density_integrals':{'scale':1.,'population_instance':'unchanged atlas, exact dependency view'},
+        'population_records':{k:p.record(compact=getattr(spatial_asset,'compact_metadata',False)) for k,p in pops.items()},'density_integrals':{'scale':1.,'population_instance':'unchanged atlas, exact dependency view'},
         'regional_support':{'partial_scope':execution['scope'],'unavailable_paths':unavailable},
         'physical_reference_applicability':{'Chen':'outside this declared native-cone route'},'glycine_source_condition':{'not_in_scope':'rod/AII glycine omitted explicitly due source driver gap'},
         'atlas_runtime':{'graph_binding':graph_binding,'source_atlas':record['atlas'],

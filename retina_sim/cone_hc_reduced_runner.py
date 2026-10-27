@@ -176,8 +176,8 @@ class ReducedConeHCRunner:
             raise ContractError('Reduced candidate requires retained CSR ALG2 plans')
         obj = cls()
         obj.torch, obj.compiled, obj.model = retained.torch, retained.compiled, retained.model
-        obj.partition = copy(retained.partition)
-        obj.partition.work = retained.partition.work.copy()
+        from .compiled_kernel import fork_partition
+        obj.partition = fork_partition(retained.partition)
         obj.partition._light_cpu = obj.partition._light_gpu = None
         obj.periods = dict(retained.periods)
         obj.observation_dt, obj.history_dt = retained.observation_dt, retained.history_dt
@@ -340,6 +340,7 @@ class ReducedConeHCRunner:
         sink pending events stay owned by the state, including future-bin events.
         """
         from scipy.integrate import DOP853
+        from .solver_lifetime import collection_epoch, release_solver_cycles
         from .network import NetworkStimulus
         if state_observer is None or self.channels is None or set(channels)!=set(self.channels) or any(
                 channels[k].evaluator is not self.channels[k].evaluator for k in channels):
@@ -414,6 +415,7 @@ class ReducedConeHCRunner:
                     packet = state.cursor.packet_at(current)
                     packet.wait()  # Exactly once per accepted packet, outside inner compute timing.
                     begun = perf_counter()
+                    epoch = collection_epoch()
                     solver = DOP853(lambda t,y:self._inner_rhs(state.cursor,stimulus,target,t,y),
                         current,state.point.inner.copy(),target,rtol=state.solver_config.rtol,
                         atol=state.solver_config.atol,max_step=state.solver_config.max_step)
@@ -432,6 +434,9 @@ class ReducedConeHCRunner:
                                                    state.cursor.packet_at(t,left=t>=target).release_at(t))
                     self.metrics['inner_seconds'] += perf_counter()-begun
                     self.metrics['inner_nfev'] += solver.nfev
+                    del solver, dense
+                    cleanup = release_solver_cycles(epoch)
+                    self.metrics['inner_solver_gc_seconds'] = self.metrics.get('inner_solver_gc_seconds', 0.)+cleanup['wall_seconds']
                     state.point = rows[target]
                     state.generation += 1
                     flush_events(target)

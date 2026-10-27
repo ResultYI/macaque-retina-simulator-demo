@@ -1,0 +1,64 @@
+{
+  "schema": "bc-ac-fullchain-conditional-adapter-1",
+  "mode": "CONDITIONAL",
+  "computation": {"config": "configurations/computation_resolution_v1.json", "spatial_scope": "local_patch", "granularity": "coarse_grouped"},
+  "prepared_model": "reports/ac_vs_native_support_v1/prepared_v1",
+  "prepared_seed_manifest_sha256": "14fcbfc97348d14169286a1f3ca0a61ec32a0ced70ae464a5e5a35c6823f9400",
+  "targets": {
+    "directory": "reports/layer_calibration/ac_ei_targets_v1",
+    "definition_sha256": "8fcee7aa9b1eceddb5e03ea6d5ed3b182fff47f255709e17098f410586f23bad",
+    "manifest_sha256": "ca8c6e915fa89d9990f450647d9ec758158cc136b29ec4b6932dbcd5336f8e66",
+    "arrays_sha256": "c3d720d11addaba39fdb800abd456bcf3d66ba24a17ecbbdc6f916628d6d88da",
+    "allowed_splits": ["train", "validation"],
+    "split_sizes": [4, 2],
+    "sealed_test_access": false,
+    "samples": 71000,
+    "source_dt_s": 0.0001,
+    "source_export_origin_s": 0.0,
+    "source_physical_origin_verified": false,
+    "active_samples_half_open": [10000, 70000],
+    "polarity": {"E": "signed raw export, dominant negative", "I": "signed raw export, dominant positive"},
+    "physical_current_unit": null,
+    "physical_illuminance_unit": null,
+    "physical_DC_offset": null
+  },
+  "normalization": {
+    "mode": "separate_signed_self_rms",
+    "prediction_and_observation_each_use_own_positive_RMS": true,
+    "retain_DC": true,
+    "subtract_baseline": false,
+    "clip": false,
+    "fit_time_shift": false,
+    "truncate_source": false,
+    "pure_multiplicative_gain_identifiable": false
+  },
+  "parameters": {
+    "active_parameters": [],
+    "bounds": {},
+    "BC_populations": [],
+    "AC_populations": [],
+    "maximum_free_BC_times": 1,
+    "maximum_free_AC_times": 1,
+    "all_other_parameters_fixed": true,
+    "eligible_selectors_not_final_choices": ["bc.tau_release_s", "bc.tau_adaptation_s", "ac.membrane_tau_s", "ac.gate_tau_scale"]
+  },
+  "feedback_graph": {
+    "parent_manifest": "reports/spatial_group_graph_v02_20261025_v1/artifact_r2/manifest.json",
+    "parent_manifest_sha256": "d786408da9a38cb09e84fc2cf17bb2224c8a7f2a43b0682d566a46ff01698fce",
+    "AC_configuration": "configurations/ac_vs_functional_v1.json",
+    "parameters_fixed_not_state_trajectories": true,
+    "add_ordinary_AC_to_BC": false,
+    "add_AII_to_RGC": false
+  },
+  "launch": {
+    "approved_contract": false,
+    "fixed_input_driver": null,
+    "fixed_clock_bridge": null,
+    "fixed_response_polarity_mapping": null,
+    "fixed_output_selection": null,
+    "initial_state_history_policy": null,
+    "forward_resource_contract": null,
+    "final_parameter_choice_and_bounds": null
+  },
+  "qualification": {"FIT_READY": false, "default_adopted": false, "absolute_current_prediction": false, "physiological_calibration": false, "optimizer_implemented": false}
+}

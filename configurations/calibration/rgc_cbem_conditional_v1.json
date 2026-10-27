@@ -1,0 +1,31 @@
+{
+  "protocol_id": "rgc_cbem_conditional_conductance_proxy_v1",
+  "schema_version": 1,
+  "qualification": "CONDITIONAL_ENGINEERING_ONLY",
+  "physical_qualification": "DATA_BLOCKED",
+  "source_chat": "https://chatgpt.com/c/6adf7762-e68c-83e8-9ad7-f937d3d44b18",
+  "source_plan_library_id": "libfile_e4a5ba37189c8191a16e37c7364347cc",
+  "cell": "Cell_6_060908Bc2",
+  "source_directory": "data/source_data/latimer2019_figshare_v1",
+  "backup_directory": "D:/macaque_retina_simulator.backup_20261026_v1/data/source_data/latimer2019_figshare_v1",
+  "restore_files": ["Cell_6.mat", "article_metadata.json", "download_manifest.json", "author_data_directory.json"],
+  "assumptions": {
+    "export_current_unit": {"value": "pA", "evidence": "ASSUMED_UNVERIFIED"},
+    "exc_current_divisor_V": {"value": -0.07, "evidence": "PAPER_APPROXIMATE_DRIVING_FORCE; export compatibility ASSUMED_UNVERIFIED; not holding voltage"},
+    "inh_current_divisor_V": {"value": 0.07, "evidence": "PAPER_APPROXIMATE_DRIVING_FORCE; export compatibility ASSUMED_UNVERIFIED; not holding voltage"},
+    "index_origin": {"value": 1, "evidence": "EXISTING_LOADER_CONVENTION_ASSUMED_UNVERIFIED"},
+    "index_origin_sensitivity": [0, 1],
+    "baseline_offset_A": 0.0,
+    "current_clipping": false,
+    "same_trial_EI_spikes": false,
+    "pairing": "exact full-stimulus SHA256 and byte equality; independent repeat means of measured currents"
+  },
+  "hard_gaps": ["MAT current units", "DC export baseline", "zero/one-based sample origin", "per-cell voltage and capacitance"],
+  "input": {"sample_dt_s": 0.0001, "spike_dt_s": 0.001, "samples": 71000, "score_bins_half_open": [1000, 7000], "voltage": "existing latimer2019.voltage_zoh; native V0=EL at source t=0; full 1s prefix propagated", "history": "observed strict past; zero only before recording; all scored history inside actual 1s prefix", "lag_fitting": false},
+  "split": {"rule": "lexicographically sorted full stimulus SHA256; first4 train, next2 validation, last2 sealed_test", "sizes": [4, 2, 2], "reason": "All8 complete existing-loader cross-mode groups; two of10 lack I. Transparent 4/2/2 conditional replacement for full10 6/2/2, fixed before any loss.", "all_repeats_together": true, "test_policy": "offline labels permitted for domain checks only; test metrics once after candidate freeze; never tune from test"},
+  "parameters": {"free": ["alpha", "mu"], "initial": "unchanged existing effective_parasol_RGC_ON", "alpha_bound_native_factors": [0.01, 100.0], "mu_bound_beta_margins": 4.0, "bound_rationale": "Declared engineering search domain, not physiological prior. alpha positive, two log10 decades either side of native Hz scale. mu covers fixed reversal plus full history envelope with4 fixed beta margins; no data or loss used. Bounds freeze before optimize.", "regularization_weight": 0.0, "prior_status": "NO_CREDIBLE_ALPHA_MU_PRIOR; unregularized baseline", "fixed": ["C", "gL", "EL", "EE", "EI", "V0", "beta", "spike_history_kernel", "initial_spike_history", "spike_interval", "upstream", "EI multipliers=1"]},
+  "optimizer": {"method": "L-BFGS-B", "coordinate_system": "log(alpha/native_alpha), (mu-native_mu)/native_beta", "maxiter": 100, "maxfun": 1000, "maxls": 30, "ftol": 1e-10, "gtol": 1e-6, "objective": "unregularized native teacher-forced Bernoulli NLL per training bin", "validation_policy": "one final validation after training convergence; no validation-guided retries", "candidate_acceptance": "converged, actual nonzero parameter update, validation NLL <= unchanged native and < training-estimated constant-rate baseline", "domain_error_policy": "stop candidate immediately; no clipping or implicit retry", "resume": "restart L-BFGS-B at saved accepted iterate with remaining global iteration/evaluation budgets; curvature not preserved"},
+  "evaluation": {"psth_bin_s": 0.02, "probability_bins": 10, "psth_labels": ["teacher_forced observed-history expectation", "free_history exact8-state marginal initialized at native zero history and propagated through full1s prefix"], "sensitivity": "only origin0 fixed-policy train/validation once after freezing main candidate; no optimization, no origin selection, no sealed-test sensitivity", "test_calls_max": 1},
+  "resources": {"threads": 1, "gpu": false, "workers": 0, "minimum_available_RAM_GiB": 2.0, "maximum_system_memory_load_percent": 90, "stop_files": ["STOP", "reports/layer_calibration/STOP"], "stage_timing": "first real train evaluation records voltage prep, cold objective, warm objective; cost projection from measured maxfun and callbacks; no legacy global wall budget"},
+  "execution": {"initial_state": "PREPARATION_ONLY_WAITING_FOR_PARENT", "coordination_release_required": true, "production_writeback": false}
+}

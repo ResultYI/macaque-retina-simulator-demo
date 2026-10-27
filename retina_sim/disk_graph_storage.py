@@ -98,7 +98,7 @@ class FrozenSparseRoute:
             if file_sha(path)!=record['sha256']:raise ContractError('Frozen route block changed')
             self._verified[record['path']]=stamp
         with np.load(path,allow_pickle=False) as z:
-            matrix=sparse.csr_matrix((z['data'].copy(),z['indices'].copy(),z['indptr'].copy()),shape=tuple(z['shape']))
+            matrix=sparse.csr_matrix((z['data'],z['indices'],z['indptr']),shape=tuple(z['shape']))
             rows=json.loads(str(z['audit_json']));statuses=z['row_status'].tolist()
         return matrix,rows,statuses
     def selected_rows(self,post_indices):

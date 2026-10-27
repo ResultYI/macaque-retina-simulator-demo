@@ -92,7 +92,8 @@ def apply_rgc_defaults(result,root,enabled=True):
         from .assembly import RetinaBuilder
         audit.update(runtime_profile=dict(audit['runtime_profile'],accepted_RGC_output_defaults=adoptions),
             resource_estimate=RetinaBuilder(audit['registry']).estimate(compiled.spec),
-            population_records={key:pop.record() for key,pop in compiled.populations.items()})
+            population_records={key:pop.record(compact=getattr(getattr(compiled,'global_spatial_asset',None),'compact_metadata',False))
+                for key,pop in compiled.populations.items()})
         compiled.accepted_rgc_output_defaults=adoptions
     if absent:audit=dict(audit,rgc_defaults_absent_owner_components=absent)
     return compiled,channels,audit

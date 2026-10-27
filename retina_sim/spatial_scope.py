@@ -40,10 +40,10 @@ def read_owner_scope(root):
     return dict(scope, binding=binding)
 
 
-def enforce_owner_scope(root, bounds):
-    """Reject a new recording rectangle beyond the declared output disk.
+def enforce_owner_scope(root, bounds, *, owner_radius_mm=None):
+    """Reject an output rectangle (optionally intersected with a centered disk).
 
-    The rectangle must be wholly supported. Dependency/halo positions are not
+    The output selection must be wholly supported. Dependency/halo positions are not
     falsely presented as additional output coverage and are never clipped here.
     """
     scope = read_owner_scope(root)
@@ -55,6 +55,12 @@ def enforce_owner_scope(root, bounds):
     if x1 <= x0 or y1 <= y0:
         raise ContractError("Owner recording rectangle must have positive area")
     requested = max(math.hypot(x, y) for x in (x0, x1) for y in (y0, y1))
+    if owner_radius_mm is not None:
+        if (isinstance(owner_radius_mm, bool) or
+                not isinstance(owner_radius_mm, (int, float)) or
+                not math.isfinite(owner_radius_mm) or owner_radius_mm <= 0):
+            raise ContractError('Output disk requires a positive finite radius')
+        requested = min(requested, owner_radius_mm)
     if requested > scope["maximum_owner_radius_mm"] + 1e-12:
         raise ContractError(
             "OWNER_SPATIAL_SCOPE_EXCEEDED: requested %.9g mm; maximum %.9g mm "

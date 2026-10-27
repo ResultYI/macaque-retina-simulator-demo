@@ -140,11 +140,12 @@ class GlobalDiskCircuit:
             rows=np.flatnonzero(keep[offsets[name]:offsets[name]+counts[name]])
             target=selected.setdefault(name,set());before=len(target);target.update(map(int,rows));changed|=len(target)>before
         return changed
-    def owner_view(self,bounds,*,outputs=OUTPUTS,max_nodes=2000000,empty_chemical_input_policy='reject_empty_chemical_input_v1',owner_global_rows=None):
+    def owner_view(self,bounds,*,outputs=OUTPUTS,max_nodes=2000000,empty_chemical_input_policy='reject_empty_chemical_input_v1',owner_global_rows=None,owner_radius_mm=3.,dependency_observer=None):
         from .finite_input_support import EMPTY_SUM_POLICY,REJECT_EMPTY_POLICY
         if empty_chemical_input_policy not in (EMPTY_SUM_POLICY,REJECT_EMPTY_POLICY):
             raise ContractError('Unknown frozen empty chemical input policy')
-        roi=DiskAtlasROI(tuple(bounds),tuple(bounds),self.record['reference_id'],owner_radius_mm=3.,query_radius_mm=3.)
+        if isinstance(owner_radius_mm,bool):raise ContractError('Output radius must be numeric, not boolean')
+        roi=DiskAtlasROI(tuple(bounds),tuple(bounds),self.record['reference_id'],owner_radius_mm=owner_radius_mm,query_radius_mm=3.)
         if owner_global_rows is not None and (not isinstance(owner_global_rows,dict) or set(owner_global_rows)-set(outputs)):
             raise ContractError('Explicit owner selection must name only requested output populations')
         selected={};owner={};seen={};empty=[];blocked_owner=[]
@@ -164,8 +165,9 @@ class GlobalDiskCircuit:
         if len(empty)==len(outputs):
             if blocked_owner:raise ContractError('UNRESOLVED_RGC_OUTPUT_COVERAGE: blocked candidates retained; no replacement RF cell')
             raise ContractError('EMPTY_OUTPUT_SAMPLE: no forced population or origin cell')
-        changed=True
+        changed=True;iteration=0
         while changed:
+            iteration+=1
             changed=self._expand_components(selected,'native_components')|self._expand_components(selected,'electrical_components')
             for descriptor in self.record['routes']:
                 if descriptor['kind'] in ('native','gap'):continue
@@ -173,7 +175,20 @@ class GlobalDiskCircuit:
                 if not pending:continue
                 seen[key].update(pending);parents=self.route(descriptor).dependency_rows(sorted(pending))
                 target=selected.setdefault(descriptor['pre'],set());before=len(target);target.update(map(int,parents));changed|=len(target)>before
-            if sum(map(len,selected.values()))>max_nodes:raise ContractError('Exact global dependency closure exceeds execution node budget; no crop or thinning applied')
+            count=sum(map(len,selected.values()))
+            if dependency_observer is not None:
+                dependency_observer({'iteration':iteration,'selected_nodes':count,
+                    'selected_counts':{name:len(rows) for name,rows in selected.items()},
+                    'fixed_point_reached':not changed})
+            if count>max_nodes:
+                error=ContractError('Exact global dependency closure exceeds execution node budget; no crop or thinning applied')
+                error.dependency_diagnostic={'max_nodes':max_nodes,'selected_nodes_at_stop':count,
+                    'selected_counts_at_stop':{name:len(rows) for name,rows in selected.items()},
+                    'owner_counts':{name:len(rows) for name,rows in owner.items()},
+                    'expansion_iteration':iteration,'dependency_fixed_point_reached':not changed,
+                    'support_validation_completed':False,'count_is_final':not changed,
+                    'crop_or_thinning_applied':False}
+                raise error
         selected={name:np.asarray(sorted(indices),dtype=np.int64) for name,indices in selected.items() if indices}
         unsupported=list(blocked_owner);empty_chemical=[]
         for descriptor in self.record['routes']:
@@ -190,14 +205,14 @@ class GlobalDiskCircuit:
             _,_,audits,statuses=self.route(descriptor).selected_rows(post)
             unsupported.extend({'route':descriptor['route_id'],'post_global_row':int(index),'status':status,
                 'missing_degree':audit.get('missing_degree')} for index,audit,status in zip(post,audits,statuses) if not status.startswith('READY'))
-        return {'schema':'exact_global_disk_dependency_view_v1','graph':self.binding,'owner_bounds_mm':tuple(bounds),'owner_disk_radius_mm':3.,
+        return {'schema':'exact_global_disk_dependency_view_v1','graph':self.binding,'owner_bounds_mm':tuple(bounds),'owner_disk_radius_mm':owner_radius_mm,
             'selected_rows':selected,'owner_output_rows':owner,'empty_output_samples':tuple(empty),'unsupported_rows':unsupported,
             'runtime_ready':not unsupported,'geometry_regenerated':False,'weights_renormalized':False,
             'empty_chemical_input_policy':empty_chemical_input_policy,'declared_empty_chemical_sums':empty_chemical,
-            'owner_selection_mode':'all_actual_cells_in_rectangle' if owner_global_rows is None else 'explicit_existing_global_rows',
+            'owner_selection_mode':('all_actual_cells_in_rectangle' if owner_radius_mm==3. else 'all_actual_cells_in_disk_intersection') if owner_global_rows is None else 'explicit_existing_global_rows',
             'requested_owner_global_rows':None if owner_global_rows is None else {name:rows.tolist() for name,rows in owner.items()},
             'global_node_count':sum(map(len,selected.values())),'physical_calibration':False}
-    def table_record(self,name,indices):
+    def table_record(self,name,indices,*,compact=False):
         table=self.table(name);canonical=table.rows(indices)
         if self.record['tables'][name]['kind']=='disk_population':
             xy=table.positions[indices];coordinates=dict(canonical.coordinates)
@@ -207,4 +222,7 @@ class GlobalDiskCircuit:
                 from .atlas import CanonicalCellTable
                 canonical=CanonicalCellTable(canonical.atlas_id,canonical.atlas_version,canonical.source_version,canonical.population,
                     canonical.source_keys,coordinates,canonical.reference_id)
+        if compact:
+            from .compact_population_record import CompactPopulationRecord
+            return CompactPopulationRecord.from_canonical(canonical)
         return canonical.record()

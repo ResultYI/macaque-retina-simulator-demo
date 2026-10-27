@@ -1,0 +1,16 @@
+{
+  "schema": "retina-computation-scope-resolution-1",
+  "spatial_scope_options": ["local_patch", "full_domain"],
+  "granularity_options": ["coarse_grouped", "per_cell"],
+  "default_request": {"spatial_scope": "local_patch", "granularity": "coarse_grouped"},
+  "validated_grouped_local": {
+    "prepared_model": "reports/ac_vs_native_support_v1/prepared_v1",
+    "graph_artifact_sha256": "bda3e555e2b3c9700eecf2c73ef721966adc42348916406ef9c23569a29a7f20",
+    "group_mapping": {"path": "reports/ac_vs_native_support_v1/static_candidate_v1/selection.npz", "sha256": "d032802c2e5a2ddb03bf383ba57e779d7e8a0f035704c98bf2d30383e8f48cdb"}
+  },
+  "fine_graph_expected": {"path": "data/atlas/human_disk3mm_functional_hc_v1/circuit/manifest.json", "sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557"},
+  "fine_runtime": "Not implemented for the current V+s local/full model; source-level closure and per-cell runner are required",
+  "group_observation_semantics": "Representative group states plus explicit original member IDs; never replicate group states as independent cell states",
+  "cache_checkpoint_identity": "Versioned canonical hash of spatial scope, granularity, graph artifact, and actual group/fine mapping; never cross-use",
+  "default_adopted": false
+}

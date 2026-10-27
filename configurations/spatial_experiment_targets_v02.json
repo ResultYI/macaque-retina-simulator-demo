@@ -1,0 +1,999 @@
+{
+  "schema": "retipath-spatial-experiment-targets-2",
+  "output_radius_deg": 6.0,
+  "coordinate_unit": "degree",
+  "purpose": "Static spatial provenance registry; no simulation, teacher generation, fitting or numerical acceptance",
+  "static_background_build_allowed": true,
+  "target_specific_instances_blocked": true,
+  "cross_experiment_merge_allowed": false,
+  "instance_policy": "Different retinas and stimulus conditions remain separate experiment instances. Static geometry may be reused and parameter sharing may be declared later; targets are never pooled into a simultaneous spatial retina without a qualified common registration.",
+  "unresolved_policy": "Build the target-independent typed background mesh only. Do not invent azimuth, RF scale, model pairing, stimulus registration or a central teacher binding. Resolve required target metadata before constructing target-specific refinement instances.",
+  "experiments": [
+    {
+      "experiment_id": "centered_12deg_replay",
+      "status": "static_mesh_only",
+      "target_specific_instance_ready": false,
+      "target_refinement_ready": false,
+      "static_background_build_allowed": true,
+      "fit_targets": [],
+      "targets": [],
+      "stimulus_context": "Centered 12 degree engineering field; not the eccentric legacy VR input",
+      "sources": [
+        {
+          "path": "configurations/cone_hc_reduced_foveal_demo_input_v1.json",
+          "sha256": "ef390621635ecc3a532b9c6f2f0818f5f795a1f9bb15a24c09bc8d41fb7ab7aa"
+        },
+        {
+          "path": "configurations/cone_hc_reduced_foveal_6deg_v1.json",
+          "sha256": "d722a1959c79fe17f8d277424f7b13e075f36757249121b87370e8ba50184491"
+        },
+        {
+          "path": "reports/cone_hc_reduced_foveal_6deg_run_20261024_v1/fit_readiness.json",
+          "sha256": "df5a9ab00f365be347f159fa68e715a0b314a6eb1d813059d57b3c296c95c893"
+        }
+      ],
+      "missing_fields": [
+        "matching_fit_target_registry"
+      ],
+      "reason": "Existing centered replay has no bound fit targets. Static full-upstream mesh assembly is allowed; this does not qualify a fitting experiment."
+    },
+    {
+      "experiment_id": "natural_movie_15",
+      "status": "incomplete_blocked",
+      "target_specific_instance_ready": false,
+      "target_refinement_ready": false,
+      "static_background_build_allowed": true,
+      "source_cell_count": 15,
+      "inside_output_radius_count": 10,
+      "outside_output_radius_count": 5,
+      "retina_instance_policy": "No simultaneous shared-retina registration is established by cell key or eccentricity alone",
+      "stimulus_context": "Author natural-movie recordings; spatial registration to model coordinates is unresolved",
+      "sources": [
+        {
+          "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+          "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+        },
+        {
+          "path": "reports/pro_current_implementation_20261025_v1/CURRENT_IMPLEMENTATION_AND_PRO_REVIEW.md",
+          "sha256": "42261514d7cffecc0641a43cb11845d57437196a0801b97b95316ee789502bae"
+        }
+      ],
+      "targets": [
+        {
+          "target_id": "67#14",
+          "author_type": "+L-Mon",
+          "eccentricity_deg": 8.31,
+          "inside_output_radius": false,
+          "recording_files": [
+            "Lss01110.txt",
+            "Lss01112.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#21",
+          "author_type": "+M-Lon",
+          "eccentricity_deg": 7.85,
+          "inside_output_radius": false,
+          "recording_files": [
+            "Lss01130.txt",
+            "Lss01131.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#26",
+          "author_type": "+M-Lon",
+          "eccentricity_deg": 5.83,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01141.txt",
+            "Lss01142.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#33",
+          "author_type": "MC off",
+          "eccentricity_deg": 4.73,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01159.txt",
+            "Lss01160.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#34",
+          "author_type": "+L-Mon",
+          "eccentricity_deg": 4.8,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01167.txt",
+            "Lss01168.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#4",
+          "author_type": "-M+L off",
+          "eccentricity_deg": 6.89,
+          "inside_output_radius": false,
+          "recording_files": [
+            "Lss01071.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#6",
+          "author_type": "MC off",
+          "eccentricity_deg": 6.72,
+          "inside_output_radius": false,
+          "recording_files": [
+            "Lss01078.txt",
+            "Lss01079.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "67#7",
+          "author_type": "MC on",
+          "eccentricity_deg": 7.36,
+          "inside_output_radius": false,
+          "recording_files": [
+            "Lss01086.txt",
+            "Lss01087.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "68#1",
+          "author_type": "S on",
+          "eccentricity_deg": 5.63,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01178.txt",
+            "Lss01180.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "68#10",
+          "author_type": "MC on",
+          "eccentricity_deg": 4.89,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01221.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "68#12",
+          "author_type": "S on",
+          "eccentricity_deg": 4.91,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01229.txt",
+            "Lss01231.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "68#3",
+          "author_type": "MC off",
+          "eccentricity_deg": 5.08,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01181.txt",
+            "Lss01183.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "69#6",
+          "author_type": "M off",
+          "eccentricity_deg": 3.88,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01256.txt",
+            "Lss01257.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "69#7",
+          "author_type": "M on",
+          "eccentricity_deg": 3.52,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01258.txt",
+            "Lss01259.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "70#7",
+          "author_type": "+M-Lon",
+          "eccentricity_deg": 3.49,
+          "inside_output_radius": true,
+          "recording_files": [
+            "Lss01284.txt",
+            "Lss01285.txt"
+          ],
+          "source": {
+            "path": "reports/pro_current_implementation_20261025_v1/dataset_local_audit.json",
+            "sha256": "7346029e1d4ddca53d7525353e70d6ee7179e1005cfbea35f7aa0cf973eb95ee"
+          },
+          "provenance_role": "author_readme_metadata_as_audited",
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "incomplete_blocked",
+          "missing_fields": [
+            "rf_center_2d_deg_or_azimuth",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_spatial_registration",
+            "stimulus_relevant_fmax_cpd",
+            "retina_instance_binding"
+          ],
+          "target_refinement_ready": false
+        }
+      ],
+      "missing_fields": [
+        "rf_center_2d_deg_or_azimuth",
+        "qualified_model_type_and_cell_mapping",
+        "rf_size_and_definition",
+        "stimulus_spatial_registration",
+        "stimulus_relevant_fmax_cpd",
+        "retina_instance_binding"
+      ],
+      "reason": "Author type and scalar eccentricity are provenance, not a 2D model registration. Out-of-range records are retained in the registry but are not output owners."
+    },
+    {
+      "experiment_id": "legacy_vr4",
+      "status": "engineering_pairs_blocked_for_target_refinement",
+      "target_specific_instance_ready": false,
+      "target_refinement_ready": false,
+      "static_background_build_allowed": true,
+      "source_cell_count": 4,
+      "stimulus_context": "Historical eccentric approximately 4.6 degree teacher field; separate from centered_12deg_replay",
+      "sources": [
+        {
+          "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/pilot_contract.json",
+          "sha256": "2d112d8c282bb0a877391dec3afb12cc5d7acf033817a55c358d9070a018fcf9"
+        },
+        {
+          "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/source_capture_configuration.json",
+          "sha256": "4c1e283a4c4dddb870a8e12619406fbd0e724c9141fee7847e3aacfc0c34c4d1"
+        },
+        {
+          "path": "reports/cone_hc_reduced_foveal_6deg_run_20261024_v1/fit_target_owner_audit.json",
+          "sha256": "5d617f8af5c5bb454a3d165a4c874b0322119524450729227229bc11cbc750b6"
+        },
+        {
+          "path": "reports/cone_hc_reduced_foveal_6deg_run_20261024_v1/fit_readiness.json",
+          "sha256": "df5a9ab00f365be347f159fa68e715a0b314a6eb1d813059d57b3c296c95c893"
+        }
+      ],
+      "targets": [
+        {
+          "target_id": "legacy_vr_unit_0",
+          "author_type": "ON_midget",
+          "teacher_column": 0,
+          "teacher_unit_id": 0,
+          "model_component": "midget_RGC_ON",
+          "global_row": 102603,
+          "model_cell_id": "atlas:8a7398d95147d57a56894b7427e85ccd7649be3c95544d5ef79ba9a1bb922fdf",
+          "model_rf_center_deg": [
+            4.5652282441143495,
+            0.0004984110326510374
+          ],
+          "model_rf_center_mm": [
+            1.0180458984375,
+            0.00011114566028118134
+          ],
+          "teacher_rf_center_deg": [
+            4.582031249999999,
+            0.0
+          ],
+          "nearest_rf_distance_deg": 0.01681039619850256,
+          "inside_output_radius": true,
+          "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+          "source": {
+            "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/pilot_contract.json",
+            "sha256": "2d112d8c282bb0a877391dec3afb12cc5d7acf033817a55c358d9070a018fcf9"
+          },
+          "table_binding": {
+            "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_ON/manifest.json",
+            "sha256": "844dae5e9e67c28dd4fc2d18d0621b150c89e04451763c7c5e3b03c2479d7e0f"
+          },
+          "rf_size": null,
+          "status": "engineering_pair_incomplete_scale_and_fmax",
+          "missing_fields": [
+            "rf_size_and_definition",
+            "stimulus_relevant_fmax_cpd"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "legacy_vr_unit_1",
+          "author_type": "OFF_midget",
+          "teacher_column": 1,
+          "teacher_unit_id": 1,
+          "model_component": "midget_RGC_OFF",
+          "global_row": 102603,
+          "model_cell_id": "atlas:dfd07737c3afd1dd2853d06479677b2b8beac1c733037249e3e6765007b73c91",
+          "model_rf_center_deg": [
+            4.5652282441143495,
+            0.0004984110326510374
+          ],
+          "model_rf_center_mm": [
+            1.0180458984375,
+            0.00011114566028118134
+          ],
+          "teacher_rf_center_deg": [
+            4.582031249999999,
+            0.0
+          ],
+          "nearest_rf_distance_deg": 0.01681039619850256,
+          "inside_output_radius": true,
+          "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+          "source": {
+            "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/pilot_contract.json",
+            "sha256": "2d112d8c282bb0a877391dec3afb12cc5d7acf033817a55c358d9070a018fcf9"
+          },
+          "table_binding": {
+            "path": "data/atlas/human_disk3mm_midget_floor_v1/midget_RGC_OFF/manifest.json",
+            "sha256": "9953c1c99fceca942337bb037167ecc98b169dcea45c9861de56bd44afac7e41"
+          },
+          "rf_size": null,
+          "status": "engineering_pair_incomplete_scale_and_fmax",
+          "missing_fields": [
+            "rf_size_and_definition",
+            "stimulus_relevant_fmax_cpd"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "legacy_vr_unit_2",
+          "author_type": "ON_parasol",
+          "teacher_column": 2,
+          "teacher_unit_id": 2,
+          "model_component": "parasol_RGC_ON",
+          "global_row": 25300,
+          "model_cell_id": "atlas:249dc356a2136cdf25e7c300b9172ca257fc473d85272dc074148f5bb317512e",
+          "model_rf_center_deg": [
+            4.573278561683184,
+            -0.025249624573637428
+          ],
+          "model_rf_center_mm": [
+            1.01984111925535,
+            -0.0056306662799211465
+          ],
+          "teacher_rf_center_deg": [
+            4.582031249999999,
+            0.0
+          ],
+          "nearest_rf_distance_deg": 0.026723642975480473,
+          "inside_output_radius": true,
+          "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+          "source": {
+            "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/pilot_contract.json",
+            "sha256": "2d112d8c282bb0a877391dec3afb12cc5d7acf033817a55c358d9070a018fcf9"
+          },
+          "table_binding": {
+            "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_ON/manifest.json",
+            "sha256": "9b70fffb0134407484a7ad56e8f5ab69e1b0f18ceca19939c590a1039c83af14"
+          },
+          "rf_size": null,
+          "status": "engineering_pair_incomplete_scale_and_fmax",
+          "missing_fields": [
+            "rf_size_and_definition",
+            "stimulus_relevant_fmax_cpd"
+          ],
+          "target_refinement_ready": false
+        },
+        {
+          "target_id": "legacy_vr_unit_3",
+          "author_type": "OFF_parasol",
+          "teacher_column": 3,
+          "teacher_unit_id": 3,
+          "model_component": "parasol_RGC_OFF",
+          "global_row": 25300,
+          "model_cell_id": "atlas:fc132497a54c7362ecb0c7cf0f1fb7a1e9013b11dad95e90eb32b819fab7755e",
+          "model_rf_center_deg": [
+            4.575946050855792,
+            -0.008044885803652842
+          ],
+          "model_rf_center_mm": [
+            1.0204359693408416,
+            -0.0017940095342145839
+          ],
+          "teacher_rf_center_deg": [
+            4.582031249999999,
+            0.0
+          ],
+          "nearest_rf_distance_deg": 0.010087112382564028,
+          "inside_output_radius": true,
+          "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+          "source": {
+            "path": "tools/vr_teacher_handoff_v1/fit_integration_v1/pilot_contract.json",
+            "sha256": "2d112d8c282bb0a877391dec3afb12cc5d7acf033817a55c358d9070a018fcf9"
+          },
+          "table_binding": {
+            "path": "data/atlas/human_disk3mm_inner_v1/parasol_RGC_OFF/manifest.json",
+            "sha256": "bcdf6eda11d4dcc65f8e155987fd86df2a3ed92a4e2609c2cf438eb9bcdf1961"
+          },
+          "rf_size": null,
+          "status": "engineering_pair_incomplete_scale_and_fmax",
+          "missing_fields": [
+            "rf_size_and_definition",
+            "stimulus_relevant_fmax_cpd"
+          ],
+          "target_refinement_ready": false
+        }
+      ],
+      "missing_fields": [
+        "rf_size_and_definition",
+        "stimulus_relevant_fmax_cpd"
+      ],
+      "simulation_and_fit_blockers": [
+        "native_light_conversion_not_bound",
+        "no_qualified_same_input_graph_background",
+        "no_same_input_rgc_only_boundary_cache"
+      ],
+      "mapping_qualification": "Functional nearest-RF engineering pairing; not biological cell identity",
+      "reason": "Known original model rows and 2D RF anchors are engineering pairings. Scale and relevant fmax are not supplied; do not silently equate this instance to central VR or the centered replay."
+    },
+    {
+      "experiment_id": "central_vr",
+      "status": "missing_binding",
+      "target_specific_instance_ready": false,
+      "target_refinement_ready": false,
+      "static_background_build_allowed": true,
+      "declared_source_route": "User states that central foveal constraints currently come from Virtual Retina teacher simulations",
+      "declaration_is_asset_binding": false,
+      "sources": [
+        {
+          "path": "reports/pro_current_implementation_20261025_v1/CURRENT_IMPLEMENTATION_AND_PRO_REVIEW.md",
+          "sha256": "42261514d7cffecc0641a43cb11845d57437196a0801b97b95316ee789502bae"
+        }
+      ],
+      "targets": [],
+      "missing_fields": [
+        "central_teacher_asset_path_and_sha256",
+        "stimulus_asset_and_spatial_registration",
+        "teacher_generation_configuration",
+        "target_2d_rf_coordinates_and_model_pairing",
+        "rf_size_and_definition",
+        "stimulus_relevant_fmax_cpd",
+        "observable_definition_and_units"
+      ],
+      "reason": "Preserve the user-declared central VR route. Inspected local provenance has not bound central assets, input, coordinates and generation parameters into one experiment. Legacy eccentric VR4 is not a substitute."
+    },
+    {
+      "experiment_id": "cbem_fullfield_6",
+      "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+      "target_specific_instance_ready": false,
+      "target_refinement_ready": false,
+      "static_background_build_allowed": true,
+      "source_cell_count": 6,
+      "inside_output_radius_count": null,
+      "outside_output_radius_count": null,
+      "calibration_candidate": true,
+      "fit_eligible": false,
+      "stimulus_context": "Published six ON-Parasol full-field experiments with per-trial stimulus, spikes and E/I currents. They provide temporal/full-field constraints; no shared spatial retina registration is established.",
+      "retina_instance_policy": "Keep the six original recordings independent unless a shared retina and stimulus registration is explicitly supplied; no six invented 2D refinement islands",
+      "sources": [
+        {
+          "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+          "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+        },
+        {
+          "path": "data/source_data/latimer2019_figshare_v1/author_data_directory.json",
+          "sha256": "5a98d90a904ec35b997164234be67636f264052589e93582d00dd8be81c5e93b"
+        },
+        {
+          "path": "reports/pro_current_implementation_20261025_v1/CURRENT_IMPLEMENTATION_AND_PRO_REVIEW.md",
+          "sha256": "42261514d7cffecc0641a43cb11845d57437196a0801b97b95316ee789502bae"
+        }
+      ],
+      "targets": [
+        {
+          "target_id": "Cell_1",
+          "author_type": "ON Parasol",
+          "author_file_name": "Cell_1.mat",
+          "figshare_file_id": 17288438,
+          "published_size_bytes": 37952837,
+          "published_supplied_md5": "3c2af364a253ccdda0a517b74a52a5f9",
+          "source": {
+            "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+            "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+          },
+          "provenance_role": "published_figshare_metadata_not_a_local_raw_payload_audit",
+          "stimulus_kind": "full_field",
+          "recorded_observables": [
+            "spike_times",
+            "excitatory_current",
+            "inhibitory_current"
+          ],
+          "eccentricity_deg": null,
+          "inside_output_radius": null,
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+          "target_refinement_ready": false,
+          "missing_fields": [
+            "rf_center_2d_deg_and_eccentricity",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_calibration_and_model_registration",
+            "retina_instance_binding",
+            "local_raw_payload_completeness"
+          ]
+        },
+        {
+          "target_id": "Cell_2",
+          "author_type": "ON Parasol",
+          "author_file_name": "Cell_2.mat",
+          "figshare_file_id": 17288435,
+          "published_size_bytes": 28221485,
+          "published_supplied_md5": "438fecd92511c1a49e24a6c860ccc129",
+          "source": {
+            "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+            "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+          },
+          "provenance_role": "published_figshare_metadata_not_a_local_raw_payload_audit",
+          "stimulus_kind": "full_field",
+          "recorded_observables": [
+            "spike_times",
+            "excitatory_current",
+            "inhibitory_current"
+          ],
+          "eccentricity_deg": null,
+          "inside_output_radius": null,
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+          "target_refinement_ready": false,
+          "missing_fields": [
+            "rf_center_2d_deg_and_eccentricity",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_calibration_and_model_registration",
+            "retina_instance_binding",
+            "local_raw_payload_completeness"
+          ]
+        },
+        {
+          "target_id": "Cell_3",
+          "author_type": "ON Parasol",
+          "author_file_name": "Cell_3.mat",
+          "figshare_file_id": 17288423,
+          "published_size_bytes": 21943897,
+          "published_supplied_md5": "29521ac719cba9f67aacdf341bfcd2d5",
+          "source": {
+            "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+            "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+          },
+          "provenance_role": "published_figshare_metadata_not_a_local_raw_payload_audit",
+          "stimulus_kind": "full_field",
+          "recorded_observables": [
+            "spike_times",
+            "excitatory_current",
+            "inhibitory_current"
+          ],
+          "eccentricity_deg": null,
+          "inside_output_radius": null,
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+          "target_refinement_ready": false,
+          "missing_fields": [
+            "rf_center_2d_deg_and_eccentricity",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_calibration_and_model_registration",
+            "retina_instance_binding",
+            "local_raw_payload_completeness"
+          ]
+        },
+        {
+          "target_id": "Cell_4",
+          "author_type": "ON Parasol",
+          "author_file_name": "Cell_4.mat",
+          "figshare_file_id": 17288420,
+          "published_size_bytes": 28801619,
+          "published_supplied_md5": "24af8893cb7b56610b82c76b6b1233b5",
+          "source": {
+            "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+            "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+          },
+          "provenance_role": "published_figshare_metadata_not_a_local_raw_payload_audit",
+          "stimulus_kind": "full_field",
+          "recorded_observables": [
+            "spike_times",
+            "excitatory_current",
+            "inhibitory_current"
+          ],
+          "eccentricity_deg": null,
+          "inside_output_radius": null,
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+          "target_refinement_ready": false,
+          "missing_fields": [
+            "rf_center_2d_deg_and_eccentricity",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_calibration_and_model_registration",
+            "retina_instance_binding",
+            "local_raw_payload_completeness"
+          ]
+        },
+        {
+          "target_id": "Cell_5",
+          "author_type": "ON Parasol",
+          "author_file_name": "Cell_5.mat",
+          "figshare_file_id": 17288417,
+          "published_size_bytes": 17913282,
+          "published_supplied_md5": "9f0d6246c4ad142783b1a3717c04d06a",
+          "source": {
+            "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+            "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+          },
+          "provenance_role": "published_figshare_metadata_not_a_local_raw_payload_audit",
+          "stimulus_kind": "full_field",
+          "recorded_observables": [
+            "spike_times",
+            "excitatory_current",
+            "inhibitory_current"
+          ],
+          "eccentricity_deg": null,
+          "inside_output_radius": null,
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+          "target_refinement_ready": false,
+          "missing_fields": [
+            "rf_center_2d_deg_and_eccentricity",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_calibration_and_model_registration",
+            "retina_instance_binding",
+            "local_raw_payload_completeness"
+          ]
+        },
+        {
+          "target_id": "Cell_6",
+          "author_type": "ON Parasol",
+          "author_file_name": "Cell_6.mat",
+          "figshare_file_id": 17288414,
+          "published_size_bytes": 17007338,
+          "published_supplied_md5": "83be38d612d7e31bdf38b731cd2c3ebf",
+          "source": {
+            "path": "data/source_data/latimer2019_figshare_v1/article_metadata.json",
+            "sha256": "243166c0d8420739675ce9341da7192175e07e720ea4217b58000e4f8aedaefa"
+          },
+          "provenance_role": "published_figshare_metadata_not_a_local_raw_payload_audit",
+          "stimulus_kind": "full_field",
+          "recorded_observables": [
+            "spike_times",
+            "excitatory_current",
+            "inhibitory_current"
+          ],
+          "eccentricity_deg": null,
+          "inside_output_radius": null,
+          "model_component": null,
+          "global_row": null,
+          "model_cell_id": null,
+          "model_rf_center_deg": null,
+          "rf_size": null,
+          "status": "fullfield_calibration_candidate_spatial_binding_blocked",
+          "target_refinement_ready": false,
+          "missing_fields": [
+            "rf_center_2d_deg_and_eccentricity",
+            "qualified_model_type_and_cell_mapping",
+            "rf_size_and_definition",
+            "stimulus_calibration_and_model_registration",
+            "retina_instance_binding",
+            "local_raw_payload_completeness"
+          ]
+        }
+      ],
+      "missing_fields": [
+        "rf_center_2d_deg_and_eccentricity",
+        "qualified_model_type_and_cell_mapping",
+        "rf_size_and_definition",
+        "stimulus_calibration_and_model_registration",
+        "retina_instance_binding",
+        "local_raw_payload_completeness"
+      ],
+      "reason": "Preserve all six author metadata records as future calibration candidates. No azimuth, eccentricity, model row or RF scale is supplied by the audited metadata. Author code examples are references and not substitutes for the six source recordings."
+    }
+  ]
+}

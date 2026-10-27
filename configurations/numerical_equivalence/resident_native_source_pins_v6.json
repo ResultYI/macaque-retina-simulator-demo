@@ -1,0 +1,89 @@
+{
+  "schema": "resident_native_source_pins_v6",
+  "scope": "Opt-in CPU inner dead-temporary storage reuse; same FP64 instruction order, solver, source network, parameters, clocks and resource caps",
+  "sources": {
+    "gpu_dop853.py": "94d03925a324074338ff24a17e4d0e8f7cc3bf6aec88daf6527ea23d722b5f7e",
+    "gpu_hybrid.py": "7546dca85d669e0566f64e032e0b2e395b698dda7a5fbb6db20aad1ad2d7a4ea",
+    "gpu_compact.py": "f744da4b62dfcefdbaa1edefdd24a2ad3668554ddbda3864b93ec7b8f2056fda",
+    "gpu_native.py": "16a7081587c5a1b7a77410d9374c8547141062e6e5b8d43ec65df336e4c774da",
+    "hybrid.py": "774672e99657657a372e67cf221d226f2a241e34b277d415a19710cd6397aa19",
+    "network.py": "c06c8ef85b1e5c6689fd2cc21ea09e173c4694f6b50ec3b7491d5ab6e92fa0be",
+    "background.py": "776a83f1c62488efa609f0b0a482cf0c48f0bd58f9106b310b67cdc24b9440cf",
+    "background_advance.py": "243d898f1535da425eba0f1b45eae89232efa66fc956991d26bc870a5a78ab5d",
+    "recording.py": "d27508a6c8904704d4916f18d04ef6d356d1b3707fac3fbdda9f3f0ecfe4bd75",
+    "contracts.py": "696df746073967763d360988b676b7f97d1faff1a3ddef88660cc083e840187e",
+    "compiled_kernel.py": "fd4c897e155a691b9b48cfaaa8315a27cabab0f1c9ce5d1c8bab09dcffe08ef9",
+    "native_rows.py": "d5c91bff00cd9fd3f8779029b2191263ef464169d918a061544c7a8750a1c923",
+    "vh2005.py": "60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858",
+    "inner.py": "32c469e6a1de2c75a28b1bf6c6d9fcac8c6942f0391386d60608b95688bac0e3",
+    "rod_pathway.py": "5601dd757e22177fb02ebd72a4305ea145f8ddd05aa130822fe43f95b27c862c",
+    "bc_gain_control.py": "db45db6c6f107b1655ab6c26bcd96643ae0afec3d40fdbd9434de30755888e01",
+    "solver_lifetime.py": "735688aeea3ec1bbcb017a6bbbd0a69a8cde52b8eacbb05d479e648da523c3d1",
+    "canonical_stream.py": "19611bf7006c499f27a1e53062f22fcb601cd5c3d9bf89d59b666d7f9d2d9436",
+    "compact_population_record.py": "d0fc239beb62593cb687a57f10fccd6c3bf34f22485a654dca4ca8f86ca2c452",
+    "atlas_runtime.py": "f913278de8b7b023cf6848b0743b271a5c70fe6ae649cb87151579b9d7edd297",
+    "disk_runtime.py": "92bf3e38f801ce2485f5b27c69a8565f39467d800aef44780fd371fdf1de9736",
+    "disk_graph_storage.py": "53050c8f29713f3932795308bcda553c62f76517ec34c5e905b19a9b3910e4e6",
+    "resident_runner.py": "69390bd3b9d6fde2ae3ee7c24e2ff718af913dd65c8dc846e4a7d362d77a8f37",
+    "resident_delay.py": "131e2915795dab064d222e32f6c3227390927d6e8832a35c8bb603513d1810cf",
+    "cone_hc_split_runner.py": "f312c667edf274f9ad39b405a3a59352979f4fc8d07093d5d6caaa8b9433e41e",
+    "cone_hc_reduced_runner.py": "10bb28200ca6195afb88f5742d92887a75fd986b907ecf3822ecc2c82ccee9ee",
+    "cone_hc_reduced_checkpoint.py": "bb5674d6804c6d25913b1a6d5d63b195d606de0b95965924f59ddcff8f08a04c",
+    "cone_hc_observation_queue.py": "ddcd95cb893f4e2358a32b223a68da51bf398bd8a024166ea24c56a432ab85d1",
+    "compact_scratch.py": "1f7bd97c20aa80c6de2fed6aa0febd5d21d38132cef3be89e9b0de5783df02a0"
+  },
+  "status": "BOUNDED_STORAGE_AND_REAL_CUDA_REGRESSIONS_PASS_FULL_SCALE_PENDING",
+  "supersedes": {
+    "file": "resident_native_source_pins_v5.json",
+    "sha256": "08e903ead72ddba0abc803f09a35f14d2212b7c48a9f7d10eb7874699bd6b770",
+    "policy": "Preserve prior source versions, failures and checkpoints; no identity relabelling"
+  },
+  "reviewed_changes": {
+    "gpu_compact.py": {
+      "before_sha256": "609fe7f4dbcd8cdd5764a5e6c711afa63976e8ff833a2025940174b183fc8f90",
+      "after_sha256": "f744da4b62dfcefdbaa1edefdd24a2ad3668554ddbda3864b93ec7b8f2056fda"
+    },
+    "compact_scratch.py": {
+      "before_sha256": null,
+      "after_sha256": "1f7bd97c20aa80c6de2fed6aa0febd5d21d38132cef3be89e9b0de5783df02a0"
+    }
+  },
+  "input_time_semantics": {
+    "frame_selection": "absolute 150Hz calendar; exact boundary and right side use new frame, preceding float uses old frame; no positive epsilon",
+    "integration_rhs": "At interval end request left_limit=True from NetworkStimulus; shift only actual ZOH channels, retain linear/analytic endpoint and propagate delay_left_limit",
+    "sampling_and_monitor": "Existing default right-side callback/event order unchanged; no event, RNG, observation or solver-policy change",
+    "ordinary_recording": "Existing HybridRunner.advance terminal recording policy retained separately; not an integration RHS policy"
+  },
+  "input_provider_sources": {
+    "tools/regional_movie_runtime.py": "255b024dca75087b3dcc5275f29a797ddfea1ce47dd07b5e40b412400cc451cc"
+  },
+  "repair_evidence": {
+    "reports/code_integrity_audit_20261022_v1/repair_report.md": "e54d5c6e0b2fef31cf94caab7d83ee94dbdaa74bdf80c72a36861711e909c812",
+    "reports/code_integrity_audit_20261022_v1/repair_static_checks.json": "ba10384900c3f76d6e249c64e9d0bd9b5b53f09f44802b7b557395f0ea019457"
+  },
+  "numerical_contract": {
+    "file": "resident_native_fp64_v1.json",
+    "sha256": "3cfab9768a856c13354ab38cc65b506da60661fe3e3b0f05e46c647c08981a77",
+    "error_budget_changed": false
+  },
+  "boundary_replay": "Excluded from resident QA; repair does not authorize old cache migration",
+  "additional_source_pins": {
+    "policy": "All new storage and ownership dependencies are pinned; no numerical acceptance inferred"
+  },
+  "regression_evidence": {
+    "reports/storage_optimization_20261025_v2/integration_tests.xml": "d1658fc3dc0e72255f83ba8dddd643a1eb0d30205f1dffe06ec04b5dbbed9ee2",
+    "reports/storage_optimization_20261025_v2/scratch_before.json": "6e87d690721c43129520d04b2d578e4cb5719b54f10f661b060a9b4257e9e6bf",
+    "reports/storage_optimization_20261025_v2/scratch_after.json": "78d6dec6002f84f04f59557217206cf636810d1a016eb5e52616673839935180"
+  },
+  "background_qualified": false,
+  "fit_eligible": false,
+  "numerical_acceptance_claim": false,
+  "resources_changed_by_this_revision": false,
+  "storage_changes": [
+    "Explicit foveal runner selects reuse_inner_scratch=True; ordinary default stays unchanged",
+    "Only dead CPU inner temporaries reuse storage; input/state and immutable constants remain separate",
+    "Instructions, CSR reduction order, scatter order, derivatives, solver and budgets are unchanged",
+    "Separate execution/model identity; no old checkpoint compatibility claim"
+  ],
+  "full_scale_measured": false
+}

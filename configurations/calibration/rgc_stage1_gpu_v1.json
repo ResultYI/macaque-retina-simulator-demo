@@ -1,0 +1,12 @@
+{
+  "schema": "rgc-stage1-explicit-gpu-execution-1",
+  "execution_backend": "ac_vs_cuda_dop853_fp64_v1",
+  "mode": "gpu_dop853",
+  "device": "cuda:0",
+  "precision": "float64",
+  "CPU_fallback": false,
+  "CPU_cache_import": false,
+  "source_CPU_contract": "reports/rgc_stage1_complete_v1/CONTRACT.json",
+  "required_validation": "reports/rgc_stage1_gpu_adaptation_v1/validation_v4/COMPARISON.json",
+  "scope": "same frozen native0.6/inner0.3 conditional Cell6 ON-parasol, original4train2validation; no internal parameter change"
+}

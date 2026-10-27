@@ -1,0 +1,40 @@
+{
+  "schema": "ordinary-ac-voltage-gate-functional-1",
+  "model_id": "ordinary_ac_vs_functional_v1",
+  "calibrated": false,
+  "parameters_per_effective_pool_SI": {
+    "C": 5e-11, "gL": 2e-9, "EL": -0.05, "EE": 0.0,
+    "theta": -0.04, "k": 0.005, "alpha": 100.0, "beta": 100.0,
+    "gE_base": 0.0
+  },
+  "channels": [
+    {"pool": "same_ON_midget_AC_v1", "pre": "midget_BC_ON", "target": "midget_RGC_ON", "relation": "same_sign", "G_BA_S": 2e-9, "G_AR_S": 4e-10},
+    {"pool": "same_OFF_midget_AC_v1", "pre": "midget_BC_OFF", "target": "midget_RGC_OFF", "relation": "same_sign", "G_BA_S": 2e-9, "G_AR_S": 4e-10},
+    {"pool": "cross_OFF_ON_parasol_AC_v1", "pre": "diffuse_BC_OFF", "target": "parasol_RGC_ON", "relation": "crossover", "G_BA_S": 2e-9, "G_AR_S": 4e-10},
+    {"pool": "cross_ON_OFF_parasol_AC_v1", "pre": "diffuse_BC_ON", "target": "parasol_RGC_OFF", "relation": "crossover", "G_BA_S": 2e-9, "G_AR_S": 4e-10}
+  ],
+  "geometry": {
+    "position": "one separate effective pool at each frozen target RGC representative RF coordinate; no AC cell density claim",
+    "input_kernel": "Gaussian weighted by original BC group member counts, unit DC on full parent before selection",
+    "input_sigma_deg": 0.04,
+    "input_support_deg": 0.1,
+    "output_kernel": "one-to-one delta from effective pool to its owning target representative",
+    "output_support_deg": 0.0,
+    "mm_per_degree": 0.223,
+    "coordinate_evidence": "engineering_mapping_not_measured_AC_geometry",
+    "crop_renormalization": false
+  },
+  "parameter_ledger": {
+    "C_gL_EL": {"source": "Xu and Beyeler 2023, doi:10.3389/fnins.2023.1147729, passive amacrine model / user-selected Chat plan", "url": "https://github.com/bionicvisionlab/2023-Xu-Retinal-Degeneration", "classification": "cross_model_engineering_start_not_4.73deg_macaque_measurement", "leak_tau_seconds": 0.025},
+    "EE": {"classification": "fixed_engineering_excitatory_reversal", "unit": "V"},
+    "theta_k": {"classification": "preregistered_engineering_choice_no_matching_measurement", "rationale": "threshold -40mV and smooth 5mV scale fixed before first new-model run"},
+    "alpha_beta": {"classification": "preregistered_engineering_choice_no_matching_measurement", "unit": "s^-1", "rationale": "equal fixed 100/s opening and closing; effective gate tau 5..10ms, distinct from old 10ms h assumption"},
+    "G_BA_G_AR": {"classification": "preregistered_engineering_gain_not_fitted", "rationale": "2nS BC fractional-input scale and 0.4nS per target member output; independent channel fields, no secondary-path strength assumed"},
+    "EI": {"classification": "unchanged_target_RGC_reversal_from_bound_effective_profile", "rule": "read each target's actual EI; do not add AII direct input"},
+    "geometry": {"classification": "preregistered_engineering_local_support_not_true_AC_morphology", "rationale": "fixed finite 0.1deg BC support, 0.04deg sigma; no broad or active integration claim"},
+    "scale_gauge": "C/gL/reversals/threshold/slope/input weights/all gains fixed; s in [0,1]; no output_scale or optimizer in this task"
+  },
+  "disabled": ["secondary_ordinary_AC_paths_pending_evidence", "ordinary_AC_to_BC", "AII_direct_to_RGC", "PAC_feedback", "wiry_active_dendrites", "widefield_recurrent", "third_transmitter_state"],
+  "legacy_S_ON": "original local_feedforward_AC h, original ON diffuse BC input and original S-ON output gain/state retained separately",
+  "qualification": "new_scientific_candidate_not_default_not_fitted"
+}

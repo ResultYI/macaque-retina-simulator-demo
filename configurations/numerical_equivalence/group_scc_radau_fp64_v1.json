@@ -1,0 +1,89 @@
+{
+  "schema": "retipath-scc-radau-acceptance-1",
+  "start_seconds": 4.993,
+  "checkpoint_seconds": 4.997,
+  "stop_seconds": 5.001,
+  "input_origin_seconds": 0.0,
+  "input_frame_indices": [
+    748,
+    749,
+    750
+  ],
+  "input_fps": 150.0,
+  "clock_origin_seconds": 0.0,
+  "rod_step_seconds": 0.0001,
+  "BC_RGC_period_seconds": 0.001,
+  "monitor_step_seconds": 0.0001,
+  "recording_step_seconds": 0.0005,
+  "native_observation_delay_seconds": 0.00282,
+  "reference": {
+    "method": "joint_DOP853",
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_step": 0.0001
+  },
+  "candidate": {
+    "method": "SCC_RADAU_IIA5_TWO_HALF_HERMITE5",
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_step": 0.0001,
+    "fast_max_step": 0.0001,
+    "maximum_subdivision": 6,
+    "max_attempts_per_100us": 127,
+    "max_newton": 8,
+    "gmres_restart": 32,
+    "max_gmres": 96
+  },
+  "numerical_budget": {
+    "path": "configurations/numerical_equivalence/resident_native_fp64_v1.json",
+    "sha256": "3cfab9768a856c13354ab38cc65b506da60661fe3e3b0f05e46c647c08981a77"
+  },
+  "initialization": "Original source-construction IVP on this group graph; no warmup/background qualification",
+  "qualification": {
+    "source_construction_legal": true,
+    "coupled_background_qualified": false,
+    "fit_eligible": false,
+    "default_adopted": false
+  },
+  "group_manifest_sha256": "d786408da9a38cb09e84fc2cf17bb2224c8a7f2a43b0682d566a46ff01698fce",
+  "physical_scope": "All frozen0–6groupoutputs andcompleteupstream, no state/recording pruning",
+  "batch_id": "scc-radau-20261025-authorization-v1",
+  "group_artifact": "reports/spatial_group_graph_v02_20261025_v1/artifact_r2",
+  "construction_seed": "reports/group_time_candidate_20261025_v1/preparation_r1/construction_seed",
+  "budget_limits_seconds": {
+    "cold": 600.0,
+    "feasibility": 180.0,
+    "paired": 1200.0
+  },
+  "resource_limits": {
+    "max_rss_bytes": 17179869184,
+    "minimum_available_bytes": 4294967296,
+    "max_whole_GPU_bytes": 12884901888,
+    "minimum_GPU_free_bytes": 536870912
+  },
+  "mathematical_contract": {
+    "class": "B",
+    "reference": "Frozen DOP853",
+    "candidate": "Three-stage fifth-order Radau IIA, two half steps, quintic Hermite continuous representation, true typed SCC topology",
+    "schedule": "Candidate accepted steps and continuous polynomial differ from reference; compare full callback union",
+    "scientific_budget": "Original frozen B_i, rhs_allowance, PCG64 uncertainty, domain and full per-cell monitor gates unchanged",
+    "offline_QA": "Outward-rounded represented-polynomial difference and domain enclosures; does not prove absolute solution accuracy",
+    "production_checks": "All state/domain/convergence/event/monitor checks remain in hot path",
+    "forbidden_fallbacks": [
+      "degree7_multirate",
+      "exponential_midpoint",
+      "small_graph_GPU"
+    ]
+  },
+  "performance_policy": "Adopt only a scientifically qualified reproducible net full-neural speedup; tenfold is a milestone, not the adoption threshold",
+  "restore_policy": "Hash all ten top-level checkpoint fields before restore, require a fresh process and full uninterrupted-versus-restored suffix evidence",
+  "gpu_activity_timing_policy": {
+    "version": "windows_engine_activity_v1",
+    "external_compute_limit_percent": 0.0,
+    "quiet_graphics_time_weighted_aggregate_percent": 1.0,
+    "graphics_peak_aggregate_percent": 5.0,
+    "close_gain_repeat_ratio": 1.1,
+    "unknown_activity": "INCONCLUSIVE",
+    "scope": "Engineering timing qualification only; scientific and resource gates unchanged"
+  }
+}

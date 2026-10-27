@@ -1,0 +1,29 @@
+{
+  "schema": "retipath-static-group-build-2",
+  "scope": "static_only_no_solver_or_fit_approval",
+  "graph": {
+    "path": "data/atlas/human_disk3mm_functional_hc_v1/circuit/manifest.json",
+    "sha256": "713aefa3573799f4de6c9a56e1161ffe2691255efeef32b6711e9d15ab003557"
+  },
+  "selected_rows": "reports/cone_hc_reduced_foveal_6deg_200ms_20261024_v1/geometry_v3_complete_audit/dependency_rows.npz",
+  "selected_rows_sha256": "9cacb2b95729d08c43425ea8e93760abe67757797664e224e984f02935ef5dea",
+  "source_run": "reports/cone_hc_reduced_foveal_6deg_run_20261024_v1",
+  "plan": "reports/spatial_group_graph_v02_20261025_v1/PRO_PLAN_ORIGINAL.md",
+  "plan_sha256": "26e6528af4e9c966cf4d8071a139f5897fb501fbcd44773d05f94451a2572c76",
+  "mm_per_degree": 0.223,
+  "output_radius_deg": 6.0,
+  "static_resource_limits": {
+    "max_wall_seconds": 1800,
+    "max_rss_bytes": 17179869184,
+    "minimum_available_bytes": 4294967296
+  },
+  "mesh_policy": {
+    "path": "configurations/spatial_mesh_policy_v02.json",
+    "sha256": "032c819668b72f895254147d22cf13491977f3e57a16523dfa4b85645a723f81"
+  },
+  "experiment_targets": {
+    "path": "configurations/spatial_experiment_targets_v02.json",
+    "sha256": "8c64a01791f1aa29a34a9847817487fed96fb67abcc7c23b9f90d5903a76868a"
+  },
+  "active_experiment_ids": []
+}

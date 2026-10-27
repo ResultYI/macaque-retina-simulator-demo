@@ -90,12 +90,10 @@ def _gaze(config):
                         'interpolation': 'linear', 'time_reference': 'stimulus time, excluding warmup'}
 
 def _port_cells(compiled, ids, owner_masks=None):
-    stamp=tuple((pid,id(pop)) for pid,pop in compiled.populations.items())
-    cached=getattr(compiled,'_platform_port_lookup',None)
-    if cached is None or cached[0]!=stamp:
-        lookup={cell_id:(pid,pop,i) for pid,pop in compiled.populations.items() for i,cell_id in enumerate(pop.cells.cell_id)}
-        compiled._platform_port_lookup=(stamp,lookup)
-    else:lookup=cached[1]
+    lookup = {}
+    for pid, pop in compiled.populations.items():
+        for i, cell_id in enumerate(pop.cells.cell_id):
+            lookup[cell_id] = (pid, pop, i)
     entries = [lookup.get(cell_id) for cell_id in ids]
     if not all(entry is not None for entry in entries):
         return {'population': None, 'cell_ids': list(ids), 'cell_types': ['contact'] * len(ids),
@@ -127,10 +125,8 @@ def _components(compiled,owner_masks=None):
     for cid, component in compiled.components.items():
         ports = {}
         for name, port in component.outputs.items():
-            selected=getattr(compiled,'platform_recording_cell_ids',None)
-            ids=port.cell_ids if selected is None else tuple(gid for gid in port.cell_ids if gid in selected)
             ports[name] = {'key': cid + '.' + name, 'unit': port.unit, 'meaning': port.meaning,
-                            'evidence_tag': port.evidence_tag, 'temporal_kind': 'sampled', **_port_cells(compiled, ids,owner_masks)}
+                            'evidence_tag': port.evidence_tag, 'temporal_kind': 'sampled', **_port_cells(compiled, port.cell_ids,owner_masks)}
         main = next(iter(ports.values()), {'population': None, 'cell_ids': [], 'cell_types': [], 'subtypes': [], 'regions': [], 'geometry': {}})
         result.append({'id': cid, 'layers': list(component.layers), 'mechanism': component.mechanism,
                        'profile_id': component.parameters.profile.profile_id, 'ports': ports,
@@ -142,12 +138,10 @@ def _runtime_ports(manifest, compiled, state):
     by_id = {c['id']: c for c in manifest['components']}
     for cid in state.delay_states:
         port = compiled.components[cid].outputs['Vh']
-        selected=getattr(compiled,'platform_recording_cell_ids',None)
-        ids=port.cell_ids if selected is None else tuple(gid for gid in port.cell_ids if gid in selected)
         by_id[cid]['ports']['observed_Vh'] = {
             'key': cid + '.observed_Vh', 'unit': port.unit, 'meaning': port.meaning,
             'evidence_tag': port.evidence_tag, 'temporal_kind': 'sampled',
-            **_port_cells(compiled, ids,manifest.get('population_owner_mask'))}
+            **_port_cells(compiled, port.cell_ids,manifest.get('population_owner_mask'))}
     for cid in state.spike_states:
         component = compiled.components[cid]
         cells = _port_cells(compiled, component.state_specs[0].cell_ids,manifest.get('population_owner_mask'))
@@ -178,7 +172,6 @@ class _MediaChannels:
             ('physical_cone_light', 'peripheral_physical_cones', config.cone_background_rstar_s, 'R*/s', 'photoisomerization_rate', True),
             ('rod_light', 'rod', config.rod_background_rstar_s, 'R*/s', 'photoisomerization_rate', True)]
         self.declarations=[row for row in self.declarations if row[1] in compiled.populations]
-        if config.rgb_adapter=='iset_lcd_apple_mw_v1':self.declarations=[r for r in self.declarations if r[0]=='rod_light']
         self.last_input_summary = {}
 
     def window(self, start, stop):
@@ -229,13 +222,13 @@ class _MediaChannels:
             for name, pid, base, unit, meaning, discrete in self.declarations:
                 pixels = coords[name][row]
                 sampled = np.stack([map_coordinates(linear[:, :, k], [pixels[:, 1], pixels[:, 0]],
-                                        order=1, mode='constant', cval=self.config.reference_linear_value if self.config.rgb_adapter in ('contrast_reference_v1','iset_lcd_apple_mw_v1') else .5, prefilter=False) for k in range(3)], axis=-1)
+                                       order=1, mode='constant', cval=self.config.reference_linear_value if self.config.rgb_adapter=='contrast_reference_v1' else .5, prefilter=False) for k in range(3)], axis=-1)
                 proxy=(sampled * matrix_weights[name]).sum(axis=-1)
-                matrices[name][row] = (base*proxy/self.config.reference_linear_value if self.config.rgb_adapter in ('contrast_reference_v1','iset_lcd_apple_mw_v1') else base*(.6+.8*proxy))
+                matrices[name][row] = (base*proxy/self.config.reference_linear_value if self.config.rgb_adapter=='contrast_reference_v1' else base*(.6+.8*proxy))
         channels = {}
         for name, pid, base, unit, meaning, discrete in self.declarations:
             values = matrices[name]
-            evidence='project_approximation' if self.config.execution_profile in ('atlas_midget_research_v1','atlas_population_revision_v1','atlas_isetbio_geometry_v1') else 'synthetic_fixture'
+            evidence='project_approximation' if self.config.execution_profile in ('atlas_midget_research_v1','atlas_population_revision_v1') else 'synthetic_fixture'
             def evaluator(t, values=values, discrete=discrete, unit=unit, meaning=meaning,base=base,evidence=evidence):
                 # Author transitions at the first media tick consume the preceding
                 # interval. Retain its real background even when this window's
@@ -338,14 +331,12 @@ class SimulationSession:
     def _run(self):
         media, runner, state = None, None, None
         wall_start = time.perf_counter()
-        phase_timings={'background_prepare_this_run_seconds':None,'same_identity_background_restore_this_run_seconds':None,
-            'stimulus_input_window_seconds':0.,'stimulus_advance_and_record_seconds':0.}
         try:
             if str(self.project_root) not in sys.path:
                 sys.path.insert(0, str(self.project_root))
             from examples.full_target_network import full_target_network
-            from retina_sim.contracts import SolverConfig,canonical_hash
-            from retina_sim.execution_backends import make_runner
+            from retina_sim.contracts import SolverConfig
+            from retina_sim.hybrid import HybridRunner
             from retina_sim.recording import RecordingPlan, NPZWindowRecorder
             from tools.run_full_network_fixture import serializable
             media = MediaSource(self.config.media_path)
@@ -357,12 +348,11 @@ class SimulationSession:
             self.path.mkdir(parents=True, exist_ok=False)
             _atomic_json(self.path / 'config.json', self.config.to_dict())
             self._event('status', 'building')
-            if self.config.execution_profile in ('atlas_population_revision_v1','atlas_isetbio_geometry_v1'):
+            if self.config.execution_profile=='atlas_population_revision_v1':
                 from retina_sim.atlas_population_network import atlas_population_network
                 compiled,_,audit=atlas_population_network(self.project_root,duration=total,light_context=self.config.light_context(),
                     owner_bounds_mm=self.config.owner_bounds(),halo_mm=self.config.halo_mm,
-                    max_spatial_cells=int(self.config.max_spatial_cells),seed=int(self.config.seed),execution_profile=self.config.execution_profile,
-                    configuration_path=self.config.circuit_configuration_path or None)
+                    max_spatial_cells=int(self.config.max_spatial_cells),seed=int(self.config.seed))
             elif self.config.execution_profile=='atlas_midget_research_v1':
                 from retina_sim.atlas_runtime import atlas_typed_candidate_network
                 compiled,_,audit=atlas_typed_candidate_network(self.project_root,duration=total,light_context=self.config.light_context(),
@@ -378,8 +368,6 @@ class SimulationSession:
                 hc_h1_radius_mm=self.config.hc_h1_radius_mm,hc_h2_radius_mm=self.config.hc_h2_radius_mm,
                 hc_arbor_profile=self.config.hc_arbor_profile,ipl_geometry_profile=self.config.ipl_geometry_profile,
                 requested_owner_outputs=(self.config.requested_owner_output,))
-            if self.config.requested_owner_output in audit.get('atlas_runtime',{}).get('empty_owner_outputs',{}):
-                raise ValueError('该ROI的目标owner为EMPTY_SAMPLE；未补点或改变密度')
             self._event('status','building',message='实体 %d · 边 %d · 估算 %.1f MiB' % (
                 audit['resource_estimate']['explicit_cells'],audit['resource_estimate']['estimated_edges'],
                 audit['resource_estimate']['estimated_compile_bytes']/1024**2))
@@ -387,30 +375,15 @@ class SimulationSession:
                        if not any(layer in c.layers for c in compiled.components.values())]
             if missing:
                 raise RuntimeError('缺少真实核心机制: ' + ','.join(missing))
-            from .iset_frontend import MixedReferenceFrontend
-            self._event('status','building',message='ISET 混合参考输入准备')
-            frontend=MixedReferenceFrontend
-            if hasattr(compiled,'global_disk_circuit'):
-                from .disk_frontend import DiskMixedReferenceFrontend
-                frontend=DiskMixedReferenceFrontend
-            channels_source=frontend(self.config,compiled,media,gaze,self.project_root,
-                input_path=self.path/'input.npz',
-                on_status=lambda message:self._event('status','building',message=message),on_boundary=self._boundary)
-            audit['light_context']=self.config.light_context().manifest(self.config.warmup_seconds)
-            _atomic_json(self.path/'config.json',self.config.to_dict())
-            global_export=None
-            if hasattr(compiled,'global_disk_circuit'):
-                from .disk_run_audit import prepare_global_audit
-                global_export=prepare_global_audit(compiled,audit,self.path)
             manifest = {'schema': 'retina-platform-1', 'config': self.config.to_dict(), 'media': dict(media.info),
                         'platform_configuration':json.loads((self.project_root/'configurations/retina_platform_v1.json').read_bytes()),
                         'media_sha256': _file_sha(self.config.media_path), 'gaze': gaze_metadata,
                         'input_assumptions': input_assumptions(self.config), 'assembly_hash': compiled.assembly_hash,
                         'required_layers': list(compiled.spec.required_mechanisms), 'components': _components(compiled,audit['population_owner_mask']),
-                        'parameter_evidence':global_export['parameter_evidence'] if global_export is not None else {cid: serializable(c.parameters.records) for cid, c in compiled.components.items()},
+                        'parameter_evidence': {cid: serializable(c.parameters.records) for cid, c in compiled.components.items()},
                         'source_records': serializable(tuple(audit['registry'].sources.values())),
-                        'source_spec':global_export['source_spec'] if global_export is not None else serializable(compiled.spec), 'scientific_validation': 'NOT_RUN',
-                        'recording': {'ports': 'actual ports on declared global recording cohort' if global_export is not None else 'all configured actual output ports', 'states': [],
+                        'source_spec': serializable(compiled.spec), 'scientific_validation': 'NOT_RUN',
+                        'recording': {'ports': 'all configured actual output ports', 'states': [],
                                       'sample_seconds': self.config.sample_seconds, 'window_seconds': self.config.window_seconds},
                         'core_hashes': {str(p.relative_to(self.project_root)): _file_sha(p) for p in (self.project_root / 'retina_sim').glob('*.py')},
                         'initialization': audit['light_context'], 'runtime_parameter_profile': audit['runtime_profile'],
@@ -425,13 +398,10 @@ class SimulationSession:
                         'runtime': {'started_utc': datetime.now(timezone.utc).isoformat(), 'state_reset_between_windows': False}}
             if 'atlas_runtime' in audit:manifest['atlas_runtime']=audit['atlas_runtime']
             if 'artifact_storage' in audit:manifest['artifact_storage']=audit['artifact_storage']
-            manifest['input_frontend']=channels_source.summary
             _atomic_json(self.path / 'manifest.json', manifest)
             _atomic_json(self.path/'hc_geometry.json',audit['spatial_profile'].get('HC_geometry',{'profile_id':'engineering_preview'}))
             _atomic_json(self.path/'ipl_geometry.json',audit['IPL_geometry'])
-            runner = make_runner(compiled,self.config.neural_integration_backend)
-            manifest['numerical_execution']=runner.model.compute_metadata
-            _atomic_json(self.path/'manifest.json',manifest)
+            runner = HybridRunner(compiled)
             state = runner.initialize(SolverConfig(**audit['resolved_execution_profile']['solver']))
             state.input_position={'background_context_hash':self.config.light_context().background_context_hash,
                 'stimulus_origin_seconds':self.config.warmup_seconds}
@@ -460,14 +430,11 @@ class SimulationSession:
                 self._stimulus_origin=policy.max_sim_seconds;self._total=policy.max_sim_seconds+self.config.duration_seconds
                 self._event('status','running',phase='background_preparation')
                 background=constant_background_channels(compiled,self.config.light_context(),policy.max_sim_seconds+self.config.duration_seconds)
-                from retina_sim.background_checkpoint import prepare_with_checkpoint,MemoryGuard,BackgroundCheckpointStore
+                from retina_sim.background_checkpoint import prepare_with_checkpoint,MemoryGuard
                 guard=MemoryGuard(int(self.config.background_memory_limit_mb*1024**2),int(self.config.background_min_available_mb*1024**2))
                 guard.check()
-                cache_key=canonical_hash(BackgroundCheckpointStore(self.project_root,runner,state,self.config.light_context(),policy).binding)
-                automatic_cache=self.project_root/'reports/iset_background_cache'/cache_key/'background_checkpoint.json'
-                resume=Path(self.config.background_checkpoint_path) if self.config.background_checkpoint_path else automatic_cache
+                resume=Path(self.config.background_checkpoint_path) if self.config.background_checkpoint_path else None
                 if resume is not None and not resume.is_absolute():resume=self.project_root/resume
-                if not self.config.background_checkpoint_path and not resume.is_file():resume=None
                 def preparation_progress(current,row):
                     nonlocal state
                     state=current;self._sim_time=current.time_seconds
@@ -479,17 +446,9 @@ class SimulationSession:
                             stream.write(json.dumps(row['last_window'],ensure_ascii=False,allow_nan=False)+'\n')
                     self._event('progress','running',phase='background_preparation',
                         preparation_wall_seconds=row['wall_seconds'],solver_metrics=dict(runner.integration_metrics))
-                from retina_sim.background_advance import choose_background_runner
-                background_runner,background_procedure=choose_background_runner(runner)
-                manifest['runtime']['background_execution_procedure']=background_procedure
-                phase_started=time.perf_counter()
-                state,preparation_report,_=prepare_with_checkpoint(self.project_root,background_runner,state,self.config.light_context(),policy,
+                state,preparation_report,_=prepare_with_checkpoint(self.project_root,runner,state,self.config.light_context(),policy,
                     self.path/'background_checkpoint.json',resume_path=resume,guard=guard,
-                    on_progress=preparation_progress,on_boundary=self._boundary,
-                    checkpoint_interval_seconds=self.config.background_checkpoint_interval_seconds)
-                phase_key='same_identity_background_restore_this_run_seconds' if preparation_report.get('cache_reused') else 'background_prepare_this_run_seconds'
-                phase_timings[phase_key]=time.perf_counter()-phase_started
-                manifest['runtime']['this_run_phase_wall_seconds']=dict(phase_timings)
+                    on_progress=preparation_progress,on_boundary=self._boundary)
                 self._sim_time=state.time_seconds;self._stimulus_origin=state.time_seconds
                 total=self._total=state.time_seconds+self.config.duration_seconds
                 _record_preparation_metadata(manifest,resolved,preparation_report)
@@ -502,10 +461,6 @@ class SimulationSession:
                 _atomic_json(self.path/'manifest.json',manifest)
                 _atomic_text(self.path/'prepared_checkpoint.json',runner.checkpoint(state))
                 _atomic_text(self.path/'latest_checkpoint.json',runner.checkpoint(state))
-                if preparation_report['converged']:
-                    automatic_cache.parent.mkdir(parents=True,exist_ok=True)
-                    _atomic_json(automatic_cache,json.loads((self.path/'background_checkpoint.json').read_bytes()))
-                    manifest['runtime']['prepared_background_cache']=str(automatic_cache)
                 _atomic_json(self.path/'background_progress.json',{'status':preparation_report['status'],'absolute_background_time_seconds':state.time_seconds,'budget_exit':preparation_report['budget_exit'],'complete_checkpoint_file':'background_checkpoint.json'})
                 if policy.require_converged and not preparation_report['converged']:
                     _atomic_text(self.path/'final_checkpoint.json',runner.checkpoint(state))
@@ -515,11 +470,8 @@ class SimulationSession:
                         'physiological_calibration':'NOT_COMPLETE','independent_animal_validation':'NOT_RUN'})
                     self._event('finished','initialization_not_reached',message=preparation_report['status']);return
             state.input_position.update(phase='media_stimulus',stimulus_origin_seconds=self._stimulus_origin)
-            channels_source.set_origin(self._stimulus_origin,state.grid_origin_seconds)
+            channels_source = _MediaChannels(self.config, compiled, media, gaze,self._stimulus_origin)
             recorder = NPZWindowRecorder(self.path / 'windows')
-            from retina_sim.recording_indices import indexed_recording_plan
-            trace_plan=indexed_recording_plan(RecordingPlan(states=(),cell_ids=getattr(compiled,'platform_recording_cell_ids',None),
-                max_bytes=audit['resolved_execution_profile']['budgets'].get('max_recording_window_bytes',64*1024*1024)))
             warmup_ticks = int(round(self._stimulus_origin / AUTHOR_STEP))
             total_ticks = int(round(total / AUTHOR_STEP))
             window_ticks = int(round(self.config.window_seconds / AUTHOR_STEP))
@@ -537,9 +489,7 @@ class SimulationSession:
                 warming = first < warmup_ticks
                 last = min(first + window_ticks, warmup_ticks if warming else total_ticks)
                 stop = aligned(last)
-                input_started=time.perf_counter()
                 channels = channels_source.window(state.time_seconds, stop)
-                if not warming:phase_timings['stimulus_input_window_seconds']+=time.perf_counter()-input_started
                 if warming:
                     before=[a.copy() for a in state.ordered_state_arrays]
                     state, _ = runner.advance(state, channels, stop, recording_plan=RecordingPlan(ports=(), states=(), cell_ids=()))
@@ -559,9 +509,9 @@ class SimulationSession:
                 else:
                     ticks = list(range(first, last, sample_ticks)) + [last]
                     times = np.array([aligned(tick) for tick in ticks]); times[0], times[-1] = state.time_seconds, stop
-                    advance_started=time.perf_counter()
-                    state, result = runner.advance(state, channels, stop, sample_times=times,recording_plan=trace_plan)
-                    phase_timings['stimulus_advance_and_record_seconds']+=time.perf_counter()-advance_started
+                    state, result = runner.advance(state, channels, stop, sample_times=times,
+                        recording_plan=RecordingPlan(states=(),max_bytes=audit['resolved_execution_profile']['budgets'].get(
+                            'max_recording_window_bytes',64*1024*1024)))
                     if not all(np.all(np.isfinite(q.values)) for q in result.outputs_with_units.values()):
                         raise RuntimeError('核心输出出现非有限数值')
                     declared = {p['key']: p for c in manifest['components'] for p in c['ports'].values()}
@@ -588,8 +538,6 @@ class SimulationSession:
             _atomic_text(self.path / 'final_checkpoint.json', checkpoint)
             stopped = int(round(state.time_seconds / AUTHOR_STEP)) < total_ticks
             manifest['media'] = dict(media.info)
-            manifest['runtime']['this_run_phase_wall_seconds']=dict(phase_timings)
-            manifest['runtime']['recording_indices_procedure']=getattr(trace_plan,'procedure_identity',{'procedure':'legacy_recording_indices'})
             _atomic_json(self.path / 'manifest.json', manifest)
             _atomic_json(self.path / 'summary.json', {'status': 'stopped' if stopped else 'completed',
                          'simulation_time_seconds': state.time_seconds, 'windows': self._windows,

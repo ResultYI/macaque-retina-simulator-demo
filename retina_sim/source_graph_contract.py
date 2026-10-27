@@ -45,18 +45,38 @@ class SourceGraphContract(ResidentNativeContract):
         rows = reference.compiled.global_disk_view['selected_rows']
         if not np.array_equal(rows['cones'], np.arange(native.nc)):
             raise ContractError('Approved optical/native ordering differs')
-        expected = self.configuration['owner_global_rows']
+        all_disk = self.configuration.get('source_graph_scope') == 'all_original_outputs_in_foveal_disk_v1'
+        if all_disk:
+            if self.configuration.get('execution_enabled') is not True:
+                raise ContractError('Foveal source is preparation-only; no execution activation')
+            from .disk_geometry import DiskAtlasROI
+            from .disk_circuit import OUTPUTS
+            configuration=self.configuration
+            if 'owner_global_rows' in configuration:
+                raise ContractError('Full disk source cannot also select a sparse cohort')
+            circuit=reference.compiled.global_disk_circuit
+            if circuit.binding!=configuration['global_graph']:
+                raise ContractError('Full disk source graph binding differs')
+            bounds=tuple(configuration['owner_bounds_mm']);radius=configuration['output_owner_radius_mm']
+            if bounds!=(-radius,radius,-radius,radius):
+                raise ContractError('Full disk source requires its exact centered bounding square')
+            roi=DiskAtlasROI(bounds,bounds,circuit.record['reference_id'],owner_radius_mm=radius)
+            expected={name:circuit.table(name).query_indices(roi,owner=True) for name in OUTPUTS}
+            if any(not len(v) for v in expected.values()):
+                raise ContractError('Full disk source must contain all five original RGC types')
+        else:
+            expected = self.configuration['owner_global_rows']
         cohort = {}
         for cid, required in expected.items():
             if not np.array_equal(np.sort(rows[cid]), np.sort(required)):
-                raise ContractError('Source target rows differ from the approved 8+4 configuration')
+                raise ContractError('Source target rows differ from the bound configuration')
             pop = reference.compiled.populations[cid]
             cohort[cid] = dict(rows=np.asarray(rows[cid]), cell_ids=tuple(pop.cells.cell_id),
                                rf_mm=source_rf_mm(pop))
         outputs = sum(len(c.state_specs[0].cell_ids) for c in reference.compiled.components.values()
                       if hasattr(c.native_model, 'sample_spikes'))
-        if outputs != 12 or sum(len(v) for v in expected.values()) != outputs:
-            raise ContractError('Approved source requires exactly the original8 plus comparison4 outputs')
+        if (not all_disk and outputs != 12) or sum(len(v) for v in expected.values()) != outputs:
+            raise ContractError('Source output count differs from the complete bound selection')
         model = reference.model
         return dict(configuration_path=self.configuration_path,
             configuration_sha256=self.configuration_sha256,

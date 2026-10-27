@@ -35,8 +35,6 @@ htmlcov/
 /data/source/
 /data/source_packages/
 /data/source_snapshots/
-/vendor_pinned/
-/data/notebook_transfer_*/
 
 # Local media and generated export bundles.
 *.mp4
@@ -50,14 +48,3 @@ htmlcov/
 !examples/platform_media/*.mp4
 !examples/platform_media/*.avi
 !examples/platform_media/*.mov
-
-# Machine-specific optical setup and generated retina/source assets stay local.
-/configurations/iset_lcd_apple_mw_v1.json
-/data/literature/
-/data/atlas/disk3mm_*/
-/data/atlas/hc_disk3mm_master_v1.json
-/data/atlas/isetbio_macaque_cones_*/
-/data/atlas/circuit_source_stop*/
-/data/atlas/population_masters/
-/data/atlas/human_disk3mm_*/
-/data/atlas/isetbio_human_borrowed_*/

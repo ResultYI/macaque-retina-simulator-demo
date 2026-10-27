@@ -427,8 +427,9 @@ class RetinaBuilder:
             if set(closure)!={'method','atol','rtol','max_evaluations'} or closure['method']!='hybr' or closure['atol']<=0 or closure['rtol']<=0 or closure['max_evaluations']<1: issues.append('Explicit closure method/tolerances/budget required')
         if issues: raise AssemblyError(issues)
         from .delays import clock_contract
+        from .canonical_stream import CanonicalSequence
         clock=clock_contract(components,compiled,spec.clock_policy)
-        identity=canonical_hash({'model_id':spec.model_id,'components':{k:c.identity for k,c in components.items()},'populations':[p.record() for p in populations.values()],'links':spec.links,'external':spec.external_inputs,'order':order,'closure':spec.algebraic_closure,'gap_junctions':spec.gap_junctions,'clock':clock,'mode':mode,'required':spec.required_mechanisms,'scope':spec.scope,'compiler_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
+        identity=canonical_hash({'model_id':spec.model_id,'components':{k:c.identity for k,c in components.items()},'populations':CanonicalSequence(lambda: (p.record() for p in populations.values())),'links':spec.links,'external':spec.external_inputs,'order':order,'closure':spec.algebraic_closure,'gap_junctions':spec.gap_junctions,'clock':clock,'mode':mode,'required':spec.required_mechanisms,'scope':spec.scope,'compiler_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
         result=CompiledRetina(spec,components,populations,tuple(compiled),tuple(order),identity,mode,clock)
         if scope is not None:result.modeling_scope=scope.manifest(spec)
         return result

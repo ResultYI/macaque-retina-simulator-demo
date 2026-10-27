@@ -29,7 +29,7 @@ class RetinaApp:
         ("requested_owner_output", "owner 输出", str),
         ("hc_h1_radius_mm", "H1 arbor / mm", float),
         ("hc_h2_radius_mm", "H2 arbor / mm", float),
-        ("rgb_adapter", "混合参考输入", str),
+        ("rgb_adapter", "输入 adapter", str),
         ("reference_linear_value", "reference u / linear", float),
         ("owner_x_mm", "ROI 中心 x / mm", float),
         ("owner_y_mm", "ROI 中心 y / mm", float),
@@ -168,13 +168,13 @@ class RetinaApp:
             var = tk.StringVar()
             self.params[name] = var
             ttk.Label(entries, text=label).grid(row=row, column=0, sticky="w", pady=4)
-            choices={'execution_profile':['来源人口修订','ISET几何'],
+            choices={'execution_profile':['来源人口修订'],
                 'hc_geometry_profile':['联合HC合成'],
                 'hc_arbor_profile':['W2000_equal_area_bounded_edges_047_104'],
                 'ipl_geometry_profile':['retina_contact_geometry_effective_v1'],
                 'requested_owner_output':['midget_RGC_ON','midget_RGC_OFF','parasol_RGC_ON','parasol_RGC_OFF','small_bistratified_S_ON'],
                 'background_initialization_mode':['fixed_prerun','bounded_convergence'],
-                'rgb_adapter':['LCD-Apple / human-MW'],
+                'rgb_adapter':['contrast_reference_v1','legacy_rgb_proxy_v1'],
                 'roi_preset':list(self.roi_labels.values())}
             entry = (ttk.Combobox(entries,textvariable=var,values=choices[name],state='readonly',width=12)
                 if name in choices else ttk.Entry(entries, textvariable=var, width=12))
@@ -252,6 +252,7 @@ class RetinaApp:
             self._button(exports, key, text, handler).pack(side="left", padx=(0, 6))
         controls = ttk.Frame(shell)
         controls.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(10, 0))
+        self._button(controls, "cell6_replay", "Cell6 预计算回放", self.open_cell6_replay).pack(side="left", padx=(0, 7))
         for key, text, handler in (("run", "运行", self.start_run), ("pause", "暂停", self.pause), ("resume", "继续", self.resume), ("stop", "停止", self.stop)):
             self._button(controls, key, text, handler).pack(side="left", padx=(0, 7))
         self.progress = ttk.Progressbar(controls, mode="determinate", maximum=1)
@@ -260,6 +261,11 @@ class RetinaApp:
         ttk.Label(shell, textvariable=self.status_var, wraplength=1200).grid(row=2, column=0, columnspan=2, sticky="w", pady=(8, 0))
         self._update_buttons()
 
+    def open_cell6_replay(self):
+        from .replay import ReplayApp
+        window = tk.Toplevel(self.root)
+        ReplayApp(window, self.project_root)
+
     def _error(self, error):
         self.status_var.set(f"错误：{error}")
 
@@ -267,10 +273,9 @@ class RetinaApp:
         for name, var in self.params.items():
             value=getattr(config,name,"")
             var.set('' if value is None else str(value))
-        self.params['execution_profile'].set({'retina_contact_geometry_effective_v1':'研究原型','atlas_midget_research_v1':'atlas midget研究','atlas_population_revision_v1':'来源人口修订','atlas_isetbio_geometry_v1':'ISET几何','source_constrained_approximation':'源约束混合'}.get(config.execution_profile,'工程预览'))
+        self.params['execution_profile'].set({'retina_contact_geometry_effective_v1':'研究原型','atlas_midget_research_v1':'atlas midget研究','atlas_population_revision_v1':'来源人口修订','source_constrained_approximation':'源约束混合'}.get(config.execution_profile,'工程预览'))
         self.params['roi_preset'].set(self.roi_labels[config.roi_preset])
         self.params['hc_geometry_profile'].set({'hc_joint_synthetic_v1':'联合HC合成','atlas_fixed_joint_master_v2':'固定atlas HC'}.get(config.hc_geometry_profile,'单动物HC patch'))
-        if config.rgb_adapter=='iset_lcd_apple_mw_v1':self.params['rgb_adapter'].set('LCD-Apple / human-MW')
         self.gaze_label.configure(text=Path(config.gaze_csv).name if config.gaze_csv else "固定眼位")
         self._atlas_runtime_controls()
 
@@ -280,10 +285,9 @@ class RetinaApp:
             text = self.params[name].get().strip()
             try:
                 data[name] = None if name in ('hc_h1_radius_mm','hc_h2_radius_mm') and not text else kind(text)
-                if name=='execution_profile':data[name]={'研究原型':'retina_contact_geometry_effective_v1','atlas midget研究':'atlas_midget_research_v1','来源人口修订':'atlas_population_revision_v1','ISET几何':'atlas_isetbio_geometry_v1','源约束混合':'source_constrained_approximation','工程预览':'engineering_preview'}.get(text,text)
+                if name=='execution_profile':data[name]={'研究原型':'retina_contact_geometry_effective_v1','atlas midget研究':'atlas_midget_research_v1','来源人口修订':'atlas_population_revision_v1','源约束混合':'source_constrained_approximation','工程预览':'engineering_preview'}.get(text,text)
                 if name=='roi_preset':data[name]={value:key for key,value in self.roi_labels.items()}.get(text,text)
                 if name=='hc_geometry_profile':data[name]={'单动物HC patch':'source_patch_v1','联合HC合成':'hc_joint_synthetic_v1','联合HC合成·未跑':'hc_joint_synthetic_v1','固定atlas HC':'atlas_fixed_joint_master_v2'}.get(text,text)
-                if name=='rgb_adapter':data[name]={'LCD-Apple / human-MW':'iset_lcd_apple_mw_v1'}.get(text,text)
             except ValueError:
                 raise ValueError(f"{name} 参数格式错误：{text}") from None
         data["media_path"] = self.params["media_path"].get()
@@ -296,8 +300,6 @@ class RetinaApp:
             if requested!=named:
                 data['roi_preset']='custom'
                 self.params['roi_preset'].set(self.roi_labels['custom'])
-        if data['execution_profile']!=self.config.execution_profile:
-            data.update(background_checkpoint_path='',native_background_values=None,frontend_signature='')
         config = RunConfig.from_dict(data)
         config.validate(self.media)
         return config
@@ -356,26 +358,6 @@ class RetinaApp:
         return {key:target[key] for key in ('atlas_profile_id','s_partition_profile')}
 
     def _choose_execution_profile(self,event=None):
-        if self.session is not None and self.session.is_alive():return
-        label=self.params['execution_profile'].get()
-        if label in ('来源人口修订','ISET几何'):
-            preset=RunConfig.project_default(self.project_root)
-            self.config.neural_integration_backend=preset.neural_integration_backend if label=='ISET几何' else 'scipy_cpu_v1'
-            self.config.circuit_configuration_path=preset.circuit_configuration_path if label=='ISET几何' else ''
-            self.config.frontend_signature=''
-            self.config.native_background_values=None
-            for name in ('duration_seconds','warmup_seconds','window_seconds','sample_seconds','owner_x_mm','owner_y_mm',
-                'owner_width_mm','owner_height_mm','halo_mm','max_spatial_cells','hc_arbor_profile','ipl_geometry_profile','hc_geometry_path','background_initialization_mode'):
-                if name in self.params:self.params[name].set(str(getattr(preset,name)))
-                else:setattr(self.config,name,getattr(preset,name))
-            self.params['hc_geometry_profile'].set('固定atlas HC')
-            self.params['hc_h1_radius_mm'].set('');self.params['hc_h2_radius_mm'].set('')
-            self.params['roi_preset'].set(self.roi_labels['custom'])
-            for key,value in preset.to_dict().items():
-                if key.startswith('background_'):setattr(self.config,key,'' if key=='background_checkpoint_path' else value)
-            self.status_var.set('ISET几何 · 迁移候选 · 需新背景' if label=='ISET几何' else '来源人口修订')
-            self._atlas_runtime_controls();return
-        self.config.neural_integration_backend='scipy_cpu_v1'
         if self.params['execution_profile'].get()=='atlas midget研究':
             preset=RunConfig.from_dict({'execution_profile':'atlas_midget_research_v1'})
             for name in ('duration_seconds','warmup_seconds','window_seconds','sample_seconds','owner_x_mm','owner_y_mm',
@@ -409,11 +391,8 @@ class RetinaApp:
         self._atlas_runtime_controls()
 
     def _atlas_runtime_controls(self):
-        atlas=self.params['execution_profile'].get() in ('atlas midget研究','来源人口修订','ISET几何')
-        if 'execution_profile' in self.entries:self.entries['execution_profile'].configure(state='disabled' if self.session is not None and self.session.is_alive() else 'readonly')
-        for name in ('hc_geometry_profile','hc_arbor_profile','ipl_geometry_profile','hc_h1_radius_mm','hc_h2_radius_mm'):
-            if name in self.entries:self.entries[name].configure(state='disabled')
-        for name in ('rgb_adapter','reference_linear_value','native_background_td','cone_background_rstar_s'):
+        atlas=self.params['execution_profile'].get() in ('atlas midget研究','来源人口修订')
+        for name in ('execution_profile','hc_geometry_profile','hc_arbor_profile','ipl_geometry_profile','hc_h1_radius_mm','hc_h2_radius_mm'):
             if name in self.entries:self.entries[name].configure(state='disabled')
         for name in (
                      'effective_cones','effective_rods','background_initialization_mode','warmup_seconds'):
@@ -519,6 +498,8 @@ class RetinaApp:
             return False
         try:
             candidate = RunConfig.from_dict(json.loads(Path(path).read_text(encoding="utf-8-sig")))
+            if candidate.execution_profile != RunConfig.project_default(self.project_root).execution_profile:
+                raise ValueError('配置不属于当前冻结模型；历史运行可通过载入结果查看')
             candidate.validate()
             if candidate.media_path and not self.import_media(candidate.media_path):
                 return False
@@ -728,20 +709,16 @@ class RetinaApp:
         total = None
         if candidate is not None:
             try:
-                origin=store.manifest.get('runtime',{}).get('stimulus_origin_seconds',candidate.warmup_seconds)
-                value = float(origin) + float(candidate.duration_seconds)
+                value = float(candidate.warmup_seconds) + float(candidate.duration_seconds)
                 if np.isfinite(value) and value > 0:
                     total = value
             except (TypeError, ValueError):
                 pass
             if isinstance(candidate.media_path, str) and Path(candidate.media_path).is_file():
                 if self.import_media(candidate.media_path):
-                    if candidate.rgb_adapter=='iset_lcd_apple_mw_v1':
-                        self.config = candidate
-                        self._set_config_vars(candidate)
-                    # Historical RGB settings remain result metadata, never Run defaults.
-                    origin=store.manifest.get('runtime',{}).get('stimulus_origin_seconds',candidate.warmup_seconds)
-                    stimulus_time = float(candidate.start_seconds) + max(0, last_time-float(origin))
+                    self.config = candidate
+                    self._set_config_vars(candidate)
+                    stimulus_time = float(candidate.start_seconds) + max(0, last_time-float(candidate.warmup_seconds))
                     self.preview_var.set(stimulus_time)
                     self.preview_time.configure(text=f"{stimulus_time:.3f} s")
                     self._render_preview()

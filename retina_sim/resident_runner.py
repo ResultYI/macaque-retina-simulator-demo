@@ -47,8 +47,8 @@ class ResidentNativeRunner:
         self.model = copy(reference.model)
         self.torch = reference.partition.torch
         # Immutable CSR/constants may be shared; CPU work and input caches may not.
-        self.partition = copy(reference.partition)
-        self.partition.work = reference.partition.work.copy()
+        from .compiled_kernel import fork_partition
+        self.partition = fork_partition(reference.partition)
         self.partition.statistics = dict.fromkeys(reference.partition.statistics, 0)
         self.partition._light_cpu = None
         self.partition._light_gpu = None

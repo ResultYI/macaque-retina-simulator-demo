@@ -600,6 +600,10 @@ def run_worker(output):
             C_star=reduced.selection.count,H_star=reduced.selection.hc_count,
             packet_bytes=reduced.selection.packet_bytes,original_inner_scalars=reduced.partition.inner_size)
         write_json(output/'environment.json',environment)
+        demo = None
+        if protocol.get('demo_recording'):
+            from tools.cone_hc_demo_recording import DemoRecorder
+            demo = DemoRecorder(reduced,protocol,output)
         monitors = dict(reference=ref.make_monitor(context['base'].reference_state,context['policy']),
                         candidate=ReducedWindowMonitor(reduced,context['base'].reference_state,context['policy']))
         receipts,draws,costs,measurements = {},{}, {},{}
@@ -661,6 +665,8 @@ def run_worker(output):
                 copy_seconds += time.perf_counter()-tick
             def record(t,point,evidence,st):
                 observed_delay['candidate'][float(t)] = _selected_delay(st.delay_states[native_id],t,selected_h_device)
+                if demo is not None:
+                    demo.record(t,point,evidence,st)
             torch.cuda.synchronize()
             tick = time.perf_counter()
             advance_wall = 0.
@@ -827,6 +833,12 @@ def run_worker(output):
         print(result['traceback'],flush=True)
     finally:
         result.update(total_worker_seconds=time.time()-begun,resource=guard.last)
+        if protocol.get('demo_recording') and result.get('completed_phases'):
+            try:
+                result['desktop_replay'] = demo.finish(result,actual_events['candidate'])
+            except Exception as exc:
+                result['desktop_replay_error'] = type(exc).__name__+': '+str(exc)
+                print(traceback.format_exc(),flush=True)
         write_json(output/'outcome.json',result)
     return 0 if result['status'] in ('PASS_BOUNDED_CANDIDATE','FAIL_CANDIDATE_RETAINED') else 1
 
@@ -834,6 +846,7 @@ def run_worker(output):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--demo-recording',action='store_true',help='Prepare selected desktop replay recording; no model change')
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--prepare-only',action='store_true')
     group.add_argument('--execute',action='store_true')
@@ -843,6 +856,12 @@ def main(argv=None):
     if args.prepare_only:
         output.mkdir(parents=True,exist_ok=False)
         protocol = build_protocol()
+        if args.demo_recording:
+            protocol['demo_recording'] = 'retipath-reduced-demo-1'
+            module = ROOT/'tools/cone_hc_demo_recording.py'
+            protocol['implementation_sha256'][module.relative_to(ROOT).as_posix()] = digest(module)
+            protocol.pop('protocol_sha256')
+            protocol['protocol_sha256'] = canonical(protocol)
         validate_protocol(protocol)
         write_json(output/'protocol.json',protocol)
         print('Prepared CPU-only protocol:',output/'protocol.json')

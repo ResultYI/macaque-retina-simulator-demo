@@ -9,8 +9,8 @@ from .contracts import ContractError, canonical_hash
 
 
 CONTRACT_SHA256 = "3cfab9768a856c13354ab38cc65b506da60661fe3e3b0f05e46c647c08981a77"
-SOURCE_PINS_FILENAME = "resident_native_source_pins_v2.json"
-SOURCE_PINS_SHA256 = "78435e7685d21dffed882e873580d946c45d9ad65e502e07599cfca88f1ab84d"
+SOURCE_PINS_FILENAME = "resident_native_source_pins_v6.json"
+SOURCE_PINS_SHA256 = "757112307dddb49e8c89ae49ed942d3eb6a2b33db6c59b90f3e337ef51024f3e"
 
 
 def _channel_manifest(channels):
@@ -42,8 +42,8 @@ class ResidentNativeContract:
         if self.sha256 != CONTRACT_SHA256:
             raise ContractError("Frozen resident numerical contract changed")
         self.record = json.loads(data)
-        # v1 remains historical evidence. v2 binds the reviewed per-channel
-        # endpoint repair; neither manifest constitutes a numerical acceptance.
+        # Prior manifests remain historical evidence. v6 records storage/lifetime
+        # changes; no source manifest is numerical acceptance.
         raw_pins = (directory / SOURCE_PINS_FILENAME).read_bytes()
         self.source_pins_hash = hashlib.sha256(raw_pins).hexdigest()
         if self.source_pins_hash != SOURCE_PINS_SHA256:
