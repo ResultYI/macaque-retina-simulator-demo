@@ -1,0 +1,18 @@
+{
+  "schema": "conditional-output-opt-in-1",
+  "representation": "coarse_group_state",
+  "target": {
+    "population": "parasol_RGC_ON",
+    "global_id": "sg2:61468d3761f46cda:parasol_RGC_ON:8166",
+    "column": 1,
+    "selection": "existing core RF nearest fixed4.73deg project center; frozen before any new likelihood",
+    "physical_identity_verified": false,
+    "actual_observed_cell": "Latimer Cell6",
+    "assay_scope": "conditional fixed-position full-field output calibration"
+  },
+  "default_selected": false,
+  "experimental": true,
+  "implementation": "retina_sim.temporal_readout_v1",
+  "model": "reports\\cell6_temporal_readout_v1_20261028\\MODEL.json",
+  "FIT_READY": false
+}

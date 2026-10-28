@@ -113,6 +113,8 @@ class GroupConstructionSeed:
     time_seconds: float
     source_construction_legal: bool = True
     coupled_background_qualified: bool = False
+    resolved_parameters: object | None = None
+    separate_state_bundle: object | None = None
 
     def require_qualified_background(self):
         raise ContractError('Source construction seed is not a qualified/warmed coupled background')
@@ -333,5 +335,7 @@ def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, 
         prehistory=states['HC',NATIVE,'Vh'],unit='vH_native_voltage',meaning='native_relative_voltage',
         interpolation='linear',prehistory_kind='explicit source construction constant for t<origin',
         feedback_uses_current_state=True)
-    return GroupConstructionSeed(parameters,states,spike_states,observation,
+    result = GroupConstructionSeed(parameters,states,spike_states,observation,
         dict(native_background_td=_owned(bg),rod_background_rstar_s=rod_rate),identity,float(time_seconds))
+    from .parameter_migration import bind_constructed_group
+    return bind_constructed_group(assembly,result,root)

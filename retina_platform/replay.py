@@ -14,6 +14,7 @@ from PIL import Image, ImageDraw, ImageTk
 from .plotting import empty_plot, font, scatter_plot
 from .replay_data import ReplayData
 from .replay_aligned import AlignedProduct, discover
+from .temporal_output import PRODUCTION, EXPERIMENTAL, NOTICE, replay_prediction
 
 ALIGNED_MODE="全层严格对齐"
 
@@ -143,6 +144,11 @@ class ReplayApp:
         self._aligned_ready=None
         self._aligned_desired=None
         self._aligned_labels={}
+        self.output_mode_var=tk.StringVar(root,value=PRODUCTION)
+        self.output_notice_var=tk.StringVar(root,value="默认保留原生产/既有读出；实验模式需要显式选择。")
+        self.experimental_prediction=None
+        self.experimental_metadata=None
+        self._experimental_cache={}
         self.phase_var=tk.StringVar(root,value="primary")
         self.mode_var = tk.StringVar(root,value="全层稀疏快照")
         self.map_status_var = tk.StringVar(root)
@@ -183,6 +189,14 @@ class ReplayApp:
         self.status_label.pack(fill="x")
         self.assessment_summary_label=ttk.Label(self.status_box,textvariable=self.assessment_summary_var,wraplength=1350,font=("Microsoft YaHei UI",9))
         self.evaluation_definition_label=ttk.Label(self.status_box,textvariable=self.evaluation_definition_var,wraplength=1350,font=("Microsoft YaHei UI",9),foreground="#475569")
+        outputs=ttk.Frame(self.status_box);outputs.pack(fill="x",pady=(3,0))
+        ttk.Label(outputs,text="放电输出").pack(side="left")
+        self.output_combo=ttk.Combobox(outputs,textvariable=self.output_mode_var,state="readonly",
+            values=[PRODUCTION,EXPERIMENTAL],width=42)
+        self.output_combo.pack(side="left",padx=6)
+        self.output_combo.bind("<<ComboboxSelected>>",self.output_mode_changed)
+        ttk.Label(outputs,textvariable=self.output_notice_var,foreground="#7e22ce",
+            wraplength=830,font=("Microsoft YaHei UI",9)).pack(side="left",fill="x",expand=True)
         row=ttk.Frame(shell);row.grid(row=2,column=0,sticky="ew",pady=(0,7))
         ttk.Label(row,text="Case").pack(side="left")
         self.case_combo=ttk.Combobox(row,textvariable=self.case_var,state="readonly",width=13)
@@ -279,6 +293,7 @@ class ReplayApp:
             self.clock=PlaybackClock(self.data.stop)
             self.clock.speed=float(self.speed_var.get().rstrip("×"))
             self.selected=self.data.target
+            self.output_mode_changed(render=False)
             self.node_labels=[f"{n['population']} [{n['column']}] · pool {n['members']}" for n in self.data.nodes]
             self.node_combo.configure(values=self.node_labels)
             self.node_var.set(self.node_labels[self.selected])
@@ -312,8 +327,28 @@ class ReplayApp:
     def select_node(self, event=None):
         if not self.data: return
         self.selected=self.node_labels.index(self.node_var.get());self._plot_bases=None
+        self.output_mode_changed(render=False)
         if self.mode_var.get()==ALIGNED_MODE:self.request_aligned_field()
         self.render()
+
+    def output_mode_changed(self,event=None,*,render=True):
+        self.experimental_prediction=None;self.experimental_metadata=None
+        if self.output_mode_var.get()==EXPERIMENTAL and self.data is not None:
+            try:
+                node=self.data.nodes[self.selected]
+                key=(self.data.case_id,node["id"],self.data.spec_sha,
+                    self.data.caches[self.data.case_id]["cache_identity"],
+                    self.data.caches[self.data.case_id]["payload_sha256"])
+                if key not in self._experimental_cache:
+                    self._experimental_cache[key]=replay_prediction(self.data,node)
+                self.experimental_prediction,self.experimental_metadata=self._experimental_cache[key]
+                self.output_notice_var.set(NOTICE)
+            except (ValueError,OSError,KeyError) as exc:
+                self.output_notice_var.set("实验输出已拒绝 / 不适用："+str(exc))
+        else:
+            self.output_notice_var.set("默认保留原生产/既有读出；实验模式需要显式选择。")
+        self._plot_bases=None
+        if render and self.data is not None:self.render()
 
     def select_point(self, event):
         if not self.data or not self.pointmap: return
@@ -584,6 +619,9 @@ class ReplayApp:
             if d.prediction is not None:
                 label=("拟合后(动态不足) / 20 ms" if d.dynamic_output_insufficient else "拟合后(动态待评) / 20 ms") if d.fit['accepted'] else "拒绝的候选 / 20 ms"
                 series.append((bins,d.prediction.reshape(355,20).mean(axis=1),"#d97706" if d.fit['accepted'] else "#dc2626",label))
+            if self.experimental_prediction is not None and self.output_mode_var.get()==EXPERIMENTAL:
+                series.append((bins,self.experimental_prediction.reshape(355,20).mean(axis=1),
+                    "#7e22ce","实验动态期望 / INCONCLUSIVE / 20 ms"))
         if aligned and self.aligned is not None and self.aligned.synthetic:series=[];raster=None
         rate=trace_image(size(self.rate_canvas),series,stop,"独立 1 ms 预事件率/实测；不充作 100 μs post 状态" if aligned else "期望率与 Cell6 实测（下方三次原始重复）","Hz",raster=raster)
         self._plot_bases=(voltage,rate)
@@ -706,6 +744,8 @@ class ReplayApp:
         window=tk.Toplevel(self.root);window.title("Cell6 只读身份与拟合证据");window.geometry("930x650")
         text=tk.Text(window,wrap="word",font=("Consolas",10));text.pack(fill="both",expand=True)
         evidence=self.data.evidence()
+        evidence["output_selection"]=dict(mode=self.output_mode_var.get(),
+            notice=self.output_notice_var.get(),experimental=self.experimental_metadata)
         if self.sparse is not None:evidence["sparse_snapshots"]=self.sparse.manifests
         if self.aligned is not None:
             evidence["aligned_product"]=dict(manifest=str(self.aligned.path),synthetic_fixture=self.aligned.synthetic,

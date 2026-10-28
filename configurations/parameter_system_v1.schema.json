@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "retina-parameter-system-1.0",
+  "title": "Macaque retinal parameter registry v1",
+  "type": "object",
+  "required": ["schema_version", "registry_id", "records"],
+  "properties": {
+    "schema_version": {"const": "retina-parameter-system-1.0"},
+    "registry_id": {"type": "string"},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/ParameterRecord"}}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Applicability": {
+      "type": "object",
+      "required": ["extrapolation_policy"],
+      "properties": {
+        "runtime_eccentricity_deg": {"type": ["array", "null"], "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
+        "evidence_validated_eccentricity_deg": {"type": ["array", "null"], "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
+        "species": {"type": "array", "items": {"type": "string"}},
+        "background_policy_id": {"type": ["string", "null"]},
+        "conditional": {"type": "object"},
+        "extrapolation_policy": {"const": "error"}
+      },
+      "additionalProperties": false
+    },
+    "Evidence": {
+      "type": "object",
+      "required": ["source_class", "source_id", "locator"],
+      "properties": {
+        "source_class": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "locator": {"type": "string", "minLength": 1},
+        "source_sha256": {"type": ["string", "null"]},
+        "evidence_validated_eccentricity_deg": {"type": ["array", "null"], "minItems": 2, "maxItems": 2},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "ValueSpec": {
+      "type": "object",
+      "required": ["rule"],
+      "properties": {
+        "rule": {"enum": ["shared_constant", "type_constant", "eccentricity_function", "retinotopic_function", "background_rule", "derived", "conditional_override"]},
+        "value": {},
+        "layout": {"enum": ["broadcast", "per_group", "component_vector"]},
+        "dependencies": {"type": "array", "items": {"type": "object", "required": ["subject", "quantity", "unit"]}},
+        "operation": {"enum": ["sum", "product", "ratio", "unbound_existing_derivation"]},
+        "axis": {"type": "string"},
+        "axis_unit": {"type": "string"},
+        "anchors": {"type": "array", "items": {"type": "number"}},
+        "values": {"type": "array", "items": {"type": "number"}},
+        "coordinate_frame": {"type": "string"},
+        "interpolation": {"const": "linear"}
+      },
+      "additionalProperties": false
+    },
+    "AggregationRule": {
+      "type": "object",
+      "required": ["kind", "subject"],
+      "properties": {
+        "kind": {"enum": ["compatible", "extensive", "leak_weighted_reversal", "already_aggregated_contact", "gap_laplacian", "none"]},
+        "subject": {"type": "string"},
+        "assumptions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "ParameterRecord": {
+      "type": "object",
+      "required": ["parameter_id", "mechanism", "cell_types", "quantity", "value_spec", "unit", "applicability", "evidence", "binding_subject", "aggregation", "calibration_permissions", "domain", "status", "schema_version"],
+      "properties": {
+        "parameter_id": {"type": "string", "minLength": 1},
+        "mechanism": {"type": "string", "minLength": 1},
+        "cell_types": {"type": "array", "items": {"type": "string"}},
+        "quantity": {"type": "string", "minLength": 1},
+        "value_spec": {"$ref": "#/$defs/ValueSpec"},
+        "unit": {"type": "string", "minLength": 1},
+        "applicability": {"$ref": "#/$defs/Applicability"},
+        "evidence": {"$ref": "#/$defs/Evidence"},
+        "binding_subject": {"type": "string", "minLength": 1},
+        "aggregation": {"$ref": "#/$defs/AggregationRule"},
+        "calibration_permissions": {"type": "array"},
+        "domain": {"type": "object"},
+        "status": {"enum": ["proposed", "diagnostic", "conditional", "validated_for_scope", "engineering_default", "unsupported", "not_implemented"]},
+        "schema_version": {"const": "retina-parameter-system-1.0"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

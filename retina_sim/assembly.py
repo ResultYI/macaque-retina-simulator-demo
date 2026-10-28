@@ -273,6 +273,12 @@ class RetinaBuilder:
 
     def build(self,spec,mode=RunMode.REFERENCE): return self.compile(spec,mode)
 
+    @staticmethod
+    def bind_group_snapshot(assembly,seed,repo_root,*,context=None,protocol=None):
+        """Versioned group parameter binding; equations/CSR remain original."""
+        from .parameter_migration import resolve_group_snapshot
+        return resolve_group_snapshot(assembly,seed,repo_root,context=context,protocol=protocol)
+
     def describe(self,spec):
         from .plugins import BOUNDARIES,boundary_status
         population_ids={p.population_id for p in spec.populations}
@@ -432,4 +438,6 @@ class RetinaBuilder:
         identity=canonical_hash({'model_id':spec.model_id,'components':{k:c.identity for k,c in components.items()},'populations':CanonicalSequence(lambda: (p.record() for p in populations.values())),'links':spec.links,'external':spec.external_inputs,'order':order,'closure':spec.algebraic_closure,'gap_junctions':spec.gap_junctions,'clock':clock,'mode':mode,'required':spec.required_mechanisms,'scope':spec.scope,'compiler_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
         result=CompiledRetina(spec,components,populations,tuple(compiled),tuple(order),identity,mode,clock)
         if scope is not None:result.modeling_scope=scope.manifest(spec)
+        from .parameter_migration import attach_compiled_parameters
+        attach_compiled_parameters(result,self.sources.root)
         return result
