@@ -1,0 +1,147 @@
+{
+  "schema": "layerwise-functional-module-descriptor-1",
+  "profile_id": "HC_H1_H2_functional_v1",
+  "frozen_utc": "2026-10-29T00:53:35.530673+00:00",
+  "qualification": "CONDITIONAL_EFFECTIVE_FUNCTIONAL_PROTOTYPE",
+  "default_selected": false,
+  "production_adopted": false,
+  "FIT_READY": false,
+  "physiologically_calibrated": false,
+  "scientific_review": "PENDING_CHAT_REVIEW",
+  "initialized_model": "845ccd739d7a856ba3d39ff0a1799567efa9c815d1ab53e35fdba81f88e73a3f",
+  "parameter_binding": "c5003b98c0c36a7351f3dd04967145e1a2fca9f2af6d89da2cf861c67a9caf5e",
+  "artifact": "07bfbe758fa4851e10b9d24fc634edb6a26068f24965166adee403d4e2b52d0e",
+  "seed_path": "reports/h1_h2_joint_background_init_20261028_v1/validation/seed",
+  "typed_local_artifact": "reports/h2_integration_20261028_v1/delivery/typed_artifact",
+  "parameter_overrides": {},
+  "source_profile": "VH2005_Fig6A7_native_source",
+  "H2_reference": {
+    "tau_seconds": 0.02,
+    "input_scale": 151.1,
+    "feedback_scale": 1.0,
+    "evidence": "engineering_cross_type_borrow; input/feedback scale not independently identified"
+  },
+  "scope": "Finite inherited local representative model; human cone geometry borrowed; held exterior; native Td and effective HC units",
+  "requirement_records": [
+    {
+      "id": 1,
+      "criterion": "Types and space have an evidence basis",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "Actual typed A/B, H1 S exclusion, H2 LMS; source-informed/project geometry and human cone borrowing explicitly retained",
+      "remaining": "Not measured macaque geometry; no 0–6 degree biological closure"
+    },
+    {
+      "id": 2,
+      "criterion": "No unaddressed major contradiction inside the declared effective mechanism",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "H1 source adaptation is present; gain/tau interpretation corrected; H2 remains explicit one-pole reference model",
+      "remaining": "No explicit homotypic HC gap dynamics; no claim of complete 2007 model or biological gap equivalence"
+    },
+    {
+      "id": 3,
+      "criterion": "Representative temporal, spatial and feedback function",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "Source background frequency curves; three new 2s spatial modes; inherited H2 stimulus/feedback controls",
+      "remaining": "Spatial modes are coarse-centroid model inputs; no physiological RF calibration or new continuous error certificate"
+    },
+    {
+      "id": 4,
+      "criterion": "Identifiable calibration and explicit uncertainty otherwise",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "Published H1 source fit retained; no independent matched H2 quantitative dataset; G/F gauge documented",
+      "remaining": "No new physiological parameter fit; H2 20ms/151.1/1 stays borrowed/engineering"
+    },
+    {
+      "id": 5,
+      "criterion": "Borrowing, engineering and eccentricity range explicit",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "4.73deg configured finite graph, S readout4.813735553deg, held reservoir, human cone density source and native units recorded"
+    },
+    {
+      "id": 6,
+      "criterion": "Identity/configuration and curves reproducible",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "Unchanged source/seed/binding identity; scripts, graph/readout IDs and raw NPZ pinned"
+    },
+    {
+      "id": 7,
+      "criterion": "Stable downstream BC input handoff",
+      "status": "FUNCTIONAL_SCOPE_MET",
+      "basis": "Reuse same joint seed and inherited corrected BC history/constant background/150ms fullchain handoff",
+      "remaining": "No downstream physiological calibration claim; no repeats of prior qualification"
+    }
+  ],
+  "evidence_sha256": {
+    "reports/layerwise_physiology/HC_MECHANISM_AND_EVIDENCE.md": "b48bcca03ee5dc54d6ca1ffaa9339c82f30ed3528b197468a6f3b5dab7b7934a",
+    "reports/layerwise_physiology/HC_STRUCTURE_AND_INPUT.json": "12beb3038283026b548d36668c885bff74db54022b67d221cd098c90f445f1fd",
+    "reports/layerwise_physiology/HC_connection_summary.csv": "05eeb1894620dd84975489a8cf82c50004e19911c04817f24a2eb93935353812",
+    "reports/layerwise_physiology/HC_spatial_readout_v2.csv": "a36bd4c0570f31ccc5242f2b9645e11c8741777678fa24d7cdad4c2aa176ca61",
+    "reports/layerwise_physiology/READOUT_CORRECTION.json": "6084529a3b07f349f50640adcc3288e5db26acb431004ee586342c9cc3b43e1c",
+    "reports/layerwise_physiology/HC_source_background/SOURCE_RESPONSE.json": "b6a87429faa369186f06ea57a9743a4b4d8acaded8964a0c9d4867a3a26d3d57",
+    "reports/layerwise_physiology/HC_source_background/background_frequency_response.csv": "6fe6668474cb898c2792b6c0dc8498991f7fca8c9b79e80c0d42956bba027a3d",
+    "reports/overnight_research_20261029/OVERNIGHT_SUMMARY.md": "d0701f247b8945e7b122df73d9a4fc37cd964d64122015b537a43dfd64b9361e",
+    "reports/overnight_research_20261029/EXTENSION_SUMMARY.md": "bf90154bad4bfdfde0c6936a030700991cc45b2cfb8a588aaf616cdcc32a417a",
+    "reports/h1_h2_joint_background_init_20261028_v1/LOCAL_BACKGROUND_QUALIFICATION.json": "092cf1cc76f1d5a54697514b4829d6cb0253c8b956b15f2642937c80b42ff74d"
+  },
+  "data_checks": [
+    {
+      "spatial_frequency_cpd": 0,
+      "samples": 2001,
+      "finite": true,
+      "sha256": "a2eb90fe345c558bc349a2b8dd27c86c373c22a95710be9d80ae334171ea7014"
+    },
+    {
+      "spatial_frequency_cpd": 2,
+      "samples": 2001,
+      "finite": true,
+      "sha256": "677c76d4eb04eb203db7f32e5577c71fdceba704adcca7798f4debe7f6c20b89"
+    },
+    {
+      "spatial_frequency_cpd": 8,
+      "samples": 2001,
+      "finite": true,
+      "sha256": "fc31f7623e4c654e9a25908abd119d60f4af4f5bdeba710afb8bbfac9634c251"
+    }
+  ],
+  "protected_source_checks": {
+    "retina_sim/vh2005.py": {
+      "expected": "60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858",
+      "actual": "60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858"
+    },
+    "retina_sim/h1_h2_effective.py": {
+      "expected": "3a87950840fc8c5eec275e3514b7187f38e264347799e42ac2ae8e166de40f44",
+      "actual": "3a87950840fc8c5eec275e3514b7187f38e264347799e42ac2ae8e166de40f44"
+    },
+    "retina_sim/h1_h2_background.py": {
+      "expected": "3e7b8697a4c272254935b1b19224a37f9b9669072dc3d38bcddeffd384e6bd47",
+      "actual": "3e7b8697a4c272254935b1b19224a37f9b9669072dc3d38bcddeffd384e6bd47"
+    },
+    "retina_sim/hc_teacher_calibration.py": {
+      "expected": "6749bc8b7ca381d0f8d5e2e4865b9da49b1605237edf25943b6480a3d3abbb94",
+      "actual": "6749bc8b7ca381d0f8d5e2e4865b9da49b1605237edf25943b6480a3d3abbb94"
+    },
+    "sources/core_registry.json": {
+      "expected": "b8f6f0f85ee62b50f6791d97e5789537f933c816068f4ea05322db034c01de10",
+      "actual": "b8f6f0f85ee62b50f6791d97e5789537f933c816068f4ea05322db034c01de10"
+    },
+    "migration_map.json": {
+      "expected": "beb33b3d17a1e6f574c7db8456501aa9c46577e03e9702f8cc5197f5f61411f2",
+      "actual": "beb33b3d17a1e6f574c7db8456501aa9c46577e03e9702f8cc5197f5f61411f2"
+    }
+  },
+  "BC_input_contract": {
+    "field": "native cone release",
+    "unit": "dimensionless",
+    "meaning": "source-native normalized transmitter drive; not molar glutamate concentration, release probability or mV",
+    "identity": "frozen cone group IDs plus genuine source fine-owner IDs when available",
+    "boundary": "same qualified background and held exterior; no crop normalization"
+  },
+  "not_claimed": [
+    "production PASS",
+    "independent biological calibration",
+    "global 0–6deg functional closure",
+    "complete HC gap-junction model",
+    "fine-cell nonlinear reconstruction"
+  ],
+  "descriptor_sha256": "9cc266a1c8d3721a2bf2037e5e4e5b66e52133d725ee8eabc5471ce2525e5154"
+}

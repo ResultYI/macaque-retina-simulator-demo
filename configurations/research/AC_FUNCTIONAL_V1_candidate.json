@@ -1,0 +1,17 @@
+{
+  "schema": "AC-functional-effective-layer-1",
+  "name": "AC_FUNCTIONAL_V1",
+  "BC_configuration": "configurations/research/BC_FUNCTIONAL_V1_candidate.json",
+  "BC_layer_identity": "75229d8c24da74b5ea31ef24846828126651ed314f37caec1ec1e1d22d1c93aa",
+  "frozen_inner_parameters_sha256": "c06604f2c525550a186d301d21aa3dad27a5c833c101e9dd09efe439261137f7",
+  "new_kinetic_mechanism": false,
+  "ordinary_protocol": "Saved BC900ms, groupwise1ms linear interpolation; triangular feedforward block only",
+  "coupled_protocol": "Continue own precision original full inner900ms right state to1800ms, original background/clocks, no repeat900ms event",
+  "intrinsic_ordinary_adaptation": false,
+  "adaptation_scope": "Inherited BC input and existing AII resource only; original finite gates, no new adaptation state",
+  "BC_review": "PENDING_CHAT_REVIEW",
+  "physiologically_calibrated": false,
+  "production_adopted": false,
+  "background_qualified": false,
+  "FIT_READY": false
+}

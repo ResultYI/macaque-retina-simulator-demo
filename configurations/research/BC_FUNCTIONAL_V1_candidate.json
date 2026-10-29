@@ -1,0 +1,35 @@
+{
+  "schema": "BC-functional-effective-layer-1",
+  "name": "BC_FUNCTIONAL_V1",
+  "status": "FUNCTIONAL_CANDIDATE_VALIDATION_PENDING",
+  "upstream_seed": "reports\\cone_aperture_eccentricity\\HC_new_v1\\seed",
+  "upstream_initialized_model": "ac99ba25b6695825188b62039955d16b8f09ac0c12c5ab78d4caa989286bd5dd",
+  "upstream_aperture_descriptor": "2043fca151229922cafae3b3ee75d66f83f178d5ea659dc684edafa389079c9a",
+  "HC_functional_model": "HC_H1_H2_functional_v2",
+  "frozen_inner_parameters_sha256": "c06604f2c525550a186d301d21aa3dad27a5c833c101e9dd09efe439261137f7",
+  "upstream_release_background": "reports/cone_aperture_eccentricity/HC_new_v1/BACKGROUND.npz",
+  "validation_protocol": "reports/layerwise_physiology/BC_functional_v1/PROTOCOL.json",
+  "S_ON_input": "retained_current",
+  "retained_S_ON_input_sha256": "115f3ac6374afd85b0503bbe09adc6f08f449d3148a3a2eebcb156f7b25624aa",
+  "availability_D_enabled": false,
+  "primary_types": [
+    "midget_BC_ON",
+    "midget_BC_OFF",
+    "diffuse_BC_ON",
+    "diffuse_BC_OFF",
+    "S_ON_BC",
+    "rod_BC"
+  ],
+  "existing_experimental_branches": {
+    "S_OFF": "configurations/research/BC_RETAINED_S_OFF_APERTURE_HANDOFF_V1.json",
+    "S_ON_secondary_input": "configurations/research/S_ON_GROUP_CONVERGENCE_INPUT_CANDIDATE_V1.json"
+  },
+  "branch_policy": "Preserve existing qualified branches;75/25 andavailabilityD not adopted into main layer",
+  "source": "retina_sim/bc_functional_v1.py",
+  "source_sha256": "f9436a3e12fd32f1df19eba0d938d1d84f28a065fd24e2527d6c44c503275716",
+  "mode": "Explicit local effective group model with original held reservoirs; no0-6deg quantitative calibration",
+  "background_qualified": false,
+  "physiologically_calibrated": false,
+  "production_adopted": false,
+  "FIT_READY": false
+}

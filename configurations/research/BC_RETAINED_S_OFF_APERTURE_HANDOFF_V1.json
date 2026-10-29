@@ -1,0 +1,60 @@
+{
+  "schema": "retained-S_OFF-aperture-HC-handoff-1",
+  "name": "BC_RETAINED_S_OFF_APERTURE_HANDOFF_V1",
+  "status": "ISOLATED_FUNCTIONAL_HANDOFF_COMPLETE",
+  "result_identity": "c2f79e5768b98ab9068c370e913b769fa030fb12ab1a1cf6cbfd65130ea998d1",
+  "frozen_aperture_descriptor": "2043fca151229922cafae3b3ee75d66f83f178d5ea659dc684edafa389079c9a",
+  "HC_parent": "HC_H1_H2_functional_v2",
+  "inputs": [
+    {
+      "mode": "legacy",
+      "initialized_model": "50cd4b25ca85b0e151dc3bb5014594b60aa9eb39f3192bcd98e7c36c0c9e289f",
+      "HC_interface_binding": "def925387bdd4ee009ad9fd56339436c30bd3b38f18fd7396c48d4fd1d763e52",
+      "component_identity": "624707a75ff28ac418a7bad2452cc46efba085a19dec9876961f06436f193831"
+    },
+    {
+      "mode": "new",
+      "initialized_model": "ac99ba25b6695825188b62039955d16b8f09ac0c12c5ab78d4caa989286bd5dd",
+      "HC_interface_binding": "a40d462ee3c8ff6b6c82a8902276a5161b111f7d1cedd17b69c2dd5e50110f4c",
+      "component_identity": "7e1223deaff11234eefda822bce4fab722fae98382acbb93dce19d3785990837"
+    }
+  ],
+  "fixed_BC_mechanism_parameter_hash": "df81d09c551c076eae345a90bdff028cc8ac0e1268d2959aa4ca2d695262116d",
+  "owner_coverage": "reports/layerwise_physiology/BC_aperture_handoff_v1/OWNER_INPUT_COVERAGE.csv",
+  "owners": 32,
+  "input_groups": 22,
+  "covered": 32,
+  "uncovered": 0,
+  "direct_optical_ROI_owners": [
+    20,
+    26
+  ],
+  "source": "reports/layerwise_physiology/BC_aperture_handoff_v1/run_retained_pair.py",
+  "source_sha256": "e02949b512b4ce3b5e3051f4f73220b41f32da8747a612c7c46c9776a5e1d83b",
+  "exact_existing_OFF_component_sha256": "5601dd757e22177fb02ebd72a4305ea145f8ddd05aa130822fe43f95b27c862c",
+  "parameter_comparison": {
+    "C": true,
+    "gL": true,
+    "Vref": true,
+    "native_voltage_gain": true,
+    "native_reference": true,
+    "release_half": true,
+    "release_slope": true,
+    "tau_release": true,
+    "EI": true,
+    "bias": true,
+    "baseline": true,
+    "kernel": true,
+    "sample_interval": true
+  },
+  "input_availability_D_adopted": false,
+  "new_optical_or_HC_run": false,
+  "RGC_run_or_fit": false,
+  "bounds": "600ms8/30cpd saved input; one finite4.73deg patch; group mean owner inputs; clamped own-background AII; no molecular receptor calibration",
+  "scientific_review": "Aperture summary review received; new BC handoff results have no independent code/array review",
+  "background_qualified": false,
+  "physiologically_calibrated": false,
+  "production_adopted": false,
+  "FIT_READY": false,
+  "descriptor_sha256": "2c3caaf4135ad16603e0b5a97d34cec01f6326ff9cff33493cf6d643c1aadc1a"
+}

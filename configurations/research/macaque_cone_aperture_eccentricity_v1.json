@@ -1,0 +1,470 @@
+{
+  "schema": "macaque-cone-aperture-eccentricity-1",
+  "profile_id": "macaque_cone_aperture_eccentricity_v1",
+  "supported_eccentricity_degrees": [
+    0.0,
+    6.0
+  ],
+  "coordinate_binding": {
+    "microns_per_degree": 223.0,
+    "classification": "existing_project_RF_to_IS_transfer_on_human_borrowed_geometry_not_macaque_eye_measurement",
+    "source_map_microns_per_degree": 199.26,
+    "source_map_subject": "M838",
+    "source_map_species": "Macaca fascicularis study / M838 official repository binding"
+  },
+  "meridians": {
+    "nasal": {
+      "knots": [
+        {
+          "eccentricity_degrees": 0.0,
+          "reference_diameter_um": 2.0074839825014794,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 21,
+          "spatial_IQR_um": [
+            2.0074839825014794,
+            2.1201393845688545
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 0.25,
+          "reference_diameter_um": 2.2271035180251504,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 156,
+          "spatial_IQR_um": [
+            2.1201393845688545,
+            2.295645761000595
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 0.5,
+          "reference_diameter_um": 2.394783608178409,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 312,
+          "spatial_IQR_um": [
+            2.3622,
+            2.489977429616582
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 0.75,
+          "reference_diameter_um": 2.7559,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 460,
+          "spatial_IQR_um": [
+            2.641019888225002,
+            2.7838793975314378
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 1.0,
+          "reference_diameter_um": 2.9686860913424806,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 1.25,
+          "reference_diameter_um": 3.147942195437769,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 1.5,
+          "reference_diameter_um": 3.315122849143963,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 1.75,
+          "reference_diameter_um": 3.3934550018886593,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.0,
+          "reference_diameter_um": 3.467662569458093,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.25,
+          "reference_diameter_um": 3.5302931299407923,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.5,
+          "reference_diameter_um": 3.600263496679271,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.75,
+          "reference_diameter_um": 3.679310906920597,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.0,
+          "reference_diameter_um": 3.776099560874505,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.25,
+          "reference_diameter_um": 3.8901337177600754,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.5,
+          "reference_diameter_um": 3.970474347318949,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.75,
+          "reference_diameter_um": 4.038713153442723,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.0,
+          "reference_diameter_um": 4.1133022124559275,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.25,
+          "reference_diameter_um": 4.197434995131077,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.5,
+          "reference_diameter_um": 4.361292753608525,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.73,
+          "reference_diameter_um": 4.523178532839118,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.75,
+          "reference_diameter_um": 4.527348612693096,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.0,
+          "reference_diameter_um": 4.580476181683853,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.25,
+          "reference_diameter_um": 4.635536556592774,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.5,
+          "reference_diameter_um": 4.6926498475226905,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.75,
+          "reference_diameter_um": 4.751946880815051,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 6.0,
+          "reference_diameter_um": 4.813570460518424,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        }
+      ],
+      "meridian_policy": "Nasal/temporal density proxy; near-field map radially pooled",
+      "superior_inferior_diameter_data_available": false
+    },
+    "temporal": {
+      "knots": [
+        {
+          "eccentricity_degrees": 0.0,
+          "reference_diameter_um": 2.0074839825014794,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 21,
+          "spatial_IQR_um": [
+            2.0074839825014794,
+            2.1201393845688545
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 0.25,
+          "reference_diameter_um": 2.2271035180251504,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 156,
+          "spatial_IQR_um": [
+            2.1201393845688545,
+            2.295645761000595
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 0.5,
+          "reference_diameter_um": 2.394783608178409,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 312,
+          "spatial_IQR_um": [
+            2.3622,
+            2.489977429616582
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 0.75,
+          "reference_diameter_um": 2.7559,
+          "source_id": "ISETMacaque_M838_median_diameter_map",
+          "evidence_class": "source_derived_radial_summary",
+          "map_samples": 460,
+          "spatial_IQR_um": [
+            2.641019888225002,
+            2.7838793975314378
+          ],
+          "note": "Radial pooling of spatial median map; IQR is spatial dispersion, not measurement error or independent-cone CI"
+        },
+        {
+          "eccentricity_degrees": 1.0,
+          "reference_diameter_um": 2.9988604485640726,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 1.25,
+          "reference_diameter_um": 3.134733433920919,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 1.5,
+          "reference_diameter_um": 3.280731150910086,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 1.75,
+          "reference_diameter_um": 3.4304089907047093,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.0,
+          "reference_diameter_um": 3.588225427466216,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.25,
+          "reference_diameter_um": 3.7443884012199886,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.5,
+          "reference_diameter_um": 3.866758345478482,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 2.75,
+          "reference_diameter_um": 3.946303039809604,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.0,
+          "reference_diameter_um": 4.04805991527632,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.25,
+          "reference_diameter_um": 4.174641208290399,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.5,
+          "reference_diameter_um": 4.266408308604106,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 3.75,
+          "reference_diameter_um": 4.350712866829721,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.0,
+          "reference_diameter_um": 4.489652253526932,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.25,
+          "reference_diameter_um": 4.656509098012747,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.5,
+          "reference_diameter_um": 4.7701209806022895,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.73,
+          "reference_diameter_um": 4.881604869686919,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 4.75,
+          "reference_diameter_um": 4.887453446569172,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.0,
+          "reference_diameter_um": 4.951915319264664,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.25,
+          "reference_diameter_um": 5.018932826266056,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.5,
+          "reference_diameter_um": 5.088679423681816,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 5.75,
+          "reference_diameter_um": 5.161345510069687,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        },
+        {
+          "eccentricity_degrees": 6.0,
+          "reference_diameter_um": 5.235992253009649,
+          "source_id": "Packer_density_change_engineering_transfer",
+          "evidence_class": "engineering_spacing_change_proxy",
+          "note": "D(.75)+0.79*[hexagonal_spacing(Packer_density(e))−spacing(.75)]; factor is project assumption, not IS measurement"
+        }
+      ],
+      "meridian_policy": "Nasal/temporal density proxy; near-field map radially pooled",
+      "superior_inferior_diameter_data_available": false
+    }
+  },
+  "kernel": {
+    "shape": "Gaussian",
+    "sigma_per_reference_diameter": 0.204,
+    "characteristic_radius_per_reference_diameter": 0.28849956672411137,
+    "zone_diameter_width_um": 0.05,
+    "area_definition": "ISETBio Gaussian: pi*(sqrt(2)*sigma)^2; exact per cone, once",
+    "crop_normalization": "Renormalize official cropped kernel to unit sum; record original sum"
+  },
+  "evidence": {
+    "M838_raw_file": "D:\\retipath\\experiments\\retipath_foveal_v1\\exploratory_v2\\vendor_pinned\\isetmacaque_cf22ac9d\\animals\\WilliamsLab\\cone_data_M838_OD_2021.mat",
+    "M838_sha256": "9942b8012135128d50d03e7523ad3cdac7f0bf0e962bf8e7d8412040b629ed82",
+    "M838_samples": 2555,
+    "M838_map_scope": "Spatial median-diameter map, 46x60 support with missing samples; not 2555 independent cones",
+    "Packer_density_file": "data/published_code/packer_cone_density.csv",
+    "Packer_density_sha256": "897ab2056e5a92cd0180b09ee4b97fe01cf010cc17f269fb15d94e352515ba5c",
+    "Packer_density_species": "Macaca nemestrina",
+    "Packer_diameter_point_not_fitted": {
+      "eccentricity_mm": 0.0,
+      "diameter_um": 2.3,
+      "scope": "M1 one-eye foveal reported constraint; not universal target"
+    },
+    "sources": [
+      "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0278261",
+      "https://github.com/isetbio/ISETMacaque"
+    ],
+    "unmeasured_region": "Above0.75deg all knots are labeled engineering density-change transfer; no continuous measured0–6deg diameter claim"
+  },
+  "legacy": {
+    "mode": "legacy_fixed_cone_blur",
+    "shape": "Pillbox",
+    "blur_diameter_um": 3.0,
+    "collecting_diameter": "Existing frozen human-borrowed aperture_diameter_um.npy, unchanged",
+    "provenance": "Historical project fixture convention; old exporter file deleted, no old capture cache claimed"
+  },
+  "production_adopted": false,
+  "physiologically_calibrated": false,
+  "FIT_READY": false
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "research-HC-lateral-candidate-selection-1",
+  "candidate_id": "HC_homotypic_lateral_only_v2",
+  "status": "HC_STAGE_OPEN_NEW_RESULTS_PENDING_REVIEW",
+  "physiologically_calibrated": false,
+  "default_selected": false,
+  "production_adopted": false,
+  "FIT_READY": false,
+  "parent_initialized_model": "845ccd739d7a856ba3d39ff0a1799567efa9c815d1ab53e35fdba81f88e73a3f",
+  "parent_binding": "c5003b98c0c36a7351f3dd04967145e1a2fca9f2af6d89da2cf861c67a9caf5e",
+  "selected_native_execution": "5e1da1a52d737a86c81a33a1925cd20a48a12cd5c90ee6f055e1e4f58ed7f985",
+  "provider": "retina_sim/hc_lateral_candidate.py",
+  "provider_sha256": "3d416fa5b8339d139a01105aa6b2a23ef8f833b3b363633ae41e0dba1745d34c",
+  "parameters": {
+    "effective_homotypic_rate_per_second": 50.0,
+    "S_efficacy_ratio": 1.0
+  },
+  "interpretation": "One uncalibrated lateral engineering reference; original spectral input weights retained",
+  "selection_reason": "Legacy already gives strong sparse-S population response at equal native contrast in the tested aperture. No independent evidence requires the extra eta2 gain, so retain eta1.",
+  "eta2_status": "Predeclared counterfactual mechanism control only; not adopted or fitted",
+  "physical_gap_conductance_S": null,
+  "physical_RF_length_mm": null,
+  "numerical_scope": "The single tighter-reference pair tested lateral_S(eta2) S_spot only; do not transfer its qualification to selected eta1 arm",
+  "equilibrated_state": "reports/layerwise_physiology/HC_lateral_preference_v2/validation_v1/lateral_only_native_equilibrium.npz",
+  "downstream_initialized": false,
+  "BC_dynamic_run": false,
+  "source_evidence": [
+    "PanMassey2023 homotypic dye coupling; conductance not identified",
+    "Dacey1996 strong sparse-S H2 group response at unequal isolated cone contrasts"
+  ],
+  "limitations": [
+    "Co-input overlap is a topology proxy, not measured gap anatomy",
+    "Relative group capacity from member count, no physical membrane mapping",
+    "Sealed new HC coupling graph at crop; held old exterior products",
+    "Human-borrowed cone geometry and finite4.73deg model",
+    "H2 qualitative population result at one readout is not a per-contact gain or matched physiological calibration"
+  ],
+  "candidate_sha256": "bc78f2a249ed77405d40cfe327b4aff7869ace8f89633bf61a06e5c47643264b"
+}

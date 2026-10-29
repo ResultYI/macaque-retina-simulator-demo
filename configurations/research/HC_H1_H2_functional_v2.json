@@ -1,0 +1,31 @@
+{
+  "schema": "conditional-HC-functional-module-2",
+  "profile_id": "HC_H1_H2_functional_v2",
+  "frozen_utc": "2026-10-29T02:30:04.368909+00:00",
+  "status": "CONDITIONAL_FUNCTIONAL_READY_FOR_BC",
+  "scientific_review": "Received conditional review; its necessary eta1 engineering gates now evidenced",
+  "prior_scientific_review_url": "https://chatgpt.com/c/6ae1273c-d248-83ee-91b8-21495c8f9efc?messageId=d2dfc78e-a54f-46f0-b7e1-bdb58d8cb014",
+  "mechanism_candidate": "configurations/research/HC_homotypic_lateral_only_v2.json",
+  "candidate_configuration": "bc78f2a249ed77405d40cfe327b4aff7869ace8f89633bf61a06e5c47643264b",
+  "initialized_model_id": "414a3a2ede97e8ebde2fd2d9773222525c7d5b78612d2d5c50c37dde646370bd",
+  "interface_binding_id": "cc640490edece1dac7c5ac1b6d28e134abdada49b6992dd1293bd5dd0a81411a",
+  "initializer_source_sha256": "3e7b8697a4c272254935b1b19224a37f9b9669072dc3d38bcddeffd384e6bd47",
+  "research_interface_source_sha256": "a2fdf98c8c9b10306c7513b9c41e38558d59f8b9574dbf63796151b88aad9044",
+  "seed": "reports/layerwise_physiology/HC_eta1_handoff_v1/seed",
+  "qualification": "reports/layerwise_physiology/HC_eta1_handoff_v1/LOCAL_INTERFACE_QUALIFICATION.json",
+  "qualification_sha256": "0868b87b2d4bb65ca9250ad9b70a4d17a62c6e7567fa2fe0d13abbe8313d7871",
+  "production_adopted": false,
+  "default_selected": false,
+  "physiologically_calibrated": false,
+  "FIT_READY": false,
+  "scope": "Finite4.73deg representative model; S readout4.813735553deg; borrowed human Cone geometry; sealed new homotypic coupling plus held exterior",
+  "input_contract": "Native normalized Cone release with verified group IDs; fixed background and history reference; no molar glutamate or independent fine-cell claim",
+  "numerical_scope": "Eta1 pulse HC/Cone sampled comparison0–400ms plus actual fullchain constant-background comparison0–6ms; no continuous/global certificate",
+  "unresolved": [
+    "Absolute gap conductance and physical RF length uncalibrated",
+    "H2 S efficacy not independently identified",
+    "Full candidate checkpoint schema unsupported",
+    "Global ParameterResolver/production admission not implemented"
+  ],
+  "descriptor_sha256": "b3f568223cb88f47f66823508669aa63dacaabc7e7e20b660b127d6ca5ef4298"
+}

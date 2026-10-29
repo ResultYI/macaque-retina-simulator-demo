@@ -1,0 +1,25 @@
+{
+  "schema": "research-retained-BC-input-semantic-view-1",
+  "profile_id": "BC_retained_typed_glycine_borrowing_v1",
+  "dynamics_initialized_model_id": "414a3a2ede97e8ebde2fd2d9773222525c7d5b78612d2d5c50c37dde646370bd",
+  "dynamics_interface_binding_id": "cc640490edece1dac7c5ac1b6d28e134abdada49b6992dd1293bd5dd0a81411a",
+  "frozen_HC_functional_descriptor": "b3f568223cb88f47f66823508669aa63dacaabc7e7e20b660b127d6ca5ef4298",
+  "retained_seed": "reports/layerwise_physiology/HC_eta1_handoff_v1/seed",
+  "inner_parameters_sha256": "c06604f2c525550a186d301d21aa3dad27a5c833c101e9dd09efe439261137f7",
+  "input_semantics": "Do not identify generic diffuse OFF as DB1 by channel name; retain explicit FMB/DB1 template borrowing",
+  "evidence_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7920536/",
+  "evidence_scope": "Relative glycinergic input bias toward FMB/DB1, not exclusive connectivity or conductance calibration",
+  "source": "retina_sim/bc_glycine_input_semantics.py",
+  "source_sha256": "67643ae37855db3da6ddcd6507d8566cd714f2261b6e9633c62e7e584f6573f5",
+  "semantic_binding_ids": [
+    "2f3b7df5912466fa02124f957e820df84904e7da67a25533b5d919a290671882",
+    "e0e4ac090b9ecfef8f5a5c6b093eeabd45605292946c00e66da1e3e7153984f7"
+  ],
+  "D_candidate_status": "REVIEWED_NOT_ADOPTED_RESEARCH_HYPOTHESIS",
+  "D_state_used": false,
+  "dynamics_changed": false,
+  "production_adopted": false,
+  "physiologically_calibrated": false,
+  "FIT_READY": false,
+  "semantic_view_id": "e6a1644464a5f4137cf469f7f3eaf2fb5c6a6a13885bcd4f9a2ea14953accf7f"
+}

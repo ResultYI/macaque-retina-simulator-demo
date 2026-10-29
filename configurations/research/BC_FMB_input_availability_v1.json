@@ -1,0 +1,23 @@
+{
+  "schema": "isolated-BC-input-availability-1",
+  "profile_id": "FMB_inspired_S_OFF_availability_candidate_v1",
+  "alpha": 0.5628552382388726,
+  "tau_recovery_seconds": 0.1,
+  "reference_puff_duration_seconds": 0.5,
+  "reference_plateau_peak": 0.64,
+  "conditional_alpha_from_population_mean_sd": [
+    0.2664224961935185,
+    1.040894933992702
+  ],
+  "uncertainty": "Population SD, not CI/posterior; tau and native-release-to-occupancy unidentifiable",
+  "source_url": "https://escholarship.org/content/qt5rf8k6x5/qt5rf8k6x5.pdf",
+  "source_locator": "Puthussery2014 p7613 Results/Fig1",
+  "classification": "dimensionless phenomenological borrowing with one conditional coefficient; not macaque S_OFF calibration",
+  "tau_class": "fixed engineering reference",
+  "source_sha256": "2447e7ee0ba6975153cfa6c3ab0c8e2710532fdf262a1316adcabbf5ab4c8f3d",
+  "HC_functional_descriptor": "b3f568223cb88f47f66823508669aa63dacaabc7e7e20b660b127d6ca5ef4298",
+  "production_adopted": false,
+  "physiologically_calibrated": false,
+  "FIT_READY": false,
+  "candidate_sha256": "cb261359a2b7adc0cd2fa45ee3129c09d745d0cefa1c251d64f5d21bc22cc57b"
+}

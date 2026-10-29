@@ -1,0 +1,15 @@
+{
+  "name": "BC_FUNCTIONAL_V1",
+  "status": "LOCAL_CONDITIONAL_FUNCTIONAL_STAGE_COMPLETE_PENDING_CHAT_REVIEW",
+  "runnable_configuration": "configurations/research/BC_FUNCTIONAL_V1_candidate.json",
+  "entry": "retina_sim.bc_functional_v1.BCFunctionalV1",
+  "validated_layer_identity": "75229d8c24da74b5ea31ef24846828126651ed314f37caec1ec1e1d22d1c93aa",
+  "result_identity": "23d9429f236555dbe67c8d6ff7a1407af70a776aab465490d7ea774f15be2eef",
+  "result": "reports/layerwise_physiology/BC_functional_v1/RESULT.json",
+  "scope": "Six existing coarse local BC types, original dependency inner dynamics and held exterior; no quantitative physiological or cross-eccentricity calibration",
+  "scientific_review": "PENDING_CHAT_REVIEW",
+  "physiologically_calibrated": false,
+  "production_adopted": false,
+  "background_qualified": false,
+  "FIT_READY": false
+}

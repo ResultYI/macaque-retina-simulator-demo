@@ -1,0 +1,79 @@
+{
+  "schema": "S_ON-one-edge-group-input-candidate-1",
+  "candidate_id": "S_ON_GROUP_CONVERGENCE_INPUT_CANDIDATE_V1",
+  "status": "INPUT_INTERFACE_FUNCTIONAL_ONLY_PENDING_CHAT_REVIEW",
+  "result_identity": "5637ebd5d0053668cefb4e266e728dcd062c6d7681e201b6d6f864ca58082e47",
+  "source": "retina_sim/s_on_connectivity_candidate.py",
+  "source_sha256": "0590a4b3dc89287366170734a3f41eef7f79d549b258dce18c6f30412992a439",
+  "original_matrix_hash": "115f3ac6374afd85b0503bbe09adc6f08f449d3148a3a2eebcb156f7b25624aa",
+  "candidate_matrix_hash": "1ba11b2dbc70ee5f6812b62356eb1a5ca6a434cacc6cfde90c4d754f03df8300",
+  "operator_file": "reports/layerwise_physiology/S_ON_connectivity_v1/CANDIDATE_S_ON_GROUP_OPERATOR.npz",
+  "target": {
+    "target_BC_group_row": 21,
+    "primary_cone_group_column": 308,
+    "secondary_cone_group_column": 271,
+    "weights": [
+      0.75,
+      0.25
+    ],
+    "original_matrix_hash": "115f3ac6374afd85b0503bbe09adc6f08f449d3148a3a2eebcb156f7b25624aa",
+    "candidate_matrix_hash": "1ba11b2dbc70ee5f6812b62356eb1a5ca6a434cacc6cfde90c4d754f03df8300",
+    "interpretation": "One secondary S-input hypothesis at group resolution; actual singleton groups, no recovered fine BB identity",
+    "row_semantics": "Convex mean of native release; preserve DC gain, not a synaptic current/contact count",
+    "column_semantics": "Information fanout; column sums need not be1; no photon or transmitter-budget conservation claim",
+    "secondary_fraction_status": "Unfitted engineering reference; source supports dominant/secondary structure but not this fraction",
+    "default_selected": false,
+    "production_adopted": false,
+    "FIT_READY": false,
+    "BC_group_id": "sg2:61468d3761f46cda:S_ON_BC:8475",
+    "represented_BC_members": 1,
+    "primary_cone_group_id": "sg2:61468d3761f46cda:cones:46934",
+    "secondary_cone_group_id": "sg2:61468d3761f46cda:cones:46729",
+    "primary_fine_cone_source_id": "sdr_human_54eb0a9ef905_row:1223290",
+    "secondary_fine_cone_source_id": "sdr_human_54eb0a9ef905_row:1224775",
+    "primary_fine_cone_global_row": 127108,
+    "secondary_fine_cone_global_row": 127865,
+    "primary_RF_mm": [
+      1.0734423828125,
+      -0.00665762996673584
+    ],
+    "secondary_RF_mm": [
+      1.0665076904296875,
+      0.021240779876708984
+    ],
+    "primary_OPL_mm": [
+      1.3223814250445562,
+      -0.008201582445221262
+    ],
+    "secondary_OPL_mm": [
+      1.3161263942419816,
+      0.026212235768086744
+    ],
+    "primary_RF_eccentricity_degrees": 4.813735553182038,
+    "secondary_RF_eccentricity_degrees": 4.78349411328784,
+    "OPL_distance_um": 34.97765421465206,
+    "coordinate_evidence": "Schein1988_M1_bounded_bridge_project_approximation",
+    "fine_BC_id": null,
+    "fine_BC_status": "Original fine BC identity/owner files absent; actual group ID never relabeled as fine cell",
+    "resolution": "One effective group input edge on singleton existing groups; no reconstructed BB mosaic"
+  },
+  "input_model": "ac99ba25b6695825188b62039955d16b8f09ac0c12c5ab78d4caa989286bd5dd",
+  "input_binding": "a40d462ee3c8ff6b6c82a8902276a5161b111f7d1cedd17b69c2dd5e50110f4c",
+  "input_sha256": {
+    "D:\\macaque_retina_simulator\\reports\\cone_aperture_eccentricity\\HC_new_v1\\8cpd_response.npz": "f0849a6f4b02f01ceb6b198e86349e9d46c944ebc9cfbbca3a70d53d5be04e5d",
+    "D:\\macaque_retina_simulator\\reports\\cone_aperture_eccentricity\\HC_new_v1\\BACKGROUND.npz": "78101ae220d60ae1d44bfc601e141ab9944e4cbf7b1db027ac3c6f35773ff258"
+  },
+  "BC_parameters_unchanged": true,
+  "BC_baseline_unchanged": true,
+  "BC_dynamic_qualification": false,
+  "BC_dynamic_status": "NOT_RUN;57 nonzero existing S_ON electrical coefficients require preserving coupled closure",
+  "candidate_seed_created": false,
+  "weight_status": "Unfitted engineering reference; qualitatively constrained dominance, no unique physiological gain",
+  "fine_BB_mosaic_reconstructed": false,
+  "full_S_ON_phase_complete": false,
+  "scientific_review": "PENDING_CHAT_REVIEW",
+  "production_adopted": false,
+  "background_qualified": false,
+  "FIT_READY": false,
+  "candidate_identity": "d3230c14d940f743f33d138c781909b92abf9d8cb777c046e2454311b5152152"
+}

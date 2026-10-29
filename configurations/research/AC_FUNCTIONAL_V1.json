@@ -1,0 +1,14 @@
+{
+  "name": "AC_FUNCTIONAL_V1",
+  "status": "AC_FUNCTIONAL_V1_LOCAL_CONDITIONAL_STAGE_COMPLETE",
+  "runnable_configuration": "configurations/research/AC_FUNCTIONAL_V1_candidate.json",
+  "entry": "retina_sim.ac_functional_v1.ACFunctionalV1",
+  "validated_layer_identity": "5533a84666272acdcce99231ee5724119a55dee2c390dcac945dd2e9ddc15526",
+  "result_identity": "48f645af2bc9ceafe9bfb35674b21895bcec6a0840185a632d6f85585352426c",
+  "result": "reports/layerwise_physiology/AC_functional_v1/RESULT.json",
+  "BC_review": "PENDING_CHAT_REVIEW",
+  "AC_review": "PENDING_CHAT_REVIEW",
+  "production_adopted": false,
+  "background_qualified": false,
+  "FIT_READY": false
+}

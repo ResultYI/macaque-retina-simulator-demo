@@ -1,0 +1,83 @@
+{
+  "schema": "cone-macaque-aperture-functional-1",
+  "name": "CONE_MACAQUE_APERTURE_FUNCTIONAL_V1",
+  "status": "CONDITIONAL_ENGINEERING_FUNCTIONAL_FROZEN",
+  "review": {
+    "status": "SUMMARY_REVIEW_RECEIVED_CONDITIONAL_FUNCTIONAL_DELIVERY_ACCEPTED",
+    "source_url": "https://chatgpt.com/c/6ae1273c-d248-83ee-91b8-21495c8f9efc?messageId=78243337-ec19-428b-89a7-9a7b6d26eb91",
+    "received_utc": "2026-10-29T04:56:01.640587+00:00",
+    "delivery": "Parent read final Chat response and supplied conclusion",
+    "basis": "Executor summary and numerical tables; Chat did not independently read local code or arrays",
+    "conclusions": [
+      "Conditional engineering functional candidate may freeze with all scope/engineering transfer limitations",
+      "No major immediate unit/kernel/area contradiction identified in summary; Gaussian2pi*sigma^2 is not anatomical pi*(D/2)^2",
+      "Background decrease reflects aperture and effective-area conventions, not measured QE",
+      "May resume frozenHC_v2 and retainedBC research using new input/background, fixed BCbaseline",
+      "Full0-6deg macaque diameter measurements remain independent evidence gap; no prerequisite scan"
+    ],
+    "production_adopted": false,
+    "background_qualified": false,
+    "FIT_READY": false
+  },
+  "aperture_profile": "configurations/research/macaque_cone_aperture_eccentricity_v1.json",
+  "aperture_profile_sha256": "b55a04825a03f63c90e7793562dd233ee7385456270b406d6d23f76631b364a6",
+  "experiment_identity": "f83af782717a2c7e2c00e93880e62cf70cf62da7c87f5003bcbc9bd6a2d3348c",
+  "HC_parent": "HC_H1_H2_functional_v2",
+  "selected_mode": "macaque_eccentricity_aperture_v1",
+  "initialized_model_id": "ac99ba25b6695825188b62039955d16b8f09ac0c12c5ab78d4caa989286bd5dd",
+  "interface_binding_id": "a40d462ee3c8ff6b6c82a8902276a5161b111f7d1cedd17b69c2dd5e50110f4c",
+  "seed": "reports\\cone_aperture_eccentricity\\HC_new_v1\\seed",
+  "modes": [
+    {
+      "mode": "legacy",
+      "initialized_model_id": "50cd4b25ca85b0e151dc3bb5014594b60aa9eb39f3192bcd98e7c36c0c9e289f",
+      "interface_binding_id": "def925387bdd4ee009ad9fd56339436c30bd3b38f18fd7396c48d4fd1d763e52",
+      "seed": "reports\\cone_aperture_eccentricity\\HC_legacy_v1\\seed",
+      "first_history_event_change": {
+        "midget_BC_ON": 0.0,
+        "midget_BC_OFF": 0.0,
+        "S_ON_BC": 0.0,
+        "diffuse_BC_ON": 0.0,
+        "diffuse_BC_OFF": 0.0
+      }
+    },
+    {
+      "mode": "new",
+      "initialized_model_id": "ac99ba25b6695825188b62039955d16b8f09ac0c12c5ab78d4caa989286bd5dd",
+      "interface_binding_id": "a40d462ee3c8ff6b6c82a8902276a5161b111f7d1cedd17b69c2dd5e50110f4c",
+      "seed": "reports\\cone_aperture_eccentricity\\HC_new_v1\\seed",
+      "first_history_event_change": {
+        "midget_BC_ON": 0.0,
+        "midget_BC_OFF": 0.0,
+        "S_ON_BC": 0.0,
+        "diffuse_BC_ON": 0.0,
+        "diffuse_BC_OFF": 0.0
+      }
+    }
+  ],
+  "supported_profile_range_degrees": [
+    0,
+    6
+  ],
+  "quantitative_anatomical_calibration": false,
+  "scope": "Human-borrowed actual coordinates; near M838 radial summary; >0.75deg engineering density-change transfer; finite4.73deg HC patch",
+  "core_sources": {
+    "retina_sim/cone_aperture_eccentricity.py": "0f8a63507d5b3d6958d6b694c1f13714366b3f03e77ba6d4eda1ba9dd262b37b",
+    "tools/matlab/sample_cone_aperture_zones.m": "08eb5698b50e706cc00f0a0e4a1a7b3a85d5b0a0cc92d35da32713cdc728f7e3",
+    "retina_sim/cone_aperture_hc_bridge.py": "a11f4fec71a7118fd5d8388ced634196726f1007a7d47a5ae5d771abc5ae5c9f"
+  },
+  "exact_area_per_cone": true,
+  "unit_sum_position_dependent_sampling_kernel": true,
+  "physical_capture_units": "R*/s;5ms expected count separately",
+  "native_bridge": "Fixed LMS reference-equivalent engineering only",
+  "numerical_scope": "30cpd HC/Cone601nodes0-600ms;6ms fullchainconstant only",
+  "BC_next": "Retained BC model with actual new input seed; D candidate not adopted",
+  "complete_checkpoint_supported": false,
+  "physiologically_calibrated": false,
+  "production_adopted": false,
+  "FIT_READY": false,
+  "parent_candidate_identity": "30e049cb6d972d7de0ad07c7b62745833abd9a3be56770e39eddebe68b2b77b5",
+  "background_qualified": false,
+  "freeze_utc": "2026-10-29T04:56:01.640587+00:00",
+  "descriptor_sha256": "2043fca151229922cafae3b3ee75d66f83f178d5ea659dc684edafa389079c9a"
+}
