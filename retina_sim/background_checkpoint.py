@@ -42,18 +42,22 @@ class MemoryGuard:
     def __init__(self,max_rss_bytes=4*1024**3,min_available_bytes=1024**3):
         self.max_rss_bytes=int(max_rss_bytes);self.min_available_bytes=int(min_available_bytes)
         self.stop_reason=None;self.last={};self.peak_rss_bytes=0
+        self._memory_api=None
     def check(self):
         if os.name!='nt':raise ContractError('Memory guard requires the configured Windows host; no unmeasured fallback')
-        from ctypes import wintypes
-        class Counters(ctypes.Structure):
-            _fields_=[('cb',wintypes.DWORD),('PageFaultCount',wintypes.DWORD)]+[(k,ctypes.c_size_t) for k in
-                ('PeakWorkingSetSize','WorkingSetSize','QuotaPeakPagedPoolUsage','QuotaPagedPoolUsage','QuotaPeakNonPagedPoolUsage','QuotaNonPagedPoolUsage','PagefileUsage','PeakPagefileUsage')]
-        class Status(ctypes.Structure):
-            _fields_=[('dwLength',wintypes.DWORD),('dwMemoryLoad',wintypes.DWORD)]+[(k,ctypes.c_ulonglong) for k in
-                ('ullTotalPhys','ullAvailPhys','ullTotalPageFile','ullAvailPageFile','ullTotalVirtual','ullAvailVirtual','ullAvailExtendedVirtual')]
-        kernel=ctypes.WinDLL('kernel32',use_last_error=True);psapi=ctypes.WinDLL('psapi',use_last_error=True)
-        kernel.GetCurrentProcess.restype=wintypes.HANDLE
-        psapi.GetProcessMemoryInfo.argtypes=[wintypes.HANDLE,ctypes.POINTER(Counters),wintypes.DWORD]
+        if self._memory_api is None:
+            from ctypes import wintypes
+            class Counters(ctypes.Structure):
+                _fields_=[('cb',wintypes.DWORD),('PageFaultCount',wintypes.DWORD)]+[(k,ctypes.c_size_t) for k in
+                    ('PeakWorkingSetSize','WorkingSetSize','QuotaPeakPagedPoolUsage','QuotaPagedPoolUsage','QuotaPeakNonPagedPoolUsage','QuotaNonPagedPoolUsage','PagefileUsage','PeakPagefileUsage')]
+            class Status(ctypes.Structure):
+                _fields_=[('dwLength',wintypes.DWORD),('dwMemoryLoad',wintypes.DWORD)]+[(k,ctypes.c_ulonglong) for k in
+                    ('ullTotalPhys','ullAvailPhys','ullTotalPageFile','ullAvailPageFile','ullTotalVirtual','ullAvailVirtual','ullAvailExtendedVirtual')]
+            kernel=ctypes.WinDLL('kernel32',use_last_error=True);psapi=ctypes.WinDLL('psapi',use_last_error=True)
+            kernel.GetCurrentProcess.restype=wintypes.HANDLE
+            psapi.GetProcessMemoryInfo.argtypes=[wintypes.HANDLE,ctypes.POINTER(Counters),wintypes.DWORD]
+            self._memory_api=(Counters,Status,kernel,psapi)
+        Counters,Status,kernel,psapi=self._memory_api
         c=Counters();c.cb=ctypes.sizeof(c);s=Status();s.dwLength=ctypes.sizeof(s)
         if not psapi.GetProcessMemoryInfo(kernel.GetCurrentProcess(),ctypes.byref(c),c.cb) or not kernel.GlobalMemoryStatusEx(ctypes.byref(s)):
             raise OSError(ctypes.get_last_error(),'Cannot measure safety memory budget')

@@ -143,7 +143,7 @@ class GroupTimeMonitor:
                 # while avoiding fresh full-state results on every observation.
                 work=self._cpu_work[:b.count]
                 if row['lo'] is None:row['lo']=copy(a)
-                else:np.minimum(row['lo'],a,out=row['lo'])
+                else:row['lo']=minimum(row['lo'],a)
                 if row['hi'] is None:row['hi']=copy(a)
                 else:np.maximum(row['hi'],a,out=row['hi'])
                 if row['rhs'] is None:row['rhs']=absolute(f)
