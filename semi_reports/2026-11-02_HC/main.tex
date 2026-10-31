@@ -1,0 +1,211 @@
+% !TeX document-id = {d3180326-e0d2-447c-ac39-50b0271e3b1b}
+% 固定の資料フォルダ。以後の修正はこの main.tex を直接編集する。
+\documentclass[a4paper,uplatex,dvipdfmx]{jsarticle}
+\usepackage[haranoaji,unicode]{pxchfon}
+\usepackage[dvipdfmx]{graphicx,color}
+\usepackage{amsmath,amssymb,xurl,multicol,caption}
+\usepackage[dvipdfmx,unicode]{hyperref}
+\usepackage{pxjahyper}
+\captionsetup{font=small,labelfont=normalfont,labelsep=quad,hypcap=false}
+\raggedbottom
+\raggedcolumns
+\hypersetup{hidelinks,pdftitle={進捗報告},pdfauthor={M1 TANG YU}}
+\topmargin=-2.0cm
+\textheight=25.0cm
+\textwidth=17.0cm
+\oddsidemargin=-1.0cm
+\evensidemargin=-1.0cm
+\renewcommand{\baselinestretch}{0.95}
+\setlength{\columnsep}{7mm}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@dblfptop}{0pt}
+\renewcommand{\@maketitle}{%
+  \begin{center}
+    {\Large\@title\par}
+    \vspace{0.4em}
+    {\normalsize\@author\par}
+    \vspace{0.2em}
+    {\normalsize\@date\par}
+  \end{center}
+  \vspace{0.3em}}
+\makeatother
+\newcommand{\degc}{^{\circ}}
+\newcommand{\talkpoint}[1]{\par\smallskip\noindent\textbf{#1}\par}
+\title{\textbf{進捗報告}}
+\author{M1 TANG YU}
+\date{2026年11月2日}
+
+\begin{document}
+\maketitle
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+
+\begin{center}
+\includegraphics[width=\linewidth]{hc_distribution_density.pdf}
+\captionof{figure}{現在のH1/H2分布と密度。中心から半径$6\degc$以内に
+H1 $82{,}456$個、H2 $20{,}597$個を配置した。
+右の実線はモデル密度、白抜き点は保存済み座標の環帯密度を示す。
+$6\degc$は$1.338$~mmに相当する。}
+\label{fig:mosaic}
+\end{center}
+
+\section{分布の出典と密度方程式}
+\begin{multicols}{2}\small
+\subsection{文献の値を使う範囲}
+中央部の総HC密度はRöhrenbeckら（1989）に基づく\cite{Rohrenbeck1989}。
+中心で約$250$~cells/mm$^2$、半径約$0.6$~mmで最大$23{,}000$~cells/mm$^2$という値を使った。
+H1/H2の密度はWässleら（2000）のTable~2と、中央部の比率H1:H2 $=4:1$を参考にした\cite{Wassle2000}。
+Table~2の最内側の測定範囲は$2$--$3$~mmである。
+図\ref{fig:mosaic}の$0$--$1.338$~mmは中央の補間を含む合成配置である。
+
+\subsection{密度関数}
+偏心度を$e$（度）、物理距離を$r$（mm）とし、
+\begin{equation}
+r=0.223e
+\end{equation}
+で換算する。総密度を$\rho(r)$、H1の割合を$p(r)$とすると、
+\begin{equation}
+\rho_{\mathrm{H1}}=p\rho,\qquad
+\rho_{\mathrm{H2}}=(1-p)\rho
+\end{equation}
+となる。密度の単位はcells/mm$^2$である。
+
+\columnbreak
+中央の$0\le r\le0.6$~mmでは、
+\begin{align}
+q&=r/0.6,\qquad s(q)=3q^2-2q^3,\\
+\rho(r)&=250\left(\frac{23{,}000}{250}\right)^{s(q)},\\
+p(r)&=0.8
+\end{align}
+とする。これにより中心から密度のピークまで滑らかにつながる。
+
+$0.6$~mmより外側では、ピークとTable~2の区間代表点を用い、
+$\log\rho$と$\log[p/(1-p)]$を形状保持Hermite補間する。
+節点は$0.6,\ 2.5,\ 3.5,\ 4.5,\ 5.6,\ 6.3,\ 7.1$~mmで、
+ピーク側の傾きを0に設定した。
+中央の補間形状、H1比率の中心への適用、軸対称性はプロジェクトの仮定である。
+
+\subsection{座標の生成}
+領域$\Omega$内の各型の細胞数を密度の面積積分から決める。
+\begin{equation}
+N_t(\Omega)\simeq\int_\Omega\rho_t(\mathbf{x})\,dA
+\end{equation}
+各小領域の整数細胞数を保ち、密度に応じた抽出と短距離反発により座標を配置する。
+図\ref{fig:mosaic}には、この保存済み座標から半径$6\degc$以内を切り出して用いた。
+\end{multicols}
+
+\clearpage
+\section{ISETBioの光学入力からHC応答まで}
+\noindent{\small
+RGB画像 $\longrightarrow$ ISETBioの網膜光学像 $\longrightarrow$ Cone光吸収
+$\longrightarrow$ Cone放出信号 $\longrightarrow$ H1/H2応答
+}\par\smallskip
+\begin{multicols}{2}\small
+\subsection{光吸収量をCone入力に変換する}
+ISETBioで眼光学を計算し、各Coneの位置、開口、分光感度を使って
+時間窓$\Delta t$内の期待光異性化数$N_i$を求める。
+その速度を$\lambda_i=N_i/\Delta t$（R*/s）とする。
+L/M/Sの型$s(i)$ごとに固定した参照係数$\alpha_s$を用い、
+\begin{equation}
+L_i(t)=\frac{\lambda_i(t)}{\alpha_{s(i)}},\qquad
+\alpha_s=\frac{\lambda_s^{\mathrm{ref}}}{I^{\mathrm{ref}}}
+\end{equation}
+でConeモデルの入力へ変換する。
+参照は$I^{\mathrm{ref}}=100$~Tdで、$L_i$は参照等価Tdという工学的入力尺度である。
+係数は全細胞・全時刻で共通のL/M/S参照を用いる。
+群で計算する場合は、同型Coneの$L_i$を平均して入力する。
+動画の各フレーム内では入力を保持し、細胞状態を次の区間へ引き継ぐ。
+
+\subsection{Coneの光応答と放出信号}
+$L_i$をvan Hateren（2005）の光変換・順応モデルに与え、
+内節状態$V_i$と、その低域通過による順応状態$\bar V_i$を計算する\cite{vanHateren2005}。
+HCへ送るCone放出信号は
+\begin{align}
+a_i&=\left(\frac{\bar V_i}{V_I}\right)^\mu,\\
+r_i&=\frac{1}{a_i}
+\sigma\!\left(\frac{V_i-f_i-V_k}{V_n}\right),
+\quad \sigma(x)=\frac{1}{1+e^{-x}}
+\label{eq:release}
+\end{align}
+とする。$f_i$はHCから戻るフィードバックで、$r_i$は無次元の有効放出信号である。
+
+\subsection{Cone入力の平均とHCの時間応答}
+HCの偏心度に応じた等価接触円内からConeを選ぶ。
+H1はL/M、H2はL/M/Sから入力を受ける\cite{Dacey1996}。
+接触範囲はWässleらの収束数とCone密度に基づき、
+中央の$0$--$0.5$~mmには中央参考半径を延長する。
+\par\columnbreak\noindent
+接触の有無を$C_{ji}\in\{0,1\}$とし、HCごとに重みを正規化する。
+\begin{equation}
+A_{ji}=\frac{C_{ji}}{\sum_\ell C_{j\ell}},\qquad
+u_{t,j}=\sum_i A_{ji}r_i+u^{\mathrm{ext}}_{t,j}
+\end{equation}
+$u_{t,j}$はHCへの平均入力である。
+局所計算では全体の重みを保持し、領域外の寄与を背景値に固定する。
+
+以下の時間$t$は秒とする。H1は二つの中間状態$w,z$を介して応答する。
+\begin{align}
+\frac{dw_j}{dt}&=\frac{g_tu_{1,j}-w_j}{0.004},\\
+\frac{dz_j}{dt}&=\frac{w_j-z_j}{0.004\,\bar a_j},\\
+\frac{dh_{1,j}}{dt}&=\frac{z_j-h_{1,j}}{0.020\,\bar a_j}
+-\kappa(Q_1\mathbf{h}_1)_j.
+\end{align}
+順応係数はConeの$\bar V$を先に平均してから求める。
+\begin{equation}
+\bar a_j=\left(
+\frac{\sum_i A_{ji}\bar V_i+v_j^{\mathrm{ext}}}{V_I}
+\right)^\mu
+\end{equation}
+H2は時定数$20$~msの一次応答とする。
+\begin{equation}
+\frac{dh_{2,j}}{dt}=\frac{g_tu_{2,j}-h_{2,j}}{0.020}
+-\kappa(Q_2\mathbf{h}_2)_j.
+\end{equation}
+$Q_1,Q_2$は同型HC間の共通Cone入力の重なりから作る側方結合演算子で、
+$\kappa=50$~s$^{-1}$とする。H2の時定数と側方結合の強さは現在のモデル設定である。
+直接入力と側方結合から機能的受容野が形成される。
+
+\par\smallskip\noindent\textbf{HCからConeへのフィードバック。}
+現在はL/M ConeにH1、S ConeにH2の平均状態を戻す。
+\begin{equation}
+\mathbf{f}=B_1\mathbf{h}_1+B_2\mathbf{h}_2
++\mathbf{f}^{\mathrm{ext}}
+\end{equation}
+これを式\eqref{eq:release}のCone放出に戻し、光入力からConeとHCの応答を連続して計算する。
+$B_1,B_2$は対応する全体接触で正規化した重みである。
+接触のない行は0として記録する。
+
+共通パラメータは$g_t=151.1$、$V_I=19.7$、$\mu=0.733$、
+$V_k=-10$、$V_n=3$である。
+$V_i,h_{t,j}$はモデル原生尺度であり、絶対mVへの換算は行っていない。
+\end{multicols}
+
+{\footnotesize
+\begin{thebibliography}{9}
+\setlength{\itemsep}{0pt}
+\bibitem{Rohrenbeck1989}
+J. Röhrenbeck, H. Wässle, and B. B. Boycott.
+Horizontal Cells in the Monkey Retina: Immunocytochemical staining with antibodies against calcium binding proteins.
+\textit{Eur. J. Neurosci.}, 1:407--420, 1989.
+\url{https://doi.org/10.1111/j.1460-9568.1989.tb00349.x}.
+\bibitem{Wassle2000}
+H. Wässle et al.
+The mosaic of horizontal cells in the macaque monkey retina: With a comment on biplexiform ganglion cells.
+\textit{Visual Neuroscience}, 17:591--608, 2000.
+\url{https://doi.org/10.1017/S0952523800174097}.
+\bibitem{vanHateren2005}
+J. H. van Hateren.
+A cellular and molecular model of response kinetics and adaptation in primate cones and horizontal cells.
+\textit{J. Vis.}, 5(4), 2005.
+\url{https://doi.org/10.1167/5.4.5}.
+\bibitem{Dacey1996}
+D. M. Dacey et al.
+Horizontal cells of the primate retina: cone specificity without spectral opponency.
+\textit{Science}, 271:656--659, 1996.
+\url{https://doi.org/10.1126/science.271.5249.656}.
+\end{thebibliography}
+}
+\end{document}

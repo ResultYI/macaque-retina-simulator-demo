@@ -1,0 +1,511 @@
+{
+  "schema": "HC_eccentric_connectivity_validation_v1",
+  "implementation": {
+    "tools/build_eccentric_hc.py": "1cb690f7202c5b422496dd425cec9d267f95f4b18406ce263813a7114df0c487",
+    "retina_sim/disk_hc_functional.py": "874d19078abd54ce4d793169736163c3084bd8154ffff2fef7b250a4aa49324a",
+    "retina_sim/atlas_hc.py": "991de836dd3388837432145e0b8804506e8126a74772a56adbcb6219ed1b82de"
+  },
+  "tables": {
+    "cones": {
+      "path": "data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json",
+      "sha256": "9c6c0e94eb0d69478c658d2a48c7bae22d603866abf6f5402eb924b46952db00"
+    },
+    "HC": {
+      "path": "data/atlas/human_disk3mm_typed_tables_v1/HC/manifest.json",
+      "sha256": "c3f2d8f84919871f208a84bf4bc3987d65becf04e529bc0ef9af92d8f3194527"
+    }
+  },
+  "connection_profile": {
+    "path": "configurations/hc_eccentric_size_w2000_v1.json",
+    "sha256": "50db6eb73c9b14d1a7dc91553b266deee07c092f50218e3a4c58e7d68611a7e5"
+  },
+  "size_profile": {
+    "path": "configurations/atlas_hc_candidate_v1.json",
+    "sha256": "10c2fdd30acbf8331e131f66236f2bf61142ccfb5a65dbdcbb27a2634bca8081"
+  },
+  "radius_deg": 6,
+  "radius_mm": 1.338,
+  "mm_per_degree": 0.223,
+  "coordinate_scope": "HC soma co-located OPL anchors and actual cone pedicles; RF counts reported separately",
+  "cone_geometry": "existing human-borrowed fixed cone mosaic with Schein OPL displacement; unchanged",
+  "total_HC": 344910,
+  "total_cones": 545658,
+  "total_edges": 3632590,
+  "owner_HC_counts": {
+    "H1": 82456,
+    "H2": 20597
+  },
+  "owner_OPL_cones": 154980,
+  "owner_RF_cones": 190498,
+  "checks": {
+    "all_edges_inside_own_HC_radius": true,
+    "maximum_distance_over_radius": 0.9999998518188753,
+    "owner_HC_complete_against_independent_typed_trees": true,
+    "owner_HC_disks_within_complete_cone_outer_support": true,
+    "cone_pedicles_match_frozen_displacement": true,
+    "H1_S_edges": 0,
+    "reciprocal_native_topology": true,
+    "finite_unit_DC_nonempty_rows": true,
+    "owner_cone_HC_cohort_complete": true,
+    "single_HC_contact_quota_imposed": false,
+    "cone_divergence_quota_imposed": false,
+    "radius_expansion_or_nearest_fill": false
+  },
+  "cone_support": {
+    "complete_RF_radius_mm": 3.199017442664998,
+    "conservative_OPL_outer_radius_mm": 3.199017442664998,
+    "maximum_owner_HC_disk_extent_mm": 1.3520428125671315,
+    "central_pedicle_free_radius_mm": 0.15,
+    "central_interpretation": "empty pedicle region of the existing project displacement bridge; not a new physiological zero claim"
+  },
+  "bands": [
+    {
+      "kind": "H1",
+      "low_mm": 0.0,
+      "high_mm": 0.5,
+      "diameter_um_mean": 16.080000000000005,
+      "n": 3683,
+      "mean": 6.132500678794461,
+      "median": 6.0,
+      "zero": 24,
+      "total": 22586,
+      "minimum": 0,
+      "maximum": 10
+    },
+    {
+      "kind": "H2",
+      "low_mm": 0.0,
+      "high_mm": 0.5,
+      "diameter_um_mean": 24.44,
+      "n": 914,
+      "mean": 14.704595185995624,
+      "median": 15.0,
+      "zero": 5,
+      "total": 13440,
+      "minimum": 0,
+      "maximum": 20
+    },
+    {
+      "kind": "H1",
+      "low_mm": 0.5,
+      "high_mm": 1.0,
+      "diameter_um_mean": 16.080000000000005,
+      "n": 41330,
+      "mean": 5.571473505927897,
+      "median": 6.0,
+      "zero": 0,
+      "total": 230269,
+      "minimum": 1,
+      "maximum": 10
+    },
+    {
+      "kind": "H2",
+      "low_mm": 0.5,
+      "high_mm": 1.0,
+      "diameter_um_mean": 24.439999999999998,
+      "n": 10340,
+      "mean": 13.782785299806577,
+      "median": 14.0,
+      "zero": 0,
+      "total": 142514,
+      "minimum": 8,
+      "maximum": 20
+    },
+    {
+      "kind": "H1",
+      "low_mm": 1.0,
+      "high_mm": 1.338,
+      "diameter_um_mean": 17.83388644229806,
+      "n": 37443,
+      "mean": 5.703923296744385,
+      "median": 6.0,
+      "zero": 0,
+      "total": 213572,
+      "minimum": 1,
+      "maximum": 10
+    },
+    {
+      "kind": "H2",
+      "low_mm": 1.0,
+      "high_mm": 1.338,
+      "diameter_um_mean": 26.292651416517394,
+      "n": 9343,
+      "mean": 13.768061650433479,
+      "median": 14.0,
+      "zero": 0,
+      "total": 128635,
+      "minimum": 9,
+      "maximum": 19
+    },
+    {
+      "kind": "H1",
+      "low_mm": 0.0,
+      "high_mm": 1.338,
+      "diameter_um_mean": 16.876434098900827,
+      "n": 82456,
+      "mean": 5.65667750072766,
+      "median": 6.0,
+      "zero": 24,
+      "total": 466427,
+      "minimum": 0,
+      "maximum": 10
+    },
+    {
+      "kind": "H2",
+      "low_mm": 0.0,
+      "high_mm": 1.338,
+      "diameter_um_mean": 25.280380744017187,
+      "n": 20597,
+      "mean": 13.817012186240715,
+      "median": 14.0,
+      "zero": 5,
+      "total": 284589,
+      "minimum": 0,
+      "maximum": 20
+    }
+  ],
+  "annuli": [
+    {
+      "kind": "H1",
+      "low_deg": 0.0,
+      "high_deg": 0.5,
+      "HC_count": 11,
+      "mean_convergence": 0.0,
+      "zero_HC": 11,
+      "eligible_cones": 0,
+      "mean_divergence": null,
+      "zero_cones": 0,
+      "mean_diameter_um": 16.080000000000005
+    },
+    {
+      "kind": "H2",
+      "low_deg": 0.0,
+      "high_deg": 0.5,
+      "HC_count": 2,
+      "mean_convergence": 0.0,
+      "zero_HC": 2,
+      "eligible_cones": 0,
+      "mean_divergence": null,
+      "zero_cones": 0,
+      "mean_diameter_um": 24.44
+    },
+    {
+      "kind": "H1",
+      "low_deg": 0.5,
+      "high_deg": 1.0,
+      "HC_count": 62,
+      "mean_convergence": 5.274193548387097,
+      "zero_HC": 13,
+      "eligible_cones": 2706,
+      "mean_divergence": 0.1171470805617147,
+      "zero_cones": 2392,
+      "mean_diameter_um": 16.080000000000005
+    },
+    {
+      "kind": "H2",
+      "low_deg": 0.5,
+      "high_deg": 1.0,
+      "HC_count": 16,
+      "mean_convergence": 11.0625,
+      "zero_HC": 3,
+      "eligible_cones": 2719,
+      "mean_divergence": 0.06546524457521148,
+      "zero_cones": 2542,
+      "mean_diameter_um": 24.44
+    },
+    {
+      "kind": "H1",
+      "low_deg": 1.0,
+      "high_deg": 1.5,
+      "HC_count": 322,
+      "mean_convergence": 6.475155279503106,
+      "zero_HC": 0,
+      "eligible_cones": 6222,
+      "mean_divergence": 0.3412086145933783,
+      "zero_cones": 4179,
+      "mean_diameter_um": 16.080000000000002
+    },
+    {
+      "kind": "H2",
+      "low_deg": 1.0,
+      "high_deg": 1.5,
+      "HC_count": 79,
+      "mean_convergence": 15.240506329113924,
+      "zero_HC": 0,
+      "eligible_cones": 6337,
+      "mean_divergence": 0.19236231655357425,
+      "zero_cones": 5135,
+      "mean_diameter_um": 24.440000000000005
+    },
+    {
+      "kind": "H1",
+      "low_deg": 1.5,
+      "high_deg": 2.0,
+      "HC_count": 1513,
+      "mean_convergence": 6.2055518836748185,
+      "zero_HC": 0,
+      "eligible_cones": 8404,
+      "mean_divergence": 1.1143503093764875,
+      "zero_cones": 1915,
+      "mean_diameter_um": 16.080000000000005
+    },
+    {
+      "kind": "H2",
+      "low_deg": 1.5,
+      "high_deg": 2.0,
+      "HC_count": 375,
+      "mean_convergence": 14.928,
+      "zero_HC": 0,
+      "eligible_cones": 8712,
+      "mean_divergence": 0.6376262626262627,
+      "zero_cones": 3916,
+      "mean_diameter_um": 24.440000000000005
+    },
+    {
+      "kind": "H1",
+      "low_deg": 2.0,
+      "high_deg": 2.5,
+      "HC_count": 4697,
+      "mean_convergence": 6.051096444539067,
+      "zero_HC": 0,
+      "eligible_cones": 10463,
+      "mean_divergence": 2.7153779986619515,
+      "zero_cones": 168,
+      "mean_diameter_um": 16.080000000000002
+    },
+    {
+      "kind": "H2",
+      "low_deg": 2.0,
+      "high_deg": 2.5,
+      "HC_count": 1186,
+      "mean_convergence": 14.620573355817875,
+      "zero_HC": 0,
+      "eligible_cones": 11004,
+      "mean_divergence": 1.5656125045438023,
+      "zero_cones": 966,
+      "mean_diameter_um": 24.44
+    },
+    {
+      "kind": "H1",
+      "low_deg": 2.5,
+      "high_deg": 3.0,
+      "HC_count": 7840,
+      "mean_convergence": 5.885459183673469,
+      "zero_HC": 0,
+      "eligible_cones": 12432,
+      "mean_divergence": 3.712194337194337,
+      "zero_cones": 11,
+      "mean_diameter_um": 16.080000000000005
+    },
+    {
+      "kind": "H2",
+      "low_deg": 2.5,
+      "high_deg": 3.0,
+      "HC_count": 1952,
+      "mean_convergence": 14.407786885245901,
+      "zero_HC": 0,
+      "eligible_cones": 13204,
+      "mean_divergence": 2.1455619509239625,
+      "zero_cones": 279,
+      "mean_diameter_um": 24.44
+    },
+    {
+      "kind": "H1",
+      "low_deg": 3.0,
+      "high_deg": 3.5,
+      "HC_count": 9232,
+      "mean_convergence": 5.712846620450606,
+      "zero_HC": 0,
+      "eligible_cones": 14276,
+      "mean_divergence": 3.6931913701316894,
+      "zero_cones": 22,
+      "mean_diameter_um": 16.080000000000002
+    },
+    {
+      "kind": "H2",
+      "low_deg": 3.0,
+      "high_deg": 3.5,
+      "HC_count": 2311,
+      "mean_convergence": 14.031155344006923,
+      "zero_HC": 0,
+      "eligible_cones": 15184,
+      "mean_divergence": 2.1308614330874605,
+      "zero_cones": 325,
+      "mean_diameter_um": 24.439999999999998
+    },
+    {
+      "kind": "H1",
+      "low_deg": 3.5,
+      "high_deg": 4.0,
+      "HC_count": 10363,
+      "mean_convergence": 5.397954260349319,
+      "zero_HC": 0,
+      "eligible_cones": 15600,
+      "mean_divergence": 3.5892948717948716,
+      "zero_cones": 25,
+      "mean_diameter_um": 16.080000000000002
+    },
+    {
+      "kind": "H2",
+      "low_deg": 3.5,
+      "high_deg": 4.0,
+      "HC_count": 2606,
+      "mean_convergence": 13.454719877206447,
+      "zero_HC": 0,
+      "eligible_cones": 16833,
+      "mean_divergence": 2.0756252599061367,
+      "zero_cones": 391,
+      "mean_diameter_um": 24.44
+    },
+    {
+      "kind": "H1",
+      "low_deg": 4.0,
+      "high_deg": 4.5,
+      "HC_count": 11296,
+      "mean_convergence": 5.270184135977337,
+      "zero_HC": 0,
+      "eligible_cones": 17208,
+      "mean_divergence": 3.4653649465364946,
+      "zero_cones": 35,
+      "mean_diameter_um": 16.080483176200726
+    },
+    {
+      "kind": "H2",
+      "low_deg": 4.0,
+      "high_deg": 4.5,
+      "HC_count": 2813,
+      "mean_convergence": 13.224671169569854,
+      "zero_HC": 0,
+      "eligible_cones": 18733,
+      "mean_divergence": 1.9980782576202423,
+      "zero_cones": 530,
+      "mean_diameter_um": 24.4405176904654
+    },
+    {
+      "kind": "H1",
+      "low_deg": 4.5,
+      "high_deg": 5.0,
+      "HC_count": 11992,
+      "mean_convergence": 5.276517678452302,
+      "zero_HC": 0,
+      "eligible_cones": 17941,
+      "mean_divergence": 3.5222674321386767,
+      "zero_cones": 37,
+      "mean_diameter_um": 16.67026393417715
+    },
+    {
+      "kind": "H2",
+      "low_deg": 4.5,
+      "high_deg": 5.0,
+      "HC_count": 2992,
+      "mean_convergence": 13.09057486631016,
+      "zero_HC": 0,
+      "eligible_cones": 19661,
+      "mean_divergence": 1.9844361934794772,
+      "zero_cones": 611,
+      "mean_diameter_um": 25.072844462044266
+    },
+    {
+      "kind": "H1",
+      "low_deg": 5.0,
+      "high_deg": 5.5,
+      "HC_count": 12465,
+      "mean_convergence": 5.658403529883675,
+      "zero_HC": 0,
+      "eligible_cones": 18669,
+      "mean_divergence": 3.7738496973592586,
+      "zero_cones": 16,
+      "mean_diameter_um": 17.81073173762151
+    },
+    {
+      "kind": "H2",
+      "low_deg": 5.0,
+      "high_deg": 5.5,
+      "HC_count": 3104,
+      "mean_convergence": 13.697164948453608,
+      "zero_HC": 0,
+      "eligible_cones": 20712,
+      "mean_divergence": 2.0568752414059484,
+      "zero_cones": 524,
+      "mean_diameter_um": 26.278067642372452
+    },
+    {
+      "kind": "H1",
+      "low_deg": 5.5,
+      "high_deg": 6.0,
+      "HC_count": 12663,
+      "mean_convergence": 6.162994551054252,
+      "zero_HC": 0,
+      "eligible_cones": 19501,
+      "mean_divergence": 4.00984564894108,
+      "zero_cones": 13,
+      "mean_diameter_um": 19.002948423951537
+    },
+    {
+      "kind": "H2",
+      "low_deg": 5.5,
+      "high_deg": 6.0,
+      "HC_count": 3161,
+      "mean_convergence": 14.480544131603923,
+      "zero_HC": 0,
+      "eligible_cones": 21881,
+      "mean_divergence": 2.0979845528083727,
+      "zero_cones": 500,
+      "mean_diameter_um": 27.511506905688805
+    }
+  ],
+  "owner_OPL_divergence": {
+    "H1": {
+      "n": 143422,
+      "mean": 3.2530434661349026,
+      "median": 3.0,
+      "zero": 8813,
+      "total": 466558,
+      "minimum": 0,
+      "maximum": 9
+    },
+    "H2": {
+      "n": 154980,
+      "mean": 1.8373854690927862,
+      "median": 2.0,
+      "zero": 15719,
+      "total": 284758,
+      "minimum": 0,
+      "maximum": 6
+    }
+  },
+  "owner_OPL_typed_feedback": {
+    "n": 154980,
+    "mean": 3.1583430120015485,
+    "median": 3.0,
+    "zero": 9379,
+    "total": 489480,
+    "minimum": 0,
+    "maximum": 9
+  },
+  "owner_RF_typed_feedback": {
+    "n": 190498,
+    "mean": 3.322932524225976,
+    "median": 3.0,
+    "zero": 9467,
+    "total": 633012,
+    "minimum": 0,
+    "maximum": 10
+  },
+  "literature_comparison_central": {
+    "band_mm": [
+      0.5,
+      1.0
+    ],
+    "H1_reported": [
+      6,
+      7
+    ],
+    "H2_reported_about": 15,
+    "interpretation": "descriptive comparison on existing composite geometry; source intervals and model assumptions retained"
+  },
+  "structural_checks_passed": true,
+  "physiological_validation": false,
+  "full_video_dynamics_rerun": false,
+  "previous_video_graph_changed": false
+}

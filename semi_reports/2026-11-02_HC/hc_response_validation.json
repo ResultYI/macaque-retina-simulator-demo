@@ -1,0 +1,140 @@
+{
+  "schema": "HC_eccentric_existing_patch_native_probe_v1",
+  "implementation": {
+    "path": "tools/validate_hc_eccentric_response.py",
+    "sha256": "d8be1652f559e2190dca905c88fb4020d9d62e8de9d6b474e2a1ed1fe3badb1d"
+  },
+  "source_implementations": {
+    "retina_sim/h1_h2_effective.py": "3a87950840fc8c5eec275e3514b7187f38e264347799e42ac2ae8e166de40f44",
+    "retina_sim/hc_lateral_candidate.py": "3d416fa5b8339d139a01105aa6b2a23ef8f833b3b363633ae41e0dba1745d34c",
+    "retina_sim/vh2005.py": "60c1091971527216961df8a49b40e3dad8125f44de1d82d4d9374afcd4462858"
+  },
+  "selection": {
+    "path": "reports/position_S0_far_originaltarget_20261029_resume_v2/prepared/local_static/selection_identity.json",
+    "sha256": "bade0b264426878fef7db17e7fca30ef3b0a1675d04011547229ea78b175ae57"
+  },
+  "optical_background": {
+    "path": "reports/position_S0_far_originaltarget_20261029_resume_v2/background/BACKGROUND.npz",
+    "sha256": "785613022c3b5d31689ea5c4396de22f4b7fd5448f50fa399a51dd49b3fc776f"
+  },
+  "parent_artifact": "e12ecf57308d6908b754daf2954573d8ad527029c5b9bb0f93d4f96a7e4fbe23",
+  "new_connection_profile": {
+    "path": "configurations/hc_eccentric_size_w2000_v1.json",
+    "sha256": "50db6eb73c9b14d1a7dc91553b266deee07c092f50218e3a4c58e7d68611a7e5"
+  },
+  "quantities": {
+    "HC_contact_footprint": "literature-constrained direct cone-pedicle support",
+    "HC_functional_RF": "emergent direct input plus homotypic dynamics; not fitted in this probe"
+  },
+  "center_deg": [
+    4.724986235371699,
+    -0.11169236923054729
+  ],
+  "center_eccentricity_deg": 4.7263061802845945,
+  "cone_groups": 492,
+  "H1_groups": 227,
+  "H2_groups": 210,
+  "stimulus": {
+    "kind": "spatial light step on the original patch core",
+    "radius_deg": 0.15,
+    "contrast": 0.1,
+    "driven_cone_groups": 19,
+    "duration_s": 0.05
+  },
+  "equations": "existing LateralHCCandidate native Cone/H1/H2 equations",
+  "coupling_rate_per_second": 50.0,
+  "S_efficacy_ratio": 1.0,
+  "new_Gaussian_filter": false,
+  "boundary": "newly solved global direct-input background held outside local Cone/HC subset; local homotypic graph sealed as before",
+  "background_recomputed_per_connection": true,
+  "old_state_reused": false,
+  "receipts": {
+    "legacy": {
+      "native_source_version": "285b13b2d6ee10157a52041a81803557c07be9b116d7be2c900146b5b21791cb",
+      "global_joint_residual": 1.1368683772161603e-13,
+      "fresh_local_background": {
+        "residual_history": [
+          0.177693890535366,
+          9.294650062230403e-05,
+          2.9750424346275395e-11
+        ],
+        "maximum_full_native_rhs": 1.1223164619877934e-09,
+        "downstream_seed_qualified": false,
+        "old_seed_overwritten": false
+      },
+      "initial_state_sha256": "429c2fe11a53ddc0ae8e42555e329284aa97be2256c1dc85d233123a6cbd1ddd",
+      "local_A": "997f43e3a7d10fee7b30b8370da80e688d678294f0d26e4c53502a99751a073e",
+      "local_B": "30383f314998c4890eeba047c63fe609b4f912a08b7dbcd008d333f7f64c9b50",
+      "local_A_nnz": 3062,
+      "local_B_nnz": 1712,
+      "zero_local_feedback_rows": 0,
+      "globally_unsupported_local_cone_groups": 0,
+      "coupling_Q_sha256": {
+        "H1": "d4e52062526b037c1d297f69800b3051e4545c99b27e45ff44f1bb1a62e43b5c",
+        "H2": "fc747cc56954175060f219a5076bc007685ab8b46925f047e4a2506aa8efdbb4"
+      },
+      "nfev": 6305,
+      "max_abs_HC_delta": 0.09800228416828105
+    },
+    "eccentric": {
+      "native_source_version": "9f2be376fcc6c7899e10f045c74ea0ec1f89919b99b730407b5a259ecb238b15",
+      "global_joint_residual": 1.4210854715202004e-13,
+      "fresh_local_background": {
+        "residual_history": [
+          0.19682187787514493,
+          9.331505658138894e-05,
+          3.156230832246365e-11
+        ],
+        "maximum_full_native_rhs": 1.190528564620763e-09,
+        "downstream_seed_qualified": false,
+        "old_seed_overwritten": false
+      },
+      "initial_state_sha256": "3e9381c59e3deac5d990614706e85741d3b89ce9c5f66f16150d92c8e6417c9d",
+      "local_A": "6c697a46b5557e8a92a1438ed69fc6f1660d941f895a1ec50e7b85f454625d6b",
+      "local_B": "8805247b03bcadb3b8bca33d178efd8c4d5a3f5425c94349a5684abd94d8cd02",
+      "local_A_nnz": 2993,
+      "local_B_nnz": 1677,
+      "zero_local_feedback_rows": 1,
+      "globally_unsupported_local_cone_groups": 1,
+      "coupling_Q_sha256": {
+        "H1": "97222fcc1fa808f156b26c34b1fddf9cdbe05ca2469adc20cb68e720ada813c4",
+        "H2": "cbca4338f470479298e1e9348011198bdd3c9b8a7346fd58391b3240fa888b43"
+      },
+      "nfev": 6305,
+      "max_abs_HC_delta": 0.10872695689592149,
+      "tighter_reference_max_abs_HC_difference": 1.2008172234345693e-12
+    }
+  },
+  "max_abs_difference_in_HC_delta": 0.02870292730828794,
+  "response_difference_resolved_above_numerics": true,
+  "numerical": {
+    "method": "DOP853",
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_step_s": 0.0001,
+    "tighter_rtol": 1e-07,
+    "tighter_atol": 1e-10,
+    "tighter_max_step_s": 5e-05
+  },
+  "native_probe_passed": true,
+  "physiological_validation": false,
+  "complete_RF_fit": false,
+  "downstream_initialized": false,
+  "old_video_overwritten": false,
+  "wall_seconds": 26.834629699995276,
+  "peak_rss_bytes": 438104064,
+  "response_data": {
+    "path": "data/atlas/hc_eccentric_size_w2000_v1/native_response_probe.npz",
+    "sha256": "e2fde946902cf6e4bbefc4ec4f6edb7cc86ab7e7f3f407b39625ef7c31667b5a"
+  },
+  "group_native_operators": {
+    "A": {
+      "path": "data/atlas/hc_eccentric_size_w2000_v1/group_cone_to_HC_A.npz",
+      "sha256": "009b3d83a9e91f7e4677cf468754b63a6caefd0a19fd41c6a545f7aa0a78f58d"
+    },
+    "typed_B": {
+      "path": "data/atlas/hc_eccentric_size_w2000_v1/group_HC_to_cone_typed_B.npz",
+      "sha256": "216fd10257914bbd43fb3a9c8276c5d91fe7bb771c68bf8a8f84cefac7e23381"
+    }
+  }
+}

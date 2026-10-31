@@ -1,0 +1,13 @@
+{
+  "source": "D:\\macaque retinal simulator\\data\\source_packages\\20261012\\hc\\Wassle_2000.pdf",
+  "sha256": "32c3b7a0b41f5a434724e04698c98ac80efc960baf224b65ebfa42d313e02609",
+  "printed_page": 602,
+  "pdf_page_one_based": 12,
+  "crop_box_pdf_points": [
+    56,
+    557,
+    304,
+    737
+  ],
+  "operation": "crop original PDF only; no redraw or numeric change"
+}
