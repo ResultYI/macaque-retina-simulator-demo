@@ -1,0 +1,43 @@
+function prepare_cone_eye_movements(configPath, outputPath)
+% Generate the pinned ISETBio drift/microsaccade model without changing its defaults.
+c=jsondecode(fileread(configPath)); p=c.profile;
+oldPath=path; pathGuard=onCleanup(@()path(oldPath));
+addpath(genpath(p.isetcam_root)); addpath(genpath(p.isetbio_root));
+assert(~isfile(outputPath),'ConeEM:Output','Preserve the previous eye path');
+oldRng=rng; guard=onCleanup(@()rng(oldRng));
+velocityFilter='MATLAB Signal Processing Toolbox';
+if ~license('test','Signal_Toolbox') || exist('sgolayfilt','file')==0
+    addpath(fullfile(fileparts(mfilename('fullpath')),'isetbio_compat'),'-begin');
+    velocityFilter='Project polynomial least-squares compatibility filter; diagnostic velocity only';
+end
+em=visualizableFixationalEM(); em.randomSeed=c.seed;
+em.compute(c.duration_seconds+.002,.001,1,false,'centerPathsAtSpecificTimeMsec',0);
+time_seconds=em.timeAxis(:); eye_position_arcmin=squeeze(em.emPosArcMin(1,:,:));
+assert(size(eye_position_arcmin,2)==2 && numel(time_seconds)==size(eye_position_arcmin,1));
+assert(time_seconds(1)==0 && time_seconds(end)>=c.duration_seconds && all(isfinite(eye_position_arcmin(:))));
+subsamples_per_frame=ceil(1/(c.frame_rate*.00025));
+frames=round(c.duration_seconds*c.frame_rate);
+subsample_times_seconds=(0:frames-1)'/c.frame_rate+((0:subsamples_per_frame-1)+.5)/(c.frame_rate*subsamples_per_frame);
+em_positions_arcmin=reshape(interp1(time_seconds,eye_position_arcmin,subsample_times_seconds(:),'linear'), ...
+    frames,subsamples_per_frame,2);
+frame_eye_midpoint_arcmin=interp1(time_seconds,eye_position_arcmin,((0:frames-1)'+.5)/c.frame_rate,'linear');
+onsetIndices=em.getValueOfProperty('microSaccadeOnsetStepIndices');
+microsaccade_onset_seconds=(onsetIndices(:)-1)*.001;
+microsaccade_onset_seconds=microsaccade_onset_seconds(microsaccade_onset_seconds>=0 & microsaccade_onset_seconds<c.duration_seconds);
+parameters=struct('seed',c.seed,'model','ISETBio fixationalEM','microSaccadeType',em.microSaccadeType, ...
+    'velocity_filter_backend',velocityFilter, ...
+    'microSaccadeMeanIntervalSeconds',em.microSaccadeMeanIntervalSeconds, ...
+    'microSaccadeMeanAmplitudeArcMin',em.microSaccadeMeanAmplitudeArcMin, ...
+    'microSaccadeMeanSpeedDegsPerSecond',em.microSaccadeMeanSpeedDegsPerSecond, ...
+    'stabilizationSeconds',em.stabilizationSeconds,'internal_step_seconds',.001, ...
+    'capture_substep_seconds',1/(c.frame_rate*subsamples_per_frame), ...
+    'capture_interpolation','Linear interpolation of the native 1 ms path, as in fixationalEM.smartInterpolation', ...
+    'subsamples_per_frame',subsamples_per_frame,'microsaccade_count',numel(microsaccade_onset_seconds), ...
+    'position_range_arcmin',[min(eye_position_arcmin);max(eye_position_arcmin)], ...
+    'origin','First sample centered at zero; no amplitude clipping, scaling or trajectory selection', ...
+    'species_scope','ISETBio default fixational-eye-movement model; not measured macaque eye tracking');
+parameters_json=jsonencode(parameters);
+save(outputPath,'time_seconds','eye_position_arcmin','subsample_times_seconds','em_positions_arcmin', ...
+    'frame_eye_midpoint_arcmin','microsaccade_onset_seconds','parameters_json','-v7');
+fprintf('CONE_EM_PATH_PASS %d substeps, %d microsaccades, seed %d\n',numel(subsample_times_seconds),numel(microsaccade_onset_seconds),c.seed);
+end

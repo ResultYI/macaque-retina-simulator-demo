@@ -18,7 +18,8 @@ def digest(path):
 def source_signature(root):
     root=Path(root);path=root/'configurations'/ (PROFILE+'.json');profile=json.loads(path.read_bytes())
     if profile.get('profile_id')!=PROFILE or profile.get('scope')!='approved_mixed_reference':raise ContractError('Invalid approved ISET profile')
-    files=[path,root/'tools/export_mixed_reference.m',Path(__file__)]
+    files=[path,root/'tools/export_mixed_reference.m',root/'tools/cone_optics_mosaic.m',
+        root/'tools/capture_cone_optics.m',Path(__file__)]
     for key in ('isetcam','isetbio'):
         folder=Path(profile[key+'_root']);head=(folder/'.git/HEAD').read_text().strip()
         if head.startswith('ref: '):head=(folder/'.git'/head[5:]).read_text().strip()
@@ -28,6 +29,7 @@ def source_signature(root):
         cam/'opticalimage/oiCreate.m',cam/'opticalimage/oiCompute.m',cam/'opticalimage/optics/opticsCreate.m',
         bio/'cones/@cPhotoPigment/cPhotoPigment.m',bio/'cones/@Macular/Macular.m',bio/'opticalimage/@Lens/Lens.m'])
     files.extend((bio/'cones/cmosaic/@cMosaic').glob('*.m'))
+    files.append(bio/'external/psychtoolbox/PsychColorimetricData/PhotoreceptorDimensions.m')
     files.extend((bio/'ganglioncells/+RGCmodels/+Watson/+convert').glob('positionsToSpacings.m'))
     for name in ('T_log10coneabsorbance_ss.mat','macularPigment.mat','lensPokornySmith.mat'):files.extend(bio.rglob(name))
     return profile,{str(p.resolve()):digest(p) for p in files}

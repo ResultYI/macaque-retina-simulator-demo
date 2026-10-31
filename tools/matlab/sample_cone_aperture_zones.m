@@ -14,17 +14,14 @@ support=oiGet(oi,'spatial support');
 x=squeeze(support(1,:,1))*1e6;y=squeeze(support(:,1,2))*1e6;
 x=x-mean(x)+imageCenterMicrons(1);y=y-mean(y)+imageCenterMicrons(2);
 dx=abs(x(2)-x(1));dy=abs(y(2)-y(1));assert(abs(dx-dy)<1e-6*dx);
-oldModifiers=mosaic.coneApertureModifiers;
-cleanup=onCleanup(@()restoreModifiers(mosaic,oldModifiers)); %#ok<NASGU>
 if strcmp(mode,'legacy_fixed_cone_blur')
-    mosaic.coneApertureModifiers=struct('shape','Pillbox');
+    modifiers=struct('shape','Pillbox');
     zones=ones(n,1)*legacyBlurDiameter;
-    area=pi*(referenceDiameters(:)*.5e-6).^2;
 else
-    mosaic.coneApertureModifiers=struct('shape','Gaussian','sigma',.204);
+    modifiers=struct('shape','Gaussian','sigma',.204);
     zones=zoneDiameters(:);
-    area=2*pi*(.204*referenceDiameters(:)*1e-6).^2;
 end
+[area,restoreNative]=cone_native_aperture(mosaic,referenceDiameters,modifiers); %#ok<NASGU>
 rates=zeros(n,1);diameters=unique(zones);kernelSums=zeros(numel(diameters),2);radii=zeros(numel(diameters),1);
 for iz=1:numel(diameters)
     d=diameters(iz);assert(ceil(2*d/dx)>=3,'Aperture would be skipped at this OI resolution');
@@ -45,10 +42,10 @@ for iz=1:numel(diameters)
 end
 % Supplied OS factors are explicit and applied once in the caller; no defaults here.
 assert(all(isfinite(rates)) && all(rates>=0));
-diagnostic=struct('mode',mode,'unit','R*/s','spectral_bin_width_nm',binWidth, ...
+diagnostic=struct('aperture_backend','isetbio_native_aperture_v1', ...
+    'area_engine','cMosaic.computeApertureAreasMetersSquared','mode',mode,'unit','R*/s','spectral_bin_width_nm',binWidth, ...
     'kernel_diameters_um',diameters,'kernel_sum_before_after_normalization',kernelSums, ...
     'kernel_support_radii_um',radii,'pixel_size_um',dx,'effective_area_m2',area, ...
     'wavelength_nm',wave,'spectral_quantal_efficiency',qe,'area_applications',1, ...
     'optical_PSF_reapplied',false,'extrapolation','none','ISETBio_import_zones_bypassed',true);
 end
-function restoreModifiers(mosaic,value),mosaic.coneApertureModifiers=value;end

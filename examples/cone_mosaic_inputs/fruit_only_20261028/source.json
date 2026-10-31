@@ -1,0 +1,29 @@
+{
+  "title": "FruitMCC_6500 - fruit basket ROI",
+  "repository": "https://github.com/ISET/isetcam",
+  "commit": "17146a9f0470cc89b58d583851f680187268506d",
+  "path": "data/images/rgb/FruitMCC_6500.png",
+  "repository_license": "MIT",
+  "repository_license_sha256": "de7cd12d3b7f9eb94207116a8e57df95d257805462ed2c48f44f9346cf7c82b2",
+  "source_path": "D:\\macaque retinal simulator\\vendor_pinned\\isetcam\\data\\images\\rgb\\FruitMCC_6500.png",
+  "source_sha256": "3fe6a2a3b63e0b7acd5f01e5e6245c20c23d7478c133b9f462b5427e11598650",
+  "original_size_pixels": [
+    1015,
+    949
+  ],
+  "crop_box_xyxy": [
+    20,
+    430,
+    790,
+    900
+  ],
+  "crop_convention": "0-based pixels; left/top inclusive, right/bottom exclusive",
+  "operation": "Select the rectangular stimulus ROI; no retouching, pixel-value changes or resampling at this stage",
+  "content": "Fruit basket region below the upper ColorChecker and left of the lower-right gray card; the crop trims the top edge of the bananas",
+  "size_pixels": [
+    770,
+    470
+  ],
+  "sha256": "4956109e8a568fef5e5bc5935fe01d852948f6ec1bdfb5378331b27d4dd18cf9",
+  "image_specific_credit": "Bundled ISETCam sample; separate image-specific publication rights not independently established"
+}

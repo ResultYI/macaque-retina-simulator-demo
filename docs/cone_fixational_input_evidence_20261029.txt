@@ -1,0 +1,114 @@
+Fixational eye movements in the cone optical input
+
+Scope
+The same first four seconds of D:\macular\examples\video\video\113.AVI,
+30 fps / 120 frames, and the existing 2356-cone frozen mosaic are used.
+Cone IDs, positions, L/M/S labels and collecting aperture diameters stay fixed.
+The prior fixed-gaze result is retained. This delivery still stops at expected
+photoisomerizations; no phototransduction, retinal circuit, fitting or training.
+
+Eye model and temporal integration
+- Pinned ISETBio fixationalEM, heatmap/fixation-based microsaccades plus drift.
+- All biological/controller defaults are retained. Random seed: 20261028.
+- Default mean microsaccade interval: 0.45 s; mean amplitude: 8 arcmin;
+  mean speed: 39 deg/s; drift stabilization: 2 s. Some other upstream defaults
+  are expressly described there as arbitrary choices, not measured constants.
+- The generated four-second realization has six microsaccade onsets. There
+  is no amplitude clipping, trajectory scaling, selected favorable realization,
+  object tracking or independently calibrated tremor component.
+- The native controller evolves at 1 ms. Its output is linearly resampled,
+  matching fixationalEM.smartInterpolation. This does not increase the
+  physiological bandwidth or measurement precision of the native model.
+- Each 1/30 s held display frame is integrated at 134 midpoint positions:
+  substep = 1/(30*134) s, approximately 0.248756 ms. A video frame is not
+  represented by a single jumped eye position. Video content remains held
+  at its original frame rate; no intermediate natural-video frames are invented.
+- Every cone has a frame-integrated expected count. Fine-time expected counts
+  for nine identified probe cones are also retained, together with the full
+  generated position path and microsaccade onset times.
+
+Native-equivalent spatial calculation
+The existing ISETBio cMosaic setting eccVaryingMacularPigmentDensityDynamic=false
+is retained. For a held frame, that mode uses a macular map evaluated at the
+mean eye position over the frame. It does NOT recompute the macular map at
+every 0.249 ms substep. This is a declared upstream approximation.
+
+The adapter obtains this same native density map by translating the optical
+image's coordinate origin by minus the frame-mean eye offset. It then uses
+the native pillbox kernel and linear spatial interpolation at every cone and
+eye-path substep. Sampling coordinates are cone + eye - mean eye in this
+translated map. Collecting area, typed OS attenuation and substep duration
+are applied exactly once. Convolution/interpolation data can consequently
+be shared instead of rebuilding the same spectral-density map per substep.
+The false eye flag on this one stationary-map extraction call does not mean
+the final capture is fixed-gaze: the full eye path is explicitly integrated
+afterward. The artifact records eye_movements_applied=true.
+
+Tests compare this method against actual cMosaic.compute with
+withFixationalEyeMovements=true and the full supplied path, independently
+for every collecting-aperture size. Observed relative substep difference:
+2.05e-15. Zero-path vs fixed-gaze relative difference: 2.58e-16. A positive
+sampling-shift sign check and out-of-support rejection also pass.
+
+Optical coverage and display
+Whole-pixel pairs of reference-gray support are added only as needed to
+cover the entire generated trajectory and collecting aperture. Existing
+central pixel registration and sampling pitch are retained; finite optical
+support remains a numerical approximation. Coverage is checked before
+native padding or interpolation; out-of-support paths stop the item.
+The exposure reference remains 100 Td under the existing LCD/MW profile.
+It is not a recovery of the original camera scene's spectral radiance.
+
+In the completed run, vertical support grows by ten pixel rows at each edge;
+the original central RGB samples and pitch are exactly retained. A zero-eye
+check at source frames 0,60,119 compares the expanded domain with the prior
+fixed-gaze domain: weighted L1 capture difference is 0.292%, the cellwise 95th
+percentile is 0.648%, and the maximum is 1.63%. The prior movie is therefore
+an approximate numerical reference across support domains, not an exact
+matched-domain counterfactual. Those three same-domain control captures are
+saved in numerical_support_control. In nine representative/microsaccade frames,
+halving temporal quadrature density changes total capture by at most 0.0091%
+and the 95th-percentile cellwise difference is at most 0.043%. These are
+numerical checks, not independent physiological validation.
+
+Panel A displays the retinal image at each video's temporal midpoint,
+translated opposite the eye's displacement. Panel B retains the same cone
+positions and type colors. Panel C shows full-frame integrated capture rates.
+One fixed absolute color scale is used over the whole video. All panel names,
+axes, legends and units are English; no explanatory captions or subtitles
+are drawn. The eye-path figure marks native microsaccade onsets.
+
+Local compatibility issue and evidence
+The installed MATLAB has no sgolayfilt file, although its entitlement query
+returns true for Signal_Toolbox. Unmodified fixationalEM finishes generating
+positions and then fails when computing its diagnostic velocity smoothing.
+
+tools/isetbio_compat/sgolayfilt.m implements the same polynomial least-squares
+smoothing operation for the specific vector/three-argument use. The path is
+added only inside the isolated preparation process and is restored afterward.
+No ISETBio sources, installed toolboxes or persistent MATLAB paths are changed.
+The native position-generation loop runs unmodified. A read-only state
+snapshot at the original failure is compared with the completed trajectory:
+generated positions are exactly unchanged. Fixed-seed repetition is exact.
+Filter outputs for windows 5,9,15,21 and polynomial order 3 are checked against
+the installed SciPy savgol_filter with interpolation edge handling; maximum
+absolute difference is 1.15e-13. The compatibility filter is used only for
+post-generation velocity diagnostics, not for feedback or microsaccade choice.
+
+Sources and test artifacts
+- vendor_pinned/isetbio/eyemovement/fixationalEyeMovements/@fixationalEM/
+  setDefaultParams.m, setDriftParamsFromMergenthalerAndEngbert2007Paper.m,
+  setMicroSaccadeStats.m, computeSingleTrial.m, trimRecenterAndResampleTimeSeries.m,
+  smartInterpolation.m and computeVelocity.m.
+- vendor_pinned/isetbio/cones/cmosaic/@cMosaic/compute.m and computeAbsorptionRate.m.
+- tools/prepare_cone_eye_movements.m, capture_cone_optics.m,
+  export_mixed_reference.m, cone_video_demo.py and render_cone_video.m.
+- tools/test_cone_eye_movements.m and
+  reports/cone_eye_movement_validation_20261028/validated_v2/validation.json.
+The final run stores its complete source hashes, eye parameters, raw inputs,
+capture data, numerical coarse/fine checks and validation in its own directory.
+
+Interpretation limit
+These are simulated fixational movements using the ISETBio defaults and the
+project's already declared mixed macaque-geometry / human-optics model.
+They are not eye-tracker measurements or independent macaque physiology.

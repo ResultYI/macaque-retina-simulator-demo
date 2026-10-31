@@ -1,0 +1,147 @@
+Cone optical input: implementation and evidence audit (2026-10-28)
+
+Scope
+Display RGB -> measured LCD-Apple gamma/SPD -> human-MW optical image -> cone
+expected photoisomerizations. No phototransduction or downstream circuit was run.
+The existing Macaca nemestrina-density geometry and frozen L/M/S assignments
+are retained. This remains an explicitly mixed-reference model, not a fully
+calibrated macaque eye. No new physiological measurements or fitted parameters.
+
+User decision
+Use only ISETBio-supplied evidence. Do not introduce the external ex-vivo S/L/M
+diameter ratio. In this fixed ISETBio version the human foveal IS-diameter
+estimates group L/M/S together; they do not justify three different macaque
+aperture multipliers. Therefore D = 0.79 * full-master median-six-neighbour
+spacing remains unchanged, with no L/M/S diameter factor. These are effective
+collecting apertures, not measured inner-segment, soma or pedicle diameters.
+
+Added to the active production optical exporters
+1. Per-cone spatial integration. Previously every collecting area was correct,
+   but all cones used a single mean-diameter spatial blur. Each cone now uses
+   its own ISETBio generateApertureKernel result at the actual OI resolution.
+   Only element-for-element identical normalized kernels share computation.
+   No bin-width tolerance, diameter averaging, geometry resampling or per-type
+   gain fit is introduced. Full geometry is retained during grouping so the
+   upstream coordinate conversion and image center do not change.
+2. Type-specific outer-segment attenuation. Upstream cMosaic's standard scalar
+   correction uses the default L-cone spectrum/OD for every cone. The production
+   input now evaluates the same Beer-Lambert wavelength-mean convention for
+   each cone's L/M/S spectrum and existing type OD. ISETBio's standard fixed
+   400:10:700 nm OS support is retained; changing the display sampling does not
+   silently change this attenuation. Supplied factors replace the standard
+   correction through outerSegmentLengthAttenationFactors (the upstream API
+   spelling), so the correction is applied once.
+3. Length/OD consistency. Human CVRL foveal OS lengths supplied with ISETBio
+   are L=35.5, M=35.5, S=33.725 um. Each is multiplied by the existing Banks
+   eccentricity-dependent relative-length curve. The original foveal OD
+   [0.5, 0.5, 0.4] is preserved, with specific density derived as OD/length.
+   Thus the CVRL type length is an explicit, consistent parameterization;
+   it is NOT an additional independent S-cone sensitivity reduction. It is
+   inappropriate to multiply capture by 0.95 again after setting the S OD.
+4. Cache identity. The model revision, helper sources and dimension source
+   enter the existing source/profile hashes. Earlier capture caches, background
+   contexts and research output files are not relabeled or overwritten.
+
+Model equations
+For cone i of type t:
+  D_i = 0.79 * s_i; collecting area = pi * (D_i / 2)^2.
+  f_i = Banks_OS_length(ecc_i) / Banks_OS_length(0).
+  OS_length_i = CVRL_foveal_length_t * f_i.
+  specific_density_t = original_foveal_OD_t / CVRL_foveal_length_t.
+  local_OD_i = specific_density_t * OS_length_i = original_foveal_OD_t * f_i.
+  OS_factor_i = mean_lambda[(1-10^(-a_t(lambda)*local_OD_i)) /
+                            (1-10^(-a_t(lambda)*original_foveal_OD_t))].
+The implementation uses expm1 for stability in weak-absorption spectral tails.
+Only positive reference absorptances contribute to the ratio. This retains
+the upstream wavelength-mean scalar approximation; it is not an exact
+per-cone, per-wavelength self-screening model. No photon noise is applied.
+
+Already implemented before this change (retained, not applied twice)
+- Measured LCD display primaries and gamma; one common neutral-radiance gain.
+- Human-MW wavelength-dependent optics, 3 mm pupil and human lens filtering.
+- L/M/S absorbance spectra, OD [0.5,0.5,0.4], peak efficiency [2/3,2/3,2/3].
+- Human macular spectrum and spatial eccentricity rule over the optical image.
+- Eccentricity-dependent outer-segment shortening (now evaluated by type).
+- Frozen local cone positions/types, individual collecting areas and RF=IS
+  project registration. The RF=IS transfer is still a stated approximation.
+
+Evidence candidates not automatically enabled, with reasons
+- Type-specific macaque IS/aperture diameter table: not established in the
+  inspected pinned data/implementation at the present eccentricity. Human
+  Rodieck foveal ISdiam assigns L/M/S all 2.3 um; Webvision likewise groups
+  the types. Neither is a license to invent a macaque S diameter difference.
+- Human Curcio/Banks rod-intrusion aperture shrinkage: available as a general
+  human eccentricity correction, not an L/M/S macaque diameter table. Its
+  interaction with the frozen 0.79 aperture rule is not independently
+  calibrated here; stacking it would change the scientific aperture contract.
+- CVRL non-foveal OS lengths (L/M 18 um, S 18*0.82 um): the categorical
+  routine supplies no eccentricity breakpoint for this project's 1-2 degree
+  patch. No arbitrary foveal/peripheral switch or interpolation was invented.
+- Alternative human off-axis optics/lens observer parameters: data exist for
+  other optical models/observers, but no matched macaque/subject calibration
+  selects them for this frozen MW reference. Installed alternatives are not
+  cumulative corrections that should all be turned on simultaneously.
+- Cone coupling, fixational eye movements, Poisson noise and phototransduction:
+  downstream/stochastic mechanisms or stimulus protocol choices, not missing
+  deterministic capture coefficients. The requested static expected-capture
+  figures retain their original scope and fixed gaze.
+
+Pinned primary implementation sources (local paths under vendor_pinned/isetbio)
+- external/psychtoolbox/PsychColorimetricData/PhotoreceptorDimensions.m
+  Rodieck ISdiam and CVRL OSlength; human estimates, not macaque measurements.
+- cones/cmosaic/@cMosaic/outerSegmentLengthFromEccentricity.m
+  Digitized Banks, Sekuler & Anderson (1991) relative OS-length model.
+- cones/cmosaic/@cMosaic/computeOuterSegmentLengthEccVariationAttenuationFactors.m
+  Original L-cone-only wavelength-mean attenuation convention.
+- cones/cmosaic/@cMosaic/importExternalConeData.m and
+  computeEffectiveOSlengthAttenuationFactors.m: supplied aperture/OS APIs.
+- cones/cmosaic/@cMosaic/generateApertureKernel.m, computeAbsorptionRate.m,
+  computeApertureAreasMetersSquared.m: discrete pillbox spatial integration.
+- cones/cmosaic/@cMosaic/computeConeApertureRodIntrusionInducedShrinkageFactors.m
+  General human rod-intrusion candidate, not enabled for the reasons above.
+- cones/@Macular/Macular.m, cones/@cPhotoPigment/cPhotoPigment.m,
+  opticalimage/@Lens/Lens.m: existing filtering and pigment conventions.
+ISETBio commit d2924c2fe1d41c7dc5af1006d8081735b08f1b35;
+ISETCam commit 17146a9f0470cc89b58d583851f680187268506d.
+Pinned dependency sources and scientific geometry assets were not modified.
+
+Changed production routes
+- tools/export_mixed_reference.m (active finite geometry/GUI input)
+- tools/export_disk_mixed_reference.m (fixed global optical tiles)
+These call tools/cone_optics_mosaic.m and tools/capture_cone_optics.m.
+The historical standalone fixture exporter export_isetbio_capture.m retains
+its explicitly supplied diameter/OS fixture contract; it is not the active
+production optical profile and was not silently rewritten.
+The policy-bound tools/export_vr_linear_disk_capture.m belongs to a separate
+frozen research input/approval contract. Its implementation and existing
+receipts were retained, rather than mixing newly corrected captures with a
+previously qualified input basis. It is not the GUI's active RGB frontend.
+
+Figures and retained assumptions
+reports/cone_mosaic_demo_20261028_v5_english contains the synthetic and natural
+three-panel comparisons and the aperture-size diagnostic, in PNG and PDF.
+All plot text is English. No overall subtitle, explanatory caption or footer
+is drawn; only panel names, axes, legends and units remain. Assumptions are
+kept in README.txt, manifest.json and this separate evidence audit.
+The same 2356 cones and independent static 10 ms cases are used. R*/window
+is the raw expected count; displayed R*/cone/s is count / 0.010 s. Both
+images share a zero-based absolute color scale, with no image/type gain fit.
+The natural photograph is the bundled ISETCam FruitMCC_6500 sample; the
+repository MIT license is retained. Image-specific publication rights were
+not independently established.
+
+Validation evidence
+- tools/test_cone_optics.m: foveal factors=1, OD-length consistency, typed
+  attenuation formula, invariance to display-wave resampling, collecting
+  area scaling in uniform light with macular filtering isolated, and grouped
+  kernels compared against independently computed single-cone captures.
+- The same MATLAB test exercises small fixed-global-tile exports at the
+  foveal origin and at 1 degree with one unchanged gain/LMS reference.
+- tests/test_cone_mosaic_demo.py: frozen full-master neighbour preservation,
+  image aspect/orientation and existing-output preservation.
+- The full 2356-cone examples execute only the production optical stage.
+  Source hashes, capture arrays, per-cell CSV, image registration, image/PDF
+  output and absence of downstream computations are checked and retained.
+- No full circuit, fitting, training, new dataset download or independent
+  macaque physiological validation was performed. The separate frozen VR
+  gray research exporter was not changed or run under this task.

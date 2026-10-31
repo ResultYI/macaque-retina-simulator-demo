@@ -28,11 +28,19 @@ def read_disk_capture(path,signature):
     if meta['fixed_radiance_gain']<=0 or np.any(raw['diameters_um']<=0):raise ContractError('Positive frozen global gain/apertures required')
     return raw,meta
 
-def _run_batch(root,profile,jobs,directory,on_status,on_boundary):
+def _run_batch(root,profile,jobs,directory,on_status,on_boundary,*,max_threads=None,
+               batch_function='export_disk_mixed_batch',tools_directory=None):
     if not jobs:return
     directory=Path(directory);batch=directory/('batch_'+uuid.uuid4().hex+'.json');save_json(batch,jobs)
     quote=lambda path:str(Path(path).resolve()).replace("'","''")
-    expression="addpath('"+quote(root/'tools')+"');export_disk_mixed_batch('"+quote(batch)+"');"
+    if not batch_function.isascii() or not batch_function[0].isalpha() or not batch_function.replace('_','').isalnum():
+        raise ContractError('Invalid owned MATLAB batch function')
+    tools_directory=Path(tools_directory or root/'tools').resolve()
+    if not tools_directory.is_relative_to(Path(root).resolve()):raise ContractError('MATLAB tools outside project')
+    expression="addpath('"+quote(tools_directory)+"');"+batch_function+"('"+quote(batch)+"');"
+    if max_threads is not None:
+        if not isinstance(max_threads,int) or not 1<=max_threads<=32:raise ContractError('Invalid per-process MATLAB thread limit')
+        expression=f'maxNumCompThreads({max_threads});'+expression
     pref=directory/'matlab_preferences';temporary=directory/'matlab_temp';pref.mkdir(exist_ok=True);temporary.mkdir(exist_ok=True)
     environment=dict(os.environ,MATLAB_PREFDIR=str(pref),TEMP=str(temporary),TMP=str(temporary))
     with (directory/('stdout_'+batch.stem+'.log')).open('wb') as out,(directory/('stderr_'+batch.stem+'.log')).open('wb') as err:
