@@ -207,6 +207,7 @@ class ReplayApp:
         ttk.Button(row,text="身份 / 拟合证据",command=self.show_evidence).pack(side="left",padx=4)
         ttk.Button(row,text="评价定义与指标",command=self.show_evaluation).pack(side="left",padx=4)
         ttk.Button(row,text="对齐产品…",command=self.choose_aligned).pack(side="left",padx=4)
+        ttk.Button(row,text="完整响应 / 视频…",command=self.choose_response).pack(side="left",padx=4)
         self.coverage_label=ttk.Label(row,text="");self.coverage_label.pack(side="right")
         upper=ttk.Frame(shell);upper.grid(row=3,column=0,sticky="nsew")
         upper.columnconfigure(0,weight=2);upper.columnconfigure(1,weight=4);upper.rowconfigure(0,weight=1)
@@ -255,6 +256,10 @@ class ReplayApp:
         ttk.Label(shell,textvariable=self.footer_var,wraplength=1350,style="Replay.TLabel").grid(row=8,column=0,sticky="ew",pady=(4,0))
         ttk.Label(shell,text="节点为模型 group/pool，非逐细胞独立解；AC pool 位置是工程 RF，不是 AC 解剖。模型 patch 中心 4.73°；Cell6 偏心度、空间配准、采集延迟和物理光度未核验。其他类型未拟合。",wraplength=1350,foreground="#64748b",style="Replay.TLabel").grid(row=9,column=0,sticky="ew",pady=(3,0))
         ttk.Label(shell,textvariable=self.path_var,wraplength=1350,foreground="#64748b",font=("Segoe UI",8)).grid(row=10,column=0,sticky="ew",pady=(3,0))
+
+    def choose_response(self):
+        from .response_view import open_response_window
+        open_response_window(self.root,self.project_root)
 
     def choose_registry(self):
         path=filedialog.askopenfilename(title="选择 Cell6 CACHE_REGISTRY.json",filetypes=[("JSON","*.json")])

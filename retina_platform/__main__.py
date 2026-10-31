@@ -10,9 +10,18 @@ def main():
     parser.add_argument("--config", type=Path)
     parser.add_argument("--cell6-replay", action="store_true", help="Read-only replay of verified Cell6 caches; no model execution")
     parser.add_argument("--registry", type=Path, help="Cell6 replay cache registry")
+    parser.add_argument("--response-replay", action="store_true", help="Read-only spatial playback of complete response directories or ZIP packages")
+    parser.add_argument("--result", type=Path, help="Complete response ZIP or directory")
     args = parser.parse_args()
     import tkinter as tk
     root = tk.Tk()
+    if args.response_replay:
+        from .response_view import ResponseApp, DEFAULT_RESULT
+        packages = sorted((args.project_root / 'reports/result_packages').glob('*.zip'), key=lambda p:p.stat().st_mtime)
+        result = args.result or (packages[-1] if packages else args.project_root / DEFAULT_RESULT)
+        ResponseApp(root, args.project_root, result=result if result.exists() else None)
+        root.mainloop()
+        return
     if args.cell6_replay:
         from .replay import ReplayApp
         ReplayApp(root, args.project_root, registry=args.registry)

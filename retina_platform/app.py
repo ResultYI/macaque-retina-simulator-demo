@@ -136,6 +136,8 @@ class RetinaApp:
         left.grid_propagate(False)
         left.columnconfigure(0, weight=1)
         left.rowconfigure(5, weight=1)
+        from .response_view import open_response_window
+        ttk.Button(left, text="完整响应 / 视频分层回放…", command=lambda:open_response_window(self.root,self.project_root)).grid(row=7,column=0,sticky="ew",pady=5)
         files = ttk.Frame(left)
         files.grid(row=0, column=0, sticky="ew")
         self._button(files, "import", "导入图像 / 视频", self._choose_media).pack(side="left")
