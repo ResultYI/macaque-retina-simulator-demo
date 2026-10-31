@@ -1,4 +1,4 @@
-"""Build the approved reversible HC functional alternative on fixed real anchors."""
+"""Build eccentric-size contacts; --legacy-functional retains the historical builder."""
 from pathlib import Path
 import json,sys
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
@@ -17,7 +17,8 @@ def main():
         'scope':'Necessary reversible mainline model adjustments with explicit source/derived/borrowed/project labels; address effective-area hard cutoff, no invented cells/source claims, real targeted acceptance',
         'recovery_snapshot':'reports/workspace_recovery_20261017T150406Z/verification_complete.json',
         'macaque5855_snapshot_modified':False})
-    operator=freeze_functional_hc(ROOT,outer,anatomical,'data/atlas/human_disk3mm_functional_hc_v1')
+    operator=freeze_functional_hc(ROOT,outer,anatomical,'data/atlas/human_disk3mm_functional_hc_v1',
+        profile_path='configurations/hc_functional_divergence_w2000_v1.json')
     save_json(report/'outer_connections.json',operator)
     replacement={operator[key]['path']:key for key in ('native_A','native_B')}
     for descriptor in graph['routes']:
@@ -42,4 +43,9 @@ def main():
         'physiological_validation':False})
     print('FUNCTIONAL_HC_ALTERNATIVE_FROZEN',operator['edges'],operator['operator_audit']['maximum_owner_functional_distance_mm'],flush=True)
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    if '--legacy-functional' in sys.argv:
+        main()
+    else:
+        from build_eccentric_hc import main as build_sized_contacts
+        build_sized_contacts()

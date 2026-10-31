@@ -1,0 +1,65 @@
+{
+  "schema": "Cone_HC_eccentric_connection_model_v1",
+  "scope": "actual finite Cone-HC operators",
+  "quantities": {
+    "HC_contact_footprint": "direct cone-pedicle support from the existing AtlasHCProvider",
+    "HC_functional_RF": "emergent direct input and independent homotypic dynamics; no separate RF diameter parameter"
+  },
+  "connection_profile": {
+    "path": "configurations/hc_eccentric_size_w2000_v1.json",
+    "sha256": "50db6eb73c9b14d1a7dc91553b266deee07c092f50218e3a4c58e7d68611a7e5"
+  },
+  "tables": {
+    "cones": {
+      "path": "data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json",
+      "sha256": "9c6c0e94eb0d69478c658d2a48c7bae22d603866abf6f5402eb924b46952db00"
+    },
+    "HC": {
+      "path": "data/atlas/human_disk3mm_typed_tables_v1/HC/manifest.json",
+      "sha256": "c3f2d8f84919871f208a84bf4bc3987d65becf04e529bc0ef9af92d8f3194527"
+    }
+  },
+  "native_A": {
+    "path": "data/atlas/hc_eccentric_size_w2000_v1/native_A/manifest.json",
+    "sha256": "3c71f89dee944611cb129b62f1ed6602882de87afffdc7ebcfc0336f05861b98"
+  },
+  "native_B": {
+    "path": "data/atlas/hc_eccentric_size_w2000_v1/native_B/manifest.json",
+    "sha256": "b91d5f50425f29c9d2b45fe1141ce0832b40cd24de0a55c0699025aacafc9393"
+  },
+  "raw_contacts": {
+    "path": "data/atlas/hc_eccentric_size_w2000_v1/raw_functional_projection/manifest.json",
+    "sha256": "a6c9c9e3cab44f48d84730ae6d559079d7c04b2da7766109a47e2681e6018e76"
+  },
+  "hc_radii": {
+    "path": "data/atlas/hc_eccentric_size_w2000_v1/hc_radius_mm.npy",
+    "sha256": "8c010c0d36338d4c4b6add29efe2768ee919c189454bf48af73b8f86cd43db73",
+    "unit": "mm",
+    "coordinate_frame": "OPL",
+    "size_profile": {
+      "path": "configurations/atlas_hc_candidate_v1.json",
+      "sha256": "10c2fdd30acbf8331e131f66236f2bf61142ccfb5a65dbdcbb27a2634bca8081"
+    }
+  },
+  "validation": {
+    "path": "semi_reports/2026-11-02_HC/hc_connectivity_validation.json",
+    "sha256": "ff4050d7b477e039db15cea840c3fd4a90c73b56187aa93932ad1ecb30f32001"
+  },
+  "zero_row_policy": "retain zero; downstream unit-DC-required runtime must check coverage before simulation",
+  "structural_checks_passed": true,
+  "physiological_validation": false,
+  "native_response_validation": {
+    "path": "semi_reports/2026-11-02_HC/hc_response_validation.json",
+    "sha256": "ccaa7222cf1ac577c303a741f55764133c2d58ba9bbe8e7984b96a142c2f030a"
+  },
+  "group_native_operators": {
+    "A": {
+      "path": "data/atlas/hc_eccentric_size_w2000_v1/group_cone_to_HC_A.npz",
+      "sha256": "009b3d83a9e91f7e4677cf468754b63a6caefd0a19fd41c6a545f7aa0a78f58d"
+    },
+    "typed_B": {
+      "path": "data/atlas/hc_eccentric_size_w2000_v1/group_HC_to_cone_typed_B.npz",
+      "sha256": "216fd10257914bbd43fb3a9c8276c5d91fe7bb771c68bf8a8f84cefac7e23381"
+    }
+  }
+}

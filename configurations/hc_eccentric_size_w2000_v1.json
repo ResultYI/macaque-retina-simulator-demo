@@ -1,0 +1,31 @@
+{
+  "schema": "HC_eccentric_equal_area_connection_profile_v1",
+  "profile_id": "HC_eccentric_size_W2000_v1",
+  "primary_source": {
+    "path": "data/source_packages/20261012/hc/Wassle_2000.pdf",
+    "sha256": "32c3b7a0b41f5a434724e04698c98ac80efc960baf224b65ebfa42d313e02609",
+    "doi": "10.1017/S0952523800174097",
+    "locator": "printed p599 convergence and total cone-pedicle density; p596 and p604 shape/coverage limitations"
+  },
+  "size_profile": {
+    "path": "configurations/atlas_hc_candidate_v1.json",
+    "sha256": "10c2fdd30acbf8331e131f66236f2bf61142ccfb5a65dbdcbb27a2634bca8081"
+  },
+  "enable_central_candidate": true,
+  "size_method": "reuse AtlasHCProvider: central equal-area radii 0.00804/0.01222 mm; log-radius PCHIP at 1,5,6 mm; peripheral sqrt(18/(pi*6000)) and sqrt(19/(pi*6000)) mm",
+  "central_policy": "0.5-1 mm source band held constant; 0-0.5 mm constant inward transfer is an uncalibrated project assumption",
+  "selection": "all actual eligible cone pedicles inside the disk centered on each HC OPL anchor; H1 excludes S, H2 accepts L/M/S",
+  "counts": "observed graph convergence/divergence; no imposed quota, radius enlargement or nearest fallback",
+  "normalization": "A and B normalized once on the complete finite canonical graph; empty rows remain zero",
+  "support_interpretation": "literature-constrained equal-area contact support; individual branches and measured maximum dendritic reach remain unresolved",
+  "qualitative_source": {
+    "citation": "Wassle, Boycott and Rohrenbeck (1989), Cone connections and dendritic network",
+    "doi": "10.1111/j.1460-9568.1989.tb00350.x",
+    "verification": "abstract; H1/H2 fields increase with eccentricity; no numerical curve digitized"
+  },
+  "cross_checks": [
+    {"doi": "10.1098/rspb.1987.0001", "role": "Boycott et al. 1987 central convergence reference, kept separate from W2000 arithmetic"},
+    {"doi": "10.1167/5.11.9", "role": "Packer and Dacey 2005 direct-cone/coupled-field modeling distinction; peripheral 120 um disk is not transferred centrally"}
+  ],
+  "physiological_validation": false
+}
