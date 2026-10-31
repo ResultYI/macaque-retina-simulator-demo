@@ -1,0 +1,18 @@
+{
+  "schema": "RGC-functional-effective-layer-1",
+  "name": "RGC_FUNCTIONAL_V1",
+  "status": "INTERFACE_IMPLEMENTED_FULL_NETWORK_RUN_BLOCKED_MISSING_INPUTS",
+  "AC_configuration": "configurations/research/AC_FUNCTIONAL_V1_candidate.json",
+  "AC_layer_identity": "5533a84666272acdcce99231ee5724119a55dee2c390dcac945dd2e9ddc15526",
+  "new_kinetic_mechanism": false,
+  "new_connections": false,
+  "types": ["midget_RGC_ON", "midget_RGC_OFF", "parasol_RGC_ON", "parasol_RGC_OFF", "small_bistratified_S_ON"],
+  "spikes": "Retained strict-history PCG64 Bernoulli at least one event per 1ms bin; no reset added",
+  "member_semantics": "Grouped physical C/gL/gE/gI already carry totals once; sampled group objects are not independent fine cells",
+  "AII_path": "Retain original AII-to-BC chemical/electrical routes; no new direct AII-to-RGC edge",
+  "BC_AC_review": "CONDITIONAL_FUNCTIONAL_V1_ACCEPTED_EXECUTIVE_SUMMARY_ONLY",
+  "physiologically_calibrated": false,
+  "production_adopted": false,
+  "background_qualified": false,
+  "FIT_READY": false
+}

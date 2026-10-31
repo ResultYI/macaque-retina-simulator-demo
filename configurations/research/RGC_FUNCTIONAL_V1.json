@@ -1,0 +1,15 @@
+{
+  "name": "RGC_FUNCTIONAL_V1",
+  "status": "RGC_FUNCTIONAL_V1_LOCAL_CONDITIONAL_STAGE_COMPLETE",
+  "entry": "retina_sim.rgc_functional_v1.RGCFunctionalV1",
+  "runnable_configuration": "configurations/research/RGC_FUNCTIONAL_V1_candidate.json",
+  "candidate_pre_migration_status_is_archival": true,
+  "validated_layer_identity": "1a96e0e6925072548701702d17ea5df70bb648a01426335e75eb9623586e73ea",
+  "result": "reports\\layerwise_physiology\\RGC_functional_v1_laptop_20261029\\FINAL_RESULT.json",
+  "source_coupled_inner_run_completed": true,
+  "all_existing_types_retained": true,
+  "parameter_fit": false,
+  "production_adopted": false,
+  "background_qualified": false,
+  "FIT_READY": false
+}
