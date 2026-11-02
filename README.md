@@ -6,6 +6,11 @@
 实际4秒示例：`reports/result_packages/retina_113_4s_298fa2ef1524.response.zip`。使用、字段、打包安全与自动导出范围见 [桌面回放说明](docs/response_viewer_zh.md)。旧Cell6回放保留。
 <!-- /response-package-desktop-v1 -->
 
+## 研究室光学依赖迁移
+
+固定 ISETCam/ISETBio 工作目录和 101 个 OTF 缓存已随主工程交付；保留 data、external 与许可证，排除依赖自身的 Git 元数据。版本、逐文件 SHA256、Gaussian 孔径语义及 Linux 独立配置要求见[研究室迁移说明](docs/lab_optical_migration_20261102_zh.md)。
+
+
 <!-- local-platform-entry -->
 ## 本地可视化模拟器
 

@@ -1,0 +1,106 @@
+{
+  "profile": {
+    "schema_version": "1.0",
+    "profile_id": "gin_source_CRT_4mm_literature_scale_v1",
+    "approval": "Sentinel_683ebe79b2fc8191ae676df9144b2df7",
+    "scope": "approved_radial_conditional_candidate",
+    "matlab_executable": "C:/Program Files/MATLAB/R2025b/bin/matlab.exe",
+    "isetcam_root": "D:\\macaque retinal simulator\\vendor_pinned\\isetcam",
+    "isetbio_root": "D:\\macaque retinal simulator\\vendor_pinned\\isetbio",
+    "isetcam_commit": "17146a9f0470cc89b58d583851f680187268506d",
+    "isetbio_commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35",
+    "display": "Source_GunSpectra_relative_CRT",
+    "optics": "human mw",
+    "pupil_diameter_mm": 4.0,
+    "microns_per_degree": 223.0,
+    "aperture_diameter_to_spacing": 0.79,
+    "aperture_shape": "Pillbox",
+    "cone_optics_revision": "isetbio_typed_OS_per_aperture_v2",
+    "type_specific_aperture_diameter": false,
+    "aperture_blur": "each cone's own discretized ISETBio pillbox kernel; share only exactly equal kernels",
+    "outer_segment_model": "ISETBio Banks eccentricity fraction and Human CVRL type lengths; preserve foveal LMS OD and derive specific densities consistently; type-specific wavelength-mean attenuation replaces built-in L-only scalar",
+    "optical_density_LMS": [
+      0.5,
+      0.5,
+      0.4
+    ],
+    "peak_efficiency_LMS": [
+      0.6666666666666666,
+      0.6666666666666666,
+      0.6666666666666666
+    ],
+    "macular_density": 0.35,
+    "lens_density": 1.0,
+    "ecc_varying_macular": true,
+    "standard_OS_attenuation": true,
+    "scene_sampling_um": 1.0,
+    "optical_crop_halo": "existing RunConfig halo_mm, explicit finite computational support",
+    "maximum_scene_samples_per_axis": 1024,
+    "maximum_export_wall_seconds": 300.0,
+    "meaning": "Supplied frozen cone positions with explicitly declared species route, human MW optics/pigment filters and geometry-estimated apertures; mixed-reference equivalent native drive, not full macaque physiological calibration",
+    "rod_input": "existing independent RGB rod pathway; no common ISET capture claim"
+  },
+  "geometry_mat": "D:\\macaque retinal simulator\\reports\\GIN_69_6_HC2_BC1_SUPPORT_V2\\optical\\geometry.mat",
+  "center_mm": [
+    0.780480972290039,
+    -0.0004160308837890536
+  ],
+  "source_bank": "D:\\macaque retinal simulator\\reports\\GIN_69_6_RADIAL_CONDITIONAL_V1\\candidate_v2\\SOURCE_BANK.mat",
+  "source_gun_spectra": "D:\\macaque retinal simulator\\data\\source_packages\\WP1_20261031\\Schottdorf_Lee_xage77\\stimuli\\GunSpectra.txt",
+  "mean_gamma_RGB": [
+    0.1420224115274223,
+    0.10712438314583095,
+    0.11876019731817816
+  ],
+  "reference_rgb": [
+    0.29411764705882354,
+    0.29411764705882354,
+    0.29411764705882354
+  ],
+  "samples": 769,
+  "patch_fov_deg": 3.44773996569117,
+  "exposure_seconds": 0.006666666666666667,
+  "foveal_reference_diameter_um": 6.326361168025856,
+  "reference_geometry_source_sha256": "3c08badc9d86e65e20632ebe1fa6cc836f4733597f79e7c1575bd9b0207040b6",
+  "optics_cache": "D:\\macaque retinal simulator\\reports\\GIN_69_6_HC2_BC1_SUPPORT_V2\\optical\\cache",
+  "cache_directory": "D:\\macaque retinal simulator\\reports\\GIN_69_6_HC2_BC1_SUPPORT_V2\\optical\\cache",
+  "frame_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "window_edges_seconds": [
+    0.0,
+    0.006666666666666667,
+    0.013333333333333334,
+    0.02,
+    0.02666666666666667,
+    0.03333333333333333,
+    0.04,
+    0.04666666666666667,
+    0.05333333333333334,
+    0.06
+  ],
+  "plot_bounds_mm": [
+    0.3465830511425424,
+    1.3683760198925423,
+    -0.49106904106278015,
+    0.5307239276872199
+  ],
+  "native_control": true,
+  "aperture_profile_sha256": "b55a04825a03f63c90e7793562dd233ee7385456270b406d6d23f76631b364a6",
+  "source_RF_mapping": "Author fitted RF pixel maps to selected OFF-parasol group RF centroid; image top maps +y; nominal4.6/256deg per pixel",
+  "old_3mm_or_Latimer_cache_reused": false,
+  "tile_signature": "90cb0c7139374520f683fed8c66d9a8c3a9cfc215a9df893fe294fa7a3d474ce",
+  "new_network_membership_source": "executions/assemble_native_01/MEMBERSHIP.npz",
+  "source_scene_reused": true,
+  "old_capture_reused": false,
+  "geometry_scope": "All native parent groups needed for independent exterior background and selected local Cone states",
+  "request_signature": "afafed511c09c002ac40c29b4187695d607d045037a6e4996850273232508e75"
+}

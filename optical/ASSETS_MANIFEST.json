@@ -1,0 +1,640 @@
+{
+  "schema": "frozen-lab-optical-cache-assets-1",
+  "source_project_commit": "5b974384112f47688bc8ae6b972f491a7ac62161",
+  "source_cache": "reports/GIN_69_6_HC2_BC1_SUPPORT_V2/optical/cache",
+  "cache_destination": "optical/cache",
+  "OTF_count": 101,
+  "OTF_bytes": 151612613,
+  "cache_file_count": 103,
+  "cache_bytes": 159579275,
+  "frozen_windows_configuration": {
+    "path": "optical/reference/CONFIG.windows.json",
+    "sha256": "320f731bee4cbeb3358801b92dc5d9e189488acb7c31b2700e81507dbb17c3f2"
+  },
+  "effective_cone_aperture": {
+    "shape": "Gaussian",
+    "sigma_per_reference_diameter": 0.204,
+    "initial_Pillbox_fields_are_not_actual_cone_capture_kernel": true
+  },
+  "numerical_gate_scope": "Same-run algorithm comparison only; not an established cross-machine rerun threshold",
+  "files": [
+    {
+      "path": "optical/cache/metadata.json",
+      "bytes": 1458,
+      "sha256": "4453946b4303e65fbf464f181f882a9499a897d7f5afbd1de0384a8273855bea",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/model.mat",
+      "bytes": 7965204,
+      "sha256": "5cda38755a16b06f1202b79abf8d4b38a368cb17fac185c68a13d97e402be4c8",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_001.mat",
+      "bytes": 1507467,
+      "sha256": "fc1c5f328ebac0822499a1fc36fa0d9bfeb56cb893f55b7be0f930c328e32656",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_002.mat",
+      "bytes": 1507467,
+      "sha256": "fc1c5f328ebac0822499a1fc36fa0d9bfeb56cb893f55b7be0f930c328e32656",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_003.mat",
+      "bytes": 1507467,
+      "sha256": "fc1c5f328ebac0822499a1fc36fa0d9bfeb56cb893f55b7be0f930c328e32656",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_004.mat",
+      "bytes": 1507467,
+      "sha256": "fc1c5f328ebac0822499a1fc36fa0d9bfeb56cb893f55b7be0f930c328e32656",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_005.mat",
+      "bytes": 1507467,
+      "sha256": "98b35d20f098bb3716e5c2d4bf560b70d192ed682066794b7ba5b71245396f6c",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_006.mat",
+      "bytes": 1507467,
+      "sha256": "98b35d20f098bb3716e5c2d4bf560b70d192ed682066794b7ba5b71245396f6c",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_007.mat",
+      "bytes": 1504327,
+      "sha256": "89adf9f86592ed06d7e4687556d22049c8f645ec2862938a0623233f691da11e",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_008.mat",
+      "bytes": 1506363,
+      "sha256": "0d4869a1ba6c40a2e1cf83df109350a82c3c8dd61cc340b4da63f6d15adfa6ae",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_009.mat",
+      "bytes": 1506291,
+      "sha256": "86ef2961f6ff01c8d98ced5a0a3c76f1828b9b306dc5c135222755ffbb30901b",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_010.mat",
+      "bytes": 1504986,
+      "sha256": "afa9de2fab65a8255d118d2bc469e420670a5a00d23b7dcc611b669efac810d9",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_011.mat",
+      "bytes": 1505840,
+      "sha256": "1c7bcae9d12e64eaa8a315554c4621f2afe1ec6b522b3c870202965ae218cdd0",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_012.mat",
+      "bytes": 1506165,
+      "sha256": "77dede78b06c675e860c0831d37ea0da75e8031df2244826078691369b3e710b",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_013.mat",
+      "bytes": 1507032,
+      "sha256": "d92a4e6aaeeadf7ac23c742e17c9aabfec72bace51889e5c95ebbf5304ea71c8",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_014.mat",
+      "bytes": 1506681,
+      "sha256": "cadb40f8537aa87543d5f4512861edabf131e1eb5c1990b762655c7852b71503",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_015.mat",
+      "bytes": 1506218,
+      "sha256": "26e87f01f4ce17196b1efb7dc58626078d3917a74e1fa3d7fa7b376752880ca9",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_016.mat",
+      "bytes": 1506358,
+      "sha256": "2367355d8571b55d8028a108c7488096f290b440e0ff9f9117121bcc3fa6a097",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_017.mat",
+      "bytes": 1505110,
+      "sha256": "dd0da94e06a8d75f1fb25f9e925698dff0aced27d6b79d394e9a4a92849bd9c5",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_018.mat",
+      "bytes": 1505280,
+      "sha256": "7028ccd925ccd0d173159b3828986c570d7a360a01721f48bccbedffcc08efb1",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_019.mat",
+      "bytes": 1504734,
+      "sha256": "1d5c52b0f4d274d9737a87135dac7351bcf044df3b4e58a6b754ae474b7b8cd4",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_020.mat",
+      "bytes": 1504440,
+      "sha256": "9b5cbeccce6a006eef6e8cdf3a2a486f750e7d0fede9d0da18816632ebb21766",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_021.mat",
+      "bytes": 1505619,
+      "sha256": "3420e3291f45bb7c0b89a00cb845c34b8b5c7402af6c0de1e395be442c08a3bf",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_022.mat",
+      "bytes": 1503707,
+      "sha256": "e63531a7815d532f816aea4dca2501dc5cc0cd2cfafa276a8970acc8752712c3",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_023.mat",
+      "bytes": 1504676,
+      "sha256": "e94488d221569fe91e0bdaa4adaffb1e370a52faf0e946ac46d8a60e1add89f7",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_024.mat",
+      "bytes": 1504387,
+      "sha256": "4523fe59a16f577352b80a89cec32db8cd90f56542c03272ae42a95ffccef2db",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_025.mat",
+      "bytes": 1504342,
+      "sha256": "e95d52717d714e8e9b5e1feaf581cdd5071504f9cb14729a60df869a5ec7e9ed",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_026.mat",
+      "bytes": 1507780,
+      "sha256": "62fb57e7322cdb3995083b87d1fde3b5c2c3bc4a20b5698ae76c2d2a987c14c2",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_027.mat",
+      "bytes": 1500851,
+      "sha256": "3645049673ceff325ba4edff2d9a93bc1c4a998f16cb6739ba80f0e623339e90",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_028.mat",
+      "bytes": 1502909,
+      "sha256": "d1bb133498ca63ec9c48909c3ff5cf6342fd75462c22cebd8440734e3d0ce11d",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_029.mat",
+      "bytes": 1503754,
+      "sha256": "dd6045fcb1b748240fd8b4c29a3ce703d487e9dfee1184e49d36f7a348257e3f",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_030.mat",
+      "bytes": 1495663,
+      "sha256": "b1de018a2a07652561dc0b58923d0e834f12e7542fe7f6fba9506b1e5b87729b",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_031.mat",
+      "bytes": 1503956,
+      "sha256": "16d63a893a81b76de10d5920e49856ecf1899602b053c549b8185d32aea69190",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_032.mat",
+      "bytes": 1496941,
+      "sha256": "0ab00485b209d91f26741ee03e7c40e0cb799f062150305328226492824f4f59",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_033.mat",
+      "bytes": 1502812,
+      "sha256": "d726cdd6ba14b0ec42c1af5c074c7765dd9a44e8c49c509a13ffd45c5c008cd7",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_034.mat",
+      "bytes": 1501658,
+      "sha256": "b193052bb2747ebf00808154bb41990b8872be247237694f20bded0ba12996dd",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_035.mat",
+      "bytes": 1498182,
+      "sha256": "9f2b89a16b52848a70398405c4c211fb892b609da2f033d5aa95f1fa8f77adda",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_036.mat",
+      "bytes": 1500066,
+      "sha256": "d48a6889448071e9de42c942b465a230c79d26b30f67239fc7139f6cc65e4642",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_037.mat",
+      "bytes": 1499239,
+      "sha256": "79197ba36bf4564eece215d4026914156cedb162b39c671f71179889c2f585fc",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_038.mat",
+      "bytes": 1498722,
+      "sha256": "510892c9d3e3937a3a5ed1d7dfbbc945dc6fefd31f3486cc9de84c59c157fae5",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_039.mat",
+      "bytes": 1497393,
+      "sha256": "5003d3424ba1cdb0b15c0e43bea8b513c676d4719f2d2a3d942c7c97a55c4fb2",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_040.mat",
+      "bytes": 1484735,
+      "sha256": "9fdd0a6141e27e80247dc83b16a7218f2b07deb378acb66d13d294af92a42b36",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_041.mat",
+      "bytes": 1501485,
+      "sha256": "b8d6f90c092a5f759b5fc51331f1f6cae1ce21eeed741fbf262c88df3e884623",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_042.mat",
+      "bytes": 1490896,
+      "sha256": "0c4e11ae1b66e02039ecc9254f2426b605f3bc04eb297a6d1e90eeff35745996",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_043.mat",
+      "bytes": 1501005,
+      "sha256": "e96558ff6f968fe3a2dda63a7be77c49662accb5cc1c14e47aec5c85ec81c907",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_044.mat",
+      "bytes": 1501698,
+      "sha256": "3cd57053dc2049cee6733a8ff8821f59927e0a080d83c783815b00cff67cf9a5",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_045.mat",
+      "bytes": 1500657,
+      "sha256": "b221eb5133379baf8a086818dd4c2dcf64cf1accbb658a13a2916bde339bd5cc",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_046.mat",
+      "bytes": 1497354,
+      "sha256": "04d25d261560173ab3ce91b4c954ca8b326edd61adc31f5776e7bfc517dc4f96",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_047.mat",
+      "bytes": 1498677,
+      "sha256": "9ac8721d4d5c5fec9337d0497c478e18780f37601af8b67f2a9a651f228190e7",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_048.mat",
+      "bytes": 1497633,
+      "sha256": "f5a09e45d5d8407a1e7c504e7088f14ab01ca03634f1c7be1510f424d6918f34",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_049.mat",
+      "bytes": 1495796,
+      "sha256": "3652f30c569803157184211caa2113fe90248cdefe7458edadab1af4749de698",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_050.mat",
+      "bytes": 1494004,
+      "sha256": "eb676af4f5df60a7a57daa0bee2f48a5fc931eae8f14154a5f9c207d05d14575",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_051.mat",
+      "bytes": 1493099,
+      "sha256": "e70ba8bc24114f8cca5ce0fc24d26aeb386700f1d27750c52eb0fe09d806a768",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_052.mat",
+      "bytes": 1493910,
+      "sha256": "8e143ed599bd4a04efffb50a8b54b06032cccdf59b31362b9711712b93ff7a73",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_053.mat",
+      "bytes": 1496354,
+      "sha256": "1f0ac14f1a56f3c80990336e4b8fdebd9d31fb2b9d6ed31a90e0e1f6036d626a",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_054.mat",
+      "bytes": 1498102,
+      "sha256": "9d996f862942694e961b00cfda1ffcc9886bb354e99095e7eb31672f0b87af62",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_055.mat",
+      "bytes": 1498907,
+      "sha256": "9ad693b5bfb8e6bdc9ec8c4e0815d599e134f2c4a132459c1fed0929626ee183",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_056.mat",
+      "bytes": 1498355,
+      "sha256": "7d5c508912c1e068440f5f6311f7216043d1b3cb44b3e6d1bb687bd3249355b1",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_057.mat",
+      "bytes": 1497851,
+      "sha256": "af8c43594afd63371d1ceed31746d53cbee832ae6b8134df4e0ebabf3f5b3b8c",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_058.mat",
+      "bytes": 1498899,
+      "sha256": "7d0893631ca0ed7f3f9dcd7dab39acd2f561393e956035d4b94841454dcbcf28",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_059.mat",
+      "bytes": 1498629,
+      "sha256": "bf35d5f05f265405336b82c44149d0ff94da5c4dc68eb575c441b1cbe9dcbdf5",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_060.mat",
+      "bytes": 1501274,
+      "sha256": "2f734ba0e0e8fef06fc2db0e6bb7e8eec2955374d52aa07a40ea34df830eef5b",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_061.mat",
+      "bytes": 1504699,
+      "sha256": "5e0968b14446e0972caf222088c97c6cca0096ed612739cb564b5ebb6d715faa",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_062.mat",
+      "bytes": 1499267,
+      "sha256": "a6b418a6b85e39b8c20598b1f172f4664c24f544b152fd5f2ad7887da4532691",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_063.mat",
+      "bytes": 1503345,
+      "sha256": "e5f9c1076d3d6a746f93be754cc7aa158ed8410df228216c15fb571b26e491be",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_064.mat",
+      "bytes": 1503674,
+      "sha256": "5c1e5a38bf5f88c60b12e0bc2a6c0b8dcec1a43b922f839814f1cfc6fc0e18cc",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_065.mat",
+      "bytes": 1498475,
+      "sha256": "c02e9bda45e9210033d4a5d6155891c98be751f12d8dc5652d4b11331f1d7259",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_066.mat",
+      "bytes": 1501967,
+      "sha256": "8825252c541b218bfb8ca6e891dad4c2423bd5c05cc52cfdbccc38389cd6e495",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_067.mat",
+      "bytes": 1498304,
+      "sha256": "6382b09c9e35c2ae3898b22adc9fd7e52580067d7966be249a5f3772d8237492",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_068.mat",
+      "bytes": 1495223,
+      "sha256": "fdcc3ae0ba47e2fe92a0cbaa742b03062ab3f7c72d44c8e007bdb133885bf569",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_069.mat",
+      "bytes": 1494584,
+      "sha256": "a9ae1f6f3dca7ceb986243412cf7f3d95d17837d6b64d5dd6a66765802442c24",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_070.mat",
+      "bytes": 1488841,
+      "sha256": "c3a30ec4b639a245180e45a0e6299de901061e6618f23443be1b5dcee5fa858d",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_071.mat",
+      "bytes": 1493297,
+      "sha256": "88e87906d12d050074313050214ba2ac08b415296654950d011d260ac52f9b33",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_072.mat",
+      "bytes": 1492111,
+      "sha256": "cf8707907f256889c58aac6ae556cac33ac1afbda82cd73efeccc3251851c2a7",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_073.mat",
+      "bytes": 1498041,
+      "sha256": "c076a891410879050d3f478cd7558998720a3376590c3a1fd4e6330f01dee136",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_074.mat",
+      "bytes": 1501227,
+      "sha256": "59848d1a13f9e45dfd7e7fa1696c4e6ba34e7037ac5eff8c1bdc5bfadf6cb8b8",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_075.mat",
+      "bytes": 1501249,
+      "sha256": "927f546f05b1a40f2136a6c266e22a088b5e226c2dea1a3eff1a4fb4729dde94",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_076.mat",
+      "bytes": 1505511,
+      "sha256": "3769cb14e01818ebfdc21efb0c984687949ec02a6bcc8ad21e1faf0dd38f62d6",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_077.mat",
+      "bytes": 1504957,
+      "sha256": "3be5f535c747a9ac6f07a0c377a7688c039339afebc4540fdd28fab823ae68ec",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_078.mat",
+      "bytes": 1505325,
+      "sha256": "f4f68aa9a558e327cf56d16b1d9c4c0b6b9c512010bb5ceb48fee571586f0caf",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_079.mat",
+      "bytes": 1504087,
+      "sha256": "0f66c4fd6c325541dba00e0a6ee0476d0ed38e38b35bf4dab48d743e12963bbd",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_080.mat",
+      "bytes": 1499838,
+      "sha256": "8a5db4eb3b57dc878fe2fb692d51adbd08bdc59b4ea02e4f94f50ce42cda4b42",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_081.mat",
+      "bytes": 1501047,
+      "sha256": "ecfccaf8bc646eed86f1b75dd5d788e9e5c78be3dcdcdc1b8128b61fea471c39",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_082.mat",
+      "bytes": 1501047,
+      "sha256": "ecfccaf8bc646eed86f1b75dd5d788e9e5c78be3dcdcdc1b8128b61fea471c39",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_083.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_084.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_085.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_086.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_087.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_088.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_089.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_090.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_091.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_092.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_093.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_094.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_095.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_096.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_097.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_098.mat",
+      "bytes": 1501047,
+      "sha256": "a8bff69169ca7f54ad41ec328f30583f8fa6fe6ab896329a2357142988a08688",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_099.mat",
+      "bytes": 1501047,
+      "sha256": "5fb1840775d778715319effe533922efbf1ddd8c8deb24794debf2404653e2f5",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_100.mat",
+      "bytes": 1501047,
+      "sha256": "5fb1840775d778715319effe533922efbf1ddd8c8deb24794debf2404653e2f5",
+      "mode": "100644"
+    },
+    {
+      "path": "optical/cache/otf_101.mat",
+      "bytes": 1501047,
+      "sha256": "5fb1840775d778715319effe533922efbf1ddd8c8deb24794debf2404653e2f5",
+      "mode": "100644"
+    }
+  ]
+}
