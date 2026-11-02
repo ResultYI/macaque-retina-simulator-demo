@@ -129,87 +129,57 @@ def plot():
 def extract_fullfield():
     from scipy.io import loadmat
     sys.path.insert(0,str(ROOT))
-    from retina_sim.disk_tables import FrozenDiskTable
-    from retina_sim.spatial_group_model import _verify_artifact
-    from tools.build_eccentric_hc import load_matrix
+    from retina_sim.hc_current import current_hc
 
-    run = ROOT / 'reports/HC_FULLFIELD_FIRST_FRAME_0_6DEG_20261101_v1'
+    run = ROOT / 'reports/HC_VISUAL6DEG_SUPPORT_REPAIR_20261101_v1'
     result = json.loads((run/'RESULT.json').read_bytes())
+    build = json.loads((run/'BUILD_RESULT.json').read_bytes())
     contract = json.loads((run/'CONTRACT.json').read_bytes())
     assert result['status'] == 'COMPLETE_VALIDATED' and result['accepted']
-    candidate_path=ROOT/'reports/retinotopic_rf_revision/native_validation_v1/CANDIDATE_MODEL.json'
-    assert sha(candidate_path)==contract['identity']['candidate_sha256']
-    candidate=json.loads(candidate_path.read_bytes())['fine_source_model']
-    cones=FrozenDiskTable(ROOT,candidate['tables']['cones'])
-    hcs=FrozenDiskTable(ROOT,candidate['tables']['HC'])
-    A=load_matrix(candidate['native_A'])
-    mass=np.asarray(A.sum(axis=1)).ravel()
-    has_input=mass>0
-    # Contact weights define a display position, independent of stimulus or response.
-    center_mm=np.divide(A@cones.coordinates['rf'],mass[:,None],
-        out=np.full((hcs.count,2),np.nan),where=has_input[:,None])
-    center_deg=center_mm/.223
-    selected=has_input & (np.linalg.norm(center_deg,axis=1)<=6.)
-    assert int((~has_input).sum())==29
-    source_rows=np.flatnonzero(selected)
-    parent=ROOT/'reports/spatial_group_graph_v02_20261025_v1/artifact_r2'
-    parent,_,parent_identity=_verify_artifact(parent)
-    assert parent_identity==contract['identity']['parent_artifact']
-    mapping=np.load(parent/'populations/HC/fine_to_group.npy',allow_pickle=False)
-    group_counts=np.load(parent/'populations/HC/counts.npy',allow_pickle=False)
-    with np.load(run/'GEOMETRY_AND_INPUT.npz',allow_pickle=False) as d:
-        active=d['active_HC_parent_rows']
-    inverse=np.full(len(group_counts),-1,dtype=int)
-    inverse[active]=np.arange(len(active))
-    assert np.all(mapping[source_rows]>=0)
-    group_rows=inverse[mapping[source_rows]]
-    assert np.all(group_rows>=0)
-    response_path=run/'STANDARD.npz'
-    assert sha(response_path)==result['receipts']['standard']['response_sha256']
-    with np.load(response_path,allow_pickle=False) as d:
-        delta_by_group=d['HC_delta'][:,-1]
-        assert float(d['time_seconds'][-1])==1/30
-    delta=delta_by_group[group_rows]
-    soma_deg=hcs.coordinates['soma'][source_rows]/.223
-    outside_anatomical_window=int(np.sum(np.linalg.norm(soma_deg,axis=1)>6.))
-    assert outside_anatomical_window>0 and np.isfinite(delta).all()
-    arrays=dict(xy_deg=center_deg[selected],soma_xy_deg=soma_deg,HC_fine_rows=source_rows,
-        delta_h=delta,supported=np.ones(len(source_rows),dtype=bool),
-        HC_types=hcs.extras['subtype'][source_rows],group_active_rows=group_rows,
-        duration_seconds=1/30,source_frame_index=0,
-        color_limit=float(np.max(np.abs(delta_by_group))))
-    display = loadmat(VIDEO/'input.mat',variable_names=['rgb_frames'])['rgb_frames']
-    assert display.shape[:3] == (360,360,3)
-    arrays['input_rgb'] = display[:,:,:,0]
+    coverage = json.loads((run/'VISUAL_COVERAGE.json').read_bytes())
+    convergence = json.loads((run/'BOUNDARY_CONVERGENCE.json').read_bytes())
+    assert coverage['status'] == convergence['status'] == 'PASS'
+    assert result['current_hc_identity'] == current_hc(ROOT)['identity']
+    assert sha(run/'HC_GEOMETRY.npz') == build['geometry_sha256']
+    with np.load(run/'HC_RESPONSE.npz',allow_pickle=False) as d:
+        centers = d['input_center_mm']/.223
+        active = d['supported']
+        selected = active & (np.linalg.norm(centers,axis=1)<=6.)
+        delta = d['delta_h'][selected]
+        arrays = dict(xy_deg=centers[selected],soma_xy_deg=d['soma_xy_mm'][selected]/.223,
+            HC_fine_rows=np.flatnonzero(selected),delta_h=delta,
+            supported=np.ones(selected.sum(),dtype=bool),HC_types=d['subtype'][selected],
+            duration_seconds=float(d['duration_seconds']),source_frame_index=0,
+            color_limit=float(np.max(abs(d['delta_h'][active]))))
+        unsupported = int((~active).sum())
+        outside_view = int(np.sum(active & ~selected))
+    arrays['input_rgb'] = loadmat(VIDEO/'input.mat',variable_names=['rgb_frames'])['rgb_frames'][:,:,:,0]
+    assert len(delta)>0 and np.isfinite(delta).all()
     np.savez_compressed(HERE/'hc_fullfield_response_preview.npz',**arrays)
-    provenance = dict(run_directory=str(run), result_sha256=sha(run/'RESULT.json'),
-        contract_sha256=sha(run/'CONTRACT.json'),network=contract['geometry'],
-        numerical=dict(maximum_all_state_budget_ratio=result['maximum_all_state_budget_ratio'],
-            maximum_HC_standard_tight_difference=result['maximum_HC_standard_tight_difference']),
-        snapshot_seconds=float(arrays['duration_seconds']),source_frame_index=0,
-        input_image='Frozen cropped rgb_frames[:,:,:,0] from original ISET input.mat',
-        quantity='HC delta_h = h(1/30 s) - h(0); all types displayed together',
+    provenance = dict(run_directory=str(run),result_sha256=sha(run/'RESULT.json'),
+        contract_sha256=sha(run/'CONTRACT.json'),current_hc_identity=result['current_hc_identity'],
+        network=contract['geometry'],numerical=dict(
+            maximum_all_state_budget_ratio=result['numerical_maximum_all_state_budget_ratio'],
+            maximum_HC_standard_tight_difference=result['numerical_maximum_HC_difference']),
+        snapshot_seconds=arrays['duration_seconds'],source_frame_index=0,
+        quantity='HC delta_h = h(1/30 s) - h(0); both types displayed together',
         unit='vH_native_voltage; uncalibrated to physical mV',
-        displayed_HC=len(source_rows),unsupported_HC=29, spatial_interpolation=False,
+        displayed_HC=int(selected.sum()),unsupported_HC=unsupported,
+        supported_HC_outside_visual_view=outside_view,spatial_interpolation=False,
         coordinate_frame='functional_visual_field',
-        position_definition='Fine HC direct-cone weighted RF centroid; display approximation, not functional RF fit',
-        position_equation='x_display_j = sum_i A_fine_ji*x_cone_RF_i / sum_i A_fine_ji',
-        position_weights='Frozen complete fine-cell Cone-to-HC contact matrix; independent of image and response',
-        position_matrix=candidate['native_A'],
-        selection='All finite-network HC with defined direct-input centroid inside the 0-6 degree visual field',
-        newly_included_from_outside_anatomical_6deg=outside_anatomical_window,
-        unsupported_position_policy='29 zero-input HC have no defined input centroid; omitted from this visual-field view and retained in anatomical data',
-        representation='Saved representative HC state placed at each fine HC direct-input visual-field centroid',
-        raw_response_sha256=sha(response_path),
-        color_limit=arrays['color_limit'],color_limit_rule='Maximum absolute HC change over the same saved complete finite network',
-        response_values_changed=False,new_simulation=False,
-        latest_eccentric_contacts=True, latest_fine_before_group_typed_feedback=True,
-        simulation_scope='Complete finite Cone-HC network; image drives all captured 0-6 degree cones; outside light remains at reference',
-        complete_4s_movie=False, physiological_validation=False,
+        position_definition='Fine HC direct-cone weighted input centroid; display approximation',
+        representation='Independent state for every active HC; existing cone grouping retained',
+        HC_soma_radius_mm=build['finite_HC_radius_mm'],
+        HC_boundary='Finite open support halo outside the0..6deg visual observation field',
+        visual_contact_coverage=coverage, boundary_convergence=convergence,
+        raw_response_sha256=sha(run/'HC_RESPONSE.npz'),
+        color_limit=arrays['color_limit'],merged_HC_display=True,
+        fresh_background=True,complete_finite_current_network=True,
+        complete_4s_movie=False,physiological_validation=False,
         plotting_source_sha256=sha(Path(__file__)))
     (HERE/'hc_fullfield_response_preview.json').write_text(
         json.dumps(provenance,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
-    print(f'Visual-field view: {len(source_rows)} HC; {outside_anatomical_window} were outside the anatomical 6-degree window',flush=True)
+    print(f"Current visual-field preview: {selected.sum()} HC; {unsupported} zero-input HC omitted",flush=True)
 
 
 def plot_fullfield():
@@ -237,7 +207,9 @@ def plot_fullfield():
                xticks=(-6,-3,0,3,6),yticks=(-6,-3,0,3,6))
     colorbar=fig.colorbar(points,cax=fig.add_axes([.905,.22,.015,.57]))
     colorbar.set_label(r'$\Delta h$ (native units)')
-    fig.text(.065,.035,f'0-6 deg visual field | {len(xy):,} HC | Positions: direct-cone input centroids',
+    metadata = json.loads((HERE/'hc_fullfield_response_preview.json').read_bytes())
+    support_radius = metadata['HC_soma_radius_mm']
+    fig.text(.065,.035,f'{len(xy):,} HC | Visual field <= 6 deg | HC support radius {support_radius:g} mm',
              fontsize=9,color='#555555')
     for ext in ('png','pdf'):
         fig.savefig(HERE/('hc_fullfield_response_preview.'+ext),dpi=400)

@@ -1,70 +1,62 @@
 # 2026-11-02 组会资料
 
-固定目录：`D:/macaque retinal simulator/semi_reports/2026-11-02_HC`。
-后续直接修改本目录的 `main.tex`，编译覆盖 `main.pdf`，沿用同一个资料文件夹。
+资料目录：`D:/macaque retinal simulator/semi_reports/2026-11-02_HC`。直接编辑 `main.tex`，在同一目录编译 `main.pdf`。
 
-2026-10-31 根据当前代码精简为两页日文资料。标题无副标题，姓名与日期分行，报告日期仍为 2026 年 11 月 2 日。
-2026-11-01 加入 Cone 大小同尺度对比图及简短日文图注后，当前资料共三页。
-同日将 HC 预览更新为完整有限 Cone–HC 网络的首帧应答，H1/H2 合并显示，仍为三页。
-随后将应答图统一为视野坐标，按直接 Cone 输入的重心定位；计算结果沿用原数据。
-最新版本删除第二节的公式与详细说明，在第一节末尾用一句话交代 van Hateren（2005）响应模型，资料共两页。
-随后在第一节补入 HC 接触范围随偏心度的变化及出处，仍为两页。
+## 资料内容
 
-## 当前结构
+日文资料正文两页、参考文献一页，共三页。图像顺序为 ISETBio Cone 分布预览、同尺度 Cone 大小图、HC 分布与密度图、合并 HC 应答图、H1/H2 接触半径对比图。图3说明为“Coneからの入力に対するHCの応答。”。图4展示0–6°半径曲线和0°、3°、6°处的同尺度输入圆，数值为半径，单位μm；文献依据在图注中引用。正文包含数据来源和三项指数密度函数两个小节，最后说明采用 van Hateren（2005）的模型生成 HC 响应。
 
-开头图像依次为：ISETBio Cone 分布预览及 0°、3°、5.8° 的同尺度大小对比图 → HC 分布与密度图 → 全网络 HC 应答结果图。前两组位于第一页，应答结果位于第二页正文之前。Cone 两图共用简短日文图注“加入 Cone 大小变化的分布生成预览图”。HC 细胞体分布图保存坐标与当前表一致：H1 82,456 个、H2 20,597 个；6° 对应 1.338 mm。
+密度函数形式参考 Virtual Human Retina（Ly et al., 2025；DOI `10.1016/j.brs.2025.01.013`）的三项指数式；系数依据 Röhrenbeck（1989）、Krebs与Krebs（1989）、Ahmad（2003）及Wässle（2000）的密度数据设定。密度使用 `configurations/hc_density_rf_joint_v2.json` 的全精度系数，H1/H2按0.8/0.2拆分。HC生成区域为解剖半径0–1.75 mm，含H1 **138,369** 个、H2 **34,592** 个，共 **172,961** 个。图2显示其中解剖半径0–1.338 mm（6°相当）的H1 **90,616** 个、H2 **22,669** 个。整个生成区域的积分期望分别为138,368.5442和34,592.1361，整数化误差均小于1个细胞。生成采用固定seed20261010、联合短程排斥和2个sweep。
 
-1. **分布来源和密度方程**：Röhrenbeck（1989）的中央总密度锚点，Wässle（2000）的分型密度与中央比例；列出中央 smoothstep 密度、外侧插值和面积积分生成坐标的思路。
-第一节末尾补充：按密度生成 HC 后，使用基于 van Hateren（2005）的模型计算响应，并保留该文献引用。第二节及其公式已删除。
+直接接触半径在0–0.58 mm取H1 8.04 μm、H2 12.22 μm；0.58–0.60 mm按固定20 μm三次Hermite段连接；外围使用 `R_t=sqrt(d_t/(pi*rho_t))`。1.338–1.75 mm沿用同一密度、比例和接触方程，作为有记录的局部支持区域外延；全局冻结配置的适用范围保持原声明。图4横轴为HC胞体偏心度，0–6°对应0–1.338 mm。在1.338 mm处，H1/H2半径约10.0090/14.3649 μm；1.75 mm处约11.7667/16.2893 μm。该量是直接Cone接触范围；完整功能性RF尚未定量拟合。H1排除S输入、H2接收L/M/S，反馈为H1→L/M、H2→S，同型侧向耦合独立计算。
 
-1.1 合并说明来源：总 HC 密度参考 Röhrenbeck（1989）；H1/H2 的密度、个数比和随偏心度变化的 RF 尺寸参考 Wässle（2000），正文将 RF 限定为直接 Cone 输入范围。1.4 直接列出现行接触径函数：0–1 mm 固定，1–5 mm 按对数径 PCHIP 的等价三次表达式增长，5–6 mm 固定；q=(r−1)/4，g(q)=1.8q−0.6q²−0.2q³，D=D0(Dp/D0)^g。中央径 H1/H2 为 16.08/24.44 μm，外侧径约 61.8/63.5 μm。已按当前配置与代码核对该表达式；延长和插值属于本研究设定。5–6 mm 锚点位于目标解剖 0–6° 范围之外；完整功能性 RF 尚未定量评估。末句总结按上述密度分布配置 HC，再使用 van Hateren（2005）的模型生成 HC 响应。
+## 计算结果与范围
 
-正文保留密度来源、插值和坐标生成的说明。原有详细连接统计、局部验证图及来源记录继续保存在本目录，便于独立复核。
+运行数据：`reports/HC_VISUAL6DEG_SUPPORT_REPAIR_20261101_v1`。
 
-全网络应答使用最新偏心度接触结构及 fine 行先分型归一化、再取群均值的反馈矩阵，计算整个有限 Cone–HC 网络。190,498 个 0–6° Cone 接受 ISETBio 完整首帧光学输入，持续 33.3 ms；图像范围外的光输入保留 100 参照等价 Td，外侧神经状态也共同演化。48,620 个 Cone 代表群和 32,652 个有输入 HC 代表群参与计算，重新求得相容背景。标准与更紧时间精度对照的最大 HC 差为约 `3.27e-13`，验证通过。
+- 几何生成启动：2026-11-01 22:58:42 JST；完成：23:08:38 JST；阶段用时597.26 s。数值合同记录23:11:38–23:22:23 JST，响应阶段含装配用时651.34 s。
+- 有限网络含545,658个原始Cone、48,620个Cone代表群；172,333个有直接输入的HC各有独立状态。
+- 实际接触1,452,969条；H1/H2平均汇聚数（含零输入细胞）为6.6356/15.4604。H1没有S输入，最大接触距离/半径比为0.9999992308。
+- 515个H1和113个H2无直接输入，共628个，保留在结构数据中。应答图显示输入重心位于0–6°视野内的137,094个HC。
+- 190,498个Cone接受ISETBio首帧输入，曝光1/30 s；未捕获成员使用100参照等价Td。完整成员平均和已有Cone分组用于输入转换。
+- 背景重新求解，最大原生RHS为9.09495e-12。标准DOP853参数为rtol=1e-6、atol=1e-9、最大步长100 μs；紧精度为1e-7、1e-10、50 μs。最大HC差为4.83169e-13，全状态缩放误差比为2.13603e-08，数值门槛通过。
+- 响应阶段记录的峰值内存约2.542 GiB；生成/连接阶段的采样峰值不作为完整连接峰值声明。
 
-当前应答图与输入图统一使用视野坐标。每个 HC 的显示位置取实际接触 Cone 感光位置的连接加权重心，权重来自冻结的完整 fine Cone→HC 矩阵，与图像内容和应答强弱无关；该重心是显示位置的近似。半径 6° 视野内共显示 127,268 个 HC，H1/H2 合并使用同一色标；颜色仍逐项取自原 `h(33.3ms)-h(0)`，各细胞继承已有代表群状态。新增显示的 24,244 个 HC 胞体在原解剖 6° 窗口之外，其状态已在原全网络运行中计算。无接触的 29 个 HC 无法定义输入重心，在视野图中省略，原始解剖数据保留。未重算动态、改动响应数值或进行空间插值。
+观察范围为0–6°视野，HC计算域为解剖半径1.75 mm的有限开边界圆盘。输入Cone的最大突触端偏心距为1.552196 mm；计入最大接触半径后，距边界仍有0.181515 mm余量。全部190,498个输入Cone具有完整几何邻域，其中190,223个有HC直接接触，190,006个有分型反馈。5.5–6°视野内18,894个Cone有18,858个接入HC，接触率99.8095%。几何筛选产生的未接触细胞按实际结果保留。
 
-开头的细胞体分布图仍按解剖位置统计：半径 6° 对应 103,053 个 HC。它与应答图的选取坐标不同。旧解剖位置应答图保留为 `hc_fullfield_anatomical_preview.png/pdf`，对应数据与来源也以此名称保存。
+应答图采用实际Cone输入位置的重心，最大显示偏心度5.99996°，坐标轴±6°；5.5–6°内12,846个显示HC均有非零应答。位置和应答逐细胞取自保存数据。共享同一内部几何、分别重求背景的1.65/1.75 mm边界检查通过：137,094个观察HC的最大应答差1.97863e-4，低于1e-3模型原生单位门槛。较小区域的精度复核最大HC差6.96332e-13。检查结束于2026-11-01 23:31:43 JST，详见 `BOUNDARY_CONVERGENCE.json` 和 `FINAL_ACCEPTANCE.json`。
 
-计算身份及原始数据保存在 `reports/HC_FULLFIELD_FIRST_FRAME_0_6DEG_20261101_v1`。本轮完成首帧全网络应答，尚未计算完整 4 秒视频。旧局部预览资产和既有研究结果保留。
+密度数据包含跨动物记录和二手混合灵长类补助点；固定H1/H2比例、中心弱约束段、接触圆盘、C1过渡与外围支持区域的函数延拓属于模型近似。D1的全Cone/可接触L/M分母问题保留在配置中。`FIT_READY`、`production_adopted`和生理验证标记均为false；结果对应33.3 ms首帧。
 
-## 代码对应
+## 数据与出图
 
-- 密度与坐标生成：`retina_sim/hc_mosaic.py`。
-- HC 接触范围：`retina_sim/atlas_hc.py`、`retina_sim/disk_hc_functional.py`。
-- ISETBio 光学采样：`tools/export_cone_video_aperture_tile.m`。
-- R*/s 到参照等价输入：`retina_sim/isetbio_input.py` 的 `reference_equivalent_drive()`。
-- 代表群的输入平均：`tools/prepare_external_video_v1.py`。
-- Cone 与 H1/H2 方程：`retina_sim/h1_h2_effective.py`、`retina_sim/vh2005.py`。
-- 同型侧向项：`retina_sim/hc_lateral_candidate.py`。
+`GEOMETRY_CONTRACT.json`、`HC_GEOMETRY.npz`、`MOSAIC_DIAGNOSTICS.json`和`BUILD_RESULT.json`记录生成范围、参数、坐标及校验。`RAW_HC_BY_CONE.npz`、`A.npz`、`B.npz`与`CONNECTIVITY_AUDIT.json`记录接触与投影。`VISUAL_COVERAGE.json`、`COVERAGE_TYPED.json`记录逐环带的实际输入覆盖；`BACKGROUND.npz`、`STANDARD.npz`、`TIGHT.npz`、`HC_RESPONSE.npz`、`RESULT.json`记录背景、动态和数值验收。运行终态与资源记录保存在对应运行目录。
 
-本次沿用原有方程与参数，新增首帧全网络计算及资料预览。既有模拟结果保留。
+本目录的 `hc_density_model.csv` 和 `hc_density_annuli.csv` 分别保存模型密度与实际环带统计；`hc_fullfield_response_preview.npz/json`保存图中坐标、应答值和来源。图像的ISETBio输入与冻结光学记录一致。`hc_contact_radius_model.csv/json`记录直接调用 `JointV2HCDensityProfile.contact_radius_mm` 得到的半径及来源，绘为 `hc_contact_radius_comparison.pdf/png`。1203个采样点及三个示例与模型返回值逐点一致；密度和接触半径的源码、参数与保存网络的相应绑定一致。
 
-## 编译与图像
+计算入口为 `refresh_hc_current.py` 的 `build`、`audit`、`respond`、`boundary` 四个阶段，均使用 `--visual-support`。已有结果目录拒绝覆盖。边界对照的单线程BLAS环境记录在 `BOUNDARY_EXECUTION.json`，数值容差与主计算一致。`before_visual_support_repair.zip`保存资料及图的归档，独立研究运行的数据按原身份保留。
 
-在本目录运行：
+在项目根目录生成接触半径图：
 
 ```powershell
-.\build.cmd
+& ./.venv/Scripts/python.exe ./semi_reports/2026-11-02_HC/prepare_assets.py size-data
+& D:/anaconda/python.exe ./semi_reports/2026-11-02_HC/prepare_assets.py size
 ```
 
-构建使用本机既有 upLaTeX → dvipdfmx 流程。TeXstudio 继续使用已配置的“构建并查看”；文件头保留 document-id，不设置编译器覆盖命令。
-
-正文复用 `hc_distribution_density.pdf`。需要从保存数据重绘分布图时，在本目录运行：
+已完成运行的应答与密度图入口如下，保留来源身份校验，配置身份须与保存运行匹配：
 
 ```powershell
-& 'D:/anaconda/python.exe' ./prepare_assets.py plot
+& ./.venv/Scripts/python.exe ./semi_reports/2026-11-02_HC/prepare_hc_preview.py extract-fullfield
+& D:/anaconda/python.exe ./semi_reports/2026-11-02_HC/prepare_assets.py plot
+& D:/anaconda/python.exe ./semi_reports/2026-11-02_HC/prepare_hc_preview.py plot-fullfield
 ```
 
-2026-11-01 新增 `isetbio_cone_distribution.pdf`，来源为 `reports/cone_video_113_4s_eccentric_aperture_0_6deg_20261029_v1/first_frame/HD/frame_000.png`。保留原图像素，封装为 PDF 并裁去外围空白，便于本地编译。原始图片保留在原目录。
-同目录的 `diameter_same_scale.png` 原样复制为 `isetbio_cone_diameter_same_scale.png`，展示三个偏心度的相同尺度局部图。
-
-当前 HC 预览为 `hc_fullfield_response_preview.png/pdf`，对应数据和来源分别为同名 `.npz`、`.json`。图像来自原始 ISET 输入中的裁切首帧。以下命令只提取已完成的全网络结果和重绘，不调用求解器：
+在资料目录编译：
 
 ```powershell
-& .\.venv\Scripts\python.exe .\semi_reports\2026-11-02_HC\prepare_hc_preview.py extract-fullfield
-& D:\anaconda\python.exe .\semi_reports\2026-11-02_HC\prepare_hc_preview.py plot-fullfield
+./build.cmd
 ```
 
-`QA.json` 记录本次编译、单节结构、开头图像、代码核对和版面检查。连接与局部响应的原验证仍分别见 `hc_connectivity_validation.json`、`hc_response_validation.json`。
+编译使用既有upLaTeX → dvipdfmx链，TeXstudio使用其“构建并查看”。`QA.json`保存文件hash、源码绑定、数量、精度、图序及三页版面检查结果。
+
+正式参考文献共8条，均在正文及图注中引用：Ly2025、Röhrenbeck1989、Krebs1989、Ahmad2003、Wässle2000、Wässle1989、Boycott1987、vanHateren2005。

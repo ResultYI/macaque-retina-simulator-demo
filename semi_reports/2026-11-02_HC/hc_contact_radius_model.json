@@ -1,0 +1,53 @@
+{
+  "quantity": "Direct Cone-input contact radius; not a measured functional RF",
+  "current_hc_identity": "21af8b01b596d363517e52e2e4603bdf780bf8602184db9c5374fc1e0fc1c601",
+  "source_bindings": {
+    "hc_joint_v2.py": {
+      "path": "retina_sim/hc_joint_v2.py",
+      "sha256": "50891baa4bfcd62439fef31f118d6c2ef9541d33b67f4a9f544bddd456cdc490"
+    },
+    "parameters": {
+      "path": "configurations/hc_density_rf_joint_v2.json",
+      "sha256": "f5296645a984e966cb323a9481d1737aeb8feed97fdede1bf24055ebd358b1a8"
+    }
+  },
+  "function": "JointV2HCDensityProfile.contact_radius_mm",
+  "domain_mm": [
+    0.0,
+    1.338
+  ],
+  "mm_per_degree": 0.223,
+  "csv_sha256": "37b8d24970fb0b9c72a69ecc9f27cc1bd46bb6e9eea6fbac032a943f670e63c6",
+  "samples_degrees": [
+    0.0,
+    3.0,
+    6.0
+  ],
+  "samples_radius_um": {
+    "H1": [
+      8.040000000000001,
+      8.078301124173485,
+      10.009047749228587
+    ],
+    "H2": [
+      12.22,
+      12.369227388550723,
+      14.364875890713789
+    ]
+  },
+  "radius_min_max_um": {
+    "H1": [
+      8.000020092469084,
+      10.009047749228587
+    ],
+    "H2": [
+      12.22,
+      14.364875890713789
+    ]
+  },
+  "central_join_mm": [
+    0.58,
+    0.6
+  ],
+  "simulation_rerun": false
+}

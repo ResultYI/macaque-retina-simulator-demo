@@ -1,56 +1,113 @@
 {
-  "run_directory": "D:\\macaque retinal simulator\\reports\\HC_FULLFIELD_FIRST_FRAME_0_6DEG_20261101_v1",
-  "result_sha256": "2a4e849532f3a1718985461d7814d606e9eebf3a44e1f8b66c76f6d358e52ea7",
-  "contract_sha256": "76a33f6edde5073236aa5190333deb69fdbd27b0f8a1cd60485fff2dbe6d24e6",
+  "run_directory": "D:\\macaque retinal simulator\\reports\\HC_VISUAL6DEG_SUPPORT_REPAIR_20261101_v1",
+  "result_sha256": "2ae939436328acc11906c11d598d0759e1543edfbaa4f5a94a1c9f106a9c4ecb",
+  "contract_sha256": "fd677fe64d9563b281fcdf76161d9d8fad8ee5c92267282b8261b285e8867738",
+  "current_hc_identity": "21af8b01b596d363517e52e2e4603bdf780bf8602184db9c5374fc1e0fc1c601",
   "network": {
+    "fine_cones": 545658,
     "cone_groups": 48620,
-    "active_HC_groups": 32652,
-    "full_fine_cones": 545658,
-    "full_fine_HC": 344910,
-    "visually_driven_cones": 190498,
-    "displayed_HC": 103053,
-    "unsupported_displayed_HC": 29
+    "fine_HC": 172961,
+    "active_HC": 172333
   },
   "numerical": {
-    "maximum_all_state_budget_ratio": 2.46041672281508e-08,
-    "maximum_HC_standard_tight_difference": 3.268496584496461e-13
+    "maximum_all_state_budget_ratio": 2.1360251472197354e-08,
+    "maximum_HC_standard_tight_difference": 4.831690603168681e-13
   },
   "snapshot_seconds": 0.03333333333333333,
   "source_frame_index": 0,
-  "input_image": "Frozen cropped rgb_frames[:,:,:,0] from original ISET input.mat",
-  "quantity": "HC delta_h = h(1/30 s) - h(0); all types displayed together",
+  "quantity": "HC delta_h = h(1/30 s) - h(0); both types displayed together",
   "unit": "vH_native_voltage; uncalibrated to physical mV",
-  "displayed_HC": 127268,
-  "unsupported_HC": 29,
+  "displayed_HC": 137094,
+  "unsupported_HC": 628,
+  "supported_HC_outside_visual_view": 35239,
   "spatial_interpolation": false,
   "coordinate_frame": "functional_visual_field",
-  "position_definition": "Fine HC direct-cone weighted RF centroid; display approximation, not functional RF fit",
-  "position_equation": "x_display_j = sum_i A_fine_ji*x_cone_RF_i / sum_i A_fine_ji",
-  "position_weights": "Frozen complete fine-cell Cone-to-HC contact matrix; independent of image and response",
-  "position_matrix": {
-    "path": "data/atlas/hc_eccentric_size_w2000_v1/native_A/manifest.json",
-    "sha256": "3c71f89dee944611cb129b62f1ed6602882de87afffdc7ebcfc0336f05861b98"
+  "position_definition": "Fine HC direct-cone weighted input centroid; display approximation",
+  "representation": "Independent state for every active HC; existing cone grouping retained",
+  "HC_soma_radius_mm": 1.75,
+  "HC_boundary": "Finite open support halo outside the0..6deg visual observation field",
+  "visual_contact_coverage": {
+    "status": "PASS",
+    "captured_cones": 190498,
+    "captured_contacted": 190223,
+    "complete_contact_neighborhoods": 190498,
+    "anatomical_HC_radius_mm": 1.75,
+    "maximum_captured_pedicle_radius_mm": 1.5521960897919966,
+    "maximum_HC_contact_radius_mm": 0.01628918873205756,
+    "minimum_contact_margin_mm": 0.1815147214759458,
+    "annuli": [
+      {
+        "lower_deg": 0,
+        "upper_deg": 4,
+        "captured_cones": 117388,
+        "contacted": 117247,
+        "fraction": 0.9987988550788837,
+        "prior_contacted": 117224
+      },
+      {
+        "lower_deg": 4,
+        "upper_deg": 5,
+        "captured_cones": 35694,
+        "contacted": 35618,
+        "fraction": 0.9978707906090659,
+        "prior_contacted": 35394
+      },
+      {
+        "lower_deg": 5,
+        "upper_deg": 5.25,
+        "captured_cones": 9235,
+        "contacted": 9224,
+        "fraction": 0.9988088792636708,
+        "prior_contacted": 3690
+      },
+      {
+        "lower_deg": 5.25,
+        "upper_deg": 5.5,
+        "captured_cones": 9287,
+        "contacted": 9276,
+        "fraction": 0.9988155486163455,
+        "prior_contacted": 46
+      },
+      {
+        "lower_deg": 5.5,
+        "upper_deg": 5.75,
+        "captured_cones": 9337,
+        "contacted": 9315,
+        "fraction": 0.9976437827996144,
+        "prior_contacted": 0
+      },
+      {
+        "lower_deg": 5.75,
+        "upper_deg": 6,
+        "captured_cones": 9557,
+        "contacted": 9543,
+        "fraction": 0.9985351051585225,
+        "prior_contacted": 0
+      }
+    ],
+    "all_captured_geometry_complete": true,
+    "outer_contact_fraction": 0.9980946332168943,
+    "no_artificial_partners": true,
+    "no_spatial_rescaling": true
   },
-  "selection": "All finite-network HC with defined direct-input centroid inside the 0-6 degree visual field",
-  "newly_included_from_outside_anatomical_6deg": 24244,
-  "unsupported_position_policy": "29 zero-input HC have no defined input centroid; omitted from this visual-field view and retained in anatomical data",
-  "representation": "Saved representative HC state placed at each fine HC direct-input visual-field centroid",
-  "raw_response_sha256": "f2bf9ea6097c1144c29dc873f7404d3917ec068e6c518bade238cfc08b155814",
-  "color_limit": 0.7144772789271059,
-  "color_limit_rule": "Maximum absolute HC change over the same saved complete finite network",
-  "response_values_changed": false,
-  "new_simulation": false,
-  "latest_eccentric_contacts": true,
-  "latest_fine_before_group_typed_feedback": true,
-  "simulation_scope": "Complete finite Cone-HC network; image drives all captured 0-6 degree cones; outside light remains at reference",
+  "boundary_convergence": {
+    "status": "PASS",
+    "radius_mm": [
+      1.65,
+      1.75
+    ],
+    "shared_HC_geometry": true,
+    "compared_HC": 137094,
+    "maximum_observation_HC_difference": 0.00019786279015221453,
+    "tolerance_native_units": 0.001,
+    "background_recomputed_for_each_domain": true
+  },
+  "raw_response_sha256": "1831f8155403a1fcad01a917c54f6905816b2ea18269d138d25dc5c739cd3812",
+  "color_limit": 0.7835587465386169,
+  "merged_HC_display": true,
+  "fresh_background": true,
+  "complete_finite_current_network": true,
   "complete_4s_movie": false,
   "physiological_validation": false,
-  "plotting_source_sha256": "abe14cc3155eb811be9ddd1225d0fa7876abf61f4b502de5129e857d4012998a",
-  "figure_png_sha256": "635dd5c39fcb8d8abd4e8796a0ae846c13ebedab0c1ec16ca36a4e6b80a6a15e",
-  "figure_pdf_sha256": "238f06debc2d83d9840917ce09ebc4f0f220a1aa3300549a0e9bda2a17d9233b",
-  "preview_data_sha256": "1d6792437b9704b8f91e378a107bdd6f28b3a3f7c0c1a792ebae978513c6cb25",
-  "raw_responses_unchanged": true,
-  "overlapping_anatomical_points_exactly_equal": 103024,
-  "previous_anatomical_view": "hc_fullfield_anatomical_preview.png/pdf",
-  "plot_review": "Both axes use visual-field degrees; centroid-based selection; no image warping, response scaling or new integration"
+  "plotting_source_sha256": "98e9a9a85952df5f7c31e5e4d5f9b0232b0094a38c98d88640a8356055e02363"
 }

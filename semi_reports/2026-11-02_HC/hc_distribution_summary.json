@@ -1,0 +1,14 @@
+{
+  "run_directory": "D:\\macaque retinal simulator\\reports\\HC_VISUAL6DEG_SUPPORT_REPAIR_20261101_v1",
+  "anatomical_plot_radius_mm": 1.338,
+  "support_radius_mm": 1.75,
+  "full_support_counts": {
+    "H1": 138369,
+    "H2": 34592
+  },
+  "plotted_counts": {
+    "H1": 90616,
+    "H2": 22669
+  },
+  "current_hc_identity": "21af8b01b596d363517e52e2e4603bdf780bf8602184db9c5374fc1e0fc1c601"
+}

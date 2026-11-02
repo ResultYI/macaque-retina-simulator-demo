@@ -54,8 +54,8 @@
 
 \begin{center}
 \includegraphics[width=\linewidth]{hc_distribution_density.pdf}
-\captionof{figure}{現在のH1/H2細胞体分布と密度。中心から半径$6\degc$以内に
-H1 $82{,}456$個、H2 $20{,}597$個を配置した。
+\captionof{figure}{H1/H2細胞体分布と密度。解剖座標の中心から半径$6\degc$相当の範囲に
+H1 $90{,}616$個、H2 $22{,}669$個を配置した。
 右の実線はモデル密度、白抜き点は保存済み座標の環帯密度を示す。
 $6\degc$は$1.338$~mmに相当する。}
 \label{fig:mosaic}
@@ -64,85 +64,83 @@ $6\degc$は$1.338$~mmに相当する。}
 \clearpage
 \begin{center}
 \includegraphics[width=0.8\linewidth]{hc_fullfield_response_preview.pdf}
-\captionof{figure}{全Cone--HCネットワークの応答（第1フレーム、$33.3$~ms）。
-接触Coneの入力重心で半径$6\degc$内のHC $127{,}268$個を表示した。
-色は初期状態からの応答変化（モデル原生単位）を示す。
-入力重心は表示位置の近似で、無接触29細胞を除いた。}
+\captionof{figure}{Coneからの入力に対するHCの応答。}
 \label{fig:hc-response-preview}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{hc_contact_radius_comparison.pdf}
+\captionof{figure}{H1/H2の接触半径（直接Cone入力範囲）の比較。
+横軸はHC胞体の偏心度を表す。
+Wässleら（1989，2000）とBoycottら（1987）を参考に設定したモデル値を示す\cite{Wassle1989,Wassle2000,Boycott1987}。}
+\label{fig:hc-contact-radius}
 \end{center}
 
 \section{分布の出典と密度方程式}
 \begin{multicols}{2}\small
 \subsection{密度とサイズの出典}
-総HC密度はRöhrenbeckら（1989）\cite{Rohrenbeck1989}、
-H1/H2の密度と個数比、およびRF（直接Cone入力範囲）の偏心度による変化はWässleら（2000）\cite{Wassle2000}を参考にした。
-これらのデータから、本研究の密度関数と接触径の関数を作成した。
+密度関数にはVirtual Human Retina（Lyら，2025）の3項指数式の形式を用いた\cite{Ly2025}。
+総HC密度のデータはRöhrenbeckら（1989）、KrebsとKrebs（1989）、Ahmadら（2003）を参考にした\cite{Rohrenbeck1989,Krebs1989,Ahmad2003}。
+H1/H2の密度と細胞数比、および直接Cone入力範囲の偏心度による変化はWässleら（2000）\cite{Wassle2000}を参考にした。
+係数はこれらの文献データを基準に設定した。
 
+\columnbreak
 \subsection{密度関数}
 偏心度を$e$（度）、物理距離を$r$（mm）とし、
 \begin{equation}
 r=0.223e
 \end{equation}
-で換算する。総密度を$\rho(r)$、H1の割合を$p(r)$とすると、
-\begin{equation}
-\rho_{\mathrm{H1}}=p\rho,\qquad
-\rho_{\mathrm{H2}}=(1-p)\rho
-\end{equation}
-となる。密度の単位はcells/mm$^2$である。
-
-中央の$0\le r\le0.6$~mmでは、
+で換算する。総密度$\rho(r)$（cells/mm$^2$）は、
 \begin{align}
-q&=r/0.6,\qquad s(q)=3q^2-2q^3,\\
-\rho(r)&=250\left(\frac{23{,}000}{250}\right)^{s(q)},\\
-p(r)&=0.8
+\rho(r)={}&45245.3026\,e^{-0.861612866r}\notag\\
+&-48597.4424\,e^{-3.112593836r}\notag\\
+&+3602.1397\,e^{-0.034949943r}
 \end{align}
-とする。
+とした。
 
-$0.6$~mmより外側はピークとTable~2の区間代表点から、
-$\log\rho$と$\log[p/(1-p)]$を形状保持Hermite補間する。
-節点は$0.6,\ 2.5,\ 3.5,\ 4.5,\ 5.6,\ 6.3,\ 7.1$~mmで、
-ピーク側の傾きを0に設定した。
-中央の補間形状、H1比率の中心への適用、軸対称性はプロジェクトの仮定である。
-
-\subsection{座標の生成}
-領域$\Omega$内の各型の細胞数を密度の面積積分から決める。
-\begin{equation}
-N_t(\Omega)\simeq\int_\Omega\rho_t(\mathbf{x})\,dA
-\end{equation}
-整数細胞数を保って密度に応じて抽出し、短距離反発で配置する。
-
-\subsection{接触範囲の偏心度依存性}
-接触径$D_t(r)$（$\mu$m）を次の関数で与えた。
-\begin{equation}
-D_t(r)=\begin{cases}
-D_{t,0}, & 0\le r\le1,\\
-D_{t,0}\left(D_{t,p}/D_{t,0}\right)^{g(q)}, & 1<r<5,\\
-D_{t,p}, & 5\le r\le6.
-\end{cases}
-\end{equation}
-ここで$q=(r-1)/4$、$g(q)=1.8q-0.6q^2-0.2q^3$とする。
-これは現行コードの対数径PCHIP補間を表す。
-中央径$D_{t,0}$はH1 $16.08$、H2 $24.44$~$\mu$m、
-外側径$D_{t,p}$はそれぞれ約$61.8$、$63.5$~$\mu$mとした。
-これらはWässleら（2000, p.~599）のCone収束数と密度から推定した値で、中央への延長と補間は本研究の設定である。
-側方結合を含む機能的受容野の大きさは未評価である。
-
-以上の密度分布に従ってHCを配置し、van Hateren（2005）のモデルを用いてHCの応答を生成した\cite{vanHateren2005}。
+HCは上記の密度関数に従って半径$1.75$~mmまで配置し、$0$--$6\degc$視野内のConeが接続する範囲を確保した。
+van Hateren（2005）のモデルを用いてHCの応答を生成した\cite{vanHateren2005}。
 \end{multicols}
 
+\clearpage
 {\footnotesize
-\begin{thebibliography}{9}
+\begin{thebibliography}{8}
 \setlength{\itemsep}{0pt}
+\bibitem{Ly2025}
+K. Ly et al.
+Virtual human retina: Simulating neural signalling, degeneration, and responses to electrical stimulation.
+\textit{Brain Stimulation}, 18(1):144--163, 2025.
+\url{https://doi.org/10.1016/j.brs.2025.01.013}.
 \bibitem{Rohrenbeck1989}
 J. Röhrenbeck, H. Wässle, and B. B. Boycott.
 Horizontal Cells in the Monkey Retina: Immunocytochemical staining with antibodies against calcium binding proteins.
 \textit{Eur. J. Neurosci.}, 1:407--420, 1989.
 \url{https://doi.org/10.1111/j.1460-9568.1989.tb00349.x}.
+\bibitem{Krebs1989}
+W. Krebs and I. P. Krebs.
+Quantitative morphology of the central fovea in the primate retina.
+\textit{Am. J. Anat.}, 184(3):225--236, 1989.
+\url{https://doi.org/10.1002/aja.1001840306}.
+\bibitem{Ahmad2003}
+K. M. Ahmad, K. Klug, S. Herr, P. Sterling, and S. Schein.
+Cell density ratios in a foveal patch in macaque retina.
+\textit{Visual Neuroscience}, 20(2):189--209, 2003.
+\url{https://doi.org/10.1017/S0952523803202091}.
 \bibitem{Wassle2000}
 H. Wässle et al.
 The mosaic of horizontal cells in the macaque monkey retina: With a comment on biplexiform ganglion cells.
 \textit{Visual Neuroscience}, 17:591--608, 2000.
 \url{https://doi.org/10.1017/S0952523800174097}.
+\bibitem{Wassle1989}
+H. Wässle, B. B. Boycott, and J. Röhrenbeck.
+Horizontal cells in the monkey retina: Cone connections and dendritic network.
+\textit{Eur. J. Neurosci.}, 1(5):421--435, 1989.
+\url{https://doi.org/10.1111/j.1460-9568.1989.tb00350.x}.
+\bibitem{Boycott1987}
+B. B. Boycott, J. M. Hopkins, and H. G. Sperling.
+Cone connections of the horizontal cells of the rhesus monkey's retina.
+\textit{Proc. R. Soc. Lond. B}, 229(1257):345--379, 1987.
+\url{https://doi.org/10.1098/rspb.1987.0001}.
 \bibitem{vanHateren2005}
 J. H. van Hateren.
 A cellular and molecular model of response kinetics and adaptation in primate cones and horizontal cells.
