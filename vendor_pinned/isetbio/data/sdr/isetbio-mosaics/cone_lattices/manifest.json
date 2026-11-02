@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "collection": "cone_lattices",
+  "kind": "cone_lattice",
+  "description": "Retina-wide cone receptive-field-center position lattices.",
+  "file_count": 5,
+  "manifest_generated_with": {
+    "isetbio_commit": "37d0faa54a7bc3bf2fcc223353287c53dc063c26",
+    "generated_at": "2026-08-10T18:44:30Z"
+  },
+  "files": [
+    {
+      "path": "left/nominal-fov-58deg.mat",
+      "kind": "cone_lattice",
+      "bytes": 18571676,
+      "sha256": "e47629bc98d38fef7f2d047140f0d61a7bf8b2af001026a1ca16ddfc95148bb4",
+      "matlab_format": "v5",
+      "variables": [
+        "rfPositions",
+        "fovDegs",
+        "neuronType",
+        "params",
+        "whichEye"
+      ],
+      "eye": "left",
+      "source_matlab_header": "MATLAB 5.0 MAT-file, Platform: GLNXA64, Created on: Wed Dec 22 22:03:14 2021",
+      "generation_fov_degrees": 58,
+      "generation_padding_factor": 1.33,
+      "domain_shape": "ellipse",
+      "domain_axis_ratio_y_to_x": 1.2247,
+      "coordinate_system": "retinal microns",
+      "cell_type": "cone"
+    },
+    {
+      "path": "left/nominal-fov-60deg.mat",
+      "kind": "cone_lattice",
+      "bytes": 19246627,
+      "sha256": "6bb278f6dbe8ce79da381b876a8763022528bd5fa692f099a9ac07694a86559c",
+      "matlab_format": "v7.3",
+      "variables": [
+        "rfPositions",
+        "fovDegs",
+        "neuronType",
+        "params",
+        "whichEye"
+      ],
+      "eye": "left",
+      "source_matlab_header": "MATLAB 7.3 MAT-file, Platform: MACI64, Created on: Sat Aug  6 11:05:46 2022 HDF5 schema 1.00 .",
+      "generation_fov_degrees": 60,
+      "generation_padding_factor": 1.33,
+      "domain_shape": "ellipse",
+      "domain_axis_ratio_y_to_x": 1.2247,
+      "coordinate_system": "retinal microns",
+      "cell_type": "cone"
+    },
+    {
+      "path": "right/nominal-fov-58deg.mat",
+      "kind": "cone_lattice",
+      "bytes": 18559140,
+      "sha256": "54eb0a9ef90511ca72782a194a7c6f17d5404e05794f7e4872c808d138f45728",
+      "matlab_format": "v5",
+      "variables": [
+        "rfPositions",
+        "fovDegs",
+        "neuronType",
+        "params",
+        "whichEye"
+      ],
+      "eye": "right",
+      "source_matlab_header": "MATLAB 5.0 MAT-file, Platform: GLNXA64, Created on: Wed Dec 22 09:37:17 2021",
+      "generation_fov_degrees": 58,
+      "generation_padding_factor": 1.33,
+      "domain_shape": "ellipse",
+      "domain_axis_ratio_y_to_x": 1.2247,
+      "coordinate_system": "retinal microns",
+      "cell_type": "cone"
+    },
+    {
+      "path": "right/nominal-fov-60deg.mat",
+      "kind": "cone_lattice",
+      "bytes": 19249261,
+      "sha256": "80b55aa96cbaa8d84f65f6df5be25b5e3a8b6edb670382014e464e1836359143",
+      "matlab_format": "v7.3",
+      "variables": [
+        "rfPositions",
+        "fovDegs",
+        "neuronType",
+        "params",
+        "whichEye"
+      ],
+      "eye": "right",
+      "source_matlab_header": "MATLAB 7.3 MAT-file, Platform: MACI64, Created on: Sat Aug  6 11:18:08 2022 HDF5 schema 1.00 .",
+      "generation_fov_degrees": 60,
+      "generation_padding_factor": 1.33,
+      "domain_shape": "ellipse",
+      "domain_axis_ratio_y_to_x": 1.2247,
+      "coordinate_system": "retinal microns",
+      "cell_type": "cone"
+    },
+    {
+      "path": "right/nominal-fov-64deg.mat",
+      "kind": "cone_lattice",
+      "bytes": 21079382,
+      "sha256": "817c05bcf25b77a95aacfe521abd6eaa7890c84360f3478f503e8dd20238f015",
+      "matlab_format": "v7.3",
+      "variables": [
+        "rfPositions",
+        "fovDegs",
+        "neuronType",
+        "params",
+        "whichEye"
+      ],
+      "eye": "right",
+      "source_matlab_header": "MATLAB 7.3 MAT-file, Platform: MACA64, Created on: Wed Feb 21 22:10:40 2024 HDF5 schema 1.00 .",
+      "generation_fov_degrees": 64,
+      "generation_padding_factor": 1.33,
+      "domain_shape": "ellipse",
+      "domain_axis_ratio_y_to_x": 1.2247,
+      "coordinate_system": "retinal microns",
+      "cell_type": "cone"
+    }
+  ]
+}

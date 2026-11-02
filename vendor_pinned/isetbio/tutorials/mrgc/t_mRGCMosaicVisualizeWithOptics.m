@@ -1,0 +1,457 @@
+function t_mRGCMosaicVisualizeWithOptics(options)
+% Visualize a prebaked mRGC mosaic and the optics used for its synthesis
+% SkipFile
+%
+% Description:
+%   Demonstrates how to interactively load one of the available prebaked mRGC 
+%   mosaics and visualize it, along with the PSF of used to synthesize it.
+%
+%  This is set up with key/value pairs that demonstate how to select different
+%  options. Different choices are illustrated in the examples
+%  in the source code.
+%
+% Optional key/value pairs
+%    See source code arguments block for a list of key/value pairs.
+
+% History:
+%    07/28/25  NPC  Wrote it.
+
+% Examples:
+%{
+%
+% NOTE: To run any RGC-related ISETBio code, such as this tutorial, users must follow
+% the directions discribed in:
+%    https://github.com/isetbio/isetbio/wiki/Retinal-ganglion-cell-(RGC)-mosaics
+% under section "Configuring ISETBio to access RGC resources and run RGC simulations"
+%
+
+    t_mRGCMosaicVisualizeWithOptics()
+
+    t_mRGCMosaicVisualizeWithOptics(...
+        'croppedMosaicSizeDegs', [1 1]...
+    );
+
+    t_mRGCMosaicVisualizeWithOptics(...
+        'croppedMosaicSizeDegs', [1 1], ...
+        'croppedMosaicEccentricityDegs', [-2.5 0] ...
+    );
+
+    % Specify custom optics params in a sub-struct of
+    % opticsToEmploy with the specific name 'customOpticsParams'
+    % and ALL of the following fields.
+    % Here we are specifying max Strehl ratio with an additional refractive error (in Diopters)
+    refractiveErrorDiopters = 0.0;
+    customOpticsParams = struct( ...
+        'modification', 'maxStrehlRatioWithResidualRefractionError', ...
+        'ZernikeDataBase', 'Polans2015', ...   % which optics Database
+        'subjectID', 1, ...                   % which subject ID
+        'pupilDiameterMM', 3.0, ...                                 % which pupil size (mm)
+        'refractiveErrorDiopters', refractiveErrorDiopters, ...     % whether to include a refractive error
+        'noLCA', false, ...                                         % whether to include LCA
+        'zeroCenterPSF', false ...                                  % old-way of PSF zero offset
+        'withZeroedPistonAndTiltZernikeCoefficients', true, ...     % new-way of PSF zero offset
+    );
+
+    % Display the PSF of completely customized optics specified in
+    % the customOptics params struct
+    t_mRGCMosaicVisualizeWithOptics(...
+        'croppedMosaicSizeDegs', [1 1], ...
+        'croppedMosaicEccentricityDegs', [-2.5 0], ...
+        'opticsToEmploy', struct('customOpticsParams', customOpticsParams));
+
+% ETTBSkip
+
+    t_mRGCMosaicVisualizeWithOptics('promptUserForMosaic', true)
+
+%}
+
+arguments
+
+    % ---- Mosaic specifiers for selecting a prebaked mRGC mosaic ---
+
+    % See RGCMosaicConstructor.helper.utils.initializeRGCMosaicGenerationParameters
+    % for what is available and to add new mosaics
+    options.rgcMosaicName (1,:) char = 'JCNpaperNasal2DegsTinyMosaic';
+
+
+    % ---- Which species to employ ----
+    % Choose between {'macaque', 'human'}. If 'macaque' is chosen, the input
+    % cone mosaic has a 1:1 L/M cone ratio.
+    options.coneMosaicSpecies  (1,:) char {mustBeMember(options.coneMosaicSpecies,{'human','macaque'})} = 'human';
+
+    % ----- Which subject optics to employ -------
+    % NOTE: these optics refer to the optics employed during the synthesis of the mRGCMosaic -----
+    % In this script we can (optionally) specify arbitrary optics for the visualization of the PSF
+    options.opticsSubjectName (1,:) ...
+        char ...
+        {...
+        mustBeMember(options.opticsSubjectName, ...
+            { ...
+            'JCNpaperDefaultSubject' ...
+            'JCNpaperSecondSubject' ...
+            'VSS2024TalkFirstSubject' ...
+            'VSS2024TalkSecondSubject' ...
+            'JCNpaperStrehlRatio_0.87' ...
+            'JCNpaperStrehlRatio_0.72' ...
+            'JCNpaperStrehlRatio_0.59' ...
+            'JCNpaperStrehlRatio_0.60' ...
+            'JCNpaperStrehlRatio_0.27' ...
+            'JCNpaperStrehlRatio_0.23' ...
+            'JCNpaperStrehlRatio_0.21' ...
+            'JCNpaperStrehlRatio_0.19' ...
+            'JCNpaperStrehlRatio_0.09' ...
+            } ...
+            ) ...
+        } ...
+        = 'JCNpaperDefaultSubject';
+
+
+    % ------ targetVisualSTF options ----
+    % Options are : {'default', 'x1.3 RsRcRatio'}
+    % These are with respect to the macaque data of the Croner & Kaplan '95 study
+    % 'default': target the mean Rs/Rc, and the mean Ks/Kc (Rs/Rc)^2
+    % See RGCMosaicConstructor.helper.surroundPoolingOptimizerEngine.generateTargetVisualSTFmodifiersStruct
+    % for all existing options
+    options.targetVisualSTFdescriptor (1,:) char = 'default';
+
+    % Crop params
+    options.cropParams = [];
+
+    % Different options for the optics
+    options.opticsToEmploy = [];
+
+    % Whether to close previously open figures
+    options.closePreviouslyOpenFigures (1,1) logical = true;
+
+    % Prompt user for mosaic?
+    options.promptUserForMosaic (1,1) logical = false;
+
+    options.exportVisualizationPDF (1,1) logical = false;
+    options.exportVisualizationPNG (1,1) logical = false;
+end % arguments
+
+
+% Set flags from key/value pairs
+
+% Mosaic specifiers for selecting a prebaked mRGC mosaic
+rgcMosaicName = options.rgcMosaicName;
+coneMosaicSpecies = options.coneMosaicSpecies;
+opticsSubjectName = options.opticsSubjectName;
+targetVisualSTFdescriptor = options.targetVisualSTFdescriptor;
+
+% Optics to employ for the computations
+opticsToEmploy  = options.opticsToEmploy;
+
+% Mosaic cropping
+cropParams = options.cropParams;
+
+exportVisualizationPDF = options.exportVisualizationPDF;
+exportVisualizationPNG = options.exportVisualizationPNG;
+
+% Close previously open figures
+closePreviouslyOpenFigures = options.closePreviouslyOpenFigures;
+
+if (closePreviouslyOpenFigures)
+    % Close any stray figs
+    close all;
+end
+
+if (options.promptUserForMosaic)
+    % Obtain the directory where all the prebaked mRGCmosaics are stored
+    [theRGCmosaicFileNames, prebakedRGCmosaicDirectory] = mRGCMosaic.listPrebakedMosaics();
+
+    % Prebaked mosaics live in the isetbio-mosaics SDR deposit and are cached
+    % locally once loaded, so browse whichever directory actually holds files.
+    browseDirectory = prebakedRGCmosaicDirectory;
+    if (isempty(dir(fullfile(browseDirectory, '*.mat'))))
+        browseDirectory = fullfile(sdrMosaicCacheRoot(), 'mrgc_on_circuits');
+    end
+
+    if (isempty(dir(fullfile(browseDirectory, '**', '*.mat'))))
+        fprintf(2, 'No prebaked mosaic has been downloaded or synthesized yet.\n');
+        fprintf(2, 'Load one by name first, for example with t_mRGCMosaicBasic,\n');
+        fprintf(2, 'or run this tutorial with ''promptUserForMosaic'' set false.\n');
+        return;
+    end
+
+    % Let the user select one prebaked mRGCmosaic
+    [mRGCMosaicFilename, prebakedMRGCMosaicDir] = ...
+            uigetfile(sprintf('%s/*.mat', browseDirectory), 'Select an RGB mosaic');
+
+    % Load the user-selected prebaked mRGCmosaic
+    load(fullfile(prebakedMRGCMosaicDir,mRGCMosaicFilename), 'theMRGCMosaic');
+
+    % Optionally crop the mosaic
+    if (~isempty(croppedMosaicSizeDegs)) || (~isempty(croppedMosaicEccentricityDegs))
+        theMRGCMosaic.cropToSizeAtEccentricity(...
+                cropParams.sizeDegs, ...
+                cropParams.eccentricityDegs);
+    end
+
+    % Check whether the user has specified custom optics,
+    % that are not necessarily related to the optics used to synthesize the mRGCMosaic
+    if (isstruct(opticsToEmploy)) && (isfield(opticsToEmploy, 'customOpticsParams'))
+
+        % Generate the custom optics specific
+        [theOIatTheMosaicEccentricity, thePSFatTheMosaicEccentricity] = ...
+            RGCMosaicConstructor.helper.optics.generate(...
+                theMRGCMosaic.inputConeMosaic, ...
+                theMRGCMosaic.eccentricityDegs, ...
+                opticsToEmploy.customOpticsParams);
+
+    else
+        % Generate the native optics that were used to synthesize the mosaic
+        visualizePSFonTopOfConeMosaic = ~true;
+        whichOptics = 'nativeOptics';
+        customRefractiveErrorDiopters = [];
+        [theOIatTheMosaicEccentricity, thePSFatTheMosaicEccentricity] = RGCMosaicAnalyzer.compute.opticsForResponses(...
+            theMRGCMosaic, ...
+            whichOptics, ...
+            customRefractiveErrorDiopters, ...
+            visualizePSFonTopOfConeMosaic);
+    end
+else
+    % Check whether the user has specified custom optics,
+    % that are not necessarily related to the optics used to synthesize the mRGCMosaic
+    if (isstruct(opticsToEmploy)) && (isfield(opticsToEmploy, 'customOpticsParams'))
+
+        % Load the mRGCmosaic specified by the passed parameters:
+        %   coneMosaicSpecies, opticsSubjectName, rgcMosaicName, targetVisualSTFdescriptor
+        % without generating the optics that were used to synthesize the mosaic
+        theMRGCMosaic = mRGCMosaic.loadPrebakedMosaic(...
+            coneMosaicSpecies, opticsSubjectName, rgcMosaicName, targetVisualSTFdescriptor, ...
+            'computeTheMosaicOptics', false, ...
+            'cropParams', cropParams);
+
+        % Generate the custom optics specified
+        [theOIatTheMosaicEccentricity, thePSFatTheMosaicEccentricity, ...
+         theOptimalStrehlRatioDefocusDiopters, theOptimalStrehlRatio, ...
+         examinedDefocusDiopters, StrehlRatioAsAFunctionOfDefocusDiopter] = RGCMosaicConstructor.helper.optics.generate(...
+                theMRGCMosaic.inputConeMosaic, ...
+                theMRGCMosaic.eccentricityDegs, ...
+                opticsToEmploy.customOpticsParams);
+
+        % Visualize how Strehl ratio varies with defocus
+        visualizeStrehlRatioVariationWithDefocus(...
+            examinedDefocusDiopters, StrehlRatioAsAFunctionOfDefocusDiopter, ...
+            theOptimalStrehlRatioDefocusDiopters, theOptimalStrehlRatio, ...
+            sprintf('StrehlRatio'));
+
+    else
+        % Load the mRGCmosaic specified by the passed parameters:
+        %   coneMosaicSpecies, opticsSubjectName, rgcMosaicName, targetVisualSTFdescriptor
+        % and generate the optics that were used to synthesize the mosaic
+        %
+        % Nearly all of this tutorial's run time is spent here. The native
+        % optics are found by searching 29 defocus values for the one that
+        % maximizes the Strehl ratio, and each step computes a PSF. The
+        % search runs in parallel and prints a few lines per step, so expect
+        % a burst of repeated output while it works.
+        %
+        % 'wavefrontSpatialSamples' is set below the default of 501 to keep
+        % that search affordable. 201 samples is enough for the
+        % visualizations below: it returns the same optimal defocus as the
+        % 301 used in t_mRGCMosaicBasic, with the Strehl ratio agreeing to
+        % 0.002 and the peak PSF to better than 0.1%, in half the time.
+        % Raise it if you need a finer PSF than the 201x201 sampling here.
+        fprintf('Computing the native optics. This is the slow step.\n');
+        [theMRGCMosaic, theOIatTheMosaicEccentricity, thePSFatTheMosaicEccentricity] = mRGCMosaic.loadPrebakedMosaic(...
+            coneMosaicSpecies, opticsSubjectName, rgcMosaicName, targetVisualSTFdescriptor, ...
+            'computeTheMosaicOptics', true, ...
+            'wavefrontSpatialSamples', 201, ...
+            'opticsToEmploy', opticsToEmploy, ...
+            'cropParams', cropParams);
+    end
+
+end
+
+
+
+% Get ready for publication-quality visualization
+ff = PublicationReadyPlotLib.figureComponents('1x1 giant rectangular-wide mosaic');
+
+
+% Subdirectory for exporting the generated PDFs
+exportVisualizationPDFdirectory = 'mosaicVisualizationPDFs';
+
+
+% Visualize the full mosaic of RF centers using a representation
+% like the representation used in visualizing 
+% mosaics of RGCs in typical in-vitro experiments (e.g. by the Chichilnisky lab)
+minCenterConeWeight = mRGCMosaic.sensitivityAtPointOfOverlap;
+
+
+visualizedWidthDegs = theMRGCMosaic.sizeDegs(1);
+visualizedHeightDegs = theMRGCMosaic.sizeDegs(2);
+domainVisualizationLimits(1:2) = theMRGCMosaic.eccentricityDegs(1) + 0.5 * visualizedWidthDegs * [-1 1];
+domainVisualizationLimits(3:4) = theMRGCMosaic.eccentricityDegs(2) + 0.5 * visualizedHeightDegs * [-1 1];
+domainVisualizationTicks = struct(...
+    'x', theMRGCMosaic.eccentricityDegs(1) + 0.5 * visualizedWidthDegs * [-1 -0.5 0 0.5 1], ...
+    'y', theMRGCMosaic.eccentricityDegs(2) + 0.5 * visualizedHeightDegs * [-1 -0.5 0 0.5 1]);
+
+% Plot the mosaic of mRGC RF centers only
+hFig = figure(1); clf;
+theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+ff.backgroundColor = [0 0 0];
+ax = theAxes{1,1};
+
+theMRGCMosaic.visualize(...
+    'figureHandle', hFig, ...
+    'axesHandle', ax, ...
+    'identifyInputCones', false, ...
+    'identifyPooledCones', false, ...
+    'identifiedConeAperture', 'lightCollectingArea4sigma', ...
+    'identifiedConeApertureThetaSamples', 16, ...
+    'plottedRFoutlineFaceAlpha', 0.75, ...
+    'plottedRFoutlineLineWidth', 1.0, ...
+    'plottedRFoutlineFaceColor',  [0 1 0.4], ...
+    'minConeWeightVisualized', minCenterConeWeight, ...
+    'centerSubregionContourSamples', 32, ...
+    'domainVisualizationLimits', domainVisualizationLimits, ...
+    'domainVisualizationTicks', domainVisualizationTicks, ...
+    'plotTitle', sprintf('min center weight visualized: %2.3f', minCenterConeWeight), ...
+    'withFigureFormat', ff, ...
+    'visualizationPDFfileName', sprintf('fullMRGCmosaicMinCenterConeWeight_%2.3f', minCenterConeWeight), ...
+    'exportVisualizationPDF', exportVisualizationPDF, ...
+    'exportVisualizationPNG', exportVisualizationPNG, ...
+    'exportVisualizationPDFdirectory', exportVisualizationPDFdirectory);
+
+
+% Visualize the same mosaic again, changing only the minimum cone weight
+% that is rendered. Figure 1 used the sensitivity at the point of overlap,
+% so each RF center stops where neighboring centers meet. Here the
+% threshold drops to the 1% sensitivity used to include divergent cone
+% connections, so the drawn outlines show the full extent of RF center
+% pooling and neighboring centers visibly overlap. Compare the two.
+hFig = figure(2); clf;
+theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+ax = theAxes{1,1};
+
+% 1% min sensitivity for inclusion of divergent cone connections
+minCenterConeWeight = mRGCMosaic.minSensitivityForInclusionOfDivergentConeConnections;
+
+theMRGCMosaic.visualize(...
+    'figureHandle', hFig, ...
+    'axesHandle', ax, ...
+    'identifyInputCones', false, ...
+    'identifyPooledCones', false, ...
+    'inputConesAlpha', 0.5, ...
+    'identifiedConeAperture', 'lightCollectingArea4sigma', ...
+    'identifiedConeApertureThetaSamples', 16, ...
+    'plottedRFoutlineFaceAlpha', 0.75, ...
+    'plottedRFoutlineLineWidth', 1.0, ...
+    'plottedRFoutlineFaceColor',  [0 1 0.4], ...
+    'minConeWeightVisualized', minCenterConeWeight, ...
+    'centerSubregionContourSamples', 32, ...
+    'domainVisualizationLimits', domainVisualizationLimits, ...
+    'domainVisualizationTicks', domainVisualizationTicks, ...
+    'plotTitle', sprintf('min center weight visualized: %2.3f', minCenterConeWeight), ...
+    'withFigureFormat', ff, ...
+    'visualizationPDFfileName', sprintf('fullMRGCmosaicMinCenterConeWeight_%2.3f', minCenterConeWeight), ...
+    'exportVisualizationPDF', exportVisualizationPDF, ...
+    'exportVisualizationPNG', exportVisualizationPNG, ...
+    'exportVisualizationPDFdirectory', exportVisualizationPDFdirectory);
+
+
+
+% Plot a smaller region of the mRGC mosaic with the PSF superimposed
+narrowVisualizedWidthDegs = 0.3*min(theMRGCMosaic.sizeDegs(:));
+narrowDomainVisualizationLimits(1:2) = theMRGCMosaic.eccentricityDegs(1) + [-1 1]*narrowVisualizedWidthDegs;
+narrowDomainVisualizationLimits(3:4) = theMRGCMosaic.eccentricityDegs(2) + [-0.5 0.5]*narrowVisualizedWidthDegs;
+narrowDomainVisualizationTicks = struct(...
+    'x', -30:0.2:0, ...
+    'y', -10:0.2:10);
+
+% Generate a PSF visualization data struct (containing the vLambda-weighted PSF) for
+% visualization purposes
+PSFvisualizationOffset = theMRGCMosaic.eccentricityDegs - [mean(narrowDomainVisualizationLimits(1:2)) mean(narrowDomainVisualizationLimits(3:4))];
+vLambdaWeightedPSF.data = RGCMosaicAnalyzer.compute.vLambdaWeightedPSF(thePSFatTheMosaicEccentricity);
+vLambdaWeightedPSF.supportXdegs = thePSFatTheMosaicEccentricity.supportX/60 - PSFvisualizationOffset(1);
+vLambdaWeightedPSF.supportYdegs = thePSFatTheMosaicEccentricity.supportY/60 - PSFvisualizationOffset(2);
+
+
+if (isstruct(opticsToEmploy)) && (isfield(opticsToEmploy, 'customOpticsParams'))
+
+    fprintf('Custom optics: %s, %s subject %d, %2.2f mm pupil, %2.2fD refractive error.\n', ...
+        opticsToEmploy.customOpticsParams.modification, ...
+        opticsToEmploy.customOpticsParams.ZernikeDataBase, ...
+        opticsToEmploy.customOpticsParams.subjectID, ...
+        opticsToEmploy.customOpticsParams.pupilDiameterMM, ...
+        opticsToEmploy.customOpticsParams.refractiveErrorDiopters);
+    comboMosaicPSFvisualizationFileName = sprintf('zoomedInMRGCmosaicWithPSFminCenterConeWeight_customOptics_SubjID_%d_withRefractiveError_%2.2fD', ...
+        opticsToEmploy.customOpticsParams.subjectID, ...
+        opticsToEmploy.customOpticsParams.refractiveErrorDiopters);
+    plotTitle = sprintf('custom optics: subj. ID %d, refractiveError: %2.2fD', ...
+        opticsToEmploy.customOpticsParams.subjectID, ...
+        opticsToEmploy.customOpticsParams.refractiveErrorDiopters);
+
+else
+    comboMosaicPSFvisualizationFileName = sprintf('zoomedInMRGCmosaicWithPSFminCenterConeWeight_%2.3f', minCenterConeWeight);
+    plotTitle = sprintf('min center weight visualized: %2.3f', minCenterConeWeight);
+end
+
+hFig = figure(3); clf;
+theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+ax = theAxes{1,1};
+minCenterConeWeight = mRGCMosaic.sensitivityAtPointOfOverlap;
+theMRGCMosaic.visualize(...
+    'figureHandle', hFig, ...
+    'axesHandle', ax, ...
+    'identifyInputCones', true, ...
+    'identifyPooledCones', true, ...
+    'inputConesAlpha', 0.25, ...
+    'identifiedConeAperture', 'lightCollectingArea4sigma', ...
+    'identifiedConeApertureThetaSamples', 16, ...
+    'minConeWeightVisualized', minCenterConeWeight, ...
+    'plottedRFoutlineEdgeColor',  [1 1 1], ...
+    'plottedRFoutlineLineWidth', 1.5, ...
+    'centerSubregionContourSamples', 32, ...
+    'domainVisualizationLimits', narrowDomainVisualizationLimits, ...
+    'domainVisualizationTicks', narrowDomainVisualizationTicks, ...
+    'withSuperimposedPSF', vLambdaWeightedPSF, ...
+    'plotTitle', plotTitle, ...
+    'withFigureFormat', ff, ...
+    'visualizationPDFfileName', comboMosaicPSFvisualizationFileName , ...
+    'exportVisualizationPDF', exportVisualizationPDF, ...
+    'exportVisualizationPNG', exportVisualizationPNG, ...
+    'exportVisualizationPDFdirectory', exportVisualizationPDFdirectory);
+
+
+end
+
+
+function visualizeStrehlRatioVariationWithDefocus(...
+    examinedDefocusDiopters, StrehlRatioAsAFunctionOfDefocusDiopter, ...
+    theOptimalStrehlRatioDefocusDiopters, theOptimalStrehlRatio, ...
+    visualizationPDFfileName)
+
+    ff = PublicationReadyPlotLib.figureComponents('1x1 standard figure');
+    hFig = figure(100);
+    theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+    ax = theAxes{1,1};
+
+    plot(ax,examinedDefocusDiopters, StrehlRatioAsAFunctionOfDefocusDiopter, 'ro-', ...
+        'MarkerFaceColor', [1 0.5 0.5], 'MarkerSize', ff.markerSize, 'LineWidth', ff.lineWidth);
+    hold (ax, 'on');
+    plot(ax, theOptimalStrehlRatioDefocusDiopters, theOptimalStrehlRatio, 'k+', ...
+        'MarkerSize', ff.markerSize, 'LineWidth', ff.lineWidth);
+
+    xlabel(ax,'defocus (diopters)');
+    ylabel(ax,'Strehl ratio')
+    set(ax, 'XLim', [examinedDefocusDiopters(1)-1 examinedDefocusDiopters(end)+1], 'XTick', -10:1:10, 'YTick', 0:0.1:1, 'YLim', [0. 0.8]);
+
+    % Finalize figure using the Publication-Ready format
+    PublicationReadyPlotLib.applyFormat(ax,ff);
+
+    exportVisualizationPDFdirectory = RGCMosaicConstructor.filepathFor.rawFigurePDFsDir();
+    theVisualizationPDFfilename = fullfile(exportVisualizationPDFdirectory, sprintf('%s.pdf', visualizationPDFfileName));
+
+    % Generate the path if we need to
+    RGCMosaicConstructor.filepathFor.augmentedPathWithSubdirs(...
+        exportVisualizationPDFdirectory, theVisualizationPDFfilename, ...
+        'generateMissingSubDirs', true);
+
+    thePDFfileName = fullfile(exportVisualizationPDFdirectory, theVisualizationPDFfilename);
+    NicePlot.exportFigToPDF(thePDFfileName,hFig,  300);
+end
+

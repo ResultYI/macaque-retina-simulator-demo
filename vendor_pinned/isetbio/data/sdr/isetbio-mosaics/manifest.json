@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "collection": "isetbio-mosaics",
+  "description": "Versioned ISETBio retinal lattice, mosaic, and ON-midget-RGC circuit assets.",
+  "manifest_generated_with": {
+    "isetbio_commit": "37d0faa54a7bc3bf2fcc223353287c53dc063c26",
+    "generated_at": "2026-08-10T18:44:30Z"
+  },
+  "collections": [
+    {
+      "name": "cone_lattices",
+      "kind": "cone_lattice",
+      "manifest": "cone_lattices/manifest.json",
+      "file_count": 5
+    },
+    {
+      "name": "cone_mosaics",
+      "kind": "cone_mosaic",
+      "manifest": "cone_mosaics/manifest.json",
+      "file_count": 27
+    },
+    {
+      "name": "mrgc_lattices",
+      "kind": "mrgc_lattice",
+      "manifest": "mrgc_lattices/manifest.json",
+      "file_count": 6
+    },
+    {
+      "name": "mrgc_on_circuits",
+      "kind": "mrgc_on_circuit",
+      "manifest": "mrgc_on_circuits/manifest.json",
+      "file_count": 21
+    }
+  ]
+}

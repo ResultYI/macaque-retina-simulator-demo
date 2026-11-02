@@ -1,0 +1,43 @@
+function theAugmentedFilePath = augmentedPathWithSubdirs(theRootDir, filePath, varargin)
+
+    p = inputParser;
+    p.addParameter('generateMissingSubDirs', false, @islogical);
+    % Execute the parser
+    p.parse(varargin{:});
+    generateMissingSubDirs = p.Results.generateMissingSubDirs;
+    
+
+    [augmentedFullPath, theFileName, ext] = fileparts(filePath);
+    theFileName = sprintf('%s%s',theFileName, ext);
+    augmentedSubDirs = split(augmentedFullPath, filesep);
+
+    if (isempty(augmentedSubDirs))
+        theAugmentedFilePath = fullfile(theRootDir, theFileName);
+    else
+        augmentedPath = theRootDir;
+        for iSubDir = 1:numel(augmentedSubDirs)
+            if (numel(augmentedSubDirs{iSubDir})==0)
+                continue;
+            end
+            augmentedPath = fullfile(augmentedPath, augmentedSubDirs{iSubDir});
+            if (~isfolder(augmentedPath))
+                if (~generateMissingSubDirs)
+                    errorMessage = sprintf('\nFile ''%s'' does not exist.\nHave you run ''RGCMosaicConstructor.helper.utils.generateLocalPrefs()''?\n\n', augmentedPath);
+                    error(errorMessage);
+                end
+                rgcResources = RGCMosaicConstructor.helper.utils.rgcResources();
+                if (isfield(rgcResources, 'queryUserBeforeGeneratingMissingDir')) && ...
+                   (rgcResources.queryUserBeforeGeneratingMissingDir)
+                    fprintf(2,'Will generate subdir ''%s'' within %s\n', augmentedSubDirs{iSubDir}, strrep(augmentedPath, augmentedSubDirs{iSubDir}, ''));
+                    fprintf(2,'Hit enter to continue...');
+                    pause;
+                else
+                    fprintf('Generating subdir ''%s'' within %s\n', augmentedSubDirs{iSubDir}, strrep(augmentedPath, augmentedSubDirs{iSubDir}, ''));
+                end
+                mkdir(augmentedPath);
+            end
+        end % for iSubDir
+        theAugmentedFilePath = fullfile(augmentedPath, theFileName);
+    end
+
+end

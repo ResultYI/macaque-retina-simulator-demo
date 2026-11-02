@@ -1,0 +1,205 @@
+%
+% RGCMosaicConstructor.visualize.StrehlRatioAsAFunctionOfDefocusAndAstigmatism
+%
+function StrehlRatioAsAFunctionOfDefocusAndAstigmatism(...
+    StrehlRatioAsAFunctionOfDefocusAndAstigmatism, ...
+    theOptimalStrehlRatioDefocusAndAstigmatismDiopters, theOptimalStrehlRatio, theOptimalStrehlRatioPSF, ...
+    examinedDefocusDiopters, examinedObliqueAstigmatismDiopters, examinedVerticalAstigmatismDiopters, ...
+    whichEye, zernikeDataBase, subjectID,  ...
+    varargin)
+
+    p = inputParser;
+    p.addParameter('figureDir', [], @(x)(isempty(x)||(ischar(x))));
+    p.addParameter('figureType', 'PNG', @ischar);
+    p.addParameter('darkScheme', true, @islogical);
+    p.addParameter('backgroundIsTransparent', false, @islogical);
+    p.addParameter('pdfFileName', '', @(x)(isempty(x)||(ischar(x))));
+    p.parse(varargin{:});
+
+    figureDir = p.Results.figureDir;
+    figureType = p.Results.figureType;
+    thePDFfileName = p.Results.pdfFileName;
+    backgroundIsTransparent = p.Results.backgroundIsTransparent;
+
+    
+    ff = PublicationReadyPlotLib.figureComponents('2x2 standard figure', ...
+        'darkScheme', p.Results.darkScheme);
+    
+    % Initialize figure
+    hFig = figure(); clf;
+    theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+
+    theLUT = brewermap(1024, '*greys');
+
+
+    the3DSize(1) = numel(examinedDefocusDiopters);
+    the3DSize(2) = numel(examinedObliqueAstigmatismDiopters);
+    the3DSize(3) = numel(examinedVerticalAstigmatismDiopters);
+    StrehlRatio3Dmap = reshape(StrehlRatioAsAFunctionOfDefocusAndAstigmatism,the3DSize);
+    [theMaxStrehlRatio, idx] = max(StrehlRatioAsAFunctionOfDefocusAndAstigmatism);
+    [i1, i2, i3] = ind2sub(size(StrehlRatio3Dmap), idx);
+
+    
+    % Plot the slice over the defocus x oblique astigmatism plane at the
+    % optimal vertical astigmatism
+    StrehlRatio2Dslice = squeeze(StrehlRatio3Dmap(:, :, i3));
+
+    if (numel(StrehlRatio2Dslice(:)) > 1)
+        ax = theAxes{1,1};
+        
+        imagesc(ax, examinedDefocusDiopters, examinedObliqueAstigmatismDiopters, StrehlRatio2Dslice');
+        hold(ax, 'on');
+        plot(ax, ...
+            theOptimalStrehlRatioDefocusAndAstigmatismDiopters(1), ...
+            theOptimalStrehlRatioDefocusAndAstigmatismDiopters(2), ...
+            'rx', 'LineWidth', 1.5, 'MarkerSize', 16);
+        xlabel(ax, 'defocus (D)');
+        ylabel(ax, sprintf('oblique astigmatism (D)\n(optimal: %2.3fD)', theOptimalStrehlRatioDefocusAndAstigmatismDiopters(2)));
+        axis(ax, 'square'); axis(ax, 'xy'); 
+        set(ax, 'CLim', [0 abs(theOptimalStrehlRatio)]);
+        colormap(ax, theLUT);
+        colorbar(ax)
+    end
+
+
+    % Plot the slice over the vertical astigmatism x defocus plane
+    StrehlRatio2Dslice = squeeze(StrehlRatio3Dmap(:, i2, :));
+
+    if (numel(StrehlRatio2Dslice(:)) > 1)
+        ax = theAxes{2,1};
+        imagesc(ax, examinedVerticalAstigmatismDiopters, examinedDefocusDiopters, StrehlRatio2Dslice);
+        hold(ax, 'on');
+        plot(ax, ...
+            theOptimalStrehlRatioDefocusAndAstigmatismDiopters(3), ...
+            theOptimalStrehlRatioDefocusAndAstigmatismDiopters(1), ...
+            'rx', 'LineWidth', 1.5, 'MarkerSize', 16);
+        xlabel(ax, 'vertical astigmatism (D)');
+        ylabel(ax, sprintf('defocus (D)\n(optimal: %2.3fD)', theOptimalStrehlRatioDefocusAndAstigmatismDiopters(1)));
+        axis(ax, 'square'); axis(ax, 'xy'); 
+        set(ax, 'CLim', [0 abs(theOptimalStrehlRatio)]);
+        colormap(ax, theLUT);
+        colorbar(ax)
+    end
+
+
+    % Plot the slice over the oblique x vertical astigmatism plane
+    StrehlRatio2Dslice = squeeze(StrehlRatio3Dmap(i1, :, :));
+
+    if (numel(StrehlRatio2Dslice(:)) > 1)
+        ax = theAxes{1,2};
+        imagesc(ax,examinedObliqueAstigmatismDiopters, examinedVerticalAstigmatismDiopters, StrehlRatio2Dslice');
+        hold(ax, 'on');
+        plot(ax, ...
+            theOptimalStrehlRatioDefocusAndAstigmatismDiopters(2), ...
+            theOptimalStrehlRatioDefocusAndAstigmatismDiopters(3), ...
+            'rx', 'LineWidth', 1.5, 'MarkerSize', 16);
+        xlabel(ax, 'oblique astigmatism (D)');
+        ylabel(ax, sprintf('vertical astigmatism (D)\n(optimal: %2.3fD)', theOptimalStrehlRatioDefocusAndAstigmatismDiopters(3)));
+        axis(ax, 'square'); axis(ax, 'xy'); 
+        set(ax, 'CLim', [0 abs(theOptimalStrehlRatio)]);
+        colormap(ax, theLUT);
+        colorbar(ax)
+    end
+    
+    
+    % Plot the PSF
+    XLimsArcMin = 5*[-1 1];
+    YLimsArcMin = XLimsArcMin;
+    XTicksArcMin = -6:2:6;
+    YTicksArcMin = -6:2:6;
+ 
+    [~,targetInFocusWavelengthIndex] = min(abs(theOptimalStrehlRatioPSF.supportWavelength-550));
+
+    ax = theAxes{2,2};
+    if (theOptimalStrehlRatio<0)
+        theTitle = sprintf('%s',  whichEye);
+    else
+        theTitle = sprintf('%s (Strehl ratio: %2.3f)',  whichEye, theOptimalStrehlRatio);
+    end
+
+    RGCMosaicConstructor.helper.optics.visualizePSFatWavelength(ax, ...
+        theOptimalStrehlRatioPSF, targetInFocusWavelengthIndex, ...
+	    max(theOptimalStrehlRatioPSF.data(:)), ...
+		theTitle, ...
+		'XLimsArcMin', XLimsArcMin, ...
+		'YLimsArcMin', YLimsArcMin, ...
+		'XTicksArcMin', XTicksArcMin, ... 
+		'YTicksArcMin', YTicksArcMin);
+    colormap(ax, theLUT);
+    colorbar(ax);
+
+    % Finalize figure using the Publication-Ready format
+    ff.box = 'on';
+    PublicationReadyPlotLib.applyFormat(theAxes{1,1},ff);
+    PublicationReadyPlotLib.applyFormat(theAxes{1,2},ff);
+    PublicationReadyPlotLib.applyFormat(theAxes{2,1},ff);
+    PublicationReadyPlotLib.applyFormat(theAxes{2,2},ff);
+
+    if (backgroundIsTransparent)
+        set(hFig, 'Color', 'none');
+        set(ax, 'Color', 'none', 'XColor', [0.9 0.9 0.9], 'YColor', [0.9 0.9 0.9]);
+    end
+
+    if (isempty(thePDFfileName))
+        thePDFfileName = sprintf('StrehlRatio3Doptimization_%s_%s_subjID_%d.pdf', whichEye, zernikeDataBase, subjectID);
+    end
+
+    thePDFfileName = fullfile(figureDir,thePDFfileName);
+    switch (figureType)
+        case 'PNG'
+            thePNGfileName = strrep(thePDFfileName, '.pdf', '.png');
+            NicePlot.exportFigToPNG(thePNGfileName, hFig, 300, ...
+                'employExportGraphicsCall');
+        case 'PDF'
+            NicePlot.exportFigToPDF(thePDFfileName, hFig, 300, ...
+                'employExportGraphicsCall');
+        otherwise
+            error('Unknown figure format: ''%s''.\n', figureType)
+    end
+
+    % The PSF alone
+    ff = PublicationReadyPlotLib.figureComponents('1x1 standard very tall figure', ...
+        'darkScheme', p.Results.darkScheme);
+    
+    hFig = figure(); clf;
+    theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+    ax = theAxes{1,1};
+
+
+    RGCMosaicConstructor.helper.optics.visualizePSFatWavelength(ax, ...
+            theOptimalStrehlRatioPSF, targetInFocusWavelengthIndex, ...
+	        max(theOptimalStrehlRatioPSF.data(:)), ...
+		    theTitle, ...
+		    'XLimsArcMin', XLimsArcMin, ...
+		    'YLimsArcMin', YLimsArcMin, ...
+		    'XTicksArcMin', XTicksArcMin, ... 
+		    'YTicksArcMin', YTicksArcMin);
+    theLUT = brewermap(1024, '*greys');
+    colormap(ax, theLUT);
+    colorbar(ax);
+
+    % Finalize figure using the Publication-Ready format
+    ff.box = 'on';
+    PublicationReadyPlotLib.applyFormat(ax,ff);
+    
+    if (backgroundIsTransparent)
+       set(hFig, 'Color', 'none');
+       set(ax, 'Color', 'none', 'XColor', [0.9 0.9 0.9], 'YColor', [0.9 0.9 0.9]);
+    end
+    
+    thePDFfileName = strrep(thePDFfileName, 'StrehlRatioOptimization', 'StrehlRatioOptimizationPSF');
+     
+    switch (figureType)
+        case 'PNG'
+            thePNGfileName = strrep(thePDFfileName, '.pdf', '.png');
+            NicePlot.exportFigToPNG(thePNGfileName, hFig, 300, ...
+                'employExportGraphicsCall');
+        case 'PDF'
+            NicePlot.exportFigToPDF(thePDFfileName, hFig, 300, ...
+                'employExportGraphicsCall');
+        otherwise
+            error('Unknown figure format: ''%s''.\n', figureType)
+    end
+
+end
+

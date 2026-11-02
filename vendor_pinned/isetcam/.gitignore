@@ -1,0 +1,14 @@
+isetcam.wiki
+.DS_Store
+manual
+
+web/webImageBrowser/PackagingLog.html
+web/webImageBrowser/snippets_from_web/image_browser.fig
+web/webImageBrowser/snippets_from_web/image_browser.m
+web/webImageBrowser/PackagingLog.html
+
+*.asv
+data/images/multispectral/FruitMCC.mat
+
+# Personal Claude Code overrides; .claude/settings.json is shared and committed
+.claude/settings.local.json

@@ -1,0 +1,358 @@
+function t_mRGCMosaicBasicComputation(options)
+% Perform a basic computation with a prebaked mGC mosaic
+% SkipFile
+%
+% Description:
+%    Demonstrates the following:
+%    (i)   how to load a pre-baked midget RGC mosaic, 
+%    (ii)  generate different optics for the computation,
+%    (iii) compute the response of the mRGC mosaic to a checkberboard stimulus, and
+%    (iv)  visualize the responses of the mRGC mosaic and of its input cone mosaic
+%
+%  This is set up with key/value pairs that demonstate how to select different
+%  options. Different choices are illustrated in the examples
+%  in the source code.
+%
+% Optional key/value pairs
+%    See source code arguments block for a list of key/value pairs.
+
+% History:
+%    07/28/25  NPC  Wrote it.
+
+% Examples:
+%{
+
+%
+% NOTE: To run any RGC-related ISETBio code, such as this tutorial, users must follow
+% the directions discribed in:
+%    https://github.com/isetbio/isetbio/wiki/Retinal-ganglion-cell-(RGC)-mosaics
+% under section "Configuring ISETBio to access RGC resources and run RGC simulations"
+%
+
+    % Run using default options
+    t_mRGCMosaicBasicComputation()
+
+    % Run with custom optics: here, the native subject optics without
+    %optimizing the Strehl ratio of the PSF
+    t_mRGCMosaicBasicComputation( ...
+        'opticsToEmploy', struct(...
+            'type', 'nativeOpticsNoStrehlRatioOptimization'...
+        )...
+    );
+
+
+    % Run with custom optics: here, the native subject optics, with
+    %a refractive error (1.5D) relative to the one that maximizes the Strehl ratio of the PSF
+    t_mRGCMosaicBasicComputation( ...
+        'opticsToEmploy', struct(...
+            'type', 'refractionResidualWithRespectToNativeOptics',...
+            'refractiveErrorDiopters', 1.5 ...
+        )...
+    );
+
+
+    % Run with custom optics: here, the native subject optics, without
+    %optimizing the Strehl ratio of the PSF plus an additional refactive
+    %error of -2.0D
+    t_mRGCMosaicBasicComputation( ...
+        'opticsToEmploy', struct(...
+            'type', 'customRefraction',...
+            'refractiveErrorDiopters', -2.0 ...
+        )...
+    );
+
+    % Run with adaptive  optics with a residual error of 0.2D
+    t_mRGCMosaicBasicComputation( ...
+        'opticsToEmploy', struct(...
+            'type', 'adaptiveOptics6MM',...
+            'refractiveErrorDiopters', 0.2 ...
+        )...
+    );
+
+%}
+
+
+arguments
+
+    % ---- Mosaic specifiers for selecting a prebaked mRGC mosaic ------
+    
+    % See RGCMosaicConstructor.helper.utils.initializeRGCMosaicGenerationParameters
+    % for what is available and to add new mosaics
+    options.rgcMosaicName (1,:) char = 'JCNpaperNasal2DegsTinyMosaic';
+
+
+    % ---- Which species to employ ----
+    % Choose between {'macaque', 'human'}. If 'macaque' is chosen, the input
+    % cone mosaic has a 1:1 L/M cone ratio.
+    options.coneMosaicSpecies  (1,:) char {mustBeMember(options.coneMosaicSpecies,{'human','macaque'})} = 'human';
+
+
+    % ----- Which subject optics to employ -----
+    options.opticsSubjectName (1,:) ...
+        char ...
+        {...
+        mustBeMember(options.opticsSubjectName, ...
+            { ...
+            'JCNpaperDefaultSubject' ...
+            'JCNpaperSecondSubject' ...
+            'VSS2024TalkFirstSubject' ...
+            'VSS2024TalkSecondSubject' ...
+            'JCNpaperStrehlRatio_0.87' ...
+            'JCNpaperStrehlRatio_0.72' ...
+            'JCNpaperStrehlRatio_0.59' ...
+            'JCNpaperStrehlRatio_0.60' ...
+            'JCNpaperStrehlRatio_0.27' ...
+            'JCNpaperStrehlRatio_0.23' ...
+            'JCNpaperStrehlRatio_0.21' ...
+            'JCNpaperStrehlRatio_0.19' ...
+            'JCNpaperStrehlRatio_0.09' ...
+            } ...
+            ) ...
+        } ...
+        = 'JCNpaperDefaultSubject';
+
+
+    % ------ targetVisualSTF options ----
+    % Options are : {'default', 'x1.3 RsRcRatio'}
+    % These are with respect to the macaque data of the Croner & Kaplan '95 study
+    % 'default': target the mean Rs/Rc, and the mean Ks/Kc (Rs/Rc)^2
+    % See RGCMosaicConstructor.helper.surroundPoolingOptimizerEngine.generateTargetVisualSTFmodifiersStruct
+    % for all existing options
+    options.targetVisualSTFdescriptor (1,:) char = 'default';
+
+
+    % Different options for the optics
+    options.opticsToEmploy = [];
+
+    % Whether to close previously open figures
+    options.closePreviouslyOpenFigures (1,1) logical = true;
+
+end % arguments
+
+
+% Set flags from key/value pairs
+
+% Mosaic specifiers for selecting a prebaked mRGC mosaic
+rgcMosaicName = options.rgcMosaicName;
+coneMosaicSpecies = options.coneMosaicSpecies;
+opticsSubjectName = options.opticsSubjectName;
+targetVisualSTFdescriptor = options.targetVisualSTFdescriptor;
+
+% Optics to employ for the computations
+opticsToEmploy  = options.opticsToEmploy;
+
+% Close previously open figures
+closePreviouslyOpenFigures = options.closePreviouslyOpenFigures;
+
+if (closePreviouslyOpenFigures)
+    % Close any stray figs
+    close all;
+end
+
+
+% Optionally, we can crop the mosaic to use a smaller portion of it.
+% For example, here we crop a patch (2x2 degs) of the mosaic, 
+% centered at -7 degrees
+% cropParams = struct(...
+%        'sizeDegs', [2 2], ...
+%        'eccentricityDegs', [-7 0] ...
+%        );
+% Here, we are not doing any cropping
+cropParams = [];
+
+
+% Load the mRGCmosaic specified by the passed parameters:
+%   coneMosaicSpecies, opticsSubjectName, rgcMosaicName, targetVisualSTFdescriptor
+% and generate the optics that were used to synthesize the mosaic
+% See t_mRGCMosaicBasic for why 'wavefrontSpatialSamples' is set below the
+% default of 501.
+[theMRGCmosaic, theOpticsToEmploy, thePSFatTheMosaicEccentricity] = mRGCMosaic.loadPrebakedMosaic(...
+        coneMosaicSpecies, opticsSubjectName, rgcMosaicName, targetVisualSTFdescriptor, ...
+        'computeTheMosaicOptics', true, ...
+        'wavefrontSpatialSamples', 301, ...
+        'opticsToEmploy', opticsToEmploy, ...
+        'cropParams', cropParams);
+
+
+% Subdirectory for exporting the generated PDFs
+exportVisualizationPDFdirectory = 'mosaicComputePDFs';
+    
+% Minimum weight for visualizing mRGC RF center-connected cones.
+% We visualize cones that are pooled by the RF center mechanism with
+% a weight >= mRGCMosaic.sensitivityAtPointOfOverlap;
+% This representation is like the representation used in visualizing 
+% mosaics of RGCs in typical in-vitro experiments (e.g. by the Chichilnisky lab)
+minCenterConeWeight = mRGCMosaic.sensitivityAtPointOfOverlap;
+
+% mRGC mosaic visualization limits and ticks (including the extent of the
+% input cone mosaic)
+visualizedWidthDegs = theMRGCmosaic.inputConeMosaic.sizeDegs(1);
+visualizedHeightDegs = theMRGCmosaic.inputConeMosaic.sizeDegs(2);
+domainVisualizationLimits(1:2) = theMRGCmosaic.eccentricityDegs(1) + 0.5 * visualizedWidthDegs * [-1 1];
+domainVisualizationLimits(3:4) = theMRGCmosaic.eccentricityDegs(2) + 0.5 * visualizedHeightDegs * [-1 1];
+domainVisualizationTicks = struct(...
+    'x', theMRGCmosaic.eccentricityDegs(1) + 0.5 * visualizedWidthDegs * [-1 -0.5 0 0.5 1], ...
+    'y', theMRGCmosaic.eccentricityDegs(2) + 0.5 * visualizedHeightDegs * [-1 -0.5 0 0.5 1]);
+
+
+% Get ready for publication-quality visualization
+ff = PublicationReadyPlotLib.figureComponents('1x1 giant rectangular-wide mosaic');
+
+% Plot the mosaic of mRGC RF centers only
+hFig = figure(1); clf;
+theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+ax = theAxes{1,1};
+
+theMRGCmosaic.visualize(...
+    'figureHandle', hFig, ...
+    'axesHandle', ax, ...
+    'identifyInputCones', false, ...
+    'identifyPooledCones', false, ...
+    'inputConesAlpha', 0.5, ...
+    'identifiedConeAperture', 'lightCollectingArea4sigma', ...
+    'identifiedConeApertureThetaSamples', 16, ...
+    'minConeWeightVisualized', minCenterConeWeight, ...
+    'centerSubregionContourSamples', 32, ...
+    'domainVisualizationLimits', domainVisualizationLimits, ...
+    'domainVisualizationTicks', domainVisualizationTicks, ...
+    'plotTitle', sprintf('min center weight visualized: %2.3f', minCenterConeWeight), ...
+    'withFigureFormat', ff, ...
+    'visualizationPDFfileName', sprintf('fullMRGCmosaicMinCenterConeWeight_%2.3f', minCenterConeWeight), ...
+    'exportVisualizationPDF', true, ...
+    'exportVisualizationPDFdirectory', exportVisualizationPDFdirectory);
+
+
+
+% Now plot a smaller region of the mRGC mosaic, showing pooled cones with
+% the mRGC RF centers with a min weight = mRGCMosaic.sensitivityAtPointOfOverlap
+% and also visualized the PSF of the employed optics
+narrowDomainVisualizationLimits(1:2) = theMRGCmosaic.eccentricityDegs(1) + [-0.3 0.3];
+narrowDomainVisualizationLimits(3:4) = theMRGCmosaic.eccentricityDegs(2) + [-0.25 0.25];
+narrowDomainVisualizationTicks = struct(...
+    'x', -30:0.2:0, ...
+    'y', -10:0.2:10);
+
+
+
+% Generate a PSF visualization data struct (containing the vLambda-weighted PSF) for
+% visualization purposes
+PSFvisualizationOffset = theMRGCmosaic.eccentricityDegs - [mean(narrowDomainVisualizationLimits(1:2)) mean(narrowDomainVisualizationLimits(3:4))];
+visualizedPSFData.data = RGCMosaicAnalyzer.compute.vLambdaWeightedPSF(thePSFatTheMosaicEccentricity);
+visualizedPSFData.supportXdegs = thePSFatTheMosaicEccentricity.supportX/60 - PSFvisualizationOffset(1);
+visualizedPSFData.supportYdegs = thePSFatTheMosaicEccentricity.supportY/60 - PSFvisualizationOffset(2);
+
+hFig = figure(2); clf;
+theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+ax = theAxes{1,1};
+
+
+theMRGCmosaic.visualize(...
+    'figureHandle', hFig, ...
+    'axesHandle', ax, ...
+    'identifyInputCones', true, ...
+    'identifyPooledCones', true, ...
+    'inputConesAlpha', 0.5, ...
+    'identifiedConeAperture', 'lightCollectingArea4sigma', ...
+    'identifiedConeApertureThetaSamples', 16, ...
+    'minConeWeightVisualized', minCenterConeWeight, ...
+    'centerSubregionContourSamples', 32, ...
+    'domainVisualizationLimits', narrowDomainVisualizationLimits, ...
+    'domainVisualizationTicks', narrowDomainVisualizationTicks, ...
+    'withSuperimposedPSF', visualizedPSFData, ...
+    'plotTitle', sprintf('min center weight visualized: %2.3f', minCenterConeWeight), ...
+    'withFigureFormat', ff, ...
+    'visualizationPDFfileName', sprintf('zoomedInMRGCmosaicWithPSFminCenterConeWeight_%2.3f', minCenterConeWeight), ...
+    'exportVisualizationPDF', true, ...
+    'exportVisualizationPDFdirectory', exportVisualizationPDFdirectory);
+
+% Finalize figure using the Publication-Ready format
+PublicationReadyPlotLib.applyFormat(ax,ff);
+
+
+% Design the test stimulus, matching its size to the input cone mosaic
+% of the employed mRGC mosaic
+imageFOVdegs = max(theMRGCmosaic.inputConeMosaic.sizeDegs);
+pixelsPerCheck = 128;
+numberOfChecks = 3;
+
+% Compute the stimulus scene
+fprintf('Generating checkerboard scene. Please wait ...\n')
+theStimulusScene = sceneCreate('checkerboard', pixelsPerCheck, numberOfChecks);
+theStimulusScene = sceneSet(theStimulusScene, 'fov', imageFOVdegs);
+
+% Compute the retinal image
+fprintf('Computing retinal image. Please wait ...\n')
+theStimulusRetinalImage = oiCompute(theOpticsToEmploy, theStimulusScene);
+
+% Empty some RAM
+clear 'theStimulusScene';
+
+% Compute the response of the input cone mosaic to the retinal image 
+fprintf('Computing input cone mosaic response. Please wait ...\n')
+[theNoiseFreeConeMosaicExcitationsResponse, ...
+ theNoisyConeMosaicExcitationsResponses, ~, ~, ...
+ theConeMosaicResponseTemporalSupportSeconds] = theMRGCmosaic.inputConeMosaic.compute(...
+    theStimulusRetinalImage, ...
+    'opticalImagePositionDegs', theMRGCmosaic.eccentricityDegs);
+
+% Empty some RAM
+clear 'theStimulusRetinalImage';
+
+
+
+% Compute the mRGCmosaic response from the input cone mosaic response
+fprintf('Computing mRGC mosaic response. Please wait ...\n')
+[theNoiseFreeSpatioTemporalMRCMosaicResponse, ~, ...
+ theMRGCMosaicResponseTemporalSupportSeconds] = theMRGCmosaic.compute( ...
+            theNoiseFreeConeMosaicExcitationsResponse, ...
+            theConeMosaicResponseTemporalSupportSeconds);
+
+
+% Visualize the response of the input cone mosaic
+ff = PublicationReadyPlotLib.figureComponents('1x2 giant figure');
+ff.backgroundColor = [0 0 0];
+hFig = figure(3); clf;
+theAxes = PublicationReadyPlotLib.generatePanelAxes(hFig,ff);
+ax1 = theAxes{1,1};
+ax2 = theAxes{1,2};
+
+visualizedWidthDegs = theMRGCmosaic.sizeDegs(1);
+visualizedHeightDegs = theMRGCmosaic.sizeDegs(2);
+domainVisualizationLimits(1:2) = theMRGCmosaic.eccentricityDegs(1) + 0.5 * visualizedWidthDegs * [-1 1];
+domainVisualizationLimits(3:4) = theMRGCmosaic.eccentricityDegs(2) + 0.5 * visualizedHeightDegs * [-1 1];
+
+theMRGCmosaic.inputConeMosaic.visualize(...
+    'figureHandle', hFig, ...
+    'axesHandle', ax1, ...
+    'domainVisualizationLimits', domainVisualizationLimits, ...
+    'domainVisualizationTicks', domainVisualizationTicks, ...
+    'activation', theNoiseFreeConeMosaicExcitationsResponse, ...
+    'plotTitle', 'input cone mosaic response');
+
+% Finalize figure using the Publication-Ready format
+PublicationReadyPlotLib.applyFormat(ax1,ff);
+
+
+% Visualize the response of the mRGCmosaic
+theMRGCmosaic.visualize(...
+        'figureHandle', hFig, ...
+        'axesHandle', ax2, ...
+        'domainVisualizationLimits', domainVisualizationLimits, ...
+        'domainVisualizationTicks', domainVisualizationTicks, ...
+        'activation', theNoiseFreeSpatioTemporalMRCMosaicResponse, ...
+        'noYLabel', true, ...
+        'plotTitle', 'mRGC mosaic response');
+
+% Finalize figure using the Publication-Ready format
+PublicationReadyPlotLib.applyFormat(ax2,ff);
+
+
+% Export PDF
+pdfRootDir = RGCMosaicConstructor.filepathFor.rawFigurePDFsDir();
+figureDir = fullfile(pdfRootDir, exportVisualizationPDFdirectory);
+NicePlot.exportFigToPDF(fullfile(figureDir,'checkerboardMosaicActivation.pdf'), hFig, 300, 'beVerbose');
+
+% Export PNG
+NicePlot.exportFigToPNG(fullfile(figureDir,'checkerboardMosaicActivation.png'), hFig, 300, 'beVerbose');
+
+end
