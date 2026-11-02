@@ -1,0 +1,140 @@
+{
+  "schema": "BC_registered_cone_pedicle_density_and_contact_v1",
+  "profile_id": "macaque_bc_cone_pedicle_anchored_v1",
+  "density_semantics": "BC functional input-anchor density on the Cone pedicle plane; BC soma density requires a separate displacement transform",
+  "density_unit": "cells/mm2",
+  "coordinate_unit": "mm",
+  "coordinate_frame": "OPL",
+  "application_anchor_radius_mm": [
+    0.0,
+    1.338
+  ],
+  "mm_per_degree_engineering": 0.223,
+  "application_status": "0..6deg engineering extension; not project-wide domain or physiological validation",
+  "outside_application": "reject; no truncation, mixed legacy exterior or radial extrapolation",
+  "density_source": "registered canonical L/M/S pedicle population; never IS/HC density",
+  "formulas": {
+    "midget_BC_ON": "rho_LM",
+    "midget_BC_OFF": "rho_LM+rho_S",
+    "diffuse_BC_ON": "(10514/26512)*(rho_LM+rho_S)",
+    "diffuse_BC_OFF": "(23327/26512)*(rho_LM+rho_S)",
+    "S_ON_BC": "(2702/1452)*rho_S"
+  },
+  "ratios": {
+    "diffuse_BC_ON": [
+      5257,
+      13256
+    ],
+    "diffuse_BC_OFF": [
+      23327,
+      26512
+    ],
+    "S_ON_BC": [
+      1351,
+      726
+    ]
+  },
+  "anchor_observations": {
+    "citation": "Ahmad et al. 2003 Table3",
+    "doi": "10.1017/S0952523803202091",
+    "species": "Macaca fascicularis",
+    "retinal_position": "nasal0.575mm",
+    "measured_P": 26512,
+    "measured_LM_direct": 24988,
+    "measured_S": 1452,
+    "engineering_closed_LM_P_minus_S": 25060,
+    "observed_BC": {
+      "midget_BC_ON": 25181,
+      "midget_BC_OFF": 26117,
+      "diffuse_BC_ON": 10514,
+      "diffuse_BC_OFF": 23327,
+      "S_ON_BC": 2702,
+      "RBC_indirect_difference": 1726,
+      "independent_total": 91714,
+      "observed_subtype_sum": 89567
+    },
+    "derived_reference_cone_BC_sum": 88115,
+    "derived_reference_sum_with_indirect_RBC": 89841,
+    "zero_residual_warning": "Ratios constructed from the same observations are not independent prediction evidence",
+    "counting_planes": "midget soma counts vs diffuse/S-ON main dendrite counts; not all a common soma plane"
+  },
+  "population_allocation": {
+    "private_midget": "one per registered eligible Cone ID; ON LM, OFF LMS",
+    "diffuse": "full registered P count times the exact rational ratio, round-half-up, hash-ranked parent anchors",
+    "S_ON": "full registered S count times exact rational ratio, round-half-up; distinct replica slots at actual S anchors",
+    "quota_error": "<=0.5 cell per finite population, not per-cell density fitting",
+    "canonical_scope": "one explicitly frozen complete parent population, never independent ROI resampling",
+    "placement_status": "deterministic engineering sampling on actual pedicle anchors, not measured BC somata/arbors",
+    "functional_subclasses": "one physical table per type; no duplicate sustained/transient density copies"
+  },
+  "local_density": {
+    "kind": "finite registered pedicle census in complete disk",
+    "radius_mm": 0.04,
+    "basis": "existing explicit40um IPL support reused as engineering density window; no fitted bandwidth",
+    "formula": "eligible registered Cone pedicle count/(pi*0.04^2)",
+    "query_domain": "existing full RF-query disk plus named outward Schein mapping implies inward pedicle query coverage; require that contract and complete windows",
+    "boundary": "reject incomplete window, no cropped-area rescaling or fake cell fill"
+  },
+  "geometry": {
+    "midget": "exact Cone-ID private edge, no radius fit",
+    "diffuse_K": 8,
+    "diffuse_reference_range_only": [
+      6,
+      12
+    ],
+    "diffuse_eligible": [
+      "L",
+      "M"
+    ],
+    "diffuse_radius_mm": "sqrt(8/(pi*rho_eligible_registered_pedicles))",
+    "diffuse_kernel": "uniform disk, all eligible actual terminals, not nearest8 or Gaussian sigma",
+    "S_ON_K": 1.7,
+    "S_ON_eligible": [
+      "S"
+    ],
+    "S_ON_radius_mm": "min(sqrt(1.7/(pi*rho_S)),0.04)",
+    "S_ON_max_contact_mm": 0.04,
+    "S_ON_cap_status": "inherited existing finite40um support, engineering not measured maximum",
+    "S_ON_K_source_region_mm": 3.1,
+    "S_ON_divergence_crosscheck_only": 3.2,
+    "rho_zero": "corresponding population or contacts zero/unsupported; no division by zero or radius expansion",
+    "weights": "raw uniform edges, normalize to previous row gain1 on full fine parents once; no local crop renormalization",
+    "interpretation": "direct contact support, not functional RF"
+  },
+  "RBC": {
+    "policy": "unchanged existing independent rod/RBC/AII density, population and connections",
+    "Ahmad1726": "indirect reference only, not a new radial curve"
+  },
+  "mother_curve": {
+    "required": false,
+    "absolute_three_exponential_coefficients": null,
+    "status": "not identified or fitted; use actual registered pedicle population"
+  },
+  "source": {
+    "authorized_body_library_id": "libfile_907933d41244819182c9c016128adb28",
+    "body_size_bytes": 14784,
+    "body_read": "complete314lines in this notebook thread",
+    "bundle_library_id": "libfile_fd2765f509d48191a8c7db4d2fe3eab4",
+    "bundle_size_bytes": 5766,
+    "bundle_sha256_reported_by_parent": "043705b7f5a38587fc44a9e5ef73ee1a8fd8511f93a81d5d25aac1cbfe7a8427",
+    "bundle_parent_read_files": [
+      "macaque_bc_density_rf_candidate_v1.py",
+      "macaque_bc_density_rf_candidate_v1.json"
+    ],
+    "bundle_locally_materialized": false,
+    "bundle_contents_locally_read": false,
+    "local_transfer_status": "prepare returned signed transfer; current official helper hash unchanged from known Windows os.setxattr failure. No blind retry or raw-URL workaround.",
+    "parameter_asset_status": "derived implementation from the completely read authorized body; not an archived byte copy of the bundle"
+  },
+  "limitations": [
+    "constant central ratios transferred across0..6deg; not multi-eccentricity subtype fits",
+    "nasal observation transferred through registered actual Cone population; no new direction-specific BC density curve",
+    "diffuse classes aggregate multiple anatomical subtypes",
+    "S-ON1.7/3.2 evidence at3.1mm transferred to central candidate",
+    "local density census/window, quota placement and co-located effective IPL anchors are engineering choices",
+    "BC soma transform and functional RF are not established"
+  ],
+  "FIT_READY": false,
+  "background_qualified": false,
+  "production_adopted": false
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "HC69_HC2_BC1_complete_BC_dependency_master_v1",
+  "asset_path": "data/atlas/GIN_69_6_HC2_BC1_V1/HC_complete_BC_dependency_master.json",
+  "expected_asset_sha256": "6bdc07be1715fe2352caed3801665e6414078f73918ce6fe9b25448faf48b4a2",
+  "density_profile_path": "configurations/hc_density_rf_joint_v2.json",
+  "research_generator_path": "configurations/hc_joint_v2_generator.json",
+  "seed": 20261010,
+  "canonical_bounds_mm": [
+    0.7526684284184899,
+    1.3310996760975835,
+    -0.2646062054576865,
+    0.2618244992059291
+  ],
+  "max_cells": 20000,
+  "mask_source_id": "HC69_HC2_complete_actual_newBC_dependency_domain_v1",
+  "mosaic_rule": "generate_joint_hc_fixed_canonical_master_then_crop",
+  "construction_domain_pending": false,
+  "scope": "Independent finite master for actual selected new BC dependencies; earlier5724-cell asset retained. Same density, contact, sampler and seed; changed canonical domain implies new cell identities.",
+  "canonical_disk_radius_mm": 1.338,
+  "requested_native_view_bounds_mm": [
+    0.7697014152526499,
+    1.3140666892634236,
+    -0.2475732186235265,
+    0.24479151237176913
+  ],
+  "required_actual_radial_envelope_mm": 1.3311433910481596
+}

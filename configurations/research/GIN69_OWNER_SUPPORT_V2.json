@@ -1,0 +1,26 @@
+{
+  "schema": "IS-RF-owner-to-physical-support-1",
+  "authorization": "Sentinel_5a05022065f081919c81f4f9db2d6697",
+  "owner_RF_radius_deg": 6.0,
+  "owner_RF_radius_mm": 1.338,
+  "mm_per_degree": 0.223,
+  "cone_source_table": {
+    "path": "data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json",
+    "sha256": "9c6c0e94eb0d69478c658d2a48c7bae22d603866abf6f5402eb924b46952db00"
+  },
+  "owner_cones": 190498,
+  "owner_pedicles_outside_prior_physical_domain": 35518,
+  "BC_anchor_radius_mm": 1.5521960897919966,
+  "HC_support_radius_mm": 1.5860542233243853,
+  "HC_outer_contact_margin_mm": 0.015488443728759307,
+  "HC_outer_pair_margin_mm": 0.01836968980362918,
+  "support_equation": "R=max(owner pedicle radius)+max(H1,H2 contact radius atR)+inherited outer pair context atR",
+  "support_residual_mm": 1.5959455978986625e-16,
+  "original_parameter_application_radius_mm": 1.338,
+  "outer_status": "USER_AUTHORIZED_ENGINEERING_EXTRAPOLATION_NOT_NEW_PHYSIOLOGY",
+  "external_cones": "Only existing finite registered source; outside0..6deg are held context, not new optical/dynamic owners",
+  "infinite_retina_boundary_complete": false,
+  "FIT_READY": false,
+  "background_qualified": false,
+  "production_adopted": false
+}

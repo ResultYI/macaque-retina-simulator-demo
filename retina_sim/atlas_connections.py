@@ -232,6 +232,9 @@ class ConnectionAtlas:
         inner_kwargs['midget_rf_rule']=self.atlas.config.get('midget_rf_rule','parent_seed_legacy')
         inner_kwargs.update(temporal_equivalent_mm=np.asarray([np.nan if v is None else v for v in equivalent]),
             temporal_equivalence_source_id='midget_Wool_iso_density_adapter_v1_frozen_Packer_published_code')
+        from .bc_current import current_bc
+        if current_bc(self.atlas.root) is not None:
+            raise ContractError('BC_CURRENT_REQUIRES_REGISTERED_PARENT_FREEZE: use disk_inner.freeze_bc_tables; legacy ROI stride4/S-one-to-one generator is not admitted as current BC')
         inner=build_effective_inner(cones,**inner_kwargs)
         inner_record=inner.record()
         rod_inner=build_effective_rod_inner(self.atlas,roi,max_cells=max_cells)

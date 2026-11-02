@@ -131,13 +131,20 @@ def functional_projection(cone_opl,cone_types,hc_opl,hc_types,owner,cohort_radiu
         'anatomical_contact_claim':False,'biological_zero_innervation_claim':False,'physiological_validation':False}
 
 
-def freeze_functional_hc(root,outer,anatomical_reference,directory,profile_path='configurations/hc_eccentric_size_w2000_v1.json'):
-    root=Path(root).resolve();directory=Path(directory);profile_file=root/profile_path;profile=json.loads(profile_file.read_bytes())
+def freeze_functional_hc(root,outer,anatomical_reference,directory,profile_path=None):
+    root=Path(root).resolve();directory=Path(directory)
+    from .hc_current import current_hc,require_current_hc_asset
+    selected=current_hc(root)
+    profile_path=profile_path or (selected['connection_configuration'] if selected else 'configurations/hc_eccentric_size_w2000_v1.json')
+    if selected and (root/profile_path).resolve()!=(root/selected['connection_configuration']).resolve():
+        raise ContractError('HC_CONNECTION_CONFIGURATION_STALE: current HC v2 cannot use an old contact-profile label; no silent mixture')
+    profile_file=root/profile_path;profile=json.loads(profile_file.read_bytes())
     sized = profile['schema'] == 'HC_eccentric_equal_area_connection_profile_v1'
     if not sized and profile['schema']!='HC_effective_functional_projection_profile_v1':raise ContractError('Named HC connection profile required')
     source=profile['primary_source']
     if file_sha(root/source['path'])!=source['sha256']:raise ContractError('Frozen W2000 primary identity changed')
     cone=FrozenDiskTable(root,outer['cones']);hc=FrozenDiskTable(root,outer['HC'])
+    require_current_hc_asset(root,hc.record.get('source_bindings',{}))
     owner=np.sum(cone.coordinates['rf']**2,axis=1)<=9
     args = (cone.coordinates['opl_pedicle'],cone.extras['subtype'].astype('U1'),
         hc.coordinates['soma'],hc.extras['subtype'].astype('U2'),owner,hc.record['source_bindings']['fixed_cohort_OPL_radius_mm'])
@@ -189,6 +196,7 @@ def freeze_functional_hc(root,outer,anatomical_reference,directory,profile_path=
         'pre_table':cone.binding,'post_table':hc.binding,'pre_count':cone.count,'post_count':hc.count,
         'profile':{'path':profile_path,'sha256':file_sha(profile_file)},'operator_audit':audit,
         'representation':representation,
+        'hc_density_geometry_identity':None if selected is None else selected['identity'],
         'original_anatomical_reference':anatomical_reference['raw_contacts'],
         'original_anatomical_owner_no_feedback_count':anatomical_reference['owner_zero_feedback_cones']}
     if sized: recipe['size_profile'] = size_binding

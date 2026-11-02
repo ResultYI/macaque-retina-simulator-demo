@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "HC_current_joint_v2_master",
+  "asset_path": "data/atlas/hc_density_rf_joint_v2_master.json",
+  "expected_asset_sha256": null,
+  "density_profile_path": "configurations/hc_density_rf_joint_v2.json",
+  "research_generator_path": "configurations/hc_joint_v2_generator.json",
+  "seed": 20261010,
+  "canonical_bounds_mm": null,
+  "max_cells": 600000,
+  "mask_source_id": "HC_V2_EXPLICIT_FINITE_SOMA_DOMAIN_REQUIRED",
+  "mosaic_rule": "generate_joint_hc_fixed_canonical_master_then_crop",
+  "construction_domain_pending": true,
+  "scope": "Current HC v2 requires an explicitly bounded new local master inside0..1.338mm with complete dependencies. Old project domain and old master remain unchanged; no implicit full rebuild."
+}

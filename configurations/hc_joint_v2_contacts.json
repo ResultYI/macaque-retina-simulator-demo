@@ -1,0 +1,65 @@
+{
+  "schema": "HC_eccentric_equal_area_connection_profile_v1",
+  "profile_id": "HC_joint_v2_density_contact",
+  "primary_source": {
+    "path": "data/source_packages/20261012/hc/Wassle_2000.pdf",
+    "sha256": "32c3b7a0b41f5a434724e04698c98ac80efc960baf224b65ebfa42d313e02609",
+    "doi": "10.1017/S0952523800174097",
+    "locator": "printed p599 convergence and total cone-pedicle density; p596 and p604 shape/coverage limitations"
+  },
+  "size_profile": {
+    "path": "configurations/hc_density_rf_joint_v2.json",
+    "sha256": "f5296645a984e966cb323a9481d1737aeb8feed97fdede1bf24055ebd358b1a8"
+  },
+  "enable_central_candidate": true,
+  "size_method": "Supplied v2 HC soma density and H1/H2 .8/.2; r<=.58mm central 8.04/12.22um; .58.. .60mm fixed C1 Hermite join; .6..1.338mm unmodified R=sqrt(D/(pi*rho_k)), D1=3.7+3.8*(r-.6)/4.9, D2=2.2.",
+  "central_policy": {
+    "identity": "HC_C1_inner_join_058_060_v1",
+    "interval_mm": [
+      0.58,
+      0.6
+    ],
+    "method": "cubic_Hermite",
+    "left_value_mm": {
+      "H1": 0.00804,
+      "H2": 0.01222
+    },
+    "left_derivative_dr": 0,
+    "right_value": "unmodified v2 outer contact radius at r=0.60mm",
+    "right_derivative": "analytic derivative of unmodified v2 outer contact formula",
+    "formula": "t=(r-a)/(b-a); R=(2t^3-3t^2+1)R0+(-2t^3+3t^2)R1+(t^3-t^2)(b-a)R1prime",
+    "width_status": "fixed 20um engineering transition, not measured or tuned to spikes/contact counts",
+    "scope": "Only direct cone-contact radius; density coefficients and r>=0.6mm v2 formula unchanged",
+    "shape_note": "C1 join does not impose monotonicity; H1 may have a small local minimum because the right endpoint slope is positive",
+    "authorization": [
+      "Sentinel_a2ab4c83d050819187cbf69a92d3bb9a",
+      "Sentinel_38c82d5dfa50819182ca799e2f72a0bf"
+    ]
+  },
+  "selection": "all actual eligible cone pedicles inside the disk centered on each HC OPL anchor; H1 excludes S, H2 accepts L/M/S",
+  "counts": "observed graph convergence/divergence; no imposed quota, radius enlargement or nearest fallback",
+  "normalization": "A and B normalized once on the complete finite canonical graph; empty rows remain zero",
+  "support_interpretation": "literature-constrained equal-area contact support; individual branches and measured maximum dendritic reach remain unresolved",
+  "qualitative_source": {
+    "citation": "Wassle, Boycott and Rohrenbeck (1989), Cone connections and dendritic network",
+    "doi": "10.1111/j.1460-9568.1989.tb00350.x",
+    "verification": "abstract; H1/H2 fields increase with eccentricity; no numerical curve digitized"
+  },
+  "cross_checks": [
+    {
+      "doi": "10.1098/rspb.1987.0001",
+      "role": "Boycott et al. 1987 central convergence reference, kept separate from W2000 arithmetic"
+    },
+    {
+      "doi": "10.1167/5.11.9",
+      "role": "Packer and Dacey 2005 direct-cone/coupled-field modeling distinction; peripheral 120 um disk is not transferred centrally"
+    }
+  ],
+  "physiological_validation": false,
+  "application_anchor_domain_mm": [
+    0,
+    1.338
+  ],
+  "outside_application": "Reject; do not extrapolate or combine old peripheral curve",
+  "candidate_scientific_scope": "User-selected current implementation; circle contact support is not functionalRF; D1 denominator unresolved metadata"
+}

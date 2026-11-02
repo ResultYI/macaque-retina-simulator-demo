@@ -14,7 +14,7 @@ from .atlas import CanonicalCellTable
 from .atlas_store import load_atlas_asset, save_atlas_asset
 from .contracts import ContractError, Quantity, canonical_hash
 from .geometry import RetinalDomain
-from .hc_mosaic import JointHCMosaic, generate_joint_hc
+from .hc_mosaic import JointHCMosaic, RadialMaskedHCDomain, generate_joint_hc
 
 
 CONFIG = 'configurations/atlas_hc_joint_master_v2.json'
@@ -26,6 +26,9 @@ class HCMasterCoverageError(ContractError):
 
 def _configuration(root, density, configuration_path=None):
     root = Path(root)
+    from .hc_current import JOINT_ID,current_hc
+    if density.profile_id==JOINT_ID:
+        configuration_path=current_hc(root)['master_configuration']
     config = json.loads((root/(configuration_path or CONFIG)).read_bytes())
     if (config['schema_version'] != '1.0' or
             config['mosaic_rule'] != 'generate_joint_hc_fixed_canonical_master_then_crop'):
@@ -42,7 +45,12 @@ def materialize_hc_master(root, atlas_config, density):
     """One bounded geometry generation; exclusive asset write, no ODE run."""
     root = Path(root)
     configuration_path=atlas_config.get('HC_master_configuration',CONFIG)
+    from .hc_current import JOINT_ID,current_hc
+    if density.profile_id==JOINT_ID:
+        configuration_path=current_hc(root)['master_configuration']
     config, options = _configuration(root, density,configuration_path)
+    if config.get('construction_domain_pending'):
+        raise HCMasterCoverageError('HC_V2_MASTER_NOT_BUILT: choose an explicit finite HC-soma domain wholly inside0..1.338mm with required halo; no whole-project domain change or automatic generation')
     path = root/config['asset_path']
     if path.exists() or config['expected_asset_sha256'] is not None:
         raise ContractError('Frozen joint HC master already registered; regeneration refused')
@@ -51,6 +59,8 @@ def materialize_hc_master(root, atlas_config, density):
     mask=(lambda xy:np.linalg.norm(xy,axis=1)<=disk) if disk is not None else (lambda xy:np.ones(len(xy),bool))
     domain = RetinalDomain(bounds, bounds, mask,
         config['mask_source_id'], 'atlas_HC_fixed_central_master_v2')
+    if density.profile_id==JOINT_ID and disk is not None:
+        domain=RadialMaskedHCDomain(bounds,bounds,disk,config['mask_source_id'],'atlas_HC_bounded_source_disk_v2')
     started = time.perf_counter()
     master = generate_joint_hc(density, domain, config['seed'], config['max_cells'], options=options)
     seconds = time.perf_counter()-started
@@ -64,6 +74,7 @@ def materialize_hc_master(root, atlas_config, density):
         asset_kind='canonical_atlas',
         source={'profile_id':density.profile_id,'profile_sha256':density.profile_hash,
             'density_source_asset_sha256':density.source_asset_hash,'backend_sha256':backend_sha,
+            'hc_density_geometry_identity':density.metadata.get('current_hc_identity'),
             'generator_options':options,'seed':config['seed'],
             'construction_integral_cache':config.get('construction_integral_cache'),
             'mosaic_rule':config['mosaic_rule'],'types':master.types.tolist()},
@@ -71,7 +82,7 @@ def materialize_hc_master(root, atlas_config, density):
             'scope':config['scope'],'old_Poisson_identity_reused':False,
             'physiological_validation':False},
         boundary={'canonical_bounds_mm':list(bounds),'canonical_disk_radius_mm':disk,'mask_source_id':config['mask_source_id'],
-            'pair_support_context_mm':density.max_interaction_support_mm(),
+            'pair_support_context_mm':master.diagnostics['maximum_interaction_support_mm'] if density.profile_id==JOINT_ID else density.max_interaction_support_mm(),
             'boundary_mode':'finite_open_boundary','recurrent_closure':'NOT_CERTIFIED'})
     config['expected_asset_sha256'] = sha
     (root/configuration_path).write_text(json.dumps(config,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
@@ -84,6 +95,8 @@ class FixedJointHCMaster:
     def __init__(self, root, atlas_config, density):
         self.root = Path(root)
         self.config, options = _configuration(root, density,atlas_config.get('HC_master_configuration'))
+        if self.config.get('construction_domain_pending') or self.config.get('expected_asset_sha256') is None:
+            raise HCMasterCoverageError('HC_V2_MASTER_NOT_BUILT: current HC v2 selected; old master/IDs retained, not reused under new density. No implicit rebuild.')
         asset = load_atlas_asset(self.root/self.config['asset_path'],
             expected_sha256=self.config['expected_asset_sha256'])
         record = asset.metadata_record()

@@ -58,8 +58,14 @@ def runtime_record(root,circuit,view,*,compact=False):
         if name not in records:raise ContractError('DISK_VIEW_PRIMARY_PATH_UNSUPPORTED: no '+name+' states in exact source closure; no replacement driver')
     atlas_profile=circuit.record['source_profiles']['cone_atlas']
     atlas=SourceDensityAtlas(root,profile_id=atlas_profile);s=EffectiveMulattaSPartition(atlas)
-    hconfig=json.loads((root/'configurations/atlas_hc_disk3mm_v1.json').read_bytes())
+    from .hc_current import current_hc,require_current_hc_asset
+    current=current_hc(root)
+    hconfig=json.loads((root/(current['master_configuration'] if current else 'configurations/atlas_hc_disk3mm_v1.json')).read_bytes())
     cone=circuit.table('cones');hc=circuit.table('HC')
+    require_current_hc_asset(root,hc.record.get('source_bindings',{}))
+    from .bc_current import POPULATIONS,current_bc,require_current_bc_tables
+    if current_bc(root) is not None:
+        require_current_bc_tables(root,{name:circuit.table(name).record for name in POPULATIONS})
     if cone.metadata['source_version']!=atlas.mosaic_namespace or cone.record['source_bindings']['S_profile_sha256']!=s.profile_sha256:
         raise ContractError('Global cone/S namespace differs from selected frozen source profile')
     if hc.record['source_bindings']['master_sha256']!=hconfig['expected_asset_sha256']:

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "HC69_owner_support_v2",
+  "asset_path": "data/atlas/GIN_69_6_HC2_BC1_SUPPORT_V2/HC_master.json",
+  "expected_asset_sha256": "640131d0ed0709f4c62d7464b7ad6f42ff829953a6b5cd49fe614da9c0ae96fc",
+  "density_profile_path": "configurations/hc_density_rf_joint_v2_owner_support_v1.json",
+  "research_generator_path": "configurations/hc_joint_v2_generator.json",
+  "seed": 20261010,
+  "canonical_bounds_mm": [
+    0.7515382201948094,
+    1.332229884321264,
+    -0.26573641368136697,
+    0.26295470742960964
+  ],
+  "max_cells": 20000,
+  "mask_source_id": "HC69_owner_support_v2_actual_dependency_domain",
+  "mosaic_rule": "generate_joint_hc_fixed_canonical_master_then_crop",
+  "construction_domain_pending": false,
+  "scope": "New finite local HC master; ownerRF disk separate from source-derived physical support, outer engineering extrapolation",
+  "canonical_disk_radius_mm": 1.5860542233243853,
+  "requested_native_view_bounds_mm": [
+    0.7685778474146043,
+    1.315190257101469,
+    -0.248696786461572,
+    0.24591508020981467
+  ],
+  "required_actual_radial_envelope_mm": 1.3322735992718402,
+  "owner_support": {
+    "schema": "IS-RF-owner-to-physical-support-1",
+    "authorization": "Sentinel_5a05022065f081919c81f4f9db2d6697",
+    "owner_RF_radius_deg": 6.0,
+    "owner_RF_radius_mm": 1.338,
+    "mm_per_degree": 0.223,
+    "cone_source_table": {
+      "path": "data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json",
+      "sha256": "9c6c0e94eb0d69478c658d2a48c7bae22d603866abf6f5402eb924b46952db00"
+    },
+    "owner_cones": 190498,
+    "owner_pedicles_outside_prior_physical_domain": 35518,
+    "BC_anchor_radius_mm": 1.5521960897919966,
+    "HC_support_radius_mm": 1.5860542233243853,
+    "HC_outer_contact_margin_mm": 0.015488443728759307,
+    "HC_outer_pair_margin_mm": 0.01836968980362918,
+    "support_equation": "R=max(owner pedicle radius)+max(H1,H2 contact radius atR)+inherited outer pair context atR",
+    "support_residual_mm": 1.5959455978986625e-16,
+    "original_parameter_application_radius_mm": 1.338,
+    "outer_status": "USER_AUTHORIZED_ENGINEERING_EXTRAPOLATION_NOT_NEW_PHYSIOLOGY",
+    "external_cones": "Only existing finite registered source; outside0..6deg are held context, not new optical/dynamic owners",
+    "infinite_retina_boundary_complete": false,
+    "FIT_READY": false,
+    "background_qualified": false,
+    "production_adopted": false
+  }
+}

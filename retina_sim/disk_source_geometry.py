@@ -84,7 +84,9 @@ def freeze_outer_tables(root,atlas_profile_id,support,output):
     horizontal=write_table(root,output/'HC',metadata,len(keep),lambda a,b:tuple(table.source_keys[i] for i in keep[a:b]),
         {'soma':Quantity(xy,'mm','anatomical_position',table.coordinate('soma').evidence_tag,'anatomical_retina')},
         extras={'subtype':np.asarray(types,dtype='S2')[keep]},source_bindings={
-            'master_sha256':fixed.config['expected_asset_sha256'],'OPL_anchor_transfer':'HC_soma_to_OPL_colocation_project_v1',
+            'master_sha256':fixed.config['expected_asset_sha256'],'master_path':fixed.config['asset_path'],
+            'hc_density_geometry_identity':hc.density.metadata.get('current_hc_identity'),
+            'OPL_anchor_transfer':'HC_soma_to_OPL_colocation_project_v1',
             'fixed_cohort_OPL_radius_mm':cohort,'pair_context_in_master':True,
             'construction':'crop of one frozen joint master; no exterior HC feedback'})
     result={'cones':cone.binding,'HC':horizontal.binding,'cone_count':cone.count,'HC_count':horizontal.count,

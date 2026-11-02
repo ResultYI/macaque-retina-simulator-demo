@@ -30,6 +30,10 @@ def route_recipe(name,pre,post):
         'weights':'original rule frozen once; no crop renormalization'}
 
 def freeze_bc_tables(root,outer,support,directory):
+    from .bc_current import current_bc
+    if current_bc(root) is not None:
+        from .bc_pedicle_graph import freeze_pedicle_bc_tables
+        return freeze_pedicle_bc_tables(root,outer,support,directory)
     root=Path(root).resolve();directory=Path(directory);cone=FrozenDiskTable(root,outer['cones'])
     cfg=read_ipl_geometry(root,RESEARCH);version=cone.metadata['source_version']+'|'+ADAPTER+'|'+cfg['profile_sha256']+'|connected_cone_centroid_isetbio_v1'
     rf=cone.coordinates['rf'];opl=cone.coordinates['opl_pedicle'];labels=cone.extras['subtype']
@@ -95,6 +99,11 @@ def freeze_midget_rgcs(root,bc_catalog,directory,*,owner_radius=3.,minimum_degre
     for polarity in ('ON','OFF'):
         pre=FrozenDiskTable(root,bc_catalog['tables']['midget_BC_'+polarity]);name='midget_RGC_'+polarity
         positions=pre.coordinates['ipl_preterminal'];rf=pre.coordinates['rf'];equivalent=wool_temporal_array(field,rf)
+        rgc_seed=np.ones(pre.count,dtype=bool)
+        if pre.record['source_bindings'].get('bc_density_geometry_identity'):
+            # New S->OFF-midget BCs are inputs, not a new RGC density rule.
+            cone=FrozenDiskTable(root,pre.record['source_bindings']['cones'])
+            rgc_seed=cone.extras['subtype'][pre.extras['cone_row']]!=b'S'
         valid=np.isfinite(equivalent)&(equivalent>=0)&(equivalent<=10)
         convergence=wool_midget_profile(np.where(valid,equivalent,0.))
         target=convergence['effective_contact_target'];scale=np.where(convergence['private_line_branch'],.001,convergence['center_radius_mm'])
@@ -122,7 +131,8 @@ def freeze_midget_rgcs(root,bc_catalog,directory,*,owner_radius=3.,minimum_degre
                 matrix=matrix.tolil();statuses=[]
                 for j,row in enumerate(rows):
                     index=start+j
-                    if not valid[index]:status='BLOCKED_WOOL_TEMPORAL_EQUIVALENCE_MISSING'
+                    if not rgc_seed[index]:status='NOT_AN_RGC_SEED_BC_INPUT_ONLY'
+                    elif not valid[index]:status='BLOCKED_WOOL_TEMPORAL_EQUIVALENCE_MISSING'
                     elif target[index]<=1:
                         # This exact qualified parent is at the same IPL point.
                         matrix.rows[j]=[index];matrix.data[j]=[1.];status='READY_PROJECT_PRIVATE_OR_MINIMUM_ONE'
@@ -149,7 +159,7 @@ def freeze_midget_rgcs(root,bc_catalog,directory,*,owner_radius=3.,minimum_degre
         for block in candidate.record['blocks']:
             with np.load(root/block['path'],allow_pickle=False) as z:centers[block['start']:block['stop']]=z['RF_center_mm']
         selected=np.flatnonzero(ready&(np.sum(centers**2,axis=1)<=owner_radius**2))
-        blocked=np.flatnonzero(~ready&(np.sum(rf**2,axis=1)<=owner_radius**2))
+        blocked=np.flatnonzero(rgc_seed&~ready&(np.sum(rf**2,axis=1)<=owner_radius**2))
         table=write_table(root,directory/name,metadata(pre,name),len(selected),lambda a,b,idx=selected:pre.rows(idx[a:b]).global_cell_ids,
             {'rf':point(centers[selected],'functional_position','functional_visual_field'),
              'ipl_post_arbor':point(positions[selected],'dendritic_position','IPL')},
@@ -217,7 +227,11 @@ def freeze_remaining_inner(root,outer,bc_catalog,midget_catalog,populations,supp
                 stop=min(table.count,start+4096);block=matrix[start:stop]
                 writer.append(start,block,[{'actual_degree':int(n),'missing_degree':0,'geometry_only':True} for n in np.diff(block.indptr)])
         geometry_routes[name]=writer.freeze()
-    pre=tables['S_ON_BC'];selected=np.flatnonzero(np.sum(pre.coordinates['rf']**2,axis=1)<=3.**2)
+    pre=tables['S_ON_BC'];sbi_seed=np.ones(pre.count,dtype=bool)
+    if pre.record['source_bindings'].get('bc_density_geometry_identity'):
+        # Multiple S-ON BC anchors per S Cone must not multiply Sbi RGCs.
+        sbi_seed=pre.extras['bc_anchor_slot']==0
+    selected=np.flatnonzero(sbi_seed&(np.sum(pre.coordinates['rf']**2,axis=1)<=3.**2))
     name='small_bistratified_S_ON'
     tables[name]=write_table(root,directory/name,metadata(pre,name),len(selected),lambda a,b:pre.rows(selected[a:b]).global_cell_ids,
         {'rf':point(pre.coordinates['rf'][selected],'functional_position','functional_visual_field'),

@@ -55,6 +55,9 @@ def verify_typed_source(full, repo_root):
         p = full.populations[name]; meta = full.manifest['populations'][name]
         path = verified_path(root_path, meta['source_table'])
         source = json.loads(path.read_bytes())
+        if name=='HC':
+            from .hc_current import require_current_hc_asset
+            require_current_hc_asset(root_path,source.get('source_bindings',{}))
         arrays = {}
         for key, binding in dict(ids=source['source_keys'], subtype=source['extras']['subtype'],
                                  xy=source['coordinates'][p.coordinate_role]).items():
@@ -87,7 +90,8 @@ def verify_typed_source(full, repo_root):
             per_member_type_exact=True)
         result[name] = dict(types=owned(types), fine_ids=arrays['ids'].astype('U'), fine_xy=arrays['xy'], source=source)
     hc = result['HC']; master_sha = hc['source']['source_bindings']['master_sha256']
-    master_path = verified_path(root_path, dict(path='data/atlas/hc_disk3mm_master_v1.json',sha256=master_sha))
+    master_relative=hc['source']['source_bindings'].get('master_path','data/atlas/hc_disk3mm_master_v1.json')
+    master_path = verified_path(root_path, dict(path=master_relative,sha256=master_sha))
     master = json.loads(master_path.read_bytes())
     table = next(t for t in master['tables'] if t['population'] == 'HC')
     lookup = {key:i for i,key in enumerate(table['source_keys'])}
@@ -115,6 +119,24 @@ def global_operators(full, types):
     if set(cone)-{'L','M','S'} or set(hc) != {'H1','H2'}:
         raise ContractError('Both verified HC types and known cone labels required')
     A = csr(full.matrix('routes/cones_to_HC/mean_weights.npz'))
+    projected = full.manifest.get('hc_projection_contract')
+    if projected is not None:
+        if projected.get('schema') != 'fine_typed_complete_rows_all_member_mean_v1':
+            raise ContractError('Unknown preprojected HC operator contract')
+        B = csr(full.matrix('routes/HC_to_cones/mean_weights.npz'))
+        for matrix, population in ((A, 'HC'), (B, 'cones')):
+            fraction = np.asarray(full.array('hc_projection/'+population+'_supported_fraction.npy'))
+            if (fraction.shape != (matrix.shape[0],) or not np.isfinite(fraction).all()
+                    or np.any(fraction < 0) or np.any(fraction > 1)
+                    or not np.isfinite(matrix.data).all() or np.any(matrix.data < 0)
+                    or not np.allclose(np.asarray(matrix.sum(1)).ravel(), fraction, rtol=0, atol=2e-14)):
+                raise ContractError('Preprojected HC operator lost complete fine/member support mass')
+        h1, h2 = np.flatnonzero(hc == 'H1'), np.flatnonzero(hc == 'H2')
+        if A[h1][:,cone == 'S'].nnz or B[cone == 'S'][:,h1].nnz or B[cone != 'S'][:,h2].nnz:
+            raise ContractError('Preprojected HC operator violates original typed eligibility')
+        # Complete fine rows were normalized before the declared member mean.
+        # A second group normalization would erase unsupported member fractions.
+        return A, B, owned(h1), owned(h2)
     old_B = full.matrix('routes/HC_to_cones/mean_weights.npz').tocoo()
     keep = ((hc[old_B.col] == 'H1') & (cone[old_B.row] != 'S') |
             (hc[old_B.col] == 'H2') & (cone[old_B.row] == 'S'))

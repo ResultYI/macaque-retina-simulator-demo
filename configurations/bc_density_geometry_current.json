@@ -1,0 +1,53 @@
+{
+  "schema": "current-BC-density-and-direct-contact-v1",
+  "selected_profile_id": "macaque_bc_cone_pedicle_anchored_v1",
+  "bindings": {
+    "retina_sim/disk_inner.py": {
+      "path": "retina_sim/disk_inner.py",
+      "sha256": "a31bf6cbf328562384cc8e927f5476bbf8c0173cea8789832fe106512e433298"
+    },
+    "retina_sim/atlas_connections.py": {
+      "path": "retina_sim/atlas_connections.py",
+      "sha256": "e7fe69f2ac412f15c4f4a511830ca0357d0da50183f763a9fbc16e564f0aa3ee"
+    },
+    "retina_sim/disk_runtime.py": {
+      "path": "retina_sim/disk_runtime.py",
+      "sha256": "e7e690fd414a3b932e94030fc78fd5756eaa7d071a969cd6a137d7a5176625f4"
+    },
+    "retina_sim/local_patch_graph.py": {
+      "path": "retina_sim/local_patch_graph.py",
+      "sha256": "08653958e2e26baf8a18f3038752e0cdddaa8a3d5e5c27c27871cfc92985e145"
+    },
+    "retina_sim/bc_current.py": {
+      "path": "retina_sim/bc_current.py",
+      "sha256": "1f4fd2ea4b7a3dfc19cde604739e0f5c04e43e4ae1c555f25d28ec8f5441d838"
+    },
+    "retina_sim/bc_pedicle_density.py": {
+      "path": "retina_sim/bc_pedicle_density.py",
+      "sha256": "789b37c70b8fde8c80a73434bcbb5a583af348a0818280a11c7214b4fc820e41"
+    },
+    "retina_sim/bc_pedicle_graph.py": {
+      "path": "retina_sim/bc_pedicle_graph.py",
+      "sha256": "3dc332a50de203a83f8487e7be4cd1084032a359124a4c72450311b1beaff264"
+    },
+    "parameters": {
+      "path": "configurations/bc_cone_pedicle_anchored_owner_support_v1.json",
+      "sha256": "6c07fa6db70c1584b31a0731ab640c3051a57bd9c361ba6425aca895f2602dc8"
+    },
+    "owner_support": {
+      "path": "configurations/research/GIN69_OWNER_SUPPORT_V2.json",
+      "sha256": "262272308ad45d53e3ca7f183a52967a69e3f020903a77c7403c29de725a921b"
+    }
+  },
+  "implementation_selected": true,
+  "entrypoint": "retina_sim.disk_inner.freeze_bc_tables -> freeze_pedicle_bc_tables",
+  "legacy_ROI_generator": "explicitly rejected under current selection, no silent stride4 fallback",
+  "RBC_changed": false,
+  "RGC_density_changed": false,
+  "AC_density_changed": false,
+  "FIT_READY": false,
+  "background_qualified": false,
+  "production_adopted": false,
+  "asset_status_report": "reports/GIN_69_6_HC2_BC1_SUPPORT_V2/CURRENT_ASSEMBLY_STAGE.json",
+  "owner_support_identity": "e79c561983edfb62b6c40c6448fef77c22a0b47d1bacd45475060ed8b2953fd9"
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "macaque_hc_density_rf_joint_v2",
+  "coordinate_frame": "anatomical_retina",
+  "density_unit": "cells/mm^2",
+  "density": {
+    "family": "VHR_three_signed_exponentials",
+    "distance": "mm",
+    "unit": "cells/mm2",
+    "coefficients": [
+      {
+        "c": 45245.30264390676,
+        "lambda_per_mm": -0.8616128661131702
+      },
+      {
+        "c": -48597.44237836773,
+        "lambda_per_mm": -3.112593835972845
+      },
+      {
+        "c": 3602.1397344609636,
+        "lambda_per_mm": -0.03494994340253653
+      }
+    ],
+    "note": "Exact supplied fullprecision v2 coefficients, slightly different from v1; no refit.",
+    "hard_constraints": {
+      "rho_at_0": 250,
+      "rho_at_0p6": 23000,
+      "derivative_at_0p6": 0
+    },
+    "fit_observations": [
+      [
+        0.5,
+        21267
+      ],
+      [
+        0.575,
+        21885
+      ],
+      [
+        2.5,
+        7946
+      ],
+      [
+        3.5,
+        6300
+      ],
+      [
+        4.5,
+        3612
+      ],
+      [
+        5.6,
+        3211
+      ],
+      [
+        6.3,
+        3100
+      ],
+      [
+        7.1,
+        3047
+      ]
+    ]
+  },
+  "split": {
+    "rho_H1_fraction": 0.8,
+    "rho_H2_fraction": 0.2,
+    "application_scope_mm": [
+      0,
+      1.338
+    ],
+    "scope_status": "ENGINEERING_EXTENSION_NOT_PHYSIOLOGICALLY_VALIDATED",
+    "basis": "approx H1:H2 4:1 near fovea, extrapolated across 0-6deg"
+  },
+  "geometry": {
+    "quantity": "circular-equivalent dendritic cone-contact radius, NOT functional RF",
+    "supported_r_mm": [
+      0.6,
+      1.338
+    ],
+    "H1_divergence": "3.7+(7.5-3.7)*(r-0.6)/(5.5-0.6); linear engineering interpolation",
+    "H2_divergence": "2.2, central approximation",
+    "radius_mm_formula": "sqrt(divergence_k(r)/(pi*rho_k(r)))",
+    "rows": [
+      {
+        "r_mm": 0.6,
+        "HC_density_cells_mm2": 23000,
+        "H1_radius_um": 8.000497874725026,
+        "H2_radius_um": 12.338361437300543
+      },
+      {
+        "r_mm": 0.8,
+        "HC_density_cells_mm2": 22183.982001376888,
+        "H1_radius_um": 8.315306407468432,
+        "H2_radius_um": 12.563239936162091
+      },
+      {
+        "r_mm": 1,
+        "HC_density_cells_mm2": 20431.7835095813,
+        "H1_radius_um": 8.83710811691421,
+        "H2_radius_um": 13.090862675841782
+      },
+      {
+        "r_mm": 1.338,
+        "HC_density_cells_mm2": 16968.328219954004,
+        "H1_radius_um": 10.009047749228587,
+        "H2_radius_um": 14.36487589071379
+      }
+    ],
+    "inner_0_to_0p6_mm": "r<=0.58mm retains central H1/H2 8.04/12.22um and existing explicit pedicle mapping; 0.58<r<0.60mm uses the user-authorized fixed C1 Hermite join; no inverse-density extrapolation to the origin",
+    "functional_RF": "not fitted; verify with spot/grating stimuli and background-matched HC dynamics",
+    "central_radii_mm": {
+      "H1": 0.00804,
+      "H2": 0.01222
+    },
+    "kernel": "uniform raw disk edges; no Gaussian-scale substitution",
+    "D1_denominator_status": "Unresolved all-cone vs eligible-LM denominator; formula unmodified",
+    "central_join": {
+      "identity": "HC_C1_inner_join_058_060_v1",
+      "interval_mm": [
+        0.58,
+        0.6
+      ],
+      "method": "cubic_Hermite",
+      "left_value_mm": {
+        "H1": 0.00804,
+        "H2": 0.01222
+      },
+      "left_derivative_dr": 0,
+      "right_value": "unmodified v2 outer contact radius at r=0.60mm",
+      "right_derivative": "analytic derivative of unmodified v2 outer contact formula",
+      "formula": "t=(r-a)/(b-a); R=(2t^3-3t^2+1)R0+(-2t^3+3t^2)R1+(t^3-t^2)(b-a)R1prime",
+      "width_status": "fixed 20um engineering transition, not measured or tuned to spikes/contact counts",
+      "scope": "Only direct cone-contact radius; density coefficients and r>=0.6mm v2 formula unchanged",
+      "shape_note": "C1 join does not impose monotonicity; H1 may have a small local minimum because the right endpoint slope is positive",
+      "authorization": [
+        "Sentinel_a2ab4c83d050819187cbf69a92d3bb9a",
+        "Sentinel_38c82d5dfa50819182ca799e2f72a0bf"
+      ]
+    }
+  },
+  "quantities": {
+    "total_cells_0_6deg_expected": 113291.53030094731,
+    "H1_expected": 90633.22424075786,
+    "H2_expected": 22658.306060189465,
+    "cone_pedicle_density_at_0p6_approx": 32000,
+    "implied_cone_divergence_H1_using_6p5_cones_per_H1": 3.7375,
+    "implied_cone_divergence_H2_using_15_cones_per_H2": 2.1562499999999996,
+    "H1_fraction_implied_by_rounded_morphology": 0.7951289398280802
+  },
+  "source": {
+    "kind": "user_authorized_implementation_parameters_from_complete_Library_read",
+    "original_attachment_bytes_materialized": false,
+    "attachments": [
+      {
+        "library_file_id": "libfile_ce030dea86fc81918814974dcf5ce8e5",
+        "file_id": "file_00000000cc38823091db0f330a85b142",
+        "name": "macaque_hc_density_rf_joint_v2.json",
+        "size_bytes": 4035,
+        "created_at": "2026-11-01T09:25:36.916172Z"
+      },
+      {
+        "library_file_id": "libfile_2f33a7962f508191ac89f59f1b80ef6b",
+        "file_id": "file_0000000036b081fd8cabb9c025bd7279",
+        "name": "macaque_hc_density_rf_joint_v2.py",
+        "size_bytes": 7888,
+        "created_at": "2026-11-01T09:25:38.291002Z"
+      }
+    ],
+    "original_files_not_reconstructed_or_archived": true,
+    "materialization_blocker": "Windows supplied Library helper lacks os.setxattr; no retry or security bypass",
+    "references": [
+      "Roehrenbeck 1989 10.1111/j.1460-9568.1989.tb00349.x",
+      "Boycott Hopkins Sperling 1987 10.1098/rspb.1987.0001",
+      "Waessle Boycott Roehrenbeck 1989 10.1111/j.1460-9568.1989.tb00350.x",
+      "Waessle et al. 2000 10.1017/S0952523800174097",
+      "Ahmad et al. 2003 10.1017/S0952523803202091",
+      "Packer Dacey 2002 10.1167/2.4.1"
+    ],
+    "coefficient_identity": "Supplied fullprecision v2 coefficients, numerically slightly different from v1; no refit"
+  },
+  "source_risks": [
+    "0.5mm density21267 is a secondary mixed-primate datum with original range19000..25100, not a homogeneous macaque measurement",
+    "2.5/4.5mm are interval midpoints; mixed animals remain separate source evidence",
+    "Slowest exponential term fixed from5.6..7.1mm trend; tail not independently identified",
+    "Central0..0.5mm weakly constrained; nonzero origin radial derivative retained",
+    "H1/H2 constant0.8/0.2 is an engineering extension, not a subtype fit",
+    "Contact radius is a circle-equivalent cone-contact support, not functionalRF",
+    "0.58..0.60mm contact-radius join is a fixed engineering interpolation, not physiological data; no functionalRF claim"
+  ],
+  "generator": {
+    "partition_target_mass": 8,
+    "quadrature_order": 8,
+    "integration_relative_tolerance": 0.001,
+    "sweeps": 8,
+    "temperature": 1,
+    "a11": 4,
+    "a22": 4,
+    "a12": 4,
+    "max_partitions": 2048,
+    "max_proposals": 500000,
+    "max_depth": 12,
+    "integration_absolute_tolerance": 1e-05,
+    "partition_log_density_range": 0.35,
+    "max_draw_attempts": 100000,
+    "max_quadrature_points": 2000000
+  },
+  "generator_inherited_from": "configurations/hc_joint_synthetic_v1.json (mosaic mechanics only)",
+  "FIT_READY": false,
+  "background_qualified": false,
+  "production_adopted": false,
+  "scientific_status": "CURRENT_HC_IMPLEMENTATION_USER_AUTHORIZED_NOT_PHYSIOLOGICALLY_VALIDATED"
+}

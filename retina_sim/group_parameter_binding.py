@@ -121,7 +121,7 @@ class GroupConstructionSeed:
 
 
 def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, rng_seed,
-                                  time_seconds=0., guard=None):
+                                  time_seconds=0., guard=None, native_reference=None):
     """Re-evaluate original construction rules on frozen GROUP operators.
 
     The current run's approved input policy supplies rod exterior rate; the
@@ -149,8 +149,13 @@ def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, 
     if policy_path != required_policy:
         raise ContractError('Exact current run input policy required, not an old proposal')
     input_policy = json.loads(policy_path.read_text(encoding='utf8'))
-    if input_policy.get('approval_status') != 'USER_AUTHORIZED_CENTERED_ENGINEERING_DEMO_20261024':
+    new_typed = (input_policy.get('approval_status') == 'USER_AUTHORIZED_GIN69_HC2_BC1_20261101'
+        and assembly.manifest.get('schema') == 'GIN69-HC2-BC1-member-projected-local-1'
+        and input_policy.get('artifact_sha256') == assembly.artifact_sha256)
+    if not new_typed and input_policy.get('approval_status') != 'USER_AUTHORIZED_CENTERED_ENGINEERING_DEMO_20261024':
         raise ContractError('Actual authorized centered-input policy required')
+    if new_typed != (native_reference is not None):
+        raise ContractError('New typed construction requires its explicit jointly solved native reference')
     rod_rate = float(input_policy['rod']['outside_rate_Rstar_per_s'])
     bg = np.asarray(assembly.array('input/group_background_native_td.npy'), dtype=np.float64)
     nc = assembly.populations['cones'].group_count
@@ -165,8 +170,30 @@ def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, 
         guard()
     A = assembly.matrix('routes/cones_to_HC/mean_weights.npz')
     B = assembly.matrix('routes/HC_to_cones/mean_weights.npz')
-    native = source_native_equilibrium(A, B, bg, guard=guard)
-    release_reference = expit((native['Vis']-B@native['Vh']-SOURCE_VALUES['V_k'])/SOURCE_VALUES['V_n'])/(native['Vbar']/SOURCE_VALUES['V_I'])**SOURCE_VALUES['mu']
+    if native_reference is None:
+        native = source_native_equilibrium(A, B, bg, guard=guard)
+        release_reference = expit((native['Vis']-B@native['Vh']-SOURCE_VALUES['V_k'])/SOURCE_VALUES['V_n'])/(native['Vbar']/SOURCE_VALUES['V_I'])**SOURCE_VALUES['mu']
+    else:
+        reference = native_reference
+        if (reference.get('schema') != 'joint-H1H2-complete-parent-construction-reference-1'
+                or reference.get('artifact_sha256') != assembly.artifact_sha256
+                or reference.get('background_sha256') != canonical_hash(bg)
+                or not np.isfinite(reference['equilibrium_residual'])
+                or reference['equilibrium_residual'] > 1e-10):
+            raise ContractError('New typed native construction reference identity/residual differs')
+        expected_names = {'R','E','X','C','Vis','g_i','Vbar','z1','z2','Vh','w'}
+        if set(reference['native']) != expected_names:
+            raise ContractError('Complete typed native transport fields required')
+        nh = assembly.populations['HC'].group_count
+        native = {name:_vector(value,nh if name in ('z2','Vh','w') else nc,name)
+                  for name,value in reference['native'].items()}
+        if not np.array_equal(native['R'],bg) or not np.array_equal(native['E'],bg):
+            raise ContractError('New native fixed point does not match actual cached background')
+        release_reference = _vector(reference['release'],nc,'joint native release')
+        feedback = _vector(reference['total_feedback'],nc,'complete-parent feedback')
+        expected_release = expit((native['Vis']-feedback-SOURCE_VALUES['V_k'])/SOURCE_VALUES['V_n'])/(native['Vbar']/SOURCE_VALUES['V_I'])**SOURCE_VALUES['mu']
+        if not np.array_equal(release_reference,expected_release):
+            raise ContractError('Typed release differs from frozen Cone equation')
     parameters = dict(populations={}, contacts={}, route_gains={}, rod_phototransduction={})
     pops, states = parameters['populations'], {}
     counts = {n: p.group_count for n,p in assembly.populations.items()}
@@ -177,7 +204,7 @@ def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, 
         put('cones',NATIVE,name,native[name])
     for name in ('R','E'):
         put('cones','analytic_RE',name,native[name])
-    w = A@native['z1']
+    w = A@native['z1'] if native_reference is None else native['w']
     for name,value in (('w',w),('z2',native['z2']),('Vh',native['Vh'])):
         put('HC',NATIVE,name,value)
     aux = assembly.populations['cones'].recording_auxiliary_group_rows
@@ -329,6 +356,9 @@ def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, 
         parent_checkpoint_used=False,neural_model_advanced=False,
         reference_rule='Actual cached group native background and approved rod exterior background; no implicit100/5',
         parameters_rule='Original broadcast/literal values and source derivations re-evaluated on exact group mean/sum matrices; never average incompatible fine parameters')
+    if native_reference is not None:
+        identity['native_construction_reference_sha256'] = canonical_hash(native_reference)
+        identity['native_rule'] = 'New complete-parent H1/H2 equilibrium; typed fine/member mass retained, including zero/partial feedback; no unit-DC renormalization'
     observation = dict(delay_seconds=SOURCE_VALUES['observation_delay']*.001,
         origin_seconds=float(time_seconds),history_times=np.array([time_seconds]),
         history_values=states['HC',NATIVE,'Vh'][None,:],

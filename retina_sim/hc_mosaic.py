@@ -61,6 +61,20 @@ class HCDensityProfile:
     of clamping/extrapolating.
     """
 
+    def __new__(cls,root,profile_path=None,profile_data=None):
+        if cls is HCDensityProfile:
+            from .hc_current import JOINT_ID,current_hc_configuration
+            selected=(profile_data or {}).get('profile_id')==JOINT_ID
+            if profile_path is None and profile_data is None:
+                selected=current_hc_configuration(root) is not None
+            elif profile_path is not None and profile_data is None:
+                p=Path(profile_path);p=p if p.is_absolute() else Path(root)/p
+                selected=p.is_file() and json.loads(p.read_bytes()).get('profile_id')==JOINT_ID
+            if selected:
+                from .hc_joint_v2 import JointV2HCDensityProfile
+                return object.__new__(JointV2HCDensityProfile)
+        return object.__new__(cls)
+
     def __init__(self, root, profile_path=None, profile_data=None):
         self.root = Path(root)
         self.profile_path = Path(profile_path) if profile_path is not None else (
@@ -337,6 +351,8 @@ class _Quadrature:
         self.evaluated_points = 0
 
     def rule(self, bounds, order):
+        if isinstance(self.domain, RadialMaskedHCDomain):
+            return self.radial_mask_rule(bounds, order)
         x0, x1, y0, y1 = bounds
         nodes, weights = self.rules[order]
         x = (x0 + x1) / 2 + nodes * (x1 - x0) / 2
@@ -353,6 +369,39 @@ class _Quadrature:
             return np.zeros(2)
         return np.array([np.dot(weights2d[active], self.profile.type_density(points[active], kind))
                          for kind in ("H1", "H2")])
+
+    def radial_mask_rule(self, bounds, order):
+        """Map Gauss nodes into the disk/rectangle intersection, not its step mask."""
+        x0, x1, y0, y1 = bounds
+        radius = self.domain.source_radius_mm
+        left, right = max(x0, -radius), min(x1, radius)
+        if right <= left:
+            return np.zeros(2)
+        cuts = [left, right]
+        for y in (y0, y1):
+            if abs(y) < radius:
+                edge = math.sqrt(radius*radius-y*y)
+                cuts.extend(v for v in (-edge, edge) if left < v < right)
+        cuts = sorted(set(cuts))
+        nodes, weights = self.rules[order]
+        result = np.zeros(2)
+        for a, b in zip(cuts[:-1], cuts[1:]):
+            x = (a+b)/2 + nodes*(b-a)/2
+            extent = np.sqrt(np.maximum(0., radius*radius-x*x))
+            lower, upper = np.maximum(y0, -extent), np.minimum(y1, extent)
+            keep = upper > lower
+            if not np.any(keep):
+                continue
+            if self.evaluated_points + order*order > self.max_points:
+                raise ContractError('HC_QUADRATURE_BUDGET_EXCEEDED: clipped source-disk rule')
+            y = (lower[:,None]+upper[:,None])/2 + nodes[None,:]*(upper[:,None]-lower[:,None])/2
+            points = np.column_stack((np.repeat(x,order), y.ravel()))
+            selected = np.repeat(keep,order)
+            w = weights[:,None]*weights[None,:]*(b-a)/2*(upper[:,None]-lower[:,None])/2
+            self.evaluated_points += order*order
+            result += np.array([np.dot(w.ravel()[selected], self.profile.type_density(points[selected],kind))
+                                for kind in ('H1','H2')])
+        return result
 
     def integrate(self, bounds, depth=0, absolute_tolerance=None):
         allowance = self.atol if absolute_tolerance is None else absolute_tolerance
@@ -372,12 +421,39 @@ class _Quadrature:
         return np.sum([v[0] for v in results], axis=0), np.sum([v[1] for v in results], axis=0)
 
 
+class RadialMaskedHCDomain(RetinalDomain):
+    """A finite construction rectangle intersected with a named source disk."""
+    def __init__(self, bounds, owner, source_radius_mm, source_id, label):
+        radius = float(source_radius_mm)
+        if not np.isfinite(radius) or radius <= 0:
+            raise ContractError('Explicit finite HC source-mask radius required')
+        super().__init__(bounds, owner, lambda xy: np.linalg.norm(xy, axis=1) <= radius, source_id, label)
+        object.__setattr__(self, 'source_radius_mm', radius)
+
+    def density_bounds(self, profile, bounds):
+        if self.source_radius_mm != profile.support_radius_mm:
+            raise ContractError('Radial HC mask must exactly match the selected density support')
+        lower, upper = _radial_rectangle_range(bounds)
+        lower, upper = min(lower, self.source_radius_mm), min(upper, self.source_radius_mm)
+        radii = np.unique(np.r_[lower, upper, profile.nodes_mm[(profile.nodes_mm >= lower) & (profile.nodes_mm <= upper)]])
+        total, fraction = profile.radial(radii), profile.radial_fraction(radii)
+        return dict(total_min=float(total.min()), total_max=float(total.max()),
+            H1_min=float(total.min()*fraction.min()), H1_max=float(total.max()*fraction.max()),
+            H2_min=float(total.min()*(1-fraction.max())), H2_max=float(total.max()*(1-fraction.min())))
+
+
+def _domain_density_bounds(profile, domain, bounds):
+    if isinstance(domain, RadialMaskedHCDomain):
+        return domain.density_bounds(profile, bounds)
+    return profile.bounds_for_rectangle(bounds)
+
+
 def _partitions(profile, domain, seed, options, quadrature, total_mass, total_error):
     leaves = []
     pending = [(_Partition("root", tuple(domain.bounds_mm), tuple(total_mass), tuple(total_error), 0))]
     while pending:
         partition = pending.pop()
-        bounds = profile.bounds_for_rectangle(partition.bounds)
+        bounds = _domain_density_bounds(profile, domain, partition.bounds)
         density_contrast = max(math.log(bounds[kind + "_max"] / bounds[kind + "_min"])
                                for kind in ("total", "H1", "H2"))
         needs_split = sum(partition.mass) > options["partition_target_mass"] or (
@@ -418,7 +494,7 @@ def _cumulative_quotas(masses, uniform):
 
 
 def _sample_density(profile, domain, bounds, cell_type, random, max_attempts):
-    envelope = profile.bounds_for_rectangle(bounds)[cell_type + "_max"]
+    envelope = _domain_density_bounds(profile, domain, bounds)[cell_type + "_max"]
     x0, x1, y0, y1 = bounds
     for attempt in range(1, max_attempts + 1):
         point = np.array([random.uniform(x0, x1), random.uniform(y0, y1)])
@@ -503,7 +579,7 @@ def generate_joint_hc(profile, domain, seed, max_cells, options=None):
     # Conservative rectangle support check prevents a quadrature/sampling rule
     # from silently trimming an unsupported halo.  This v1 backend explicitly
     # accepts canonical rectangles entirely inside the radial source support.
-    profile.bounds_for_rectangle(domain.bounds_mm)
+    _domain_density_bounds(profile, domain, domain.bounds_mm)
     resolved = dict(partition_target_mass=8, quadrature_order=8,
                     integration_relative_tolerance=1e-3, integration_absolute_tolerance=1e-5,
                     partition_log_density_range=.35, sweeps=8, temperature=1,
@@ -562,6 +638,8 @@ def generate_joint_hc(profile, domain, seed, max_cells, options=None):
                 "mask_source_id": domain.mask_source_id,
                 "mask_identity": profile.config.get("tissue_mask_identity", domain.mask_source_id),
                 "generator_options": resolved}
+    if isinstance(domain, RadialMaskedHCDomain):
+        identity['source_radial_mask_radius_mm'] = domain.source_radius_mm
     instance_hash = _json_hash(identity)
     instance_id = profile.profile_id + ":" + instance_hash[:24]
     random = keyed_rng(seed, "HC-instance:" + instance_hash)
@@ -582,7 +660,7 @@ def generate_joint_hc(profile, domain, seed, max_cells, options=None):
         raise ContractError("HC_EXACT_COINCIDENCE: reject duplicate initialization rather than permit a zero-distance pair")
     labels = np.array(labels, dtype="<U2")
     cell_partitions = np.array(cell_partitions, dtype=np.int64)
-    conservative = profile.bounds_for_rectangle(domain.bounds_mm)
+    conservative = _domain_density_bounds(profile, domain, domain.bounds_mm)
     ref1, ref2 = profile.reference_density
     maximum_interaction = float(np.max(profile.reference_lengths_mm * np.sqrt([
         ref1 / conservative["H1_min"], ref2 / conservative["H2_min"],

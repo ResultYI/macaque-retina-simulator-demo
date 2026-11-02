@@ -1,0 +1,77 @@
+{
+  "schema": "current-HC-density-and-contact-selection-v2",
+  "selected_profile_id": "macaque_hc_density_rf_joint_v2",
+  "bindings": {
+    "hc_mosaic.py": {
+      "path": "retina_sim/hc_mosaic.py",
+      "sha256": "ef7e4db6c10bda13daaa22c17566f83af434a2aef41168edbfcd25eb531c5b5a"
+    },
+    "atlas_hc.py": {
+      "path": "retina_sim/atlas_hc.py",
+      "sha256": "748f01a3df1991be52953fb3a7c0eccb191efd2bd24fe49221127ee5a49d6637"
+    },
+    "atlas_hc_master.py": {
+      "path": "retina_sim/atlas_hc_master.py",
+      "sha256": "316db07b09bbb9cedc5b7c263cc3832c3f4bc7c9151bc9ea6572825d102f98fe"
+    },
+    "disk_hc_functional.py": {
+      "path": "retina_sim/disk_hc_functional.py",
+      "sha256": "f1406574b602b3deefdae98836089f949271f14e86ea8403982062fb63b2f342"
+    },
+    "h1_h2_effective.py": {
+      "path": "retina_sim/h1_h2_effective.py",
+      "sha256": "2b61531c66bfa954b76574e9d757c592bd7ed99e3e005ce9bfda6e8805b762a4"
+    },
+    "local_patch_graph.py": {
+      "path": "retina_sim/local_patch_graph.py",
+      "sha256": "08653958e2e26baf8a18f3038752e0cdddaa8a3d5e5c27c27871cfc92985e145"
+    },
+    "disk_runtime.py": {
+      "path": "retina_sim/disk_runtime.py",
+      "sha256": "e7e690fd414a3b932e94030fc78fd5756eaa7d071a969cd6a137d7a5176625f4"
+    },
+    "disk_source_geometry.py": {
+      "path": "retina_sim/disk_source_geometry.py",
+      "sha256": "f6fb65606f23492bdf82e654b4157dfd2706e81a9bcf721fb90a1813f6a1b528"
+    },
+    "hc_current.py": {
+      "path": "retina_sim/hc_current.py",
+      "sha256": "d293dec09b2fab334f91d34f286bd4244ee9122f6216e216aeee3d832e8bf9d9"
+    },
+    "hc_joint_v2.py": {
+      "path": "retina_sim/hc_joint_v2.py",
+      "sha256": "82c835d365b5284232704987b7d53df5427768ac7c77371621d3ae221aeadc28"
+    },
+    "hc_joint_v2_geometry.py": {
+      "path": "retina_sim/hc_joint_v2_geometry.py",
+      "sha256": "2bf70cc5a94d8cf6f4c78b4356e8ab2640347ef6c00e1228da3aa4575dd6199d"
+    },
+    "parameters": {
+      "path": "configurations/hc_density_rf_joint_v2_owner_support_v1.json",
+      "sha256": "20a309da6062dc6bffeccde95140464f7832b22e68f435a96624c4dc24166a7f"
+    },
+    "connection_parameters": {
+      "path": "configurations/hc_joint_v2_contacts.json",
+      "sha256": "57922b7d363452a5f53abc268e4b03e47c383b41e2c012fb0b52e683e0019f2d"
+    },
+    "owner_support": {
+      "path": "configurations/research/GIN69_OWNER_SUPPORT_V2.json",
+      "sha256": "262272308ad45d53e3ca7f183a52967a69e3f020903a77c7403c29de725a921b"
+    }
+  },
+  "connection_configuration": "configurations/hc_joint_v2_contacts.json",
+  "master_configuration": "configurations/research/HC69_owner_support_v2_master.json",
+  "implementation_selected": true,
+  "old_assets_policy": "Keep old data/coordinates/IDs/graphs/results; require current density+geometry identity before new use",
+  "source_original_attachments_materialized": false,
+  "FIT_READY": false,
+  "background_qualified": false,
+  "production_adopted": false,
+  "geometry_variant": "HC_C1_inner_join_058_060_v1",
+  "central_contact_transition_mm": [
+    0.58,
+    0.6
+  ],
+  "asset_status_report": "reports/GIN_69_6_HC2_BC1_SUPPORT_V2/CURRENT_ASSEMBLY_STAGE.json",
+  "owner_support_identity": "e79c561983edfb62b6c40c6448fef77c22a0b47d1bacd45475060ed8b2953fd9"
+}

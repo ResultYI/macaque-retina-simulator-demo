@@ -38,6 +38,14 @@ def _verified_base(repo_root, config):
             or not path.is_file() or digest(path) != config['source_artifact']['sha256']):
         raise ContractError('Local patch parent artifact binding differs')
     base = GroupModelAssembly(path.parent)
+    from .hc_current import require_current_hc_asset
+    hc_source=json.loads((root/base.manifest['populations']['HC']['source_table']['path']).read_bytes())
+    require_current_hc_asset(root,hc_source.get('source_bindings',{}))
+    from .bc_current import POPULATIONS,current_bc,require_current_bc_tables
+    if current_bc(root) is not None:
+        bc_sources={name:json.loads((root/base.manifest['populations'][name]['source_table']['path']).read_bytes())
+                    for name in POPULATIONS}
+        require_current_bc_tables(root,bc_sources)
     if config['eccentricity_deg'] > base.manifest['configuration']['output_radius_deg']:
         raise ContractError('Requested RF eccentricity exceeds parent output scope')
     return base

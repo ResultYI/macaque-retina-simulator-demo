@@ -39,6 +39,9 @@ def make_hc_soma_density(root):
     """
     config, _ = _configuration(root)
     profile = HCDensityProfile(root)
+    from .hc_current import JOINT_ID
+    if profile.profile_id==JOINT_ID:
+        return profile
     rows = json.loads((Path(root) / config["verified_density_rows_path"]).read_bytes())["rows"]
     table2 = [row for row in rows if row["source_object"] == "Table 2"]
     original_rows = []
@@ -71,6 +74,12 @@ class AtlasHCProvider:
         self.root = Path(root)
         self.config, self.profile_sha256 = _configuration(root)
         self.density = make_hc_soma_density(root)
+        from .hc_current import JOINT_ID
+        if self.density.profile_id==JOINT_ID:
+            self.profile_sha256=self.density.profile_hash
+            self.maximum_envelope_mm=max(float(self.density.contact_radius_mm(1.338,k)) for k in ('H1','H2'))
+            self.verified_density_rows=()
+            return
         self.verified_density_rows = tuple(deepcopy(json.loads(
             (self.root / self.config["verified_density_rows_path"]).read_bytes())["rows"]))
         peripheral = self.config["peripheral"]
@@ -96,6 +105,12 @@ class AtlasHCProvider:
             raise ContractError("Unknown HC candidate mode or candidate flag")
         if enable_central_candidate and mode != "connection_preview":
             raise ContractError("Inward central candidate is available only in explicit connection_preview mode")
+        from .hc_current import JOINT_ID
+        if self.density.profile_id==JOINT_ID:
+            from .hc_joint_v2_geometry import footprints as joint_footprints
+            return joint_footprints(self.density,ids,types,xy,mode=mode,
+                enable_central_candidate=enable_central_candidate,pedicle_density=pedicle_density,
+                morphology=morphology_by_hc_id)
         density_mode = density_mode or ("actual_local_pedicle_density" if pedicle_density is not None
                                         else "source_reported_local_density_project_transfer")
         if density_mode not in ("actual_local_pedicle_density", "source_reported_local_density_project_transfer"):
