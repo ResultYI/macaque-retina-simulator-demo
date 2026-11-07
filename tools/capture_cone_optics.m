@@ -71,7 +71,7 @@ if ~withEyeMovements
             filtered=conv2(cm.absorptionsDensityFullMap(:,:,type),kernels{g},'same');
             F=griddedInterpolant(support,filtered,'linear','none');
             xy=cm.coneRFpositionsMicrons(cells,:);
-            area=pi*(.5*diameters(cells)*1e-6).^2;
+            area=cm.computeApertureAreasMetersSquared(cells);area=area(:);
             % Native sampling stores the area product in a double array before OS/time scaling.
             counts(cells)=double(F([xy(:,2) xy(:,1)]).*area)'.*os(cells)*cm.integrationTime;
         end
@@ -116,7 +116,7 @@ for g=1:numel(groups)
             F=griddedInterpolant(support,filtered,'linear','none');
             xx=x(selected,:); yy=y(selected,:);
             density=reshape(F([yy(:) xx(:)]),numel(cells),samples);
-            area=pi*(.5*diameters(cells)*1e-6).^2;
+            area=cm.computeApertureAreasMetersSquared(cells);area=area(:);
             substepCounts(:,cells)=(density.*area.*os(cells)')'*(cm.integrationTime/samples);
         end
         value=sum(substepCounts,1);

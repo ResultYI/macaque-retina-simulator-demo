@@ -48,8 +48,8 @@ class GroupRecording:
         self.artifactidentity = assembly.artifact_sha256 if artifactidentity is None else deepcopy(artifactidentity)
         self.fields = tuple(assembly.recording_fields)
         self.field_by_key = {f.key:f for f in self.fields}
-        if len(self.field_by_key) != 45:
-            raise ContractError('All 45 existing group observation fields are required')
+        if len(self.field_by_key) != getattr(assembly, 'recording_field_count', 45) or len(self.field_by_key) != len(self.fields):
+            raise ContractError('Complete unique declared group observation fields are required')
         components, self.rows = {}, {}
         subtype_cache={}
         def subtypes(pop):
@@ -80,7 +80,7 @@ class GroupRecording:
             else:
                 original = np.asarray(original,dtype=np.int64)
                 if (original.shape != rows.shape or not np.array_equal(layout.fine_to_group[original],rows)):
-                    raise ContractError('Original auxiliary row/group mapping differs')
+                    raise ContractError('Original auxiliary row/group mapping differs: '+field.key)
                 ids = [g+'|original_row:'+str(int(r)) for g,r in zip(group_ids,original)]
                 if hasattr(layout,'source_positions_mm'):
                     xy = np.asarray(layout.source_positions_mm)[original]
@@ -108,6 +108,11 @@ class GroupRecording:
                     member_global_rows='populations/'+pop+'/member_global_rows.npy',
                     counts='populations/'+pop+'/counts.npy'),
                 coordinate_role=role)
+            if role == 'effective_functional_RF_pool_not_anatomical_AC':
+                port['member_mapping'] = dict(kind='effective_pool_per_target_group',
+                    target_population=layout.source_table['target_population'],
+                    interpretation='functional pool; no anatomical AC member trajectories')
+                port['selection'] = 'all computed effective functional pools'
             component['ports'][field.name] = port
             self.rows[field.key] = rows
         self.components = list(components.values())

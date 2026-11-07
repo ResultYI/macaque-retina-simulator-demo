@@ -38,6 +38,8 @@ from .ac_vs_model import ACVSInner, MECHANISM, LEGACY_S
 class CompiledACVSInnerRHS(CompiledGroupInnerRHS):
     """Same source equations on the full new V+s layout; no old-h substitution."""
     def __init__(self, model, *, repo_root=None):
+        from .aii_functional import FunctionalAIIInner, COMPONENTS, S_KEY
+        functional_aii = isinstance(model, FunctionalAIIInner)
         global _rod_dispatcher
         root = Path(repo_root).resolve() if repo_root is not None else Path(__file__).resolve().parents[1]
         sources = guard_source_dependencies(root)
@@ -80,7 +82,8 @@ class CompiledACVSInnerRHS(CompiledGroupInnerRHS):
         def sigmoid(x):return p.unary(SIGMOID,x)
         voltages = {pop:mem(pop,'V') for pop in ('rods','rod_BC','AII_AC')}
         voltages.update({pop:bc(pop,'V') for pop in BC})
-        release = {pop:mem(pop,'release') for pop in ('rods','rod_BC','AII_AC')}
+        membrane_pops = ('rods','rod_BC') if functional_aii else ('rods','rod_BC','AII_AC')
+        release = {pop:mem(pop,'release') for pop in membrane_pops}
         ribbon_gates = {}
         def ribbon_gate(pop):
             # Share plan Refs only; each RHS still computes its current voltage gate.
@@ -88,7 +91,7 @@ class CompiledACVSInnerRHS(CompiledGroupInnerRHS):
                 ribbon_gates[pop]=sigmoid((voltages[pop]-par(pop,'r_half'))/par(pop,'r_slope',positive=True))
             return ribbon_gates[pop]
         rates = {}
-        for pop in ('rod_BC','AII_AC'):
+        for pop in (('rod_BC',) if functional_aii else ('rod_BC','AII_AC')):
             rate = par(pop,'Npool',positive=True)*par(pop,'U',positive=True)*par(pop,'rmax',positive=True)*ribbon_gate(pop)*mem(pop,'x')
             rates[pop]=p.check(rate,NONNEG)
         activation = {}
@@ -115,6 +118,11 @@ class CompiledACVSInnerRHS(CompiledGroupInnerRHS):
             activation[pop] = s
         conductances,kinetics={},{}
         for c, row in model.contacts.items():
+            if functional_aii and c in COMPONENTS:
+                source = release['rod_BC'] if c == COMPONENTS[0] else state[S_KEY]
+                value = p.csr(model.K[c],source)
+                conductances[c] = p.check(value,NONNEG)
+                continue
             coefficient=constant(('coefficient',c),row['coefficient'])
             if c=='individual_rod_RBC_contacts':
                 value=coefficient*contact(c,'m')
@@ -145,7 +153,15 @@ class CompiledACVSInnerRHS(CompiledGroupInnerRHS):
         gap=-gap_product
         gap_currents={pop:Ref(p,gap.offset+s.start,s.stop-s.start) for pop,s in model.gap_slices.items()}
         derivatives={}
-        for pop in ('rods','rod_BC','AII_AC'):
+        if functional_aii:
+            pop = 'AII_AC'
+            V, s = voltages[pop], state[S_KEY]
+            p.check(s+1e-10,NONNEG); p.check(1+1e-10-s,NONNEG)
+            current = constant(('gL',pop),model.gL[pop])*(par(pop,'EL')-V)
+            current = current+conductances[COMPONENTS[0]]*(par(pop,'EE')-V)+gap_currents[pop]
+            derivatives[pop,MEMBRANE,'V'] = current/constant(('C',pop),model.C[pop])
+            derivatives[S_KEY] = (sigmoid((V-par(pop,'release_half'))/par(pop,'release_slope',positive=True))-s)/par(pop,'tau_release',positive=True)
+        for pop in membrane_pops:
             V,rel=voltages[pop],release[pop]
             gL=constant(('gL',pop),model.gL[pop]);C=constant(('C',pop),model.C[pop])
             current=gL*(par(pop,'EL')-V)
@@ -206,6 +222,8 @@ class CompiledACVSInnerRHS(CompiledGroupInnerRHS):
             V=state[pop,RGC_MECH,'V']
             derivatives[pop,RGC_MECH,'V']=(constant(('gL',pop),model.gL[pop])*(par(pop,'EL')-V)+ge*(par(pop,'EE')-V)+gi*(par(pop,'EI')-V))/constant(('C',pop),model.C[pop])
         for c,row in model.contacts.items():
+            if functional_aii and c in COMPONENTS:
+                continue
             if c=='individual_rod_RBC_contacts':
                 drive=p.take(release['rods'],row['pre']);p.check(drive,NONNEG)
                 target=sigmoid(-cp(c,'hill',positive=True)*p.unary(LOG,p.binary(MAXIMUM,drive,np.finfo(float).tiny)/cp(c,'K',positive=True)))

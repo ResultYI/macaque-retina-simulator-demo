@@ -1,0 +1,15 @@
+{
+  "schema": "cone_hc_h2_priority_research",
+  "research_only": true,
+  "production_qualified": false,
+  "execution_mode": "local_cpu",
+  "base_configuration": "configurations/research/cone_hc_eccentric.json",
+  "H2_configuration": "configurations/research/H2_S_priority.json",
+  "assets_directory": "reports/CONE_HC_FINAL_IMPLEMENTATION_2026-11-02/h2_priority_assets",
+  "representative_H2_group": 18,
+  "exterior_interface": "existing_FixedFeedbackCone_selected_two_S_members",
+  "exterior_stimulus_scope": "current dynamic Cone members plus every missing source of the audited representative H2; other exterior sources retain their declared background",
+  "fullchain_duration_seconds": 0.05,
+  "FIT_READY": false,
+  "limitations": "borrowed gamma_S=10; model-internal isolation, fixed exterior HC feedback, no central spatial or spectral-radiance calibration"
+}

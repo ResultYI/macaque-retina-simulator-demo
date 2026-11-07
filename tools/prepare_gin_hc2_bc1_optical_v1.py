@@ -16,7 +16,8 @@ ROOT=Path(r'D:\macaque retinal simulator')
 OUT=ROOT/'reports/GIN_69_6_HC2_BC1_FIT_V1'
 OLD=ROOT/'reports/GIN_69_6_RADIAL_CONDITIONAL_V1/candidate_v2'
 
-def build(output,guard):
+def build(output,guard,*,source_out=OUT):
+    OUT=Path(source_out)
     start=time.perf_counter();folder=OUT/'optical'
     if folder.exists():raise RuntimeError('Existing optical request retained')
     base=GroupModelAssembly(ROOT/'reports/spatial_group_graph_v02_20261025_v1/artifact_r2')
@@ -26,9 +27,11 @@ def build(output,guard):
     fine=np.concatenate([pop.member_global_rows[pop.member_offsets[g]:pop.member_offsets[g+1]] for g in groups])
     cone=FrozenDiskTable(ROOT,pop.source_table);xy=np.asarray(cone.coordinates['rf'][fine])
     types=cone.extras['subtype'][fine].astype('U1')
-    profile=json.loads((ROOT/'configurations/research/macaque_cone_aperture_eccentricity_v1.json').read_bytes())
-    apertures=resolve_apertures(tuple('actual_fine_cone_row_'+str(i) for i in fine),types,xy,profile)
+    profile=json.loads((ROOT/'configurations/isetbio_native_cone_aperture_v1.json').read_bytes())
+    apertures=resolve_apertures(tuple('actual_fine_cone_row_'+str(i) for i in fine),types,xy,profile,support_positions_mm=cone.coordinates['rf'])
     cfg=deepcopy(json.loads((OLD/'optical/CONFIG.json').read_bytes()))
+    cfg['aperture_profile_sha256']=canonical_hash(profile)
+    cfg['aperture_model']=profile['profile_id']
     center=(xy.min(0)+xy.max(0))/2
     samples=int(np.ceil(np.max(xy.max(0)-xy.min(0))*1000+100));samples+=samples%2==0
     if samples>1024:raise RuntimeError('Existing optical tile limit exceeded; needs existing tiling adapter, no reduced resolution')

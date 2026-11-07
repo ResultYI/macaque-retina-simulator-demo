@@ -1,0 +1,13 @@
+{
+  "schema": "HC_biexponential_functional",
+  "coordinate_frame": "OPL_pedicle_mm",
+  "tail_mass_budget": 0.0001,
+  "H1": {
+    "lambda_s_um": 20.0,
+    "lambda_l_um": 300.0,
+    "w_s": 0.15,
+    "source": "User-approved final functional spatial operator, 2026-11-02; generic scales from van Hateren 2007",
+    "evidence_class": "effective functional operator; both components on existing finite L/M support; no new anatomical synapses; central physiology uncalibrated"
+  },
+  "H2": null
+}

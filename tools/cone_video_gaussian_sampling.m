@@ -1,5 +1,5 @@
 function [matrix,area,diagnostic]=cone_video_gaussian_sampling(mosaic,xy,diameters,zones,x,y)
-% Fixed Gaussian convolution plus bilinear interpolation, restricted to actual cones.
+% Compatibility entry name; native Pillbox kernels and areas at actual Cone positions.
 n=size(xy,1);height=numel(y);width=numel(x);dx=x(2)-x(1);dy=y(2)-y(1);
 zones=zones(:);diameters=diameters(:);
 assert(dx>0 && dy>0 && abs(dx-dy)<1e-6*dx);
@@ -7,11 +7,12 @@ col=(xy(:,1)-x(1))/dx+1;row=(xy(:,2)-y(1))/dy+1;
 col0=floor(col);row0=floor(row);fx=col-col0;fy=row-row0;
 rowParts={};columnParts={};weightParts={};at=0;kernelSums=[];
 [area,restoreNative]=cone_native_aperture(mosaic,diameters, ...
-    struct('shape','Gaussian','sigma',.204)); %#ok<NASGU>
-for d=unique(zones(:))'
-    assert(ceil(2*d/dx)>=3,'ConeVideo:Sampling','Aperture would be skipped');
-    kernel=mosaic.generateApertureKernel(d,dx,false);kernel=kernel/sum(kernel(:));
-    selected=find(zones==d);ry=(size(kernel,1)-1)/2;rx=(size(kernel,2)-1)/2;
+    struct('shape','Pillbox')); %#ok<NASGU>
+assert(isequal(zones,diameters),'ConeVideo:Diameter','Rounded/custom kernel zones are retired');
+[groups,kernels,representatives]=native_cone_kernel_groups(mosaic,diameters,dx);
+for g=1:numel(groups)
+    d=representatives(g);kernel=kernels{g};
+    selected=groups{g};ry=(size(kernel,1)-1)/2;rx=(size(kernel,2)-1)/2;
     assert(all(row0(selected)>ry & row0(selected)+1+ry<=height & ...
                col0(selected)>rx & col0(selected)+1+rx<=width),'ConeVideo:Coverage','Missing optical halo');
     for iy=1:size(kernel,1)

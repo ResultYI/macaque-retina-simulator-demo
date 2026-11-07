@@ -1,0 +1,27 @@
+{
+  "mode": "retinal_spectral",
+  "qualification": "conditional_reconstruction",
+  "input_identity": null,
+  "radiometry_source": null,
+  "optics_source": "Pinned ISETCam 17146a9f0470cc89b58d583851f680187268506d and ISETBio d2924c2fe1d41c7dc5af1006d8081735b08f1b35; existing shared human-MW optics",
+  "coordinate_frame": "functional_visual_field",
+  "retinal_reference_id": "composite_macaque_nasal_positive_superior_positive_planar_v1",
+  "coordinate_registration": "Existing nominal retinal mm chart; +x nasal, +y superior; optical centre and axis orientation must be supplied",
+  "factors_already_in_irradiance": ["pupil_geometry", "lens_transmittance"],
+  "photon_noise": "none",
+  "temporal_semantics": "window_mean_zero_order_hold",
+  "aperture_species": null,
+  "efficiency_species": null,
+  "spatial_kernel_source": null,
+  "exterior_background_source": null,
+  "absolute_calibration": null,
+  "unresolved_assumptions": [
+    "Original CRT absolute spectral radiometry is unavailable; 222.2 td scaling is conditional",
+    "No adopted Rod collecting area/aperture quadrature",
+    "No adopted absolute Rod absorptance and isomerization yield on the OI wavelength grid",
+    "Rod macular transmission must be explicitly supplied after raw OI optics"
+  ],
+  "legacy_mode": "Existing seed rod_inputs remains unchanged unless bind_rod_capture is explicitly called",
+  "legacy_formula": "5 * (u / 0.5) R*/rod/s; engineering only",
+  "formal_adoption": false
+}

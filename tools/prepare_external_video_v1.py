@@ -25,6 +25,10 @@ def prepare(out):
     if not np.array_equal(edges,np.arange(121)/30) or plan['media']['fps']!=30 or plan['media']['frame_count']!=447:
         raise ContractError('Frozen 0..4s timeline differs; do not choose new timing')
     with np.load(VIDEO/'geometry.npz',allow_pickle=False) as z:g={k:z[k] for k in z.files}
+    from retina_sim.native_cone_apertures import PROFILE,native_apertures
+    support=np.load(ROOT/'data/atlas/human_disk3mm_typed_tables_v1/cones/rf.npy')
+    native_diameters,_=native_apertures(support)
+    g['apertures_um']=native_diameters[g['source_table_rows']]
     index={int(row):i for i,row in enumerate(g['source_table_rows'])};position_rows={}
     for label,paths in locations().items():
         with np.load(paths['optical']/'APERTURE_GEOMETRY.npz',allow_pickle=False) as z:
@@ -44,7 +48,7 @@ def prepare(out):
     for p in (VIDEO/'optics_cache').glob('otf_*.mat'):pins[str(p.relative_to(ROOT))]=digest(p)
     if len(list((VIDEO/'optics_cache').glob('otf_*.mat')))!=101:raise ContractError('Frozen wave cache incomplete')
     names=['export_cone_video_aperture_tile.m','export_cone_video_aperture_batch.m','cone_video_cached_oi.m',
-        'cone_video_gaussian_sampling.m','cone_native_aperture.m','cone_optics_mosaic.m','matlab/sample_cone_aperture_zones.m']
+        'native_cone_kernel_groups.m','cone_video_gaussian_sampling.m','cone_native_aperture.m','cone_optics_mosaic.m','matlab/sample_cone_aperture_zones.m']
     for name in names:pins['tools/'+name]=digest(ROOT/'tools'/name)
     tasks=[];jobs=[]
     for tile in optical_tiles(g['xy_mm'][union]):
@@ -54,13 +58,14 @@ def prepare(out):
         wanted=union[tile['indices']];mask=np.isin(old_rows,wanted);rows=old_rows[mask]
         if not np.array_equal(np.sort(rows),wanted):raise ContractError('Original tile ownership differs')
         folder=out/('tile_%d_%d'%tuple(key));folder.mkdir();np.save(folder/'global_rows.npy',rows)
-        data={k:raw[k].reshape((-1,2) if k=='is_mm' else (-1,1))[mask] for k in ['is_mm','types','reference_diameter_um','zone_diameter_um']}
+        data={k:raw[k].reshape((-1,2) if k=='is_mm' else (-1,1))[mask] for k in ['is_mm','types']}
+        data.update(reference_diameter_um=g['apertures_um'][rows],zone_diameter_um=g['apertures_um'][rows])
         savemat(folder/'geometry.mat',data,do_compression=True)
         tile_id=canonical_hash(dict(original_tile=config['tile_signature'],rows=rows,geometry=data,
             aperture_native_sources={k:v for k,v in pins.items() if k.startswith('tools/')}))
         for first in range(0,120,16):
             stop=min(first+16,120);directory=folder/f'frames_{first:03d}_{stop-1:03d}';directory.mkdir()
-            c=deepcopy(config);c.update(geometry_mat=str(folder/'geometry.mat'),tile_signature=tile_id,
+            c=deepcopy(config);c.update(aperture_model=PROFILE['profile_id'],aperture_profile_sha256=canonical_hash(PROFILE),geometry_mat=str(folder/'geometry.mat'),tile_signature=tile_id,
                 frame_indices=list(range(first+1,stop+1)),window_edges_seconds=edges[first:stop+1].tolist(),
                 native_control=bool(config['native_control'] and first==0))
             c['request_signature']=canonical_hash(dict(parent=original['request_signature'],new_configuration=c,source_pins=pins))

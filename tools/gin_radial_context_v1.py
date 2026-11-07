@@ -19,8 +19,8 @@ def optical_setup():
     group=base.root/'populations/cones';offset=np.load(group/'member_offsets.npy');members=np.load(group/'member_global_rows.npy')
     fine=np.concatenate([members[offset[r]:offset[r+1]] for r in local.parent_population_rows['cones']])
     table=ROOT/base.manifest['populations']['cones']['source_table']['path'];xy=np.load(table.parent/'rf.npy')[fine]
-    types=np.load(table.parent/'subtype.npy')[fine].astype('U1');profile=read(ROOT/'configurations/research/macaque_cone_aperture_eccentricity_v1.json')
-    aperture=resolve_apertures(tuple('actual_fine_cone_row_'+str(i) for i in fine),types,xy,profile)
+    types=np.load(table.parent/'subtype.npy')[fine].astype('U1');profile=read(ROOT/'configurations/isetbio_native_cone_aperture_v1.json')
+    aperture=resolve_apertures(tuple('actual_fine_cone_row_'+str(i) for i in fine),types,xy,profile,support_positions_mm=np.load(table.parent/'rf.npy'))
     savemat(out/'geometry.mat',dict(is_mm=xy,types=np.array([{'L':1,'M':2,'S':3}[t] for t in types]),reference_diameter_um=aperture['reference_diameter_um'],zone_diameter_um=aperture['zone_diameter_um']),do_compression=True)
     np.savez_compressed(out/'APERTURE_GEOMETRY.npz',**aperture,fine_rows=fine,local_group_counts=local.populations['cones'].counts)
     oldref=ROOT/'reports/iset_disk_input_cache/79384a1477b0b3c11fdce71169c4cda04ed23c0340d5576ef3469039de34f6d7/reference/capture.mat'
@@ -35,7 +35,7 @@ def optical_setup():
     target=np.asarray(g['target_centroid_deg'])*.223;pitch=.223*4.6/256
     imagecenter=target-np.array([binding['source_RF_fractional_column']-127.5,-(binding['source_RF_fractional_row']-127.5)])*pitch
     half=127.5*pitch
-    c=dict(profile=p,geometry_mat=str(out/'geometry.mat'),center_mm=center,source_bank=str(BASE/'SOURCE_BANK.mat'),
+    c=dict(aperture_model=profile['profile_id'],profile=p,geometry_mat=str(out/'geometry.mat'),center_mm=center,source_bank=str(BASE/'SOURCE_BANK.mat'),
         source_gun_spectra=str(ROOT/'data/source_packages/WP1_20261031/Schottdorf_Lee_xage77/stimuli/GunSpectra.txt'),
         mean_gamma_RGB=scale['mean_gamma_RGB'],reference_rgb=scale['background_rgb'],samples=samples,
         patch_fov_deg=float(np.degrees(2*np.arctan(samples*.001e-3/(2*f)))),exposure_seconds=1/150,

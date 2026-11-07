@@ -1,0 +1,13 @@
+{
+  "schema": "HC_biexponential_candidate_v1",
+  "coordinate_frame": "OPL_pedicle_mm",
+  "tail_mass_budget": 0.0001,
+  "H1": {
+    "lambda_s_um": 20.0,
+    "lambda_l_um": 300.0,
+    "w_s": 0.15,
+    "source": "van Hateren 2007, doi:10.1167/7.3.3, Eq.4 and Table 1 p.12",
+    "evidence_class": "published generic model reference; transfer to central OPL geometry uncalibrated; anatomical narrow mask is a project adaptation"
+  },
+  "H2": null
+}

@@ -90,6 +90,9 @@ class GroupInnerDynamics:
     quantities. C and gL are multiplied by group member counts here, exactly
     once. Contact coefficient arrays already contain physical grouped totals.
     """
+    membrane_populations = ('rods', 'rod_BC', 'AII_AC')
+    dynamic_contact_components = CONTACTS
+
     def __init__(self, assembly, parameters):
         self.assembly = assembly
         self.parameters = parameters
@@ -128,6 +131,8 @@ class GroupInnerDynamics:
         self.routes = tuple(assembly.routes.values())
         self.mean = {r.name: assembly.matrix('routes/'+r.name+'/mean_weights.npz')
                      for r in self.routes if r.kind == 'inner_chemical'}
+        self.bc_routes = {pop: next(r for r in self.routes if r.pre == 'cones' and r.post == pop)
+                          for pop in BC}
         self.contacts = {}
         for route in self.routes:
             if not route.contact_component:
@@ -239,10 +244,17 @@ class GroupInnerDynamics:
         normalization = np.exp(-peak_time/decay)-np.exp(-peak_time/rise)
         return rise, decay, normalization
 
+    def contact_conductance(self, state, component):
+        c = self.contacts[component]
+        if component == 'individual_rod_RBC_contacts':
+            return c['coefficient']*self._contact(state, component, 'm')
+        _, _, norm = self._kinetics(state, component)
+        return c['coefficient']*(self._contact(state, component, 'b')-self._contact(state, component, 'a'))/norm
+
     def outputs(self, t, state, cone_release=None):
         self.validate(state)
         out = {}
-        for pop in ('rods', 'rod_BC', 'AII_AC'):
+        for pop in self.membrane_populations:
             V, rel = self._mem(state, pop, 'V'), self._mem(state, pop, 'release')
             out[pop, 'voltage'], out[pop, 'release'], out[pop, 'activation'] = V, rel, rel
             if pop != 'rods':
@@ -258,11 +270,7 @@ class GroupInnerDynamics:
             out[pop, 'unadapted_release'], out[pop, 'adaptation_activity'] = rel, A
             out[pop, 'generator_activation'] = self._bc(state, pop, 'activation')
         for component, c in self.contacts.items():
-            if component == 'individual_rod_RBC_contacts':
-                conductance = c['coefficient']*self._contact(state, component, 'm')
-            else:
-                _, _, norm = self._kinetics(state, component)
-                conductance = c['coefficient']*(self._contact(state, component, 'b')-self._contact(state, component, 'a'))/norm
+            conductance = self.contact_conductance(state, component)
             if np.any(conductance < -1e-18) or not np.isfinite(conductance).all():
                 raise ContractError('Negative/nonfinite physical contact conductance; no clipping')
             out[component, 'contact_conductance'] = conductance
@@ -273,7 +281,7 @@ class GroupInnerDynamics:
             out[pop, 'gap_current'] = currents[section]
         for pop in BC:
             if cone_release is not None:
-                r = next(r for r in self.routes if r.pre == 'cones' and r.post == pop)
+                r = self.bc_routes[pop]
                 value = np.asarray(cone_release, dtype=np.float64)
                 if value.shape != (self.counts['cones'],) or not np.isfinite(value).all() or np.any(value < 0):
                     raise ContractError('Current original Cone release required at BC commit')
@@ -323,7 +331,7 @@ class GroupInnerDynamics:
     def rhs(self, t, state, cone_release=None, rod_current=None):
         out = self.outputs(t, state, cone_release)
         result = {k: np.zeros_like(state[k]) for k in self.state_keys}
-        for pop in ('rods', 'rod_BC', 'AII_AC'):
+        for pop in self.membrane_populations:
             V, rel = self._mem(state, pop, 'V'), self._mem(state, pop, 'release')
             current = self.gL[pop]*(self.par(pop, 'EL')-V)+out.get((pop, 'gap_current'), 0.)
             if pop == 'rods':
@@ -356,7 +364,8 @@ class GroupInnerDynamics:
         for pop in RGC:
             V = state[key(pop, RGC_MECH, 'V')]
             result[key(pop, RGC_MECH, 'V')] = (self.gL[pop]*(self.par(pop, 'EL')-V)+out[pop, 'gE']*(self.par(pop, 'EE')-V)+out[pop, 'gI']*(self.par(pop, 'EI')-V))/self.C[pop]
-        for component, c in self.contacts.items():
+        for component in self.dynamic_contact_components:
+            c = self.contacts[component]
             if component == 'individual_rod_RBC_contacts':
                 drive = out['rods', 'release'][c['pre']]
                 if np.any(drive < 0):

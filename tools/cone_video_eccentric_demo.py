@@ -1,4 +1,4 @@
-"""Full 0-6 degree frozen-cone video using the existing D(e) Gaussian aperture profile."""
+"""Full 0-6 degree frozen-cone video using native ISETBio Cone apertures."""
 from pathlib import Path
 import argparse
 from concurrent.futures import ThreadPoolExecutor
@@ -25,9 +25,7 @@ from tools.cone_video_demo import frame_timeline
 def prepare(out,media_path):
     if (out/'capture_plan.json').exists():raise FileExistsError('Preserve existing capture plan')
     profile=json.loads((ROOT/'configurations/iset_lcd_apple_mw_v1.json').read_bytes())
-    aperture=json.loads((ROOT/'configurations/research/macaque_cone_aperture_eccentricity_v1.json').read_bytes())
-    descriptor=json.loads((ROOT/'configurations/research/CONE_MACAQUE_APERTURE_FUNCTIONAL_V1.json').read_bytes())
-    assert canonical_hash(aperture)==descriptor['aperture_profile_sha256']
+    aperture=json.loads((ROOT/'configurations/isetbio_native_cone_aperture_v1.json').read_bytes())
     table_path=ROOT/'data/atlas/human_disk3mm_typed_tables_v1/cones/manifest.json'
     table=json.loads(table_path.read_bytes());arrays={}
     for name,binding in [('xy',table['coordinates']['rf']),('types',table['extras']['subtype']),('source_keys',table['source_keys'])]:
@@ -37,10 +35,10 @@ def prepare(out,media_path):
     metadata=table['metadata']
     ids=[global_cell_id(metadata['atlas_id'],metadata['atlas_version'],metadata['source_version'],
                         'cones',str(arrays['source_keys'][i])) for i in selected]
-    resolved=resolve_apertures(ids,types,xy,aperture)
+    resolved=resolve_apertures(ids,types,xy,aperture,support_positions_mm=arrays['xy'])
     assert len(ids)==190498 and np.all(resolved['eccentricity_degrees']<=6.)
     np.savez_compressed(out/'geometry.npz',xy_mm=xy,cell_ids=np.asarray(ids),types=types,
-        apertures_um=resolved['reference_diameter_um'],sigma_um=resolved['sigma_um'],
+        apertures_um=resolved['reference_diameter_um'],
         effective_area_m2=resolved['effective_area_m2'],eccentricity_deg=resolved['eccentricity_degrees'],
         evidence_class=resolved['evidence_class'],source_table_rows=selected)
     geometry=dict(center_deg=[0.,0.],radius_deg=6.,diameter_deg=12.,count=len(ids),
@@ -48,8 +46,8 @@ def prepare(out,media_path):
         density_species=table['source_bindings']['density_species'],S_rule=table['source_bindings']['S_rule'],
         frozen_table_manifest_sha256=digest(table_path),aperture_profile_sha256=canonical_hash(aperture),
         diameter_range_um=[float(resolved['reference_diameter_um'].min()),float(resolved['reference_diameter_um'].max())],
-        aperture='Gaussian sigma=.204*D(e); exact2*pi*sigma^2 per cone;0.05um kernel zones',
-        aperture_evidence='Near-field M838 radial summary; above0.75deg engineering density-change transfer',
+        aperture='Native ISETBio Pillbox aperture and area; exactly equal native kernels share sampling',
+        aperture_evidence='Pinned cMosaic.computeConeApertures on complete source support',
         no_geometry_regeneration=True,physiological_validation=False)
     (out/'geometry.json').write_text(json.dumps(geometry,indent=2),encoding='utf8')
     media_sha=digest(media_path);frames=[];receipts=[]
@@ -73,8 +71,9 @@ def prepare(out,media_path):
         'tools/cone_video_cached_oi.m','tools/cone_video_gaussian_sampling.m','tools/cone_optics_mosaic.m',
         'tools/matlab/sample_cone_aperture_zones.m','tools/cone_native_aperture.m',
         'tools/cone_video_eccentric_demo.py',
-        'retina_sim/cone_aperture_eccentricity.py','retina_platform/disk_frontend.py',
-        'configurations/iset_lcd_apple_mw_v1.json','configurations/research/macaque_cone_aperture_eccentricity_v1.json']
+        'retina_sim/cone_aperture_eccentricity.py','retina_sim/native_cone_apertures.py',
+        'tools/native_cone_kernel_groups.m','tools/native_cone_apertures_from_positions.m','retina_platform/disk_frontend.py',
+        'configurations/iset_lcd_apple_mw_v1.json','configurations/isetbio_native_cone_aperture_v1.json']
     sources={name:digest(ROOT/name) for name in source_files}
     snapshot=out/'producer_source'
     for name,value in sources.items():
@@ -90,7 +89,7 @@ def prepare(out,media_path):
         for first in range(0,120,16):
             stop=min(first+16,120);destination=directory/f'frames_{first:03d}_{stop-1:03d}';destination.mkdir()
             signature=canonical_hash(dict(tile=tile_signature,media_sha256=media_sha,first=first,stop=stop))
-            config=dict(profile=profile,optics_cache=str(out/'optics_cache'),source_bank=str(out/'source_rgb.mat'),
+            config=dict(aperture_model=aperture['profile_id'],profile=profile,optics_cache=str(out/'optics_cache'),source_bank=str(out/'source_rgb.mat'),
                 geometry_mat=str(directory/'geometry.mat'),center_mm=tile['center_mm'].tolist(),plot_bounds_mm=bounds.tolist(),
                 reference_rgb=optics['reference_rgb'],frame_indices=list(range(first+1,stop+1)),
                 window_edges_seconds=edges[first:stop+1].tolist(),native_control=(first==0 and [tx,ty] in ([0,0],[2,0])),

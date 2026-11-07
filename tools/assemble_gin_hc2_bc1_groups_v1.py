@@ -37,7 +37,10 @@ def select_members(g,keep):
     mapping[members]=np.repeat(np.arange(len(keep)),counts)
     return counts,members,np.r_[0,np.cumsum(counts)],mapping
 
-def build(output,guard):
+def build(output,guard,*,source_out=OUT):
+    OUT=Path(source_out)
+    FINE=OUT/'executions/assemble_fine_01'
+    NATIVE=OUT/'executions/assemble_native_01'
     start=time.perf_counter();base=GroupModelAssembly(ROOT/'reports/spatial_group_graph_v02_20261025_v1/artifact_r2')
     selected=bundle(FINE/'SELECTION.npz');native=bundle(NATIVE/'MEMBERSHIP.npz')
     nr=read(NATIVE/'NATIVE_ASSEMBLY_RESULT.json');catalog=read(OUT/'BC_catalog.json')

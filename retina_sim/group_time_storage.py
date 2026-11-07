@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import os
+import shutil
 import uuid
 
 import numpy as np
@@ -12,6 +13,8 @@ from .contracts import ContractError, canonical_hash
 SCHEMA = 'retipath-group-time-binary-bundle-1'
 COMPLETE_FIELDS = {'native', 'inner', 'spike_states', 'clocks', 'input_position',
                    'observation_delay', 'controller', 'readout_cursor', 'monitor', 'recording'}
+SPATIAL_NATIVE_FIELDS = {'schema', 'model_identity', 'native_identity', 'time', 'y',
+                         'R', 'E', 'light', 'input_stop', 'epoch', 'state_layout'}
 
 
 def _sha(path):
@@ -21,10 +24,13 @@ def _sha(path):
 
 def save_bundle(directory, *, kind, identity, payload, qualification):
     target = Path(directory).resolve()
-    if target.exists() or not target.parent.is_dir() or kind not in ('source_construction_seed', 'complete_model_checkpoint', 'validation_evidence'):
+    if target.exists() or not target.parent.is_dir() or kind not in ('source_construction_seed', 'complete_model_checkpoint', 'validation_evidence', 'cone_hc_spatial_checkpoint'):
         raise ContractError('Fresh group bundle directory and explicit new bundle kind required')
     if kind == 'complete_model_checkpoint' and set(payload) != COMPLETE_FIELDS:
         raise ContractError('Complete group checkpoint requires state, every clock/history/controller/consumer/monitor/recording field')
+    if kind == 'cone_hc_spatial_checkpoint' and (set(payload) != SPATIAL_NATIVE_FIELDS
+            or payload.get('schema') != 'cone_hc_spatial_research_checkpoint'):
+        raise ContractError('Spatial-native checkpoint requires its own full registered state/input layout')
     if qualification.get('default_adopted') is not False or qualification.get('fit_eligible') is not False:
         raise ContractError('Candidate bundle cannot confer production or fitting qualification')
     staging = target.with_name(target.name+'.writing-'+uuid.uuid4().hex)
@@ -61,16 +67,23 @@ def save_bundle(directory, *, kind, identity, payload, qualification):
         if value is None or isinstance(value, (str, int, float, bool)):
             return value
         raise ContractError('Unsupported group bundle value type: '+type(value).__name__)
-    encoded = encode(payload)
-    manifest = dict(schema=SCHEMA, kind=kind, identity=identity, qualification=qualification,
-                    files=files, payload=encoded)
-    checksum = canonical_hash(manifest)
-    with (staging/'manifest.json').open('x', encoding='utf8') as stream:
-        json.dump(dict(manifest, manifest_hash=checksum), stream, sort_keys=True, allow_nan=False)
-        stream.flush(); os.fsync(stream.fileno())
-    if target.exists():
-        raise ContractError('Group bundle destination appeared; refusing replacement')
-    os.replace(staging, target)
+    try:
+        encoded = encode(payload)
+        manifest = dict(schema=SCHEMA, kind=kind, identity=identity, qualification=qualification,
+                        files=files, payload=encoded)
+        checksum = canonical_hash(manifest)
+        with (staging/'manifest.json').open('x', encoding='utf8') as stream:
+            json.dump(dict(manifest, manifest_hash=checksum), stream, sort_keys=True, allow_nan=False)
+            stream.flush(); os.fsync(stream.fileno())
+        if target.exists():
+            raise ContractError('Group bundle destination appeared; refusing replacement')
+        os.replace(staging, target)
+    except BaseException as error:
+        try:
+            shutil.rmtree(staging)
+        except OSError as cleanup_error:
+            error.add_note(f'Could not remove incomplete bundle {staging}: {cleanup_error}')
+        raise
     return dict(directory=str(target), kind=kind, manifest_hash=checksum,
                 bytes=sum(v['bytes'] for v in files.values()))
 

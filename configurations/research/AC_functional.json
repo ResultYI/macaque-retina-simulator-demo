@@ -1,0 +1,12 @@
+{
+  "schema": "macaque-functional-ac-aii",
+  "entry": "RetinaBuilder.build_research_ac",
+  "bc_configuration": "configurations/research/BC_macaque_fullchain.json",
+  "research_only": true,
+  "physiologically_calibrated": false,
+  "reference": "retained BC full-chain fixed background; local held exterior unchanged",
+  "gain_mapping": "reference contact conductance divided by reference source gate; fixed after construction",
+  "AII_parameters": "inherit C, gL, EL, EE and release_half, release_slope, tau_release from bound ledger in SI",
+  "ordinary_AC": "reuse existing four V+s pools and S-ON mechanism",
+  "scope_degrees": [0, 6]
+}

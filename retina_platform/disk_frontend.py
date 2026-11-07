@@ -114,6 +114,8 @@ class DiskMixedReferenceFrontend(MixedReferenceFrontend):
         binding=configuration['input_plan'];path=self.root/binding['path']
         if file_sha(path)!=binding['sha256']:raise ContractError('Global optical plan identity differs')
         plan=json.loads(path.read_bytes());cone=circuit.table('cones')
+        from retina_sim.isetbio_geometry import cone_apertures
+        native_diameters=cone_apertures(cone.coordinates['rf'])
         if plan['cone_table']!=cone.binding or plan['regenerate_on_ROI'] is not False:raise ContractError('Global optical plan belongs to different cone geometry')
         if plan.get('exporter_sha256')!=file_sha(self.root/'tools/export_disk_mixed_reference.m'):
             raise ContractError('Frozen optical plan exporter identity differs; create an explicit input-plan revision')
@@ -167,7 +169,7 @@ class DiskMixedReferenceFrontend(MixedReferenceFrontend):
             directory=self.root/'reports/iset_disk_input_cache'/scope/'tiles'/tile_sig
             data={'rgb_frames':np.stack(frames,axis=3),'window_edges_seconds':edges,'frame_indices':np.asarray(indices,dtype=float),
                 'reference_rgb':color,'is_mm':cone.coordinates['rf'][global_rows],'types':np.array([{'L':1.,'M':2.,'S':3.}[x.decode('ascii')] for x in cone.extras['subtype'][global_rows]]),
-                'frozen_apertures_um':cone.extras['aperture_diameter_um'][global_rows],'image_center_deg':center/.223}
+                'frozen_apertures_um':native_diameters[global_rows],'image_center_deg':center/.223}
             export={'profile':profile,'global_reference':reference,'patch_fov_deg':fov(samples),'request_signature':tile_sig,'background_signature':scope}
             (raw,meta),called=_capture_request(self.root,profile,directory,data,export,on_status=on_status,on_boundary=on_boundary,defer_jobs=jobs)
             actual|=called

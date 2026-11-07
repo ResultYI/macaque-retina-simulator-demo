@@ -34,8 +34,8 @@ def optical_setup(prepared, out, scene_anchor=None):
     xy = np.load(table.parent / 'rf.npy')[fine]
     types = np.load(table.parent / 'subtype.npy')[fine].astype('U1')
     ids = tuple('actual_fine_cone_row_' + str(int(i)) for i in fine)
-    profile = read(ROOT / 'configurations/research/macaque_cone_aperture_eccentricity_v1.json')
-    apertures = resolve_apertures(ids, types, xy, profile)
+    profile = read(ROOT / 'configurations/isetbio_native_cone_aperture_v1.json')
+    apertures = resolve_apertures(ids, types, xy, profile, support_positions_mm=np.load(table.parent / 'rf.npy'))
     savemat(out / 'geometry.mat', dict(is_mm=xy, types=np.array([{'L': 1, 'M': 2, 'S': 3}[t] for t in types]),
         reference_diameter_um=apertures['reference_diameter_um'], zone_diameter_um=apertures['zone_diameter_um']), do_compression=True)
     np.savez_compressed(out / 'APERTURE_GEOMETRY.npz', **apertures, fine_rows=fine,
@@ -55,7 +55,7 @@ def optical_setup(prepared, out, scene_anchor=None):
     p = deepcopy(anchor['profile']) if anchor else read(ROOT / 'configurations/iset_lcd_apple_mw_v1.json')
     p.update(isetcam_root=str(ROOT / 'vendor_pinned/isetcam'), isetbio_root=str(ROOT / 'vendor_pinned/isetbio'))
     f = .223e-3 / np.tan(np.pi / 180)
-    config = dict(profile=p, geometry_mat=str(out / 'geometry.mat'), center_mm=center,
+    config = dict(aperture_model=profile['profile_id'],profile=p, geometry_mat=str(out / 'geometry.mat'), center_mm=center,
         samples=samples, patch_fov_deg=float(np.degrees(2 * np.arctan(samples * .001e-3 / (2 * f)))),
         fixed_radiance_gain=meta['fixed_radiance_gain'], reference_rgb=meta['reference_rgb'],
         reference_energy_spectrum_hex=meta['reference_energy_spectrum_hex'], reference_capture_path=str(reference),

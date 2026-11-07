@@ -1,0 +1,94 @@
+{
+  "schema": "macaque-independent-bc-fullchain",
+  "entry": "RetinaBuilder.build_research_bc",
+  "execution_mode": "local_cpu",
+  "research_only": true,
+  "production_qualified": false,
+  "scope_degrees": [
+    0,
+    6
+  ],
+  "cone_hc_configuration": "configurations/research/cone_hc_h2_priority.json",
+  "membrane_configuration": "configurations/research/BC_PHYSIOLOGY_2026-11-02.json",
+  "density_configuration": "configurations/bc_density_geometry_current.json",
+  "fine_routes": {
+    "receipt": "reports/GIN_69_6_HC2_BC1_SUPPORT_V2/executions/assemble_fine_01/FINE_ASSEMBLY_RESULT.json",
+    "sha256": "d4880d1bdb6038f73d6f729a94e0205ba7fff1e1ee38e73106656c99a1fedff5"
+  },
+  "temporal_profiles": {
+    "midget_BC_ON": {
+      "profile_id": "midget_BC_ON_retained_three_tap",
+      "kernel": [
+        0.5,
+        0.25,
+        -0.1
+      ],
+      "sample_interval_seconds": 0.001,
+      "tau_release_seconds": 0.003,
+      "tau_adaptation_seconds": 0.1,
+      "eccentricity_dependence": "constant_unidentified",
+      "status": "retained_engineering_baseline",
+      "evidence": "Existing model; no matching independent light-response time series for this effective type and region"
+    },
+    "midget_BC_OFF": {
+      "profile_id": "midget_BC_OFF_retained_three_tap",
+      "kernel": [
+        0.5,
+        0.25,
+        -0.1
+      ],
+      "sample_interval_seconds": 0.001,
+      "tau_release_seconds": 0.003,
+      "tau_adaptation_seconds": 0.1,
+      "eccentricity_dependence": "constant_unidentified",
+      "status": "retained_engineering_baseline",
+      "evidence": "Existing model; no matching independent light-response time series for this effective type and region"
+    },
+    "diffuse_BC_ON": {
+      "profile_id": "diffuse_BC_ON_retained_three_tap",
+      "kernel": [
+        0.5,
+        0.25,
+        -0.1
+      ],
+      "sample_interval_seconds": 0.001,
+      "tau_release_seconds": 0.003,
+      "tau_adaptation_seconds": 0.1,
+      "eccentricity_dependence": "constant_unidentified",
+      "status": "retained_engineering_baseline",
+      "evidence": "Existing model; no matching independent light-response time series for this effective type and region"
+    },
+    "diffuse_BC_OFF": {
+      "profile_id": "diffuse_BC_OFF_retained_three_tap",
+      "kernel": [
+        0.5,
+        0.25,
+        -0.1
+      ],
+      "sample_interval_seconds": 0.001,
+      "tau_release_seconds": 0.003,
+      "tau_adaptation_seconds": 0.1,
+      "eccentricity_dependence": "constant_unidentified",
+      "status": "retained_engineering_baseline",
+      "evidence": "Existing model; no matching independent light-response time series for this effective type and region"
+    },
+    "S_ON_BC": {
+      "profile_id": "S_ON_BC_retained_three_tap",
+      "kernel": [
+        0.5,
+        0.25,
+        -0.1
+      ],
+      "sample_interval_seconds": 0.001,
+      "tau_release_seconds": 0.003,
+      "tau_adaptation_seconds": 0.1,
+      "eccentricity_dependence": "constant_unidentified",
+      "status": "retained_engineering_baseline",
+      "evidence": "Existing model; no matching independent light-response time series for this effective type and region"
+    }
+  },
+  "state_resolution": "one independently advanced state per original BC; Cone/HC and other populations retain their prior grouping",
+  "boundary": "Complete frozen chemical ancestors; original full gap degree and held reservoir; never crop renormalized",
+  "calibration_policy": "No temporal fit without matched observed variable, stimulus, units and region; preserve baseline",
+  "FIT_READY": false
+}

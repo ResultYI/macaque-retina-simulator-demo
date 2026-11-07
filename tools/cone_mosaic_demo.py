@@ -225,7 +225,7 @@ def main():
     shutil.copy2(ROOT/'vendor_pinned/isetcam/LICENSE', output/'ISETCam_MIT_LICENSE.txt')
     source_mat = output/'input.mat'
     savemat(source_mat, dict(rgb_frames=frames.astype(np.float32), window_edges_seconds=edges,
-        frame_indices=np.array([1., 2.]), reference_rgb=np.full(3, grey), support_is_mm=support,
+        frame_indices=np.array([1., 2.]), reference_rgb=np.full(3, grey), native_apertures_um=cone_apertures(support)[active], support_is_mm=support,
         active_indices=active.astype(float)+1, is_mm=xy,
         types=np.array([{'L': 1., 'M': 2., 'S': 3.}[kind] for kind in types]), image_center_deg=center/.223,
         plot_bounds_mm=bounds, plot_x_mm=x, plot_y_mm=y), do_compression=True)

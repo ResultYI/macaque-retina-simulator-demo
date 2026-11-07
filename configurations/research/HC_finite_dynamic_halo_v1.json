@@ -1,0 +1,47 @@
+{
+  "schema": "HC_finite_dynamic_halo_experiment_v1",
+  "target_H1_parent_row": 2891,
+  "dynamic_radii_mm": [2.1, 3.0],
+  "radius_frame": "OPL_pedicle_mm; centered on fixed target H1 anchor",
+  "dynamic_cones": "all L/M inside each radius; no missing-B cones silently removed",
+  "dynamic_HCs": "H1 inside radius plus complete local B partners of every dynamic Cone",
+  "H2_scope": "preserve H2/S geometry; exclude from H1-LM experiment only after directed-path audit",
+  "core_cones": "all original direct raw contacts of target H1, same parent IDs across radii",
+  "grouping": "identity fine-member groups; no centroid or coarse spatial approximation",
+  "parent_weights": "same parent A/B; no renormalization after dynamic selection",
+  "background_td": 1000.0,
+  "stimulus": {
+    "coordinate_frame": "IS_mm",
+    "center_mm": [1.0744117751749263, -0.01152576578789823],
+    "inner_radius_mm": 0.12,
+    "outer_radius_mm": 0.32,
+    "contrast": 0.01,
+    "onset_seconds": 0.02,
+    "offset_seconds": 0.12
+  },
+  "duration_seconds": 0.12,
+  "sample_interval_seconds": 0.002,
+  "conditions": ["feedback_on", "feedback_off_separate_equilibrium"],
+  "background_max_abs_rhs": 1e-8,
+  "solver": {"method": "DOP853", "rtol": 1e-7, "atol": 1e-10, "max_step_seconds": 0.0002},
+  "convergence": {
+    "rule": "max_time_abs(candidate-reference) <= absolute_floor + relative_budget*max_time_abs(reference-baseline); all core rows, on/off and on-minus-off",
+    "relative_budget": 0.01,
+    "H1_native_absolute_floor": 1e-6,
+    "release_native_absolute_floor": 1e-8,
+    "solver_refinement_fraction_of_budget": 0.1,
+    "at_most_one_additional_reference_radius_mm": 3.52691136675,
+    "evidence": "prospective engineering acceptance budget, not a published physiological tolerance"
+  },
+  "mechanism": {
+    "annulus_feedback_on_core_release_sign": "positive for darkening surround contribution under this increment stimulus convention",
+    "min_abs_core_release_on_minus_off": 1e-7,
+    "minimum_signal_to_solver_difference": 100.0,
+    "required_background_diagnostics": ["sigmoid_q", "q_times_one_minus_q_over_Vn", "release0"],
+    "no_background_or_parameter_retuning": true
+  },
+  "admission": "all dynamic L/M B contacts complete and nonempty; explicit background products; equation-compatible initial state",
+  "stop": "retain diagnostic failure; no synthetic contact repair, no production or downstream RGC admission",
+  "external_input_limit": "only this localized native-Td diagnostic and 120ms window; not natural movies",
+  "production_selected": false
+}

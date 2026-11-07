@@ -1,0 +1,10 @@
+{
+  "schema": "isetbio-native-cone-aperture-1",
+  "profile_id": "isetbio_native_pillbox_v1",
+  "shape": "Pillbox",
+  "engine": "cMosaic.computeConeApertures",
+  "eccVaryingConeAperture": true,
+  "rodIntrusionAdjustedConeAperture": false,
+  "smoothLocalVariations": false,
+  "custom_eccentricity_curve": false
+}

@@ -33,12 +33,15 @@ def freeze_input_plan(root,cone_table,directory):
     root=Path(root).resolve();directory=(root/directory).resolve()
     if not directory.is_relative_to(root):raise ContractError('Input plan outside project')
     directory.mkdir(parents=True,exist_ok=True);path=directory/'manifest.json'
-    xy=cone_table.coordinates['rf'];diameter=cone_table.extras['aperture_diameter_um']
+    xy=cone_table.coordinates['rf']
+    from .isetbio_geometry import cone_apertures
+    diameter=cone_apertures(xy)
     if diameter.shape!=(cone_table.count,) or np.any(diameter<=0) or not np.all(np.isfinite(diameter)):
         raise ContractError('Frozen global cone apertures missing')
     reference={'mode':'one_global_foveal_LMS_reference_v1','reference_position_mm':[0.,0.],
         'reference_diameter_um':float(np.mean(diameter)),'blur_um':float(np.mean(diameter)),
         'reference_illuminance_td':100.,'cone_table_binding':cone_table.binding,
+        'aperture_model':'isetbio_native_pillbox_v1',
         'global_apertures':array_identity(diameter),'coefficients':'one fixed LMS triplet and one radiance gain for every tile/ROI',
         'physiological_calibration':False,
         'cone_geometry_route':cone_table.record.get('source_bindings',{}).get('cone_geometry_route','legacy_macaque_geometry'),

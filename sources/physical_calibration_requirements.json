@@ -16,5 +16,44 @@
   "available_terminal_fit":"sources/maddox2024_activation_records.json",
   "required_without_defaults":["background-current anchor and calibration","voltage anchor versus operating condition","region/operating-voltage effective conductance or matched impedance","compartment morphology/area/endcap convention","source normalized input distribution","gCa_max/E_Ca if absolute current desired","activation kinetics if dynamic gate desired","release/HC effective transfer and temporal calibration","HC activation-to-threshold-shift gain","terminal volume/buffering/clearance if Ca concentration requested"],
   "prohibited_defaults":["-40mV resting voltage","arbitrary pA-to-mV/native gain","complete Chen dark current into anchored passive deviation model","rod active channels relabelled macaque cone","1-m release sign","unidentified HC feedback constant"],
-  "physiological_calibration":"INCOMPLETE"
+  "physiological_calibration":"INCOMPLETE",
+  "rod_capture": {
+    "interface": "retina_sim/rod_capture.py",
+    "configuration": "configurations/research/rod_capture.json",
+    "status": "SOURCE_CALIBRATION_BLOCKED",
+    "absolute_capture_qualified": false,
+    "formula": "integral E_lambda * aperture * eta * (lambda_m / (h*c)) d_lambda_nm d_area_m2",
+    "SI_constants": {"Planck_J_s": 6.62607015e-34, "light_m_s": 299792458.0, "classification": "exact SI definitions; existing photometry.py"},
+    "adopted_physiological_parameters": {
+      "rod_collection_area_m2": null,
+      "rod_aperture_kernel": null,
+      "rod_absorbance_spectrum": null,
+      "rod_optical_density": null,
+      "rod_isomerization_yield": null,
+      "rod_macular_transmission": null
+    },
+    "sources": {
+      "geometry": {"path": "data/atlas/disk3mm_populations_v2/rods/manifest.json", "species": "Macaca nemestrina", "source": "Packer 1989 Fig 9 digitized density maps", "scope": "existing frozen disk and local membership only", "classification": "source-informed generated geometry; not measured single-cell locations or collecting areas"},
+      "optics": {"path": "vendor_pinned/isetcam/opticalimage/oiCalculateIrradiance.m", "commit": "17146a9f0470cc89b58d583851f680187268506d", "species": "human MW optical baseline borrowed by project", "scope": "shared pre-photopigment OI", "classification": "public optical model; pupil and lens transmission already applied"},
+      "efficiency_definition": {"path": "vendor_pinned/isetbio/cones/@receptorPigment/receptorPigment.m", "commit": "d2924c2fe1d41c7dc5af1006d8081735b08f1b35", "species": "human Cone model", "scope": "probability semantics only; no Cone parameter transferred to Rod", "classification": "absorptance=(1-10^(-OD*relative_absorbance)); eta=absorptance*isomerization_yield; include missing pre-receptor macular transmission explicitly"},
+      "transduction": {"path": "data/source_snapshots/chen2024_1bcf7c9a/initPhotoreceptorParams.m", "commit": "1bcf7c9a6a6814ef39d2c39d82cf8dd1b5b39db2", "species": "primateRod author branch", "scope": "unchanged neural model, expects R*/s", "classification": "author model parameters; gamma is NOT radiometric calibration or a collecting-area estimate"},
+      "scene_radiometry": {"path": "reports/GIN_69_6_HC2_BC1_SUPPORT_V2/optical/cache/metadata.json", "species": "not applicable: CRT stimulus", "scope": "existing 69#6 optical condition", "classification": "relative GunSpectra and assumed 222.2 td anchor; not original absolute CRT spectral radiometry"}
+    },
+    "synthetic_verification_only": {
+      "species": "none",
+      "source": "tests/test_rod_capture.py analytic definitions",
+      "scope": "numerical units, sampling and interface verification only; never experiment defaults",
+      "collection_area_m2": 2e-12,
+      "wavelength_nm": [400, 500, 600],
+      "absolute_efficiency_probability": [0.1, 0.2, 0.1],
+      "spectral_quadrature_nm": [50, 100, 50],
+      "energy_W_per_m2_per_nm": [2e-8, 3e-8, 5e-8],
+      "aperture_nodes_offset_m": [[-1e-7, 0], [1e-7, 0]],
+      "aperture_node_mass": [0.5, 0.5],
+      "macular_transmission": "explicit unity fixture assumption",
+      "classification": "manufactured physical input, not a rhodopsin spectrum or species transfer"
+    },
+    "required_without_defaults": ["absolute source spectral radiometry for real calibration", "Rod aperture area and spatial quadrature with applicable species/region", "absolute Rod absorptance times isomerization yield", "explicit macular transmission ownership", "registered optical support and time windows"],
+    "forbidden": ["invert LMS captures to Rod", "reuse Cone area or pigment parameters", "infer unique Rod rate from 222.2 td", "fit capture gain to RGC", "reuse legacy equilibrium/checkpoint as a qualified physical background"]
+  }
 }

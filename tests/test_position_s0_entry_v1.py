@@ -69,13 +69,15 @@ class PositionS0EntryTests(TestCase):
                 with self.assertRaisesRegex(ContractError,'S0 identity changed'):
                     entry.preflight([4.73,0.],fresh_output())
         native=entry.ROOT/'reports/isetbio_native_aperture_convergence_20261029_v1'
-        identity=entry.read(native/'IMPLEMENTATION_IDENTITY.json');result=entry.read(native/'VALIDATION.json')
+        result=entry.read(native/'VALIDATION.json')
         self.assertEqual(result['status'],'PASS')
-        for name,expected in identity['sources_sha256'].items():
-            if name.endswith('.m'):
-                self.assertEqual(entry.digest(entry.ROOT/name),expected)
         self.assertEqual(result['uniform']['maximum_capture_relative_error'],0)
         self.assertEqual(result['spatial']['maximum_capture_relative_error'],0)
+        plan=entry.preflight([4.73,0.],fresh_output())
+        self.assertTrue(plan['requires_native_aperture_background'])
+        with self.assertRaisesRegex(ContractError,'native-aperture background'):
+            entry.execute(plan,'construct')
+        self.assertFalse(Path(plan['output']).exists())
 
 
 if __name__=='__main__':

@@ -1,0 +1,67 @@
+{
+  "schema": "cone_hc_spatial_research",
+  "research_only": true,
+  "production_qualified": false,
+  "spatial_mode": "uniform",
+  "H2_mode": "uniform",
+  "boundary_mode": "held_background",
+  "H1_parameters": {
+    "lambda_s_mm": 0.02,
+    "lambda_l_mm": 0.3,
+    "w_s": 0.15
+  },
+  "parameter_source": "van Hateren 2007 generic model reference; central transfer uncalibrated",
+  "registered_unsupported_cone_rows": [
+    166128
+  ],
+  "assets": {
+    "geometry": {
+      "path": "reports/CONE_HC_MINIMAL_REAL_DIAGNOSTIC_20261102_v6/run_02/GEOMETRY.npz",
+      "sha256": "ac34464c3d6ce07e7b2245185e6149a9ae1074ba7dd2654a27d4a08a9d5cb025"
+    },
+    "A_uniform": {
+      "path": "reports/CONE_HC_MINIMAL_REAL_DIAGNOSTIC_20261102_v6/run_02/A_uniform_dynamic.npz",
+      "sha256": "5b58b0e53b3b767c0461547a705abfc5a06f461c9449fd508397591792cf9d54"
+    },
+    "A_biexponential": {
+      "path": "reports/CONE_HC_MINIMAL_REAL_DIAGNOSTIC_20261102_v6/run_02/A_biexponential_dynamic.npz",
+      "sha256": "e0b0cfbcdab0eecb1dc4a2d50815a5ca5dc63563a21e81de20f4e78358351ad4"
+    },
+    "B_local": {
+      "path": "reports/CONE_HC_MINIMAL_REAL_DIAGNOSTIC_20261102_v6/run_02/B_local_on.npz",
+      "sha256": "7766d5b879afdac5ca8436577f52eb2c65ddf6301a336fdf622e5f26ee71c418"
+    },
+    "held_mass": {
+      "path": "reports/CONE_HC_MINIMAL_REAL_DIAGNOSTIC_20261102_v6/run_02/HELD_MASS.npz",
+      "sha256": "318ccc3ebf920f66f7b4469eb4aaca12b36226efd3767c0ec8017f0b3ce5de91"
+    },
+    "source_receipt": {
+      "path": "reports/GIN_69_6_HC2_BC1_SUPPORT_V2/executions/assemble_native_01/NATIVE_ASSEMBLY_RESULT.json",
+      "sha256": "325f99fd1a78824873381ec677bbfa65ad94dac64bee906807e184bd97fa0e83"
+    }
+  },
+  "input": {
+    "background_td": 1000.0,
+    "center_mm": [
+      1.0744117751749263,
+      -0.01152576578789823
+    ],
+    "inner_radius_mm": 0.12,
+    "outer_radius_mm": 0.32,
+    "contrast": 0.01,
+    "onset_seconds": 0.02,
+    "offset_seconds": 0.12
+  },
+  "solver": {
+    "method": "DOP853",
+    "rtol": 1e-07,
+    "atol": 1e-10,
+    "max_step_seconds": 0.0002
+  },
+  "limitations": {
+    "boundary_response_qualified": false,
+    "spatial_error_witness": "reports/CONE_HC_COMPLETE_STIMULUS_CONVERGENCE_20261102_v7/FINAL_REPORT.md",
+    "stimulus_exterior": "held background diagnostic; not complete ring",
+    "supported_asset": "pinned local fine-member geometry only; no arbitrary parent rebuild"
+  }
+}

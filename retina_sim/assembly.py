@@ -274,6 +274,42 @@ class RetinaBuilder:
     def build(self,spec,mode=RunMode.REFERENCE): return self.compile(spec,mode)
 
     @staticmethod
+    def build_research_cone_hc(repo_root, configuration=None, *, execution_mode='local_cpu'):
+        """Dispatch explicit HC configurations; preparing new weights is a separate action."""
+        from .cone_hc_spatial import ConeHCSpatialModel
+        if execution_mode != 'local_cpu':
+            raise ContractError('Double-exponential research execution requires local_cpu; no uniform fallback')
+        if configuration is None:
+            configuration='configurations/research/cone_hc_biexponential_functional.json'
+        path=Path(configuration)
+        if not path.is_absolute():path=Path(repo_root)/path
+        if json.loads(path.read_bytes()).get('schema')=='cone_hc_h2_priority_research':
+            from .h2_priority import H2PriorityModel
+            return H2PriorityModel(repo_root,configuration)
+        if json.loads(path.read_bytes()).get('schema')=='cone_hc_eccentric_research':
+            from .cone_hc_eccentric import EccentricConeHCModel
+            return EccentricConeHCModel(repo_root,configuration)
+        return ConeHCSpatialModel(repo_root, configuration)
+
+    @staticmethod
+    def build_research_bc(repo_root, configuration=None):
+        """Dispatch explicit BC profiles without migrating historical checkpoints."""
+        from .bc_physiology import BCPhysiologyModel, DEFAULT_CONFIGURATION
+        if configuration is not None:
+            path = Path(configuration)
+            if not path.is_absolute(): path = Path(repo_root)/path
+            if json.loads(path.read_bytes()).get('schema') == 'macaque-independent-bc-fullchain':
+                from .bc_independent import IndependentBCModel
+                return IndependentBCModel(repo_root, configuration)
+        return BCPhysiologyModel(repo_root, configuration or DEFAULT_CONFIGURATION)
+
+    @staticmethod
+    def build_research_ac(repo_root, configuration=None):
+        """Current functional AC/AII model on the retained BC and Cone-HC chain."""
+        from .aii_functional import FunctionalACModel, DEFAULT_CONFIGURATION
+        return FunctionalACModel(repo_root, configuration or DEFAULT_CONFIGURATION)
+
+    @staticmethod
     def bind_group_snapshot(assembly,seed,repo_root,*,context=None,protocol=None):
         """Versioned group parameter binding; equations/CSR remain original."""
         from .parameter_migration import resolve_group_snapshot

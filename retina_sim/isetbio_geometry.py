@@ -47,20 +47,18 @@ def connected_cone_rf_centers(cone_positions,weights,*,orientation='post_by_cone
     return Quantity(result,'mm','functional_position','connected_cone_functional_centroid_project_adapter','functional_visual_field')
 
 def cone_apertures(positions_mm,*,support_ids=None,selected_ids=None,spacing_factor=.79):
-    """Same explicit project aperture convention used by the active ISET front end.
-
-    Recomputed on the new complete support; never transfer old apertures by row.
-    """
+    """Generate apertures with pinned cMosaic on the complete shared support."""
+    from .native_cone_apertures import native_apertures
+    _require(spacing_factor == .79, 'Native Pillbox convention owns the aperture ratio')
     xy=np.asarray(positions_mm,dtype=float)
-    _require(xy.ndim==2 and xy.shape[1]==2 and len(xy)>=7 and np.all(np.isfinite(xy)),'At least7 finite full-support cone positions required')
-    _require(len(np.unique(xy,axis=0))==len(xy),'Duplicate cone positions')
-    d,_=cKDTree(xy).query(xy,k=7);diameters=spacing_factor*np.median(d[:,1:],axis=1)*1000
+    diameters,_=native_apertures(xy)
     if selected_ids is not None:
         _require(support_ids is not None and len(support_ids)==len(xy) and len(set(support_ids))==len(xy),'Unique full-support IDs required')
         lookup={key:i for i,key in enumerate(support_ids)}
         _require(all(key in lookup for key in selected_ids),'Selected cone absent from complete aperture support')
         diameters=diameters[[lookup[key] for key in selected_ids]]
     return diameters
+
 
 def input_geometry_support(root,record):
     """Return the declared complete aperture support, keyed by actual cone ID."""

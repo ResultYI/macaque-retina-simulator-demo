@@ -8,6 +8,7 @@ from retina_sim.contracts import canonical_hash,ContractError
 from retina_sim.isetbio_input import REFERENCE_SCHEMA,reference_equivalent_drive,project_rf_equals_is_binding
 from retina_sim.offline_input import SCHEMA,load_offline_inputs,rebase_offline_inputs
 from retina_sim.geometry_identity import compiled_geometry_identity
+from retina_sim.isetbio_geometry import cone_apertures
 
 PROFILE='iset_lcd_apple_mw_v1'
 BUDGET=128*1024**2
@@ -19,7 +20,9 @@ def source_signature(root):
     root=Path(root);path=root/'configurations'/ (PROFILE+'.json');profile=json.loads(path.read_bytes())
     if profile.get('profile_id')!=PROFILE or profile.get('scope')!='approved_mixed_reference':raise ContractError('Invalid approved ISET profile')
     files=[path,root/'tools/export_mixed_reference.m',root/'tools/cone_optics_mosaic.m',
-        root/'tools/capture_cone_optics.m',Path(__file__)]
+        root/'tools/capture_cone_optics.m',root/'tools/native_cone_apertures_from_positions.m',
+        root/'tools/generate_native_cone_apertures.m',root/'retina_sim/native_cone_apertures.py',
+        root/'retina_sim/isetbio_geometry.py',Path(__file__)]
     for key in ('isetcam','isetbio'):
         folder=Path(profile[key+'_root']);head=(folder/'.git/HEAD').read_text().strip()
         if head.startswith('ref: '):head=(folder/'.git'/head[5:]).read_text().strip()
@@ -150,6 +153,7 @@ class MixedReferenceFrontend:
         input_mat=directory/'input.mat'
         savemat(input_mat,{'rgb_frames':np.stack(frames,axis=3),'window_edges_seconds':edges,
             'frame_indices':np.array(indices,dtype=float),'reference_rgb':reference_rgb,
+            'native_apertures_um':cone_apertures(support_xy)[active],
             'support_is_mm':support_xy,'active_indices':active.astype(float)+1,'is_mm':positions,
             'types':np.array([{'L':1,'M':2,'S':3}[x] for x in types],dtype=float),'image_center_deg':center/.223},do_compression=True)
         export={'profile':profile,'input_mat':str(input_mat.resolve()),'patch_fov_deg':float(patch_fov),

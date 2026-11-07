@@ -1,6 +1,9 @@
 function capture_cross_position_background_v1(configPath, outputPath)
 % Single existing neutral reference, frozen aperture sampler, no neural run.
-c=jsondecode(fileread(configPath));p=c.profile;d=load(c.geometry_mat);
+c=jsondecode(fileread(configPath));
+assert(isfield(c,'aperture_model') && strcmp(c.aperture_model,'isetbio_native_pillbox_v1'), ...
+    'ConeOptics:Model','Prepare a fresh native aperture request; preserve frozen legacy captures');
+p=c.profile;d=load(c.geometry_mat);
 assert(~isfile(outputPath),'Preserve prior capture');
 addpath(genpath(p.isetcam_root));addpath(genpath(p.isetbio_root));
 addpath(fullfile(fileparts(mfilename('fullpath')),'matlab'));
@@ -23,7 +26,7 @@ data=struct('positionUnits','microns','positions',d.is_mm*1e3,'types',d.types(:)
  'lightGatheringApertureDiameters',d.reference_diameter_um(:),'blurApertureDiameterMicrons',mean(d.reference_diameter_um));
 cm=cone_optics_mosaic(data,pigment,macular,p,.005);
 [rates,diagnostic]=sample_cone_aperture_zones(cm,oi,d.is_mm*1e3,d.types(:), ...
- d.reference_diameter_um,d.zone_diameter_um,'macaque_eccentricity_aperture_v1',c.center_mm(:)'*1e3,3);
+ d.reference_diameter_um,d.zone_diameter_um,'isetbio_native_pillbox_v1',c.center_mm(:)'*1e3,3);
 os=cm.computeEffectiveOSlengthAttenuationFactors(1:numel(d.types))';
 rates_rstar_s=double(rates).*os;
 assert(all(isfinite(rates_rstar_s)) && all(rates_rstar_s>0));

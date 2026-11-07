@@ -17,6 +17,7 @@ from scipy.io import savemat, loadmat
 from retina_platform.media import MediaSource
 from retina_platform.iset_frontend import digest, read_capture, source_signature, run_matlab
 from retina_sim.contracts import canonical_hash
+from retina_sim.isetbio_geometry import cone_apertures
 from tools.cone_mosaic_demo import load_geometry, sample_image, require
 
 
@@ -135,6 +136,7 @@ def main() -> None:
     source_mat = output/'input.mat'
     input_data=dict(rgb_frames=rgb_frames,window_edges_seconds=edges,
         frame_indices=np.arange(1,len(indices)+1,dtype=float),reference_rgb=np.full(3,grey),
+        native_apertures_um=cone_apertures(support)[active],
         support_is_mm=support,active_indices=active.astype(float)+1,is_mm=xy,
         types=np.array([{'L':1.,'M':2.,'S':3.}[t] for t in types]),image_center_deg=center/.223,
         plot_bounds_mm=bounds,plot_x_mm=x,plot_y_mm=y)

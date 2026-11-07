@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from run_cross_position_optical_v1 import MemoryGuard, tree_rss
 
-OUT = Path(sys.argv[1]).resolve() if len(sys.argv)>1 else ROOT / 'reports/isetbio_native_aperture_convergence_20261029_v1'
+OUT = Path(sys.argv[1]).resolve() if len(sys.argv)>1 else ROOT / 'reports/isetbio_native_aperture_sampling_20261102_v1'
 attempt = OUT / 'validation_run_1'
 attempt.mkdir(exist_ok=False)
 env = os.environ.copy()

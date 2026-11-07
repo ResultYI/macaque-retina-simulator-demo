@@ -123,4 +123,46 @@ class AutomaticExport(unittest.TestCase):
             self.assertFalse(json.loads((out/'PARTIAL_RESPONSE_EXPORT.json').read_text())['complete_package'])
 
 
+class ResponseSelection(unittest.TestCase):
+    def viewer(self):
+        from retina_platform.response_view import ResponseApp
+        app=ResponseApp.__new__(ResponseApp)
+        for name in ('root','clock','source','video','detail','status','rgc','rgc_type','rgc_combo','curve_window','play_button',
+                     'coverage','time_label','slider','timeline'):
+            setattr(app,name,Mock())
+        app.data=Mock();app.data.rgcs=[('midget_RGC_ON',0)]
+        app.target=app.cell=('parasol_RGC_OFF',3)
+        app.network={'parasol_RGC_OFF':{3}};app.direct={('cones',0)}
+        app.cards=[(Mock(),Mock(),())];app.maps={app.cards[0][0]:[(10,10,'parasol_RGC_OFF',3)]}
+        app.photos={'curve':object(),app.cards[0][0]:object()}
+        return app
+
+    def test_absent_type_clears_old_target_curve_and_click_map(self):
+        app=self.viewer();curve=app.curve_window
+        app.rgc_type.get.return_value='parasol_RGC_OFF'
+        app.refresh_targets()
+        self.assertIsNone(app.target);self.assertIsNone(app.cell)
+        self.assertEqual(app.maps,{});self.assertEqual(app.network,{})
+        self.assertEqual(app.photos,{});app.clock.pause.assert_called_once()
+        app.rgc.set.assert_called_once_with('');curve.destroy.assert_called_once()
+        app.cards[0][0].delete.assert_called_once_with('all')
+        app.detail.set.assert_called_once_with('当前筛选没有可用 RGC')
+        app.coverage.set.assert_not_called();app.time_label.set.assert_not_called()
+        app.slider.configure.assert_not_called();app.timeline.set.assert_not_called()
+        app.clock.seek.assert_not_called()
+
+    def test_unmatched_video_clears_old_response_curve_and_selection(self):
+        app=self.viewer();curve=app.curve_window;source=app.source
+        app.task=lambda work,done,message:done(None)
+        with patch('retina_platform.response_view.filedialog.askopenfilename',return_value='unmatched.avi'),patch('retina_platform.response_view.messagebox.showinfo'):
+            app.choose_video()
+        self.assertIsNone(app.data);self.assertIsNone(app.source)
+        self.assertIsNone(app.cell);self.assertIsNone(app.curve_window)
+        self.assertEqual(app.maps,{});self.assertEqual(app.target_labels,[])
+        curve.destroy.assert_called_once();source.close.assert_called_once()
+        app.coverage.set.assert_called_once_with('');app.time_label.set.assert_called_once_with('未加载响应')
+        app.slider.configure.assert_called_once_with(to=0.);app.timeline.set.assert_called_once_with(0.)
+        self.assertEqual(app.clock.stop,0.);app.clock.seek.assert_called_once_with(0.)
+
+
 if __name__=='__main__':unittest.main()

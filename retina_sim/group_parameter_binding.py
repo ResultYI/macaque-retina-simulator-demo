@@ -369,3 +369,173 @@ def build_group_construction_seed(assembly, repo_root, *, input_policy_binding, 
         dict(native_background_td=_owned(bg),rod_background_rstar_s=rod_rate),identity,float(time_seconds))
     from .parameter_migration import bind_constructed_group
     return bind_constructed_group(assembly,result,root)
+
+
+def bc_glycine_dc_conductance(model, state, component, voltage):
+    """Existing steady glycine current's chord and local DC slope, in total S."""
+    c = model.contacts[component]
+    pop = c['route'].post
+    V = np.asarray(voltage, dtype=np.float64)[c['post']]
+    rise = model.cp(component, 'tau_rise', positive=True)
+    lo = model.cp(component, 'decay_minus100', positive=True)
+    hi = model.cp(component, 'decay_0', positive=True)
+    fraction = np.clip((V+.1)/.1, 0., 1.)
+    decay = lo+(hi-lo)*fraction
+    derivative = np.where((V > -.1) & (V < 0.), (hi-lo)/.1, 0.)
+    if np.any(decay <= rise):
+        raise ContractError('BC binding requires physical original glycine kinetics')
+    tp = np.log(decay/rise)/(1/rise-1/decay)
+    norm = np.exp(-tp/decay)-np.exp(-tp/rise)
+    # The peak-time derivatives cancel because tp is the maximum of the kernel.
+    norm_derivative = np.exp(-tp/decay)*tp/decay**2*derivative
+    rate = model.outputs(0., state)['AII_AC', 'event_rate'][c['pre']]
+    coefficient = c['coefficient']*rate
+    chord = coefficient*(decay-rise)/norm
+    dg = coefficient*(derivative/norm-(decay-rise)*norm_derivative/norm**2)
+    slope = chord+(V-model.par(pop, 'EI')[c['post']])*dg
+    pool = lambda x: np.bincount(c['post'], weights=x, minlength=model.counts[pop])
+    return pool(chord), pool(slope)
+
+
+def bind_bc_physiology(assembly, original_seed, repo_root, configuration):
+    """Construct a new source-bound BC parameter identity; never migrate old caches.
+
+    Rin constrains the local DC slope of this effective model, with presynaptic
+    inputs held. It does not identify a bare anatomical leak or network Rin.
+    """
+    import json
+    from types import FunctionType
+    from scipy.optimize import brentq
+    from .h1_h2_background import initialize_joint_background
+    root = Path(repo_root).resolve()
+    path = Path(configuration)
+    if not path.is_absolute():
+        path = root/path
+    cfg = json.loads(path.read_bytes())
+    if (cfg.get('schema') != 'bc-physiology-constraints-2026-11-02'
+            or assembly.manifest.get('schema') != cfg.get('source_artifact')
+            or original_seed.get('h1_h2_model', {}).get('artifact') != assembly.artifact_sha256
+            or set(cfg['targets']) != set(BC)):
+        raise ContractError('BC physiology requires its explicit new typed source context')
+    if original_seed.get('bc_physiology'):
+        raise ContractError('Already bound BC seed cannot be rebound or fitted again')
+    parent_hash = canonical_hash(original_seed)
+    a = object.__new__(type(assembly))
+    a.__dict__.update(assembly.__dict__)
+    seed = deepcopy(original_seed)
+    parameters = seed['inner_parameters']
+    model = a.runtime_factories['inner'](a, parameters)
+    state = {k: seed['states'][k] for k in model.state_keys}
+    ledger = {}
+    for pop in BC:
+        p = parameters['populations'][pop]
+        expected = dict(C=2e-11, native_voltage_gain=.01, Vref=-.05,
+            release_half=-.05, release_slope=.005, tau_release=.003,
+            sample_interval=.001, tau_a_seconds=.1, adaptation_scale=.75)
+        if (any(not np.all(np.asarray(p[k]) == v) for k, v in expected.items())
+                or not np.array_equal(p['kernel'], [.5, .25, -.1])
+                or p['adaptation_enabled'] is not True):
+            raise ContractError('BC binding cannot change the approved engineering dynamics')
+        activation = state[pop, BC_MECH, 'activation']
+        old_reference = model.par(pop, 'native_reference').copy()
+        # The saved HC background differs slightly from its historical FIR
+        # reference. Bind a_ref to that actual generator without changing d.
+        p['native_reference'] = activation.copy()
+        gap = (np.asarray(model.gap.diagonal())[model.gap_slices[pop]]/model.members[pop]
+               if pop in model.gap_slices else np.zeros(model.counts[pop]))
+        target = cfg['targets'][pop]['effective_conductance_nS']
+        ledger[pop] = dict(cfg['targets'][pop], original_gL_S=model.par(pop, 'gL').copy(),
+            historical_a_ref=old_reference, actual_background_a_ref=activation.copy(),
+            gap_diagonal_per_member_S=gap, engineering_parameters=cfg['engineering_parameters'],
+            source_class='user_supplied_macaque_Rin_constraint' if target is not None else 'engineering_retained',
+            constraint_definition=cfg['input_resistance_definition'], unresolved_rows=[])
+        if target is not None and pop in model.gap_slices:
+            leak = target*1e-9-gap
+            valid = leak > 0
+            p['gL'] = np.where(valid, leak, model.par(pop, 'gL'))
+            ledger[pop]['unresolved_rows'] = np.flatnonzero(~valid).tolist()
+
+    def initialize(candidate):
+        def binding(current, current_seed, unused_root, unused_protocol):
+            descriptor = dict(schema=cfg['schema'], artifact=current.artifact_sha256,
+                configuration_sha256=digest(path), parameters=canonical_hash(current_seed['inner_parameters']),
+                states=canonical_hash(current_seed['states']), parent_seed=parent_hash)
+            identity = canonical_hash(descriptor)
+            current.parameter_binding_id = identity
+            current_seed['h1_h2_model']['parameter_binding_id'] = identity
+            return SimpleNamespace(identity=identity, descriptor=descriptor)
+        private = dict(initialize_joint_background.__globals__)
+        private.update(H1H2Native=lambda current: current.runtime_factories['native'](current, bound=False),
+                       bind_parameters=binding)
+        initializer = FunctionType(initialize_joint_background.__code__, private,
+            'initialize_bc_physiology_background', initialize_joint_background.__defaults__,
+            initialize_joint_background.__closure__)
+        initializer.__kwdefaults__ = dict(initialize_joint_background.__kwdefaults__ or {})
+        return initializer(a, candidate, root, {})[0]
+
+    # ON/gap has no dependence on OFF BCs. Reuse the unchanged algebraic solver
+    # to obtain the AII background; no neural forward solve or fitting occurs.
+    intermediate = initialize(seed)
+    current = a.runtime_factories['inner'](a, parameters)
+    background = {k: intermediate['states'][k] for k in current.state_keys}
+    for pop, component in (('midget_BC_OFF', 'AII_FMB_glycine'),
+                           ('diffuse_BC_OFF', 'AII_DB1_glycine')):
+        desired = cfg['targets'][pop]['effective_conductance_nS']*1e-9*current.members[pop]
+        target = current.par(pop, 'Vref')+current.par(pop, 'native_voltage_gain')*(
+            background[pop, BC_MECH, 'activation']-current.par(pop, 'native_reference'))
+        EI = current.par(pop, 'EI')
+        voltage = background[pop, BC_MECH, 'V'].copy()
+        leak = current.gL[pop].copy()
+        for row in range(current.counts[pop]):
+            def balance(v, *, details=False):
+                candidate = voltage.copy(); candidate[row] = v
+                chord, slope = bc_glycine_dc_conductance(current, background, component, candidate)
+                g = desired[row]-slope[row]
+                residual = (g*(target[row]-v)+chord[row]*(EI[row]-v))/desired[row]
+                return (g, residual) if details else residual
+            lower, upper = sorted((float(EI[row]), float(target[row])))
+            # A unique positive passive decomposition requires a bracketed,
+            # monotone balance in the physical interval. Otherwise retain gL.
+            grid = np.linspace(lower, upper, 17)
+            values = np.array([balance(v) for v in grid])
+            if not (values[0] >= 0 >= values[-1] and np.all(np.diff(values) < 0)):
+                ledger[pop]['unresolved_rows'].append(row)
+                continue
+            v = brentq(balance, lower, upper, xtol=1e-14, rtol=1e-14)
+            g, _ = balance(v, details=True)
+            if not np.isfinite(g) or g <= 0:
+                ledger[pop]['unresolved_rows'].append(row)
+                continue
+            leak[row] = g
+        parameters['populations'][pop]['gL'] = leak/current.members[pop]
+    parameters['provenance'] = dict(parameters.get('provenance', {}),
+        bc_physiology_configuration=digest(path), historical_parent_parameters=canonical_hash(original_seed['inner_parameters']))
+    parameters['identity'] = canonical_hash(dict(configuration=digest(path),
+        parent=canonical_hash(original_seed['inner_parameters']), populations=parameters['populations']))
+    final = initialize(seed)
+    final_model = a.runtime_factories['inner'](a, final['inner_parameters'])
+    final_state = {k: final['states'][k] for k in final_model.state_keys}
+    for pop in BC:
+        row = ledger[pop]
+        extra = np.zeros(final_model.counts[pop])
+        chord = np.zeros_like(extra)
+        if pop.endswith('_OFF'):
+            component = 'AII_FMB_glycine' if pop == 'midget_BC_OFF' else 'AII_DB1_glycine'
+            chord, extra = bc_glycine_dc_conductance(final_model, final_state, component,
+                                                   final_state[pop, BC_MECH, 'V'])
+            extra = extra/final_model.members[pop]
+            chord = chord/final_model.members[pop]
+        row.update(gL_per_member_S=final_model.par(pop, 'gL').copy(),
+            AII_chord_per_member_S=chord, AII_DC_slope_per_member_S=extra,
+            effective_DC_conductance_per_member_S=final_model.par(pop, 'gL')+extra+row['gap_diagonal_per_member_S'],
+            status='ENGINEERING_RETAINED' if pop == 'S_ON_BC' else
+                'PARTLY_UNIDENTIFIED' if row['unresolved_rows'] else 'LOCAL_DC_CONSTRAINT_BOUND',
+            quantitative_dynamic_fit_completed=False, physiological_calibration_completed=False)
+    final['bc_physiology'] = dict(schema=cfg['schema'], configuration=path.relative_to(root).as_posix(),
+        configuration_sha256=digest(path), parent_seed_sha256=parent_hash,
+        parameter_binding_id=a.parameter_binding_id, ledger=ledger,
+        interpretation='Model-local DC constraints; not measured pure leak or full coupled-network Rin',
+        initializer='Unchanged initialize_joint_background function code with explicit native/binding dependencies')
+    if canonical_hash(original_seed) != parent_hash:
+        raise ContractError('BC construction mutated the historical seed')
+    return a, final

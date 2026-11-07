@@ -68,9 +68,8 @@ def preflight(center, output: Path):
             raise ContractError('S0 differs from its source reference: '+key)
     if not np.array_equal(raw['q_ref_LMS'].reshape(-1),anchor['q_ref_LMS']):
         raise ContractError('Frozen S0 fixed LMS conversion differs')
-    aperture=ROOT/'configurations/research/macaque_cone_aperture_eccentricity_v1.json'
-    if canonical_hash(read(aperture))!=anchor['aperture_profile']:
-        raise ContractError('Frozen macaque diameter profile differs')
+    aperture=ROOT/'configurations/isetbio_native_cone_aperture_v1.json'
+    requires_native_background=canonical_hash(read(aperture))!=anchor['aperture_profile']
     geometry=choose_geometry(artifact.parent,center)
     prepared=out/'prepared';background=out/'background'
     paths={'scene_anchor':SCENE,'scene_anchor_binding':ANCHOR_BINDING,'near_selection_template':TEMPLATE,'parent_construction':PARENT/'manifest.json',
@@ -90,6 +89,7 @@ def preflight(center, output: Path):
     input_reference=dict(parent['payload']['dictionary'])['input_reference']
     rod=dict(input_reference['dictionary'])['rod_background_rstar_s']
     plan=dict(schema='requested-position-frozen-near-S0-preparation-1',
+        requires_native_aperture_background=requires_native_background,
         center_deg=list(map(float,center)),actual_eccentricity_deg=geometry['actual_eccentricity_deg'],
         target_type=geometry['selected_type'],target_parent_group_row=geometry['selected_parent_group_row'],
         core_RGC_centroid_counts={name:value['core_centroid_groups'] for name,value in geometry['geometric_presence'].items() if 'RGC' in name or name=='small_bistratified_S_ON'},
@@ -137,6 +137,8 @@ def execute(plan, step, historical_base=HISTORY):
         'capture':background/'capture.mat','initialize':background/'seed/manifest.json'}[step]
     if prerequisite and not prerequisite.is_file():
         raise ContractError('Complete preceding explicit step first: '+str(prerequisite))
+    if plan.get('requires_native_aperture_background'):
+        raise ContractError('Generate a native-aperture background and scene anchor before executing a new position')
     forbidden={'construct':[prepared],'optical_setup':[background],
         'capture':[expected,background/'optical_capture_RESOURCE.json'],
         'initialize':[expected,background/'FIXED_LMS_BRIDGE.json',background/'initialize_RESOURCE.json']}[step]

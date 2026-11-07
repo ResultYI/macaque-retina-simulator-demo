@@ -16,6 +16,7 @@
   "reference_linear_value": 0.5,
   "aperture_diameter_to_spacing": 0.79,
   "aperture_shape": "Pillbox",
+  "cone_aperture_model": "isetbio_native_pillbox_v1",
   "cone_optics_revision": "isetbio_typed_OS_per_aperture_v2",
   "type_specific_aperture_diameter": false,
   "aperture_blur": "each cone's own discretized ISETBio pillbox kernel; share only exactly equal kernels",

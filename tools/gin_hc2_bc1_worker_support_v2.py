@@ -67,8 +67,9 @@ def main(nonce, folder, stage):
             from tools.assemble_gin_hc2_native_support_v2 import build
             build(output, guard)
         elif stage == 'prepare_optical':
-            from tools.prepare_gin_hc2_bc1_optical_support_v2 import build
-            build(output, guard)
+            from tools.prepare_gin_hc2_bc1_optical_v1 import build
+            from tools.assemble_gin_hc2_bc1_groups_support_v2 import OUT
+            build(output, guard, source_out=OUT)
         elif stage == 'assemble_groups':
             from tools.assemble_gin_hc2_bc1_groups_support_v2 import build
             build(output, guard)
@@ -76,8 +77,9 @@ def main(nonce, folder, stage):
             from tools.initialize_gin_hc2_bc1_support_v2 import build
             build(output, guard)
         elif stage == 'prepare_formal_optical':
-            from tools.prepare_gin69_formal_optics_support_v2 import build
-            build(output, guard)
+            from tools.prepare_gin69_formal_optics_v1 import build
+            from tools.assemble_gin_hc2_bc1_groups_support_v2 import OUT
+            build(output, guard, source_out=OUT)
         elif stage == 'prepare_native_prefix':
             from tools.prepare_gin69_native_prefix_support_v2 import build
             build(output, guard)

@@ -1,0 +1,23 @@
+{
+  "schema": "HC_eccentric_biexponential",
+  "coordinate_frame": "OPL_pedicle_mm",
+  "fovea_xy_mm": [0.0, 0.0],
+  "geometry_profile": "configurations/hc_density_rf_joint_v2_owner_support_v1.json",
+  "reference_evaluation": {
+    "eccentricity_mm": 4.0,
+    "authorization": "2026-11-04 user superseded historical freeze; current Cone-HC task takes precedence",
+    "policy": "same profile and contact formula; reference evaluation only; no geometry regeneration"
+  },
+  "H1": {
+    "lambda_short": "R(e)/ln(10)",
+    "lambda_long": "0.300*R(e)/R(4.0)",
+    "weight_short": 0.15,
+    "weight_long": 0.85,
+    "reference_lambda_long_mm": 0.3,
+    "support_factor": 11.75637,
+    "source": "User-specified eccentricity initialization; existing joint HC contact profile",
+    "evidence_class": "engineering initialization; central 0-6 deg spatial physiology remains uncalibrated"
+  },
+  "tail_mass_budget": 0.0001,
+  "H2": null
+}

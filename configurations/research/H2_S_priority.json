@@ -1,0 +1,14 @@
+{
+  "schema": "H2_complete_contact_type_priority",
+  "gamma": {"L": 1.0, "M": 1.0, "S": 10.0},
+  "equation": "A_ji = C_ji * gamma_i / sum_k(C_jk * gamma_k)",
+  "normalization": "complete_legal_fine_source_row_before_crop_and_projection",
+  "preserve_raw_contact_values": true,
+  "new_contacts_allowed": false,
+  "evidence_class": "published_model_borrowed",
+  "physiologically_calibrated": false,
+  "sources": [
+    {"citation": "Dacey et al. 1996, Science", "doi": "10.1126/science.271.5249.656", "role": "user-specified qualitative H2 S-input constraint; not a measured tenfold gain"},
+    {"citation": "Schmidt, Bair & Neitz, Lateral inhibition and spectral opponency in the outer retina of primate", "role": "user-specified published model borrowing: S input ten times L/M", "new_literature_verification": false}
+  ]
+}

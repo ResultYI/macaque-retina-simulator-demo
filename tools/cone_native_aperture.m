@@ -1,29 +1,14 @@
 function [area, restore] = cone_native_aperture(mosaic, diameters, modifiers)
-% Initialize native Gaussian state, then re-import the frozen apertures.
+% Complete-support native diameters are transferred unchanged to capture tiles.
+assert(strcmp(modifiers.shape,'Pillbox') && strcmp(mosaic.coneApertureModifiers.shape,'Pillbox'), ...
+    'ConeAperture:Shape','Native Pillbox apertures required');
 assert(mosaic.employsImportedConeData && mosaic.eccVaryingConeAperture && ...
     ~mosaic.anchorAllEccVaryingParamsToTheirFovealValues && ...
     isequal(mosaic.rodIntrusionAdjustedConeAperture,false), ...
-    'ConeAperture:Contract','Imported, varying apertures without rod intrusion required');
-assert(numel(diameters)==numel(mosaic.coneTypes) && all(isfinite(diameters(:))) && ...
-    all(diameters(:)>0) && numel(mosaic.blurApertureDiameterMicronsZones)==1, ...
-    'ConeAperture:Dimensions','Explicit positive per-cone diameters and imported blur required');
-saved=struct('positionUnits','microns','positions',mosaic.coneRFpositionsMicrons, ...
-    'types',mosaic.coneTypes,'lightGatheringApertureDiameters',mosaic.coneApertureDiametersMicrons, ...
-    'blurApertureDiameterMicrons',mosaic.blurApertureDiameterMicronsZones(1));
-oldModifiers=mosaic.coneApertureModifiers;
-restore=onCleanup(@()restoreImported(mosaic,oldModifiers,saved));
-% The public setter initializes native conversion factors but recalculates D.
-mosaic.coneApertureModifiers=modifiers;
-requested=saved;requested.lightGatheringApertureDiameters=diameters(:);
-mosaic.importExternalConeData(requested);
+    'ConeAperture:Contract','Imported varying native apertures without rod intrusion required');
 assert(isequal(mosaic.coneApertureDiametersMicrons(:),diameters(:)), ...
-    'ConeAperture:Import','Native initialization changed the supplied diameters');
+    'ConeAperture:Identity','Capture apertures differ from frozen native geometry');
 area=mosaic.computeApertureAreasMetersSquared(1:numel(diameters));area=area(:);
-assert(isequal(size(area),[numel(diameters),1]) && all(isfinite(area)) && all(area>0), ...
-    'ConeAperture:Area','Invalid native light-collecting areas');
-end
-
-function restoreImported(mosaic,modifiers,data)
-mosaic.coneApertureModifiers=modifiers;
-mosaic.importExternalConeData(data);
+assert(numel(area)==numel(diameters) && all(isfinite(area)) && all(area>0));
+restore=[];
 end

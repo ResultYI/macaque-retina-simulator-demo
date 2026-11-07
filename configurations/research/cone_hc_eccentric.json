@@ -1,0 +1,30 @@
+{
+  "schema": "cone_hc_eccentric_research",
+  "research_only": true,
+  "production_qualified": false,
+  "execution_mode": "local_cpu",
+  "spatial_configuration": "configurations/research/HC_eccentric_biexponential.json",
+  "assets_directory": "reports/CONE_HC_FINAL_IMPLEMENTATION_2026-11-02/eccentric_assets",
+  "calibration": {
+    "path": "reports/CONE_HC_FINAL_IMPLEMENTATION_2026-11-02/CALIBRATION_METRICS.json",
+    "sha256": "839677e9bce387bfb1ab963943e158f28a0d4215f22c06c48042e83145bcab15",
+    "parameter": "tau_h_ms",
+    "fallback_ms": 20.0,
+    "bounds_ms": [10.0, 40.0],
+    "refit": false
+  },
+  "source_context": "GIN_69_6_HC2_BC1_SUPPORT_V2",
+  "bc_configuration": "configurations/research/BC_PHYSIOLOGY_2026-11-02.json",
+  "diagnostic_input_configuration": "configurations/research/cone_hc_biexponential_functional.json",
+  "background_mode": "reuse_existing_HC_1000td_uniform_held_diagnostic",
+  "H2_mode": "retain_existing_A_B_parameters_and_homotypic_operator",
+  "H1_explicit_lateral_coupling": false,
+  "fullchain_duration_seconds": 0.05,
+  "limitations": {
+    "boundary_convergence_qualified": false,
+    "central_spatial_physiology_qualified": false,
+    "input": "existing native-Td diagnostic background and annulus; not a new optical capture",
+    "fullchain_background": "new fixed point at declared HC diagnostic background; existing BC/AC/AII/RGC parameters retained",
+    "implementation_status": "WRITTEN_NOT_EXECUTED_OR_TESTED"
+  }
+}

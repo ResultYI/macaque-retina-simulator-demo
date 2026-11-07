@@ -5,7 +5,6 @@ import queue
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
-import numpy as np
 from PIL import Image, ImageTk
 from .replay import PlaybackClock
 from .response_bundle import open_result, export_package, sha
@@ -55,6 +54,8 @@ class ResponseApp:
                              ('导入刺激视频…',self.choose_video),('导出结果ZIP…',self.export)]:
             ttk.Button(header,text=text,command=command).pack(side='left',padx=4)
         ttk.Button(header,text='已有4秒结果',command=lambda:self.load(self.project_root/DEFAULT_RESULT)).pack(side='right')
+        from .internal_state_view import open_internal_state_window
+        ttk.Button(header,text='69#6 内部状态',command=lambda:open_internal_state_window(self.root,self.project_root)).pack(side='right')
         ttk.Label(shell,textvariable=self.status,wraplength=1440,foreground='#226276').pack(fill='x',pady=(5,4))
         selection=ttk.Frame(shell);selection.pack(fill='x',pady=(0,5))
         ttk.Label(selection,text='位置').pack(side='left')
@@ -141,8 +142,7 @@ class ResponseApp:
         self.task(work,done,'正在读取完整响应…')
 
     def loaded(self):
-        if self.curve_window is not None and self.curve_window.winfo_exists():self.curve_window.destroy()
-        self.curve_window=None
+        self.close_curve()
         self.clock=PlaybackClock(self.data.stop);self.clock.speed=float(self.speed.get()[:-1])
         self.slider.configure(to=self.data.stop);self.timeline.set(0)
         self.refresh_targets()
@@ -165,6 +165,25 @@ class ResponseApp:
         if self.targets:
             i=self.targets.index(self.target) if self.target in self.targets else 0
             self.rgc.set(self.target_labels[i]);self.choose_target()
+        else:
+            self.clear_response_display('当前筛选没有可用 RGC')
+
+    def clear_response_display(self, message):
+        self.clock.pause();self.play_button.configure(text='播放')
+        self.target=self.cell=None
+        self.targets,self.target_labels=[],[]
+        self.network,self.direct={},set()
+        self.maps.clear();self.close_curve()
+        self.rgc.set('');self.rgc_combo.configure(values=[])
+        for canvas,caption,_ in self.cards:
+            canvas.delete('all');canvas.create_text(12,30,text=message,fill='#cbd5e1',anchor='w');caption.set(message)
+        self.video.delete('all');self.video.create_text(12,40,text=message,fill='#cbd5e1',anchor='w')
+        self.photos.clear()
+        self.detail.set(message)
+        if self.data is None:
+            self.coverage.set('');self.time_label.set('未加载响应')
+            self.clock.stop=0.;self.clock.seek(0.)
+            self.slider.configure(to=0.);self.timeline.set(0.)
 
     def choose_target(self, _=None):
         if not self.data or self.rgc.get() not in self.target_labels:return
@@ -263,9 +282,8 @@ class ResponseApp:
             else:
                 self.clock.pause()
                 if self.source:self.source.close()
-                self.source=self.data=None;self.target=self.cell=None
-                for canvas,caption,_ in self.cards:
-                    canvas.delete('all');canvas.create_text(12,30,text='无匹配响应 · 需要计算',fill='#cbd5e1',anchor='w');caption.set('未生成状态；不显示旧结果')
+                self.source=self.data=None
+                self.clear_response_display('无匹配响应 · 需要计算')
                 self.video.delete('all');self.video.create_text(12,40,text=Path(path).name+'\n需计算完整响应',fill='#cbd5e1',anchor='w')
                 self.detail.set('当前刺激没有完整响应。旧热图已清空。')
                 self.status.set('刺激已导入，但没有匹配的完整响应：需要计算；未生成热图，未自动启动计算。')
@@ -280,7 +298,7 @@ class ResponseApp:
 
     def show_curve(self):
         if not self.data or not self.cell:return
-        if self.curve_window is not None and self.curve_window.winfo_exists():self.curve_window.destroy()
+        self.close_curve()
         window=tk.Toplevel(self.root);window.title('原始响应曲线 · 与主视图同一时间');window.geometry('850x420');self.curve_window=window
         p,row=self.cell;self.curve_cell=(p,row);self.curve_data=self.data
         keys=list(self.data.available_fields[p]);self.curve_key.set(self.data.populations[p]['primary'] or keys[0])
@@ -288,6 +306,12 @@ class ResponseApp:
         self.curve_canvas=tk.Canvas(window,bg='#f8fafc');self.curve_canvas.pack(fill='both',expand=True)
         combo.bind('<<ComboboxSelected>>',lambda _:self.load_curve_field())
         self.curve_canvas.bind('<Configure>',lambda _:self.render_curve());self.render_curve()
+
+    def close_curve(self):
+        if self.curve_window is not None and self.curve_window.winfo_exists():self.curve_window.destroy()
+        self.curve_window=None
+        self.curve_data=self.curve_cell=self.curve_canvas=None
+        self.photos.pop('curve',None)
 
     def load_curve_field(self):
         if self.curve_data is not self.data:return

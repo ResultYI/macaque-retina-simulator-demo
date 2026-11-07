@@ -1,0 +1,23 @@
+{
+  "schema": "bc-physiology-constraints-2026-11-02",
+  "entry": "RetinaBuilder.build_research_bc",
+  "source_context": "GIN_69_6_HC2_BC1_SUPPORT_V2",
+  "source_artifact": "GIN69-HC2-BC1-member-projected-local-1",
+  "scope_degrees": [0, 6],
+  "authorization": "User-approved implementation contract, 2026-11-02; no literature search or new mechanisms",
+  "input_resistance_definition": "Local DC input slope with Cone generator, presynaptic AII and other gap voltages held at the constructed background; original voltage-dependent glycine kinetics at their steady state",
+  "targets": {
+    "midget_BC_OFF": {"label": "OFF midget / FMB", "Rin_GOhm": 1.42, "effective_conductance_nS": 0.704},
+    "midget_BC_ON": {"label": "ON midget / IMB", "Rin_GOhm": 1.0, "effective_conductance_nS": 1.0},
+    "diffuse_BC_OFF": {"label": "OFF diffuse / DB3a-like effective pool", "Rin_GOhm": 0.415, "effective_conductance_nS": 2.410},
+    "diffuse_BC_ON": {"label": "ON diffuse / DB4-like effective pool", "Rin_GOhm": 0.557, "effective_conductance_nS": 1.795},
+    "S_ON_BC": {"label": "S-ON bipolar", "Rin_GOhm": null, "effective_conductance_nS": null}
+  },
+  "engineering_parameters": {"C_F": 2e-11, "K_V": 0.01, "V_ref_V": -0.05, "V_half_V": -0.05, "release_slope_V": 0.005, "terminal_tau_seconds": 0.003, "adaptation_tau_seconds": 0.1, "adaptation_exponent": 6, "adaptation_scale": 0.75},
+  "history": {"kernel": [0.5, 0.25, -0.1], "sample_interval_seconds": 0.001, "ON_polarity": -1, "OFF_polarity": 1},
+  "nonidentifiable_policy": "Retain original gL if the positive leak decomposition is not unique; register the unresolved rows",
+  "historical_parameters_and_caches": "Never rewritten; new explicit research construction only",
+  "physiologically_calibrated": false,
+  "quantitative_dynamic_fit_completed": false,
+  "production_adopted": false
+}

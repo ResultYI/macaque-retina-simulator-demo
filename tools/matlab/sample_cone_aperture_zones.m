@@ -2,7 +2,7 @@ function [rates, diagnostic] = sample_cone_aperture_zones(mosaic, oi, positionsM
 % Project adapter over pinned ISETCam OI / ISETBio pigment and kernel math.
 % Unit-sum kernel -> spectral absorption density -> sample -> exact area once.
 % This does not call computeAbsorptionRate again or reapply an optical PSF.
-assert(ismember(mode,{'legacy_fixed_cone_blur','macaque_eccentricity_aperture_v1'}));
+assert(ismember(mode,{'legacy_fixed_cone_blur','isetbio_native_pillbox_v1'}));
 n=size(positionsMicrons,1);assert(size(positionsMicrons,2)==2 && numel(types)==n);
 assert(numel(referenceDiameters)==n && all(referenceDiameters>0) && numel(zoneDiameters)==n);
 photons=oiGet(oi,'photons');wave=oiGet(oi,'wave');mosaic.wave=wave;
@@ -18,17 +18,18 @@ if strcmp(mode,'legacy_fixed_cone_blur')
     modifiers=struct('shape','Pillbox');
     zones=ones(n,1)*legacyBlurDiameter;
 else
-    modifiers=struct('shape','Gaussian','sigma',.204);
-    zones=zoneDiameters(:);
+    modifiers=struct('shape','Pillbox');
+    assert(isequal(referenceDiameters(:),zoneDiameters(:)),'ConeOptics:Zones','Custom aperture zones retired');
+    zones=referenceDiameters(:);
 end
 [area,restoreNative]=cone_native_aperture(mosaic,referenceDiameters,modifiers); %#ok<NASGU>
-rates=zeros(n,1);diameters=unique(zones);kernelSums=zeros(numel(diameters),2);radii=zeros(numel(diameters),1);
+[groups,kernels,diameters]=native_cone_kernel_groups(mosaic,zones,dx);
+rates=zeros(n,1);kernelSums=zeros(numel(diameters),2);radii=zeros(numel(diameters),1);
 for iz=1:numel(diameters)
-    d=diameters(iz);assert(ceil(2*d/dx)>=3,'Aperture would be skipped at this OI resolution');
-    kernel=mosaic.generateApertureKernel(d,dx,false);
+    d=diameters(iz);kernel=kernels{iz};
     kernelSums(iz,1)=sum(kernel(:));kernel=kernel/sum(kernel(:));kernelSums(iz,2)=sum(kernel(:));
     radius=(size(kernel,1)-1)*dx/2;radii(iz)=radius;
-    select=find(zones==d);pos=positionsMicrons(select,:);
+    select=groups{iz};pos=positionsMicrons(select,:);
     assert(all(pos(:,1)>min(x)+radius+dx & pos(:,1)<max(x)-radius-dx & ...
         pos(:,2)>min(y)+radius+dy & pos(:,2)<max(y)-radius-dy),'Missing aperture halo; extrapolation disallowed');
     for kind=1:3

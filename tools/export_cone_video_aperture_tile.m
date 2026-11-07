@@ -1,7 +1,10 @@
 function export_cone_video_aperture_tile(configPath,outputPath)
-% Cone-only capture: pinned MW spectrum, frozen Gaussian D(e), no neural stage.
+% Cone-only capture: pinned MW spectrum, native ISETBio Pillbox apertures, no neural stage.
 persistent model modelPath sourceBank sourcePath sampler samplerKey area os types diag cm
-c=jsondecode(fileread(configPath));p=c.profile;
+c=jsondecode(fileread(configPath));
+assert(isfield(c,'aperture_model') && strcmp(c.aperture_model,'isetbio_native_pillbox_v1'), ...
+    'ConeOptics:Model','Prepare a fresh native aperture request; preserve frozen legacy captures');
+p=c.profile;
 assert(~isfile(outputPath),'ConeVideo:Output','Preserve prior capture');
 addpath(genpath(p.isetcam_root));addpath(genpath(p.isetbio_root));addpath(fullfile(fileparts(mfilename('fullpath')),'matlab'));
 if isempty(modelPath) || ~strcmp(modelPath,c.optics_cache)
@@ -61,10 +64,10 @@ for j=1:numel(frames)
     if c.native_control && j==1
         nativeOI=oiCompute(model.baseOI,scene);
         native=sample_cone_aperture_zones(cm,nativeOI,d.is_mm*1e3,types,d.reference_diameter_um, ...
-            d.zone_diameter_um,'macaque_eccentricity_aperture_v1',c.center_mm(:)'*1e3,3);
+            d.zone_diameter_um,'isetbio_native_pillbox_v1',c.center_mm(:)'*1e3,3);
         native=double(native).*os;
         relative=max(abs(rates-native)./max(native,1e-20));
-        assert(relative<3e-6,'ConeVideo:NativeControl','Gaussian sparse/native capture differs');
+        assert(relative<3e-6,'ConeVideo:NativeControl','Pillbox sparse/native capture differs');
         control=struct('frame',frames(j),'cones',n,'maximum_relative_error',relative, ...
             'native_oiCompute_and_zone_sampler_used',true);
     end
@@ -73,8 +76,8 @@ assert(all(isfinite(expected_counts(:))) && all(expected_counts(:)>=0) && all(ba
 window_edges_seconds=c.window_edges_seconds;diameters_um=d.reference_diameter_um(:)';
 meta=struct('schema','cone_eccentric_aperture_video_tile_v2','aperture_backend','isetbio_native_aperture_v1','request_signature',c.request_signature, ...
     'tile_signature',c.tile_signature,'aperture_profile_sha256',c.aperture_profile_sha256, ...
-    'kernel','Gaussian sigma=0.204*reference diameter; unit sum;0.05um zones', ...
-    'area','2*pi*sigma^2 per actual cone, once','units','expected R*/frame', ...
+    'kernel','ISETBio native Pillbox; unit sum; exact per-cone diameter', ...
+    'area','cMosaic.computeApertureAreasMetersSquared per actual cone, once','units','expected R*/frame', ...
     'sampling',diag,'native_control',control,'phototransduction_run',false, ...
     'downstream_circuit_run',false,'eye_movements',false,'background_qualified',false,'FIT_READY',false,'production_adopted',false);
 manifest_json=jsonencode(meta);

@@ -9,8 +9,8 @@ display=displayCreate('LCD-Apple');wave=double(displayGet(display,'wave'));
 gamma=displayGet(display,'gamma');spd=displayGet(display,'spd');
 assert(size(gamma,2)==3 && size(spd,2)==3 && all(isfinite(gamma(:))) && all(spd(:)>=0), ...
     'MixedInput:Display','Measured LCD gamma/SPD required');
-spacings=RGCmodels.Watson.convert.positionsToSpacings(d.support_is_mm*1e3);
-diameters_um=p.aperture_diameter_to_spacing*spacings(d.active_indices(:))';blur_um=mean(diameters_um);
+assert(isfield(d,'native_apertures_um'),'ConeOptics:Geometry','Prepare native apertures on complete support before capture');
+diameters_um=d.native_apertures_um(:)';blur_um=mean(diameters_um);
 assert(all(isfinite(diameters_um)) && all(diameters_um>0),'MixedInput:Aperture','Invalid full-support cone spacing');
 pigment=cPhotoPigment('wave',wave,'opticalDensity',p.optical_density_LMS, ...
     'peakEfficiency',p.peak_efficiency_LMS);

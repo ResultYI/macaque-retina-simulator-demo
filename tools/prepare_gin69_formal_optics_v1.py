@@ -1,4 +1,5 @@
 """Exact-frame deduplication for the approved training/development prefix only."""
+from pathlib import Path
 from copy import deepcopy
 import hashlib
 import time
@@ -10,7 +11,8 @@ from retina_sim.spatial_group_graph import digest
 from tools.durable_research_runtime_v1 import atomic_json
 from tools.gin_hc2_bc1_context_v1 import ROOT,OUT,OLD,read
 
-def build(output,guard):
+def build(output,guard,*,source_out=OUT):
+    OUT=Path(source_out)
     start=time.perf_counter();gate=read(OUT/'SHORT_NUMERICAL_CHECK.json')
     if not gate['passed']:raise ValueError('New network short numerical gate required')
     split=read(OUT/'SPLIT_CONTRACT.json')

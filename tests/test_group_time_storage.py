@@ -38,3 +38,49 @@ def test_partial_or_old_payload_cannot_claim_complete_restore(tmp_path):
         save_bundle(tmp_path/'bad',kind='complete_model_checkpoint',identity={},payload={'native':np.ones(1)},
                     qualification={'default_adopted':False,'fit_eligible':False})
 
+
+def test_failed_encoding_removes_only_this_attempt(tmp_path):
+    unrelated = tmp_path/'other.writing-existing'
+    unrelated.mkdir()
+    marker = unrelated/'evidence.txt'
+    marker.write_text('retain')
+    with pytest.raises(ContractError, match='nonfinite'):
+        save_bundle(tmp_path/'bad', kind='validation_evidence', identity={},
+                    payload=[np.arange(3.), np.array([np.nan])],
+                    qualification={'default_adopted':False,'fit_eligible':False})
+    assert list(tmp_path.iterdir()) == [unrelated]
+    assert marker.read_text() == 'retain'
+
+
+def test_cleanup_failure_preserves_original_write_error(tmp_path, monkeypatch):
+    import retina_sim.group_time_storage as storage
+    def locked_directory(path):
+        raise PermissionError('directory is locked')
+    monkeypatch.setattr(storage.shutil, 'rmtree', locked_directory)
+    with pytest.raises(ContractError, match='nonfinite') as caught:
+        save_bundle(tmp_path/'bad', kind='validation_evidence', identity={},
+                    payload=[np.arange(3.), np.array([np.nan])],
+                    qualification={'default_adopted':False,'fit_eligible':False})
+    staging, = tmp_path.iterdir()
+    assert caught.value.__notes__ == [
+        f'Could not remove incomplete bundle {staging}: directory is locked']
+
+
+def test_failed_publish_keeps_concurrent_target_and_removes_staging(tmp_path, monkeypatch):
+    import retina_sim.group_time_storage as storage
+    target = tmp_path/'checkpoint'
+    def failed_publish(source, destination):
+        target.mkdir()
+        (target/'evidence.txt').write_text('concurrent result')
+        raise OSError('publication failed')
+    monkeypatch.setattr(storage.os, 'replace', failed_publish)
+    with pytest.raises(OSError, match='publication failed'):
+        save_bundle(target, kind='validation_evidence', identity={}, payload=np.arange(3.),
+                    qualification={'default_adopted':False,'fit_eligible':False})
+    assert list(tmp_path.iterdir()) == [target]
+    assert (target/'evidence.txt').read_text() == 'concurrent result'
+    with pytest.raises(ContractError, match='Fresh group bundle'):
+        save_bundle(target, kind='validation_evidence', identity={}, payload=np.arange(3.),
+                    qualification={'default_adopted':False,'fit_eligible':False})
+    assert (target/'evidence.txt').read_text() == 'concurrent result'
+

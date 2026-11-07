@@ -1,9 +1,20 @@
+## 当前研究与桌面入口
+
+双击 `run_retina_gui.cmd` 打开当前 **69#6 内部状态浏览**，读取已有结果，不启动模型计算。支持分层状态、对象曲线、刺激同步、中日英切换、滚轮缩放和图像导出。上游连续状态只覆盖已保存的 5.0–5.5 s 短窗口，其他时段按真实记录显示。操作说明见 [桌面回放说明](docs/response_viewer_zh.md)。
+
+- 当前科学模型入口：`RetinaBuilder.build_research_ac`，配置为 `configurations/research/AC_functional.json`；建模范围与参数来源见 [当前建模原理](document/当前建模原理.md)。
+- 当前 69#6 结果：`reports/GIN_69_6_HC2_BC1_SUPPORT_V2/current_ac_source/`；[实验报告](reports/GIN_69_6_HC2_BC1_SUPPORT_V2/FINAL_REPORT.md)记录科学状态与限制。
+- `retina_sim/` 放模型与数值实现，`retina_platform/` 放桌面读取和显示，`tools/` 放数据准备及实验入口，`tests/` 放仍需维护的回归检查。
+- 现有旧入口可能被实验脚本、源码身份或测试夹具依赖，名称中的版本号不表示可删除。清理与检查记录统一维护在 [项目整理记录](document/项目整理记录.json)。
+
+已确认停用的历史工具及两个合并后的重复入口共 **109 个文件（97 个 Python、12 个 PowerShell）** 已移到项目外的 `D:\macaque retinal simulator archive`；`tools/` 的 Python 文件由 441 个减至 344 个。归档中的 `ARCHIVE_INDEX.json` 保留原相对路径、大小和 SHA256，`RESTORE.txt` 说明恢复方法。历史文档中的旧工具路径可在此索引定位；不要直接在归档目录启动实验。原始数据、有效缓存、科学结果和当前源码绑定仍留在本工程。
+
+五份修复前源码备份的项目内原件已按用户确认删除，校验一致的外部归档副本全部保留；明细见整理记录中的 `tools_archive.deletion_candidates`。当前仍使用的旧名共享工具和源码身份绑定文件继续保留。
+
 <!-- response-package-desktop-v1 -->
-## 完整响应的桌面分层回放
+## 完整响应包与历史回放
 
-双击 `run_retina_gui.cmd`，导入一个结果ZIP，选择RGC，查看9层空间响应并同步播放原视频。曲线和身份详情由独立按钮打开；没有匹配响应时明确提示需计算，不自动启动长计算。
-
-实际4秒示例：`reports/result_packages/retina_113_4s_298fa2ef1524.response.zip`。使用、字段、打包安全与自动导出范围见 [桌面回放说明](docs/response_viewer_zh.md)。旧Cell6回放保留。
+完整响应 ZIP/目录使用 `python -B -m retina_platform --response-replay --result <结果路径>` 打开，保留原有九层回放。已有 4 秒示例为 `reports/result_packages/retina_113_4s_298fa2ef1524.response.zip`。旧 Cell6 回放使用 `--cell6-replay`。以下其他入口和早期阶段记录保留各自实验范围，不替代上述当前模型与结果。
 <!-- /response-package-desktop-v1 -->
 
 ## 研究室光学依赖迁移
@@ -49,11 +60,11 @@ Windows 启动脚本会在当前进程未设置时读取用户环境中的 `PIP_
 示例媒体位于 `examples/platform_media`，明确标记为 synthetic。界面与核心端到端验收及实际截图：[`reports/platform_acceptance/20261011T022329305607Z`](reports/platform_acceptance/20261011T022329305607Z/acceptance.json)。
 <!-- /local-platform-entry -->
 
-项目位置：`D:\macaque_retina_simulator`。已从旧项目目录整体迁移；历史 manifest、来源及执行记录未改写，旧绝对路径通过 [迁移映射](migration_map.json) 对应当前文件。目录外独有的 DeepGaze 代码、官方来源/权重及两条件410 ms原始结果已归档到 [exploratory/deepgaze_exploration](exploratory/deepgaze_exploration/PAUSED.json)，保持暂停；迁移不构成恢复实验的授权。原暂存目录保留。
+当前项目位置：`D:\macaque retinal simulator`。历史 manifest、来源及执行记录未改写，旧绝对路径通过 [迁移映射](migration_map.json) 对应当前文件。旧迁移记录中的 DeepGaze 探索保持暂停；本项目的代码整理不构成恢复该实验的授权。
 
 <!-- current-all-target-entry -->
 
-当前全层主线入口：`tools/run_full_target.py`。同一份[架构与交付说明](docs/core_design.md)及[当前状态](reports/core_architecture_status.json)记录实际 rod/RBC/AII 路径、逐参数证据、此前41项检查、本次8项受影响检查和全层 synthetic 运行；无参数默认2 ms＋6 ms工程入口实际24.85 s完成，原长时选项保留；生理标定与独立动物验证仍单独报告。旧 fixture 入口仅保留为历史工程检查。
+早期全层工程入口：`tools/run_full_target.py`。[架构与交付说明](docs/core_design.md)及[当时状态](reports/core_architecture_status.json)保留其 rod/RBC/AII 路径、逐参数证据和 synthetic 工程运行记录。该入口和旧 fixture 用于历史复现，不代表当前 69#6 模型或生理标定状态。
 
 
 
@@ -61,7 +72,7 @@ Windows 启动脚本会在当前进程未设置时读取用户环境中的 `PIP_
 
 
 
-本项目的完整目标是从标定光输入到显式细胞及连接、持续状态和逐层输出，同时覆盖中心、过渡区与周边。当前交付包含阶段 A/B 工程基础与隔离的 Somaratna–Freeman Gaussian-HC 线性参考，以及阶段 C 的 Chen2024 外周 >20° L/M cone 非线性外段 pA 模块。完整生理模式仍被阻断。
+本项目的完整目标是从标定光输入到显式细胞及连接、持续状态和逐层输出，同时覆盖中心、过渡区与周边。以下是阶段 A/B 工程基础、隔离的 Somaratna–Freeman Gaussian-HC 线性参考，以及阶段 C 的 Chen2024 外周 >20° L/M cone 非线性外段 pA 模块的历史记录；各自的来源限制和未完成项仍按原报告保留。
 
 
 
